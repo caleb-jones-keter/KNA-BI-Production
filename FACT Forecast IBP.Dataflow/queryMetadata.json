@@ -1,0 +1,129 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "FACT Forecast IBP",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "DefaultDestination": {
+      "queryId": "639af042-f970-4646-a6e1-ce9df9bc235f",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DIM BOM Component": {
+      "queryId": "e3bfaf28-ee22-446d-9e9a-4d5bbaac8cc2",
+      "queryName": "DIM BOM Component",
+      "loadEnabled": false
+    },
+    "FACT EDB Budget- QTY": {
+      "queryId": "83d4f79f-7742-48d4-8116-5bfad2817126",
+      "queryName": "FACT EDB Budget- QTY",
+      "loadEnabled": false
+    },
+    "Margin": {
+      "queryId": "d56fce56-3807-4c51-8f46-32b8d0e91b08",
+      "queryName": "Margin",
+      "loadEnabled": false
+    },
+    "FACT EDB Budget- Finance": {
+      "queryId": "fd825eb1-394c-4229-8ff5-0c9d3c53ec93",
+      "queryName": "FACT EDB Budget- Finance",
+      "loadEnabled": false
+    },
+    "DIM BOM FG": {
+      "queryId": "2b71b5f7-3233-42cd-a037-cf9b8e120dce",
+      "queryName": "DIM BOM FG",
+      "loadEnabled": false
+    },
+    "DIM BOM Combined": {
+      "queryId": "502eab8b-0dea-4373-a942-a8918051f9b6",
+      "queryName": "DIM BOM Combined",
+      "loadEnabled": false
+    },
+    "DIM IBP Customer": {
+      "queryId": "1cd1f53a-f01f-4cb1-adb8-9c5a48ab73de",
+      "queryName": "DIM IBP Customer",
+      "loadEnabled": false
+    },
+    "EDB APO": {
+      "queryId": "67c0d649-c651-4dc2-8a74-a126eb5f3ed2",
+      "queryName": "EDB APO",
+      "loadEnabled": false
+    },
+    "FACT Forecast Initial": {
+      "queryId": "eb05bb83-c800-4070-b7a8-31aea180249c",
+      "queryName": "FACT Forecast Initial",
+      "loadEnabled": false
+    },
+    "FACT Component Forecast Initial": {
+      "queryId": "7920e3ef-c724-4530-95a3-32bd58a9ba95",
+      "queryName": "FACT Component Forecast Initial",
+      "loadEnabled": false
+    },
+    "DIM Product": {
+      "queryId": "a09eb95f-20a4-4175-85ad-11ae07d8bc97",
+      "queryName": "DIM Product",
+      "loadEnabled": false
+    },
+    "Payer Types": {
+      "queryId": "2d6d04a3-e95b-437f-8de3-54e220c9dd92",
+      "queryName": "Payer Types",
+      "loadEnabled": false
+    },
+    "FACT YS10N Open": {
+      "queryId": "7bab5f92-eb7d-467d-9187-c3d6f8217f15",
+      "queryName": "FACT YS10N Open",
+      "loadEnabled": false
+    },
+    "FACT Component Forecast Initial (2)": {
+      "queryId": "43dd95c9-b474-4ac1-b1ed-89d585e7e2de",
+      "queryName": "FACT Component Forecast Initial (2)",
+      "loadEnabled": false
+    },
+    "Component Forecast (Remove Max Sales Date)": {
+      "queryId": "02a9d400-d354-4d5e-8736-2e8fbcfeacda",
+      "queryName": "Component Forecast (Remove Max Sales Date)",
+      "loadEnabled": false
+    },
+    "YS10N PayerMRPSKUSOW": {
+      "queryId": "29c0e280-627f-425d-85b2-b9e8d85b5c8f",
+      "queryName": "YS10N PayerMRPSKUSOW",
+      "loadEnabled": false
+    },
+    "Sales": {
+      "queryId": "43f294a4-6f30-444b-a336-cf4d375afad3",
+      "queryName": "Sales",
+      "loadEnabled": false
+    },
+    "FACT Forecast Adjusted": {
+      "queryId": "6dfc8275-0056-48bb-9552-75eb45e8ae47",
+      "queryName": "FACT Forecast Adjusted",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b1701542-3041-4935-8b10-235eed8e24c3\"}"
+    },
+    {
+      "path": "https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Plant%2067%20BOMs%206-25-25.xlsx",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"a23c0cff-eb10-44b3-9086-2ed08c1e9653\"}"
+    },
+    {
+      "path": "https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/EDB%20Export%20w%20MRP.xlsx",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"8321599a-fede-4e65-aa4c-c3569f206517\"}"
+    },
+    {
+      "path": "https://keteronline.sharepoint.com/teams/SavannahRDC",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"ce338464-28f5-4246-8e05-610e71f851a0\"}"
+    }
+  ]
+}
