@@ -1,0 +1,283 @@
+table fact_ftl_material_shipments_model
+	lineageTag: e9e8f4f0-9d94-4935-8d1e-277de9eb10a6
+	sourceLineageTag: [dbo].[fact_ftl_material_shipments_model]
+
+	measure '_Anderson per Unit Cost' = SUM(fact_ftl_material_shipments_model[Anderson_Total_Cost])/SUM(fact_ftl_material_shipments_model[Combined_Qty])
+		lineageTag: 46a56de6-73f7-4a33-a3c6-06b9340c9843
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Anderson per TL Cost' = SUM(fact_ftl_material_shipments_model[Anderson_Total_Cost])/SUM(fact_ftl_material_shipments_model[Combined_TL_Qty])
+		lineageTag: add1e1be-da0a-4f29-9206-12fb901d7aae
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Savannah per TL Cost' = SUM(fact_ftl_material_shipments_model[DHL_Total_Cost])/SUM(fact_ftl_material_shipments_model[Combined_TL_Qty])
+		lineageTag: f45ddf88-0e48-43ca-aa77-e94315594e9b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Savannah per Unit Cost' = SUM(fact_ftl_material_shipments_model[DHL_Total_Cost])/SUM(fact_ftl_material_shipments_model[Combined_Qty])
+		lineageTag: 3df37412-e92b-4a78-b978-8ca936355323
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Material
+		dataType: string
+		lineageTag: 2c78e4d7-24e7-4026-adff-344cbad92a42
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_to
+		dataType: string
+		lineageTag: 6a624c96-b105-40f5-8624-385844af471c
+		sourceLineageTag: ship_to
+		summarizeBy: none
+		sourceColumn: ship_to
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 4bf53b3c-ae0e-41b0-aaf4-967d4b127f9d
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column New_Storage_Location
+		dataType: string
+		lineageTag: 7bb0c532-b83d-4816-935d-b80224ab1430
+		sourceLineageTag: New_Storage_Location
+		summarizeBy: none
+		sourceColumn: New_Storage_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: a8bbd298-ccfb-41a4-89b1-5b43b41166eb
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column MRP_Area
+		dataType: string
+		lineageTag: 5e9ed18b-8a61-4a5c-903c-7d56db891cac
+		sourceLineageTag: MRP_Area
+		summarizeBy: none
+		sourceColumn: MRP_Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToZip_Clean
+		dataType: string
+		lineageTag: 004144b4-2b96-4aee-8e31-7f665aa02412
+		sourceLineageTag: ShipToZip_Clean
+		summarizeBy: none
+		sourceColumn: ShipToZip_Clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActGdsMvmntDateKey
+		dataType: string
+		lineageTag: 13e6b823-106e-4fa2-87d6-9549b492909c
+		sourceLineageTag: ActGdsMvmntDateKey
+		summarizeBy: none
+		sourceColumn: ActGdsMvmntDateKey
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDateKey
+		dataType: string
+		lineageTag: 73f61fa7-4874-41bc-b04b-4d17d48034e5
+		sourceLineageTag: ShipDateKey
+		summarizeBy: none
+		sourceColumn: ShipDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combined_Qty
+		dataType: double
+		lineageTag: 8b06b22c-f47d-40cb-8d31-490b23da5112
+		sourceLineageTag: Combined_Qty
+		summarizeBy: sum
+		sourceColumn: Combined_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TL_Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cc201c1-84d1-424c-9c86-3103475b9014
+		sourceLineageTag: TL_Qty
+		summarizeBy: sum
+		sourceColumn: TL_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combined_TL_Qty
+		dataType: double
+		lineageTag: 28f8e736-81e8-4197-b3e8-288e4c4e3a95
+		sourceLineageTag: Combined_TL_Qty
+		summarizeBy: sum
+		sourceColumn: Combined_TL_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DHL_TL_Cost
+		dataType: double
+		lineageTag: ca92d68f-7cc3-49d4-88f4-5a4fedf906b4
+		sourceLineageTag: DHL_TL_Cost
+		summarizeBy: sum
+		sourceColumn: DHL_TL_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rancho_TL_Cost
+		dataType: double
+		lineageTag: d4359ec3-252f-4258-9855-4c26e49aff81
+		sourceLineageTag: Rancho_TL_Cost
+		summarizeBy: sum
+		sourceColumn: Rancho_TL_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Anderson_TL_Cost
+		dataType: double
+		lineageTag: 4dd95424-920e-4518-b5ea-03372e2f45bd
+		sourceLineageTag: Anderson_TL_Cost
+		summarizeBy: sum
+		sourceColumn: Anderson_TL_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DHL_Cost_per_Unit
+		dataType: double
+		lineageTag: b9d5bff9-5dbb-46ec-a2e5-5bbf48006071
+		sourceLineageTag: DHL_Cost_per_Unit
+		summarizeBy: sum
+		sourceColumn: DHL_Cost_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DHL_Total_Cost
+		dataType: double
+		lineageTag: 70cd31ed-4715-45df-a8ec-7e161cda6a40
+		sourceLineageTag: DHL_Total_Cost
+		summarizeBy: sum
+		sourceColumn: DHL_Total_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rancho_Cost_per_Unit
+		dataType: double
+		lineageTag: 73dd2b5c-09f0-4ee4-9caf-c05723e7c899
+		sourceLineageTag: Rancho_Cost_per_Unit
+		summarizeBy: sum
+		sourceColumn: Rancho_Cost_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rancho_Total_Cost
+		dataType: double
+		lineageTag: bf626763-707c-480e-849b-1d3cbaacfa63
+		sourceLineageTag: Rancho_Total_Cost
+		summarizeBy: sum
+		sourceColumn: Rancho_Total_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Anderson_Cost_per_Unit
+		dataType: double
+		lineageTag: 6720be33-f6ea-4e57-b938-c64bf9af4a1f
+		sourceLineageTag: Anderson_Cost_per_Unit
+		summarizeBy: sum
+		sourceColumn: Anderson_Cost_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Anderson_Total_Cost
+		dataType: double
+		lineageTag: 8719f7f4-6470-4dd3-aaef-b9d35a9d8f94
+		sourceLineageTag: Anderson_Total_Cost
+		summarizeBy: sum
+		sourceColumn: Anderson_Total_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delivery_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: f194bacc-2528-498b-9250-9b871ee0fc07
+		sourceLineageTag: Delivery_Count
+		summarizeBy: sum
+		sourceColumn: Delivery_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO_Number_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 02c40179-f3a1-4861-a0bc-1260ef55f69a
+		sourceLineageTag: PO_Number_Count
+		summarizeBy: sum
+		sourceColumn: PO_Number_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipment_Number_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 829bd422-8fff-4325-b71b-3f5b36e4e032
+		sourceLineageTag: Shipment_Number_Count
+		summarizeBy: sum
+		sourceColumn: Shipment_Number_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_ftl_material_shipments_model = entity
+		mode: directLake
+		source
+			entityName: fact_ftl_material_shipments_model
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

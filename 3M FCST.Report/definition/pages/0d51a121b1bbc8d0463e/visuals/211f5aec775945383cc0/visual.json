@@ -1,0 +1,423 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "211f5aec775945383cc0",
+  "position": {
+    "x": 480,
+    "y": 624,
+    "z": 6000,
+    "height": 272,
+    "width": 1152,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Data Source"
+                }
+              },
+              "queryRef": "FACT Future.Data Source",
+              "nativeQueryRef": "Data Source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRPSKU"
+                    }
+                  },
+                  "Property": "PC Business Unit"
+                }
+              },
+              "queryRef": "DIM MRPSKU.PC Business Unit",
+              "nativeQueryRef": "PC Business Unit"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRP Area"
+                    }
+                  },
+                  "Property": "MRP Area"
+                }
+              },
+              "queryRef": "DIM MRP Area.MRP Area",
+              "nativeQueryRef": "MRP Area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT Future.PO Number",
+              "nativeQueryRef": "PO Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT Future.Container",
+              "nativeQueryRef": "Container"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Entry Port"
+                }
+              },
+              "queryRef": "FACT Future.Entry Port",
+              "nativeQueryRef": "Entry Port"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_INV + TRANS Future"
+                }
+              },
+              "queryRef": "FACT Future._INV + TRANS Future",
+              "nativeQueryRef": "Qty",
+              "displayName": "Qty"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "CombinedQty_per_ContQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.CombinedQty_per_ContQty)",
+              "nativeQueryRef": "Containers",
+              "displayName": "Containers"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Combined Date"
+                }
+              },
+              "queryRef": "FACT Future.Combined Date",
+              "nativeQueryRef": "Combined Date",
+              "format": "d"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Future"
+                  }
+                },
+                "Property": "Combined Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.29410893398233D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM MRPSKU.PC Business Unit"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "54.94118684366355D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future.Data Source"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM MRP Area.MRP Area"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM Product.SKU & Desc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.88235294117646D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT Future.CombinedQty_per_ContQty)"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Summary'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F2F2F7'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "24D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "031f7dca966817211d5b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Storage Location"
+              }
+            },
+            "Property": "General Location"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "46f6e86416e7be96d1c7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Future"
+              }
+            },
+            "Property": "Data Source"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT Future",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "f"
+                              }
+                            },
+                            "Property": "Data Source"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'EDB APO'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

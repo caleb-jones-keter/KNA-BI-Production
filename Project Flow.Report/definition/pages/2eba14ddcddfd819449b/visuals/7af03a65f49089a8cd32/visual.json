@@ -1,0 +1,365 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "7af03a65f49089a8cd32",
+  "position": {
+    "x": 16.01078167115903,
+    "y": 603.96226415094338,
+    "z": 3000,
+    "height": 296.19946091644204,
+    "width": 1616.1994609164419,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRP Area"
+                    }
+                  },
+                  "Property": "MRP Area"
+                }
+              },
+              "queryRef": "DIM MRP Area.MRP Area",
+              "nativeQueryRef": "MRP Area1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Customer Groups"
+                }
+              },
+              "queryRef": "DIM Customer.Customer Groups",
+              "nativeQueryRef": "Customer Groups"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer & Desc"
+                }
+              },
+              "queryRef": "DIM Customer.Payer & Desc",
+              "nativeQueryRef": "Payer & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "Region",
+              "displayName": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "City List"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.City List",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "POSTAL_CODE"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.POSTAL_CODE",
+              "nativeQueryRef": "Zip Code",
+              "displayName": "Zip Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_Positive Qty"
+                }
+              },
+              "queryRef": "FACT YS10N Base._Positive Qty",
+              "nativeQueryRef": "Qty",
+              "displayName": "Qty",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_Container_Combined_Qty"
+                }
+              },
+              "queryRef": "FACT YS10N Base._Container_Combined_Qty",
+              "nativeQueryRef": "Container Qty",
+              "displayName": "Container Qty",
+              "format": "#,0.0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "_Container_Combined_Qty"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM MRP Area.MRP Area"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Customer.Customer Groups"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Customer.Payer & Desc"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.SKU & Desc"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.REGION"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.City List"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.POSTAL_CODE"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._Positive Qty"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._Container_Combined_Qty"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

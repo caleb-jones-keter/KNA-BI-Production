@@ -1,0 +1,40 @@
+table 'DIM Customer Group'
+	lineageTag: 3e884e0c-dbb2-4fe2-a328-fbe61739f8bd
+	sourceLineageTag: [dbo].[DIM Customer Group]
+
+	column CustomerGroupDesc
+		dataType: string
+		lineageTag: 206c42d9-ebbb-4bd0-866c-3f9b67bb26d6
+		sourceLineageTag: CustomerGroupDesc
+		summarizeBy: none
+		sourceColumn: CustomerGroupDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGroupKey
+		dataType: string
+		lineageTag: 96680a18-b84f-4973-ad54-654ae56f0da5
+		sourceLineageTag: CustomerGroupKey
+		summarizeBy: none
+		sourceColumn: CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Defective Allowance'
+		dataType: double
+		lineageTag: 232ab614-cfa4-45dd-b1fe-052032443355
+		sourceLineageTag: Defective Allowance
+		summarizeBy: sum
+		sourceColumn: Defective Allowance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'DIM Customer Group' = entity
+		mode: directLake
+		source
+			entityName: DIM Customer Group
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

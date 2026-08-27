@@ -1,0 +1,556 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f26b0ea9b2f691c3c783",
+  "position": {
+    "x": 16,
+    "y": 96,
+    "z": 0,
+    "height": 688,
+    "width": 1567.9999999999998,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "Blocked_Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.Blocked_Qty)",
+              "nativeQueryRef": "Sum of Blocked_Qty",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "Inv"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.Inv)",
+              "nativeQueryRef": "Sum of Inv",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "Lost Sales"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.Lost Sales)",
+              "nativeQueryRef": "Sum of Lost Sales",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DI Ship-To-PartyName MAGIC_Lookup"
+                }
+              },
+              "queryRef": "FACT Future._$DI Ship-To-PartyName MAGIC_Lookup",
+              "nativeQueryRef": "Ship-To_Party",
+              "displayName": "Ship-To_Party"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT Future.PO Number",
+              "nativeQueryRef": "Customer PO Number",
+              "displayName": "Customer PO Number"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DIFactory PO MAGIC_Lookup"
+                }
+              },
+              "queryRef": "FACT Future._$DIFactory PO MAGIC_Lookup",
+              "nativeQueryRef": "Factory PO",
+              "displayName": "Factory PO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer & Desc"
+                }
+              },
+              "queryRef": "DIM Customer.Payer & Desc",
+              "nativeQueryRef": "Payer & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Customer SKU"
+                }
+              },
+              "queryRef": "FACT Future.Customer SKU",
+              "nativeQueryRef": "Customer SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRPSKU"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM MRPSKU.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DICalcArravDate MAGIC_Lookup"
+                }
+              },
+              "queryRef": "FACT Future._$DICalcArravDate MAGIC_Lookup",
+              "nativeQueryRef": "Earliest Delivery Date1",
+              "displayName": "Earliest Delivery Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Requested deliv.date"
+                }
+              },
+              "queryRef": "FACT Future.Requested deliv.date",
+              "nativeQueryRef": "Requested deliv.date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DIPlanned Delivery Date"
+                }
+              },
+              "queryRef": "FACT Future._$DIPlanned Delivery Date",
+              "nativeQueryRef": "Planned Delivery Date",
+              "displayName": "Planned Delivery Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Planned shipment end"
+                }
+              },
+              "queryRef": "FACT Future.Planned shipment end",
+              "nativeQueryRef": "Planned shipment end"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DI Order Status"
+                }
+              },
+              "queryRef": "FACT Future._$DI Order Status",
+              "nativeQueryRef": "Order Status",
+              "displayName": "Order Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DI Early/LateDirectPO"
+                }
+              },
+              "queryRef": "FACT Future._$DI Early/LateDirectPO",
+              "nativeQueryRef": "DI Early/Late ",
+              "displayName": "DI Early/Late "
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "_$DI Container MAGIC_Lookup"
+                }
+              },
+              "queryRef": "FACT Future._$DI Container MAGIC_Lookup",
+              "nativeQueryRef": "Container",
+              "displayName": "Container"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Future"
+                  }
+                },
+                "Property": "_$DIPlanned Delivery Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.73913043478261D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future.Requested deliv.date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.65217391304347D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future.PO Number"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.40027865426381D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future._$DICalcArravDate MAGIC_Lookup"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "66.21739130434783D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future.Customer SKU"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.78260869565217D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future._$DIPlanned Delivery Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.26086956521739D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future._$DI Early/LateDirectPO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.52173913043478D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future._$DI Order Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "215.87887901761582D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT Future._$DI Ship-To-PartyName MAGIC_Lookup"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e0352e67d8c7c2acf37a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Future"
+              }
+            },
+            "Property": "Data Source"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT Future",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Data Source"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'YM6P'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'YS10N'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "087e11cd26fbfaa3b093",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Future"
+              }
+            },
+            "Property": "PO Number"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "96a6f08967622ef6cf6b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Future"
+              }
+            },
+            "Property": "_$DICalcArravDate MAGIC_Lookup"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f1",
+              "Entity": "FACT Future",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f1"
+                            }
+                          },
+                          "Property": "_$DICalcArravDate MAGIC_Lookup"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

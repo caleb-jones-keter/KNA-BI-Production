@@ -1,0 +1,235 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "56610063002fb723acfa",
+  "position": {
+    "x": 0,
+    "y": 160,
+    "z": 0,
+    "height": 256,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Date"
+                    }
+                  },
+                  "Property": "FOM"
+                }
+              },
+              "queryRef": "DIM Date.FOM",
+              "nativeQueryRef": "FOM",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Customer Groups"
+                }
+              },
+              "queryRef": "DIM Customer.Customer Groups",
+              "nativeQueryRef": "Customer Groups",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "Gross Sales (M,O)"
+                }
+              },
+              "queryRef": "FACT Rejections.Gross Sales (M,O)",
+              "nativeQueryRef": "Gross Sales (M,O)"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Sales (M,-O)"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Sales (M,-O)",
+              "nativeQueryRef": "Sales (M,-O)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Date"
+                  }
+                },
+                "Property": "FOM"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Customer"
+                  }
+                },
+                "Property": "Customer Groups"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cade9edce3a737946724",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "FOM"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "19335958ce91c9e179e4",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Defective Allowance"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1f3388fed061e92df800",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "Rejections Filter"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "e025c33e67234322dd81",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "RTV (M)"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "5ad3cf1253555b6d0e62",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Rejections Customer Filter"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "a7e145ecad629cba9db0",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Sales (M,-O)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bbed9008ef35078e5735",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

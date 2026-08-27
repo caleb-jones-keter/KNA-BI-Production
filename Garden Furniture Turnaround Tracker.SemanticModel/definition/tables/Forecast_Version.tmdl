@@ -1,0 +1,25 @@
+table Forecast_Version
+	lineageTag: 0cd9d548-494c-4f58-8717-439beb271b3f
+
+	column Forecast_Version
+		dataType: string
+		lineageTag: 1477b47f-2697-4cd9-bb82-23c91ecc0776
+		summarizeBy: none
+		sourceColumn: Forecast_Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Forecast_Version = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcipNSU8tUYrViVYy0jY0ADPMtM3AtKW2sVJsLAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Forecast_Version = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Forecast_Version", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

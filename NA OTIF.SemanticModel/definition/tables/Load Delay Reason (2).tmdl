@@ -1,0 +1,50 @@
+table 'Load Delay Reason (2)'
+	lineageTag: 9e21c997-61e8-4fe8-b84c-95a19912469a
+
+	column 'Suppl.1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ed8a2d6-2fd5-49d4-8656-fe89152aa274
+		summarizeBy: none
+		sourceColumn: Suppl.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: d57f36af-af69-48f8-a06b-a5cef2e34fae
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delay Reason'
+		dataType: string
+		lineageTag: d0a833a2-d186-4dfd-a5c5-b94007148c86
+		summarizeBy: none
+		sourceColumn: Delay Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column On-time?
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ffab058-3e20-44f1-86d0-8761868f6de8
+		summarizeBy: none
+		sourceColumn: On-time?
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Load Delay Reason (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("fdJdC4IwFAbgvzK8zcBp9nFtBEFQF1EX4sXIiQPb4uwY+O+bmR/k2N3hHc/Ozjhp6gXU872EAQgO5MBEVQMnS0I1znOTUC/zDQqtKJS5C0VWFIETraxohaULxVYUu9HajhYuszHljctcATkXhRbIyVG+uUQFjTka6v7UZEEnt6PsmyXsxR4Cm2/DriSJkhqBCYkj3ZnyzoCXqtZ88iZb1hEatHfWGtXTTLHnFWumwf9YtN2J0/VE5nPb0x9rt+ICKq8fKJQc+oy/0CfmVdkH", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Suppl.1 = _t, Description = _t, #"Delay Reason" = _t, #"On-time?" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Suppl.1", Int64.Type}, {"Description", type text}, {"Delay Reason", type text}, {"On-time?", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

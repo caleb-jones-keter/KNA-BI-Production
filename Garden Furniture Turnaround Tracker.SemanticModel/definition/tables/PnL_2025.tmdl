@@ -1,0 +1,100 @@
+table PnL_2025
+	lineageTag: 194b23c5-ebd9-4b9c-8f81-d62894600797
+
+	column Plant
+		dataType: string
+		lineageTag: 7f2ed054-75b3-4104-9194-f8685888cbc9
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Plant (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0884c250-2d4a-4ae3-8e08-726400baa553
+		summarizeBy: none
+		sourceColumn: Code:Plant (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 2a4fa643-5037-4d6f-9f98-3c7df9ea6b35
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: c460676b-36eb-4610-a672-2b909c1fb3d6
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cc1c4f18-4c76-433c-af1a-8eeab7554296
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PnL Metrics'
+		dataType: string
+		lineageTag: bf34c186-6e70-4ff2-aed6-73806a307cc0
+		summarizeBy: none
+		sourceColumn: PnL Metrics
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2025ACT
+		dataType: double
+		lineageTag: 1500a089-a0fc-41a9-b236-3d945050b426
+		summarizeBy: sum
+		sourceColumn: 2025ACT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition PnL_2025 = m
+		mode: import
+		queryGroup: PnL
+		source =
+				let
+				    Source = Table.Combine({PnL_2025_EURO, PnL_2025_USD}),
+				    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"Gross Sales ADJ M#(lf)(2025)", "Gross Sales"}, {"On Invoice Discount ADJ M#(lf)(2025)", "On Invoice Discounts"}, {"Total Rebate ADJ M#(lf)(2025)", "Total Rebates"}, {"Net Sales ADJ M#(lf)(2025)", "Net Sales"}, {"Cost of Sales ADJ M#(lf)(2025)", "Cost of Sales"}, {"Total Logistics ADJ M#(lf)(2025)", "Total Logistics"}, {"Freight ADJ M#(lf)(2025)", "Freight"}, {"Warehousing ADJ M#(lf)(2025)", "Warehousing"}, {"Direct contribution ADJ M#(lf)(2025)", "Direct Contribution"}, {"Total R&D ADJ M#(lf)(2025)", "Total R&D"}, {"Total A&P ADJ M#(lf)(2025)", "Total A&P"}, {"Total C&R ADJ M#(lf)(2025)", "Total C&R"}, {"Total SG&A ADJ M#(lf)(2025)", "Total SG&A"}, {"Add back IFRS 16#(lf)(2025)", "IFRS 16 Adjustments"}, {"EBITDA ADJ M#(lf)(2025)", "EBITDA"}, {"RM Weight Sold #(lf)(2025)", "RM Weight Sold"}, {"Pallet QTY #(lf)(2025)", "Pallet QTY"}, {"Net Production (RM KG)#(lf)(2025)", "Net Production (RM KG)"}, {"Quantity#(lf)(2025)", "Quantity"}, {"Container QTY#(lf)(2025)", "Container QTY"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns", "Invoice Sales", each [Gross Sales]-[On Invoice Discounts]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Gross Profit", each [Net Sales]-[Cost of Sales]),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "EBIT Before IFRS 16", each [Direct Contribution]-[#"Total R&D"]-[#"Total A&P"]-[#"Total C&R"]-[#"Total SG&A"]),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "EBIT", each [EBIT Before IFRS 16]+[IFRS 16 Adjustments]),
+				    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "D&A Add Back", each [EBITDA]-[EBIT]),
+				    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "Total Indirect Expenses", each [#"Total R&D"]+[#"Total A&P"]+[#"Total C&R"]+[#"Total SG&A"]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom6",{{"Total Indirect Expenses", type number}, {"D&A Add Back", type number}, {"EBIT", type number}, {"EBIT Before IFRS 16", type number}, {"Gross Profit", type number}, {"Invoice Sales", type number}, {"Date", type date}}),
+				    #"Multiplied Column" = Table.TransformColumns(#"Changed Type", {{"On Invoice Discounts", each _ * -1, type number}}),
+				    #"Multiplied Column1" = Table.TransformColumns(#"Multiplied Column", {{"Total Rebates", each _ * -1, type number}}),
+				    #"Multiplied Column2" = Table.TransformColumns(#"Multiplied Column1", {{"Total Logistics", each _ * -1, type number}}),
+				    #"Multiplied Column3" = Table.TransformColumns(#"Multiplied Column2", {{"Freight", each _ * -1, type number}}),
+				    #"Multiplied Column4" = Table.TransformColumns(#"Multiplied Column3", {{"Warehousing", each _ * -1, type number}}),
+				    #"Multiplied Column5" = Table.TransformColumns(#"Multiplied Column4", {{"Total A&P", each _ * -1, type number}}),
+				    #"Multiplied Column6" = Table.TransformColumns(#"Multiplied Column5", {{"Total SG&A", each _ * -1, type number}}),
+				    #"Multiplied Column7" = Table.TransformColumns(#"Multiplied Column6", {{"Total R&D", each _ * -1, type number}}),
+				    #"Multiplied Column8" = Table.TransformColumns(#"Multiplied Column7", {{"Total C&R", each _ * -1, type number}}),
+				    #"Multiplied Column9" = Table.TransformColumns(#"Multiplied Column8", {{"Cost of Sales", each _ * -1, type number}}),
+				    #"Multiplied Column10" = Table.TransformColumns(#"Multiplied Column9", {{"Total Indirect Expenses", each _ * -1, type number}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Multiplied Column10", {"Plant", "Code:Plant (c1)", "Months", "Currency", "Date"}, "Attribute", "Value"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "PnL Metrics"}, {"Value", "2025ACT"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

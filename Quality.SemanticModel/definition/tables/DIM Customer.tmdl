@@ -1,0 +1,530 @@
+table 'DIM Customer'
+	lineageTag: 3a5208b7-d275-4157-8e4f-31cac24a280f
+	sourceLineageTag: [dbo].[DIM Customer]
+
+	measure 'Rejections Customer Filter' = IF([RTV (M)]>0,"Has Rejections")
+		lineageTag: a85fb28f-9103-4cc5-a20e-7b7203fd281e
+
+		changedProperty = Name
+
+	measure 'Defective Allowance' =
+			
+			VAR Cust = MAX('DIM Customer'[Customer Groups])
+			RETURN
+			IF(Cust="AMAZON","Has Defect Allowance",
+			IF(Cust="WAYFAIR","Has Defect Allowance",
+			IF(Cust="CANADIAN TIRE","Has Defect Allowance",
+			IF(Cust="STAPLES","Has Defect Allowance",
+			IF(Cust="VM INNOVATIONS","Has Defect Allowance")))))
+		lineageTag: 676f564c-3bdc-48d0-a79f-26198d047f7f
+
+		changedProperty = Name
+
+	measure 'Estimated Baseline Customer Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Customer'[Customer Groups] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Intercept + Slope
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a9e08269-11c6-4407-8032-102d7af69c8e
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Estimated Intercept Customer Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Customer'[Customer Groups] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Intercept
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 63a5bde3-f4b8-433a-b403-e003d2b69b36
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Estimated Slope Customer Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Customer'[Customer Groups] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Slope
+		formatString: 0.000
+		lineageTag: b560d522-7877-4468-8422-2e10ba66272a
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'R² RTV % vs TL % Customer Group' = ```
+			
+			VAR CorrTable =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Customer'[Customer Groups] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ISBLANK ( [X] ) && NOT ISBLANK ( [Y] )
+			    )
+			
+			VAR N =
+			    COUNTROWS ( CorrTable )
+			
+			VAR SX =
+			    SUMX ( CorrTable, [X] )
+			
+			VAR SY =
+			    SUMX ( CorrTable, [Y] )
+			
+			VAR SX2 =
+			    SUMX ( CorrTable, [X] * [X] )
+			
+			VAR SY2 =
+			    SUMX ( CorrTable, [Y] * [Y] )
+			
+			VAR SXY =
+			    SUMX ( CorrTable, [X] * [Y] )
+			
+			VAR Num = N * SXY - SX * SY
+			VAR Den = SQRT ( ( N * SX2 - SX * SX ) * ( N * SY2 - SY * SY ) )
+			
+			VAR R = DIVIDE ( Num, Den )
+			RETURN
+			    IF ( N < 2, BLANK (), R * R )
+			
+			```
+		lineageTag: 0f20205f-2cf0-4dab-8da1-9d3d25ac8678
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Start Date' =
+			
+			VAR EndDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			VAR StartDate =
+			    EOMONTH ( EndDate, -Months[Months Value]-'Offset'[Offset Value] ) + 1
+			VAR StopDate =
+			    EOMONTH ( EndDate, -'Offset'[Offset Value] )
+			RETURN
+			StartDate
+		formatString: General Date
+		lineageTag: 442805d1-c40f-4a28-9f83-598a65475ab6
+
+		changedProperty = Name
+
+	measure 'Sales Stop Date' =
+			
+			VAR EndDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			VAR StartDate =
+			    EOMONTH ( EndDate, -Months[Months Value]-'Offset'[Offset Value] ) + 1
+			VAR StopDate =
+			    EOMONTH ( EndDate, -'Offset'[Offset Value] )
+			RETURN
+			StopDate
+		formatString: General Date
+		lineageTag: da2ed4ba-3f4c-4435-991e-4e87a58c0f79
+
+		changedProperty = Name
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: 3a5e672e-a135-4738-87c9-e1591ecd4a39
+		sourceLineageTag: Customer Groups
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KNA Drop Ship'
+		dataType: string
+		lineageTag: b842255a-da23-4b34-bb66-45ed75c04317
+		sourceLineageTag: KNA Drop Ship
+		summarizeBy: none
+		sourceColumn: KNA Drop Ship
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Org'
+		dataType: string
+		lineageTag: bbe57483-2a8a-4ea4-b748-32bdf17e7ed3
+		sourceLineageTag: Market Org
+		summarizeBy: none
+		sourceColumn: Market Org
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer & Desc'
+		dataType: string
+		lineageTag: 96364769-dc60-4116-a4d2-3dbebae87c0a
+		sourceLineageTag: Payer & Desc
+		summarizeBy: none
+		sourceColumn: Payer & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Key'
+		dataType: string
+		lineageTag: 36371d84-5403-4e15-bc7d-6592f8818ba2
+		sourceLineageTag: Payer Key
+		summarizeBy: none
+		sourceColumn: Payer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Payer Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: acf60747-921e-4271-9c85-c5c89f43a109
+		sourceLineageTag: Sheet1.Payer Key
+		summarizeBy: count
+		sourceColumn: Sheet1.Payer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Country'
+		dataType: string
+		lineageTag: def2a5b6-f979-4678-a6f0-b0b02fac5e42
+		sourceLineageTag: Sheet1.Country
+		summarizeBy: none
+		sourceColumn: Sheet1.Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Name 1'
+		dataType: string
+		lineageTag: 3758764c-2aba-4b9c-94ff-97f3270c6f8a
+		sourceLineageTag: Sheet1.Name 1
+		summarizeBy: none
+		sourceColumn: Sheet1.Name 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Name 2'
+		dataType: string
+		lineageTag: 51b9550c-5c21-4cc7-bd17-0f021547dc6d
+		sourceLineageTag: Sheet1.Name 2
+		summarizeBy: none
+		sourceColumn: Sheet1.Name 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.City'
+		dataType: string
+		lineageTag: 73701dfe-710e-4e67-a7bb-f1e605a27afe
+		sourceLineageTag: Sheet1.City
+		summarizeBy: none
+		sourceColumn: Sheet1.City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Postal Code'
+		dataType: string
+		lineageTag: c90a3cb8-be83-4760-b71b-c82314de4bb5
+		sourceLineageTag: Sheet1.Postal Code
+		summarizeBy: none
+		sourceColumn: Sheet1.Postal Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Region'
+		dataType: string
+		lineageTag: b2085042-9526-4c97-b5c9-4dbf83265b4b
+		sourceLineageTag: Sheet1.Region
+		summarizeBy: none
+		sourceColumn: Sheet1.Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Search term'
+		dataType: string
+		lineageTag: 16c0c19d-b4ed-45f1-95a9-2f01b9b8763a
+		sourceLineageTag: Sheet1.Search term
+		summarizeBy: none
+		sourceColumn: Sheet1.Search term
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Street'
+		dataType: string
+		lineageTag: 003547be-4f40-49fd-a331-03036cf80b0e
+		sourceLineageTag: Sheet1.Street
+		summarizeBy: none
+		sourceColumn: Sheet1.Street
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Telephone 1'
+		dataType: string
+		lineageTag: a1c8d979-660f-48a6-830f-bb5abd5f5e8c
+		sourceLineageTag: Sheet1.Telephone 1
+		summarizeBy: none
+		sourceColumn: Sheet1.Telephone 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Fax Number'
+		dataType: string
+		lineageTag: 4cb4dc4e-5a76-4780-a7fa-c565bd266f95
+		sourceLineageTag: Sheet1.Fax Number
+		summarizeBy: none
+		sourceColumn: Sheet1.Fax Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.One-time account'
+		dataType: string
+		lineageTag: 2a02e259-8686-48dd-9470-912e95476cbf
+		sourceLineageTag: Sheet1.One-time account
+		summarizeBy: none
+		sourceColumn: Sheet1.One-time account
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Address'
+		dataType: string
+		lineageTag: 0034176f-63dd-47f4-92e9-d6d1c1f683cb
+		sourceLineageTag: Sheet1.Address
+		summarizeBy: none
+		sourceColumn: Sheet1.Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Name 1_1'
+		dataType: string
+		lineageTag: 7373f6e6-dfdb-4e8c-8842-eebf166d0665
+		sourceLineageTag: Sheet1.Name 1_1
+		summarizeBy: none
+		sourceColumn: Sheet1.Name 1_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Name 2_2'
+		dataType: string
+		lineageTag: d91c4b62-e6c4-4bf6-8905-28a990a9748d
+		sourceLineageTag: Sheet1.Name 2_2
+		summarizeBy: none
+		sourceColumn: Sheet1.Name 2_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.City_3'
+		dataType: string
+		lineageTag: 11f5290b-cdc8-4d9f-bbf8-2d3410c6a305
+		sourceLineageTag: Sheet1.City_3
+		summarizeBy: none
+		sourceColumn: Sheet1.City_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Title'
+		dataType: string
+		lineageTag: 172baae6-edae-462f-895d-3754800f749d
+		sourceLineageTag: Sheet1.Title
+		summarizeBy: none
+		sourceColumn: Sheet1.Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Central order block'
+		dataType: string
+		lineageTag: 9e076601-c1d0-4507-be16-49bb01490e05
+		sourceLineageTag: Sheet1.Central order block
+		summarizeBy: none
+		sourceColumn: Sheet1.Central order block
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.Store Number'
+		dataType: string
+		lineageTag: 45c08eb9-80b0-4ab1-9d83-ec2b1a73c854
+		sourceLineageTag: Sheet1.Store Number
+		summarizeBy: none
+		sourceColumn: Sheet1.Store Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sheet1.EDI Location Code'
+		dataType: string
+		lineageTag: 49614b89-a23c-4e10-bf10-c1c87cdde66a
+		sourceLineageTag: Sheet1.EDI Location Code
+		summarizeBy: none
+		sourceColumn: Sheet1.EDI Location Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Detail'
+		dataType: string
+		lineageTag: 611fd959-59c4-4664-be2b-e8977483667c
+		sourceLineageTag: Payer Types.Detail
+		summarizeBy: none
+		sourceColumn: Payer Types.Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Type'
+		dataType: string
+		lineageTag: 56e2cac9-7ad9-436e-be97-0db511370d80
+		sourceLineageTag: Payer Types.Type
+		summarizeBy: none
+		sourceColumn: Payer Types.Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ECOM
+		dataType: string
+		lineageTag: 7ec74517-8534-499f-8b1c-3db280a3e845
+		sourceLineageTag: ECOM
+		summarizeBy: none
+		sourceColumn: ECOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Group'
+		dataType: string
+		lineageTag: e9bf1079-ec14-4774-ab86-c588375f789d
+		sourceLineageTag: New Group
+		summarizeBy: none
+		sourceColumn: New Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RTV Type'
+		dataType: string
+		lineageTag: 1cabfecf-5ca1-4a16-ae22-9d49e05642c6
+		sourceLineageTag: RTV Type
+		summarizeBy: none
+		sourceColumn: RTV Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Customer' = entity
+		mode: directLake
+		source
+			entityName: DIM Customer
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

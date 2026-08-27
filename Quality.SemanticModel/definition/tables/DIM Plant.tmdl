@@ -1,0 +1,74 @@
+table 'DIM Plant'
+	lineageTag: deb3956f-755b-439b-bbd1-f516998b6a75
+	sourceLineageTag: [dbo].[DIM Plant]
+
+	column 'Country Desc'
+		dataType: string
+		lineageTag: 2e372986-5145-4d73-a426-e4e0a15e8093
+		sourceLineageTag: Country Desc
+		summarizeBy: none
+		sourceColumn: Country Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant Code'
+		dataType: string
+		lineageTag: 26087cde-b4cb-4ca2-a346-0911815f368b
+		sourceLineageTag: Plant Code
+		summarizeBy: none
+		sourceColumn: Plant Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: ea909a3d-3789-42ec-bb0c-a20e92ac1f8e
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant Region'
+		dataType: string
+		lineageTag: 40e30cfe-2f30-415b-a3c5-a4e40218d08b
+		sourceLineageTag: Plant Region
+		summarizeBy: none
+		sourceColumn: Plant Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant Description'
+		dataType: string
+		lineageTag: d872efbc-8756-47dd-b96e-e410dec51600
+		sourceLineageTag: Plant Description
+		summarizeBy: none
+		sourceColumn: Plant Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant Key'
+		dataType: string
+		lineageTag: 23eca084-a091-4861-8acc-b101f213141c
+		sourceLineageTag: Plant Key
+		summarizeBy: none
+		sourceColumn: Plant Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Region Code'
+		dataType: string
+		lineageTag: 093d44fa-d3ea-4191-8ec0-9e1d8cc95d08
+		sourceLineageTag: Region Code
+		summarizeBy: none
+		sourceColumn: Region Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Plant' = entity
+		mode: directLake
+		source
+			entityName: DIM Plant
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

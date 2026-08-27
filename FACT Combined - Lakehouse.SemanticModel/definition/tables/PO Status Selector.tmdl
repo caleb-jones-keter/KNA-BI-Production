@@ -1,0 +1,39 @@
+table 'PO Status Selector'
+	lineageTag: a3baa5d7-7bae-4e46-a0a5-44b50cd34023
+
+	measure '_PO STATUS Slicer Filter' =
+			
+			VAR sel =
+			    SELECTEDVALUE ( 'PO Status Selector'[PO Status] )
+			RETURN
+			IF (
+			    ISBLANK ( sel ),
+			    1,
+			    IF ( [_PO STATUS] = sel, 1, 0 )
+			)
+		formatString: 0
+		lineageTag: 30bb376c-7942-4acd-a5a0-7c3e784d4083
+
+	column 'PO Status'
+		lineageTag: 03b37fdb-6214-4355-a268-0ff16b23dd40
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PO Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'PO Status Selector' = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "PO Status", STRING,
+				    {
+				        { "Forecast Ends Early" },
+				        { "Cancel/Push" },
+				        { "Write PO" }
+				    }
+				)
+
+	annotation PBI_Id = 690f0b545e8a43b88ac13e889c58a10a
+

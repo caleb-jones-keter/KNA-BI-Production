@@ -1,0 +1,51 @@
+table _$budgetfinanceparameter
+	lineageTag: f5ea25ad-21c7-464c-af92-9157168ef903
+
+	column Parameter
+		lineageTag: f4341ba4-8d62-4e58-84d0-95b12862a4f3
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 273f3ff4-e0a3-43b5-b788-c2caaf51d288
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 3b18864f-4c29-4ae6-9d58-a2b1c8bac34f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _$budgetfinanceparameter = calculated
+		mode: import
+		source =
+				{
+				    ("3+9 Net Sales", NAMEOF('FACT EDB Budget- Finance'[3+9 Net Sales]), 0),
+				    ("6+6 Net Sales", NAMEOF('FACT EDB Budget- Finance'[6+6 Net Sales]), 1),
+				    ("9+3 Net Sales", NAMEOF('FACT EDB Budget- Finance'[9+3 Net Sales]), 2),
+				    ("Customer Demand Net sales _APO_", NAMEOF('FACT EDB Budget- Finance'[Customer Demand Net sales _APO_]), 3),
+				    ("Net Sales - Budget", NAMEOF('FACT EDB Budget- Finance'[Net Sales - Budget]), 4)
+				}
+
+	annotation PBI_Id = 2a94e18960cd4cb6bc83d2438ff6f07d
+

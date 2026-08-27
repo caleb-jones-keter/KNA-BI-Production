@@ -1,0 +1,179 @@
+table CustomerTable_GF_Global
+	lineageTag: b9716069-ed7e-4a73-a506-ae478c6e1ebc
+
+	column 'Sold To Party'
+		dataType: string
+		lineageTag: 0b30fbe3-b9f8-44c1-97bd-8427cfbfb1b7
+		summarizeBy: none
+		sourceColumn: Sold To Party
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Sold To Party (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 842a7310-b8e0-4a6b-999a-bd3c6b666ca6
+		summarizeBy: none
+		sourceColumn: Code:Sold To Party (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: 284fbe6b-0dd8-43a1-bcf0-005f7c531847
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Type'
+		dataType: string
+		lineageTag: 2f68ccaf-f63e-44c7-956e-82e64d2e1778
+		summarizeBy: none
+		sourceColumn: Customer Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Customer Type (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: a83bfee0-763f-41f4-ab3c-5271c5e62776
+		summarizeBy: sum
+		sourceColumn: Code:Customer Type (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distr. Channel Detailed'
+		dataType: string
+		lineageTag: 1c34c509-c2ed-4414-9877-4d0e70a9a90a
+		summarizeBy: none
+		sourceColumn: Distr. Channel Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Distr. Channel Detailed (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b39dc7b-8cb6-4d74-b07a-03ca34d7bf16
+		summarizeBy: sum
+		sourceColumn: Code:Distr. Channel Detailed (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ecommerce Customer'
+		dataType: string
+		lineageTag: 7c3b5d0b-f7c1-4b13-adc6-42ea13bc9207
+		summarizeBy: none
+		sourceColumn: Ecommerce Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DTC vs Marketplace'
+		dataType: string
+		lineageTag: 49734327-23c2-408f-8f80-4f849e6e3c6e
+		summarizeBy: none
+		sourceColumn: DTC vs Marketplace
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ck Customer Group'
+		dataType: string
+		lineageTag: b218da5e-6f47-45e6-ab03-57a2fc21f023
+		summarizeBy: none
+		sourceColumn: Ck Customer Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Match Customer Group'
+		dataType: string
+		lineageTag: 7265e511-c2e7-45eb-b03d-79b6524d0455
+		summarizeBy: none
+		sourceColumn: Match Customer Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Check Customer Type'
+		dataType: string
+		lineageTag: cf1be1d2-6528-4491-8353-8915ca7a7b44
+		summarizeBy: none
+		sourceColumn: Check Customer Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Match Cust Type'
+		dataType: string
+		lineageTag: dc5a0b83-02b5-44e2-9456-44ec059f3c13
+		summarizeBy: none
+		sourceColumn: Match Cust Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ck Code Cust Type'
+		dataType: string
+		lineageTag: 82255210-bf5f-4fc5-aaeb-35bff7a43297
+		summarizeBy: none
+		sourceColumn: Ck Code Cust Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Match Code Cust Type'
+		dataType: string
+		lineageTag: 5c5f7bba-233c-45cf-86e0-a42a457b1a38
+		summarizeBy: none
+		sourceColumn: Match Code Cust Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ck Dist. Channel Detailed'
+		dataType: string
+		lineageTag: 6580e406-8151-4d91-9f6e-8baf34d8b492
+		summarizeBy: none
+		sourceColumn: ck Dist. Channel Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Match Dist. Channel Detailed'
+		dataType: string
+		lineageTag: 400e9bd9-20de-4c89-8454-9a3da0b16f15
+		summarizeBy: none
+		sourceColumn: Match Dist. Channel Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ck Code Dist. Channel Detailed'
+		dataType: string
+		lineageTag: a4504131-5239-45c5-b7e0-cca91b17b3a2
+		summarizeBy: none
+		sourceColumn: ck Code Dist. Channel Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Match Code Dist. Channel Detailed'
+		dataType: string
+		lineageTag: b5ecbfc8-e509-4f16-95d0-a6e7089e2a61
+		summarizeBy: none
+		sourceColumn: Match Code Dist. Channel Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustCode_Name = CustomerTable_GF_Global[Code:Sold To Party (c1)]&" "&CustomerTable_GF_Global[Sold To Party]
+		lineageTag: e057a6ee-967e-474c-ba83-bd5889ac5a7d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CustomerTable_GF_Global = m
+		mode: import
+		queryGroup: 'Refresh Dimensions'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Refreshed Dimensions\CustomerTable_GF_Global.xlsx"), null, true),
+				    CustomerTable_GF_Global_Table = Source{[Item="CustomerTable_GF_Global",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(CustomerTable_GF_Global_Table,{{"Code:Sold To Party (c1)", Int64.Type}, {"Sold To Party", type text}, {"Customer Groups", type text}, {"Customer Type", type text}, {"Code:Customer Type (c3)", Int64.Type}, {"Distr. Channel Detailed", type text}, {"Code:Distr. Channel Detailed (c4)", Int64.Type}, {"Ecommerce Customer", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

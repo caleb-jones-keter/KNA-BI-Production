@@ -1,0 +1,175 @@
+table 'Last week spare part list'
+	lineageTag: fac5cecb-1793-4655-a70c-62e016c3c391
+	sourceLineageTag: [dbo].[Last week spare part list]
+
+	column 'Spare Part Name'
+		dataType: string
+		lineageTag: 18529735-74bc-4124-9af2-419718d77868
+		sourceLineageTag: Spare Part Name
+		summarizeBy: none
+		sourceColumn: Spare Part Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Qty Spare Parts per ptoduct'
+		dataType: double
+		lineageTag: 4a2a6021-17c3-4596-a0e3-f2b3f0c1e524
+		sourceLineageTag: Qty Spare Parts per ptoduct
+		summarizeBy: sum
+		sourceColumn: Qty Spare Parts per ptoduct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column set/apart
+		dataType: string
+		lineageTag: f68a4725-7cb3-49ee-9d26-d08f1234a7dd
+		sourceLineageTag: set/apart
+		summarizeBy: none
+		sourceColumn: set/apart
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Previous Version'
+		dataType: string
+		lineageTag: bbf30cfa-b244-465b-b6c8-32defddd7568
+		sourceLineageTag: Spare Part Previous Version
+		summarizeBy: none
+		sourceColumn: Spare Part Previous Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sign
+		dataType: string
+		lineageTag: 885d8f65-3f9e-4875-9e28-1a51f506e937
+		sourceLineageTag: Sign
+		summarizeBy: none
+		sourceColumn: Sign
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Size'
+		dataType: string
+		lineageTag: 47b57ead-fe07-42b0-b0e2-e91e3d2be1aa
+		sourceLineageTag: Spare Part Size
+		summarizeBy: none
+		sourceColumn: Spare Part Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Color Code'
+		dataType: string
+		lineageTag: 14d33c79-5adc-4895-939b-6158fc089986
+		sourceLineageTag: Product Color Code
+		summarizeBy: none
+		sourceColumn: Product Color Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Color Desc'
+		dataType: string
+		lineageTag: 4845326a-5b82-4adc-8c44-61b88a581cd9
+		sourceLineageTag: Product Color Desc
+		summarizeBy: none
+		sourceColumn: Product Color Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZZIMLCODE_SKU
+		dataType: string
+		lineageTag: 08ae051e-cbc9-4c2f-8b09-0c71af5047f6
+		sourceLineageTag: ZZIMLCODE_SKU
+		summarizeBy: none
+		sourceColumn: ZZIMLCODE_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SP_IML
+		dataType: string
+		lineageTag: c87aecc4-3c90-474a-b7cb-42b510ff34ba
+		sourceLineageTag: SP_IML
+		summarizeBy: none
+		sourceColumn: SP_IML
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unique_key
+		dataType: string
+		lineageTag: 1a99802f-d074-4c8c-9bc0-cff35456dcab
+		sourceLineageTag: Unique_key
+		summarizeBy: none
+		sourceColumn: Unique_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column KUNNR
+		dataType: string
+		lineageTag: 9ff19a0e-9190-44c5-908a-4b921170e19b
+		sourceLineageTag: KUNNR
+		summarizeBy: none
+		sourceColumn: KUNNR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryKey_SKU
+		dataType: string
+		lineageTag: 17aaabdf-dfee-45b8-aa5d-2ae2a11f703b
+		sourceLineageTag: CountryKey_SKU
+		summarizeBy: none
+		sourceColumn: CountryKey_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 9588c2b0-ffb1-4a73-8a61-dd9bc0549658
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column GMD24
+		dataType: string
+		lineageTag: 5524738a-4193-432b-ad54-c8853c0a33d9
+		sourceLineageTag: GMD24
+		summarizeBy: none
+		sourceColumn: GMD24
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'STD.PROD.SITE _SOURCE_ GMD 5 desc'
+		dataType: string
+		lineageTag: a5f718dd-2d65-4d29-9675-11f55f81e548
+		sourceLineageTag: STD.PROD.SITE _SOURCE_ GMD 5 desc
+		summarizeBy: none
+		sourceColumn: STD.PROD.SITE _SOURCE_ GMD 5 desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product SKU'
+		dataType: string
+		lineageTag: 5d59fd60-1075-470f-b158-f94437f2ad24
+		sourceLineageTag: Product SKU
+		summarizeBy: none
+		sourceColumn: Product SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part SKU'
+		dataType: string
+		lineageTag: 1ddc390c-47df-4e8a-b580-17f6e1a1fef0
+		sourceLineageTag: Spare Part SKU
+		summarizeBy: none
+		sourceColumn: Spare Part SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Last week spare part list' = entity
+		mode: directLake
+		source
+			entityName: Last week spare part list
+			schemaName: dbo
+			expressionSource: 'DirectLake - Spare_Parts_Lakehouse'
+

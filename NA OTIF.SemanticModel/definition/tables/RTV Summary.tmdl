@@ -1,0 +1,123 @@
+table 'RTV Summary'
+	lineageTag: 500db153-fb90-4f57-8523-5337d46afb63
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 48a3f7ce-8e56-485b-98da-7c4c1a337fdb
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RTV Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b7bd8d0f-c132-4b13-a5df-c85083efc4a2
+		summarizeBy: none
+		sourceColumn: RTV Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PO Number'
+		dataType: string
+		lineageTag: 22a5366b-5c9c-4c0d-9dd5-66f9360087b3
+		summarizeBy: none
+		sourceColumn: PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: db80c91c-ef17-4fa1-9d74-d482a77c3cab
+		summarizeBy: sum
+		sourceColumn: Sales Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: 05b0615f-d2e4-47b5-84b9-baa52f95f9d4
+		summarizeBy: sum
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Description'
+		dataType: string
+		lineageTag: 560d2e7e-fd63-4070-af45-206c31ef3718
+		summarizeBy: none
+		sourceColumn: Material Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer SKU'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e697704-276f-417f-b7dd-2230432e9911
+		summarizeBy: sum
+		sourceColumn: Customer SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 29ecffa3-d928-45b3-a204-de4014ac3168
+		summarizeBy: sum
+		sourceColumn: Order Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Value'
+		dataType: double
+		lineageTag: dea02081-d0f6-4ee4-bfa4-afacbd63785f
+		summarizeBy: sum
+		sourceColumn: Net Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Reason
+		dataType: string
+		lineageTag: d15079b6-d4b5-4c7f-a830-cf6a7b1ab510
+		summarizeBy: none
+		sourceColumn: Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 4dd9da31-74fd-4f71-9690-bf9de5b252e5
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Storage
+		dataType: string
+		lineageTag: 7f32242c-b038-473b-a634-99350b70b2c4
+		summarizeBy: none
+		sourceColumn: Storage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RTV Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/NAOperations/Shared%20Documents/Spreetail%20-%20KPIs/Spreetail%20DTC%20RTV.xlsx"), null, true),
+				    Summary_Sheet = Source{[Item="Summary",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Summary_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Storage Location", type text}, {"RTV Date", type date}, {"PO Number", type text}, {"Sales Order", Int64.Type}, {"Material", Int64.Type}, {"Material Description", type text}, {"Customer SKU", Int64.Type}, {"Order Qty", Int64.Type}, {"Net Value", type number}, {"Reason", type text}, {"Type", type text}, {"Storage", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

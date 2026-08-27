@@ -1,0 +1,947 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "21232556074ba97041a1",
+  "position": {
+    "x": 16,
+    "y": 576,
+    "z": 3000,
+    "height": 304,
+    "width": 1616,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Storage Location"
+                    }
+                  },
+                  "Property": "Full Name"
+                }
+              },
+              "queryRef": "DIM Storage Location.Full Name",
+              "nativeQueryRef": "Ship Location",
+              "displayName": "Ship Location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Storage Location"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Storage Location",
+              "nativeQueryRef": "Storage Location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "New Storage Location"
+                }
+              },
+              "queryRef": "FACT YS10N Base.New Storage Location",
+              "nativeQueryRef": "New Storage Location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT YS10N Base.PO Number",
+              "nativeQueryRef": "PO Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Delivery"
+                }
+              },
+              "queryRef": "Sum(FACT YS10N Base.Delivery)",
+              "nativeQueryRef": "Delivery"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Shipment Number"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Shipment Number",
+              "nativeQueryRef": "Shipment Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Material"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Material",
+              "nativeQueryRef": "SKU",
+              "displayName": "SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Description"
+                }
+              },
+              "queryRef": "DIM Product.Description",
+              "nativeQueryRef": "Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "POSTAL_CODE"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.POSTAL_CODE",
+              "nativeQueryRef": "Delivery ZIP",
+              "displayName": "Delivery ZIP"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "City List"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.City List",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "State",
+              "displayName": "State"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Ship Date"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Ship Date",
+              "nativeQueryRef": "Ship Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_Positive Qty"
+                }
+              },
+              "queryRef": "FACT YS10N Base._Positive Qty",
+              "nativeQueryRef": "Order Qty",
+              "displayName": "Order Qty",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "Net Value USD"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT YS10N Base.Net Value USD)",
+              "nativeQueryRef": "Net Value USD",
+              "displayName": "Net Value USD",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_AvgDistanceMiPerDelivery"
+                }
+              },
+              "queryRef": "FACT YS10N Base._AvgDistanceMiPerDelivery",
+              "nativeQueryRef": "Avg Distance",
+              "displayName": "Avg Distance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_Total Distance Cost"
+                }
+              },
+              "queryRef": "FACT YS10N Base._Total Distance Cost",
+              "nativeQueryRef": "Extra Distance Cost",
+              "displayName": "Extra Distance Cost",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "Shipment Number"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "CountNonNull(FACT YS10N Base.Shipment Number)",
+              "nativeQueryRef": "# of Shipments",
+              "displayName": "# of Shipments"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "IF([Storage Location]<>[New Storage Location],1)",
+                  "Name": "Transfer"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Transfer"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "Storage Location"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76.77244649619165D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base.Shipment Number"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.15060697799117D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base.PO Number"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.93727688996648D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT YS10N Base.Delivery)"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM Storage Location.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141.35824953639712D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.City List"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71.19338749329548D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.POSTAL_CODE"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "FACT YS10N Base.Ship Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.289616283441376D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.REGION"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "49.337755739316684D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._Positive Qty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "67.24714572252523D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._Total Distance Cost"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64.4346571298775D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base.New Storage Location"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.67987556104447D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT YS10N Base.Net Value USD)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "49.40930965831734D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CountNonNull(FACT YS10N Base.Shipment Number)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70.23896516818056D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._AvgDistanceMiPerDelivery"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64.06796635149848D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base.Storage Location"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Problematic Shipments'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1b4431aeb77d64b359d0",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Manual Fact CSYS upload"
+              }
+            },
+            "Property": "Net value"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "d496648c372337500cb0",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "_Positive Qty"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "34dca1dbcfaf9bc1084b",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Manual Fact CSYS upload"
+              }
+            },
+            "Property": "Material"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "1b2f948d4631a90bb650",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Manual Fact CSYS upload"
+              }
+            },
+            "Property": "Material description MM"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "54f1f15c5849cdbbbcfb",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Manual Fact CSYS upload"
+              }
+            },
+            "Property": "MRP Area"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "0aecc31796667b32f6c7",
+        "ordinal": 5,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Manual Fact CSYS upload"
+                  }
+                },
+                "Property": "Order Qty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1a8e4b7251d1808787d2",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Manual Fact CSYS upload"
+              }
+            },
+            "Property": "Payer name"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "6569c546846f17a7daf2",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Manual Fact CSYS upload"
+              }
+            },
+            "Property": "Storage Location"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "81f34e58d02a73dd32b6",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "_DistanceMiPerDelivery"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "ad0e2a6142c4438c4ca9",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Shipment Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "192dca6edc8981bf79ba",
+        "ordinal": 10,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "_DistanceMiPerDelivery"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "ed58c1b51530314b0ea6",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Storage Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "caa712026de97c243b64",
+        "ordinal": 12,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "_Positive Qty"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "334bd582e3a30a2c0ff5",
+        "ordinal": 13,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Storage Location"
+              }
+            },
+            "Property": "Full Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6b64f713e81afaeb2820",
+        "ordinal": 14,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "c80a5ebe3b09227a90a9",
+        "ordinal": 15,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "PO Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "15a63f12d3708bdee8dc",
+        "ordinal": 16,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Delivery"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5a3794f1dbe809d0ee3f",
+        "ordinal": 17,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Material"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a8124aa45b93d14d6399",
+        "ordinal": 18,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "80be8750f5d59f5645b0",
+        "ordinal": 19,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0c099bf1f326876473c0",
+        "ordinal": 20,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "169b4902ac1b8641e287",
+        "ordinal": 21,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Ship Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "10150fe7651fe686df09",
+        "ordinal": 22,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "Gross Sale"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

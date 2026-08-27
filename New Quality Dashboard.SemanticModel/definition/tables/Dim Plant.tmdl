@@ -1,0 +1,55 @@
+table 'Dim Plant'
+	lineageTag: 4c528e42-407a-4afe-867a-277faf67fdc2
+
+	column CountryDesc
+		dataType: string
+		lineageTag: ea57566c-9115-439a-be66-a1f6137d5b15
+		summarizeBy: none
+		sourceColumn: CountryDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 5daee025-a70f-4a19-a19f-a0fa368d7a6d
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant Region'
+		dataType: string
+		lineageTag: b3d22d33-c5e0-4162-9b06-f8950e2c974a
+		summarizeBy: none
+		sourceColumn: Plant Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantKey
+		dataType: string
+		lineageTag: beb66e1a-03b5-4976-9dfc-06e204cae1c9
+		summarizeBy: none
+		sourceColumn: PlantKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Plant' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Plant]", {"[Dim Plant].[CountryDesc].[CountryDesc]", "[Dim Plant].[Plant].[Plant]", "[Dim Plant].[Plant Region].[Plant Region]", "[Dim Plant].[PlantKey].[PlantKey]"}, {"Dim Plant.CountryDesc", "Dim Plant.Plant", "Dim Plant.Plant Region", "Dim Plant.PlantKey"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Plant.CountryDesc", "CountryDesc"}, {"Dim Plant.Plant", "Plant"}, {"Dim Plant.Plant Region", "Plant Region"}, {"Dim Plant.PlantKey", "PlantKey"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

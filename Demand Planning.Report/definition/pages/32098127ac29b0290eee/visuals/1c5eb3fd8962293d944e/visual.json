@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "1c5eb3fd8962293d944e",
+  "position": {
+    "x": 920.00000000000011,
+    "y": 8,
+    "z": 2000,
+    "height": 232,
+    "width": 344,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Past"
+                    }
+                  },
+                  "Property": "Ship Date"
+                }
+              },
+              "queryRef": "FACT YS10N Past.Ship Date",
+              "nativeQueryRef": "Ship Date"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Past"
+                  }
+                },
+                "Property": "Ship Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "1bbf259c401dec3d78cc",
+  "position": {
+    "x": 16,
+    "y": 128,
+    "z": 6000,
+    "height": 224,
+    "width": 1024,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "PC Business Unit"
+                }
+              },
+              "queryRef": "DIM Product.PC Business Unit",
+              "nativeQueryRef": "PC Business Unit",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_MB51"
+                }
+              },
+              "queryRef": "FACT Combined._MB51",
+              "nativeQueryRef": "OH Qty",
+              "displayName": "OH Qty",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Component Forecast Initial"
+                    }
+                  },
+                  "Property": "_DOC Target Today"
+                }
+              },
+              "queryRef": "FACT Component Forecast Initial._DOC Target Today",
+              "nativeQueryRef": "Target Qty",
+              "displayName": "Target Qty",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_MB51 TL"
+                }
+              },
+              "queryRef": "FACT Combined._MB51 TL",
+              "nativeQueryRef": "On Hand TL",
+              "displayName": "On Hand TL",
+              "format": "#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Component Forecast Initial"
+                    }
+                  },
+                  "Property": "_Total DOC Target TL Today"
+                }
+              },
+              "queryRef": "FACT Component Forecast Initial._Total DOC Target TL Today",
+              "nativeQueryRef": "Target TL",
+              "displayName": "Target TL",
+              "format": "#,0.00"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[On Hand TL]*430",
+                  "Name": "On Hand Sqft"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "On Hand Sqft",
+              "format": "#,0.00"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Target TL]*430",
+                  "Name": "Target Sqft"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Target Sqft",
+              "format": "#,0.00"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "IF([Target TL]>0,[On Hand Sqft]/[Target Sqft])",
+                  "Name": "% of Target"
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "% of Target",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[On Hand Sqft]-[Target Sqft]",
+                  "Name": "Savings @ Target Sqft"
+                }
+              },
+              "queryRef": "select3",
+              "nativeQueryRef": "Savings @ Target Sqft"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[% of Target]*[DOC Parameter Value]*45/28",
+                  "Name": "Current DOS"
+                }
+              },
+              "queryRef": "select4",
+              "nativeQueryRef": "Current DOS",
+              "format": "#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DOC Parameter"
+                    }
+                  },
+                  "Property": "DOC Parameter Value"
+                }
+              },
+              "queryRef": "DOC Parameter.DOC Parameter Value",
+              "nativeQueryRef": "DOC Parameter Value",
+              "hidden": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d92175a22c2d9de4cb8e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DIM Date",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Full Date"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "4d93c2211cc8c0a25299",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "_MB51"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT Combined",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "_MB51"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

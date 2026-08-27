@@ -1,0 +1,281 @@
+table DateTable
+	lineageTag: a287ef74-846f-49d9-b914-3d34b2b22693
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 86440d17-a96f-4f9a-8eb5-a0980b3ec065
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: f74e3fae-8094-4073-b86c-a4a109bb1f1e
+			defaultHierarchy: LocalDateTable_d1b1d38f-0536-4341-b280-a386eb8e31d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: fbf96228-4781-4940-87bb-eeaf69f58152
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 19bf0b5c-7584-40de-8ca2-bb824c81ef46
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: e6a8d2de-a6f0-4589-aa28-4a18f75d9753
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: dd356ae7-6489-4147-9c29-f0180eace31a
+		summarizeBy: sum
+		sourceColumn: Week of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fe455a0-00ca-4509-a7ab-bdf917d79e5a
+		summarizeBy: sum
+		sourceColumn: Week of Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 57c57db6-034d-471c-850b-353e376fc548
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6cf504c6-e01f-4fd6-95df-26d7df063d8a
+		summarizeBy: sum
+		sourceColumn: Day of Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 9bdf6fcd-1d9e-442c-af65-6d5106360449
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 287d6bcc-9cc9-4334-94b1-0bfd28032fb8
+		summarizeBy: sum
+		sourceColumn: Day of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'YTD Flag'
+		dataType: string
+		lineageTag: e3c2b6e6-8090-423a-a88a-b5c59a8b60cb
+		summarizeBy: none
+		sourceColumn: YTD Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Next Year Date'
+		dataType: string
+		lineageTag: e5b419cf-1271-4f28-957b-22f231d35c58
+		summarizeBy: none
+		sourceColumn: Next Year Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PYTD Flag'
+		dataType: string
+		lineageTag: 115c25cc-f0de-4bf8-b001-da46cf380e26
+		summarizeBy: none
+		sourceColumn: PYTD Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Next 4 years Date'
+		dataType: string
+		lineageTag: a0a3062e-c559-462e-9384-4eafb0dc2fad
+		summarizeBy: none
+		sourceColumn: Next 4 years Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'YTD19 Flag'
+		dataType: string
+		lineageTag: 8e70eca1-9fc8-419a-bef2-9825183790b9
+		summarizeBy: none
+		sourceColumn: YTD19 Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d3e4489-b8d6-42b5-90dd-7456fceb9240
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndofMth
+		dataType: string
+		lineageTag: 4f41f023-fd65-4bde-8410-4ed41cee6900
+		summarizeBy: none
+		sourceColumn: EndofMth
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTDFullMth
+		dataType: string
+		lineageTag: 56ac6643-fdbc-4c90-9c08-9d904775102a
+		summarizeBy: none
+		sourceColumn: YTDFullMth
+
+		annotation SummarizationSetBy = Automatic
+
+	column BegofMth
+		dataType: string
+		lineageTag: f1187a96-5357-4294-9e4b-f6f8ee4b5060
+		summarizeBy: none
+		sourceColumn: BegofMth
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTDCurrentMth
+		dataType: string
+		lineageTag: 4d110793-1791-4110-8469-0a8981d75ddd
+		summarizeBy: none
+		sourceColumn: YTDCurrentMth
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_abbrev = FORMAT('DateTable'[Date],"MMM")
+		lineageTag: 0e4250e5-c340-4431-ae41-9bb01c6d9db7
+		summarizeBy: none
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qtr_name = "Q" & INT(FORMAT('DateTable'[Date],"q"))
+		lineageTag: 38cb5f1f-79e9-455c-9b71-d12e459a03bf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndofMonthNextYear
+		dataType: string
+		lineageTag: 9998d7fb-6d41-474b-b44a-2981cd1d338f
+		summarizeBy: none
+		sourceColumn: EndofMonthNextYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTDFullMthLY
+		dataType: string
+		lineageTag: f47c0427-20f8-4d8b-818c-af9bb0548bb0
+		summarizeBy: none
+		sourceColumn: YTDFullMthLY
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day/Mth = FORMAT(DateTable[Date],"dd/mm")
+		lineageTag: 436ac165-df70-4554-9691-2e6323ffb2be
+		summarizeBy: none
+		sortByColumn: SortDay_Mth
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayofWeekAbbrev
+		dataType: string
+		lineageTag: 6f54edad-fd0c-4d2a-bc13-f4ae09f6544a
+		summarizeBy: none
+		sourceColumn: DayofWeekAbbrev
+		sortByColumn: 'Day of Week'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortDay_Mth = MONTH(DateTable[Date]) * 100 + DAY(DateTable[Date].[Date])
+		formatString: 0
+		lineageTag: 6694e972-1f0d-45a8-989a-969d5a426e7f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = m
+		mode: import
+		source = ```
+				let
+				    Source = List.Dates(#date(2018,01,01),365*10,#duration(1,0,0,0)),
+				    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Date"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}}),
+				    #"Inserted Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Month Name" = Table.AddColumn(#"Inserted Month", "Month Name", each Date.MonthName([Date]), type text),
+				    #"Inserted Start of Year" = Table.AddColumn(#"Inserted Month Name", "Start of Year", each Date.StartOfYear([Date]), type date),
+				    #"Removed Columns" = Table.RemoveColumns(#"Inserted Start of Year",{"Start of Year"}),
+				    #"Inserted Week of Year" = Table.AddColumn(#"Removed Columns", "Week of Year", each Date.WeekOfYear([Date]), Int64.Type),
+				    #"Inserted Week of Month" = Table.AddColumn(#"Inserted Week of Year", "Week of Month", each Date.WeekOfMonth([Date]), Int64.Type),
+				    #"Inserted Day" = Table.AddColumn(#"Inserted Week of Month", "Day", each Date.Day([Date]), Int64.Type),
+				    #"Inserted Day of Week" = Table.AddColumn(#"Inserted Day", "Day of Week", each Date.DayOfWeek([Date]), Int64.Type),
+				    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day of Week", "Day Name", each Date.DayOfWeekName([Date]), type text),
+				    #"Inserted Day of Year" = Table.AddColumn(#"Inserted Day Name", "Day of Year", each Date.DayOfYear([Date]), Int64.Type),
+				    #"Added Custom" = Table.AddColumn(#"Inserted Day of Year", "YTD Flag", each Date.IsInYearToDate([Date])),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Next Year Date", each Date.AddYears([Date],1)),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "PYTD Flag", each Date.IsInYearToDate([Next Year Date])),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "Next 4 years Date", each Date.AddYears([Date],4)),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "YTD19 Flag", each Date.IsInYearToDate([Next 4 years Date])),
+				    #"Inserted Quarter" = Table.AddColumn(#"Added Custom4", "Quarter", each Date.QuarterOfYear([Date]), Int64.Type),
+				    #"Added Custom5" = Table.AddColumn(#"Inserted Quarter", "EndofMth", each 
+				Date.EndOfMonth([Date])),
+				    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "YTDFullMth", each Date.IsInYearToDate([EndofMth])),
+				    #"Added Custom7" = Table.AddColumn(#"Added Custom6", "BegofMth", each Date.StartOfMonth([Date])),
+				    #"Added Custom8" = Table.AddColumn(#"Added Custom7", "YTDCurrentMth", each Date.IsInYearToDate([BegofMth])),
+				    #"Added Custom9" = Table.AddColumn(#"Added Custom8", "EndofMonthNextYear", each Date.AddYears([EndofMth],1)),
+				    #"Added Custom10" = Table.AddColumn(#"Added Custom9", "YTDFullMthLY", each Date.IsInYearToDate([EndofMonthNextYear])),
+				    #"Added DayofWeek" = Table.AddColumn(#"Added Custom10", "DayofWeekAbbrev", each Text.Start(Date.DayOfWeekName([Date]), 3))
+				in
+				    #"Added DayofWeek"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

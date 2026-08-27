@@ -1,0 +1,79 @@
+table 'Dim Profit Centers'
+	lineageTag: 6ad0ff4c-c528-4196-b87d-f1a995f1dd55
+
+	column 'PC BUSINESS UNIT'
+		dataType: string
+		lineageTag: 483421bd-3f3e-44ce-ae7a-e0e94afd4c2c
+		summarizeBy: none
+		sourceColumn: PC BUSINESS UNIT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC BUSINESS UNIT Code'
+		dataType: string
+		lineageTag: 45e341bf-f41b-4407-9bf5-1b635b00a03c
+		summarizeBy: none
+		sourceColumn: PC BUSINESS UNIT Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Category'
+		dataType: string
+		lineageTag: 0bc9a98c-d8ca-4493-aec1-4b01303df57b
+		summarizeBy: none
+		sourceColumn: PC Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Indoor/Outdoor'
+		dataType: string
+		lineageTag: bb76da70-63ae-4d05-b2ed-31b6beda0427
+		summarizeBy: none
+		sourceColumn: PC Indoor/Outdoor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Sub-Category'
+		dataType: string
+		lineageTag: 357c1e69-235f-4e98-9fb3-932ea89b9d80
+		summarizeBy: none
+		sourceColumn: PC Sub-Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: e710bebc-b50f-44c0-aea0-4696e5ed59ca
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit_CenterID
+		dataType: string
+		lineageTag: 3b294c11-5e9c-4328-910d-6a300728bfa5
+		summarizeBy: none
+		sourceColumn: Profit_CenterID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Profit Centers' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Profit Center]", {"[Dim Profit Center].[PC BUSINESS UNIT].[PC BUSINESS UNIT]", "[Dim Profit Center].[PC BUSINESS UNIT Code].[PC BUSINESS UNIT Code]", "[Dim Profit Center].[PC Category].[PC Category]", "[Dim Profit Center].[PC Indoor/Outdoor].[PC Indoor/Outdoor]", "[Dim Profit Center].[PC Sub-Category].[PC Sub-Category]", "[Dim Profit Center].[Profit Center Detailed].[Profit Center Detailed]", "[Dim Profit Center].[Profit_CenterID].[Profit_CenterID]"}, {"Dim Profit Center.PC BUSINESS UNIT", "Dim Profit Center.PC BUSINESS UNIT Code", "Dim Profit Center.PC Category", "Dim Profit Center.PC Indoor/Outdoor", "Dim Profit Center.PC Sub-Category", "Dim Profit Center.Profit Center Detailed", "Dim Profit Center.Profit_CenterID"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Profit Center.PC BUSINESS UNIT", "PC BUSINESS UNIT"}, {"Dim Profit Center.PC BUSINESS UNIT Code", "PC BUSINESS UNIT Code"}, {"Dim Profit Center.PC Category", "PC Category"}, {"Dim Profit Center.PC Indoor/Outdoor", "PC Indoor/Outdoor"}, {"Dim Profit Center.PC Sub-Category", "PC Sub-Category"}, {"Dim Profit Center.Profit Center Detailed", "Profit Center Detailed"}, {"Dim Profit Center.Profit_CenterID", "Profit_CenterID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

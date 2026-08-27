@@ -1,0 +1,25 @@
+table 'Global Tranz shipments (2)'
+	lineageTag: 8344ea0c-0cb5-4979-9d1b-2f8a18115a86
+
+	column PO#
+		dataType: string
+		lineageTag: 15d5db99-67ea-499f-b5cc-4361ba3168a8
+		summarizeBy: none
+		sourceColumn: PO#
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Global Tranz shipments (2)' = m
+		mode: import
+		source =
+				let
+				    Source = #"Global Tranz shipments",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"PO#"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

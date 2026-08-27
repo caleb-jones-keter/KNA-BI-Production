@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "93193393907b697dd6ae",
+  "position": {
+    "x": 8,
+    "y": 0,
+    "z": 0,
+    "height": 720,
+    "width": 1272,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PvillewarehousematchCOOIS"
+                    }
+                  },
+                  "Property": "Leading order"
+                }
+              },
+              "queryRef": "Sum(PvillewarehousematchCOOIS.Leading order)",
+              "nativeQueryRef": "Leading order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PvillewarehousematchCOOIS"
+                    }
+                  },
+                  "Property": "Material Number"
+                }
+              },
+              "queryRef": "Sum(PvillewarehousematchCOOIS.Material Number)",
+              "nativeQueryRef": "Material Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PvillewarehousematchCOOIS"
+                    }
+                  },
+                  "Property": "Order"
+                }
+              },
+              "queryRef": "Sum(PvillewarehousematchCOOIS.Order)",
+              "nativeQueryRef": "Order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PvillewarehousematchCOOIS"
+                    }
+                  },
+                  "Property": "Order quantity _GMEIN_"
+                }
+              },
+              "queryRef": "Sum(PvillewarehousematchCOOIS.Order quantity _GMEIN_)",
+              "nativeQueryRef": "Order quantity _GMEIN_"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

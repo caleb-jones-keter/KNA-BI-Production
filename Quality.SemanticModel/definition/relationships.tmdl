@@ -1,0 +1,24 @@
+relationship 7c63ff60-60ef-9dee-a616-c00de11a6ad1
+	fromColumn: 'FACT Rejections'.ProductKey
+	toColumn: 'DIM Product'.Material
+
+relationship 8a7e7dcf-bfc7-f7d7-19db-fb47195e7484
+	fromColumn: 'FACT YS10N Base'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship bfef55cc-46f1-1a3e-2024-fefec4f1439c
+	fromColumn: 'FACT Rejections'.RetailerKey
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship c3314bc6-8afd-2802-6f49-58225c86c910
+	fromColumn: 'FACT YS10N Base'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 56a41aab-800b-d52b-0623-39394e8c4a2d
+	fromColumn: 'FACT Rejections'.DateKey_daily
+	toColumn: 'DIM Date'.DateKey
+
+relationship e35e5110-a47e-5cb8-594d-e2f86c9ccb93
+	fromColumn: 'FACT YS10N Base'.'SO Billing Date'
+	toColumn: 'DIM Date'.'Full Date'
+

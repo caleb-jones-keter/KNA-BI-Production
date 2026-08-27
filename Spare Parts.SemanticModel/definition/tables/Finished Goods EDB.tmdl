@@ -1,0 +1,168 @@
+table 'Finished Goods EDB'
+	lineageTag: 019b767b-16d8-4e97-abce-31cbad4207ef
+	sourceLineageTag: [dbo].[Finished Goods EDB]
+
+	column 'Code:Country _c2_'
+		dataType: int64
+		formatString: 0
+		lineageTag: c0062dcc-a0d5-4b25-8569-b432f5b9b3e1
+		sourceLineageTag: Code:Country _c2_
+		summarizeBy: sum
+		sourceColumn: Code:Country _c2_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level _c4_'
+		dataType: int64
+		formatString: 0
+		lineageTag: 190bc54c-1f6b-4c94-b7e8-1e264999c06f
+		sourceLineageTag: Code:SKU Level _c4_
+		summarizeBy: sum
+		sourceColumn: Code:SKU Level _c4_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Daily Date _MM/dd/yyyy_'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 541eba75-36ca-4d73-bb0d-81e99da99ef3
+		sourceLineageTag: Daily Date _MM/dd/yyyy_
+		summarizeBy: none
+		sourceColumn: Daily Date _MM/dd/yyyy_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US DOLLAR_Sap Material Type'
+		dataType: string
+		lineageTag: 4a9bd525-0fd3-498b-87a2-384ec6efe97c
+		sourceLineageTag: US DOLLAR_Sap Material Type
+		summarizeBy: none
+		sourceColumn: US DOLLAR_Sap Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: a629a1f7-0d71-4056-bacf-32ca09161cc8
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Business Unit'
+		dataType: string
+		lineageTag: b13e37ed-c466-4449-9ead-085bc60dc196
+		sourceLineageTag: PC Business Unit
+		summarizeBy: none
+		sourceColumn: PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 68c97ad2-e8bf-42f9-9a17-d9b618c46160
+		sourceLineageTag: SKU Level
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Daily Date'
+		dataType: string
+		lineageTag: 53b78c9b-d024-4ab3-bc68-e325d7db424a
+		sourceLineageTag: Daily Date
+		summarizeBy: none
+		sourceColumn: Daily Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Short'
+		dataType: string
+		lineageTag: ee516e61-41c4-46d0-b73f-7f6edcfe08a3
+		sourceLineageTag: Country Short
+		summarizeBy: none
+		sourceColumn: Country Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material_Country_Key
+		dataType: string
+		lineageTag: b7698f40-5e0e-4448-aba1-0fe43f99ed61
+		sourceLineageTag: Material_Country_Key
+		summarizeBy: none
+		sourceColumn: Material_Country_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity_LastYear
+		dataType: double
+		lineageTag: 2af4cf3d-fa77-45ec-aea1-286a33fe0571
+		sourceLineageTag: Quantity_LastYear
+		summarizeBy: sum
+		sourceColumn: Quantity_LastYear
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'YTD Quantity'
+		dataType: double
+		lineageTag: 21c68566-56b0-4a44-847c-49f92b5223a3
+		sourceLineageTag: YTD Quantity
+		summarizeBy: sum
+		sourceColumn: YTD Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 294d2731-6874-44a5-9513-dcf6f6fee0af
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Demand'
+		dataType: int64
+		formatString: 0
+		lineageTag: f21cb6e7-3cf0-4885-a7fe-d3e9f415b8d8
+		sourceLineageTag: Customer Demand
+		summarizeBy: sum
+		sourceColumn: Customer Demand
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Demand This Year'
+		dataType: double
+		lineageTag: cfaefb47-3e6b-43fa-9846-8ad3347fd9d8
+		sourceLineageTag: Customer Demand This Year
+		summarizeBy: sum
+		sourceColumn: Customer Demand This Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Customer Demand Last Year'
+		dataType: double
+		lineageTag: 514f19fa-f90c-41e1-b990-c94993861e3d
+		sourceLineageTag: Customer Demand Last Year
+		summarizeBy: sum
+		sourceColumn: Customer Demand Last Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Finished Goods EDB' = entity
+		mode: directLake
+		source
+			entityName: Finished Goods EDB
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

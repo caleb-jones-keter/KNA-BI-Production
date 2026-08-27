@@ -1,0 +1,151 @@
+table 'Raw Material'
+	lineageTag: 30c3cafe-fe5c-4106-8dd9-67e5dda51c9c
+	sourceLineageTag: [dbo].[Recycle]
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4aca7967-15b0-4e9b-b44e-4526bd6aa5d0
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessAreaKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c86cbc4-b9e4-4556-8356-26fa2b224dd2
+		sourceLineageTag: BusinessAreaKey
+		summarizeBy: count
+		sourceColumn: BusinessAreaKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcquisitionStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f56c2c1-121e-4f27-981d-27115b2afd1a
+		sourceLineageTag: AcquisitionStatus
+		summarizeBy: sum
+		sourceColumn: AcquisitionStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActivityKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bdd85c9-1b14-45cd-bce5-77bbc70913c1
+		sourceLineageTag: ActivityKey
+		summarizeBy: count
+		sourceColumn: ActivityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c70c7df1-0dff-4e8c-a4a8-b8b1190c8eab
+		sourceLineageTag: PlantKey
+		summarizeBy: count
+		sourceColumn: PlantKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExpenseStatekey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c33ea0e-4950-437d-ab41-51a570fafd6c
+		sourceLineageTag: ExpenseStatekey
+		summarizeBy: sum
+		sourceColumn: ExpenseStatekey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Expense_Value
+		dataType: double
+		lineageTag: 56c17093-747c-4e70-aa4b-e9fc2c39d654
+		sourceLineageTag: Expense_Value
+		summarizeBy: sum
+		sourceColumn: Expense_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM.Weight'
+		dataType: double
+		lineageTag: d166c762-e0a0-40b1-b341-1116a58aea75
+		sourceLineageTag: RM.Weight
+		summarizeBy: sum
+		sourceColumn: RM.Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DocTyp
+		dataType: string
+		lineageTag: 37aa5d91-73ec-43e7-a91a-bfdaddc24b8e
+		sourceLineageTag: DocTyp
+		summarizeBy: none
+		sourceColumn: DocTyp
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCodeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 727da134-672e-448d-9d59-5ed44b93da73
+		sourceLineageTag: CompanyCodeKey
+		summarizeBy: count
+		sourceColumn: CompanyCodeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column productkey
+		dataType: int64
+		formatString: 0
+		lineageTag: 44cdb485-baf7-42fc-9fbb-bb35678f2412
+		sourceLineageTag: productkey
+		summarizeBy: sum
+		sourceColumn: productkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MAIN GROUPS PURCHASING DESC'
+		dataType: string
+		lineageTag: 98875f12-f0d6-4467-8b7e-e6b20ff325c2
+		sourceLineageTag: MAIN GROUPS PURCHASING DESC
+		summarizeBy: none
+		sourceColumn: MAIN GROUPS PURCHASING DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sap Material Type'
+		dataType: string
+		lineageTag: 699e4850-a797-4025-955b-5550c4504071
+		sourceLineageTag: Sap Material Type
+		summarizeBy: none
+		sourceColumn: Sap Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PRODUCT TYPE DESC'
+		dataType: string
+		lineageTag: 6ecd685a-1b26-4ba5-bd01-47d957ba5cac
+		sourceLineageTag: PRODUCT TYPE DESC
+		summarizeBy: none
+		sourceColumn: PRODUCT TYPE DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Raw Material' = entity
+		mode: directLake
+		source
+			entityName: Recycle
+			schemaName: dbo
+			expressionSource: 'DirectLake - BRZ_NA_SC_LH'
+
+	changedProperty = Name
+

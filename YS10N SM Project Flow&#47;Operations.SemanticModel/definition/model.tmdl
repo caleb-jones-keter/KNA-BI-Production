@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - NA_Supply_Chain"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table 'DIM Storage Location'
+ref table 'DIM SKUPayer'
+ref table 'Manual Fact CSYS upload'
+ref table 'DIM Date'
+ref table 'DIM Product'
+ref table 'DIM MRP Area'
+ref table 'DIM MRPSKU'
+ref table 'DIM Plant'
+ref table 'DIM Customer'
+ref table 'DIM Ship To'
+ref table 'FACT YS10N Base'
+ref table 'DIM Date _2_'
+ref table 'DIM USA CA Zips'
+ref table fact_ftl_material_shipments_model
+

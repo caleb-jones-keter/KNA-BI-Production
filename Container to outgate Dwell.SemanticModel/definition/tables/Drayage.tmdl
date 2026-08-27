@@ -1,0 +1,493 @@
+table Drayage
+	lineageTag: fb8e7807-5cce-4ae5-9590-6ae490ff6a8e
+
+	measure Measure = "outgate"-"discharge date"
+		lineageTag: 2c83dc76-2c55-488c-92e7-07bda12753ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Date 943 Issued'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1f096fee-6e89-468c-94d5-6ae5a929b988
+		summarizeBy: none
+		sourceColumn: Date 943 Issued
+
+		variation Variation
+			isDefault
+			relationship: c5dd030f-b9a6-41ca-a6de-efbe3b0ace6c
+			defaultHierarchy: LocalDateTable_bc8576ca-0b9f-4146-ba97-4b99a8e3d3ad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Sent 943'
+		dataType: string
+		lineageTag: dd0152f1-5f18-48ca-8b3f-0e4635562ff0
+		summarizeBy: none
+		sourceColumn: Sent 943
+
+		annotation SummarizationSetBy = Automatic
+
+	column Container
+		dataType: string
+		lineageTag: 1624ac61-9acd-4597-b0d1-7d30f2cc001c
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d96fd7e-2dd9-4ebf-8ab1-6a8fa5eb954f
+		summarizeBy: sum
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mat. Descr.'
+		dataType: string
+		lineageTag: 8dc4de0e-7a70-468d-9cf7-ba05c18bac3e
+		summarizeBy: none
+		sourceColumn: Mat. Descr.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e231133-509d-4f03-8e7a-63d8df14253c
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Move Depot'
+		dataType: string
+		lineageTag: 31cf64de-7f4f-47ae-a20b-6efad639c25c
+		summarizeBy: none
+		sourceColumn: Move Depot
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Move Whse'
+		dataType: string
+		lineageTag: 2a949eac-dd8d-493f-a64d-fcc8772ec409
+		summarizeBy: none
+		sourceColumn: Move Whse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Con
+		dataType: string
+		lineageTag: 1d51a200-c2e1-4f7b-a3d9-c62820c0a862
+		summarizeBy: none
+		sourceColumn: Con
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ycontainer
+		dataType: string
+		lineageTag: 5008501e-73dc-45b5-abe9-808b4f41a77d
+		summarizeBy: none
+		sourceColumn: Ycontainer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discharge Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1722986e-60dc-4e79-9035-9649c36c6648
+		summarizeBy: none
+		sourceColumn: Discharge Date
+
+		variation Variation
+			isDefault
+			relationship: e53e5bbc-285f-4e19-b0a6-a981758ab260
+			defaultHierarchy: LocalDateTable_080c2438-0844-4824-8bca-42b95c40a1cc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Outgate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2a095373-1022-4b48-a98f-b8229238def5
+		summarizeBy: none
+		sourceColumn: Outgate
+
+		variation Variation
+			isDefault
+			relationship: afc5dcd1-41c0-4d79-843a-7af1d3ecce4d
+			defaultHierarchy: LocalDateTable_393cc6bc-ba07-49de-bae4-4199e0eebfb2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Days to Outgate'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2697570a-8552-4d8e-b613-12ec64301995
+		summarizeBy: sum
+		sourceColumn: Days to Outgate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transfer Depot (467P/467Q/467N)'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3cef910f-969c-44a0-8ffd-b69049991c03
+		summarizeBy: none
+		sourceColumn: Transfer Depot (467P/467Q/467N)
+
+		variation Variation
+			isDefault
+			relationship: 1cced79d-7244-469d-a909-8315330fef65
+			defaultHierarchy: LocalDateTable_4c8a7224-3554-46b8-b628-6e4aca4228c8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'SAV Overflow YRD 467O'
+		dataType: string
+		lineageTag: 32616198-4db9-46fb-b85d-210fbc6d0432
+		summarizeBy: none
+		sourceColumn: SAV Overflow YRD 467O
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transfer DHL 214/4673'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b2708d19-dbd1-4b99-8f83-55eded29c134
+		summarizeBy: none
+		sourceColumn: Transfer DHL 214/4673
+
+		variation Variation
+			isDefault
+			relationship: 57305fc4-952a-4fee-8498-c385f1410774
+			defaultHierarchy: LocalDateTable_0fa4dbc8-6c6f-4daa-882a-d64ee948d148.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Emptied 944/4674'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8c2b7f2a-61cf-4b63-b5d6-53b43c030547
+		summarizeBy: none
+		sourceColumn: Emptied 944/4674
+
+		variation Variation
+			isDefault
+			relationship: c4514c3e-e201-46ec-b725-c0dd974e25f4
+			defaultHierarchy: LocalDateTable_85e82ac2-cb35-46b5-8324-99803904d62c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Empty Returned'
+		dataType: string
+		lineageTag: 0d0e5f52-76ed-4860-a926-35b71c73ede9
+		summarizeBy: none
+		sourceColumn: Empty Returned
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: f3f9cb41-a784-4bc4-9c93-ebc754e2c80c
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cont Int'
+		dataType: int64
+		formatString: 0
+		lineageTag: cd499418-1858-4ae3-9775-629e0bf3b10e
+		summarizeBy: sum
+		sourceColumn: Cont Int
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO
+		dataType: int64
+		formatString: 0
+		lineageTag: 392c0b7a-fdb8-467e-a0cf-8a43fc3f663e
+		summarizeBy: sum
+		sourceColumn: PO
+
+		annotation SummarizationSetBy = Automatic
+
+	column BOL
+		dataType: string
+		lineageTag: a137b58c-c581-41e4-a4df-79fb4f9cdec5
+		summarizeBy: none
+		sourceColumn: BOL
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vessel
+		dataType: string
+		lineageTag: d92b8835-eeb4-44b7-9c46-21843388fecc
+		summarizeBy: none
+		sourceColumn: Vessel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Voyage
+		dataType: string
+		lineageTag: a99064f8-801e-4372-8228-619b9e728381
+		summarizeBy: none
+		sourceColumn: Voyage
+
+		annotation SummarizationSetBy = Automatic
+
+	column EDD
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: deaead46-eaae-4f72-9849-46491b0fa31e
+		summarizeBy: none
+		sourceColumn: EDD
+
+		variation Variation
+			isDefault
+			relationship: 22edd791-efe2-4f75-9f0e-ee27cc43c51f
+			defaultHierarchy: LocalDateTable_4f265177-ea87-4723-8494-fd4b2710f64a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Days in Port'
+		dataType: int64
+		formatString: 0
+		lineageTag: cbe2eacf-d1c0-4329-98b4-21a1245ea5aa
+		summarizeBy: sum
+		sourceColumn: Days in Port
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days out of Port'
+		dataType: double
+		lineageTag: 8c786d51-04a9-4fce-9d50-f0822c594025
+		summarizeBy: sum
+		sourceColumn: Days out of Port
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Days from Empty'
+		dataType: double
+		lineageTag: 3c64e4b4-1c20-4103-92e5-e14b6d190eb4
+		summarizeBy: sum
+		sourceColumn: Days from Empty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Concatenate
+		dataType: string
+		lineageTag: 17c80f8c-e147-45f7-8d08-2d9e90372220
+		summarizeBy: none
+		sourceColumn: Concatenate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days of Demurrage'
+		dataType: int64
+		formatString: 0
+		lineageTag: 570efa3c-1665-4100-9940-04b209e91719
+		summarizeBy: sum
+		sourceColumn: Days of Demurrage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demurrage Cost'
+		dataType: int64
+		formatString: 0
+		lineageTag: 62b4ff00-3b6d-4af6-bde7-afad81ab9757
+		summarizeBy: sum
+		sourceColumn: Demurrage Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days of Per Diem '
+		dataType: double
+		lineageTag: abd7912f-8525-4c22-9f44-3b7b9d4f1b2d
+		summarizeBy: sum
+		sourceColumn: "Days of Per Diem "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Days Per Diem 0-26'
+		dataType: double
+		lineageTag: 52cf9ba2-e00c-4fe1-9638-34f568e939f8
+		summarizeBy: sum
+		sourceColumn: Days Per Diem 0-26
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost per diem =<26'
+		dataType: double
+		lineageTag: a405b997-33ea-4e42-9062-72ff69d06b6c
+		summarizeBy: sum
+		sourceColumn: Cost per diem =<26
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Per Diem >26'
+		dataType: double
+		lineageTag: d2a75496-436d-4c58-8a1b-b77a10f009a2
+		summarizeBy: sum
+		sourceColumn: Per Diem >26
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Per Diem >26_1'
+		dataType: double
+		lineageTag: ed24bbd0-f2bb-47c1-98fe-b976760c43a0
+		summarizeBy: sum
+		sourceColumn: Per Diem >26_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Per Diem $'
+		dataType: double
+		lineageTag: ec5aa044-c560-45e6-b2b4-c8864d7b2a9a
+		summarizeBy: sum
+		sourceColumn: Total Per Diem $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Costs'
+		dataType: double
+		lineageTag: 8872fc83-783a-4b67-9fa1-c48ad35acc8a
+		summarizeBy: sum
+		sourceColumn: Total Costs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cycle End'
+		dataType: string
+		lineageTag: 88ed424f-e787-4ca5-bca2-45542f57453d
+		summarizeBy: none
+		sourceColumn: Cycle End
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Container+BOL Record'
+		dataType: string
+		lineageTag: 8b31d869-eb2a-4580-aba1-7299647b7742
+		summarizeBy: none
+		sourceColumn: Container+BOL Record
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Per Diem Invoices'
+		dataType: string
+		lineageTag: 46eb1407-b958-4ef7-8878-ea1bb914169a
+		summarizeBy: none
+		sourceColumn: Per Diem Invoices
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Per Diem Invoice vs Estimate'
+		dataType: string
+		lineageTag: 835aa3d2-da43-4e73-bf15-2c1b872fa672
+		summarizeBy: none
+		sourceColumn: Per Diem Invoice vs Estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demurrage Invoices'
+		dataType: string
+		lineageTag: ab13a768-892a-46f1-b003-abcb2b1e4e96
+		summarizeBy: none
+		sourceColumn: Demurrage Invoices
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demurrage Invoice vs Estimate'
+		dataType: string
+		lineageTag: b13b9b8d-f059-494b-9076-c96fb2123aab
+		summarizeBy: none
+		sourceColumn: Demurrage Invoice vs Estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Empty to Port Return'
+		dataType: string
+		lineageTag: a7ce7a33-17e2-4b5e-beae-92f16d8ff5bd
+		summarizeBy: none
+		sourceColumn: Empty to Port Return
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'containers %' = ```
+			
+			VAR c1 = Drayage[Transfer Depot (467P/467Q/467N)]
+			VAR c2 = Drayage[Transfer DHL 214/4673]
+			
+			RETURN
+			IF(
+			    ISBLANK(c1) && ISBLANK(c2),
+			    "Not Received",
+			    IF(
+			        NOT ISBLANK(c1) && (ISBLANK(c2) || c1 <= c2),
+			        "Depot",
+			        IF(
+			            NOT ISBLANK(c2),
+			            "DHL",
+			            "Not Received"
+			        )
+			    )
+			)
+			
+			
+			 
+			 
+			```
+		lineageTag: 4e69bafd-ab65-46e9-bcb7-d9bf5c659738
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Drayage = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jonathanv\OneDrive - Keter Group\Shared Documents - Import Logistics\DHL_Rincon\DHL Drayage_Loads 2026.xlsx"), null, true),
+				    Drayage_Sheet = Source{[Item="Drayage",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Drayage_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date 943 Issued", type date}, {"Sent 943", type text}, {"Container", type text}, {"Material", Int64.Type}, {"Mat. Descr.", type text}, {"Qty", Int64.Type}, {"Move Depot", type text}, {"Move Whse", type text}, {"Con", type any}, {"Ycontainer", type any}, {"Discharge Date", type date}, {"Outgate", type date}, {"Days to Outgate", Int64.Type}, {"Transfer Depot (467P/467Q/467N)", type date}, {"SAV Overflow YRD 467O", type any}, {"Transfer DHL 214/4673", type date}, {"Emptied 944/4674", type date}, {"Empty Returned", type any}, {"Comment", type text}, {"Cont Int", Int64.Type}, {"PO", Int64.Type}, {"BOL", type text}, {"Vessel", type text}, {"Voyage", type text}, {"EDD", type date}, {"Days in Port", Int64.Type}, {"Days out of Port", type number}, {"Days from Empty", type number}, {"Concatenate", type text}, {"Days of Demurrage", Int64.Type}, {"Demurrage Cost", Int64.Type}, {"Days of Per Diem ", type number}, {"Days Per Diem 0-26", type number}, {"Cost per diem =<26", type number}, {"Per Diem >26", type number}, {"Per Diem >26_1", type number}, {"Total Per Diem $", type number}, {"Total Costs", type number}, {"Cycle End", type text}, {"Container+BOL Record", type text}, {"Per Diem Invoices", type any}, {"Per Diem Invoice vs Estimate", type any}, {"Demurrage Invoices", type any}, {"Demurrage Invoice vs Estimate", type any}, {"Notes", type any}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Notes", "Empty to Port Return"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

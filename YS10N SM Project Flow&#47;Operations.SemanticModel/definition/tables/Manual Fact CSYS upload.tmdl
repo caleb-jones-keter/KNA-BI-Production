@@ -1,0 +1,894 @@
+table 'Manual Fact CSYS upload'
+	isHidden
+	lineageTag: 3551c717-425d-4ab5-b0ed-9f5e4e119f0a
+	sourceLineageTag: [dbo].[Manual Fact CSYS upload]
+
+	measure '_Container Qty' = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),
+			    DIVIDE(
+			        CALCULATE(SUM('Manual Fact CSYS upload'[Order Qty])),
+			        CALCULATE(MAX('DIM Product'[Cont_Qty]))
+			    )
+			)
+			
+			```
+		isHidden
+		lineageTag: 2f672f65-e354-4b43-9ee4-55e5a4dba62e
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Truck Qty' = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),
+			    DIVIDE(
+			        CALCULATE(SUM('Manual Fact CSYS upload'[Order Qty])),
+			        CALCULATE(MAX('DIM Product'[TL Qty]))
+			    )
+			)
+			
+			```
+		isHidden
+		lineageTag: 9faf99eb-c57d-4cc8-ae37-65a0f6703310
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Organization'
+		dataType: string
+		isHidden
+		lineageTag: 2fe4a3cc-5d56-4012-a543-241a59d04bfe
+		sourceLineageTag: Sales Organization
+		summarizeBy: none
+		sourceColumn: Sales Organization
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		isHidden
+		lineageTag: 55b3e7c5-5790-44b4-8969-d66b5b5d990b
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Point/Receiving Pt'
+		dataType: string
+		isHidden
+		lineageTag: 563f82c0-ed8d-4db8-b35d-98458ccc8d48
+		sourceLineageTag: Shipping Point/Receiving Pt
+		summarizeBy: none
+		sourceColumn: Shipping Point/Receiving Pt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		isHidden
+		lineageTag: 33a08b14-0f4e-40ed-a7ea-43ec826fed40
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		isHidden
+		lineageTag: 4b3fe9d9-283a-48eb-b52a-ed60dd3c3d1c
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer name'
+		dataType: string
+		isHidden
+		lineageTag: 412ff993-4c0b-4d35-bf31-78196220aa0f
+		sourceLineageTag: Payer name
+		summarizeBy: none
+		sourceColumn: Payer name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection'
+		dataType: string
+		isHidden
+		lineageTag: a3d31c16-e307-4282-88c6-bd2b9dada445
+		sourceLineageTag: Reason for rejection
+		summarizeBy: none
+		sourceColumn: Reason for rejection
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection description'
+		dataType: string
+		isHidden
+		lineageTag: a28993f9-ca92-4ef0-9671-a6318cac0a96
+		sourceLineageTag: Reason for rejection description
+		summarizeBy: none
+		sourceColumn: Reason for rejection description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason'
+		dataType: string
+		isHidden
+		lineageTag: 758dd4a0-5ceb-4dcc-ba39-29ce526599fa
+		sourceLineageTag: Order reason
+		summarizeBy: none
+		sourceColumn: Order reason
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason_1'
+		dataType: string
+		isHidden
+		lineageTag: 7708d79b-64e5-4abf-988a-bb751942a355
+		sourceLineageTag: Order reason_1
+		summarizeBy: none
+		sourceColumn: Order reason_1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number'
+		dataType: string
+		isHidden
+		lineageTag: 8d22d8df-ff4a-473d-985f-5e1981f70481
+		sourceLineageTag: PO Number
+		summarizeBy: none
+		sourceColumn: PO Number
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Order'
+		dataType: string
+		isHidden
+		lineageTag: 988eeeb0-a7a3-443d-b3ea-214a95b0b7c1
+		sourceLineageTag: Sales Order
+		summarizeBy: none
+		sourceColumn: Sales Order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery
+		dataType: string
+		isHidden
+		lineageTag: 8c1dff4b-43f1-4d79-a818-194dc1ab895b
+		sourceLineageTag: Delivery
+		summarizeBy: none
+		sourceColumn: Delivery
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Number'
+		dataType: string
+		isHidden
+		lineageTag: a8be3e8a-bb39-4ad1-88d4-612755a3d968
+		sourceLineageTag: Shipment Number
+		summarizeBy: none
+		sourceColumn: Shipment Number
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping type'
+		dataType: string
+		isHidden
+		lineageTag: b5a1909a-a0fb-4d3a-ae82-5926a092aa47
+		sourceLineageTag: Shipping type
+		summarizeBy: none
+		sourceColumn: Shipping type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		isHidden
+		lineageTag: fd163bc1-36fe-437e-aa26-0a363b0ecc83
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer SKU'
+		dataType: string
+		isHidden
+		lineageTag: 80e7f24a-7709-45d9-be51-e1a8014491b5
+		sourceLineageTag: Customer SKU
+		summarizeBy: none
+		sourceColumn: Customer SKU
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material description MM'
+		dataType: string
+		isHidden
+		lineageTag: 8842fe12-09a2-4d94-a65c-9d949f8b7fa0
+		sourceLineageTag: Material description MM
+		summarizeBy: none
+		sourceColumn: Material description MM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Qty'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 88badb10-6d39-481c-8492-13802d9bb390
+		sourceLineageTag: Order Qty
+		summarizeBy: sum
+		sourceColumn: Order Qty
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net value'
+		dataType: decimal
+		isHidden
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c852a8d8-3b95-4483-bd75-d0ce6debb073
+		sourceLineageTag: Net value
+		summarizeBy: sum
+		sourceColumn: Net value
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'SO Created Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: a6fb1f9a-d564-4a37-8d69-62dd08c3a574
+		sourceLineageTag: SO Created Date
+		summarizeBy: none
+		sourceColumn: SO Created Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Creation Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 5b8530cb-9d77-49a4-bd6d-d3e8126cce2a
+		sourceLineageTag: Delivery Creation Date
+		summarizeBy: none
+		sourceColumn: Delivery Creation Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: d9a20e93-a83f-4e89-9096-f6036e108e3b
+		sourceLineageTag: First Date
+		summarizeBy: none
+		sourceColumn: First Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Confirmation Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: e59faba3-dee3-41f4-928c-828ee0e3aea9
+		sourceLineageTag: Confirmation Date
+		summarizeBy: none
+		sourceColumn: Confirmation Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested deliv.date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 9b7eaf40-a208-4c84-85ea-f6937e2b33a0
+		sourceLineageTag: Requested deliv.date
+		summarizeBy: none
+		sourceColumn: Requested deliv.date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Guarantee Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: a98a922e-867a-426b-af6a-bf14f54c37fc
+		sourceLineageTag: Guarantee Date
+		summarizeBy: none
+		sourceColumn: Guarantee Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Delivery Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: bcb73d65-9bfb-4cb0-b4cd-74913ad92b26
+		sourceLineageTag: Original Delivery Date
+		summarizeBy: none
+		sourceColumn: Original Delivery Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Billing Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 03fa23b4-9689-48ed-b051-2b3b6727cb0b
+		sourceLineageTag: SO Billing Date
+		summarizeBy: none
+		sourceColumn: SO Billing Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Party Region'
+		dataType: string
+		isHidden
+		lineageTag: 672ca5c9-dd7a-4652-b5db-1d08c70301ae
+		sourceLineageTag: Ship-To Party Region
+		summarizeBy: none
+		sourceColumn: Ship-To Party Region
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning end'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: d546f346-a230-487a-b319-6a849ef2d284
+		sourceLineageTag: Planning end
+		summarizeBy: none
+		sourceColumn: Planning end
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned date CheckIn'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 518d90cc-738d-4f36-a3a3-cf492076cc06
+		sourceLineageTag: Planned date CheckIn
+		summarizeBy: none
+		sourceColumn: Planned date CheckIn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned time CheckIn'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 3134398d-3f37-4cad-9370-b89f99e58f03
+		sourceLineageTag: Planned time CheckIn
+		summarizeBy: none
+		sourceColumn: Planned time CheckIn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trailer No_'
+		dataType: string
+		isHidden
+		lineageTag: da93db45-1bd9-4e10-a8d3-5835da152561
+		sourceLineageTag: Trailer No_
+		summarizeBy: none
+		sourceColumn: Trailer No_
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned shipment end'
+		dataType: string
+		isHidden
+		lineageTag: e854ad85-b216-4f7e-8278-33314ac49577
+		sourceLineageTag: Planned shipment end
+		summarizeBy: none
+		sourceColumn: Planned shipment end
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Delay Reason'
+		dataType: string
+		isHidden
+		lineageTag: 135cfadd-5747-46d0-9cda-e02becbb604a
+		sourceLineageTag: Load Delay Reason
+		summarizeBy: none
+		sourceColumn: Load Delay Reason
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Act. Gds Mvmnt Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 17ff00cf-107e-4e50-896a-912c612c4385
+		sourceLineageTag: Act. Gds Mvmnt Date
+		summarizeBy: none
+		sourceColumn: Act. Gds Mvmnt Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Billing Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 7acd2468-2d33-419c-bebc-4ccb46e4fc26
+		sourceLineageTag: Invoice Billing Date
+		summarizeBy: none
+		sourceColumn: Invoice Billing Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center'
+		dataType: string
+		isHidden
+		lineageTag: 256fcc80-c64f-4a22-a0f1-a4c994ad576b
+		sourceLineageTag: Profit Center
+		summarizeBy: none
+		sourceColumn: Profit Center
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier SCAC code'
+		dataType: string
+		isHidden
+		lineageTag: 0dbf7f16-1a0e-4b59-9526-86c46740c1b9
+		sourceLineageTag: Carrier SCAC code
+		summarizeBy: none
+		sourceColumn: Carrier SCAC code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Name'
+		dataType: string
+		isHidden
+		lineageTag: 64a76acd-4974-4fe7-91d6-adacdd174943
+		sourceLineageTag: Carrier Name
+		summarizeBy: none
+		sourceColumn: Carrier Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Code'
+		dataType: string
+		isHidden
+		lineageTag: 4c0b7836-7fe9-4125-8524-4610ed74be69
+		sourceLineageTag: Carrier Code
+		summarizeBy: none
+		sourceColumn: Carrier Code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Service'
+		dataType: string
+		isHidden
+		lineageTag: 5476317c-1163-49a4-aadf-872e5e0ecb84
+		sourceLineageTag: Carrier Service
+		summarizeBy: none
+		sourceColumn: Carrier Service
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load No_'
+		dataType: string
+		isHidden
+		lineageTag: 7bd7fedc-6687-41f4-b017-881d997cfbb9
+		sourceLineageTag: Load No_
+		summarizeBy: none
+		sourceColumn: Load No_
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Zip'
+		dataType: string
+		isHidden
+		lineageTag: 46bbbaf2-0a4d-4d90-aafb-afcf0582ad57
+		sourceLineageTag: Ship-To Zip
+		summarizeBy: none
+		sourceColumn: Ship-To Zip
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Indicator'
+		dataType: string
+		isHidden
+		lineageTag: daa0cc73-c16d-4d84-b977-fd587e1eefb1
+		sourceLineageTag: Spare Part Indicator
+		summarizeBy: none
+		sourceColumn: Spare Part Indicator
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Del. Qty'
+		dataType: string
+		isHidden
+		lineageTag: 2918aee8-4050-4b75-9886-8a5525e88210
+		sourceLineageTag: Del. Qty
+		summarizeBy: none
+		sourceColumn: Del. Qty
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original First Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: b7eb2671-375b-4c6e-a156-16b01e6b5082
+		sourceLineageTag: Original First Date
+		summarizeBy: none
+		sourceColumn: Original First Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Party'
+		dataType: string
+		isHidden
+		lineageTag: 4c8c3abd-2b0c-4fda-8798-3d4fe7438fca
+		sourceLineageTag: Ship-To Party
+		summarizeBy: none
+		sourceColumn: Ship-To Party
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carrier
+		dataType: string
+		isHidden
+		lineageTag: 2888db26-7b34-4e51-9c4d-ab27fbfd525b
+		sourceLineageTag: Carrier
+		summarizeBy: none
+		sourceColumn: Carrier
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manifest/PRO No_'
+		dataType: string
+		isHidden
+		lineageTag: b5aa970a-9ef9-494f-ba29-81e39b40030d
+		sourceLineageTag: Manifest/PRO No_
+		summarizeBy: none
+		sourceColumn: Manifest/PRO No_
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Door No_'
+		dataType: string
+		isHidden
+		lineageTag: 9812bee7-81c8-4880-95f3-72fcf04eeb96
+		sourceLineageTag: Door No_
+		summarizeBy: none
+		sourceColumn: Door No_
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Remarks'
+		dataType: string
+		isHidden
+		lineageTag: 09de8283-a370-42fd-8348-0a4d03fe0689
+		sourceLineageTag: SO Remarks
+		summarizeBy: none
+		sourceColumn: SO Remarks
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delv Remarks'
+		dataType: string
+		isHidden
+		lineageTag: 1ef7b96f-f28b-4dd8-bac9-962feea50ded
+		sourceLineageTag: Delv Remarks
+		summarizeBy: none
+		sourceColumn: Delv Remarks
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Overall Pick Status'
+		dataType: string
+		isHidden
+		lineageTag: 5dc84ff0-aa23-40f9-bff3-8ecb2223bbe6
+		sourceLineageTag: Overall Pick Status
+		summarizeBy: none
+		sourceColumn: Overall Pick Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Notes'
+		dataType: string
+		isHidden
+		lineageTag: 42b8561a-3991-4abc-aab0-8021e41d4384
+		sourceLineageTag: Load Notes
+		summarizeBy: none
+		sourceColumn: Load Notes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Description'
+		dataType: string
+		isHidden
+		lineageTag: 0b6b9b50-c9d1-47f4-be8d-92956a989efb
+		sourceLineageTag: Service Description
+		summarizeBy: none
+		sourceColumn: Service Description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US ZIP Code _5 digit_'
+		dataType: string
+		isHidden
+		lineageTag: 87d197f6-a27b-4ff5-af8e-81aca8156d52
+		sourceLineageTag: US ZIP Code _5 digit_
+		summarizeBy: none
+		sourceColumn: US ZIP Code _5 digit_
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material & DESC'
+		dataType: string
+		isHidden
+		lineageTag: f66405b9-7f73-4726-8574-0b7b4e965616
+		sourceLineageTag: Material & DESC
+		summarizeBy: none
+		sourceColumn: Material & DESC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Location _MAP_'
+		dataType: string
+		isHidden
+		lineageTag: eb7b9634-6c98-4fc3-8018-d8b899bdb7d8
+		sourceLineageTag: Country Location _MAP_
+		summarizeBy: none
+		sourceColumn: Country Location _MAP_
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		isHidden
+		lineageTag: 5f3771e7-bbd8-479a-81a0-52e507568700
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		isHidden
+		lineageTag: 697c4f70-3917-4c0a-ac43-9f40b4470b84
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.zip'
+		dataType: string
+		isHidden
+		lineageTag: 9148f28b-fb90-4d24-90ba-7ba016ee527b
+		sourceLineageTag: uszips csv.zip
+		summarizeBy: none
+		sourceColumn: uszips csv.zip
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.lat'
+		dataType: string
+		isHidden
+		lineageTag: 6cd36240-ac34-498a-bb20-57dd10833ab6
+		sourceLineageTag: uszips csv.lat
+		summarizeBy: none
+		sourceColumn: uszips csv.lat
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.lng'
+		dataType: string
+		isHidden
+		lineageTag: 88995f69-1db7-467f-a068-c168c8c09b86
+		sourceLineageTag: uszips csv.lng
+		summarizeBy: none
+		sourceColumn: uszips csv.lng
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.city'
+		dataType: string
+		isHidden
+		lineageTag: 7c0157af-0d69-425a-a8fe-9eb25e960e13
+		sourceLineageTag: uszips csv.city
+		summarizeBy: none
+		sourceColumn: uszips csv.city
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.state_id'
+		dataType: string
+		isHidden
+		lineageTag: b4d76df8-1f28-4156-9ad4-9bb68cb184c5
+		sourceLineageTag: uszips csv.state_id
+		summarizeBy: none
+		sourceColumn: uszips csv.state_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.state_name'
+		dataType: string
+		isHidden
+		lineageTag: f9c9aa4c-4c9b-4f1c-981d-c44cb519b13a
+		sourceLineageTag: uszips csv.state_name
+		summarizeBy: none
+		sourceColumn: uszips csv.state_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'uszips csv.imprecise'
+		dataType: string
+		isHidden
+		lineageTag: 473180a4-7906-4d98-9d0a-86e2d7b08403
+		sourceLineageTag: uszips csv.imprecise
+		summarizeBy: none
+		sourceColumn: uszips csv.imprecise
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Manual Fact CSYS upload' = entity
+		mode: directLake
+		source
+			entityName: Manual Fact CSYS upload
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+
+	changedProperty = IsHidden
+

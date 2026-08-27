@@ -1,0 +1,169 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "c70705e6dd07785e5c9e",
+  "position": {
+    "x": 1296,
+    "y": 112,
+    "z": 7000,
+    "height": 304,
+    "width": 336,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "Shipment Number"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "FACT YS10N Base.Shipment Number",
+              "nativeQueryRef": "Number of Shipment",
+              "displayName": "Number of Shipment"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "REGION"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_AvgDistanceMiPerDelivery"
+                }
+              },
+              "queryRef": "FACT YS10N Base._AvgDistanceMiPerDelivery",
+              "nativeQueryRef": "AVG Delv Distance",
+              "displayName": "AVG Delv Distance"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "FACT YS10N Base"
+                      }
+                    },
+                    "Property": "Shipment Number"
+                  }
+                },
+                "Function": 2
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.5257070581959D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._AvgDistanceMiPerDelivery"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1fed8fc94d3db43b0448",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "Shipment Number"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4f0cb159b7ee9a6a3c50",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6fc252220ea8c20d61e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "_AvgDistanceMiPerDelivery"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

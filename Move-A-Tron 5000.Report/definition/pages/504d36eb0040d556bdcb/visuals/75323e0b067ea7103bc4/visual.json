@@ -1,0 +1,669 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "75323e0b067ea7103bc4",
+  "position": {
+    "x": 16,
+    "y": 111.99999999999999,
+    "z": 0,
+    "height": 672,
+    "width": 1472,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT YContainer.Container",
+              "nativeQueryRef": "Container",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Days In Place"
+                }
+              },
+              "queryRef": "FACT YContainer.Days In Place",
+              "nativeQueryRef": "Days In Place",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Inb.delivery"
+                }
+              },
+              "queryRef": "FACT YContainer.Inb.delivery",
+              "nativeQueryRef": "Inb.delivery",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Storage Location"
+                    }
+                  },
+                  "Property": "Code"
+                }
+              },
+              "queryRef": "DIM Storage Location.Code",
+              "nativeQueryRef": "Code",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Open Order DOS"
+                }
+              },
+              "queryRef": "FACT YContainer.Open Order DOS",
+              "nativeQueryRef": "Open Order DOS",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Move Type"
+                }
+              },
+              "queryRef": "FACT YContainer.Move Type",
+              "nativeQueryRef": "Move Type",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "_Next Move Date PQ"
+                }
+              },
+              "queryRef": "FACT YContainer._Next Move Date PQ",
+              "nativeQueryRef": "Next Move Date",
+              "active": false,
+              "displayName": "Next Move Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "_Priority PQ"
+                }
+              },
+              "queryRef": "FACT YContainer._Priority PQ",
+              "nativeQueryRef": "Priority",
+              "active": false,
+              "displayName": "Priority"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YContainer"
+                        }
+                      },
+                      "Property": "DHL + YARD DOS"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(FACT YContainer.DHL + YARD DOS)",
+              "nativeQueryRef": "DHL + YARD DOS",
+              "displayName": "DHL + YARD DOS"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YContainer"
+                        }
+                      },
+                      "Property": "Days in Country"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(FACT YContainer.Days in Country)",
+              "nativeQueryRef": "Max of Days in Country",
+              "displayName": "Days in Country"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YContainer"
+                        }
+                      },
+                      "Property": "_YS10N DHL 7 PQ"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT YContainer._YS10N DHL 7 PQ)",
+              "nativeQueryRef": "Open Orders",
+              "displayName": "Open Orders"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YContainer"
+                        }
+                      },
+                      "Property": "_P4 Marker PQ"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Min(FACT YContainer._P4 Marker PQ)",
+              "nativeQueryRef": "Priority 4 Date",
+              "displayName": "Priority 4 Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "MAX([Max of Days in Country])+[DHL + YARD DOS]-15",
+                  "Name": "Days Early"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Days Early"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "NativeVisualCalculation": {
+                "Language": "dax",
+                "Expression": "MAX([Max of Days in Country])+[DHL + YARD DOS]-15",
+                "Name": "Days Early"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIM Product.SKU & Desc"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer.Container"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer.Days In Place"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer.Inb.delivery"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "DIM Storage Location.Code"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer.Open Order DOS"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer.Move Type"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer._Next Move Date PQ"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "FACT YContainer._Priority PQ"
+            ],
+            "isCollapsed": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.82802147371703D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT YContainer.DHL + YARD DOS)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.49114500138603D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT YContainer.Open Order DOS)"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Days Early'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F2F2F7'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "24D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "35777c99eb0a719338b0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Container"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2a2c818eda305886ca1c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Days In Place"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ed9d9b8c9083c9ea00a4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Inb.delivery"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cf2536bd088ec594c358",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Storage Location"
+              }
+            },
+            "Property": "Code"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8bf58d0f8e80e05a0b15",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YContainer"
+                  }
+                },
+                "Property": "_YS10N DHL 7 PQ"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d94632b659785214c97e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Open Order DOS"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2db56a8f553790d1e4c8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Move Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a3a2fd2257c06a7eb784",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "_Next Move Date PQ"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8f533b56ed994672606d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "_Priority PQ"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c77fa2427e52d53ca775",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c2cc83f36567ac9d00ac",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YContainer"
+                  }
+                },
+                "Property": "_P4 Marker PQ"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9e5434bf02e340b94070",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YContainer"
+                  }
+                },
+                "Property": "Days in Country"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f2ba5dbc90c55388e087",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YContainer"
+                  }
+                },
+                "Property": "DHL + YARD DOS"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

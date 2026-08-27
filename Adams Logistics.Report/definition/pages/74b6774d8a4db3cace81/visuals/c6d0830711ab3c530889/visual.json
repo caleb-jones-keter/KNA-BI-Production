@@ -1,0 +1,367 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "c6d0830711ab3c530889",
+  "position": {
+    "x": 0,
+    "y": 400,
+    "z": 5001,
+    "height": 152,
+    "width": 648,
+    "tabOrder": 5001
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Posting Date"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.Posting Date",
+              "nativeQueryRef": "Posting Date",
+              "active": true,
+              "format": "D"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Purchase Order"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.Purchase Order",
+              "nativeQueryRef": "Purchase Order",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "SKU & DESC"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.SKU & DESC",
+              "nativeQueryRef": "SKU & DESC",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Material Document"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.Material Document",
+              "nativeQueryRef": "Material Document",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Receiving Stor. Loc."
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.Receiving Stor. Loc.",
+              "nativeQueryRef": "Receiving Stor. Loc.",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AdamsLogisticsMb51"
+                        }
+                      },
+                      "Property": "Purchase Order"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(AdamsLogisticsMb51.Purchase Order)",
+              "nativeQueryRef": "Count STO Out",
+              "displayName": "Count STO Out"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "AdamsLogisticsMb51.Posting Date"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Posting Date"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "AdamsLogisticsMb51.Purchase Order"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Purchase Order"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "AdamsLogisticsMb51.SKU & DESC"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "SKU & DESC"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "AdamsLogisticsMb51.Material Document"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "AdamsLogisticsMb51.Receiving Stor. Loc."
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "af6c8f46e09e56c20eb2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Posting Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4c1e605c80e654d76150",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "SKU & DESC"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6620845f76062d39e682",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Material Document"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b58a51c62baa5713e401",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AdamsLogisticsMb51"
+                  }
+                },
+                "Property": "Purchase Order"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ff8d8e3e78bb5a752c79",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Purchase Order"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4364c94e9022736c3150",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Reference"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "388e003628c73ce615c1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Movement Type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "AdamsLogisticsMb51",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "Movement Type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "641L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "2b234c394ed9e0ac2485",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Receiving Stor. Loc."
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

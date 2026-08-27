@@ -1,0 +1,227 @@
+table 'dbo FACT Rejections'
+	lineageTag: 9d7b6b10-0492-4a57-8adf-8c9632d2f1b8
+	sourceLineageTag: [dbo].[FACT Rejections]
+
+	column ActivityKey
+		dataType: string
+		lineageTag: f84719ba-8cfa-4348-93e3-c530bf81f037
+		sourceLineageTag: ActivityKey
+		summarizeBy: none
+		sourceColumn: ActivityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCodeKey
+		dataType: string
+		lineageTag: 33c88474-dcf3-49eb-8a3a-4fdc9be23feb
+		sourceLineageTag: CompanyCodeKey
+		summarizeBy: none
+		sourceColumn: CompanyCodeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGroupKey
+		dataType: string
+		lineageTag: 9df7b7f7-54c7-411e-b656-7c5f2f0f4002
+		sourceLineageTag: CustomerGroupKey
+		summarizeBy: none
+		sourceColumn: CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey_daily
+		dataType: string
+		lineageTag: 4a030dae-b571-47c2-b64e-238b21c1c671
+		sourceLineageTag: DateKey_daily
+		summarizeBy: none
+		sourceColumn: DateKey_daily
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gross_SALES
+		dataType: double
+		lineageTag: c04d7471-0233-4399-a94a-30b008b9b28c
+		sourceLineageTag: Gross_SALES
+		summarizeBy: sum
+		sourceColumn: Gross_SALES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderReasonKey
+		dataType: string
+		lineageTag: d79a830d-7f11-49c9-97b8-bf1fc6d1244d
+		sourceLineageTag: OrderReasonKey
+		summarizeBy: none
+		sourceColumn: OrderReasonKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantKey_SPC
+		dataType: string
+		lineageTag: b1311412-7cc2-4329-9716-5ffa2fa6908b
+		sourceLineageTag: PlantKey_SPC
+		summarizeBy: none
+		sourceColumn: PlantKey_SPC
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: string
+		lineageTag: e5a4de3f-70c5-4a98-9a5b-1aa6a4c01525
+		sourceLineageTag: ProductKey
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit_CenterID
+		dataType: string
+		lineageTag: bb7af9db-e6f3-439a-88b8-821458414533
+		sourceLineageTag: Profit_CenterID
+		summarizeBy: none
+		sourceColumn: Profit_CenterID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity1
+		dataType: double
+		lineageTag: cd051ccd-887b-4055-b3ad-c292b677b525
+		sourceLineageTag: Quantity1
+		summarizeBy: sum
+		sourceColumn: Quantity1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RetailerKey
+		dataType: string
+		lineageTag: ebbc78bb-8ec6-4156-979e-510292e0a271
+		sourceLineageTag: RetailerKey
+		summarizeBy: none
+		sourceColumn: RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleTypeKey
+		dataType: string
+		lineageTag: c91c0918-80fe-4503-9972-cfd38c685702
+		sourceLineageTag: SaleTypeKey
+		summarizeBy: none
+		sourceColumn: SaleTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBU
+		dataType: string
+		lineageTag: 77977928-1f27-4f7e-8dc8-e231fc3969d2
+		sourceLineageTag: SBU
+		summarizeBy: none
+		sourceColumn: SBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SegmentID
+		dataType: string
+		lineageTag: 2c72049e-bb43-43e2-868c-6bd1716e3e7e
+		sourceLineageTag: SegmentID
+		summarizeBy: none
+		sourceColumn: SegmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SALES: Gross Sales'
+		dataType: double
+		lineageTag: 53d0bcab-760b-4fe8-9f73-b7c905b8cc9a
+		sourceLineageTag: SALES: Gross Sales
+		summarizeBy: sum
+		sourceColumn: SALES: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Rejections: Gross Sales'
+		dataType: double
+		lineageTag: de7591f4-45c7-4950-a40f-d7bc465cf7e9
+		sourceLineageTag: All Rejections: Gross Sales
+		summarizeBy: sum
+		sourceColumn: All Rejections: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Rejections: Quantity'
+		dataType: double
+		lineageTag: e5929f03-8daa-4c94-a766-c8fa9184480b
+		sourceLineageTag: All Rejections: Quantity
+		summarizeBy: sum
+		sourceColumn: All Rejections: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SALES: Quantity'
+		dataType: double
+		lineageTag: 3b59e7ae-f0c3-452a-ade8-a28ba76566db
+		sourceLineageTag: SALES: Quantity
+		summarizeBy: sum
+		sourceColumn: SALES: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Currency Rate.Conversion'
+		dataType: double
+		lineageTag: 704c2c3c-362c-4d7d-aebc-59cc0f8af61f
+		sourceLineageTag: Dim Currency Rate.Conversion
+		summarizeBy: sum
+		sourceColumn: Dim Currency Rate.Conversion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Sales USD'
+		dataType: double
+		lineageTag: fe7606fc-f5aa-4f71-8c50-feda5ddb4352
+		sourceLineageTag: Gross Sales USD
+		summarizeBy: sum
+		sourceColumn: Gross Sales USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rejections USD'
+		dataType: double
+		lineageTag: b24cb9a1-79be-46a2-ae90-4d7c20b5276a
+		sourceLineageTag: Rejections USD
+		summarizeBy: sum
+		sourceColumn: Rejections USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SKUPayer
+		dataType: string
+		lineageTag: f8af6d7c-8bf7-4fdc-9369-b7f857bc46ea
+		sourceLineageTag: SKUPayer
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbo FACT Rejections' = entity
+		mode: directLake
+		source
+			entityName: FACT Rejections
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

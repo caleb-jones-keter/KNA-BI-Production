@@ -1,0 +1,26 @@
+table Offset
+	lineageTag: e9bdfce6-5cdf-45d9-bb3e-715361aecb5a
+
+	measure 'Offset Value' = SELECTEDVALUE('Offset'[Offset],4)
+		formatString: 0
+		lineageTag: f1da5893-45f7-46ee-9f25-304711501aec
+
+	column Offset
+		formatString: 0
+		lineageTag: 4ae58639-0018-4669-b310-9da0ceab3764
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Offset = calculated
+		mode: import
+		source = GENERATESERIES(0, 12, 1)
+
+	annotation PBI_Id = 62a0bd109aa14b9d95c32944880baa36
+

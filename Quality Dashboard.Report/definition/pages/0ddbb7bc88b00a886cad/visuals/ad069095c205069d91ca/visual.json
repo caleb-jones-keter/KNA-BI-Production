@@ -1,0 +1,650 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "ad069095c205069d91ca",
+  "position": {
+    "x": 0,
+    "y": 512,
+    "z": 1000,
+    "height": 207.99999999999997,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.MARKET GROUP"
+                }
+              },
+              "queryRef": "DIM Product.Dim Products.MARKET GROUP",
+              "nativeQueryRef": "Dim Products.MARKET GROUP",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.SKU Group # & Desc"
+                }
+              },
+              "queryRef": "DIM Product.Dim Products.SKU Group # & Desc",
+              "nativeQueryRef": "Dim Products.SKU Group # & Desc",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Customer Groups"
+                }
+              },
+              "queryRef": "DIM Customer.Customer Groups",
+              "nativeQueryRef": "Customer Groups",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "ECOM"
+                }
+              },
+              "queryRef": "DIM Customer.ECOM",
+              "nativeQueryRef": "ECOM",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "RTV (M)"
+                }
+              },
+              "queryRef": "FACT Rejections.RTV (M)",
+              "nativeQueryRef": "RTV (M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Sales (M,-O)"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Sales (M,-O)",
+              "nativeQueryRef": "Sales (M,-O)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "RTV %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.RTV %",
+              "nativeQueryRef": "RTV %",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Est. RTV %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Est. RTV %",
+              "nativeQueryRef": "Est. RTV %",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "TL %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.TL %",
+              "nativeQueryRef": "TL %",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Parcel %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Parcel %",
+              "nativeQueryRef": "Parcel %",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "LTL %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.LTL %",
+              "nativeQueryRef": "LTL %",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Est. RTV (M)"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Est. RTV (M)",
+              "nativeQueryRef": "Est. RTV (M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Target (M)"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Target (M)",
+              "nativeQueryRef": "Target (M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "Gross Sales (M,O)"
+                }
+              },
+              "queryRef": "FACT Rejections.Gross Sales (M,O)",
+              "nativeQueryRef": "Gross Sales (M,O)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "Target (M)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIM Product.Dim Products.MARKET GROUP"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.MARKET GROUP"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Product.Dim Products.SKU Group # & Desc"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.SKU Group # & Desc"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Customer.Customer Groups"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Customer Groups"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Product.SKU & Desc"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Customer.ECOM"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "ECOM"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7c85d8399d283510115d",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "Gross Sales (12M) Alt 3M"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "e69c651c313f303583af",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Defective Allowance.1"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "418bbb4b22517a6f738c",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Net Sales with Type (M,-O)"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "4c4baddc0654daac245a",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "RelativeDate",
+        "howCreated": "User"
+      },
+      {
+        "name": "fe250704d0c6473d72f9",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "ECOM"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f7aa7c7ef1d750a2e2ed",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Dim Products.SKU Group # & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4740a98b599e1f70f8e3",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9a40fae3ba2625bf01a7",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "41d3edbec282343fbeb1",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "RTV %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "80921df4335f0860cac8",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Est. RTV %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c1462f0c866ba2925e02",
+        "ordinal": 10,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "TL %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f6cedc2584489e66d180",
+        "ordinal": 11,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Parcel %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b9d8a3e3f4cc189f30e1",
+        "ordinal": 12,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "LTL %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "28349b07fe10e60c82bc",
+        "ordinal": 13,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "RTV (M)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "811ecebb7015739db092",
+        "ordinal": 14,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Sales (M,-O)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e6e3d2590e94955eb7c3",
+        "ordinal": 15,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Net Sales with Type (M,-O)"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "8e9de499aeba4022ec77",
+        "ordinal": 16,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Est. RTV (M)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0ea6133a9e3aec8014a4",
+        "ordinal": 17,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Target (M)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

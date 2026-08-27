@@ -1,0 +1,547 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "78c66264c6ccd8e323bd",
+  "position": {
+    "x": 16,
+    "y": 608,
+    "z": 3000,
+    "height": 288,
+    "width": 1616,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Customer Groups"
+                }
+              },
+              "queryRef": "DIM Customer.Customer Groups",
+              "nativeQueryRef": "Customer Groups"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer & Desc"
+                }
+              },
+              "queryRef": "DIM Customer.Payer & Desc",
+              "nativeQueryRef": "Payer & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "Region",
+              "displayName": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "City List"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.City List",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "POSTAL_CODE"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.POSTAL_CODE",
+              "nativeQueryRef": "Zip Code",
+              "displayName": "Zip Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ftl_material_shipments_model"
+                    }
+                  },
+                  "Property": "_Savannah per Unit Cost"
+                }
+              },
+              "queryRef": "fact_ftl_material_shipments_model._Savannah per Unit Cost",
+              "nativeQueryRef": "Savannah Unit Cost",
+              "displayName": "Savannah Unit Cost",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ftl_material_shipments_model"
+                    }
+                  },
+                  "Property": "_Savannah per TL Cost"
+                }
+              },
+              "queryRef": "fact_ftl_material_shipments_model._Savannah per TL Cost",
+              "nativeQueryRef": "Savannah TL Cost",
+              "displayName": "Savannah TL Cost",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_ftl_material_shipments_model"
+                        }
+                      },
+                      "Property": "Combined_TL_Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact_ftl_material_shipments_model.Combined_TL_Qty)",
+              "nativeQueryRef": "TL Qty",
+              "displayName": "TL Qty",
+              "format": "#,0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fact_ftl_material_shipments_model"
+                      }
+                    },
+                    "Property": "Combined_TL_Qty"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Customer.Customer Groups"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Customer.Payer & Desc"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.SKU & Desc"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.REGION"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.City List"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.POSTAL_CODE"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_ftl_material_shipments_model.Combined_TL_Qty)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "19e306ac51159a8e0da6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2d11e020d1b4b02cfe7f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "574ea7bb2e69a9ef2a49",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fdfba1ddb274ccf16ade",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "16eb7e84d2dcfb7fe96c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5a842ac1806d7109212d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2c6dc9e874434296898b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ftl_material_shipments_model"
+              }
+            },
+            "Property": "_Savannah per TL Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "700c5d3bc6bfcf28637e",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_ftl_material_shipments_model"
+                  }
+                },
+                "Property": "Combined_TL_Qty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "27a7481050faf63db7b3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ftl_material_shipments_model"
+              }
+            },
+            "Property": "_Savannah per Unit Cost"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

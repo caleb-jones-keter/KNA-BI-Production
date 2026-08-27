@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "423e4971f4e67393638f",
+  "position": {
+    "x": 320,
+    "y": 96,
+    "z": 0,
+    "height": 64,
+    "width": 192,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "_Yard Aging"
+                }
+              },
+              "queryRef": "FACT YContainer._Yard Aging",
+              "nativeQueryRef": "Yard Aging",
+              "displayName": "Yard Aging"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "_Depot Aging"
+                }
+              },
+              "queryRef": "FACT YContainer._Depot Aging",
+              "nativeQueryRef": "Depot Aging",
+              "displayName": "Depot Aging"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

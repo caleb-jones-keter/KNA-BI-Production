@@ -1,0 +1,257 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "9856064cf27612c501c6",
+  "position": {
+    "x": 16,
+    "y": 368,
+    "z": 8000,
+    "height": 576,
+    "width": 1104,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Billing Date Supply Order"
+                }
+              },
+              "queryRef": "FACT YM6P.Billing Date Supply Order",
+              "nativeQueryRef": "Billing Date Supply Order",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "LA Date"
+                }
+              },
+              "queryRef": "FACT YM6P.LA Date",
+              "nativeQueryRef": "LA Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "CalcArravDate"
+                }
+              },
+              "queryRef": "FACT YM6P.CalcArravDate",
+              "nativeQueryRef": "Arrival Date",
+              "displayName": "Arrival Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "EnfoPak _MrrContainers_.vessel_name"
+                }
+              },
+              "queryRef": "FACT YM6P.EnfoPak _MrrContainers_.vessel_name",
+              "nativeQueryRef": "Vessel Name",
+              "displayName": "Vessel Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "ABC"
+                }
+              },
+              "queryRef": "DIM Product.ABC",
+              "nativeQueryRef": "ABC"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRPSKU"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM MRPSKU.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$orderneedreview"
+                }
+              },
+              "queryRef": "FACT YM6P._$orderneedreview",
+              "nativeQueryRef": "# Need Review",
+              "displayName": "# Need Review"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$Distinct Orders by ABC"
+                }
+              },
+              "queryRef": "FACT YM6P._$Distinct Orders by ABC",
+              "nativeQueryRef": "# of Order",
+              "displayName": "# of Order"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "__$DOC (YM6P Stable)"
+                }
+              },
+              "queryRef": "FACT YM6P.__$DOC (YM6P Stable)",
+              "nativeQueryRef": "DOS",
+              "displayName": "DOS"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$%check"
+                }
+              },
+              "queryRef": "FACT YM6P._$%check",
+              "nativeQueryRef": "% Need Review",
+              "displayName": "% Need Review",
+              "format": "0 %;-0 %;0 %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YM6P"
+                  }
+                },
+                "Property": "LA Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.73264662680601D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$Distinct Orders by ABC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "60.27069182267596D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$orderneedreview"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM Product.ABC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.68255892639989D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.Billing Date Supply Order"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64.64428582658684D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$%check"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

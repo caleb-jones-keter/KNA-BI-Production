@@ -1,0 +1,52 @@
+table 'Spreetail SKUs list'
+	lineageTag: 0b893c22-5087-4153-81a9-845280eb4325
+
+	column SKU
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d27f8e5-ae29-4bd1-a254-916d6994f8a7
+		summarizeBy: none
+		sourceColumn: SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sku Name'
+		dataType: string
+		lineageTag: a33d0b07-7e4f-419b-b7b2-6075b090644b
+		summarizeBy: none
+		sourceColumn: sku Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comments
+		dataType: string
+		lineageTag: 63da8c96-da90-4801-85ee-fc9dbdd97c31
+		summarizeBy: none
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU
+		dataType: string
+		lineageTag: 38004ea6-c77b-419a-a63d-028541e51722
+		summarizeBy: none
+		sourceColumn: BU
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Spreetail SKUs list' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/NAOperations/Shared%20Documents/Spreetail%20-%20KPIs/Spreetail%20Open%20Items%20and%20Opty%20file.xlsx"), null, true),
+				    #"Spreetail SKUs list_Sheet" = Source{[Item="Spreetail SKUs list",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Spreetail SKUs list_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SKU", Int64.Type}, {"sku Name", type text}, {"Comments", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([SKU] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

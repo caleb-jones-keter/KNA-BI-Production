@@ -1,0 +1,174 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "3b056a748d59f93c557f",
+  "position": {
+    "x": 592,
+    "y": 96,
+    "z": 1000,
+    "height": 256,
+    "width": 544,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Storage Location"
+                }
+              },
+              "queryRef": "FACT YContainer.Storage Location",
+              "nativeQueryRef": "Storage Location",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YContainer"
+                    }
+                  },
+                  "Property": "Days Bucket"
+                }
+              },
+              "queryRef": "FACT YContainer.Days Bucket",
+              "nativeQueryRef": "Days Bucket",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YContainer"
+                        }
+                      },
+                      "Property": "Container"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(FACT YContainer.Container)",
+              "nativeQueryRef": "Count of Container"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FACT YContainer.Days Bucket"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Number of Containers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0440a6e004c23aec141d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Days Bucket"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "456b31b26399189e9a0d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YContainer"
+                  }
+                },
+                "Property": "Container"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2162172713c959b973a8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YContainer"
+              }
+            },
+            "Property": "Storage Location"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

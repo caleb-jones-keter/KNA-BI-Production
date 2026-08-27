@@ -1,0 +1,679 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "d5ffc6c050ae16dc08dd",
+  "position": {
+    "x": 16,
+    "y": 352,
+    "z": 4000,
+    "height": 576,
+    "width": 1632,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "ABC"
+                }
+              },
+              "queryRef": "DIM Product.ABC",
+              "nativeQueryRef": "ABC"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRPSKU"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM MRPSKU.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT YM6P.PO Number",
+              "nativeQueryRef": "PO Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT YM6P.Container",
+              "nativeQueryRef": "Container"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Order Quantity"
+                }
+              },
+              "queryRef": "FACT YM6P.Order Quantity",
+              "nativeQueryRef": "Order Quantity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "LA Date"
+                }
+              },
+              "queryRef": "FACT YM6P.LA Date",
+              "nativeQueryRef": "LA Date1",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "CalcArravDate"
+                }
+              },
+              "queryRef": "FACT YM6P.CalcArravDate",
+              "nativeQueryRef": "CalcArravDate",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Billing Date Supply Order"
+                }
+              },
+              "queryRef": "FACT YM6P.Billing Date Supply Order",
+              "nativeQueryRef": "Billing Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Component Forecast Initial"
+                    }
+                  },
+                  "Property": "_Total DOC Target Container YM6P Today"
+                }
+              },
+              "queryRef": "FACT Component Forecast Initial._Total DOC Target Container YM6P Today",
+              "nativeQueryRef": "_Total DOC Target Container YM6P Today",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_Inv + Trans"
+                }
+              },
+              "queryRef": "FACT Combined._Inv + Trans",
+              "nativeQueryRef": "Inv + Trans QTY",
+              "displayName": "Inv + Trans QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_Inv + Trans Cont"
+                }
+              },
+              "queryRef": "FACT Combined._Inv + Trans Cont",
+              "nativeQueryRef": "Inv + Trans Cont",
+              "displayName": "Inv + Trans Cont"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Component Forecast Initial"
+                    }
+                  },
+                  "Property": "_DOC Target Container YM6P Today"
+                }
+              },
+              "queryRef": "FACT Component Forecast Initial._DOC Target Container YM6P Today",
+              "nativeQueryRef": "_DOC Target Container YM6P Today",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "__$DOC (YM6P Stable)"
+                }
+              },
+              "queryRef": "FACT YM6P.__$DOC (YM6P Stable)",
+              "nativeQueryRef": "DOS After Arrival",
+              "displayName": "DOS After Arrival"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "EnfoPak _MrrContainers_.vessel_name"
+                }
+              },
+              "queryRef": "FACT YM6P.EnfoPak _MrrContainers_.vessel_name",
+              "nativeQueryRef": "Vessel Name",
+              "displayName": "Vessel Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$finalreview"
+                }
+              },
+              "queryRef": "FACT YM6P._$finalreview",
+              "nativeQueryRef": "Review",
+              "displayName": "Review"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YM6P"
+                  }
+                },
+                "Property": "Billing Date Supply Order"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YM6P"
+                  }
+                },
+                "Property": "_Counter"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119.08766969935799D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.Container"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120.80420698688067D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.LA Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.84784125960638D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT YM6P.Order Quantity)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "149.1324915284581D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.Billing Date Supply Order"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "126.21881070337261D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$finalreview"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "353.9662932953667D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM MRPSKU.SKU & Desc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71.87767717780989D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.Order Quantity"
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9f7e72a109c08a83ebc0",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Future?"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DIM Date",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Future?"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Past'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "32603ed031cd45864c70",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Storage Location Orig"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YM6P",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Storage Location Orig"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4672'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4674'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "99d1a7866464a50d6662",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "Data Source"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "2c9a426aed5d49db89e8",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "_$VesseliNV 3M FCST"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "b7cfaafedbc09da151cb",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "LA Date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "15b0bfb20026484c86a3",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "EnfoPak_MrrContainers_.status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "d20f4a9bed339319e105",
+        "ordinal": 7,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "_Inv + Trans Cont"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT Combined",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "_Inv + Trans Cont"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "ac61fda3314d47d03d98",
+        "ordinal": 14,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Component Forecast Initial"
+              }
+            },
+            "Property": "_DOC Target"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "6cdcde4e6e8d285d9907",
+        "ordinal": 18,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Combined"
+              }
+            },
+            "Property": "_DOC"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

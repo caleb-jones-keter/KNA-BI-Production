@@ -1,0 +1,21 @@
+relationship 69644bc2-9a56-4747-84e5-d375eb32acf2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'On the water'.'Expected PGR'
+	toColumn: LocalDateTable_0c9f7128-961a-4037-8fb4-0a7c6e9ebfce.Date
+
+relationship 8048814d-fe7e-46fc-bfc3-4dffff2311ba
+	fromColumn: Dwell.'Storage Loc.'
+	toColumn: 'Storage Loc.'.'Storage Loc.'
+
+relationship d688ef14-76ce-4d06-9517-cf4e088242ce
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Day in Place'.Container
+	toColumn: Dwell.Container
+
+relationship 45b6a3c9-1046-48cc-b182-653e022854b6
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Dwell.Container
+	toColumn: 'Days in Country'.Container
+

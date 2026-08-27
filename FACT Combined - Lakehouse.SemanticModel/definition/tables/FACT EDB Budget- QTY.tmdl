@@ -1,0 +1,328 @@
+table 'FACT EDB Budget- QTY'
+	lineageTag: e4c31f03-ee6d-467a-b3ce-671c4aeeba4c
+	sourceLineageTag: [dbo].[FACT EDB Budget- QTY]
+
+	measure '_$Selected Budget QTY' = ```
+			
+			VAR SelectedColumn = SELECTEDVALUE('_$Budget QTY Parameter'[Parameter Fields])
+			RETURN
+			    SWITCH(
+			        SelectedColumn,
+			        NAMEOF('FACT EDB Budget- QTY'[3+9 Quantity]), SUM('FACT EDB Budget- QTY'[3+9 Quantity]),
+			        NAMEOF('FACT EDB Budget- QTY'[6+6 Quantity]), SUM('FACT EDB Budget- QTY'[6+6 Quantity]),
+			        NAMEOF('FACT EDB Budget- QTY'[9+3 Quantity]), SUM('FACT EDB Budget- QTY'[9+3 Quantity]),
+			        NAMEOF('FACT EDB Budget- QTY'[Quantity - Budget]), SUM('FACT EDB Budget- QTY'[Quantity - Budget]),
+			        Nameof('FACT EDB Budget- QTY'[Customer Demand _APO_]), sum('FACT EDB Budget- QTY'[Customer Demand _APO_])
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 7ad1c61e-5d33-4c99-aab3-0bd580b3720d
+
+		changedProperty = Name
+
+	measure '_$Order Qty' =
+			
+			
+			
+			
+			VAR Payers =
+			    VALUES('FACT EDB Budget- QTY'[Code:Payer _c5_])
+			
+			VAR MRPAreas =
+			    VALUES('FACT EDB Budget- QTY'[MRP Area])
+			
+			RETURN
+			CALCULATE(
+			    SUM('FACT YS10N Past'[Combined Qty]) * -1,
+			    KEEPFILTERS(
+			        TREATAS(Payers, 'FACT YS10N Past'[Payer])
+			    ),
+			    KEEPFILTERS(
+			        TREATAS(MRPAreas, 'FACT YS10N Past'[MRP Area])
+			    )
+			)
+		lineageTag: 68904e07-06df-4580-99b8-1048d7ddd022
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$overunderbudget = divide([_$Order Qty],[_$Selected Budget QTY])
+		lineageTag: 4a45d8c7-7f97-42c7-a766-617236302261
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$VarTobudget = if( [_$Selected Budget QTY]-[_$Order Qty]<0,0,[_$Selected Budget QTY]-[_$Order Qty])
+		lineageTag: ebd8723f-fa72-4972-99a0-6aa12ac34af6
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$vartobudgetcont = ```
+			
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),
+			    VAR VarToBudget =
+			        CALCULATE([_$VarTobudget])
+			    VAR ContQty =
+			        CALCULATE(SELECTEDVALUE('DIM Product'[Cont_Qty]))
+			    RETURN
+			        IF(
+			            NOT ISBLANK(ContQty) && ContQty <> 0,
+			            VarToBudget / ContQty
+			        )
+			)
+			
+			```
+		lineageTag: 3520cfe6-7749-43e0-badf-cd1b1bbc971a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$vartobudgettk =
+			
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),
+			    VAR VarToBudget =
+			        CALCULATE([_$VarTobudget])
+			    VAR ContQty =
+			        CALCULATE(SELECTEDVALUE('DIM Product'[TL Qty]))
+			    RETURN
+			        IF(
+			            NOT ISBLANK(ContQty) && ContQty <> 0,
+			            VarToBudget / ContQty
+			        )
+			)
+		lineageTag: a36af552-4fe1-424e-be47-6a65cabaac92
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$vartovudgetconttk = ```
+			
+			
+			VAR SelectedMeasure =
+			    SELECTEDVALUE('_$budgettk/cont parameter'[Parameter Fields])
+			
+			RETURN
+			    SWITCH(
+			        SelectedMeasure,
+			        NAMEOF('FACT EDB Budget- QTY'[_$vartobudgetcont]), [_$vartobudgetcont],
+			        NAMEOF('FACT EDB Budget- QTY'[_$vartobudgettk]),   [_$vartobudgettk]
+			    )
+			
+			```
+		lineageTag: a4e0bdde-a459-4886-a662-f8511f006886
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$RowHighlight =
+			
+			
+			
+			VAR OverUnder = [_$overunderbudget]
+			
+			VAR TodayDate = today()
+			
+			VAR DaysPassed =
+			    DAY(TodayDate)
+			
+			VAR TotalDaysInMonth =
+			    DAY(EOMONTH(TodayDate, 0))
+			
+			VAR Progress =
+			    DIVIDE(DaysPassed, TotalDaysInMonth)
+			
+			VAR Tolerance = 0.05
+			
+			VAR LowerBound = MAX(0, Progress - Tolerance-.05)
+			Var Middlelowerbound=max(0,Progress-Tolerance)
+			VAR UpperBound = MIN(1, Progress + Tolerance)
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(OverUnder), "#F78272",
+			        OverUnder < LowerBound, "#F78272",
+			        OverUnder < Middlelowerbound, "#FFCC00",
+			        OverUnder > UpperBound, "#63BE7B",
+			        "#FFFFFF"
+			    )
+		lineageTag: ea4f49de-4f08-4d65-98f2-d7e70250d939
+
+		changedProperty = Name
+
+	measure '_Sum Filter' = SUM('FACT EDB Budget- QTY'[Quantity - Budget])+SUM('FACT EDB Budget- QTY'[3+9 Quantity])+SUM('FACT EDB Budget- QTY'[6+6 Quantity])+SUM('FACT EDB Budget- QTY'[9+3 Quantity])+SUM('FACT EDB Budget- QTY'[Customer Demand _APO_])
+		formatString: 0
+		lineageTag: ee1089c3-3797-46ae-ad32-c1b835ff1e14
+
+		changedProperty = Name
+
+	column 'US DOLLAR_PC Business Unit'
+		dataType: string
+		lineageTag: 7c4482a0-08e3-4559-8844-ab4e2f6414f4
+		sourceLineageTag: US DOLLAR_PC Business Unit
+		summarizeBy: none
+		sourceColumn: US DOLLAR_PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: c64f072f-9128-4f3b-8bf6-1e4360eebbc4
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Type'
+		dataType: string
+		lineageTag: 797e5e7f-d3f9-446e-bb11-a815145008f0
+		sourceLineageTag: Product Type
+		summarizeBy: none
+		sourceColumn: Product Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: 4004dc1e-2229-43e9-a893-420b2918ea70
+		sourceLineageTag: Customer Groups
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 70c8f9ba-a2fb-40fd-acb4-fc29791308dd
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer _c5_'
+		dataType: int64
+		formatString: 0
+		lineageTag: f9a8bee0-ecb5-4136-aecc-192150071f9e
+		sourceLineageTag: Code:Payer _c5_
+		summarizeBy: sum
+		sourceColumn: Code:Payer _c5_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 4ee2354c-84cf-4156-a127-a875cf2a3769
+		sourceLineageTag: SKU Level
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level _c6_'
+		dataType: string
+		lineageTag: 6c6b1977-e4b8-4154-90a7-5809bd1a3f35
+		sourceLineageTag: Code:SKU Level _c6_
+		summarizeBy: none
+		sourceColumn: Code:SKU Level _c6_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 9d4a0eb3-cd13-4be7-8984-6b1a2d7010ad
+		sourceLineageTag: Months
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantity - Budget'
+		dataType: int64
+		formatString: 0
+		lineageTag: a34fad69-b38e-4b8f-9d10-5bff05d9a5cf
+		sourceLineageTag: Quantity - Budget
+		summarizeBy: sum
+		sourceColumn: Quantity - Budget
+
+		annotation SummarizationSetBy = Automatic
+
+	column '3+9 Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 700e2794-0b8a-4cd1-8f97-13c758dbe323
+		sourceLineageTag: 3+9 Quantity
+		summarizeBy: sum
+		sourceColumn: 3+9 Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column '6+6 Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 19be7458-3b44-4890-8eee-ed77d6ef1081
+		sourceLineageTag: 6+6 Quantity
+		summarizeBy: sum
+		sourceColumn: 6+6 Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column '9+3 Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 434e0048-a58a-4696-8a74-3bd2bf12beb2
+		sourceLineageTag: 9+3 Quantity
+		summarizeBy: sum
+		sourceColumn: 9+3 Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4e540635-aee8-4f9a-b43e-da2850a9de3e
+		sourceLineageTag: Months_Date
+		summarizeBy: none
+		sourceColumn: Months_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP SKU KEY'
+		dataType: string
+		lineageTag: 9e40b575-e297-430d-b2aa-2173c0ac5fe6
+		sourceLineageTag: MRP SKU KEY
+		summarizeBy: none
+		sourceColumn: MRP SKU KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Demand _APO_'
+		dataType: int64
+		formatString: 0
+		lineageTag: de42574b-77f1-4ee1-b7fa-e4ad8be28807
+		sourceLineageTag: Customer Demand _APO_
+		summarizeBy: sum
+		sourceColumn: Customer Demand _APO_
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT EDB Budget- QTY' = entity
+		mode: directLake
+		source
+			entityName: FACT EDB Budget- QTY
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

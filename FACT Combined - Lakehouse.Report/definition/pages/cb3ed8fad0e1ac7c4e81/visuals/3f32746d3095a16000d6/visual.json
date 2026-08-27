@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "3f32746d3095a16000d6",
+  "position": {
+    "x": 16,
+    "y": 80,
+    "z": 0,
+    "height": 608,
+    "width": 1248,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Justins YS10n Test _DELETE THIS AFTER 6-15_"
+                    }
+                  },
+                  "Property": "Invoice Billing Date"
+                }
+              },
+              "queryRef": "Justins YS10n Test _DELETE THIS AFTER 6-15_.Invoice Billing Date",
+              "nativeQueryRef": "Invoice Billing Date"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Justins YS10n Test _DELETE THIS AFTER 6-15_"
+                        }
+                      },
+                      "Property": "Net Value USD"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Justins YS10n Test _DELETE THIS AFTER 6-15_.Net Value USD)",
+              "nativeQueryRef": "Sum of Net Value USD"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Justins YS10n Test _DELETE THIS AFTER 6-15_"
+                        }
+                      },
+                      "Property": "Net value"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Justins YS10n Test _DELETE THIS AFTER 6-15_.Net value)",
+              "nativeQueryRef": "Sum of Net value"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7fd04195ed820eed9b50",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Past"
+              }
+            },
+            "Property": "Sales Order"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "8e6332b6020c3938b34d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Past"
+              }
+            },
+            "Property": "invoice"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "666b5f7aaa6511b03081",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Justins YS10n Test _DELETE THIS AFTER 6-15_"
+              }
+            },
+            "Property": "PO Number"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  }
+}

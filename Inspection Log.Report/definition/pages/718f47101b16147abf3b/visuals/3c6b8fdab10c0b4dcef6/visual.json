@@ -1,0 +1,119 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "3c6b8fdab10c0b4dcef6",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 112,
+    "width": 512,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": []
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Savannah - QA-Container"
+                        }
+                      },
+                      "Property": "Inspection Quantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Savannah - QA-Container.Inspection Quantity)",
+              "nativeQueryRef": "Sum of Inspection Quantity"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Savannah - Container-Defects"
+                        }
+                      },
+                      "Property": "DefectQuantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Savannah - Container-Defects.DefectQuantity)",
+              "nativeQueryRef": "Sum of DefectQuantity"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Sum of DefectQuantity]/[Sum of Inspection Quantity]",
+                  "Name": "Defect %"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Defect %",
+              "format": "0.00%;-0.00%;0.00%"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1c5dd678559ca215a08d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Savannah - QA-Container"
+                  }
+                },
+                "Property": "Inspection Quantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "30efe5e00fb04e7826da",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Savannah - Container-Defects"
+                  }
+                },
+                "Property": "DefectQuantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

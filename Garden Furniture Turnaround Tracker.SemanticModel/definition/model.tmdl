@@ -1,0 +1,149 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Static Dimension'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Refresh Dimensions'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup OrdersAutoRefresh
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup InvoicedAutoRefresh
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup TotalsFirstWorkaround
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup StaticPYs
+
+	annotation PBI_QueryGroupOrder = 5
+
+queryGroup 'RTP Auto Refresh'
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup APOAutoRefresh
+
+	annotation PBI_QueryGroupOrder = 7
+
+queryGroup 'Rolling Budget'
+
+	annotation PBI_QueryGroupOrder = 9
+
+queryGroup 2plus10
+
+	annotation PBI_QueryGroupOrder = 10
+
+queryGroup 'Budget Sales'
+
+	annotation PBI_QueryGroupOrder = 11
+
+queryGroup NPD
+
+	annotation PBI_QueryGroupOrder = 13
+
+queryGroup Finance
+
+	annotation PBI_QueryGroupOrder = 14
+
+queryGroup PnL
+
+	annotation PBI_QueryGroupOrder = 15
+
+queryGroup Budget_Finance
+
+	annotation PBI_QueryGroupOrder = 12
+
+queryGroup Operations_ProductionMetrics
+
+	annotation PBI_QueryGroupOrder = 16
+
+queryGroup Scorecard
+
+	annotation PBI_QueryGroupOrder = 17
+
+queryGroup 'Archive 2025'
+
+	annotation PBI_QueryGroupOrder = 18
+
+queryGroup Inventory
+
+	annotation PBI_QueryGroupOrder = 19
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DateTable","Countries_GF_Global","Product_Table_GF_Global","CustomerTable_GF_Global","market_org","Plants","NPD_Projects","Budget_GF_2025_Sales","Manuf_Metrics25B","Capex 2026 F&P EU","PnLMetrics","Inv_Budgets25","Inventory_Type","Manuf_Scorecard25","PC Subcategory","Probability","InvoicedOrdersCombineCY","Month_BridgeTotals","Qtr_BridgeTotals","OrderType","Currency","Invoiced_CurrentYearEURO","Invoiced_CurrentYearUSD","Invoiced_CurrentYear","Open_EURO","Open_USD","Open_CurrentYear","ShippingPoint","Cust_groups_bridge","sku_group","Regions","Profit_Center","RTP_Euro","RTP_USD","RTP_CurrentYear","APO_CurrentYear_Euro","APO_CurrentYear_USD","APO_CurrentYear","Rolling_Sales_EURO","Rolling_Sales_USD","Rolling_Sales_CurrentYear","Budget_Sales_EURO","Budget_Sales_USD","Budget_Sales","Budget_Sales_CurrentYear","Finance_EURO","Finance_USD","Finance_CurrentYear","PnL_EURO","PnL_USD","PnL_CurrentYear","Budget_Finance_EURO","Budget_Finance_USD","Budget_Finance","PnL_Budget_EURO","PnL_Budget_USD","PnL_Budget","Rolling_Finance_EURO","Rolling_Finance_USD","Rolling_Finance","Budget_Finance_CurrentYear","PnL_Rolling_EURO","PnL_Rolling_USD","PnL_Rolling","PnL_Budget_CurrentYear","Finance_2024_EURO","Finance_2024_USD","Finance_2024","PnL_2024_EURO","PnL_2024_USD","PnL_2024","PnL_2025_EURO","PnL_2025_USD","PnL_2025","3plus9_EURO","3plus9_USD","2plus10_CurrentYear","3plus9_Finance_EURO","3plus9_Finance_USD","2plus10_Finance_CurrentYear","PnL_3plus9_EURO","PnL_3plus9_USD","PnL_2plus10_CurrentYear","PnL_2025B_EURO","PnL_2025B_USD","PnL_2025B","2025B_Finance_EURO","2025B_Finance_USD","Forecast_Version","Budget26_Ops","OPS_EURO","OPS_USD","Ops_CurrentYear","Scorecard_EURO","Scorecard_USD","Subcontracting","Scorecard_CurrentYear","Budget_Scorecard26","Adj_Metrics_PlantEURO","Adj_Metrics_PlantUSD","Adj_Metrics_Plant","Manuf_Metrics_EURO","Manuf_Metrics_USD","Manuf_Metrics_CurrentYear","Manuf_Metrics26B_EURO","Manuf_Metrics26B_USD","Manuf_Metrics26B","Manuf_Metrics3plus92026_EURO","Manuf_Metrics3plus92026_USD","Manuf_Metrics3plus92026","Inventory_EURO","Inventory_USD","Inventory_CurrentYear","Inventory_Lookup","InvBudget26","Manuf_Metrics_26Budget","Invoiced_2025_EURO","Invoiced_2025_USD","Invoiced_2025","Invoiced_2024_EURO","Invoiced_2024_USD","Invoiced_2024","subcontract25","Scorecard_2025_EURO","Scorecard_2025_USD","Scorecard_2025"]
+
+ref table DateTable
+ref table DateTableTemplate_2c3f69b8-9ee9-410d-9556-723ad5d2202d
+ref table LocalDateTable_d1b1d38f-0536-4341-b280-a386eb8e31d1
+ref table Countries_GF_Global
+ref table Profit_Center
+ref table Regions
+ref table Product_Table_GF_Global
+ref table CustomerTable_GF_Global
+ref table market_org
+ref table Measures_Table
+ref table Plants
+ref table Cust_groups_bridge
+ref table sku_group
+ref table Budget26_Ops
+ref table NPD_Projects
+ref table Budget_GF_2025_Sales
+ref table LocalDateTable_4b506929-3ef4-4bab-bcae-4b3a89a03c61
+ref table Manuf_Metrics25B
+ref table 'Capex 2026 F&P EU'
+ref table PnLMetrics
+ref table Inv_Budgets25
+ref table Inventory_Type
+ref table Manuf_Scorecard25
+ref table Budget_Scorecard26
+ref table 'PC Subcategory'
+ref table InvBudget26
+ref table InvoicedOrdersCombineCY
+ref table LocalDateTable_81c5d6ec-bc18-45f4-bf03-41204a4508dd
+ref table Month_BridgeTotals
+ref table Qtr_BridgeTotals
+ref table OrderType
+ref table Currency
+ref table Invoiced_CurrentYear
+ref table Open_CurrentYear
+ref table ShippingPoint
+ref table RTP_CurrentYear
+ref table APO_CurrentYear
+ref table Budget_Sales_CurrentYear
+ref table Finance_CurrentYear
+ref table PnL_CurrentYear
+ref table Budget_Finance_CurrentYear
+ref table PnL_Budget_CurrentYear
+ref table Finance_2024
+ref table PnL_2024
+ref table PnL_2025
+ref table PnL_2025B
+ref table Forecast_Version
+ref table Ops_CurrentYear
+ref table Scorecard_CurrentYear
+ref table Adj_Metrics_Plant
+ref table Manuf_Metrics_CurrentYear
+ref table Inventory_CurrentYear
+ref table Manuf_Metrics_26Budget
+ref table Invoiced_2025
+ref table LocalDateTable_e082ef7d-0bcf-48d7-b6ae-cc7d97ba0502
+ref table Invoiced_2024
+ref table Scorecard_2025
+
+ref cultureInfo en-US
+

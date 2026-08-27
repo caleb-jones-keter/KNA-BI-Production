@@ -1,0 +1,35 @@
+table sku_group
+	lineageTag: 4e3f38d6-0a7b-427d-8945-b8db637bb4cc
+
+	column 'SKU Group'
+		dataType: string
+		lineageTag: 92b9cb73-86da-4660-bef5-c2ea2362284b
+		summarizeBy: none
+		sourceColumn: SKU Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Group (c2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 36e18feb-7f3b-41d0-a099-2262a0f1f97a
+		summarizeBy: none
+		sourceColumn: Code:SKU Group (c2)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sku_group = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\sku_group_bridge.xlsx"), null, true),
+				    sku_group_Table = Source{[Item="sku_group",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(sku_group_Table,{{"SKU Group", type text}, {"Code:SKU Group (c2)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

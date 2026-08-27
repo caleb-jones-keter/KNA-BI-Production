@@ -1,0 +1,30 @@
+relationship 54fda193-6e05-e4fa-9adb-b4cc2599ee42
+	fromColumn: 'Finished Goods EDB'.Material_Country_Key
+	toColumn: 'SP _FG Product Link_'.Material_Country_Key
+
+relationship fb098cbc-d55c-2a2b-6358-fa13099282d7
+	fromColumn: 'FACT RPA Report MPL'.Material_Country_Key
+	toColumn: 'SP _FG Product Link_'.Material_Country_Key
+
+relationship d7f87aa9-3b53-20f1-4528-7afd146c5fcb
+	fromColumn: 'FACT RPA Report MPL'.'Product SKU'
+	toColumn: 'DIM Product'.Material
+
+relationship 9b61d64a-496b-b5e5-9c2c-e7396f328638
+	fromColumn: 'FACT YM6P'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship ab7b70e2-449e-7d99-3f04-4e7a86440b26
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'SP _FG Product Link_'.Material_Country_Key
+	toColumn: 'SP ZMM02'.Material_Country_Key
+
+relationship 8e490282-1460-b1f9-aa35-33fead369ee8
+	fromColumn: 'FACT RPA Report MPL'.'Spare Part SKU'
+	toColumn: 'Spare Parts Notes'.'SP Item #'
+
+relationship b2f07167-cc93-23db-965a-f08182c89fee
+	fromColumn: 'FACT MB52 All'.Material
+	toColumn: 'DIM Product'.Material
+

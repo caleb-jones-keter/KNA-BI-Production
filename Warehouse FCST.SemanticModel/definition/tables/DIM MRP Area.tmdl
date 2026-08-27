@@ -1,0 +1,38 @@
+table 'DIM MRP Area'
+	lineageTag: 3791047a-821f-46fa-a674-1557501c4545
+	sourceLineageTag: [dbo].[DIM MRP Area]
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 45995153-a80f-42bf-bb97-d4c8d512ecd0
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Imports
+		dataType: string
+		lineageTag: 388be959-ca3f-4143-a99f-e91489f5e856
+		sourceLineageTag: Imports
+		summarizeBy: none
+		sourceColumn: Imports
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 89398017-b0ba-442c-bc85-b9c5c5419d5a
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM MRP Area' = entity
+		mode: directLake
+		source
+			entityName: DIM MRP Area
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

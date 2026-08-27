@@ -1,0 +1,247 @@
+table Invoiced_2025
+	lineageTag: 8030eed3-7aed-46c9-aa59-a98810fa90bd
+
+	column Payer
+		dataType: string
+		lineageTag: 7397534f-cfbe-4be4-a3ba-39761efa49e6
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: c8c3be09-dc8c-4d60-bd25-4b4b71c0bf2e
+		summarizeBy: none
+		sourceColumn: Code:Payer (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 7e03e973-2eee-4918-91c0-9da35c52f17c
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level (c2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 430c4206-c386-410b-85be-22e5fe9b497e
+		summarizeBy: none
+		sourceColumn: Code:SKU Level (c2)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: 01657555-b8aa-4b1b-a9b0-d9900f8503cc
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Profit Center Detailed (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 029cb588-febe-4a0a-a5ff-ad25bb585924
+		summarizeBy: sum
+		sourceColumn: Code:Profit Center Detailed (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment-Region
+		dataType: string
+		lineageTag: 51cd676d-e66f-40ca-98bc-78306116a200
+		summarizeBy: none
+		sourceColumn: Segment-Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Segment-Region (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: a6167ac4-4abe-428d-ba53-78e4aa9a7649
+		summarizeBy: sum
+		sourceColumn: Code:Segment-Region (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Org 2017 (SoldTo)'
+		dataType: string
+		lineageTag: ed062cca-29bf-4625-8cf2-a43487546b24
+		summarizeBy: none
+		sourceColumn: Market Org 2017 (SoldTo)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Market Org 2017 (SoldTo) (c5)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d5c9f41-f5f7-47eb-a9d1-dd890656027d
+		summarizeBy: sum
+		sourceColumn: Code:Market Org 2017 (SoldTo) (c5)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country (ST)'
+		dataType: string
+		lineageTag: 119de1a8-62f4-46d6-b999-4aef3b51dbcd
+		summarizeBy: none
+		sourceColumn: Country (ST)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Country (ST) (c6)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f57b54b9-aa76-46eb-91ac-1ecf57a95798
+		summarizeBy: sum
+		sourceColumn: Code:Country (ST) (c6)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 19704de5-8ab9-493a-bf3e-d8f7cd4be205
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity(2025)
+		dataType: int64
+		formatString: 0
+		lineageTag: 04d8fe2a-3f53-4d89-b629-1d3a59113745
+		summarizeBy: sum
+		sourceColumn: Quantity(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales(2025)'
+		dataType: double
+		lineageTag: 3f408add-6c7c-4693-9de9-37e5247de707
+		summarizeBy: sum
+		sourceColumn: Gross Sales(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net  Sales(2025)'
+		dataType: double
+		lineageTag: ffed58eb-e9c6-4d9c-9f02-f499509c63a4
+		summarizeBy: sum
+		sourceColumn: Net  Sales(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales ADJ M(2025)'
+		dataType: double
+		lineageTag: 30216f1b-e6ef-415b-9966-9be15e7691be
+		summarizeBy: sum
+		sourceColumn: Net Sales ADJ M(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution(2025)'
+		dataType: double
+		lineageTag: 79191031-e857-4df7-bca8-4c14ca93167a
+		summarizeBy: sum
+		sourceColumn: Direct Contribution(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct contribution ADJ M(2025)'
+		dataType: double
+		lineageTag: 8c0e6cf7-0c21-4719-a6a5-6ed31b1781e9
+		summarizeBy: sum
+		sourceColumn: Direct contribution ADJ M(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA(2025)
+		dataType: double
+		lineageTag: 5256d01f-9948-413a-b0c8-b5d93eb2bf14
+		summarizeBy: sum
+		sourceColumn: EBITDA(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'EBITDA ADJ M(2025)'
+		dataType: double
+		lineageTag: 41294d9c-a47d-4553-8f00-fd40a39c5a58
+		summarizeBy: sum
+		sourceColumn: EBITDA ADJ M(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost of Sales(2025)'
+		dataType: double
+		lineageTag: 2f447cca-45b3-4280-bb14-3e56e029798a
+		summarizeBy: sum
+		sourceColumn: Cost of Sales(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Weight Sold (2025)'
+		dataType: double
+		lineageTag: 1526b122-47a0-4a73-85f4-824f30b6d217
+		summarizeBy: sum
+		sourceColumn: RM Weight Sold (2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: 930c4de7-9188-480e-ab30-3180513546d2
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6f5e4edd-93b7-4cf0-97b5-a515e7eef06d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Invoiced_2025 = m
+		mode: import
+		queryGroup: StaticPYs
+		source =
+				let
+				    Source = Table.Combine({Invoiced_2025_EURO, Invoiced_2025_USD}),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column24"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

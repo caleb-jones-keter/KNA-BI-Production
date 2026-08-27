@@ -1,0 +1,812 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "e61b29821a98a95e857d",
+  "position": {
+    "x": 0,
+    "y": -8,
+    "z": 0,
+    "height": 1088,
+    "width": 1920,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Basic_material"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Basic_material",
+              "nativeQueryRef": "Basic_material"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Collective_order"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Collective_order",
+              "nativeQueryRef": "Collective_order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Confirmed_quantity_GMEIN"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Confirmed_quantity_GMEIN)",
+              "nativeQueryRef": "Confirmed_quantity_GMEIN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Daily_TL_Qty"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Daily_TL_Qty)",
+              "nativeQueryRef": "Daily_TL_Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Description"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Description",
+              "nativeQueryRef": "Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "DailyProductionQty"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.DailyProductionQty)",
+              "nativeQueryRef": "DailyProductionQty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Labour_C_VGE03"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Labour_C_VGE03)",
+              "nativeQueryRef": "Labour_C_VGE03"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Leading_order"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Leading_order)",
+              "nativeQueryRef": "Leading_order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Material_description"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Material_description",
+              "nativeQueryRef": "Material_description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Material_Number"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Material_Number",
+              "nativeQueryRef": "Material_Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Mold"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Mold",
+              "nativeQueryRef": "Mold"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "MRP_Area"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.MRP_Area)",
+              "nativeQueryRef": "MRP_Area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Order_Number"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Order_Number",
+              "nativeQueryRef": "Order_Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Order_quantity_GMEIN"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Order_quantity_GMEIN)",
+              "nativeQueryRef": "Order_quantity_GMEIN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Production_DateTime_End"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Production_DateTime_End",
+              "nativeQueryRef": "Production_DateTime_End"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Production_DateTime_Start"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Production_DateTime_Start",
+              "nativeQueryRef": "Production_DateTime_Start"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "ProductionDate"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.ProductionDate",
+              "nativeQueryRef": "ProductionDate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Qty_Per_Day_BEAZE"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Qty_Per_Day_BEAZE)",
+              "nativeQueryRef": "Qty_Per_Day_BEAZE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Remaining_HR_time_H"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Remaining_HR_time_H)",
+              "nativeQueryRef": "Remaining_HR_time_H"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Remaining_weight_YRW"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Remaining_weight_YRW)",
+              "nativeQueryRef": "Remaining_weight_YRW"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Sales_Document"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Sales_Document",
+              "nativeQueryRef": "Sales_Document"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Scheduled_End_DateTime"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Scheduled_End_DateTime",
+              "nativeQueryRef": "Scheduled_End_DateTime"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Scheduled_Start_DateTime"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Scheduled_Start_DateTime",
+              "nativeQueryRef": "Scheduled_Start_DateTime"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Storage_Location"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Storage_Location",
+              "nativeQueryRef": "Storage_Location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "System_Status"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.System_Status",
+              "nativeQueryRef": "System_Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "TL_Qty"
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.TL_Qty)",
+              "nativeQueryRef": "TL_Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "User_Status"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.User_Status",
+              "nativeQueryRef": "User_Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Work_Center"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Work_Center",
+              "nativeQueryRef": "Work_Center"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b189f363ffb931f2bb15",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Basic_material"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "74e67444c285bc3f0c53",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Collective_order"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bc2bb5cdd193b5612357",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d892dc7b19120422d305",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Material_description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "283261d033ab91255657",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Material_Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c2b371463747d588027f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Mold"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "185d61fc27a0dcd35677",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Order_Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "24ac2c62c41f442049d4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Production_DateTime_End"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6bde2c1ac737c8acd5b5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Production_DateTime_Start"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "87ce7f63d6d82ebc2eff",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "ProductionDate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6a715aac1e83595a6436",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Sales_Document"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3eaf07827cddfa0c2032",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Scheduled_End_DateTime"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e8b7a8a0fa78e0408dd2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Scheduled_Start_DateTime"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7ad63c648cf8fd906b98",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Storage_Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "637fa52a52f24b55016f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "System_Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ca215f0064998a5774ea",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "User_Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4b38790996eef9dca980",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Work_Center"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8f72a9aa125c4425f95f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "TL_Qty"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7116ddb8f4d142b65570",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Remaining_weight_YRW"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ca3cb96ed8b1e936e018",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Remaining_HR_time_H"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7a17eb2606fcebc569ca",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Qty_Per_Day_BEAZE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0b7270b8cc266621ecc2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Order_quantity_GMEIN"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f1aac9a59f2f2bf1c5ec",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "MRP_Area"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7484c9a58e27c7e85d46",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Leading_order"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4e9cca873a79435afded",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Labour_C_VGE03"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f3ec9cfe029041f66684",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "DailyProductionQty"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c20e40d7cb4b16df6b51",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Daily_TL_Qty"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "81c94045cb8ec490c791",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_coois_pbi_daily_split"
+              }
+            },
+            "Property": "Confirmed_quantity_GMEIN"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

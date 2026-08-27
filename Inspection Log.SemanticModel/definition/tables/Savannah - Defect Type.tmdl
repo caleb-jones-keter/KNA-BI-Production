@@ -1,0 +1,143 @@
+table 'Savannah - Defect Type'
+	lineageTag: e9e11054-7d05-4a8c-9687-5ad5da22c902
+
+	column FileSystemObjectType
+		dataType: string
+		lineageTag: 78659d54-0a15-4cd9-883d-f2a3d4f49bc3
+		summarizeBy: none
+		sourceColumn: FileSystemObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 1c9d9742-780f-42fc-9e96-01e704e1e045
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUri
+		dataType: string
+		lineageTag: 07fb873a-c446-4ad1-a8fd-0ee5923917b4
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUri
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUrl
+		dataType: string
+		lineageTag: 5f87c02c-bc91-4270-baa5-79630994d938
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentTypeId
+		dataType: string
+		lineageTag: 83df32e8-3c89-48bb-920e-d73ff6ebc3e1
+		summarizeBy: none
+		sourceColumn: ContentTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: b24b3d07-941e-4d77-907a-1fb46e46f9bf
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__ColorTag
+		dataType: string
+		lineageTag: 0df831aa-4274-4df5-9b7d-a736204a1103
+		summarizeBy: none
+		sourceColumn: OData__ColorTag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComplianceAssetId
+		dataType: string
+		lineageTag: cc0b4bfa-6b6e-45c9-8abf-d77713d4553d
+		summarizeBy: none
+		sourceColumn: ComplianceAssetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: 3cc52f22-15ec-4ae7-ab28-ef205a6556cd
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: string
+		lineageTag: 154a78f6-16b9-493c-a52d-c653bea2b88e
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		lineageTag: 496ca276-181d-420f-a3fc-34ca0ba0275f
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column AuthorId
+		dataType: string
+		lineageTag: 66cf7dfd-ce47-4568-93f9-8e269cf0e180
+		summarizeBy: none
+		sourceColumn: AuthorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditorId
+		dataType: string
+		lineageTag: ab1b2025-1608-47ae-9fe0-02117c925bdc
+		summarizeBy: none
+		sourceColumn: EditorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__UIVersionString
+		dataType: string
+		lineageTag: 8b72bf69-f393-4980-a6a2-01289fa7fad3
+		summarizeBy: none
+		sourceColumn: OData__UIVersionString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: e2e29406-eeb5-420d-baad-0bdc786e6671
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUID
+		dataType: string
+		lineageTag: d8b9d485-f55d-4c94-ba04-0fc1295503f5
+		summarizeBy: none
+		sourceColumn: GUID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Savannah - Defect Type' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer/", [ApiVersion = 15]),
+				    #"ae6b2a86-1ac7-4e00-8734-fe2c63214d72" = Source{[Id="ae6b2a86-1ac7-4e00-8734-fe2c63214d72"]}[Items],
+				    #"Renamed Columns" = Table.RenameColumns(#"ae6b2a86-1ac7-4e00-8734-fe2c63214d72",{{"ID", "ID.1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

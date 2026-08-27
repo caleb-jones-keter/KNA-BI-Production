@@ -1,0 +1,20 @@
+relationship cd260868-55e6-953f-7d9e-b07572f1478c
+	fromColumn: 'DIM MRPSKU'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship 3aa5df78-5dd5-45df-ec10-9fb52560cc46
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 171c2bdb-eaba-01fb-b53b-905cd9babc0a
+	fromColumn: 'FACT YContainer'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 9643c87f-4cef-f15b-d554-c314ccc49bfa
+	fromColumn: 'FACT YContainer'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 36a8efeb-20cc-8c42-5c17-7a64d788a740
+	fromColumn: 'FACT YContainer'.'_Next Move Date PQ'
+	toColumn: 'DIM Date'.'Full Date'
+

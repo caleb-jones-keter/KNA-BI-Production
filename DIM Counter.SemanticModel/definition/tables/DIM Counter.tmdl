@@ -1,0 +1,64 @@
+table 'DIM Counter'
+	lineageTag: 5c61cd5e-373f-4d74-86cb-c93064922d19
+	sourceLineageTag: [dbo].[DIM Counter]
+
+	column Material
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1640fbb9-84bd-403a-8360-f570bd281de5
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inb. Del_'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 79314520-e3ab-4a78-b778-e69a8aa3d59d
+		sourceLineageTag: Inb. Del_
+		summarizeBy: none
+		sourceColumn: Inb. Del_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Container
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b7302285-bbfc-45c8-9736-62c6b40d2bf3
+		sourceLineageTag: Container
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material_InbDel_Index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 07089911-7d6c-4bfc-bc21-6f9a8ec5e251
+		sourceLineageTag: Material_InbDel_Index
+		summarizeBy: sum
+		sourceColumn: Material_InbDel_Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MAT-INB Merge'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2a2f1025-b80f-46de-a609-714554979dd7
+		sourceLineageTag: MAT-INB Merge
+		summarizeBy: none
+		sourceColumn: MAT-INB Merge
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Counter' = entity
+		mode: directLake
+		source
+			entityName: DIM Counter
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

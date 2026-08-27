@@ -1,0 +1,438 @@
+table 'Fact Adams WMS 373'
+	lineageTag: 3ce33d78-f777-4650-a5d1-d729f0846ec3
+	sourceLineageTag: [dbo].[Fact Adams WMS 373]
+
+	column 'Inventory item'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: de8e50c8-c826-4d8a-ab98-a25b737990e9
+		sourceLineageTag: Inventory item
+		summarizeBy: sum
+		sourceColumn: Inventory item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c4cde82f-b585-4867-95c7-312aed52588c
+		sourceLineageTag: Storage Type
+		summarizeBy: none
+		sourceColumn: Storage Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Bin'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 94b2f480-eef4-427b-9d8c-0971951b422d
+		sourceLineageTag: Storage Bin
+		summarizeBy: none
+		sourceColumn: Storage Bin
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		sourceProviderType: bigint
+		lineageTag: a9a2a3a9-1cb0-4fff-ab2b-a54c3a7afc99
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Stock'
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 1eab1fcd-2fbc-4172-8eff-f17cabca248a
+		sourceLineageTag: Total Stock
+		summarizeBy: sum
+		sourceColumn: Total Stock
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Available stock'
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 92571fa2-b713-4a8b-88ff-f08a06ab89ff
+		sourceLineageTag: Available stock
+		summarizeBy: sum
+		sourceColumn: Available stock
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Pick quantity'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: d1afa708-d1fd-4e27-bcbf-ea1315b63815
+		sourceLineageTag: Pick quantity
+		summarizeBy: sum
+		sourceColumn: Pick quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock for putaway'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b0901032-c1f3-4a9b-8ede-4dfa3aec7ef6
+		sourceLineageTag: Stock for putaway
+		summarizeBy: sum
+		sourceColumn: Stock for putaway
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Unit Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 83a8a972-0188-4a28-9c53-18bbeb85b9a7
+		sourceLineageTag: Storage Unit Type
+		summarizeBy: none
+		sourceColumn: Storage Unit Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Base Unit of Measure'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9c9d6e3c-14cd-456c-82d0-430cc2bb5b86
+		sourceLineageTag: Base Unit of Measure
+		summarizeBy: none
+		sourceColumn: Base Unit of Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Unit'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7289ec76-8892-4041-a1cf-94db9d7e60eb
+		sourceLineageTag: Storage Unit
+		summarizeBy: none
+		sourceColumn: Storage Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document no. of last stock change'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0e0702aa-4449-414c-a2ab-ae186eb6f0f6
+		sourceLineageTag: Document no. of last stock change
+		summarizeBy: sum
+		sourceColumn: Document no. of last stock change
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last movement'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 8dcbb7bf-8c8a-4549-9aae-16febca91d5f
+		sourceLineageTag: Last movement
+		summarizeBy: none
+		sourceColumn: Last movement
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 05b916d3-eb98-49e0-ba97-c3d831089e3e
+		sourceLineageTag: Time
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Putaway block'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 019928f2-5e89-4b1e-bdae-1d218ab3e375
+		sourceLineageTag: Putaway block
+		summarizeBy: none
+		sourceColumn: Putaway block
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Removal Block'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4da4beb1-d856-4ad7-885d-f1734cd8de42
+		sourceLineageTag: Stock Removal Block
+		summarizeBy: none
+		sourceColumn: Stock Removal Block
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Blocking reason'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b486142c-4741-4060-a108-52a5fd874b6f
+		sourceLineageTag: Blocking reason
+		summarizeBy: none
+		sourceColumn: Blocking reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory active'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 790f2da1-6af4-4c03-9bb5-cf93be9c632c
+		sourceLineageTag: Inventory active
+		summarizeBy: none
+		sourceColumn: Inventory active
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'No.of storage units'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8fd4e1b2-a598-4f22-9412-7d607e01e082
+		sourceLineageTag: No.of storage units
+		summarizeBy: sum
+		sourceColumn: No.of storage units
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Maximum no.of SUs'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 89daf867-80b3-48c4-91b7-2022bb0b589c
+		sourceLineageTag: Maximum no.of SUs
+		summarizeBy: sum
+		sourceColumn: Maximum no.of SUs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory method'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2f999012-94b7-4d81-aedd-b65ba9c56cea
+		sourceLineageTag: Inventory method
+		summarizeBy: none
+		sourceColumn: Inventory method
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last inventory'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: e43a13ea-e391-4240-a524-5a83ffb20e66
+		sourceLineageTag: Last inventory
+		summarizeBy: none
+		sourceColumn: Last inventory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory record'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: d99e5435-3761-4d76-8c53-ce5470e83dd1
+		sourceLineageTag: Inventory record
+		summarizeBy: sum
+		sourceColumn: Inventory record
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Empty indicator'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9803bfe6-2cb3-41c8-8197-d525d2dd1395
+		sourceLineageTag: Empty indicator
+		summarizeBy: none
+		sourceColumn: Empty indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full indicator'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1f92f0d0-5199-44cc-906e-0bb7fbaa66ec
+		sourceLineageTag: Full indicator
+		summarizeBy: none
+		sourceColumn: Full indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last stock removal'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 95f6c4b7-ee38-40a5-8ec8-a785fa4b9170
+		sourceLineageTag: Last stock removal
+		summarizeBy: none
+		sourceColumn: Last stock removal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_1
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 8343a163-37e3-490d-afb7-746c4164c257
+		sourceLineageTag: Time_1
+		summarizeBy: none
+		sourceColumn: Time_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage bin type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c4b60df7-6cf3-4886-8716-aecfe2346b0d
+		sourceLineageTag: Storage bin type
+		summarizeBy: none
+		sourceColumn: Storage bin type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort fld stck plcm'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a5000810-ebbe-45f2-b1a8-6bde62f2717e
+		sourceLineageTag: Sort fld stck plcm
+		summarizeBy: none
+		sourceColumn: Sort fld stck plcm
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 1f56dde4-745b-4797-8a0b-da2f37a2f062
+		sourceLineageTag: Plant
+		summarizeBy: sum
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Section'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8dd39ce1-8139-4e11-a6b7-d4696fa365fe
+		sourceLineageTag: Storage Section
+		summarizeBy: sum
+		sourceColumn: Storage Section
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Category'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 77afdbd1-704d-486e-a0a4-c346411dd5c3
+		sourceLineageTag: Stock Category
+		summarizeBy: none
+		sourceColumn: Stock Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duration
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0615e153-9cb3-4876-aa77-085e0a405855
+		sourceLineageTag: Duration
+		summarizeBy: sum
+		sourceColumn: Duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last clearing'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 0866ade8-5ea0-4c06-8af9-541144be339f
+		sourceLineageTag: Last clearing
+		summarizeBy: none
+		sourceColumn: Last clearing
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last movement_2'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 451b7916-adcd-47f7-be4c-407861194c5c
+		sourceLineageTag: Last movement_2
+		summarizeBy: none
+		sourceColumn: Last movement_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Type Starts With 9'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: da1e7379-f006-40c8-a3fb-d0cf9e6dcdb0
+		sourceLineageTag: Storage Type Starts With 9
+		summarizeBy: none
+		sourceColumn: Storage Type Starts With 9
+
+		annotation SummarizationSetBy = Automatic
+
+	column Aisle
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 58647bfc-9e7f-4142-a39b-504223ff116d
+		sourceLineageTag: Aisle
+		summarizeBy: none
+		sourceColumn: Aisle
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bin
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f5c1a5cf-ce23-4572-820d-e2fa8110b2cb
+		sourceLineageTag: Bin
+		summarizeBy: none
+		sourceColumn: Bin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bin Level'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5436072d-0c4c-4261-be66-4916af3fba8c
+		sourceLineageTag: Bin Level
+		summarizeBy: none
+		sourceColumn: Bin Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column BinDigitsAfterFirst
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6dd5daf2-a6cb-49e9-b471-d6fd7961d3ce
+		sourceLineageTag: BinDigitsAfterFirst
+		summarizeBy: none
+		sourceColumn: BinDigitsAfterFirst
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Adams WMS 373' = entity
+		mode: directLake
+		source
+			entityName: Fact Adams WMS 373
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

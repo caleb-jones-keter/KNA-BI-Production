@@ -1,0 +1,585 @@
+table 'FACT Rejections'
+	lineageTag: 3978d18d-f655-4787-baad-566084104d94
+	sourceLineageTag: [dbo].[FACT Rejections]
+
+	measure 'RTV (M)' = ```
+			
+			VAR EndDate = EOMONTH ( MAX ('DIM Date'[Full Date] ),0)
+			VAR DateWindow = DATESINPERIOD ( 'DIM Date'[Full Date], EndDate, -Months[Months Value], MONTH )
+			VAR Reasons = { "39", "178", "232", "241" }
+			RETURN
+			    - CALCULATE (
+			        SUM ( 'FACT Rejections'[Rejections USD] ),
+			        'FACT Rejections'[OrderReasonKey] IN Reasons,
+			        DateWindow
+			    )
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: de67dee1-08b6-42c2-9c74-910113e951cc
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Gross Sales (M,O)' = CALCULATE(SUM('FACT Rejections'[Gross Sales USD]),DATESINPERIOD('DIM Date'[Full Date],ENDOFMONTH('DIM Date'[Full Date]),-Months[Months Value]-'Offset'[Offset Value],MONTH))- CALCULATE(SUM('FACT Rejections'[Gross Sales USD]),DATESINPERIOD('DIM Date'[Full Date],ENDOFMONTH('DIM Date'[Full Date]),-'Offset'[Offset Value],MONTH))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0f71ea2e-7b86-4f47-b030-2d742d67f373
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Rejections Filter' = IF([RTV (M)]>0,"Has Rejections")
+		lineageTag: cdbf3179-eac4-4c1f-9b8f-bc71d73fe400
+
+		changedProperty = Name
+
+	measure 'Estimated RTV SKU Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Product'[Dim Products.SKU Group # & Desc] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Intercept + Slope * [TL %]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 975a76bc-5406-4115-ae24-18bccb4d843a
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Estimated Intercept SKU Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Product'[Dim Products.SKU Group # & Desc] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Intercept
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 35de5cd6-7304-448f-9c05-1d3ea36e0528
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Estimated Slope SKU Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Product'[Dim Products.SKU Group # & Desc] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Slope
+		formatString: 0.000
+		lineageTag: e5a6e706-1867-45de-9a1a-6d75587a5de6
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Estimated Baseline SKU Group' =
+			
+			VAR Known =
+			    FILTER (
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'DIM Product'[Dim Products.SKU Group # & Desc] ),
+			            "X", CALCULATE ( [TL %] ),
+			            "Y", CALCULATE ( [RTV %] )
+			        ),
+			        NOT ( ISBLANK ( [X] ) )
+			            && NOT ( ISBLANK ( [Y] ) )
+			    )
+			
+			VAR Count_Items =
+			    COUNTROWS ( Known )
+			
+			VAR Sum_X =
+			    SUMX ( Known, [X] )
+			
+			VAR Sum_X2 =
+			    SUMX ( Known, [X] * [X] )
+			
+			VAR Sum_Y =
+			    SUMX ( Known, [Y] )
+			
+			VAR Sum_XY =
+			    SUMX ( Known, [X] * [Y] )
+			
+			VAR Average_X =
+			    DIVIDE ( Sum_X, Count_Items )
+			
+			VAR Average_Y =
+			    DIVIDE ( Sum_Y, Count_Items )
+			
+			VAR Slope =
+			    DIVIDE (
+			        Count_Items * Sum_XY - Sum_X * Sum_Y,
+			        Count_Items * Sum_X2 - Sum_X * Sum_X
+			    )
+			
+			VAR Intercept =
+			    Average_Y - Slope * Average_X
+			
+			RETURN
+			    Intercept + Slope
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8a69fd96-dd0c-40a4-adbb-87fb6dff1951
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure MinDate =
+			
+			VAR EndDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			VAR StartDate =
+			    EDATE ( EndDate, -Months[Months Value] )
+			VAR Reasons = { "39", "178", "232", "241" }
+			RETURN
+			    CALCULATE (
+			        MIN ( 'FACT Rejections'[DateKey_daily] ),
+			        'FACT Rejections'[OrderReasonKey] IN Reasons,
+			        'FACT Rejections'[DateKey_daily] >= StartDate,
+			        'FACT Rejections'[DateKey_daily] <= EndDate
+			    )
+		formatString: 0
+		lineageTag: 1ed08ab6-0432-4555-8f1d-e5633dd315bf
+
+		changedProperty = Name
+
+	measure 'Months with RTV' = ```
+			
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( 'DIM Date'[FOM] ),
+			        NOT ISBLANK ( [RTV (M)] )
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 513133ec-4694-4e1a-8066-27def78a2b44
+
+		changedProperty = Name
+
+	measure 'Months with RTV 2' =
+			
+			VAR EndDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			VAR DateWindow =
+			    DATESINPERIOD (
+			        'DIM Date'[Full Date],
+			        EndDate,
+			        -Months[Months Value],
+			        MONTH
+			    )
+			RETURN
+			    COUNTROWS (
+			        FILTER (
+			            CALCULATETABLE (
+			                VALUES ( 'DIM Date'[FOM] ),
+			                DateWindow
+			            ),
+			            NOT ISBLANK ( 'FACT Rejections'[Rejections] )
+			        )
+			    )
+		formatString: 0
+		lineageTag: 408a207e-5a91-4993-bdf0-da39de203fdb
+
+		changedProperty = Name
+
+	measure Rejections = SUM('FACT Rejections'[Rejections USD])
+		lineageTag: 6db9bc5b-2f65-452b-8a05-dda65c281016
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Months with Sales' =
+			
+			VAR EndDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			VAR DateWindow =
+			    DATESINPERIOD (
+			        'DIM Date'[Full Date],
+			        EndDate,
+			        -Months[Months Value],
+			        MONTH
+			    )
+			RETURN
+			    COUNTROWS (
+			        FILTER (
+			            CALCULATETABLE (
+			                VALUES ( 'DIM Date'[FOM] ),
+			                DateWindow
+			            ),
+			            NOT ISBLANK ( [Sales] )
+			        )
+			    )
+		formatString: 0
+		lineageTag: 05de788d-a6df-4c30-a421-6131d94beb83
+
+		changedProperty = Name
+
+	measure 'RTV (LY)' =
+			
+			VAR EndDate = DATE(YEAR(TODAY())-1,12,31)
+			VAR DateWindow = DATESINPERIOD ( 'DIM Date'[Full Date], EndDate, -Months[Months Value], MONTH )
+			VAR Reasons = { "39", "178", "232", "241" }
+			RETURN
+			    - CALCULATE (
+			        SUM ( 'FACT Rejections'[Rejections USD] ),
+			        'FACT Rejections'[OrderReasonKey] IN Reasons,
+			        DateWindow
+			    )
+		lineageTag: c40e7a16-88c8-4aad-b59a-08dfed837b24
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ActivityKey
+		dataType: string
+		lineageTag: 0e267fb2-7056-437d-851b-5018b59338f8
+		sourceLineageTag: ActivityKey
+		summarizeBy: none
+		sourceColumn: ActivityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCodeKey
+		dataType: string
+		lineageTag: b42e78f5-e4b6-4668-b1b8-6cbc5ca5758c
+		sourceLineageTag: CompanyCodeKey
+		summarizeBy: none
+		sourceColumn: CompanyCodeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGroupKey
+		dataType: string
+		lineageTag: c6cc5c0b-0f2e-416a-925a-c924fd08cc78
+		sourceLineageTag: CustomerGroupKey
+		summarizeBy: none
+		sourceColumn: CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey_daily
+		dataType: int64
+		formatString: 0
+		lineageTag: bbfd1b9f-4b49-48ec-bbbf-9f1af28c791d
+		sourceLineageTag: DateKey_daily
+		summarizeBy: none
+		sourceColumn: DateKey_daily
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gross_SALES
+		dataType: double
+		lineageTag: 581fe0fa-450c-4dda-92b2-c3805ca1bcd6
+		sourceLineageTag: Gross_SALES
+		summarizeBy: sum
+		sourceColumn: Gross_SALES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderReasonKey
+		dataType: string
+		lineageTag: 1ca72d82-4c8c-4fda-a797-88aab4c434bb
+		sourceLineageTag: OrderReasonKey
+		summarizeBy: none
+		sourceColumn: OrderReasonKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantKey_SPC
+		dataType: string
+		lineageTag: fbae5e55-b0f0-4180-b75c-dc7df25e26fe
+		sourceLineageTag: PlantKey_SPC
+		summarizeBy: none
+		sourceColumn: PlantKey_SPC
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: string
+		lineageTag: 925736ff-d2bf-4049-967e-38ea65b64871
+		sourceLineageTag: ProductKey
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit_CenterID
+		dataType: string
+		lineageTag: 1876bbdc-d987-45bb-a8d0-cf908a2b9043
+		sourceLineageTag: Profit_CenterID
+		summarizeBy: none
+		sourceColumn: Profit_CenterID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity1
+		dataType: double
+		lineageTag: 21210fa6-857c-4b23-8ff6-b6b3a0ed3837
+		sourceLineageTag: Quantity1
+		summarizeBy: sum
+		sourceColumn: Quantity1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RetailerKey
+		dataType: string
+		lineageTag: 0635e52b-2970-4195-8256-3a444a9a2915
+		sourceLineageTag: RetailerKey
+		summarizeBy: none
+		sourceColumn: RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleTypeKey
+		dataType: string
+		lineageTag: 2c33a182-4f7f-413d-bb19-44af7cb00241
+		sourceLineageTag: SaleTypeKey
+		summarizeBy: none
+		sourceColumn: SaleTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBU
+		dataType: string
+		lineageTag: 7f658d75-89bc-4c3a-803b-69a34a6276da
+		sourceLineageTag: SBU
+		summarizeBy: none
+		sourceColumn: SBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SegmentID
+		dataType: string
+		lineageTag: bb13009f-9850-4eb1-b9a6-605f5db05125
+		sourceLineageTag: SegmentID
+		summarizeBy: none
+		sourceColumn: SegmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SALES: Gross Sales'
+		dataType: double
+		lineageTag: 55c21b7f-8923-4448-a7e1-6275f531319b
+		sourceLineageTag: SALES: Gross Sales
+		summarizeBy: sum
+		sourceColumn: SALES: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Rejections: Gross Sales'
+		dataType: double
+		lineageTag: f38fb163-1ece-40bd-970f-45839ab97e7f
+		sourceLineageTag: All Rejections: Gross Sales
+		summarizeBy: sum
+		sourceColumn: All Rejections: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Rejections: Quantity'
+		dataType: double
+		lineageTag: b43a885a-aace-4656-bc84-d8746222d272
+		sourceLineageTag: All Rejections: Quantity
+		summarizeBy: sum
+		sourceColumn: All Rejections: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SALES: Quantity'
+		dataType: double
+		lineageTag: 682beaa9-3bd2-420f-8e95-f58868374e95
+		sourceLineageTag: SALES: Quantity
+		summarizeBy: sum
+		sourceColumn: SALES: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Currency Rate.Conversion'
+		dataType: double
+		lineageTag: b7072ee5-9f85-42fc-abb3-0a9ce00f24b7
+		sourceLineageTag: Dim Currency Rate.Conversion
+		summarizeBy: sum
+		sourceColumn: Dim Currency Rate.Conversion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Sales USD'
+		dataType: double
+		lineageTag: 7ecc4a88-324b-4ed9-9c05-eccb9e9a3417
+		sourceLineageTag: Gross Sales USD
+		summarizeBy: sum
+		sourceColumn: Gross Sales USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rejections USD'
+		dataType: double
+		lineageTag: bb0fb030-2370-4dc3-94fe-aee249530188
+		sourceLineageTag: Rejections USD
+		summarizeBy: sum
+		sourceColumn: Rejections USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SKUPayer
+		dataType: string
+		lineageTag: f3b65d99-a173-43e2-9efa-c91b1b778027
+		sourceLineageTag: SKUPayer
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT Rejections' = entity
+		mode: directLake
+		source
+			entityName: FACT Rejections
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

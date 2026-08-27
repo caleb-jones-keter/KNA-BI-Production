@@ -1,0 +1,543 @@
+{
+  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"type\":2,\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}},\"customTheme\":{\"name\":\"Temperature0685712881716225.json\",\"type\":1,\"version\":{\"visual\":\"2.5.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":4,\"defaultDrillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"visible\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "filters": "[{\"name\":\"6c5ad8e301b00ac8cc25\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM MRPSKU\"}},\"Property\":\"MRP Area\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRPSKU\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MRP Area\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'67_4674 - DHL'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"isHiddenInViewMode\":true,\"ordinal\":0},{\"name\":\"d63db3b81a8723329a1c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Forecast Adjusted\"}},\"Property\":\"BOM Type\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"BOM Type\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}],[{\"Literal\":{\"Value\":\"'Finished Goods'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":1},{\"name\":\"8f93fda4a6199b2d1235\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Future?\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Extended Outlook'\"}}],[{\"Literal\":{\"Value\":\"'Future'\"}}],[{\"Literal\":{\"Value\":\"'This Week'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":2}]",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "9bdb13e43cea96c84e22",
+      "config": "{}",
+      "name": "eb3cbb3cfe164fa49b09"
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY26SU02",
+            "path": "BaseThemes/CY26SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "Temperature0685712881716225.json",
+            "path": "Temperature0685712881716225.json",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "DHL FCST",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"9acba8ffcc72e5752cc7\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM MRPSKU\"}},\"Property\":\"MRP Area\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRPSKU\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MRP Area\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'67_4674 - DHL'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+      "height": 720.00,
+      "name": "0004cf17a40abf914b99",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1120a9a30c68130a8070\",\"layouts\":[{\"id\":0,\"position\":{\"x\":264,\"y\":0,\"z\":2000,\"width\":304,\"height\":64,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM MRPSKU.SKU & Desc\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRPSKU\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM MRPSKU.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 64.00,
+          "width": 304.00,
+          "x": 264.00,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"5981fc6d06d5d0861db6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":576,\"y\":0,\"z\":3000,\"width\":304,\"height\":64,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.KNA Drop Ship\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"},\"Name\":\"DIM Customer.KNA Drop Ship\",\"NativeReferenceName\":\"KNA Drop Ship\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 64.00,
+          "width": 304.00,
+          "x": 576.00,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"b6e8eec639c5ba9a0a80\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":96,\"z\":0,\"width\":1200,\"height\":576,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true},{\"queryRef\":\"FACT Forecast Adjusted.Material\"},{\"queryRef\":\"DIM MRPSKU.SKU & Desc\"}],\"Values\":[{\"queryRef\":\"Sum(FACT Forecast Adjusted.BOM Forecast)\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Carton\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Cont\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Pallet\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"DIM MRPSKU\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Material\"},\"Name\":\"FACT Forecast Adjusted.Material\",\"NativeReferenceName\":\"Material\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Cont\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Cont\",\"NativeReferenceName\":\"Cont FCST\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Carton\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Carton\",\"NativeReferenceName\":\"Case FCST\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Pallet\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Pallet\",\"NativeReferenceName\":\"Pallet FCST\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM MRPSKU.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"BOM Forecast\"}},\"Function\":0},\"Name\":\"Sum(FACT Forecast Adjusted.BOM Forecast)\",\"NativeReferenceName\":\"Unit FCST\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Carton\"}}}]},\"columnProperties\":{\"FACT Forecast Adjusted._BOM FCST Cont\":{\"displayName\":\"Cont FCST\"},\"FACT Forecast Adjusted._BOM FCST Carton\":{\"displayName\":\"Case FCST\",\"formatString\":\"0\"},\"FACT Forecast Adjusted._BOM FCST Pallet\":{\"displayName\":\"Pallet FCST\",\"formatString\":\"0\"},\"Sum(FACT Forecast Adjusted.Combined Qty)\":{\"formatString\":null},\"Sum(FACT Forecast Adjusted.BOM Forecast)\":{\"displayName\":\"Unit FCST\",\"formatString\":\"#,0\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"subTotals\":[{\"properties\":{\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"columnSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"71D\"}}}},\"selector\":{\"metadata\":\"FACT Forecast Adjusted._BOM FCST Carton\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}}},\"selector\":{\"metadata\":\"Sum(FACT Forecast Adjusted.BOM Forecast)\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"67D\"}}}},\"selector\":{\"metadata\":\"FACT Forecast Adjusted._BOM FCST Cont\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"61D\"}}}},\"selector\":{\"metadata\":\"FACT Forecast Adjusted._BOM FCST Pallet\"}}]}}}",
+          "filters": "[]",
+          "height": 576.00,
+          "width": 1200.00,
+          "x": 0.00,
+          "y": 96.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"d4a3eb04653fcea7ad67\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":256,\"height\":64,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.Combined Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Combined Date\"},\"Name\":\"FACT Forecast Adjusted.Combined Date\",\"NativeReferenceName\":\"Combined Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Combined Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Combined Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Combined Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2026-04-01T00:00:00'\"}}}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 64.00,
+          "width": 256.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "12M FCSTCont",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "016fd11a5110865301b0",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"09f241d05809bdd8b0ee\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":176,\"z\":0,\"width\":1424,\"height\":624,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Columns\":[{\"queryRef\":\"DIM Date.FOM\",\"active\":true},{\"queryRef\":\"DIM Date.SOW\"}],\"Rows\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true},{\"queryRef\":\"DIM Customer.Customer Groups\"}],\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Cont\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM Customer\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Customer Groups\"},\"Name\":\"DIM Customer.Customer Groups\",\"NativeReferenceName\":\"Customer Groups\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FOM\"},\"Name\":\"DIM Date.FOM\",\"NativeReferenceName\":\"FOM\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Cont\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Cont\",\"NativeReferenceName\":\"_BOM FCST Cont\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"},\"Name\":\"DIM Date.SOW\",\"NativeReferenceName\":\"SOW\"}]},\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"formatString\":null},\"FACT Forecast Adjusted._BOM FCST Carton\":{\"formatString\":null},\"DIM Date.FOM\":{\"formatString\":\"MM/yy\"},\"FACT Forecast Adjusted._BOM FCST Pallet\":{\"formatString\":null},\"FACT Forecast Adjusted._BOM FCST Cont\":{\"formatString\":\"0.0\"}},\"drillFilterOtherVisuals\":true,\"objects\":{}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 624.00,
+          "queryBinary": "H4sIAAAAAAAEALVV32/aMBD+VyI/jJesIrRqJV4mGkhXtRmUMHiYUOUlx3CbxJF/bCCU/31nh7Y0kIqt25t9/u7u++7s84b4PMtonkjS/bYhEeBasfhOg1j3qaLRkhawhZDuhtgDs5iCkIznpNtxSSB4Zt2/0AxIlyTEJQMMoxBJ+tehg5EAbZN1gcft0n1BenWor6XiGYiD8MUuOuj5EyfgAmIqldNLHtATksNpOvU04XgU3XzdAc9dFJ9CrKwQn6c6y43OwaoQICupWB+uRQxjWLxsKhVl6ZKR4AUIm+JJhXMluC4kwdMtlV2NJ3WYQSn20yQAAXkMW6f9cH9Msc4wGIY1VqZJJ8bcxKJy2ZAQqNQCjk29qKe+vxyGTuBHE8fnudphcbijJzV8E729sO9v44iusegfnD7IuKmHrzBN3GqB3t29aDg71D1jbqJgXfCWz5ZgemcveZ4wtU18XSMj/+YddOo88Zk5PQEU7Zh6SlMNJjBGvmUKBE3tKDFmBLfOL+7Pzi/OnI9O//Nty/jMy7Kq1j9muncnzd2xo+AYorlOUwts0BGwnMklJM4V54n8r0L237VW+DY/HVfwwUpBniDRoVYp54+tN1XZyG9CJksmnRnA47PmObK7ZCg6/2GQI8EyWn0gdpShuVKNCh5w+G6rcGqmsf6uuDIJPBslghiLd4Sz53ZeuXesu/nMxpDo+Kn6xjA1tUbmp+4usxny5b/MyucaJ0nXa7fLOoMJL+oIhDz/ih5uBiuItUkXghIsljfM/KGeKcpv+aovn3cHAAA=",
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 176.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"0a5f08e6de07071998a3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":784,\"y\":48,\"z\":2000,\"width\":320,\"height\":80,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.KNA Drop Ship\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"},\"Name\":\"DIM Customer.KNA Drop Ship\",\"NativeReferenceName\":\"KNA Drop Ship\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXW/aMBT9K5ZfeMmm0lWtxMtEIekqCmXA4GFCk2VfFreJHfljAyH+e69NOljWVZ008uRcn3vuOUe2t7Sny5IpYWnn65ZOAddO8s8ezKbPHJvmrIIaQjtbGjfCYg7GSq1o5zyhmdFlbB+xEmiHCprQFGkcImn/dkh63jpdgsH6bFMh5GyXHNDtJnw4GU8HX14Er46xWbc3I5k2wJl1pCsecAyIl4ecN4egOziCLhM0XwB30UhPF75UwWe6rgzYvVXMR3vDYQKrw0/0u9sldGx0BSbyD0Zd0sdfMs1lRXGvVnGcxfvfQQHj5I/ADQYUh7qlQYUyFzkCapVKSFdLG2n3p97bhgd7AndB05wVHgI5st9JB4YV8ZCEMnYoXxQBuNyFL2ko/y8i202VeIhI1wB7k8DW5dW3i8urC/KO9D/dtZ61nkLpqin0+n5I4in8lySTv/jIpJI2B0FutBb2pEbwSjWcZN55Ax/flni6dqAEKr33rtD6sfWqrcj8KmSWS0sWAI+/TC9R3bVE1+p7QI6NLNn+8box2ldY3ttGBw948esYzpaxMTx+ExCeP0cWCvMQEE77kByzLXCG/omrEDRGywsvIC0rt4lzkNQZD8nhyWwjLF0D94F7CM5IbgcyPLDtoPoJGM5AxZQFAAA=",
+          "width": 320.00,
+          "x": 784.00,
+          "y": 48.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"0d375bb13438711e8321\",\"layouts\":[{\"id\":0,\"position\":{\"x\":528,\"y\":48,\"z\":3000,\"width\":240,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAMWUb0/bMBDGv4rlNx1SNi2sAqlvptImUEFGRzt4garJcq6tIbEj/5laVfnunJ2yVF1BaGLau/juubvfYzve0IEqSyZzQ3v3GzoB/LaCf3eg10Nm2WTJKthKaG9DQ8J/3II2QknaO45oqlUZyr+xEmiP5jSiCbaxqKTDUUawE2Bsuq4w/bmOWmW8L81uxpPLHwfF811t2h9MSao0cGYs6ecPzljId+pmEbopgNtANlCFK6UHT1aVBtOwo2HlNIcbmLeLYKCuIzrWqgLdTHNF0bjA+Bbn2dinNulzVvzy/UCD5LCV7pZvaH+x0LBAoToA9H6gmEid5M2YLy13JuSHP9mP/htadweNrQ6j4WHeLXFLt2cpc/GMONoDMn9z3PE+K95C0tfAMI6jb1nhwDfGzlfCgmZF+AV8GMWdk9Of3ZPTLvlIhhdXHV8zq2u/ne9OOt8HPbvOSLjxbwGVuKNB+IKPVEhhlpCTc6Vy80+NHLgd1mn4+rYNT1YWZI6g184WSj12XnUVOr8qmS6FIXcAj789z5DuTKBpufDKsRYlax6+c61cheHGNTp4gHCR/TqOjmehdCR54XJIysquQwFmrXYQte9mjLJkBdz54gysFtxcCv/Kxn78E70CPKGZBQAA",
+          "width": 240.00,
+          "x": 528.00,
+          "y": 48.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"8f5f9debae8a38d68688\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1120,\"y\":48,\"z\":4000,\"width\":320,\"height\":80,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXU/bMBT9K5Yf1pdsooBA6stUmoSh0tK1XfswVciyb4khiSN/bK2q/vddu2EtGUMgQZ4c+9xzzzmy74b2VFGwUhja+bmhE8C1lfy7A72OmWWTjFVQQ2hnQ8OBX8xAG6lK2jmOaKpVEcqHrADaoYJGNEEai0gaXw1IzxmrCtC4P11XCDnaRnt0uwkfjEeT/o9nwctDbNrtTUmqNHBmLOmKe2wD4vkmx80m6A4OoIsIzefAbTDSU7krSu8zWVUazM4q5qOc5jCG5f4n+N1uIzrSqgId+EdsDZp8IjEYTvGoFnEYxZcnGA+x8pdnBg0lh7riKRFqnGd4XksshbS1rqGy/4q9ahgw72GtP+ySGH/JJJMVHqKmGcsdeHJkv5YWNMvDDfHbWFG6PPfAxdZ/UUP5u4hsN1XiDSJdDexVAltn57enZ+en5DOJv123HrV+hNJlU+jFzYCEK/iWJKP/+EhlKU0GglwqJcyHGsH31HCSOus0fH1d4snKQilQ6Y2zuVIPrRdtBeYXIdNMGjIHePhreoHqLiS6Lu88cqRlwXaT61IrV+H2zjY6uMdXX8dwtAiFfvKNQTj+GJnfmPmAsNtJdMg2xx7qN6580Bgtz52ApKjsOvRBUqsdRPt52UZYsgLuPPcArJbc9KWfrm2v+g+pwJOukQUAAA==",
+          "width": 320.00,
+          "x": 1120.00,
+          "y": 48.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"ec6de0f46ba28a73d3d3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":288,\"y\":48,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXU8iMRT9K01feJndiGs04WWDMOMaZGUB4cEQ07TXpTrTTvqxCyHz370to04QjTH61rk999xzTqfd0J4uCqaEpZ3rDZ0Arp3kfzyYdZ85NlmyEmoI7Wxo3AiLGRgrtaKdw4RmRhex/TcrgHboLU1oijQOkTTr9qYk0wY4s450xZ23DgQipusSwQdV8tQnmn398yEZjkeTwdV+bHsXjHKhAV0k6CYH7qKyns59oYLwdFUasFvtaFh7w2EMt88f0UBVJXRkdAkm8m+FkAGsKW7UEvY7+97ABqiT/wI/GFAc6s4mHeqcL3G3lqmEdLW28x299gNOxB4npGuAYR0nz1juIfAi8YV0YFgeDzeUEdw6Prk5Oj45It9I/9dFK/QsqiqcwqcLfRH56eWQxLN8j1Dl8zwCX/GRSSXtEgQ501rYLzWCP+aOk8w7b+Dn+xJPVw6UQKWX3uVa37fetBWZ34RMl9KSOcD9k+kFqjuV6Fr9DciRkQXb3ukzo32J5a1tdHCH16eO4WARG8ObMAbh+WNkoTALAeG0H0mTbY4z9H9chaAxWp57AWlRunWcg6TOeEieX5I2wtIVcB+4h+CM5HYgw7vTDqofADCWFIarBAAA",
+          "width": 224.00,
+          "x": 288.00,
+          "y": 48.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "Duplicate of TK FCST CHARTS",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "198c4c49b7ac0eac50f4",
+      "ordinal": 9,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1a88f35fc0d6c1931b97\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 224.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"1ea084e061bf113d927b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":96,\"z\":0,\"width\":1424,\"height\":544,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.SOW\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST TL\"},{\"queryRef\":\"DIM Product.SKU & Desc\"},{\"queryRef\":\"DIM Product.Model\"},{\"queryRef\":\"DIM Product.Customer\"},{\"queryRef\":\"DIM Product.Customer_1\"},{\"queryRef\":\"DIM Product.Private Label\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM Product\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"},\"Name\":\"DIM Date.SOW\",\"NativeReferenceName\":\"SOW\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST TL\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST TL\",\"NativeReferenceName\":\"_BOM FCST TL\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM Product.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Model\"},\"Name\":\"DIM Product.Model\",\"NativeReferenceName\":\"Model\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Customer\"},\"Name\":\"DIM Product.Customer\",\"NativeReferenceName\":\"Customer\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Customer_1\"},\"Name\":\"DIM Product.Customer_1\",\"NativeReferenceName\":\"Customer_1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Private Label\"},\"Name\":\"DIM Product.Private Label\",\"NativeReferenceName\":\"Private Label\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"}}}]},\"columnProperties\":{\"FACT Forecast Adjusted._BOM FCST TL\":{\"displayName\":\"TL FCST\"},\"DIM Date.Full Date - SOW\":{\"formatString\":null},\"DIM Date.SOW\":{\"formatString\":\"d\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"501.2446430825224D\"}}}},\"selector\":{\"metadata\":\"DIM Product.SKU & Desc\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"117.6259547299889D\"}}}},\"selector\":{\"metadata\":\"DIM Date.SOW\"}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 544.00,
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 96.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"781fc0261fb178f4fb8b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":255.6231003039514,\"y\":0,\"z\":2000,\"width\":256.72492401215806,\"height\":80.43313069908815,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM MRP Area.MRP Area\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRP Area\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MRP Area\"},\"Name\":\"DIM MRP Area.MRP Area\",\"NativeReferenceName\":\"MRP Area\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRP Area\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MRP Area\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'73 - Adams'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 80.43,
+          "width": 256.72,
+          "x": 255.62,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"f86c49cc218474c8229e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":559.726443768997,\"y\":0,\"z\":3000,\"width\":353.6854103343465,\"height\":80.43313069908815,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}},\"relativeRange\":{\"expr\":{\"Literal\":{\"Value\":\"'This'\"}}},\"relativeDuration\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"relativePeriod\":{\"expr\":{\"Literal\":{\"Value\":\"'Years'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}},\"Right\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":3}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 80.43,
+          "width": 353.69,
+          "x": 559.73,
+          "y": 0.00,
+          "z": 3000.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "1dbac9c32a079bbdd3b7",
+      "ordinal": 10,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1156bdbf6215edeca69c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":0,\"z\":0,\"width\":1264,\"height\":720,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.KNA Drop Ship\"},{\"queryRef\":\"DIM Customer.Customer Groups\"},{\"queryRef\":\"DIM Customer.Market Org\"},{\"queryRef\":\"DIM Customer.Payer Key\"},{\"queryRef\":\"DIM Customer.Payer & Desc\"},{\"queryRef\":\"DIM Customer.Payer Types.Detail\"},{\"queryRef\":\"DIM Customer.Payer Types.Type\"},{\"queryRef\":\"DIM Customer.Sheet1.Central order block\"},{\"queryRef\":\"DIM Customer.Sheet1.City_3\"},{\"queryRef\":\"DIM Customer.Sheet1.City\"},{\"queryRef\":\"DIM Customer.Sheet1.Country\"},{\"queryRef\":\"DIM Customer.Sheet1.EDI Location Code\"},{\"queryRef\":\"DIM Customer.Sheet1.Fax Number\"},{\"queryRef\":\"DIM Customer.Sheet1.Name 1_1\"},{\"queryRef\":\"DIM Customer.Sheet1.Name 2\"},{\"queryRef\":\"DIM Customer.Sheet1.One-time account\"},{\"queryRef\":\"DIM Customer.Sheet1.Payer Key\"},{\"queryRef\":\"DIM Customer.Sheet1.Name 2_2\"},{\"queryRef\":\"DIM Customer.Sheet1.Postal Code\"},{\"queryRef\":\"DIM Customer.Sheet1.Region\"},{\"queryRef\":\"DIM Customer.Sheet1.Search term\"},{\"queryRef\":\"DIM Customer.Sheet1.Store Number\"},{\"queryRef\":\"DIM Customer.Sheet1.Telephone 1\"},{\"queryRef\":\"DIM Customer.Sheet1.Street\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"},\"Name\":\"DIM Customer.KNA Drop Ship\",\"NativeReferenceName\":\"KNA Drop Ship\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer Groups\"},\"Name\":\"DIM Customer.Customer Groups\",\"NativeReferenceName\":\"Customer Groups\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Market Org\"},\"Name\":\"DIM Customer.Market Org\",\"NativeReferenceName\":\"Market Org\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer Key\"},\"Name\":\"DIM Customer.Payer Key\",\"NativeReferenceName\":\"Payer Key\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer Types.Detail\"},\"Name\":\"DIM Customer.Payer Types.Detail\",\"NativeReferenceName\":\"Payer Types.Detail\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer Types.Type\"},\"Name\":\"DIM Customer.Payer Types.Type\",\"NativeReferenceName\":\"Payer Types.Type\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Central order block\"},\"Name\":\"DIM Customer.Sheet1.Central order block\",\"NativeReferenceName\":\"Sheet1.Central order block\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.City_3\"},\"Name\":\"DIM Customer.Sheet1.City_3\",\"NativeReferenceName\":\"Sheet1.City_3\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.City\"},\"Name\":\"DIM Customer.Sheet1.City\",\"NativeReferenceName\":\"Sheet1.City\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Country\"},\"Name\":\"DIM Customer.Sheet1.Country\",\"NativeReferenceName\":\"Sheet1.Country\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.EDI Location Code\"},\"Name\":\"DIM Customer.Sheet1.EDI Location Code\",\"NativeReferenceName\":\"Sheet1.EDI Location Code\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Fax Number\"},\"Name\":\"DIM Customer.Sheet1.Fax Number\",\"NativeReferenceName\":\"Sheet1.Fax Number\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Name 1_1\"},\"Name\":\"DIM Customer.Sheet1.Name 1_1\",\"NativeReferenceName\":\"Sheet1.Name 1_1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Name 2\"},\"Name\":\"DIM Customer.Sheet1.Name 2\",\"NativeReferenceName\":\"Sheet1.Name 2\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.One-time account\"},\"Name\":\"DIM Customer.Sheet1.One-time account\",\"NativeReferenceName\":\"Sheet1.One-time account\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Payer Key\"},\"Name\":\"DIM Customer.Sheet1.Payer Key\",\"NativeReferenceName\":\"Sheet1.Payer Key\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Name 2_2\"},\"Name\":\"DIM Customer.Sheet1.Name 2_2\",\"NativeReferenceName\":\"Sheet1.Name 2_2\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Postal Code\"},\"Name\":\"DIM Customer.Sheet1.Postal Code\",\"NativeReferenceName\":\"Sheet1.Postal Code\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Region\"},\"Name\":\"DIM Customer.Sheet1.Region\",\"NativeReferenceName\":\"Sheet1.Region\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Search term\"},\"Name\":\"DIM Customer.Sheet1.Search term\",\"NativeReferenceName\":\"Sheet1.Search term\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Store Number\"},\"Name\":\"DIM Customer.Sheet1.Store Number\",\"NativeReferenceName\":\"Sheet1.Store Number\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Telephone 1\"},\"Name\":\"DIM Customer.Sheet1.Telephone 1\",\"NativeReferenceName\":\"Sheet1.Telephone 1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Sheet1.Street\"},\"Name\":\"DIM Customer.Sheet1.Street\",\"NativeReferenceName\":\"Sheet1.Street\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[{\"name\":\"263f7a5cee85de0a4abb\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"Payer & Desc\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'158115-Sam''s Club.Com'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{},\"isHiddenInViewMode\":false}]",
+          "height": 720.00,
+          "width": 1264.00,
+          "x": 16.00,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "12M FCST Pallet",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "43fc39807e5e81837eb1",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0e416f30c4a102615800\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":160,\"z\":0,\"width\":1424,\"height\":624,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Columns\":[{\"queryRef\":\"DIM Date.FOM\",\"active\":true},{\"queryRef\":\"DIM Date.SOW\",\"active\":true}],\"Rows\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true},{\"queryRef\":\"DIM Customer.Customer Groups\"},{\"queryRef\":\"DIM MRPSKU.SKU & Desc\"}],\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Pallet\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM Customer\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d2\",\"Entity\":\"DIM MRPSKU\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Customer Groups\"},\"Name\":\"DIM Customer.Customer Groups\",\"NativeReferenceName\":\"Customer Groups\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FOM\"},\"Name\":\"DIM Date.FOM\",\"NativeReferenceName\":\"FOM\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"},\"Name\":\"DIM Date.SOW\",\"NativeReferenceName\":\"SOW\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM MRPSKU.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Pallet\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Pallet\",\"NativeReferenceName\":\"_BOM FCST Pallet\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"DIM Customer.Payer & Desc\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"Payer & Desc\"}}],\"isPinned\":true},{\"queryRefs\":[\"DIM Customer.Customer Groups\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"Customer Groups\"}}],\"isPinned\":true},{\"queryRefs\":[\"DIM MRPSKU.SKU & Desc\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'246904-Costco Wholesale'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'COSTCO U.S'\"}}],\"isToggled\":true}]}]}}],\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"formatString\":null},\"FACT Forecast Adjusted._BOM FCST Carton\":{\"formatString\":null},\"DIM Date.FOM\":{\"formatString\":\"MM/yy\"},\"DIM Date.SOW\":{\"formatString\":\"d\"},\"FACT Forecast Adjusted._BOM FCST Pallet\":{\"formatString\":\"0\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"59.010017506671346D\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"FOM\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}}}}]}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 624.00,
+          "queryBinary": "H4sIAAAAAAAEALVW227aQBD9ldU+lBcXAUkTiZeKcEkjQqCYwEOFoq09KZvYXmsvLQj53ztrk8TYOCJK8rY7e2bmnJm9bWlXhCGLfEXbv7bUBRxr7v00IDc9ppm7YjHsILS9pemCHcxBKi4i2m45dCBFmLrfsBBom/rUoX0MoxFJe1cjgpEAbbNNjMuNxHlBNovQrlFahCAPwu/z6EGnOyMDIcFjSpOO/4Ce4B9O0yqmGU0n7vA2B146KD4AT6dCuiIwYWR19texBJVJxfoIIz2Ywv3LJFORJA6dSBGDTFM8qSCXUphYUVzdUclrrBdhFqX5X5sAJEQe7JzK4d5MschwMB4VWNkm1a25ikXm8u7M7nhxKLM1V2XOXN7flgnbYBG/kB4or6one5gqQoVAb2bWKhVleHuYV7ZR67n1yiLlQ2zpCJgyEo6ldF9kdHcxHpFB152RCQsC0Dleh09eveRRxbQcGk/fYgWWbXr4Ip/rHdurQlHVh5zP4U2H9HBK3BWPcRHzz1lgwEbH8Ndcg2RBes9ZM3rUxhoJ1ix2mSRZyz+aZmlXYPNJRwI7juHZ+d3p2fkp+Up6P64/lWlps9iGpjfpMUQjEwQpsELHgEdcrcAnl0L46nNLXroWjcZD8/24gvfXGiIfiY6NDoR4rL2qKo38KmS24oosAB6fNS+R3QVH0dEfi5xIHrLs/U1fAjRnqlHBA75duyqc2MfM/NZC2wTNNIoLHhbvCOfmnnPLln0f0HK+FSA2vv0sTME33lN7rGFum4HSTpw89QUKEv/sqCtMhA9us9FIihRnIi4iEPL862jipL8Gz9h0I9CSe2rI7R+laav2H0hblHHXCAAA",
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 160.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"1a6db20f5cc4747e6ea1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":768,\"y\":48,\"z\":3000,\"width\":320,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.KNA Drop Ship\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"},\"Name\":\"DIM Customer.KNA Drop Ship\",\"NativeReferenceName\":\"KNA Drop Ship\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Other'\"}}]]}}}]}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXW/aMBT9K5ZfeMmm0lWtxMtEIekqCmXA4GFCk2VfFreJHfljAyH+e69NOljWVZ008uRcn3vuOUe2t7Sny5IpYWnn65ZOAddO8s8ezKbPHJvmrIIaQjtbGjfCYg7GSq1o5zyhmdFlbB+xEmiHCprQFGkcImn/dkh63jpdgsH6bFMh5GyXHNDtJnw4GU8HX14Er46xWbc3I5k2wJl1pCsecAyIl4ecN4egOziCLhM0XwB30UhPF75UwWe6rgzYvVXMR3vDYQKrw0/0u9sldGx0BSbyD0Zd0sdfMs1lRXGvVnGcxfvfQQHj5I/ADQYUh7qlQYUyFzkCapVKSFdLG2n3p97bhgd7AndB05wVHgI5st9JB4YV8ZCEMnYoXxQBuNyFL2ko/y8i202VeIhI1wB7k8DW5dW3i8urC/KO9D/dtZ61nkLpqin0+n5I4in8lySTv/jIpJI2B0FutBb2pEbwSjWcZN55Ax/flni6dqAEKr33rtD6sfWqrcj8KmSWS0sWAI+/TC9R3bVE1+p7QI6NLNn+8box2ldY3ttGBw948esYzpaxMTx+ExCeP0cWCvMQEE77kByzLXCG/omrEDRGywsvIC0rt4lzkNQZD8nhyWwjLF0D94F7CM5IbgcyPLDtoPoJGM5AxZQFAAA=",
+          "width": 320.00,
+          "x": 768.00,
+          "y": 48.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"393159f60a2402894e00\",\"layouts\":[{\"id\":0,\"position\":{\"x\":512,\"y\":48,\"z\":2000,\"width\":240,\"height\":80,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[{\"name\":\"76b9eaaa2f0bc17ae58a\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAMWUb0/bMBDGv4rlNx1SNi2sAqlvptImUEFGRzt4garJcq6tIbEj/5laVfnunJ2yVF1BaGLau/juubvfYzve0IEqSyZzQ3v3GzoB/LaCf3eg10Nm2WTJKthKaG9DQ8J/3II2QknaO45oqlUZyr+xEmiP5jSiCbaxqKTDUUawE2Bsuq4w/bmOWmW8L81uxpPLHwfF811t2h9MSao0cGYs6ecPzljId+pmEbopgNtANlCFK6UHT1aVBtOwo2HlNIcbmLeLYKCuIzrWqgLdTHNF0bjA+Bbn2dinNulzVvzy/UCD5LCV7pZvaH+x0LBAoToA9H6gmEid5M2YLy13JuSHP9mP/htadweNrQ6j4WHeLXFLt2cpc/GMONoDMn9z3PE+K95C0tfAMI6jb1nhwDfGzlfCgmZF+AV8GMWdk9Of3ZPTLvlIhhdXHV8zq2u/ne9OOt8HPbvOSLjxbwGVuKNB+IKPVEhhlpCTc6Vy80+NHLgd1mn4+rYNT1YWZI6g184WSj12XnUVOr8qmS6FIXcAj789z5DuTKBpufDKsRYlax6+c61cheHGNTp4gHCR/TqOjmehdCR54XJIysquQwFmrXYQte9mjLJkBdz54gysFtxcCv/Kxn78E70CPKGZBQAA",
+          "width": 240.00,
+          "x": 512.00,
+          "y": 48.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"a359f231e8357c16e66d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1104,\"y\":48,\"z\":4000,\"width\":320,\"height\":80,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"selfFilter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Contains\":{\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"}},\"Right\":{\"Literal\":{\"Value\":\"'walmart.com'\"}}}},\"Annotations\":{\"PowerBI.MParameterBehavior\":1}}]}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAM1VXW/aMBT9K5YflpesKqxqJV4mSkhXUT4GDB4mNFnOpXGbxJE/VhDiv+/apINmrOqkIi1Ptu/xueecxPGGdmSesyLRtPV9QyeAYyP4VwtqHTHDJikroYLQ1ob6ghvMQGkhC9pqhjRWMvfbBywH2qIJDWkXaQwiaXTbJx2rjcxB4fp0XSLkfBvu0Y06vD8eTXrfjoKXh9i43ZmSWCrgTBvSTh6wDSTHmzTrTdAdHEAXIZrPgBtvpCMzmxfOZ3dVKtA7q5iPtIrDGJb7ife73YZ0pGQJyvOP2BoU+UAi0JxiqRJxGMXZC4yDGPHTMYOCgkO14yURapynWK8kFokwla6BNH+Kva0Z0O9hrTdokwinZJKKEouoacYyC44c2e+EAcUy/4W4ZdxR2CxzwMXWPWFNOU4ME04bboal2a29Y/pYG4v71BMfURc8sSxnypxxmQf0qMT/JMdgaPDlB89RnkRloy4TjyJpK2BvU3h59ePi8uqCfCTRl7uTKl3WhV4P+8Sf5X/5JMO/+IhFIXQKCbmRMtGnjbxZdxJbYxV8flvi3ZWBIkGlQ2syKR+DV2155lch01RoMgd4/G16gequBbou7h1ypAQeF38F3ChpS1ze2UYHD/j7rGI4X/iN7goZQ2L5c2RuYeYCwm6fwkO2OfaQTzhyQWO0PLMJdPPSrH0fJDXKQri/eBoI666AW8fdB6ME1z3hrqmGU/0L8zserdoGAAA=",
+          "width": 320.00,
+          "x": 1104.00,
+          "y": 48.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"af736e3307b5c1ca6113\",\"layouts\":[{\"id\":0,\"position\":{\"x\":272,\"y\":48,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXW/aMBT9K5ZfeMmmwqpW4mWikHQVpTBg8FChyYpvF7eJHfljA6H8912brI0yWqFpfbN9zz33nBPHezpURcEkN7R/v6cLwLUV6VcHejdili0yVkINof09DQW/WIE2Qkna70U00aoI7XesANqnDzSiMdJYRNJkMFySRGlImbFkwB+dscARsdyVCD6rouc+3uwb3UzIELGqAH0c3W3DJ/PZYvztOLjXBqM7aEA3EZrPIbXByFDlrpDeZ7wtNZiDVcxHOZ3CHB5eNsFvVUV0plUJOvAfhJAx7CgWagnHg/jYwHqoFT89P2iQKdSdTTrUuc6wWsuUXNha201Lr/kHJ7ztZHw3ICPckkUmSizi+BXLHXhyZL8VFjTLw4Xwx9jRmVrU1/HYTVX5T/D/VXaPBE4GGthpCi8uv59fXJ6TD2T05fZdlf51M66mExKu3ClCpcvzAHzFRyKkMBlwcq0UN+8bea/tJHHWafh8WuLx1oLkqHTqbK7UU+dNW4H5TcgyE4asAZ6eTW9Q3ZVA1/KHR860KNjhpbrWypV4fLCNDh7xL69jONuERv/SzYG79E9k/mDlA8Jpn6Im2xpnqF+48kFjtGnuOMRFaXdhDpJa7SB6eR+7CIu3kDrPPQGrRWrGwr+mXa/6N9B6wSeBBQAA",
+          "width": 224.00,
+          "x": 272.00,
+          "y": 48.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "ALL FCST CHARTS",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "47382f95f732359dfbef",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0865d6a1178a53db4f4a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":96,\"z\":0,\"width\":1440,\"height\":544,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineClusteredColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DIM Date.Full Date - SOW\",\"active\":true},{\"queryRef\":\"DIM Date.Week of Year\",\"active\":true}],\"Y\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Cont\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST TL\"}],\"Y2\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Pallet\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date - SOW\"},\"Name\":\"DIM Date.Full Date - SOW\",\"NativeReferenceName\":\"Week\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Cont\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Cont\",\"NativeReferenceName\":\"Container FCST\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST TL\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST TL\",\"NativeReferenceName\":\"TL FCST\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Pallet\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Pallet\",\"NativeReferenceName\":\"Pallet FCST\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Week of Year\"},\"Name\":\"DIM Date.Week of Year\",\"NativeReferenceName\":\"Week of Year\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date - SOW\"}}},{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Week of Year\"}}}]},\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"displayName\":\"Week\",\"formatString\":\"d\"},\"FACT Forecast Adjusted._BOM FCST Pallet\":{\"displayName\":\"Pallet FCST\"},\"FACT Forecast Adjusted._BOM FCST Cont\":{\"displayName\":\"Container FCST\"},\"FACT Forecast Adjusted._BOM FCST TL\":{\"displayName\":\"TL FCST\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryAxis\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"axisType\":{\"expr\":{\"Literal\":{\"Value\":\"'Categorical'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 544.00,
+          "queryBinary": "H4sIAAAAAAAEALVW30/iQBD+V5p98aUayhFNeLnwQzwjCGcL5HIxZtMdjtW222y3p8TwvzuzBYsVDN4JL3R3Zr79vunMdJ9ZR8UxT0TGmr+fmQ/4bGT4Mwe96HLD/TlPYeXCms/MGuhhAjqTKmHNust6WsU2/JrHwJpMMJedI4xBT9a9HDiIBLgXLFI015buq+ds07PX6gROT2kIeWaclrjPMwNia5zwqkcMbkb+1XjD+dZFNRGExjLrqCiPEyJ+/pRqyAruKFjlOoQbmJULK2C5dNlIqxR0QS2PIqvCOXb84ZShdcVkLe+k6kIeRv4lbNCQhLAKmAI8MJIyAJ7lGvblNKtyumsPB06v4wdORyVmg9L2PJ5U/HfxIyOXCWjr+8VMg/5neKL3LpZB/xD0RjyK4FOpXEXsolmYS6r/WYZUO46aOb+A6201+Mb+UQGWINgm0zlQ9myXJEKaFac2mEeALWS/qpesoa8eQbdVXowX2vZTvgX8Wj3iH0UEMoZxIg01OS7HaboXAFlaQnzCUB7ZihEfDzz23h2/Nnn1TZP3jij+3EqCLysss3+ZVF41vTgInZYGjvv4bic8yoGAEbkvDWge2elN2+h8dHp21zg9a+DM6v7oH1HM7YGYvms76iE7rPchmmDRWMcdOnoykdkchHOhlMgOKmRLQRscP9/3S/j5k4FEINFhbiKlHo4+VGWRP3QJ5jJzqKVfNSOJoRbYEwsrritxehX6sXoP08nrr6JN+AEPfDu6UCqa2xLfb/KHAkdaxry4nlxolae4XbxghLgvONG65npu3f3mNm4tAF1zbkDkoSkHAp8QUeTQcDdRp3iWHQoopOj6Wo162y2vQ96SNEOYE9oAjJZhdiVpOHnE9wVoz00gcAkAAA==",
+          "width": 1440.00,
+          "x": 0.00,
+          "y": 96.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"21ab46dae09c4c710b11\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUTW/iMBD9K5EvXNJV061aicuKj6SLgJbl87BClRVPF7eJHTn2AkL8946dbIkgrehK5ULiefPmvcmMd6Qj05QKlpPm7x2ZAD5rHv8yoLZdqulkRTMoIaS5Iy5gH+agci4FaV75JFIyden3NAXSJE/EJyHSaESSqNWZepFUENNcey32bHINDBHTbYbgy73/lseqed3e0EMFUI8MjqHD8WjSn1XASx/dJBBrp6wjE5MKKzzcZAryQjsalkbFMIanw4szsN/7ZKRkBspVKNi9PmwJBkoR9c6+VbAWqvlfyw8KRAxlZpUOdS5WGC1lCsZ1qa0Neg1QI/pzZtixmcgkSdFaGxjINai2NMX3tceTjNaQ38s1/tmMKU9hJri2XcbXWZadRWAjLcY+ETiUbKXIjwUvgpPy/0LBVTUUnAjFn3/U4N6Ryvw/RgUn8XRWvJYCiuf4bec0MWCJkXnANSiauPWxxwhu3Nw+Xt/cXnsXXvfnoGFzll+k9GSo2w9Dz23LOUIFDo0DvuMj4oLnK2DenZQs/1IjNQOtjYIf5zU83GgQDIU+GJ1I+dL40JVj/hAyXfHcWwC8vHleoro2R9Pij0WOFE9pcWneKWkyPC5co4NnvJ/KLlwuXaK9dMfATKwP20Hntj9Y7btfZVtgjXJDMLEn4sQwCNNMb10dJNXKgH+4qgOEhRuIjeUeglY8zvvc7m1gVb8C0yWmAgwGAAA=",
+          "width": 224.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"5a5504873816b10ddc6a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":272,\"y\":0,\"z\":3000,\"width\":240,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}},\"relativeRange\":{\"expr\":{\"Literal\":{\"Value\":\"'Next'\"}}},\"relativeDuration\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"relativePeriod\":{\"expr\":{\"Literal\":{\"Value\":\"'Weeks'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":0}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-1,\"TimeUnit\":0}},\"Amount\":12,\"TimeUnit\":1}},\"TimeUnit\":0}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 240.00,
+          "x": 272.00,
+          "y": 0.00,
+          "z": 3000.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "Container FCST CHARTS",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "96a1cd0280de52bcc712",
+      "ordinal": 6,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"737b787ce67b2626cab0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":0,\"z\":3000,\"width\":272,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}},\"relativeRange\":{\"expr\":{\"Literal\":{\"Value\":\"'Next'\"}}},\"relativeDuration\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"relativePeriod\":{\"expr\":{\"Literal\":{\"Value\":\"'Weeks'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":0}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-1,\"TimeUnit\":0}},\"Amount\":10,\"TimeUnit\":1}},\"TimeUnit\":0}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 272.00,
+          "x": 16.00,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"df1c78efd1bc2978e5f0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":96,\"z\":0,\"width\":1424,\"height\":544,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Cont\"}],\"Category\":[{\"queryRef\":\"DIM Date.Full Date - SOW\",\"active\":true},{\"queryRef\":\"DIM Date.Week of Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date - SOW\"},\"Name\":\"DIM Date.Full Date - SOW\",\"NativeReferenceName\":\"Week\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Cont\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Cont\",\"NativeReferenceName\":\"Container FCST\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Week of Year\"},\"Name\":\"DIM Date.Week of Year\",\"NativeReferenceName\":\"Week of Year\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date - SOW\"}}},{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Week of Year\"}}}]},\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"displayName\":\"Week\",\"formatString\":\"d\"},\"FACT Forecast Adjusted._BOM FCST Cont\":{\"displayName\":\"Container FCST\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryAxis\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"axisType\":{\"expr\":{\"Literal\":{\"Value\":\"'Categorical'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Future?\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Future'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 544.00,
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 96.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "Adj FCST",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "9bdb13e43cea96c84e22",
+      "ordinal": 8,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"77f83f7023464c405b42\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 224.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"cce088f21ca7e20dc48b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":96,\"z\":0,\"width\":1424,\"height\":688,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Columns\":[{\"queryRef\":\"DIM Date.SOW\",\"active\":true},{\"queryRef\":\"DIM Date.Full Date\"}],\"Values\":[{\"queryRef\":\"Sum(FACT Forecast Adjusted.Combined Qty)\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Cont\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST TL\"},{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Pallet\"}],\"Rows\":[{\"queryRef\":\"DIM Product.SKU & Desc\",\"active\":true},{\"queryRef\":\"DIM MRP Area.MRP Area\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d2\",\"Entity\":\"DIM Product\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM MRP Area\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Combined Qty\"}},\"Function\":0},\"Name\":\"Sum(FACT Forecast Adjusted.Combined Qty)\",\"NativeReferenceName\":\"Unit FCST\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM Product.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"MRP Area\"},\"Name\":\"DIM MRP Area.MRP Area\",\"NativeReferenceName\":\"MRP Area\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Cont\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Cont\",\"NativeReferenceName\":\"Cont FCST\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Pallet\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Pallet\",\"NativeReferenceName\":\"Pallet FCST\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST TL\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST TL\",\"NativeReferenceName\":\"TL FCST\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"},\"Name\":\"DIM Date.SOW\",\"NativeReferenceName\":\"SOW\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"DIM Product.SKU & Desc\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"SKU & Desc\"}}],\"isPinned\":true},{\"queryRefs\":[\"DIM MRP Area.MRP Area\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"formatString\":null},\"Sum(FACT Forecast Adjusted.Combined Qty)\":{\"displayName\":\"Unit FCST\"},\"DIM Date.SOW\":{\"formatString\":\"d\"},\"FACT Forecast Adjusted._BOM FCST Cont\":{\"displayName\":\"Cont FCST\"},\"FACT Forecast Adjusted._BOM FCST TL\":{\"displayName\":\"TL FCST\"},\"FACT Forecast Adjusted._BOM FCST Pallet\":{\"displayName\":\"Pallet FCST\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"subTotals\":[{\"properties\":{\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"general\":[{\"properties\":{\"layout\":{\"expr\":{\"Literal\":{\"Value\":\"'Tabular'\"}}}}}],\"rowHeaders\":[{\"properties\":{\"repeatRowHeaders\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"wordWrap\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showExpandCollapseButtons\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"values\":[{\"properties\":{\"bandedRowHeaders\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"valuesOnRow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}},{\"name\":\"aaf628c473e7e4e54958\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"SKU & Desc\"}},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 688.00,
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 96.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"d34fe4b3fe711c618d40\",\"layouts\":[{\"id\":0,\"position\":{\"x\":255.6231003039514,\"y\":0,\"z\":2000,\"width\":256.72492401215806,\"height\":80.43313069908815,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM MRP Area.MRP Area\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRP Area\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MRP Area\"},\"Name\":\"DIM MRP Area.MRP Area\",\"NativeReferenceName\":\"MRP Area\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.43,
+          "width": 256.72,
+          "x": 255.62,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"f54d7dbf46ae8bdfcb74\",\"layouts\":[{\"id\":0,\"position\":{\"x\":559.726443768997,\"y\":0,\"z\":3000,\"width\":247.91033434650458,\"height\":80.43313069908815,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 80.43,
+          "width": 247.91,
+          "x": 559.73,
+          "y": 0.00,
+          "z": 3000.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "Pallet FCST CHARTS",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "a15f7069b9c913d88faa",
+      "ordinal": 7,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"01da336ab508dad09726\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 224.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"30b19dec7d8ca7bf72bc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":96,\"z\":0,\"width\":1424,\"height\":544,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Pallet\"}],\"Category\":[{\"queryRef\":\"DIM Date.Full Date - SOW\",\"active\":true},{\"queryRef\":\"DIM Date.Week of Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date - SOW\"},\"Name\":\"DIM Date.Full Date - SOW\",\"NativeReferenceName\":\"Week\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Pallet\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Pallet\",\"NativeReferenceName\":\"Pallet FCST\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Week of Year\"},\"Name\":\"DIM Date.Week of Year\",\"NativeReferenceName\":\"Week of Year\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date - SOW\"}}},{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Week of Year\"}}}]},\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"displayName\":\"Week\",\"formatString\":\"d\"},\"FACT Forecast Adjusted._BOM FCST Pallet\":{\"displayName\":\"Pallet FCST\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryAxis\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"axisType\":{\"expr\":{\"Literal\":{\"Value\":\"'Categorical'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Future?\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Future'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 544.00,
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 96.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"d9b3d9874d3a71380a3e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":256,\"y\":0,\"z\":3000,\"width\":256,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}},\"relativeRange\":{\"expr\":{\"Literal\":{\"Value\":\"'Next'\"}}},\"relativeDuration\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"relativePeriod\":{\"expr\":{\"Literal\":{\"Value\":\"'Weeks'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":0}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":-1,\"TimeUnit\":0}},\"Amount\":10,\"TimeUnit\":1}},\"TimeUnit\":0}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 256.00,
+          "x": 256.00,
+          "y": 0.00,
+          "z": 3000.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{}",
+      "displayName": "12M FCST Cases",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "af967965a60aaa821b94",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"37ac7e76b73d1ca2a505\",\"layouts\":[{\"id\":0,\"position\":{\"x\":768,\"y\":48,\"z\":3000,\"width\":320,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.KNA Drop Ship\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"},\"Name\":\"DIM Customer.KNA Drop Ship\",\"NativeReferenceName\":\"KNA Drop Ship\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Other'\"}}]]}}}]}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXW/aMBT9K5ZfeMmm0lWtxMtEIekqCmXA4GFCk2VfFreJHfljAyH+e69NOljWVZ008uRcn3vuOUe2t7Sny5IpYWnn65ZOAddO8s8ezKbPHJvmrIIaQjtbGjfCYg7GSq1o5zyhmdFlbB+xEmiHCprQFGkcImn/dkh63jpdgsH6bFMh5GyXHNDtJnw4GU8HX14Er46xWbc3I5k2wJl1pCsecAyIl4ecN4egOziCLhM0XwB30UhPF75UwWe6rgzYvVXMR3vDYQKrw0/0u9sldGx0BSbyD0Zd0sdfMs1lRXGvVnGcxfvfQQHj5I/ADQYUh7qlQYUyFzkCapVKSFdLG2n3p97bhgd7AndB05wVHgI5st9JB4YV8ZCEMnYoXxQBuNyFL2ko/y8i202VeIhI1wB7k8DW5dW3i8urC/KO9D/dtZ61nkLpqin0+n5I4in8lySTv/jIpJI2B0FutBb2pEbwSjWcZN55Ax/flni6dqAEKr33rtD6sfWqrcj8KmSWS0sWAI+/TC9R3bVE1+p7QI6NLNn+8box2ldY3ttGBw948esYzpaxMTx+ExCeP0cWCvMQEE77kByzLXCG/omrEDRGywsvIC0rt4lzkNQZD8nhyWwjLF0D94F7CM5IbgcyPLDtoPoJGM5AxZQFAAA=",
+          "width": 320.00,
+          "x": 768.00,
+          "y": 48.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"59191833da74dd771b06\",\"layouts\":[{\"id\":0,\"position\":{\"x\":272,\"y\":48,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALVUXW/aMBT9K5ZfeMmmwqpW4mWikHQVpTBg8FChyYpvF7eJHfljA6H8912brI0yWqFpfbN9zz33nBPHezpURcEkN7R/v6cLwLUV6VcHejdili0yVkINof09DQW/WIE2Qkna70U00aoI7XesANqnDzSiMdJYRNJkMFySRGlImbFkwB+dscARsdyVCD6rouc+3uwb3UzIELGqAH0c3W3DJ/PZYvztOLjXBqM7aEA3EZrPIbXByFDlrpDeZ7wtNZiDVcxHOZ3CHB5eNsFvVUV0plUJOvAfhJAx7CgWagnHg/jYwHqoFT89P2iQKdSdTTrUuc6wWsuUXNha201Lr/kHJ7ztZHw3ICPckkUmSizi+BXLHXhyZL8VFjTLw4Xwx9jRmVrU1/HYTVX5T/D/VXaPBE4GGthpCi8uv59fXJ6TD2T05fZdlf51M66mExKu3ClCpcvzAHzFRyKkMBlwcq0UN+8bea/tJHHWafh8WuLx1oLkqHTqbK7UU+dNW4H5TcgyE4asAZ6eTW9Q3ZVA1/KHR860KNjhpbrWypV4fLCNDh7xL69jONuERv/SzYG79E9k/mDlA8Jpn6Im2xpnqF+48kFjtGnuOMRFaXdhDpJa7SB6eR+7CIu3kDrPPQGrRWrGwr+mXa/6N9B6wSeBBQAA",
+          "width": 224.00,
+          "x": 272.00,
+          "y": 48.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"a5d670e0860e02805b9a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":512,\"y\":48,\"z\":2000,\"width\":240,\"height\":80,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[{\"name\":\"76b9eaaa2f0bc17ae58a\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAMWUb0/bMBDGv4rlNx1SNi2sAqlvptImUEFGRzt4garJcq6tIbEj/5laVfnunJ2yVF1BaGLau/juubvfYzve0IEqSyZzQ3v3GzoB/LaCf3eg10Nm2WTJKthKaG9DQ8J/3II2QknaO45oqlUZyr+xEmiP5jSiCbaxqKTDUUawE2Bsuq4w/bmOWmW8L81uxpPLHwfF811t2h9MSao0cGYs6ecPzljId+pmEbopgNtANlCFK6UHT1aVBtOwo2HlNIcbmLeLYKCuIzrWqgLdTHNF0bjA+Bbn2dinNulzVvzy/UCD5LCV7pZvaH+x0LBAoToA9H6gmEid5M2YLy13JuSHP9mP/htadweNrQ6j4WHeLXFLt2cpc/GMONoDMn9z3PE+K95C0tfAMI6jb1nhwDfGzlfCgmZF+AV8GMWdk9Of3ZPTLvlIhhdXHV8zq2u/ne9OOt8HPbvOSLjxbwGVuKNB+IKPVEhhlpCTc6Vy80+NHLgd1mn4+rYNT1YWZI6g184WSj12XnUVOr8qmS6FIXcAj789z5DuTKBpufDKsRYlax6+c61cheHGNTp4gHCR/TqOjmehdCR54XJIysquQwFmrXYQte9mjLJkBdz54gysFtxcCv/Kxn78E70CPKGZBQAA",
+          "width": 240.00,
+          "x": 512.00,
+          "y": 48.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"c26b8a8b6172674fb1cf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1104,\"y\":48,\"z\":4000,\"width\":320,\"height\":80,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-03-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"selfFilter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Contains\":{\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Payer & Desc\"}},\"Right\":{\"Literal\":{\"Value\":\"'walmart.com'\"}}}},\"Annotations\":{\"PowerBI.MParameterBehavior\":1}}]}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"0e103ed66b7177203038\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"KNA Drop Ship\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"KNA Drop Ship\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAM1VXW/aMBT9K5YflpesKqxqJV4mSkhXUT4GDB4mNFnOpXGbxJE/VhDiv+/apINmrOqkIi1Ptu/xueecxPGGdmSesyLRtPV9QyeAYyP4VwtqHTHDJikroYLQ1ob6ghvMQGkhC9pqhjRWMvfbBywH2qIJDWkXaQwiaXTbJx2rjcxB4fp0XSLkfBvu0Y06vD8eTXrfjoKXh9i43ZmSWCrgTBvSTh6wDSTHmzTrTdAdHEAXIZrPgBtvpCMzmxfOZ3dVKtA7q5iPtIrDGJb7ife73YZ0pGQJyvOP2BoU+UAi0JxiqRJxGMXZC4yDGPHTMYOCgkO14yURapynWK8kFokwla6BNH+Kva0Z0O9hrTdokwinZJKKEouoacYyC44c2e+EAcUy/4W4ZdxR2CxzwMXWPWFNOU4ME04bboal2a29Y/pYG4v71BMfURc8sSxnypxxmQf0qMT/JMdgaPDlB89RnkRloy4TjyJpK2BvU3h59ePi8uqCfCTRl7uTKl3WhV4P+8Sf5X/5JMO/+IhFIXQKCbmRMtGnjbxZdxJbYxV8flvi3ZWBIkGlQ2syKR+DV2155lch01RoMgd4/G16gequBbou7h1ypAQeF38F3ChpS1ze2UYHD/j7rGI4X/iN7goZQ2L5c2RuYeYCwm6fwkO2OfaQTzhyQWO0PLMJdPPSrH0fJDXKQri/eBoI666AW8fdB6ME1z3hrqmGU/0L8zserdoGAAA=",
+          "width": 320.00,
+          "x": 1104.00,
+          "y": 48.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"fdae38320467007c6d51\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":160,\"z\":0,\"width\":1424,\"height\":624,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Columns\":[{\"queryRef\":\"DIM Date.FOM\",\"active\":true},{\"queryRef\":\"DIM Date.SOW\",\"active\":true}],\"Rows\":[{\"queryRef\":\"DIM Customer.Payer & Desc\",\"active\":true},{\"queryRef\":\"DIM Customer.Customer Groups\"},{\"queryRef\":\"DIM MRPSKU.SKU & Desc\"}],\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST Carton\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM Customer\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d2\",\"Entity\":\"DIM MRPSKU\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Customer Groups\"},\"Name\":\"DIM Customer.Customer Groups\",\"NativeReferenceName\":\"Customer Groups\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST Carton\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST Carton\",\"NativeReferenceName\":\"_BOM FCST Carton\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FOM\"},\"Name\":\"DIM Date.FOM\",\"NativeReferenceName\":\"FOM\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"},\"Name\":\"DIM Date.SOW\",\"NativeReferenceName\":\"SOW\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Payer & Desc\"},\"Name\":\"DIM Customer.Payer & Desc\",\"NativeReferenceName\":\"Payer & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM MRPSKU.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"DIM Customer.Payer & Desc\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"Payer & Desc\"}}],\"isPinned\":true},{\"queryRefs\":[\"DIM Customer.Customer Groups\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Customer\"}},\"Property\":\"Customer Groups\"}}],\"isPinned\":true},{\"queryRefs\":[\"DIM MRPSKU.SKU & Desc\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'246904-Costco Wholesale'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'COSTCO U.S'\"}}],\"isToggled\":true}]}]}}],\"columnProperties\":{\"DIM Date.Full Date - SOW\":{\"formatString\":null},\"FACT Forecast Adjusted._BOM FCST Carton\":{\"formatString\":\"0\"},\"DIM Date.FOM\":{\"formatString\":\"MM/yy\"},\"DIM Date.SOW\":{\"formatString\":\"d\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"59.010017506671346D\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"FOM\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2026-03-01T00:00:00'\"}}}}}]}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 624.00,
+          "queryBinary": "H4sIAAAAAAAEALVWXU/iQBT9K5N5WF66BNBowssGC7gGEaQIDxtiZtvLMtp2mvnYhZD+973TokChBqO+zce5955z5nNNXRFFLA4Ubf5aUw+wrbl/b0Cu2kwzb8ES2EBoc02zCduYgFRcxLTZcGhXiigLv2MR0CYNqEM7mEYjkrZv+gQzAY6NVwlO11Jni6wXoa5RWkQgj8Lnu+huyx2TrpDgM6VJK3jCSAiOl2kUy/RHQ6/3sAOeOSg+BF9nQlwRmii2OjvLRILKpaI/wkgfRjDfdnIVaerQoRQJyKzEiwpyLYVJFMXZDZVdjdUizKI0/2sLgITYh03QYbo17QNTRsKpHOdFio9Xgz7put6YuExqDN1yPO5s9SCijO6R1O+2tEi3O+gXXLSbqmqHy2jkIR+u7A2mxyrb4bLKecjHt9GQrXDRv5E2KL9sD+1hyggVEr2bWePAlN7DcV75waruzJeatJMCT990AXY3Z4cvDrjeELopkFSfcj57dy3Sxi7xFjzBSaw/YaEBmx3T33INkoXZPWeHMaIy0EiwYrGzNM0t/GyaBy6jmaQlgZ3G8OLy8fzi8px8J+2ft1/K9OAysQc+u0lPIRqbMMyAJTq6POZqAQG5FiJQX2v5wTVjNF6qP04zvLPUEAdIdGB0KMRz5U1VWeY3IeMFV2QK8PyqeYbsrjiKjv9Y5FDyiOXvb/YS4HCuGhU84du1ceHcPmbmtxbaFqhnWTzw0bwTght7wQ1r+z6g7pwVIDa//SyMIDD+y/LYgYldDJR25uxSn6Ig8c+2XGFifHDrtVpapDgWSRGBkNdfRx07nSX4xpbrg5bcVz1u/yh169p/BFTBo9cIAAA=",
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 160.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1450.00
+    },
+    {
+      "config": "{\"visibility\":1}",
+      "displayName": "TK FCST CHARTS",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 800.00,
+      "name": "e57a9db509eceb03e32b",
+      "ordinal": 5,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0793d653564f484c02a7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":96,\"z\":0,\"width\":1424,\"height\":544,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineStackedColumnComboChart\",\"projections\":{\"Y\":[{\"queryRef\":\"FACT Forecast Adjusted._BOM FCST TL\"}],\"Y2\":[{\"queryRef\":\"select\"}],\"Category\":[{\"queryRef\":\"DIM Date.SOW\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_BOM FCST TL\"},\"Name\":\"FACT Forecast Adjusted._BOM FCST TL\",\"NativeReferenceName\":\"_BOM FCST TL\"},{\"NativeVisualCalculation\":{\"Language\":\"dax\",\"Expression\":\"MOVINGAVERAGE([_BOM FCST TL], 30)\",\"Name\":\"Moving average\"},\"Name\":\"select\",\"NativeReferenceName\":\"Moving average\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"},\"Name\":\"DIM Date.SOW\",\"NativeReferenceName\":\"SOW\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SOW\"}}}]},\"columnProperties\":{\"FACT Forecast Adjusted._BOM FCST TL\":{\"displayName\":\"TL FCST\"},\"DIM Date.Full Date - SOW\":{\"formatString\":null},\"DIM Date.SOW\":{\"formatString\":\"d\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryAxis\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"axisType\":{\"expr\":{\"Literal\":{\"Value\":\"'Categorical'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"c77c7e0b181a227aa7c0\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 544.00,
+          "width": 1424.00,
+          "x": 16.00,
+          "y": 96.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"679b336e0327b8058d76\",\"layouts\":[{\"id\":0,\"position\":{\"x\":240,\"y\":0,\"z\":3000,\"width\":352,\"height\":80,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Date.Full Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"},\"Name\":\"DIM Date.Full Date\",\"NativeReferenceName\":\"Full Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}},\"relativeRange\":{\"expr\":{\"Literal\":{\"Value\":\"'This'\"}}},\"relativeDuration\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"relativePeriod\":{\"expr\":{\"Literal\":{\"Value\":\"'Years'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Full Date\"}},\"Right\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":3}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 352.00,
+          "x": 240.00,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"6f801185115e07adc00e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":224,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"FACT Forecast Adjusted.MRPSKU Key\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Forecast Adjusted\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MRPSKU Key\"},\"Name\":\"FACT Forecast Adjusted.MRPSKU Key\",\"NativeReferenceName\":\"MRPSKU Key\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 224.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1450.00
+    }
+  ],
+  "theme": "Temperature0685712881716225.json"
+}

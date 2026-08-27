@@ -1,0 +1,39 @@
+table 'Dim Company Code'
+	lineageTag: 5edc2222-cf84-44d8-a6bd-e22f20eeb827
+
+	column CompanyCodeDesc
+		dataType: string
+		lineageTag: 4f49961d-3ead-4761-976b-14ee93245d2c
+		summarizeBy: none
+		sourceColumn: CompanyCodeDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCodeKey
+		dataType: string
+		lineageTag: c408ffd6-b45e-41fb-8cc4-17e9f8fc1e78
+		summarizeBy: none
+		sourceColumn: CompanyCodeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Company Code' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Company Code]", {"[Dim Company Code].[CompanyCodeDesc].[CompanyCodeDesc]", "[Dim Company Code].[CompanyCodeKey].[CompanyCodeKey]"}, {"Dim Company Code.CompanyCodeDesc", "Dim Company Code.CompanyCodeKey"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Company Code.CompanyCodeDesc", "CompanyCodeDesc"}, {"Dim Company Code.CompanyCodeKey", "CompanyCodeKey"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

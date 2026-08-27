@@ -1,0 +1,20 @@
+relationship f98caa75-0a02-8eef-37a8-b69f30a392ab
+	fromColumn: 'FACT YS10N'.FSL_SOLDTO
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship f278acf7-8e1e-50bf-76df-98adc2d22a66
+	fromColumn: 'FACT YS10N'.Plant
+	toColumn: 'DIM Plant'.'Plant Key'
+
+relationship 0c98163f-c64d-aa97-5b0f-2fc7ffad5d5e
+	fromColumn: 'FACT YS10N'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 3fab9ded-c6e3-8827-8988-71e836a833c2
+	fromColumn: 'FACT YS10N'.'Fact Service Level.Order with Line Number'
+	toColumn: 'FACT YS10N Open'.SalesOrderItem
+
+relationship cc3a49c9-72c7-7d84-c90e-0bdf6ab3b9e8
+	fromColumn: 'FACT YS10N'.'Fact Service Level.On Time date'
+	toColumn: 'DIM Date'.'Full Date'
+

@@ -1,0 +1,175 @@
+table 'SpreeTail Order Shipments'
+	lineageTag: a12ce96f-5baf-4a53-afca-0600e975f996
+
+	column 'Spreetail Sale ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: e1d9147c-28ff-46e0-84c4-0aa6e01b9ec0
+		summarizeBy: count
+		sourceColumn: Spreetail Sale ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'APIOrder ID'
+		dataType: string
+		lineageTag: e3b91cbb-9116-4c1e-b7f7-ddbaad648338
+		summarizeBy: none
+		sourceColumn: APIOrder ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Part Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e8b101ae-dfa8-4b51-96dd-42a7b8b53acd
+		summarizeBy: sum
+		sourceColumn: Part Number
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tracking Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 72e177f0-012c-469d-b6d9-c9eba05a8a1c
+		summarizeBy: sum
+		sourceColumn: Tracking Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Of Sale'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 362dadbe-aed8-4657-a0bd-57e7ce7655a6
+		summarizeBy: none
+		sourceColumn: Date Of Sale
+
+		variation Variation
+			isDefault
+			relationship: d944959b-186f-4bd9-b03f-628e972e0182
+			defaultHierarchy: LocalDateTable_9ec7df36-1de5-43a0-ad58-abbe11c50802.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DateScannedinFC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: df27a792-64e3-449b-be9c-419a41b59608
+		summarizeBy: none
+		sourceColumn: DateScannedinFC
+
+		variation Variation
+			isDefault
+			relationship: 9ed26835-2722-47a1-b8a8-9e4a56841125
+			defaultHierarchy: LocalDateTable_94839986-66a5-4f33-9d1a-46d18ef054b8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Tendered to Carrier'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b000cb08-d452-4b2c-80ef-531ce1cb0ed7
+		summarizeBy: none
+		sourceColumn: Date Tendered to Carrier
+
+		variation Variation
+			isDefault
+			relationship: dca4abbe-d2cd-4a16-9df3-d174b04e3cb4
+			defaultHierarchy: LocalDateTable_290cde61-181a-4293-a3fb-7cc058794605.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Date Delivered'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f173b9a4-ee6d-4fad-982d-34bda7fc1258
+		summarizeBy: none
+		sourceColumn: Date Delivered
+
+		variation Variation
+			isDefault
+			relationship: 555826a0-3e69-44a2-9712-387cf988c01d
+			defaultHierarchy: LocalDateTable_0f9bc613-c64d-4a54-91dc-d5dda3581a3d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Carrier
+		dataType: string
+		lineageTag: 24a76056-7f7f-4732-b946-5670aeeaea44
+		summarizeBy: none
+		sourceColumn: Carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Status'
+		dataType: string
+		lineageTag: 810a8c0c-aeb1-44c7-94b9-f270ccf7b397
+		summarizeBy: none
+		sourceColumn: Last Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Type'
+		dataType: string
+		lineageTag: 4077e6a2-7906-49e3-9f15-ecbefc74301e
+		summarizeBy: none
+		sourceColumn: Order Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipped FC'
+		dataType: string
+		lineageTag: f067a7f0-5f47-4e7e-92b6-daa734f4282d
+		summarizeBy: none
+		sourceColumn: Shipped FC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transit Time'
+		dataType: double
+		lineageTag: 3a53a3e1-04a3-46e8-9acd-941cce7e6e35
+		summarizeBy: sum
+		sourceColumn: Transit Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PO Number Clean for YS10N'
+		dataType: string
+		lineageTag: aeda9558-cfbe-43bb-bd35-f4857c6e35e5
+		summarizeBy: none
+		sourceColumn: PO Number Clean for YS10N
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SpreeTail Order Shipments' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/NAOperations/Shared%20Documents/Spreetail%20-%20KPIs/SPREETAIL%20PBI%20UPDATE%20LOCATION/Keter%20Order%20Updatess.xlsx"), null, true),
+				    #"Keter Order Updates_Sheet" = Source{[Item="Keter Order Updates",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Keter Order Updates_Sheet",{{"Column1", type any}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Spreetail Sale ID", Int64.Type}, {"APIOrder ID", type text}, {"Part Number", Int64.Type}, {"Tracking Number", Int64.Type}, {"Date Of Sale", type date}, {"DateScannedinFC", type datetime}, {"Date Tendered to Carrier", type date}, {"Date Delivered", type date}, {"Carrier", type text}, {"Last Status", type text}, {"Order Type", type text}, {"Shipped FC", type text}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Custom", each [Date Delivered]-[Date Tendered to Carrier]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Custom", type number}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type2",{{"Custom", "Transit Time"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns", "PO Number Clean for YS10N", each Text.Replace([APIOrder ID], "PS-13-", "")),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom1",{{"PO Number Clean for YS10N", type text}})
+				in
+				    #"Changed Type3"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

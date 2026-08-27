@@ -1,0 +1,583 @@
+table 'FACT YS10N'
+	lineageTag: e78cb7b8-4479-4793-bd99-ebb8a7e7e078
+	sourceLineageTag: [dbo].[FACT YS10N]
+
+	measure TL = IF(MAX('DIM Product'[TL Qty])>0,SUM('FACT YS10N'[Order Qty])/MAX('DIM Product'[TL Qty]))
+		lineageTag: 3a51112e-10c0-4238-9dc2-9dce2a4545d0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total TL' = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),  -- iterate over each product in the current context
+			    VAR TLQty = MAX('DIM Product'[TL Qty])
+			    VAR OrderQty = SUM('FACT YS10N'[Order Qty])
+			    VAR OnTimeDate = MAX('DIM Date'[Full Date])
+			    VAR MaxDate = DATE(YEAR(TODAY()),12,31)
+			    RETURN
+			        IF(TLQty > 0, 
+			            IF(MAX('FACT YS10N'[Fact Service Level.On Time date]) in DATESBETWEEN('DIM Date'[Full Date],OnTimeDate,MaxDate),OrderQty / TLQty)
+			        )
+			)
+			```
+		lineageTag: 1435725f-cf62-4497-b065-702d29236949
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TL by Day' =
+			
+			VAR MaxDate = DATE(YEAR(TODAY()),12,31)
+			VAR MinDate = MAX('DIM Date'[Full Date])
+			RETURN
+			
+			CALCULATE([Total TL],DATESBETWEEN('DIM Date'[Full Date],MinDate,MaxDate))
+		lineageTag: 79d5872b-f2ef-48f7-a94e-7fb8369fba80
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act. Gds Mvmnt Date'
+		dataType: string
+		lineageTag: 65727bc5-228a-437f-93f2-7fa298beb6ab
+		sourceLineageTag: Act. Gds Mvmnt Date
+		summarizeBy: none
+		sourceColumn: Act. Gds Mvmnt Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Confirmation Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0a3ee41e-a45f-4076-9792-30176fc89e79
+		sourceLineageTag: Confirmation Date
+		summarizeBy: none
+		sourceColumn: Confirmation Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.CustomerGroupKey'
+		dataType: string
+		lineageTag: 79051924-eab8-4575-8182-7da4203b309d
+		sourceLineageTag: Fact Service Level.CustomerGroupKey
+		summarizeBy: none
+		sourceColumn: Fact Service Level.CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.DateDailyKey'
+		dataType: string
+		lineageTag: d11b3fe6-5182-4c47-88b9-6df2d850e480
+		sourceLineageTag: Fact Service Level.DateDailyKey
+		summarizeBy: none
+		sourceColumn: Fact Service Level.DateDailyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery
+		dataType: string
+		lineageTag: 5032a770-9592-46aa-87fa-6fbdd721df8e
+		sourceLineageTag: Delivery
+		summarizeBy: none
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Creation Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0b9fee44-0174-47e2-9c61-eda5cb8b1dce
+		sourceLineageTag: Delivery Creation Date
+		summarizeBy: none
+		sourceColumn: Delivery Creation Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 638fd831-2896-428e-befa-6cd349d1a692
+		sourceLineageTag: First Date
+		summarizeBy: none
+		sourceColumn: First Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.GOOD_IS_Key'
+		dataType: string
+		lineageTag: b8ce919d-6f67-4aff-9505-8f1c88467638
+		sourceLineageTag: Fact Service Level.GOOD_IS_Key
+		summarizeBy: none
+		sourceColumn: Fact Service Level.GOOD_IS_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Guarantee Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3207c7ff-e6a0-4e58-aa9b-5e5e0211fcf9
+		sourceLineageTag: Guarantee Date
+		summarizeBy: none
+		sourceColumn: Guarantee Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.IncotermKey'
+		dataType: string
+		lineageTag: e5654b02-ce6b-441c-9d83-580e63df23f4
+		sourceLineageTag: Fact Service Level.IncotermKey
+		summarizeBy: none
+		sourceColumn: Fact Service Level.IncotermKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Billing Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd0f592b-fae3-4dd3-b7b3-8adaf6c2d66e
+		sourceLineageTag: Invoice Billing Date
+		summarizeBy: none
+		sourceColumn: Invoice Billing Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.LastShipDate _NA_'
+		dataType: string
+		lineageTag: 2606b5cc-1734-4e83-abd5-99b52a0f0412
+		sourceLineageTag: Fact Service Level.LastShipDate _NA_
+		summarizeBy: none
+		sourceColumn: Fact Service Level.LastShipDate _NA_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.LineFailureReason'
+		dataType: string
+		lineageTag: f764c089-eccc-4ad5-bd59-0c36067bfddf
+		sourceLineageTag: Fact Service Level.LineFailureReason
+		summarizeBy: none
+		sourceColumn: Fact Service Level.LineFailureReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.LineInFullStatus'
+		dataType: string
+		lineageTag: 743380f1-f560-4b48-b972-3729b706d4cb
+		sourceLineageTag: Fact Service Level.LineInFullStatus
+		summarizeBy: none
+		sourceColumn: Fact Service Level.LineInFullStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_LoadDelayReason
+		dataType: string
+		lineageTag: e2d1b619-eb2e-471f-a770-5caa63531cfd
+		sourceLineageTag: FSL_LoadDelayReason
+		summarizeBy: none
+		sourceColumn: FSL_LoadDelayReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.On Time date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59b59261-fbd9-491f-8187-aa5229976ff3
+		sourceLineageTag: Fact Service Level.On Time date
+		summarizeBy: none
+		sourceColumn: Fact Service Level.On Time date
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Sales Order'
+		dataType: string
+		lineageTag: 560b77b8-1623-4adb-be83-f74195b1961c
+		sourceLineageTag: Sales Order
+		summarizeBy: none
+		sourceColumn: Sales Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.Order Type'
+		dataType: string
+		lineageTag: 80a7f7c5-c1e7-408e-bfa1-837eb5f090c5
+		sourceLineageTag: Fact Service Level.Order Type
+		summarizeBy: none
+		sourceColumn: Fact Service Level.Order Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.Order with Line Number'
+		dataType: string
+		lineageTag: fa947f2b-22c5-4c84-8be9-e566842e98df
+		sourceLineageTag: Fact Service Level.Order with Line Number
+		summarizeBy: none
+		sourceColumn: Fact Service Level.Order with Line Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason'
+		dataType: string
+		lineageTag: 275cc60e-2cfe-4e28-aa62-b80919b1794a
+		sourceLineageTag: Order reason
+		summarizeBy: none
+		sourceColumn: Order reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason_1'
+		dataType: string
+		lineageTag: 281962fe-f1f6-40e4-b129-56916584b33b
+		sourceLineageTag: Order reason_1
+		summarizeBy: none
+		sourceColumn: Order reason_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 1bcc8ce2-78f4-4753-8951-6798fbf4eb8d
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 6df5c949-903f-48fd-9d7d-4d33cbf4b81e
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number'
+		dataType: string
+		lineageTag: ad0aa1dc-1c3c-49d6-bf35-46ee58059933
+		sourceLineageTag: PO Number
+		summarizeBy: none
+		sourceColumn: PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 7abf9aa5-2c16-4d28-90d2-b2e6c39f2df5
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_PSTYV
+		dataType: string
+		lineageTag: f7573282-5543-4e10-b8bb-a987b4098821
+		sourceLineageTag: FSL_PSTYV
+		summarizeBy: none
+		sourceColumn: FSL_PSTYV
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested deliv.date'
+		dataType: string
+		lineageTag: 98c98c03-257b-48d4-a878-3fb29b08d446
+		sourceLineageTag: Requested deliv.date
+		summarizeBy: none
+		sourceColumn: Requested deliv.date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.RetailerKey'
+		dataType: string
+		lineageTag: a784e629-62d7-4083-bdef-867f67330650
+		sourceLineageTag: Fact Service Level.RetailerKey
+		summarizeBy: none
+		sourceColumn: Fact Service Level.RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer name'
+		dataType: string
+		lineageTag: 5a85a78b-2407-4192-a58a-ef657a18dc57
+		sourceLineageTag: Payer name
+		summarizeBy: none
+		sourceColumn: Payer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_SalesOrgKey
+		dataType: string
+		lineageTag: a4ce4081-4617-4320-8442-7f05b0da2857
+		sourceLineageTag: FSL_SalesOrgKey
+		summarizeBy: none
+		sourceColumn: FSL_SalesOrgKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.SegmentKey'
+		dataType: string
+		lineageTag: 43ce2b50-f1c6-4ddd-9b42-845fc69187c8
+		sourceLineageTag: Fact Service Level.SegmentKey
+		summarizeBy: none
+		sourceColumn: Fact Service Level.SegmentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.ship_to'
+		dataType: string
+		lineageTag: fc83a49d-1baa-49f2-a958-3dd359b89004
+		sourceLineageTag: Fact Service Level.ship_to
+		summarizeBy: none
+		sourceColumn: Fact Service Level.ship_to
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Number'
+		dataType: string
+		lineageTag: 6871b83f-d3bf-4eba-829e-cbae34e26641
+		sourceLineageTag: Shipment Number
+		summarizeBy: none
+		sourceColumn: Shipment Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping type'
+		dataType: string
+		lineageTag: ac80ce5c-4755-4376-a978-4176890bc40c
+		sourceLineageTag: Shipping type
+		summarizeBy: none
+		sourceColumn: Shipping type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Point/Receiving Pt'
+		dataType: string
+		lineageTag: a52ff342-91b1-4e63-83e1-93a7df4c2300
+		sourceLineageTag: Shipping Point/Receiving Pt
+		summarizeBy: none
+		sourceColumn: Shipping Point/Receiving Pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Party Region'
+		dataType: string
+		lineageTag: ddf139e9-d77d-4f3a-a664-eef493c0442d
+		sourceLineageTag: Ship-To Party Region
+		summarizeBy: none
+		sourceColumn: Ship-To Party Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Billing Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0910b512-9a70-4eca-91b2-b092820288b2
+		sourceLineageTag: SO Billing Date
+		summarizeBy: none
+		sourceColumn: SO Billing Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Created Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c4ecfc81-332e-45e5-970b-49200e545ff0
+		sourceLineageTag: SO Created Date
+		summarizeBy: none
+		sourceColumn: SO Created Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_SOLDTO
+		dataType: string
+		lineageTag: eb4080e7-d088-441a-95a7-c306352e1719
+		sourceLineageTag: FSL_SOLDTO
+		summarizeBy: none
+		sourceColumn: FSL_SOLDTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trailer No_'
+		dataType: string
+		lineageTag: fc4b4f43-4179-4cad-8218-1f567dce973e
+		sourceLineageTag: Trailer No_
+		summarizeBy: none
+		sourceColumn: Trailer No_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.ValidLine'
+		dataType: string
+		lineageTag: 45d1e852-92c2-4f83-9d80-70f38027cdab
+		sourceLineageTag: Fact Service Level.ValidLine
+		summarizeBy: none
+		sourceColumn: Fact Service Level.ValidLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 59ff5f69-b70a-42dd-ba54-bdf7e093c9ba
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net value'
+		dataType: double
+		lineageTag: afc49e70-c73c-48d8-871d-fd964446c6a3
+		sourceLineageTag: Net value
+		summarizeBy: sum
+		sourceColumn: Net value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Qty'
+		dataType: double
+		lineageTag: d93f2a36-dde1-4a17-8422-51fbe47f0e9a
+		sourceLineageTag: Order Qty
+		summarizeBy: sum
+		sourceColumn: Order Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'YS10N Source'
+		dataType: string
+		lineageTag: dc181a05-0cb7-4859-939a-e5fcdf272511
+		sourceLineageTag: YS10N Source
+		summarizeBy: none
+		sourceColumn: YS10N Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection'
+		dataType: string
+		lineageTag: 39955f3b-b954-401a-b1e1-453b179e5338
+		sourceLineageTag: Reason for rejection
+		summarizeBy: none
+		sourceColumn: Reason for rejection
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKUPayer
+		dataType: string
+		lineageTag: 7206229d-0ef8-4f1c-aa17-2bc8e24ebcb7
+		sourceLineageTag: SKUPayer
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 2e7d1cd3-949e-4691-9228-11b56b24f25c
+		sourceLineageTag: Status
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Code'
+		dataType: string
+		lineageTag: b732d294-b3d1-4b90-8358-8aedd9c88362
+		sourceLineageTag: Company Code
+		summarizeBy: none
+		sourceColumn: Company Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ECommerce
+		dataType: string
+		lineageTag: 2d9f84c6-196c-4eb6-90d9-14b2bb98b2eb
+		sourceLineageTag: ECommerce
+		summarizeBy: none
+		sourceColumn: ECommerce
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ECOM $'
+		dataType: double
+		lineageTag: 73c82213-a678-4c5e-ba42-52c62cb1af73
+		sourceLineageTag: ECOM $
+		summarizeBy: sum
+		sourceColumn: ECOM $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Defective Allowance.1'
+		dataType: double
+		lineageTag: 64ac52fb-e8f6-4d68-ad05-6c366a2a7b20
+		sourceLineageTag: Defective Allowance.1
+		summarizeBy: sum
+		sourceColumn: Defective Allowance.1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'New Net Value'
+		dataType: double
+		lineageTag: 7a610fde-1d5a-4889-af44-675d08e15019
+		sourceLineageTag: New Net Value
+		summarizeBy: sum
+		sourceColumn: New Net Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Parcel $'
+		dataType: double
+		lineageTag: 00d840e8-2a72-45b1-9015-a86238ae3cac
+		sourceLineageTag: Parcel $
+		summarizeBy: sum
+		sourceColumn: Parcel $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TL $'
+		dataType: double
+		lineageTag: 3eca28fb-33bd-4995-8ece-1055cc82abe8
+		sourceLineageTag: TL $
+		summarizeBy: sum
+		sourceColumn: TL $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'LTL $'
+		dataType: double
+		lineageTag: b83400f9-b938-46d4-baba-c8cfd4259407
+		sourceLineageTag: LTL $
+		summarizeBy: sum
+		sourceColumn: LTL $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT YS10N' = entity
+		mode: directLake
+		source
+			entityName: FACT YS10N
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

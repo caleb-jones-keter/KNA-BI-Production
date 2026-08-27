@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "70fe164b62c1e84a44a2",
+  "displayName": "Upcoming Shipment Score",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1650,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2d4ec77fcdb72e0c81d3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM MRPSKU"
+              }
+            },
+            "Property": "PC Business Unit"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "e6427d4baa0935e3753a",
+      "target": "fc3d1d27c8430c8c0201",
+      "type": "NoFilter"
+    }
+  ]
+}

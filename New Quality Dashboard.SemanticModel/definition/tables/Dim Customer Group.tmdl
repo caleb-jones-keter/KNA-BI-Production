@@ -1,0 +1,71 @@
+table 'Dim Customer Group'
+	lineageTag: 0498ba03-ff86-4f8b-8ab5-be2cde630750
+
+	column 'Customer Group'
+		dataType: string
+		lineageTag: 38e2f750-ee1f-4393-9131-35b413884ff8
+		summarizeBy: none
+		sourceColumn: Customer Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGroupKey
+		dataType: string
+		lineageTag: f4f44100-0f8e-4ae8-a189-6c324662f924
+		summarizeBy: none
+		sourceColumn: CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Defective Allowance'
+		dataType: double
+		lineageTag: ef4ec168-f198-4aff-a519-fb161aa953bd
+		summarizeBy: sum
+		sourceColumn: Defective Allowance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'New Customer Group' =
+			
+			IF('Dim Customer Group'[Customer Group]="THE HOME DEPOT USA" || 'Dim Customer Group'[Customer Group]="HOME DEPOT MEXICO" || 'Dim Customer Group'[Customer Group]="HOME DEPOT CANADA","HOME DEPOT",
+			IF('Dim Customer Group'[Customer Group]="WALMART CANADA","WALMART",
+			IF('Dim Customer Group'[Customer Group]="AMAZON CANADA","AMAZON",
+			IF('Dim Customer Group'[Customer Group]="COSTCO CANADA" ||'Dim Customer Group'[Customer Group]="COSTCO U.S","COSTCO",
+			IF(LEFT('Dim Customer Group'[Customer Group],15)="OTHER CUSTOMERS","OTHER CUSTOMERS",
+			'Dim Customer Group'[Customer Group])))))
+		lineageTag: 2d3a3dbf-3f78-4363-9e95-db52afe4b0e1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rejections Filter' = IF(CALCULATE([All Rejections (12M)],'Dim Order Reason'[Dim Order Reason Group.Rejection Group]="RTV/Defective")>10000,"Has Rejections")
+		lineageTag: 9dee5edc-9479-4b49-a607-5e3084ef8be4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Customer Group' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Customer Group]", {"[Dim Customer Group].[Customer Group].[Customer Group]", "[Dim Customer Group].[CustomerGroupKey].[CustomerGroupKey]"}, {"Dim Customer Group.Customer Group", "Dim Customer Group.CustomerGroupKey"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Customer Group.Customer Group", "Customer Group"}, {"Dim Customer Group.CustomerGroupKey", "CustomerGroupKey"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"CustomerGroupKey"}, #"Defective Allowance", {"Customer Group Key"}, "Defective Allowance", JoinKind.LeftOuter),
+				    #"Expanded Defective Allowance" = Table.ExpandTableColumn(#"Merged Queries", "Defective Allowance", {"Defective Allowance"}, {"Defective Allowance.Defective Allowance"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded Defective Allowance",{{"Defective Allowance.Defective Allowance", "Defective Allowance"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

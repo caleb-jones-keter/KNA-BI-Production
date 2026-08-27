@@ -1,0 +1,111 @@
+table InvBudget26
+	lineageTag: 729542d9-9b3d-4c9f-831d-943f5b7ad8ec
+
+	column Plant
+		dataType: string
+		lineageTag: 07a5cbc7-b7a5-4f23-99e2-4cf12a9091de
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 576ae1a8-52c1-485a-9d37-3f0fe5d686da
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Material Group'
+		dataType: string
+		lineageTag: 436c4a4b-c318-4a61-8318-a5e749a7b394
+		summarizeBy: none
+		sourceColumn: Material Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INV LY'
+		dataType: double
+		lineageTag: 02c28943-cd1e-486b-a127-6c91881aa0da
+		summarizeBy: sum
+		sourceColumn: INV LY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'INV CY'
+		dataType: double
+		lineageTag: b257aec8-d9dc-4c1b-801d-b136ae1c7445
+		summarizeBy: sum
+		sourceColumn: INV CY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Forecast
+		dataType: double
+		lineageTag: cde954fe-40d2-4a39-b746-8a398814d2ae
+		summarizeBy: sum
+		sourceColumn: Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CY vs LY'
+		dataType: double
+		lineageTag: decf3efc-c30e-41d3-a105-2c3d20576be1
+		summarizeBy: sum
+		sourceColumn: CY vs LY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CY vs F'
+		dataType: double
+		lineageTag: 9cba60b1-9f5a-4e7c-97f1-f0d73e09673a
+		summarizeBy: sum
+		sourceColumn: CY vs F
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: 4abbabac-e753-4b7b-aae1-35b39e3b2cc3
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: 59edc607-37b5-42c4-a848-7bbb4c7c7c1c
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition InvBudget26 = m
+		mode: import
+		queryGroup: Inventory
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Inventory\Inventory26Budget\InventoryBudget26.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"Plant", type text}, {"Month", type date}, {"Material Group", type text}, {"INV LY", type number}, {"INV CY", type number}, {"Forecast", type number}, {"CY vs LY", type number}, {"CY vs F", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

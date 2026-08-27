@@ -1,0 +1,644 @@
+table 'FACT YS10N'
+	lineageTag: dfcf212e-2652-4640-9e81-e0fa99864453
+
+	measure 'Sales (12M,-3M)' = CALCULATE(SUM('FACT YS10N'[New Net Value]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- CALCULATE(SUM('FACT YS10N'[New Net Value]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: e8c60575-2d34-4dfd-ae83-ee4467e24563
+
+	measure 'YS10N COPQ %' = IF('FACT YS10N'[Sales (12M,-3M)]>0,[All Rejections (12M)]/'FACT YS10N'[Sales (12M,-3M)])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cee00ae9-cfd7-421a-8b1d-5caaa37a866f
+
+	measure 'TL %' = [TL $ 12M]/[Sales (12M,-3M)]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: abc87bd5-50cf-4a92-b9ba-346d73208efd
+
+	measure '# YS10N Months' = CALCULATE(COUNTX(VALUES('Dates Table'[Month In Year]),SUM('FACT YS10N'[Net value])),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH),'FACT YS10N'[Net value]>0)-CALCULATE(COUNTX(VALUES('Dates Table'[Month In Year]),SUM('FACT YS10N'[Net value])),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		formatString: 0
+		lineageTag: e612b1e6-ed18-4821-a7cb-65d019589d0a
+
+	measure 'YS10N Filtered Sales (12M) Alt 3M' = CALCULATE(SUM('FACT YS10N'[Net value]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH),'FACT YS10N'[Has Rejects]=1)- CALCULATE(SUM('FACT YS10N'[Net value]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH),'FACT YS10N'[Has Rejects]=1)
+		lineageTag: 787f367f-ff86-4add-bef4-82f47664fd86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RTV %' = IF('FACT YS10N'[Sales (12M,-3M)]>0,[RTV (12M)]/'FACT YS10N'[Sales (12M,-3M)])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0f71aa77-63c4-4fc7-9431-c976c8972633
+
+	measure Measure =
+			
+			VAR CurrMonth = CALCULATE(MAX('Dates Table'[MonthDateKey]),FILTER('Dates Table','Dates Table'[Full Date]=TODAY()))
+			RETURN
+			CALCULATE(COUNT('FACT YS10N'[Month Num]),FILTER('FACT YS10N','FACT YS10N'[Net value]>0))
+		formatString: 0
+		lineageTag: 3c460dde-26ea-45fa-8896-baba03b769b7
+
+	measure 'Est. Defect %' = IF('FACT YS10N'[RTV %]>0,([TL %])*-0.087+ 0.0886)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6e8f8087-4020-4b88-9665-025f7dfc6cae
+
+	measure 'TL $ 12M' = CALCULATE(SUM('FACT YS10N'[TL $]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- CALCULATE(SUM('FACT YS10N'[TL $]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		lineageTag: e4091c77-d6f4-4232-b90d-30d3e4faf87d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Savings = IF([RTV %]<[Est. Defect %],([RTV %]-[Est. Defect %])*[Sales (12M,-3M)])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f5dde245-8884-4805-9b4a-c5b5e65e9d7e
+
+	measure 'Parcel $ 12M' = CALCULATE(SUM('FACT YS10N'[Parcel $]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- CALCULATE(SUM('FACT YS10N'[Parcel $]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		lineageTag: d4e9f880-92fc-4d3c-8491-e55eb0506a06
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Parcel %' = [Parcel $ 12M]/[Sales (12M,-3M)]
+		lineageTag: 51d37b89-2902-461e-b7d0-df7b0583411b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Std Defect %' = IF([Sales (12M,-3M)]+[RTV (12M)]>0,(1-[TL %])*.050+.005)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d960e2a5-b47d-48c0-bd8f-747b99548642
+
+	measure 'RTV Below Std' = [Sales (12M,-3M)]*MIN([RTV %],[Std Defect %])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: e1df8a51-b938-4685-96b7-3f16f01a4967
+
+	measure 'Available RTV' = [RTV (12M)]-[RTV Below Std]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c2dd1e8c-2645-4158-a7ff-b3be729b3ef9
+
+	measure 'ECOM %' = IF([Sales (12M,-3M)]>0,MAX(0,[ECOM $ 12M]/[Sales (12M,-3M)]))
+		lineageTag: 1dd3ec34-59bf-42da-be9a-1e4c276b694e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ECOM $ 12M' = CALCULATE(SUM('FACT YS10N'[ECOM $]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- CALCULATE(SUM('FACT YS10N'[ECOM $]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		lineageTag: 9028650a-30cf-42c9-bfd0-c072aaccc148
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 2' = (MIN([Est. Defect %],[RTV %])-[Std Defect %])*[Sales (12M,-3M)]
+		lineageTag: ff7d6f93-f43e-441a-b04f-6dcc36088e2f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RTV Delta' = ([RTV %]-[Est. Defect %])*[Sales (12M,-3M)]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0f260af7-e608-42ea-adc4-ae48451a8456
+
+	measure 'Opportunity RTV' = ([RTV %]-MAX([Est. Defect %],[Std Defect %]))*[Sales (12M,-3M)]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 856f4374-c896-49bf-906f-e5b796ac0422
+
+	measure 'Ship Type RTV' =
+			
+			(MIN([RTV %],[Est. Defect %])-MIN([Est. Defect %],[Std Defect %]))*[Sales (12M,-3M)]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 5e16f331-7b78-4c1c-9971-ef67e3a2cd98
+
+	measure 'Std Cost' = [Sales (12M,-3M)]*[Std Defect %]*-1
+		lineageTag: 8719a5f2-50ae-47e7-84e4-d3a36121ffc0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Recoverable Cost' = IF([RTV (12M)]+[Std Cost]>0,[RTV (12M)]+[Std Cost])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 64fa1677-ded9-488f-b900-20cf16fc2606
+
+	measure 'Recoverable Cost ECOM' = IF(MAX('Dim Customers'[ECommerce])="ECOM",IF([RTV (12M)]+[Std Cost]>0,[RTV (12M)]+[Std Cost]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2d133569-f506-4bc4-8aa9-726d6495dc3b
+
+	measure 'Recoverable Cost Retail' = IF(MAX('Dim Customers'[ECommerce])="Retail",IF([RTV (12M)]+[Std Cost]>0,[RTV (12M)]+[Std Cost]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 97e36a8d-870b-4129-a242-aa92e7b37afe
+
+	measure 'Below Std %' = ([RTV Below Std]/[RTV (12M)])
+		formatString: 0%;-0%;0%
+		lineageTag: ee8e2602-86fd-48da-803c-f0d01cd879c3
+
+	measure '% Better' = FORMAT([Below Std %],"00%")&" Better"
+		lineageTag: 8575aad4-4e3f-4f18-a38b-6e910c019179
+
+	measure Inclusion = [RTV (12M)]+[Sales (12M,-3M)]
+		lineageTag: 31e90bda-09ec-461e-b5ad-91f379df9df3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Just % Better' = FORMAT([Below Std %],"00%")
+		lineageTag: 56267dbb-9142-4b90-a03a-d7b67ace675e
+
+	column 'Act. Gds Mvmnt Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0eeb980b-56be-4927-9347-cba2116024a3
+		summarizeBy: none
+		sourceColumn: Act. Gds Mvmnt Date
+
+		variation Variation
+			isDefault
+			relationship: 6e908fe5-9556-4ea6-91d9-095b1e08b408
+			defaultHierarchy: LocalDateTable_8a3e569a-8354-4e97-af0d-49180d6c586f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Delivery
+		dataType: string
+		lineageTag: 9d98f40c-07fc-4634-88cc-782457566a63
+		summarizeBy: none
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 776cbd17-8b69-4df7-8ec8-44dd807917cf
+		summarizeBy: none
+		sourceColumn: First Date
+
+		variation Variation
+			isDefault
+			relationship: c49a0c6c-a2a4-4f6a-84ff-d8e8ebb4618b
+			defaultHierarchy: LocalDateTable_06762d84-f441-4836-b30e-f3f62020fd46.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Invoice Billing Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2d7e71be-52d4-410b-990c-550357fe20af
+		summarizeBy: none
+		sourceColumn: Invoice Billing Date
+
+		variation Variation
+			isDefault
+			relationship: c9343268-68e8-44f4-8759-9bcf560b7d7e
+			defaultHierarchy: LocalDateTable_10447767-e0e5-4c7d-8197-a8e8c27b4b41.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fact Service Level.LastShipDate (NA)'
+		dataType: string
+		lineageTag: dcdf13ee-76bc-4fd4-9bf5-c024fbb8463d
+		summarizeBy: none
+		sourceColumn: Fact Service Level.LastShipDate (NA)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.LineFailureReason'
+		dataType: string
+		lineageTag: ac3598bb-3c9e-4302-a5f1-b7ca979f91c5
+		summarizeBy: none
+		sourceColumn: Fact Service Level.LineFailureReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.LineInFullStatus'
+		dataType: string
+		lineageTag: c957ed3d-2709-495b-bc67-5dee9b8d6abf
+		summarizeBy: none
+		sourceColumn: Fact Service Level.LineInFullStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.On Time date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 55fd18cd-257a-4756-814a-58e49e73b3b8
+		summarizeBy: none
+		sourceColumn: Fact Service Level.On Time date
+
+		variation Variation
+			isDefault
+			relationship: 1387f1ce-1999-4eae-8f8e-b2fb075db526
+			defaultHierarchy: LocalDateTable_467bcc8a-48f8-425a-b5ba-ac9f2db3e030.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Order'
+		dataType: string
+		lineageTag: f7baebca-f57b-46dd-9cde-85af1bd13d2c
+		summarizeBy: none
+		sourceColumn: Sales Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.Order Type'
+		dataType: string
+		lineageTag: d63ba945-63fa-4e86-a1a2-423e6d68ab7f
+		summarizeBy: none
+		sourceColumn: Fact Service Level.Order Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 35dcf2ed-8bcd-47b2-8211-fa0d47ed21dd
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 5b4c592b-2507-4772-9366-80add508b069
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number'
+		dataType: string
+		lineageTag: b8371418-824b-4695-9e84-299ce8b61528
+		summarizeBy: none
+		sourceColumn: PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 68c8d6fe-9679-4ee5-9bfa-4586f060b5b1
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_PSTYV
+		dataType: string
+		lineageTag: bc76004a-bc3e-4beb-80eb-5e2d3b45d78e
+		summarizeBy: none
+		sourceColumn: FSL_PSTYV
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.RetailerKey'
+		dataType: string
+		lineageTag: 582587ac-b2e0-4712-879a-caf329ca22a6
+		summarizeBy: none
+		sourceColumn: Fact Service Level.RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer name'
+		dataType: string
+		lineageTag: efcd29db-82da-4b00-8c42-d5c8919b3e27
+		summarizeBy: none
+		sourceColumn: Payer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_SalesOrgKey
+		dataType: string
+		lineageTag: 222f590a-5eea-4d6d-bc11-295c6319a7b2
+		summarizeBy: none
+		sourceColumn: FSL_SalesOrgKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.ship_to'
+		dataType: string
+		lineageTag: 5da2c5b2-bbb0-40e8-adcf-9424c61c4ecf
+		summarizeBy: none
+		sourceColumn: Fact Service Level.ship_to
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Number'
+		dataType: string
+		lineageTag: 9b6afe17-1fa2-4847-b8e5-16a321fb4c83
+		summarizeBy: none
+		sourceColumn: Shipment Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping type'
+		dataType: string
+		lineageTag: b549e801-0844-450e-b628-fbfbc9a24b71
+		summarizeBy: none
+		sourceColumn: Shipping type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Point/Receiving Pt'
+		dataType: string
+		lineageTag: ebb1cffa-678d-4c0e-ae5c-e3cb60eb698b
+		summarizeBy: none
+		sourceColumn: Shipping Point/Receiving Pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSL_SOLDTO
+		dataType: string
+		lineageTag: 6aba631c-6c00-42ae-994f-22839d646794
+		summarizeBy: none
+		sourceColumn: FSL_SOLDTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.ValidLine'
+		dataType: string
+		lineageTag: 47858222-8a3b-47d2-90cd-783f912b233d
+		summarizeBy: none
+		sourceColumn: Fact Service Level.ValidLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 471b34b4-d3b9-40b0-826c-1d3c9f3f8705
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net value'
+		dataType: double
+		lineageTag: a60ea9fd-fdb0-44cd-976d-c0c8574523ad
+		summarizeBy: sum
+		sourceColumn: Net value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Qty'
+		dataType: double
+		lineageTag: 7de3b86a-b5a2-489e-afd9-dcc2ad186129
+		summarizeBy: sum
+		sourceColumn: Order Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'YS10N Source'
+		dataType: string
+		lineageTag: 7c56680f-d6ce-4376-a292-c16f7ac935dc
+		summarizeBy: none
+		sourceColumn: YS10N Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection'
+		dataType: string
+		lineageTag: 7f73cb16-a92c-496b-a30c-5f603924db2e
+		summarizeBy: none
+		sourceColumn: Reason for rejection
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKUPayer
+		dataType: string
+		lineageTag: 8949ac72-59a5-4422-bd83-c003e8d4e3a6
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: a8a07c3d-5605-4969-85bc-a4b812227c2c
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TL $' = IF('FACT YS10N'[Shipping type]="01",'FACT YS10N'[Net value])
+		lineageTag: 1038163a-435e-4fd3-9ae4-062f3ab2a8f1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Month Num' = Related('Dates Table'[MonthDateKey])
+		lineageTag: 91a4ebac-93b2-4a81-bf50-8a9838aaaf2d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Has Rejects' = RELATED('Dim Customers'[ECommerce])
+		formatString: 0
+		lineageTag: 11712aeb-7400-48db-bc69-0f9b23c7ffeb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Billing Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dfdccc40-3286-47ac-8b01-dfd1c90c3c55
+		summarizeBy: none
+		sourceColumn: SO Billing Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Confirmation Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2c5bbfbb-275d-4382-9867-85015d4ac8eb
+		summarizeBy: none
+		sourceColumn: Confirmation Date
+
+		variation Variation
+			isDefault
+			relationship: 0b481dd9-6edc-44c3-9a43-db5cf10487e5
+			defaultHierarchy: LocalDateTable_a08e7137-3e14-4fb8-a096-f2a49d8a7d78.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fact Service Level.CustomerGroupKey'
+		dataType: string
+		lineageTag: 62e14c94-77a6-4017-ba71-0f0cda23c782
+		summarizeBy: none
+		sourceColumn: Fact Service Level.CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Creation Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: de58006a-8e5a-4737-b161-d736927622aa
+		summarizeBy: none
+		sourceColumn: Delivery Creation Date
+
+		variation Variation
+			isDefault
+			relationship: 6112de2e-35e2-49f5-92af-ad07426b1879
+			defaultHierarchy: LocalDateTable_d54b7def-66d9-4be1-b676-7c1dff450803.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Guarantee Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b36b1e3d-d120-4f4d-9e76-d780c5f5f685
+		summarizeBy: none
+		sourceColumn: Guarantee Date
+
+		variation Variation
+			isDefault
+			relationship: eec9abfa-f656-4598-b59e-e4f5a81bd930
+			defaultHierarchy: LocalDateTable_5f45f572-d7fa-4f26-b085-d74cd6f0d1b4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Requested deliv.date'
+		dataType: string
+		lineageTag: 7fb8ccc6-7aed-4c1c-b798-2920ddad40b9
+		summarizeBy: none
+		sourceColumn: Requested deliv.date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fact Service Level.SegmentKey'
+		dataType: string
+		lineageTag: 53ee3a5c-8f3e-40b4-8dd9-ea0e5fd202f3
+		summarizeBy: none
+		sourceColumn: Fact Service Level.SegmentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Created Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ee79544a-edb8-4f14-8f92-b38ec7448523
+		summarizeBy: none
+		sourceColumn: SO Created Date
+
+		variation Variation
+			isDefault
+			relationship: 89349a09-448f-43d9-8552-b799844c8198
+			defaultHierarchy: LocalDateTable_cb173e2e-ae76-4629-bbf1-dc35514713b8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Parcel $' = IF('FACT YS10N'[Shipping type]="07",'FACT YS10N'[Net value])
+		lineageTag: b50a52a8-3f8e-41c5-a926-a202189e44c3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ECommerce = RELATED('Dim Customers'[ECommerce])
+		lineageTag: 85c6e08a-4721-44ab-a71a-c15bf5803481
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Code' =
+			
+			IF('FACT YS10N'[FSL_SalesOrgKey]="136","1666",
+			IF('FACT YS10N'[FSL_SalesOrgKey]="145","1669",
+			IF('FACT YS10N'[FSL_SalesOrgKey]="208","1573",
+			IF('FACT YS10N'[FSL_SalesOrgKey]="68","1560",
+			IF('FACT YS10N'[FSL_SalesOrgKey]="70","1564",
+			IF('FACT YS10N'[FSL_SalesOrgKey]="71","1565",
+			IF('FACT YS10N'[FSL_SalesOrgKey]="72","1567")))))))
+		lineageTag: 34471cfc-4fe0-4de3-ac34-af6b0e881b84
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKUPayerCompany = 'FACT YS10N'[SKUPayer]&"|"&'FACT YS10N'[Company Code]
+		lineageTag: b534932c-7cd9-454d-be2d-21cd47807a1b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ECOM $' = IF(RELATED('Dim Customers'[ECommerce])="ECOM",'FACT YS10N'[Net value])
+		lineageTag: e4753d75-afd0-41c2-bcac-c38512317abd
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'New Net Value' = IF(ISBLANK(RELATED('Dim Customer Group'[Defective Allowance])),'FACT YS10N'[Net value])
+		lineageTag: 7450555a-dc7d-460b-8421-56fd3b94654e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT YS10N' = m
+		mode: import
+		source = ```
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    OTIF = Source{[Name="OTIF"]}[Data],
+				    Model1 = OTIF{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Fact Service Level]", {"[Fact Service Level].[ActGdsMvmntDate].[ActGdsMvmntDate]", "[Fact Service Level].[ConfiramtionDate].[ConfiramtionDate]", "[Fact Service Level].[CustomerGroupKey].[CustomerGroupKey]", "[Fact Service Level].[DateDailyKey].[DateDailyKey]", "[Fact Service Level].[DELIVERY].[DELIVERY]", "[Fact Service Level].[DeliveryCreationDate].[DeliveryCreationDate]", "[Fact Service Level].[FIRST_DAY].[FIRST_DAY]", "[Fact Service Level].[GOOD_IS_Key].[GOOD_IS_Key]", "[Fact Service Level].[GUARANT].[GUARANT]", "[Fact Service Level].[IncotermKey].[IncotermKey]", "[Fact Service Level].[InvoiceBillingDate].[InvoiceBillingDate]", "[Fact Service Level].[LastShipDate (NA)].[LastShipDate (NA)]", "[Fact Service Level].[LineFailureReason].[LineFailureReason]", "[Fact Service Level].[LineInFullStatus].[LineInFullStatus]", "[Fact Service Level].[LoadDelayReason].[LoadDelayReason]", "[Fact Service Level].[On Time date].[On Time date]", "[Fact Service Level].[Order Number].[Order Number]", "[Fact Service Level].[Order Type].[Order Type]", "[Fact Service Level].[Order with Line Number].[Order with Line Number]", "[Fact Service Level].[OrderReason].[OrderReason]", "[Fact Service Level].[OrderReasonDesc].[OrderReasonDesc]", "[Fact Service Level].[PAYER].[PAYER]", "[Fact Service Level].[Plant DC].[Plant DC]", "[Fact Service Level].[PO_Number].[PO_Number]", "[Fact Service Level].[ProductKey].[ProductKey]", "[Fact Service Level].[PSTYV].[PSTYV]", "[Fact Service Level].[REQUEST].[REQUEST]", "[Fact Service Level].[RetailerKey].[RetailerKey]", "[Fact Service Level].[RetailGroupKey].[RetailGroupKey]", "[Fact Service Level].[SalesOrgKey].[SalesOrgKey]", "[Fact Service Level].[SegmentKey].[SegmentKey]", "[Fact Service Level].[ship_to].[ship_to]", "[Fact Service Level].[ShipmentNumber].[ShipmentNumber]", "[Fact Service Level].[ShippingType].[ShippingType]", "[Fact Service Level].[ShipPoint_KEY].[ShipPoint_KEY]", "[Fact Service Level].[ShipToRegion].[ShipToRegion]", "[Fact Service Level].[SO_BillingDate].[SO_BillingDate]", "[Fact Service Level].[SO_CreatedDate].[SO_CreatedDate]", "[Fact Service Level].[SOLDTO].[SOLDTO]", "[Fact Service Level].[TrailerNo].[TrailerNo]", "[Fact Service Level].[ValidLine].[ValidLine]", "[Fact Service Level].[VSTEL].[VSTEL]"}, {"Fact Service Level.ActGdsMvmntDate", "Fact Service Level.ConfiramtionDate", "Fact Service Level.CustomerGroupKey", "Fact Service Level.DateDailyKey", "Fact Service Level.DELIVERY", "Fact Service Level.DeliveryCreationDate", "Fact Service Level.FIRST_DAY", "Fact Service Level.GOOD_IS_Key", "Fact Service Level.GUARANT", "Fact Service Level.IncotermKey", "Fact Service Level.InvoiceBillingDate", "Fact Service Level.LastShipDate (NA)", "Fact Service Level.LineFailureReason", "Fact Service Level.LineInFullStatus", "Fact Service Level.LoadDelayReason", "Fact Service Level.On Time date", "Fact Service Level.Order Number", "Fact Service Level.Order Type", "Fact Service Level.Order with Line Number", "Fact Service Level.OrderReason", "Fact Service Level.OrderReasonDesc", "Fact Service Level.PAYER", "Fact Service Level.Plant DC", "Fact Service Level.PO_Number", "Fact Service Level.ProductKey", "Fact Service Level.PSTYV", "Fact Service Level.REQUEST", "Fact Service Level.RetailerKey", "Fact Service Level.RetailGroupKey", "Fact Service Level.SalesOrgKey", "Fact Service Level.SegmentKey", "Fact Service Level.ship_to", "Fact Service Level.ShipmentNumber", "Fact Service Level.ShippingType", "Fact Service Level.ShipPoint_KEY", "Fact Service Level.ShipToRegion", "Fact Service Level.SO_BillingDate", "Fact Service Level.SO_CreatedDate", "Fact Service Level.SOLDTO", "Fact Service Level.TrailerNo", "Fact Service Level.ValidLine", "Fact Service Level.VSTEL"}},
+				            {Cube.AddMeasureColumn, "Gross_Sales (SL)", "[Measures].[Gross_Sales (SL)]"},
+				            {Cube.AddMeasureColumn, "Order QTY", "[Measures].[Order QTY]"}
+				        }),
+				    #"Filtered Rows2" = Table.SelectRows(#"Added Items", 
+				        each Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[68]" 
+				        meta [DisplayName = "68"] 
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[70]" 
+				        meta [DisplayName = "70"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[71]" 
+				        meta [DisplayName = "71"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[72]" 
+				        meta [DisplayName = "72"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[136]" 
+				        meta [DisplayName = "136"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[145]" 
+				        meta [DisplayName = "145"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[208]" 
+				        meta [DisplayName = "208"]
+				        ),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows2", each [Order QTY] <> 0),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows1",{{"Fact Service Level.ActGdsMvmntDate", "FSL_ActGdsMvmntDate"}, {"Fact Service Level.ConfiramtionDate", "FSL_ConfiramtionDate"}, {"Fact Service Level.DELIVERY", "FSL_DELIVERY"}, {"Fact Service Level.DeliveryCreationDate", "FSL_DeliveryCreationDate"}, {"Fact Service Level.FIRST_DAY", "FSL_FIRST_DAY"}, {"Fact Service Level.GUARANT", "FSL_GUARANT"}, {"Fact Service Level.InvoiceBillingDate", "FSL_InvoiceBillingDate"}, {"Fact Service Level.LoadDelayReason", "FSL_LoadDelayReason"}, {"Fact Service Level.Order Number", "FSL_Order Number"}, {"Fact Service Level.OrderReason", "FSL_OrderReason"}, {"Fact Service Level.OrderReasonDesc", "FSL_OrderReasonDesc"}, {"Fact Service Level.PAYER", "FSL_PAYER"}, {"Fact Service Level.Plant DC","FSL_Plant DC"}, {"Fact Service Level.PO_Number", "FSL_PO_Number"}, {"Fact Service Level.ProductKey", "FSL_ProductKey"}, {"Fact Service Level.PSTYV", "FSL_PSTYV"}, {"Fact Service Level.REQUEST", "FSL_REQUEST"}, {"Fact Service Level.RetailGroupKey", "FSL_RetailGroupKey"}, {"Fact Service Level.SalesOrgKey", "FSL_SalesOrgKey"}, {"Fact Service Level.ShipmentNumber", "FSL_ShipmentNumber"}, {"Fact Service Level.ShippingType", "FSL_ShippingType"}, {"Fact Service Level.ShipPoint_KEY", "FSL_ShipPoint_KEY"}, {"Fact Service Level.ShipToRegion", "FSL_ShipToRegion"}, {"Fact Service Level.SO_BillingDate", "FSL_SO_BillingDate"}, {"Fact Service Level.SO_CreatedDate", "FSL_SO_CreatedDate"}, {"Fact Service Level.SOLDTO", "FSL_SOLDTO"}, {"Fact Service Level.TrailerNo", "FSL_TrailerNo"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"FSL_FIRST_DAY", type date}, {"FSL_GUARANT", type date}, {"FSL_InvoiceBillingDate", type date}, {"FSL_SO_BillingDate", type date}, {"FSL_ActGdsMvmntDate", type date}, {"FSL_ConfiramtionDate", type date}, {"FSL_DeliveryCreationDate", type date}, {"FSL_SO_CreatedDate", type date}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type", {{"FSL_ActGdsMvmntDate", null}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Replaced Errors",{{"FSL_ActGdsMvmntDate", "Act. Gds Mvmnt Date"}, {"FSL_ConfiramtionDate", "Confirmation Date"}, {"FSL_DELIVERY", "Delivery"}, {"FSL_DeliveryCreationDate", "Delivery Creation Date"}, {"FSL_FIRST_DAY", "First Date"}, {"FSL_GUARANT", "Guarantee Date"}, {"FSL_InvoiceBillingDate", "Invoice Billing Date"}, {"FSL_Order Number", "Sales Order"}, {"FSL_OrderReason", "Order reason"}, {"FSL_OrderReasonDesc", "Order reason_1"}, {"FSL_PO_Number", "PO Number"}, {"FSL_PSTYV", "FSL_PSTYV"}, {"FSL_REQUEST", "Requested deliv.date"}, {"FSL_RetailGroupKey", "Payer name"}, {"FSL_Plant DC","Plant"}, {"FSL_ShipmentNumber", "Shipment Number"}, {"FSL_ShippingType", "Shipping type"}, {"FSL_ShipToRegion", "Ship-To Party Region"}, {"FSL_SO_BillingDate", "SO Billing Date"}, {"FSL_SO_CreatedDate", "SO Created Date"}, {"FSL_PAYER", "Payer"}, {"FSL_ProductKey", "Material"}, {"FSL_SalesOrgKey", "FSL_SalesOrgKey"}, {"FSL_ShipPoint_KEY", "Shipping Point/Receiving Pt"}, {"Gross_Sales (SL)", "Net value"}, {"Order QTY", "Order Qty"}, {"FSL_TrailerNo", "Trailer No."}, {"Fact Service Level.VSTEL", "Storage Location"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns1", "YS10N Source", each "Semantic Model"),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"Fact Service Level.DateDailyKey", "Fact Service Level.GOOD_IS_Key", "Fact Service Level.IncotermKey", "FSL_LoadDelayReason", "Fact Service Level.Order with Line Number", "Order reason", "Order reason_1", "Ship-To Party Region", "Trailer No."}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Columns", "Reason for rejection", each if [Fact Service Level.LineInFullStatus] = "SHORT" then [Fact Service Level.LineFailureReason] else null),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"YS10N Source", type text}, {"Reason for rejection", type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "SKUPayer", each [Material] & "|" & [Payer]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Status", each if ([Invoice Billing Date] <> null or [Act. Gds Mvmnt Date] <> null) then
+				    if [Reason for rejection] = null then "Shipped" else null
+				else
+				    if [Reason for rejection] = null then "Open" else null)
+				in
+				    #"Added Custom2"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

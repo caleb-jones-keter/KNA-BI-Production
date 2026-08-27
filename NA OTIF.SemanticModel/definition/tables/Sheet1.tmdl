@@ -1,0 +1,72 @@
+table Sheet1
+	lineageTag: 91024bff-a448-4682-9f26-15f87e0002a2
+
+	column Customer
+		dataType: string
+		lineageTag: 5d9d75a2-163f-4c92-8199-59a0d56bfa6e
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d0ab4d4-e7ad-452e-9621-49e9b1d71198
+		summarizeBy: none
+		sourceColumn: Payer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fill Rate Fine (Cut)'
+		dataType: double
+		lineageTag: 4b97f891-ae4e-43a0-ba4f-a67da985dd41
+		summarizeBy: none
+		sourceColumn: Fill Rate Fine (Cut)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'On- Time Fine (whole order)'
+		dataType: double
+		lineageTag: ad1b38e5-e270-47d6-8957-c951a1586da6
+		summarizeBy: none
+		sourceColumn: On- Time Fine (whole order)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ASN
+		dataType: string
+		lineageTag: f13abf53-180b-4ef2-9fc9-4cd4e3f59d60
+		summarizeBy: none
+		sourceColumn: ASN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'one time Fee'
+		dataType: int64
+		formatString: 0
+		lineageTag: c676a5a8-714a-453e-a8ca-a9eee6d60def
+		summarizeBy: none
+		sourceColumn: one time Fee
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sheet1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNADemandPlanning/Shared%20Documents/OTIF/Fines%20projection.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Customer", type text}, {"Payer Number", Int64.Type}, {"Fill Rate Fine (Cut)", type number}, {"On- Time Fine (whole order)", type number}, {"ASN", type any}, {"one time Fee", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

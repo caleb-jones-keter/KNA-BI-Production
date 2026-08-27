@@ -1,0 +1,617 @@
+table 'FACT RPA Report MPL'
+	lineageTag: 409a38ff-bd9e-47e1-8bff-ed2832717af1
+	sourceLineageTag: [dbo].[FACT RPA Report MPL]
+
+	measure '_FG Total Previous Year' = ```
+			
+			CALCULATE(
+			    SUM('Finished Goods EDB'[Quantity]),
+			
+			    -- Remove only date filtering
+			    REMOVEFILTERS('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]),
+			
+			    -- Previous full year
+			    YEAR('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]) = YEAR(TODAY()) - 1,
+			
+			    -- Keep SKU context via bridge
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Material_Country_Key]),
+			        'SP _FG Product Link_'[Material_Country_Key]
+			    )
+			)
+			
+			
+			
+			
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 03a18243-ba40-42e0-8e19-2021ed551a22
+
+		changedProperty = Name
+
+	measure '_FG Total YTD' = ```
+			
+			CALCULATE(
+			    SUM('Finished Goods EDB'[Quantity]),
+			
+			    -- Remove only date filtering
+			    REMOVEFILTERS('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]),
+			
+			    -- YTD logic
+			    'Finished Goods EDB'[Daily Date _MM/dd/yyyy_] >= DATE(YEAR(TODAY()), 1, 1),
+			    'Finished Goods EDB'[Daily Date _MM/dd/yyyy_] <= TODAY(),
+			
+			    -- Keep SKU context via bridge
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Material_Country_Key]),
+			        'SP _FG Product Link_'[Material_Country_Key]
+			    )
+			)
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 102c4a1a-cba7-4028-a768-af0aac56c528
+
+		changedProperty = Name
+
+	measure '_FG this year FCST' = ```
+			
+			CALCULATE(
+			    SUM('Finished Goods EDB'[Customer Demand]),
+			
+			    -- Only override date
+			    REMOVEFILTERS('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]),
+			
+			    -- Force current year
+			    YEAR('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]) = YEAR(TODAY()),
+			
+			    -- Keep SKU context
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Material_Country_Key]),
+			        'SP _FG Product Link_'[Material_Country_Key]
+			    )
+			)
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 901dba24-a17e-4b57-ae0d-e62cdbd1608e
+
+		changedProperty = Name
+
+	measure '_FG-CY Demand Balance' = [_FG this year FCST]-[_FG Total YTD]
+		formatString: 0
+		lineageTag: 55e878ff-9cff-444a-b54a-60694759f914
+
+		changedProperty = Name
+
+	measure _MaterialStatus_Lookup = ```
+			
+			LOOKUPVALUE(
+			    'SP ZMM02'[MS],                -- Column to return
+			    'SP ZMM02'[Material_Country_Key],           -- Column to search in SP ZMM02
+			    MAX('FACT RPA Report MPL'[Material_Country_Key]) -- Value to match from FACT RPA Report MPL
+			)
+			
+			
+			```
+		lineageTag: d0c6402c-99fe-48a6-b824-a78aad5cd870
+
+		changedProperty = Name
+
+	measure '_SPCurrent Inventory' = ```
+			
+			
+			CALCULATE(
+			    SUM('FACT MB52 All'[Unrestricted]),
+			
+			    -- Filter for Plant 68 OR Plant 65 with Storage Location 365A
+			    FILTER(
+			        'FACT MB52 All',
+			        'FACT MB52 All'[Plant] = "68" ||
+			        (
+			            'FACT MB52 All'[Plant] = "65" &&
+			            'FACT MB52 All'[Storage Location] = "365A"
+			        )
+			    ),
+			
+			    -- Remove all RPA row context EXCEPT SKU
+			    REMOVEFILTERS('FACT RPA Report MPL'),
+			    KEEPFILTERS(VALUES('FACT RPA Report MPL'[Spare Part SKU])),
+			
+			    -- Map SKU → Material
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Spare Part SKU]),
+			        'FACT MB52 All'[Material]
+			    )
+			)
+			
+			
+			
+			
+			
+			```
+		lineageTag: 52e0439d-a248-45fc-87ee-fb1f10d16a9d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_SP Total Previous Year' =
+			
+			CALCULATE(
+			    SUM('Finished Goods EDB'[Quantity]),
+			
+			    -- Remove only date filtering
+			    REMOVEFILTERS('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]),
+			
+			    -- Previous full year
+			    YEAR('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]) = YEAR(TODAY()) - 1,
+			
+			    -- Keep SKU context via bridge
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Spare Part SKU | Country]),
+			        'SP _FG Product Link_'[Material_Country_Key]
+			    )
+			)
+		formatString: 0
+		lineageTag: 50e32a63-799c-47f4-8b87-c2da6b21d62d
+
+		changedProperty = Name
+
+	measure '_SP Total YTD' =
+			
+			CALCULATE(
+			    SUM('Finished Goods EDB'[Quantity]),
+			
+			    -- Remove only date filtering
+			    REMOVEFILTERS('Finished Goods EDB'[Daily Date _MM/dd/yyyy_]),
+			
+			    -- YTD logic
+			    'Finished Goods EDB'[Daily Date _MM/dd/yyyy_] >= DATE(YEAR(TODAY()), 1, 1),
+			    'Finished Goods EDB'[Daily Date _MM/dd/yyyy_] <= TODAY(),
+			
+			    -- Keep SKU context via bridge
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Spare Part SKU | Country]),
+			        'SP _FG Product Link_'[Material_Country_Key]
+			    )
+			)
+		formatString: 0
+		lineageTag: e6af66d9-b715-43c9-8e44-89728f2a374f
+
+		changedProperty = Name
+
+	measure _reorderpoint_Lookup =
+			
+			LOOKUPVALUE(
+			    'SP ZMM02'[Reorder Point],                -- Column to return
+			    'SP ZMM02'[Material_Country_Key],           -- Column to search in SP ZMM02
+			    MAX('FACT RPA Report MPL'[Material_Country_Key]) -- Value to match from FACT RPA Report MPL
+			)
+		lineageTag: da1cf036-6937-437f-8b5c-c9e56f481205
+
+		changedProperty = Name
+
+	measure '_FG future (COUNTRY0) FCST' = ```
+			
+			
+			CALCULATE(
+			    SUM('Finished Goods EDB'[Customer Demand]),
+			    FILTER(
+			        ALL('Finished Goods EDB'),
+			        'Finished Goods EDB'[Daily Date _MM/dd/yyyy_] >= TODAY()
+			    ),
+			    TREATAS(
+			        VALUES('FACT RPA Report MPL'[Product SKU]),
+			        'Finished Goods EDB'[Code:SKU Level _c4_]
+			    )
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: c99d8d18-e91c-4e85-9d28-b7e7cc437a6e
+
+		changedProperty = Name
+
+	measure _fg_increase_multiplier = sum('FACT RPA Report MPL'[CY Demand])/[_FG Total Previous Year]
+		lineageTag: 6c9c20e3-ff27-48b2-842f-136416f63bba
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_SP LY X YOY multipler' = [_SP Total Previous Year]*[_fg_increase_multiplier]
+		lineageTag: 1f894b53-68a7-4382-8bb8-70e60390dd40
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 11ebc050-a124-4bd7-978c-9b037753fcf6
+		sourceLineageTag: Product Name
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product SKU'
+		dataType: string
+		lineageTag: 055ce04d-5b93-4bdf-b931-2f9fb946f2e7
+		sourceLineageTag: Product SKU
+		summarizeBy: none
+		sourceColumn: Product SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Color Code'
+		dataType: string
+		lineageTag: ed42083e-1f54-4660-a121-815aea8f53f2
+		sourceLineageTag: Product Color Code
+		summarizeBy: none
+		sourceColumn: Product Color Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Factory
+		dataType: string
+		lineageTag: f48e334b-cc89-45f2-a947-2b18fd5d62aa
+		sourceLineageTag: GMD24
+		summarizeBy: none
+		sourceColumn: GMD24
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part SKU'
+		dataType: string
+		lineageTag: 059dd4de-5058-40a0-8ea9-d16156029c0a
+		sourceLineageTag: Spare Part SKU
+		summarizeBy: none
+		sourceColumn: Spare Part SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Name'
+		dataType: string
+		lineageTag: 710c4de6-3fe3-4e86-a330-8391ab99b518
+		sourceLineageTag: Spare Part Name
+		summarizeBy: none
+		sourceColumn: Spare Part Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Size'
+		dataType: string
+		lineageTag: 37acc5af-a466-42ca-a3e2-0daeea0171a4
+		sourceLineageTag: Spare Part Size
+		summarizeBy: none
+		sourceColumn: Spare Part Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column set/apart
+		dataType: string
+		lineageTag: 5d1fc75b-30ea-4a6f-aa41-650a72f87cbe
+		sourceLineageTag: set/apart
+		summarizeBy: none
+		sourceColumn: set/apart
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sign
+		dataType: string
+		lineageTag: 1777ce9b-450a-48e6-a8a1-ebde31b35a2c
+		sourceLineageTag: Sign
+		summarizeBy: none
+		sourceColumn: Sign
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Qty Spare Parts per ptoduct'
+		dataType: string
+		lineageTag: 6d3fbbf8-33b4-459f-adf9-cbdf1ad449bd
+		sourceLineageTag: Qty Spare Parts per ptoduct
+		summarizeBy: none
+		sourceColumn: Qty Spare Parts per ptoduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Previous Version'
+		dataType: string
+		lineageTag: 5d924aa9-e191-484e-a515-8d84bd8c19ec
+		sourceLineageTag: Spare Part Previous Version
+		summarizeBy: none
+		sourceColumn: Spare Part Previous Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: a9a230d4-f1f9-44d9-a025-c1494732a4c5
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Key'
+		dataType: string
+		lineageTag: 6d8009ec-0d6e-4304-9cf9-f31c067b4f75
+		sourceLineageTag: Spare Part Key
+		summarizeBy: none
+		sourceColumn: Spare Part Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 213218e5-2b00-42f9-8c62-2767ab5b0c22
+		sourceLineageTag: Status
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Updated'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 367b444e-33a6-4c11-9359-61af36313b37
+		sourceLineageTag: Last Updated
+		summarizeBy: none
+		sourceColumn: Last Updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 28f0a25e-fe78-438e-b9cc-dddf2399ca44
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source Order'
+		dataType: string
+		lineageTag: 2fb6cc86-a2ff-46da-9f6b-01e3d7ecd207
+		sourceLineageTag: Data Source Order
+		summarizeBy: none
+		sourceColumn: Data Source Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material_Country_Key
+		dataType: string
+		lineageTag: 8f0cce3a-20a3-434a-8fa8-c2938cf92e23
+		sourceLineageTag: Material_Country_Key
+		summarizeBy: none
+		sourceColumn: Material_Country_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Sale Date.1'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 203e9948-5902-4e93-860d-52bfc5bcf452
+		sourceLineageTag: Last Sale Date.1
+		summarizeBy: none
+		sourceColumn: Last Sale Date.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Warranty _Year_'
+		dataType: double
+		lineageTag: eb7d4973-0b3e-4848-904f-dd4d99989174
+		sourceLineageTag: Warranty _Year_
+		summarizeBy: sum
+		sourceColumn: Warranty _Year_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Last Warranty Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 716fe6a7-5f39-4323-b2e3-778974527e90
+		sourceLineageTag: Last Warranty Date
+		summarizeBy: none
+		sourceColumn: Last Warranty Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Max SP Warranty Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 12650a52-db73-464b-8a56-c8726085ef9d
+		sourceLineageTag: Max SP Warranty Date
+		summarizeBy: none
+		sourceColumn: Max SP Warranty Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part SKU | Country'
+		dataType: string
+		lineageTag: 681c9d1f-214d-4ea2-9291-da74681989bc
+		sourceLineageTag: Spare Part SKU | Country
+		summarizeBy: none
+		sourceColumn: Spare Part SKU | Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SP ZMM02.MS'
+		dataType: string
+		lineageTag: f5be7c19-799f-4b9b-bee1-64d4d4bc8920
+		sourceLineageTag: SP ZMM02.MS
+		summarizeBy: none
+		sourceColumn: SP ZMM02.MS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SP ZMM02.Material Type'
+		dataType: string
+		lineageTag: 277df410-48c5-4154-94c9-b76e5ec9e236
+		sourceLineageTag: SP ZMM02.Material Type
+		summarizeBy: none
+		sourceColumn: SP ZMM02.Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SP ZMM02.Reorder Point'
+		dataType: string
+		lineageTag: 74c5af5e-0099-40f6-a430-805bdf8e1343
+		sourceLineageTag: SP ZMM02.Reorder Point
+		summarizeBy: none
+		sourceColumn: SP ZMM02.Reorder Point
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantity Last Year'
+		dataType: double
+		lineageTag: 00f1d788-b61c-4bd8-86f8-f0f85e2bdd2c
+		sourceLineageTag: Quantity Last Year
+		summarizeBy: sum
+		sourceColumn: Quantity Last Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Quantity YTD'
+		dataType: double
+		lineageTag: 5f847e9b-a850-4920-9cc6-b29a9882a944
+		sourceLineageTag: Quantity YTD
+		summarizeBy: sum
+		sourceColumn: Quantity YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CY Demand'
+		dataType: double
+		lineageTag: 49b1e8f4-a732-4230-91e0-f48f7fd8595e
+		sourceLineageTag: CY Demand
+		summarizeBy: sum
+		sourceColumn: CY Demand
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'LY Demand'
+		dataType: double
+		lineageTag: 29f201f8-a82b-4cea-9e2c-890731bcebb6
+		sourceLineageTag: LY Demand
+		summarizeBy: sum
+		sourceColumn: LY Demand
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product SKU & DESC'
+		dataType: string
+		lineageTag: c21e7710-a0d9-43c1-9dd7-68a49ca82e7e
+		sourceLineageTag: Product SKU & DESC
+		summarizeBy: none
+		sourceColumn: Product SKU & DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryKey_SKU
+		dataType: string
+		lineageTag: ead39452-ad28-496f-a337-d8602a1f3963
+		sourceLineageTag: CountryKey_SKU
+		summarizeBy: none
+		sourceColumn: CountryKey_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column KUNNR
+		dataType: string
+		lineageTag: a99eaddd-c041-4894-b027-83dbd3b3169b
+		sourceLineageTag: KUNNR
+		summarizeBy: none
+		sourceColumn: KUNNR
+
+		annotation SummarizationSetBy = Automatic
+
+	column SP_IML
+		dataType: string
+		lineageTag: 1a761bb6-2c21-42f7-b295-cd56a4cc36f3
+		sourceLineageTag: SP_IML
+		summarizeBy: none
+		sourceColumn: SP_IML
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'STD.PROD.SITE _SOURCE_ GMD 5 desc'
+		dataType: string
+		lineageTag: 88b30d02-8df2-4de1-a9ec-0b0ec2b278cd
+		sourceLineageTag: STD.PROD.SITE _SOURCE_ GMD 5 desc
+		summarizeBy: none
+		sourceColumn: STD.PROD.SITE _SOURCE_ GMD 5 desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unique_key
+		dataType: string
+		lineageTag: 07a0e633-58af-4bde-9afb-c20668ed12af
+		sourceLineageTag: Unique_key
+		summarizeBy: none
+		sourceColumn: Unique_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZZIMLCODE_SKU
+		dataType: string
+		lineageTag: 5e888aee-0a35-4996-addc-4b659da50b3e
+		sourceLineageTag: ZZIMLCODE_SKU
+		summarizeBy: none
+		sourceColumn: ZZIMLCODE_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Color Code'
+		dataType: string
+		lineageTag: 999e1392-2b00-45ba-9c2c-9b40aef83a9c
+		sourceLineageTag: Color Code
+		summarizeBy: none
+		sourceColumn: Color Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Unit'
+		dataType: string
+		lineageTag: 074e56f7-002f-4368-ab12-9c820659fb1f
+		sourceLineageTag: Business Unit
+		summarizeBy: none
+		sourceColumn: Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT RPA Report MPL' = entity
+		mode: directLake
+		source
+			entityName: FACT RPA Report MPL
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,232 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "f6d645a26c3473ddda80",
+  "position": {
+    "x": 656,
+    "y": 88,
+    "z": 0,
+    "height": 808,
+    "width": 992.00000000000011,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "SKU & DESC"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.SKU & DESC",
+              "nativeQueryRef": "SKU & DESC"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "Receiving Stor. Loc_"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.Receiving Stor. Loc_",
+              "nativeQueryRef": "Receiving Stor. Loc_"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_101QTY"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._101QTY",
+              "nativeQueryRef": "Scanned In Units",
+              "displayName": "Scanned In Units",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_641QTY"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._641QTY",
+              "nativeQueryRef": "Shipped Units",
+              "displayName": "Shipped Units",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_varcreatedshipped"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._varcreatedshipped",
+              "nativeQueryRef": "Scanned Units-Ship Units",
+              "displayName": "Scanned Units-Ship Units",
+              "format": "#,0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AdamsLogisticsMb51"
+                  }
+                },
+                "Property": "_varcreatedshipped"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "acd86464355361791294",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_varcreatedshipped"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "AdamsLogisticsMb51",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a"
+                        }
+                      },
+                      "Property": "_varcreatedshipped"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "330418120d918475071a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "SKU & DESC"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "524d78c08665b8b110c0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "Receiving Stor. Loc_"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7e477be084380717c61d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_101QTY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "41bb1bd0581224daeb4b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_641QTY"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

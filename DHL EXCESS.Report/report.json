@@ -1,0 +1,108 @@
+{
+  "config": "{\"version\":\"5.69\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU12\",\"type\":2,\"version\":{\"visual\":\"2.5.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}},\"customTheme\":{\"name\":\"Keter04426631124539271.json\",\"type\":1,\"version\":{\"visual\":\"2.1.0\",\"report\":\"3.0.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"visible\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "d2b90c1d18ffab1a6d16",
+      "config": "{}",
+      "name": "7a8d2c2c494a505c5c8c",
+      "parameters": "[{\"name\":\"d11986d8ec064ed8a9ca\",\"boundFilter\":\"b7c36b44128dcf6254ee\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"SKU & Desc\"}}},{\"name\":\"9a7a052d6d4e2d35b604\",\"boundFilter\":\"1d66019d94e844192073\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM MRP Area\"}},\"Property\":\"MRP Area\"}}}]",
+      "type": 1
+    }
+  ],
+  "publicCustomVisuals": [
+    "Timeline1447991079100"
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU12",
+            "path": "BaseThemes/CY25SU12.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "Keter04426631124539271.json",
+            "path": "Keter04426631124539271.json",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Excess Strategy",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"32a396be2977e513711c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Full Date\"}},\"type\":\"Categorical\",\"howCreated\":1},{\"name\":\"95a659ac6fb0c79fac41\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Date\"}},\"Property\":\"Future?\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{}}]}},{\"name\":\"1c7361f4fb2e0e742437\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"SKU & Desc\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Product\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SKU & Desc\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},{\"name\":\"b7c36b44128dcf6254ee\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"SKU & Desc\"}},\"type\":\"Categorical\",\"howCreated\":5},{\"name\":\"1d66019d94e844192073\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM MRP Area\"}},\"Property\":\"MRP Area\"}},\"type\":\"Categorical\",\"howCreated\":5}]",
+      "height": 900.00,
+      "name": "d2b90c1d18ffab1a6d16",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"716b502701b580948173\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":16,\"z\":4000,\"width\":304,\"height\":80,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Plant.Plant\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Plant\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Plant\"},\"Name\":\"DIM Plant.Plant\",\"NativeReferenceName\":\"Plant\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"6f0c2f0061ae52dfdb9a\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_INV 3M FCST\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Future\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":1,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_INV 3M FCST\"}},\"Right\":{\"Literal\":{\"Value\":\"0L\"}}}}}]},\"type\":\"Advanced\",\"howCreated\":1}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAK1TTW/CMAz9K1UOO0UTjBu3jY8JQREDBgeEpqh1IVPbVGmygRD/fXaaASscpmm3xH5+fs9ODqyjskzkccnaqwObAZ6NjF4s6H1XGDHbigI8hLUPzCXosABdSpWz9gNnfa0yVz4WGbA2ixlnPaQxiGTdQRhMUmTF4HxfYL5x5CdocgntP3bmQd8aq+EmOG5eEWsV2+iSes3RRAoYI0EdldosJ729XaGhrCSjT2V1BFNIzhen+3jkDDkL0K5FpRtjXsDJy/23o7Ew8oOIQEMegcf5OtSy3GLCS8ljaXx/nGghtCzrt6GkMTc5G0FiKBWCKGkcv3SQ1B28DcaLoBUG/c5s7nJTudk65pE0oEXqdilSS9WNEUIINBd6A/85weOa1vhjBGNlrlkHtU7lXzQ06yJmw9fgLuhCGZESXvkl6tXNMeQ2TQm4pmGQcvaEa5H5hkATLTNRfYFnrWyB4Uok9nvHZ+dFN9aukL7QFOiJeskUWJAdbNTil2xL7KE+8eQ2MMij1MbQywqzd32Q1GgL/Pzxmgjr7SCyxB2C0TIq/fsh1V9WIpGt2gMAAA==",
+          "width": 304.00,
+          "x": 16.00,
+          "y": 16.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"7833c7866eb2ef41ca01\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":100,\"height\":40,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'Back'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 40.00,
+          "width": 100.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"88868c46cee26099a302\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":112,\"z\":5000,\"width\":976,\"height\":784,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Product.SKU & Desc\"},{\"queryRef\":\"DIM MRP Area.MRP Area\"},{\"queryRef\":\"FACT Future._MB52 Future\"},{\"queryRef\":\"Sum(FACT Future.CombinedQty_per_ContQty)\"},{\"queryRef\":\"FACT Future._Excess 26 Weeks\"},{\"queryRef\":\"FACT Future._Total Excess Containers\"},{\"queryRef\":\"FACT Future._DOS Annual\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Product\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DIM MRP Area\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT Future\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM Product.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"MRP Area\"},\"Name\":\"DIM MRP Area.MRP Area\",\"NativeReferenceName\":\"MRP Area\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"CombinedQty_per_ContQty\"}},\"Function\":0},\"Name\":\"Sum(FACT Future.CombinedQty_per_ContQty)\",\"NativeReferenceName\":\"Current Containers\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_Total Excess Containers\"},\"Name\":\"FACT Future._Total Excess Containers\",\"NativeReferenceName\":\"Excess Containers\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_DOS Annual\"},\"Name\":\"FACT Future._DOS Annual\",\"NativeReferenceName\":\"DOS\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_MB52 Future\"},\"Name\":\"FACT Future._MB52 Future\",\"NativeReferenceName\":\"Current Inv\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_Excess 26 Weeks\"},\"Name\":\"FACT Future._Excess 26 Weeks\",\"NativeReferenceName\":\"Excess QTY\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_Total Excess Containers\"}}}]},\"columnProperties\":{\"Sum(FACT Future.CombinedQty_per_ContQty)\":{\"displayName\":\"Current Containers\"},\"FACT Future._Total Excess Containers\":{\"displayName\":\"Excess Containers\"},\"FACT Future._DOS Annual\":{\"displayName\":\"DOS\"},\"FACT Future._MB52 Future\":{\"displayName\":\"Current Inv\"},\"FACT Future._Excess 26 Weeks\":{\"displayName\":\"Excess QTY\"}},\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"79.49902799019254D\"}}}},\"selector\":{\"metadata\":\"Sum(FACT Future.CombinedQty_per_ContQty)\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"354.9619518314539D\"}}}},\"selector\":{\"metadata\":\"DIM Product.SKU & Desc\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"88.86666666666667D\"}}}},\"selector\":{\"metadata\":\"FACT Future._Total Excess Containers\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Excess Strategy'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F2F2F7'\"}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"8d24133deb0e5aaac881\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"CombinedQty_per_ContQty\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"4f8a952da98860c6ba46\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM MRP Area\"}},\"Property\":\"MRP Area\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM MRP Area\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MRP Area\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'67_4674 - DHL'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{},\"ordinal\":1},{\"name\":\"b1fbb0e7dbe5aa410006\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_MB52 Future\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":2},{\"name\":\"cb9b2e10bc7dd6a4ee43\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_Total Excess Carrying Costs\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Future\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":1,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_Total Excess Carrying Costs\"}},\"Right\":{\"Literal\":{\"Value\":\"0L\"}}}}}]},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":3},{\"name\":\"ded1a28286573218584b\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"DIM BOM Combined.BOM Type\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Product\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"DIM BOM Combined.BOM Type\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Component'\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false,\"ordinal\":4},{\"name\":\"046dba2ab00b1454a0cc\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_DOS Annual\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":5},{\"name\":\"b98c1b8e3750ba8d02eb\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_Total Excess Containers\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":6},{\"name\":\"e800c8f01e40ea455e19\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_Total Excess Containers in Country\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":7},{\"name\":\"b57002c46102d0db16bb\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_Total Excess Containers in Transit\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":8},{\"name\":\"df9becf14573e9b9505b\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_Haifa Storage Future\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":9},{\"name\":\"f6063d0e8d42e4309a3a\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_In Transit Future\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":10},{\"name\":\"c6177982c7414785882e\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM MRP Area\"}},\"Property\":\"MRP Area\"}},\"type\":\"Categorical\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":11},{\"name\":\"e9456ed687b0e77c0304\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DIM Product\"}},\"Property\":\"SKU & Desc\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":12},{\"name\":\"927e64f6da65aa994c22\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Component Forecast Initial\"}},\"Property\":\"SOW\"}},\"type\":\"RelativeDate\",\"howCreated\":1,\"ordinal\":13}]",
+          "height": 784.00,
+          "queryBinary": "H4sIAAAAAAAEAL2WbW/aMBDHv0rkF+smZQhoSyXe8VC2qlBaYK2mqUJuOGi2xEaO3RahfPfdOaGElKxrle1dbP9z9zv77uw168gw5GIWseaPNRsDfmvfuzKgVl2u+fieLyGVsOaa2QX6uAYV+VKwZt1lPSVD+/sFD4E12Yy57BTNaFSy7tnAuVRyZjyN05PVEhXV2N2Ka3n1YHTptBTwvfJ5Vt1rdSZOz2ijICO+dTGOANAfMXVkYEJByKdPSwVRQo2hSqM8GMF8O7Docewy5F2Csi7G59+cD04XIo/hQgqRiamSEdC69h/IKCgQHqTyHRtvJqrlkZ73ZxdoM13J7N9+noyBNWstFgoWqJN7kN6GOs+TYuLc+QJmV3o1xblpRwqN31bWM8JLnFa3cYxN+DFzqJUCA58KQ+sYhUPtkJDjnyqyQQ6AR5Qk7w1kOpGaB87pk4e/7hrfoGexC+VF2PsMl0DdHY6dlhCGB0WgGUURG0rKoRm0j+ubai3AyUpeO+Iz8VAOV7r59YZzA/Cr8EzzslfO8mrynVErurkHgrOdSMz8TZ2d5aoqek+z+kNrINfXPDBAhtFy39eg8JSpddM0ig8aJ9OjxsmR89npfu0f0D+3cZx0qAwp1uCSKz/Kj859uhJqLuvDXNNSyUXGlVr5YoFFEenIakf+4t562hNMtY8SEk24WkDprb/cvh3fvtjlC6lfWi4lSfIYdFe0hwNn01srNLB3518lDSWAFFiAzwnzMmX+XzA7Z/Q6vTBBsMVG/VDNQLVXFqXrK0ivJHzU7OL8uwvEJgNrYzFhspORS+WHPHlkfVHSLHE62So09zMBpHHVrbl199A9co/dBj15zJ0mH1iS1iK93kZAT5SUlCauabcR8NDNurlB5/IxqW4j8OiOq1VbS8+PvFpMGwKeIWMD0Mr3orT+if83ZpthS0YKAAA=",
+          "width": 976.00,
+          "x": 16.00,
+          "y": 112.00,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"8ff25ef296c6357b0839\",\"layouts\":[{\"id\":0,\"position\":{\"x\":336,\"y\":16,\"z\":2000,\"width\":224,\"height\":80,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Product.PC Business Unit\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"DIM Product\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"PC Business Unit\"},\"Name\":\"DIM Product.PC Business Unit\",\"NativeReferenceName\":\"PC Business Unit\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"dab5371e3256dcdf4cd6\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_INV 3M FCST\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT Future\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":1,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_INV 3M FCST\"}},\"Right\":{\"Literal\":{\"Value\":\"0L\"}}}}}]},\"type\":\"Advanced\",\"howCreated\":1}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEALWTy27CMBBFfyXyoiurgrJjVwJUEQ9RnosKVVYygKvEjvxoQYh/74wTFQpddNHubM+duWfG9pHFuiiEyixrvxzZDHDtZPrswRy6wonZTpRQS1j7yEKAFkswVmrF2g+c9Y0uQvpYFMDaLGsyznpYx6GUdZNRNDE686nD4/mhREnjxL/Um0tx/zGeR33vvIEL8ZojWQ5YgFxinftCEURvXxqwFQfCa29SmMLmvKlgTifOkKAEEzwmcdTxVirMjBZKOobhmuWC9f5GRion38kBDKgU6qTbesi72qGmxlWZdDUjjrIURtrr3UDSfJucDWHjKDQCYWkIv+xyc93kazJeRq1R1I9n8xCbyu0uVB5KB0bk4RJF7im7MUQJiebCbOG/pnxa061/G8dYu1uH5MrV/gnPbLCI7qIu2JRIeNU7lX75cSTK5zkJ1zQYImcdvCKptiSaGFmI6h88Ge1LPK4g0e8Nn2kN3ViHRPpHU6A3VSPTwZLaQaMWv6y2Qg/9gatwG4lKc59BryjdIfhgUWc88PPva6Kst4fUU+0ROCNTW78lov4E0Nd3Nt8DAAA=",
+          "width": 224.00,
+          "x": 336.00,
+          "y": 16.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"ee72a3e416da20f4e878\",\"layouts\":[{\"id\":0,\"position\":{\"x\":576,\"y\":16,\"z\":1000,\"width\":416,\"height\":80,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Product.SKU & Desc\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"DIM Product\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"SKU & Desc\"},\"Name\":\"DIM Product.SKU & Desc\",\"NativeReferenceName\":\"SKU & Desc\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"76ec8255a949f26dc1da\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT Future\"}},\"Property\":\"_INV 3M FCST\"}},\"type\":\"Advanced\",\"howCreated\":1}]",
+          "height": 80.00,
+          "queryBinary": "H4sIAAAAAAAEAK2SP2/CMBDFvwq6oVNUQbtlLKQVoiAKLQxVBsu5Flf+Ezl2C0L57r1LLBGVtZmcu+f3fvb5DFNnjLBVA/n7GbZI66DkS0R/mokgtgdRY5JAfoauwYsd+kY5C/ldBo/emW77ShiEHKoJZFCQTyApzObL0dq7KspA5ddTTZJxW2YUppFqvHHqdDSWfYtj7bHprYnHRS9xgx+Xn96/bTMg0xp9l7FdvI1uRjNsJFAjYQyCbwcC7gf1za7o0UpM8qEH0e0P1E1wtlIhEa1cuMac/0Fv/v1QTLQTOiJbk/ezCuiF7ibBZZLbqDULy5a/krweFIHbTxatvTKin9yTd7Gmcg9JeV80hQQ9LruNPPkN8sUlZC7s+DgUdJ8N3faU4X5o1TL93EodKyxMHU5dDpkGHzG7vJcJyYojysjeSwxeyWah+HVNmPoX9eDdgJECAAA=",
+          "width": 416.00,
+          "x": 576.00,
+          "y": 16.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1650.00
+    }
+  ],
+  "theme": "Keter04426631124539271.json"
+}

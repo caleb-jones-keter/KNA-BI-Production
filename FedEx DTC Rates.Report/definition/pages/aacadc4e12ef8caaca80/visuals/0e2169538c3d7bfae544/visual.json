@@ -1,0 +1,294 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "0e2169538c3d7bfae544",
+  "position": {
+    "x": 0,
+    "y": 112,
+    "z": 0,
+    "height": 784,
+    "width": 1648,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "fedex_billable_weight"
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.fedex_billable_weight)",
+              "nativeQueryRef": "fedex_billable_weight"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "fedex_ahs_category"
+                }
+              },
+              "queryRef": "fact dtc rates.fedex_ahs_category",
+              "nativeQueryRef": "fedex_ahs_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "applied_ahs_rate"
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.applied_ahs_rate)",
+              "nativeQueryRef": "applied_ahs_rate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "das_type"
+                }
+              },
+              "queryRef": "fact dtc rates.das_type",
+              "nativeQueryRef": "das_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "das_rate"
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.das_rate)",
+              "nativeQueryRef": "das_rate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "destination_zip"
+                }
+              },
+              "queryRef": "fact dtc rates.destination_zip",
+              "nativeQueryRef": "destination_zip"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "zip_region"
+                }
+              },
+              "queryRef": "fact dtc rates.zip_region",
+              "nativeQueryRef": "zip_region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "fedex_ground_zone"
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.fedex_ground_zone)",
+              "nativeQueryRef": "fedex_ground_zone"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "earned_discount"
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.earned_discount)",
+              "nativeQueryRef": "earned_discount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact dtc rates"
+                    }
+                  },
+                  "Property": "fedex_ground_base_rate"
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.fedex_ground_base_rate)",
+              "nativeQueryRef": "fedex_ground_base_rate"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact dtc rates"
+                        }
+                      },
+                      "Property": "perf_discount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.perf_discount)",
+              "nativeQueryRef": "Sum of perf_discount"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact dtc rates"
+                        }
+                      },
+                      "Property": "fuel_surcharge"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.fuel_surcharge)",
+              "nativeQueryRef": "Sum of fuel_surcharge"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact dtc rates"
+                        }
+                      },
+                      "Property": "net_charge_amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.net_charge_amount)",
+              "nativeQueryRef": "Sum of net_charge_amount"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact dtc rates"
+                        }
+                      },
+                      "Property": "combined_qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact dtc rates.combined_qty)",
+              "nativeQueryRef": "Sum of combined_qty"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact dtc rates"
+                  }
+                },
+                "Property": "fedex_ahs_category"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "125.22222222222223D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact dtc rates.das_type"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "55b3f399e852986b3d77",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer & Desc"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  }
+}

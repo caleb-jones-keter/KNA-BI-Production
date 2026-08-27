@@ -1,0 +1,245 @@
+table 'FACT MB52 All'
+	lineageTag: f33c1ded-474d-4ffa-a414-2a4002370a15
+	sourceLineageTag: [dbo].[FACT MB52 All]
+
+	measure _CurrentINVplant68 = ```
+			
+			CALCULATE(
+			    SUM('FACT MB52 All'[Unrestricted]),
+			    'FACT YM6P'[Plant] = VALUE("68")
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 0dcdaead-7620-4291-beaa-8ad559041174
+
+		changedProperty = Name
+
+	column Material
+		dataType: string
+		lineageTag: 8c5205d2-ae90-4ad2-853e-c14c6bfc03a7
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Description'
+		dataType: string
+		lineageTag: 5334d1ad-e804-4187-b053-f4e142b76c2e
+		sourceLineageTag: Material Description
+		summarizeBy: none
+		sourceColumn: Material Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Base Unit of Measure'
+		dataType: string
+		lineageTag: 9b159679-8db4-4613-ad55-13433cbbd236
+		sourceLineageTag: Base Unit of Measure
+		summarizeBy: none
+		sourceColumn: Base Unit of Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: b0ccdb01-7a97-42c8-8c24-f7346f066fad
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unrestricted
+		dataType: double
+		lineageTag: 0667197f-3650-44ce-8af4-ac0ee455f7f1
+		sourceLineageTag: Unrestricted
+		summarizeBy: sum
+		sourceColumn: Unrestricted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transit and Transfer'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f71d072-da07-4181-a24c-807058ea1929
+		sourceLineageTag: Transit and Transfer
+		summarizeBy: sum
+		sourceColumn: Transit and Transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Quality Insp_'
+		dataType: int64
+		formatString: 0
+		lineageTag: ba8b90cd-1218-45d8-991f-30b9b78c9afe
+		sourceLineageTag: In Quality Insp_
+		summarizeBy: sum
+		sourceColumn: In Quality Insp_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Restricted-Use Stock'
+		dataType: int64
+		formatString: 0
+		lineageTag: d58e8cd4-7e2d-4e06-b8d1-5542fd002c50
+		sourceLineageTag: Restricted-Use Stock
+		summarizeBy: sum
+		sourceColumn: Restricted-Use Stock
+
+		annotation SummarizationSetBy = Automatic
+
+	column Blocked
+		dataType: int64
+		formatString: 0
+		lineageTag: 5556a9a3-7021-4a16-83b4-d048ac6fe13e
+		sourceLineageTag: Blocked
+		summarizeBy: sum
+		sourceColumn: Blocked
+
+		annotation SummarizationSetBy = Automatic
+
+	column Returns
+		dataType: int64
+		formatString: 0
+		lineageTag: b48c3d8b-7001-4e36-9968-87a34d9129fe
+		sourceLineageTag: Returns
+		summarizeBy: sum
+		sourceColumn: Returns
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descr. of Storage Loc_'
+		dataType: string
+		lineageTag: 2fb08d2f-5dfe-42b9-b8f1-e50aeeebe0ad
+		sourceLineageTag: Descr. of Storage Loc_
+		summarizeBy: none
+		sourceColumn: Descr. of Storage Loc_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location Initial'
+		dataType: string
+		lineageTag: 19f89d19-9113-482d-98e9-842da15ebb3c
+		sourceLineageTag: Storage Location Initial
+		summarizeBy: none
+		sourceColumn: Storage Location Initial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: c53d30f2-b8a7-47f1-9e27-805366fb7dbe
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 407aabf0-21c5-4941-a249-588b80f5f1ab
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: e2b16c71-1c93-4b8f-a6a2-96fe382b439d
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: 0a1715c8-6e37-4157-bd3d-568aafa6dce9
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 2804a61b-c394-4cce-9311-3fed1ae44e91
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: b751a78c-caa8-4aef-b84a-f4764bf2597b
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 517e67f7-f33a-42c4-8322-62256fb71757
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fcf8aca1-251a-48f8-ad7c-fad1e2c8c0a3
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4bbb9405-3415-4677-86a3-3a8541ec382f
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9258606b-bb0a-4ff5-a544-87f0f669ffce
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stock_Value
+		dataType: double
+		lineageTag: d7cc94ff-ea41-4d39-8329-bbe77de177f1
+		sourceLineageTag: Stock_Value
+		summarizeBy: sum
+		sourceColumn: Stock_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT MB52 All' = entity
+		mode: directLake
+		source
+			entityName: FACT MB52 All
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

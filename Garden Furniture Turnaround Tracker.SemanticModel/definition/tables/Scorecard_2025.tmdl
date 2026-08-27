@@ -1,0 +1,135 @@
+table Scorecard_2025
+	lineageTag: 4fc17265-a1cb-4cbb-a733-8397c9fa5fb1
+
+	column 'BA Plant'
+		dataType: string
+		lineageTag: 4d4f7230-b159-4c61-998c-cf96484c16fc
+		summarizeBy: none
+		sourceColumn: BA Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Sub Category'
+		dataType: string
+		lineageTag: c3c6e7e8-6206-4276-89e5-7b5163dbfce7
+		summarizeBy: none
+		sourceColumn: PC Sub Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: ff9da3b5-0790-419d-a8d1-b0c9cdb36df5
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Variable Cost of Production FI(2025)'
+		dataType: double
+		lineageTag: 8808c8f7-659c-45c6-9ec3-aaf9b604214b
+		summarizeBy: sum
+		sourceColumn: Variable Cost of Production FI(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fixed Costs of Production FI(2025)'
+		dataType: double
+		lineageTag: 64b669c4-d6ee-4de1-8614-fd5aaa88082b
+		summarizeBy: sum
+		sourceColumn: Fixed Costs of Production FI(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Production (RM KG)(2025)'
+		dataType: double
+		lineageTag: ccfd2145-1798-4b89-a67a-ab08d0bd7fff
+		summarizeBy: sum
+		sourceColumn: Net Production (RM KG)(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Weight KG (Manufacture)(2025)'
+		dataType: double
+		lineageTag: 6e6dbbae-ddd1-418f-a857-8e4c0c801bcd
+		summarizeBy: sum
+		sourceColumn: RM Weight KG (Manufacture)(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Labor Expenses FI(2025)'
+		dataType: double
+		lineageTag: 982c7875-b5e3-4a2f-95a6-627a5786877f
+		summarizeBy: sum
+		sourceColumn: Direct Labor Expenses FI(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: cb294897-2360-4fd8-b189-03982fb20de3
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 43699931-3099-40d1-b6e0-5b4642ebc1de
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'subcontract25.Subcontracting KGS'
+		dataType: double
+		lineageTag: 5ca66821-1ca1-4b53-9cdf-43bcbfb9cb7b
+		summarizeBy: sum
+		sourceColumn: subcontract25.Subcontracting KGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Scorecard Wgt'
+		dataType: double
+		lineageTag: e3afff03-2bb2-43bf-b00d-37db966fe8f8
+		summarizeBy: sum
+		sourceColumn: Total Scorecard Wgt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Scorecard_2025 = m
+		mode: import
+		queryGroup: Scorecard
+		source =
+				let
+				    Source = Table.Combine({Scorecard_2025_EURO, Scorecard_2025_USD}),
+				    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"BA Plant", "PC Sub Category", "Date"}, subcontract25, {"BA Plant", "PC Sub Category", "Months"}, "subcontract25", JoinKind.LeftOuter),
+				    #"Expanded subcontract25" = Table.ExpandTableColumn(#"Merged Queries", "subcontract25", {"Subcontracting KGS"}, {"subcontract25.Subcontracting KGS"}),
+				    #"Added Custom1" = Table.AddColumn(#"Expanded subcontract25", "Total Scorecard Wgt", each (if[subcontract25.Subcontracting KGS]=null then 0 else [subcontract25.Subcontracting KGS]) + (if[#"Net Production (RM KG)#(lf)(2025)"]=null then 0 else [#"Net Production (RM KG)#(lf)(2025)"])),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Total Scorecard Wgt", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

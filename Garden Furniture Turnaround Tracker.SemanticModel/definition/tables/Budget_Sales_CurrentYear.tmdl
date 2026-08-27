@@ -1,0 +1,222 @@
+table Budget_Sales_CurrentYear
+	lineageTag: 0e41cc4c-51a3-4691-b475-ed37e8479a28
+
+	column Payer
+		dataType: string
+		lineageTag: ebf42c22-4cb8-4259-a430-d9f3c7bb6c12
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 38af2cea-6dcb-4c4f-8685-fe36ae3bd825
+		summarizeBy: none
+		sourceColumn: Code:Payer (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 05bbaf4d-1251-476c-8626-7fe8741fe188
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level (c2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: d7e4021e-f3d2-4a19-989a-0640ea6e1946
+		summarizeBy: none
+		sourceColumn: Code:SKU Level (c2)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: eccd56a9-2993-40d2-bd67-00893a8db939
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Profit Center Detailed (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5286afd8-997d-484c-943d-45a650e5a5b5
+		summarizeBy: sum
+		sourceColumn: Code:Profit Center Detailed (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment-Region
+		dataType: string
+		lineageTag: acf2b3e9-7b3b-416b-b5a9-79d2ec7a9188
+		summarizeBy: none
+		sourceColumn: Segment-Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Segment-Region (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 838c1452-7e62-4751-b577-7f1664b88b04
+		summarizeBy: sum
+		sourceColumn: Code:Segment-Region (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country (ST)'
+		dataType: string
+		lineageTag: 1335ec94-3d90-4b7f-a39c-180efce8c977
+		summarizeBy: none
+		sourceColumn: Country (ST)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Country (ST) (c5)'
+		dataType: int64
+		formatString: 0
+		lineageTag: b7e3b8fa-dabd-4c44-b4e8-9c415d561ee1
+		summarizeBy: sum
+		sourceColumn: Code:Country (ST) (c5)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Org 2017 (SoldTo)'
+		dataType: string
+		lineageTag: 0eeb4070-624e-472d-ba5a-95ffb4ff79d3
+		summarizeBy: none
+		sourceColumn: Market Org 2017 (SoldTo)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Market Org 2017 (SoldTo) (c6)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b4e2fbc-9f56-45b7-ac34-4c0754d4db18
+		summarizeBy: sum
+		sourceColumn: Code:Market Org 2017 (SoldTo) (c6)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: ac510c14-6a94-48a6-b96c-a171444e647e
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a047f83-fa44-42ae-b9d5-d5d0dbee1910
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales'
+		dataType: double
+		lineageTag: 7be0e4b2-6a59-4f0b-bd00-9d08e2cba003
+		summarizeBy: sum
+		sourceColumn: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales'
+		dataType: double
+		lineageTag: cad5f867-20b0-43c4-8f5f-1284aa5cb0cb
+		summarizeBy: sum
+		sourceColumn: Net Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution'
+		dataType: double
+		lineageTag: bee07846-347c-4868-b6e3-9b82f1ac34c8
+		summarizeBy: sum
+		sourceColumn: Direct Contribution
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EBITDA
+		dataType: double
+		lineageTag: 9503e348-1d5d-4c85-8ada-5c179e1e142e
+		summarizeBy: sum
+		sourceColumn: EBITDA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Of Sales'
+		dataType: double
+		lineageTag: 3f751b93-5c99-452c-bc12-fe5692801807
+		summarizeBy: sum
+		sourceColumn: Cost Of Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Weight Sold'
+		dataType: double
+		lineageTag: f1d532b3-8b4d-475f-a682-79c31e2c722c
+		summarizeBy: sum
+		sourceColumn: RM Weight Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: a8e22141-f9b3-4ba1-a325-d10a98c239c2
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: fb84b53d-289f-4b8b-91da-667173711486
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2a0f5e11-e86e-4bd7-8dc3-e8ba13c1f877
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Budget_Sales_CurrentYear = m
+		mode: import
+		queryGroup: 'Budget Sales'
+		source =
+				let
+				    Source = Table.Combine({Budget_Sales, #"2plus10_CurrentYear"})
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

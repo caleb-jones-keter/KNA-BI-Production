@@ -1,0 +1,265 @@
+table AdamsLogisticsME2L
+	lineageTag: d645d7e2-3792-4bbd-b5e5-0d5d4cb88307
+	sourceLineageTag: [dbo].[AdamsLogisticsME2L]
+
+	column Plant
+		dataType: string
+		lineageTag: d8af31bc-cc5d-4cef-82c5-5648bc738882
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor/supplying plant'
+		dataType: string
+		lineageTag: 3bd756f9-4ebf-4dc0-a6e7-68ed8ec49a97
+		sourceLineageTag: Vendor/supplying plant
+		summarizeBy: none
+		sourceColumn: Vendor/supplying plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Group'
+		dataType: string
+		lineageTag: 3c433dcc-ab10-48d8-b6f4-c262103a7779
+		sourceLineageTag: Purchasing Group
+		summarizeBy: none
+		sourceColumn: Purchasing Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Document'
+		dataType: string
+		lineageTag: f738d942-7a23-493f-b24b-7bddaba22db1
+		sourceLineageTag: Purchasing Document
+		summarizeBy: none
+		sourceColumn: Purchasing Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 98a56fc9-f6e8-4c44-8835-e25e13625a1f
+		sourceLineageTag: Item
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 825b855b-a3ca-4c08-bce3-106125674f56
+		sourceLineageTag: Document Date
+		summarizeBy: none
+		sourceColumn: Document Date
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Material
+		dataType: string
+		lineageTag: 7f83eebb-8ba9-4807-86ea-749780f15fb5
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Category'
+		dataType: string
+		lineageTag: d449e2dc-9421-483a-ab84-ffb4f4154f26
+		sourceLineageTag: Item Category
+		summarizeBy: none
+		sourceColumn: Item Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 1ea2f6ac-6eb8-4061-84bc-4f148b30c34a
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net price'
+		dataType: string
+		lineageTag: a1137df9-4185-4b26-bd8c-26b4efca37bd
+		sourceLineageTag: Net price
+		summarizeBy: none
+		sourceColumn: Net price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 448e0403-8948-430f-aac7-95e9ef2501ed
+		sourceLineageTag: Order Quantity
+		summarizeBy: sum
+		sourceColumn: Order Quantity
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Order Value'
+		dataType: string
+		lineageTag: b6a92169-78ba-47ee-a435-c83e05fda017
+		sourceLineageTag: Net Order Value
+		summarizeBy: none
+		sourceColumn: Net Order Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Still to be delivered _qty_'
+		dataType: int64
+		formatString: 0
+		lineageTag: 94884fd8-5428-4fc4-b2c5-03a44e445c88
+		sourceLineageTag: Still to be delivered _qty_
+		summarizeBy: sum
+		sourceColumn: Still to be delivered _qty_
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 788eb0bc-9c3f-405b-bc19-9750c4ba509e
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Still to be invoiced _qty_'
+		dataType: string
+		lineageTag: 328d7a5e-085d-4945-af36-643c63fba4e9
+		sourceLineageTag: Still to be invoiced _qty_
+		summarizeBy: none
+		sourceColumn: Still to be invoiced _qty_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Still to be invoiced _val._'
+		dataType: string
+		lineageTag: cc95f60e-607c-456a-a3e7-8b9954814332
+		sourceLineageTag: Still to be invoiced _val._
+		summarizeBy: none
+		sourceColumn: Still to be invoiced _val._
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Still to be delivered _value_'
+		dataType: string
+		lineageTag: fb35e5bf-68cd-47db-a68a-ef1e45cd4888
+		sourceLineageTag: Still to be delivered _value_
+		summarizeBy: none
+		sourceColumn: Still to be delivered _value_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deletion Indicator'
+		dataType: string
+		lineageTag: 7ba52768-e7e3-4891-8a9d-5d7da09f0562
+		sourceLineageTag: Deletion Indicator
+		summarizeBy: none
+		sourceColumn: Deletion Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stockkeeping unit'
+		dataType: string
+		lineageTag: 9e186466-bae0-44cb-9251-f0618b3a971e
+		sourceLineageTag: Stockkeeping unit
+		summarizeBy: none
+		sourceColumn: Stockkeeping unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Unit'
+		dataType: string
+		lineageTag: 97d1b042-12c2-4e4e-924c-ef9267b157b8
+		sourceLineageTag: Order Unit
+		summarizeBy: none
+		sourceColumn: Order Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Release Strategy'
+		dataType: string
+		lineageTag: d5ed1e7c-08f9-492f-a56d-1638184f65de
+		sourceLineageTag: Release Strategy
+		summarizeBy: none
+		sourceColumn: Release Strategy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Release status'
+		dataType: string
+		lineageTag: 0aa67c34-1c3b-4351-ae10-62521797f2e7
+		sourceLineageTag: Release status
+		summarizeBy: none
+		sourceColumn: Release status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Our Reference'
+		dataType: string
+		lineageTag: ac6a5b22-ec08-422a-9efc-d18ac8b23bd4
+		sourceLineageTag: Our Reference
+		summarizeBy: none
+		sourceColumn: Our Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 03619592-f900-4819-91da-805857a721c4
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO history/release documentation'
+		dataType: string
+		lineageTag: 19777089-dcab-4a5d-a54a-7f2529074c39
+		sourceLineageTag: PO history/release documentation
+		summarizeBy: none
+		sourceColumn: PO history/release documentation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sku & Desc'
+		dataType: string
+		lineageTag: 20e69bea-22ba-49ff-b4df-d5b5f3ef450f
+		sourceLineageTag: Sku & Desc
+		summarizeBy: none
+		sourceColumn: Sku & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Acct Assignment Cat.'
+		dataType: string
+		lineageTag: 6abadd0d-b1b1-4d40-b105-a7afd27f155f
+		sourceLineageTag: Acct Assignment Cat.
+		summarizeBy: none
+		sourceColumn: Acct Assignment Cat.
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AdamsLogisticsME2L = entity
+		mode: directLake
+		source
+			entityName: AdamsLogisticsME2L
+			schemaName: dbo
+			expressionSource: 'DirectLake - Spare_Parts_Lakehouse'
+

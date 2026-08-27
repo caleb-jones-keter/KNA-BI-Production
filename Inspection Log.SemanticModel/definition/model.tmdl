@@ -1,0 +1,34 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Savannah - QA-Container","appdata","appfiles","Composed Looks","ContainerCheckList","Documents","Events","Form Templates","List Template Gallery","Master Page Gallery","Savana-Admin","Savana-DoorLocation","Savannah - Container-Defects","Savannah - Defect Type","Savannah - Inspection Type","Savannah - Items","Savannah - Project Tracker","Site Assets","Site Pages","DirectLake - NA_Supply_Chain"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table 'Savannah - QA-Container'
+ref table 'Composed Looks'
+ref table 'Master Page Gallery'
+ref table Savana-Admin
+ref table Savana-DoorLocation
+ref table 'Savannah - Container-Defects'
+ref table 'Savannah - Defect Type'
+ref table 'Savannah - Inspection Type'
+ref table 'Savannah - Items'
+ref table 'Savannah - Project Tracker'
+ref table 'Site Assets'
+ref table 'Site Pages'
+ref table DateTableTemplate_82f831d9-8b84-4dfc-87b6-0650967e36c1
+ref table LocalDateTable_e23ac459-b44d-4ef5-9fce-00713887353e
+ref table 'DIM Date'
+ref table 'DIM Product'
+ref table 'FACT MB51 Material_Movements Initial'
+
+ref cultureInfo en-US
+

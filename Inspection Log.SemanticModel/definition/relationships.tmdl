@@ -1,0 +1,25 @@
+relationship 4607f6a8-edb4-4b27-b4df-e5f7f261c239
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Savannah - QA-Container'.'End Inspection'
+	toColumn: LocalDateTable_e23ac459-b44d-4ef5-9fce-00713887353e.Date
+
+relationship 4d033604-f173-a8d8-cfcb-3495ef184cd7
+	fromColumn: 'Savannah - Container-Defects'.Title
+	toColumn: 'Savannah - QA-Container'.ID
+
+relationship 7b0ebea2-673f-0d5a-6b21-4b1505f56020
+	fromColumn: 'Savannah - QA-Container'.'Item Num'
+	toColumn: 'DIM Product'.Material
+
+relationship d0921197-1d1d-50ed-d19c-7050acd76a82
+	fromColumn: 'Savannah - QA-Container'.'Start Inspection'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship ec3505f8-967d-ab8a-4349-0b1af8393092
+	fromColumn: 'FACT MB51 Material_Movements Initial'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship dd400e0e-9ef5-7734-131e-8988c93834fc
+	fromColumn: 'FACT MB51 Material_Movements Initial'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+

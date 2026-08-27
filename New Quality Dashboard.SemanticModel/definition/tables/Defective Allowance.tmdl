@@ -1,0 +1,35 @@
+table 'Defective Allowance'
+	lineageTag: e0247205-5e82-444d-a299-6ec8e661d474
+
+	column 'Customer Group Key'
+		dataType: string
+		lineageTag: 7bdb1ad5-5b5d-43b6-b585-44b1af8a638a
+		summarizeBy: none
+		sourceColumn: Customer Group Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Defective Allowance'
+		dataType: double
+		lineageTag: 7961c193-7b1f-4129-9e72-b0e68fa07949
+		summarizeBy: sum
+		sourceColumn: Defective Allowance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Defective Allowance' = m
+		mode: import
+		queryGroup: 'Customer Info'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMjY0VdJRMtAzMDNVitUB8o3NIHwLMNfEyBDCNYZyITwjiFpLSzg3FgA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Customer Group Key" = _t, #"Defective Allowance" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Defective Allowance", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

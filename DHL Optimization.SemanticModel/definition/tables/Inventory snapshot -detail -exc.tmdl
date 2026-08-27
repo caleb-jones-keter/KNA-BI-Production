@@ -1,0 +1,306 @@
+table 'Inventory snapshot -detail -exc'
+	lineageTag: a75c909d-5405-45f9-89e3-59cff60f839b
+
+	column Aisle
+		dataType: string
+		lineageTag: b9131d87-aa5b-405f-9c90-f93d6aefeb21
+		summarizeBy: none
+		sourceColumn: Aisle
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		lineageTag: 75fa7600-757f-4009-87cf-ec1106028d10
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 2fbe4660-c456-47f0-bf14-4a1f4c7b9b2d
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 541d723e-bc12-493f-a01e-256f857dc122
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 721552f3-b0aa-4663-beb1-f2dc176186a4
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cases
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e8b7ed6-b8e5-43f2-b113-e7e1c2ed2024
+		summarizeBy: sum
+		sourceColumn: Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallets
+		dataType: double
+		lineageTag: 685e2bbf-71f3-4dda-a96a-722467391968
+		summarizeBy: sum
+		sourceColumn: Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Location #' = IFERROR(SUBSTITUTE(SUBSTITUTE(LEFT('Inventory snapshot -detail -exc'[Location],5),'Inventory snapshot -detail -exc'[Aisle],""),'Inventory snapshot -detail -exc'[Level],"")/1,0)
+		lineageTag: 889804a3-d7ef-45f7-aca9-740a2a6c03a4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sqft = 'Inventory snapshot -detail -exc'[Calc Pallets]*RELATED('Item Sheet 2026'[_Sqft/Pallet])
+		lineageTag: 15809975-35a6-4326-9102-25c3daf74efb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Odd/Even = IF('Inventory snapshot -detail -exc'[Location #]=0,"Error",IF(MOD('Inventory snapshot -detail -exc'[Location #],2)=0,"2-Even","1-Odd"))
+		lineageTag: ced1962d-efda-434b-8ed3-e7c87943500b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target SQFT' =
+			
+			IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AB Odd",1450,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AB Odd Door",464,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AB Even",640,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AC Even",889,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AD Odd",444,
+			    IF('Inventory snapshot -detail -exc'[Storage Type] = "Rack",15.4,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Case Pick - Big",70,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Case Pick - Small",35,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AD Even",477,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - AF Odd",339,
+			    IF('Inventory snapshot -detail -exc'[Storage Type]="Bulk - Back",1450,0
+			            )))))))))))
+		lineageTag: 40079df9-5978-4357-a131-7be3932f06d0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '% Full' = 'Inventory snapshot -detail -exc'[Actual SQFT]/'Inventory snapshot -detail -exc'[Target SQFT]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 09b88b0e-5af5-4ee4-8686-d686e09a0a06
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Waste = ('Inventory snapshot -detail -exc'[Target SQFT]-'Inventory snapshot -detail -exc'[Actual SQFT])/320
+		lineageTag: e6480b9c-e828-4ec5-82dc-32ef0d965f9e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Storage Type' =
+			
+			IF('Inventory snapshot -detail -exc'[Aisle]="AB" && 'Inventory snapshot -detail -exc'[Odd/Even]="2-Even" && 'Inventory snapshot -detail -exc'[Location #]<=76,"Waste - QA",
+			IF('Inventory snapshot -detail -exc'[Location]="AB073" || 'Inventory snapshot -detail -exc'[Location]="AB091" || 'Inventory snapshot -detail -exc'[Location]="AB109" || 'Inventory snapshot -detail -exc'[Location]="AB133","Bulk - AB Odd Door",
+			IF(AND('Inventory snapshot -detail -exc'[Aisle]="AB",'Inventory snapshot -detail -exc'[Odd/Even]="1-Odd"),"Bulk - AB Odd",
+			    IF(AND('Inventory snapshot -detail -exc'[Aisle]="AB",'Inventory snapshot -detail -exc'[Odd/Even]="2-Even"),
+			        IF('Inventory snapshot -detail -exc'[Location #]>119,"Waste - AB Even Bulk","Bulk - AB Even"),
+			        IF(AND('Inventory snapshot -detail -exc'[Aisle]="AC",'Inventory snapshot -detail -exc'[Odd/Even]="2-Even"),"Bulk - AC Even",
+			            IF(AND('Inventory snapshot -detail -exc'[Aisle]="AD",'Inventory snapshot -detail -exc'[Odd/Even]="1-Odd"),
+			                IF('Inventory snapshot -detail -exc'[Location #]>=177,"Waste - Bulk AD Odd","Bulk - AD Odd"),
+			                IF(Right('Inventory snapshot -detail -exc'[Location])='Inventory snapshot -detail -exc'[Level],"Rack",
+			                    IF('Inventory snapshot -detail -exc'[Aisle]="AF" && 'Inventory snapshot -detail -exc'[Odd/Even]="1-Odd" && 'Inventory snapshot -detail -exc'[Location #]<115,"Case Pick - Big",
+			                        IF('Inventory snapshot -detail -exc'[Aisle]="AE" && 'Inventory snapshot -detail -exc'[Odd/Even]="2-Even" && 'Inventory snapshot -detail -exc'[Location #]<115,"Case Pick - Big",
+			                            IF('Inventory snapshot -detail -exc'[Aisle]="AD" && 'Inventory snapshot -detail -exc'[Odd/Even]="2-Even" && 'Inventory snapshot -detail -exc'[Location #]<=160,"Case Pick - Small",
+			                                IF('Inventory snapshot -detail -exc'[Aisle]="AE" && 'Inventory snapshot -detail -exc'[Odd/Even]="1-Odd" && 'Inventory snapshot -detail -exc'[Location #]<=160,"Case Pick - Small",
+			                                    IF('Inventory snapshot -detail -exc'[Aisle]="AD" && 'Inventory snapshot -detail -exc'[Odd/Even]="2-Even" && 'Inventory snapshot -detail -exc'[Location #]>=161,"Bulk - AD Even",
+			                                        IF('Inventory snapshot -detail -exc'[Aisle]="AF" && 'Inventory snapshot -detail -exc'[Odd/Even]="1-Odd" && 'Inventory snapshot -detail -exc'[Location #]>=161,"Bulk - AF Odd",
+			                                            IF(LEFT('Inventory snapshot -detail -exc'[Location],2)="BA","Bulk - Back",
+			                                                IF(LEFT('Inventory snapshot -detail -exc'[Location],2)="BP","Waste - AB Even Bulk",
+			                                                    IF(Left('Inventory snapshot -detail -exc'[Location],2)="BE","Rack","Waste - Error"
+			            ))))))))))))))))
+		lineageTag: 9b5e3454-660d-46a7-9182-d5c4d1c7177c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Containers = IFERROR('Inventory snapshot -detail -exc'[Calc Pallets]/RELATED('Item Sheet 2026'[_Pallet/Cont]),0)
+		lineageTag: d801de52-a154-40e1-b9fb-b23be05a5993
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Bay #' = IF('Inventory snapshot -detail -exc'[Storage Type]<>"Rack",IF(MOD('Inventory snapshot -detail -exc'[Location #],2)=0,'Inventory snapshot -detail -exc'[Location #]-1,'Inventory snapshot -detail -exc'[Location #]),ROUNDDOWN(('Inventory snapshot -detail -exc'[Location #]-1)/6,0)*6)
+		lineageTag: 06787e1e-68ba-441c-8108-6d876fbe046c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SQFT/Case = IF(LEN('Inventory snapshot -detail -exc'[Item])>0,320/MAX(1,(RELATED('Item Sheet 2026'[ContQty])/RELATED('Item Sheet 2026'[Carton/BagQty]))))
+		lineageTag: 7f16c571-6fef-485b-b211-82f8152b424a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sqft 2' = 'Inventory snapshot -detail -exc'[Cases]*'Inventory snapshot -detail -exc'[SQFT/Case]
+		lineageTag: fbdee71c-80d5-419d-ac80-f84bbe8aa825
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Type' =
+			IF(NOT(ISBLANK('Inventory snapshot -detail -exc'[Item])),IF(RELATED('Item Sheet 2026'[_Rack Sqft])>15.4,"Rack",
+			IF(RELATED('Item Sheet 2026'[PC Business Unit])="Packout" || RELATED('Item Sheet 2026'[PC Business Unit])="Tools" || RELATED('Item Sheet 2026'[PC Business Unit])="Deck Boxes","Bulk","Rack")))
+		lineageTag: c1bf18ec-f0d4-4787-8d2f-799c9822e0cc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Type - General' = IF('Inventory snapshot -detail -exc'[Storage Type]="Rack","Rack",LEFT('Inventory snapshot -detail -exc'[Storage Type],FIND(" - ",'Inventory snapshot -detail -exc'[Storage Type],1,1)-1))
+		lineageTag: 2fd03b9a-b076-449d-af85-a1f906db8c1d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Moves = IF('Inventory snapshot -detail -exc'[Item Type]='Inventory snapshot -detail -exc'[Storage Type - General],0,'Inventory snapshot -detail -exc'[Pallets])
+		lineageTag: a6fb8ff1-3583-4115-82db-8015c391751e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Merged = 'Inventory snapshot -detail -exc'[Item] & " - " & 'Inventory snapshot -detail -exc'[Description] & " - " &'Inventory snapshot -detail -exc'[Item Type] & " " &ROUND(Related('Item Sheet 2026'[_Sqft/Pallet]),1)
+		lineageTag: 96ad54a1-733f-4e94-9fe5-9f0dc791e1a0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Move Qty' =
+			
+			IF('Inventory snapshot -detail -exc'[Item Type]='Inventory snapshot -detail -exc'[Storage Type - General] && 'Inventory snapshot -detail -exc'[% Full]<1,
+			    'Inventory snapshot -detail -exc'[Target Pallets]-'Inventory snapshot -detail -exc'[Calc Pallets],
+			    IF('Inventory snapshot -detail -exc'[Storage Type - General] <> 'Inventory snapshot -detail -exc'[Item Type],
+			        'Inventory snapshot -detail -exc'[Calc Pallets]))
+		lineageTag: 8632d362-cac3-452d-b77b-6ae47ea6ce2d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Target Pallets' = IF('Inventory snapshot -detail -exc'[Storage Type - General]="Rack",1,MAX(1,ROUNDDOWN('Inventory snapshot -detail -exc'[Target SQFT]/RELATED('Item Sheet 2026'[_Sqft/Pallet]),0)))
+		lineageTag: 717bc2ce-4a71-4d58-9c4b-02604d9c5863
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Move Type' =
+			
+			IF('Inventory snapshot -detail -exc'[Positions]>0,
+			IF('Inventory snapshot -detail -exc'[Item Type]='Inventory snapshot -detail -exc'[Storage Type - General] && 'Inventory snapshot -detail -exc'[% Full]<1,
+			    "Move in",
+			    IF('Inventory snapshot -detail -exc'[Storage Type - General] <> 'Inventory snapshot -detail -exc'[Item Type],
+			        "Move out")),
+			"Move in")
+		lineageTag: e773eea7-9676-4069-a76f-a4d3edd7144a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _Cases/Pallet = 'Inventory snapshot -detail -exc'[Cases]/'Inventory snapshot -detail -exc'[Pallets]
+		lineageTag: 7778db75-9921-4584-9786-af0381111844
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Calc Pallets' = IFERROR('Inventory snapshot -detail -exc'[Cases]/RELATED('Item Sheet 2026'[_CasesPerPallet]),0)
+		lineageTag: 42228f71-51c2-4a73-bfb6-37d8cbd877aa
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Actual SQFT' = 'Inventory snapshot -detail -exc'[Calc Pallets]*RELATED('Item Sheet 2026'[_Sqft/Pallet])
+		lineageTag: d7b5e40b-f596-49b7-87dd-6009684d582b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Positions = MAX(RELATED('Item Sheet 2026'[_Spaces]),'Inventory snapshot -detail -exc'[Calc Pallets])
+		lineageTag: b861c9d7-d90e-414b-b429-fbe503da8fb6
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Position Savings' = IF('Inventory snapshot -detail -exc'[Move Type]="Move out",IF('Inventory snapshot -detail -exc'[Storage Type - General]="Bulk",(RELATED('Item Sheet 2026'[_Rack Sqft])-15.4)*'Inventory snapshot -detail -exc'[Move Qty]/15.4,'Inventory snapshot -detail -exc'[Move Qty]),'Inventory snapshot -detail -exc'[Move Qty])
+		lineageTag: 68caa3d1-fdfb-4ebf-8aa9-8f2481077d09
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Partials
+		dataType: string
+		lineageTag: 6d23c2c7-125b-4f09-82db-7cbdbef72f8c
+		summarizeBy: none
+		sourceColumn: Partials
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Inventory snapshot -detail -exc' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/Data/DHL%20INV.xlsx"), null, true),
+				    #"Inventory snapshot -detail -exc_Sheet" = Source{[Item="Inventory snapshot -detail -exc",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Inventory snapshot -detail -exc_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Aisle", type text}, {"Level", type text}, {"Location", type text}, {"Item", type text}, {"Description", type text}, {"Cases", Int64.Type}, {"Pallets", type number}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","EMPTY","",Replacer.ReplaceText,{"Item"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,"",Replacer.ReplaceValue,{"Description"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",null,"",Replacer.ReplaceValue,{"Level"})
+				in
+				    #"Replaced Value2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

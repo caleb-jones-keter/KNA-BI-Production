@@ -1,0 +1,375 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "1eff403cdccc6836e448",
+  "position": {
+    "x": 48,
+    "y": 96,
+    "z": 0,
+    "height": 704.00000000000011,
+    "width": 1536,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "Data Source"
+                }
+              },
+              "queryRef": "FACT Combined.Data Source",
+              "nativeQueryRef": "Data Source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "Payer"
+                }
+              },
+              "queryRef": "FACT Combined.Payer",
+              "nativeQueryRef": "Payer"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "Payer name"
+                }
+              },
+              "queryRef": "FACT Combined.Payer name",
+              "nativeQueryRef": "Payer name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT Combined.PO Number",
+              "nativeQueryRef": "PO Number"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Combined"
+                        }
+                      },
+                      "Property": "Blocked_Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Combined.Blocked_Qty)",
+              "nativeQueryRef": "Sum of Blocked_Qty1"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Combined"
+                        }
+                      },
+                      "Property": "Inv"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(FACT Combined.Inv)",
+              "nativeQueryRef": "Max of Inv1",
+              "displayName": "Max of Inv1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "Customer SKU"
+                }
+              },
+              "queryRef": "FACT Combined.Customer SKU",
+              "nativeQueryRef": "Customer SKU"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Max of Inv1]-[Sum of Blocked_Qty1]",
+                  "Name": "Available"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Available"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Combined"
+                        }
+                      },
+                      "Property": "Lost Sales"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Combined.Lost Sales)",
+              "nativeQueryRef": "Sum of Lost Sales",
+              "displayName": "Sum of Lost Sales"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "if([Sum of Lost Sales]>0,\"At Risk\",\"On Time\")",
+                  "Name": "Status"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Status"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Combined"
+                        }
+                      },
+                      "Property": "Qty Not In Inv"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Combined.Qty Not In Inv)",
+              "nativeQueryRef": "Qty Not In Inv",
+              "displayName": "Qty Not In Inv"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT Combined.Container",
+              "nativeQueryRef": "Container"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "Storage Location Orig"
+                }
+              },
+              "queryRef": "FACT Combined.Storage Location Orig",
+              "nativeQueryRef": "Storage Location Orig"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "MRPSKU Key"
+                }
+              },
+              "queryRef": "FACT Combined.MRPSKU Key",
+              "nativeQueryRef": "MRPSKU Key"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "312.26666666666665D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.SKU & Desc"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "374db29338557e3b701b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Future"
+              }
+            },
+            "Property": "Data Source"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "8044398636642cf1ed57",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DIM Product",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "SKU & Desc"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

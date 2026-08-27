@@ -1,0 +1,11 @@
+expression 'DirectLake - Spare_Parts_Lakehouse' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/8e2b746d-3224-4a82-8467-a2800eef337e/c63eb910-5e90-460e-9ec2-ab13e8735c39", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 96a033db-f1fa-4989-8a7e-8e4e3102b79c
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[CRM_SPARE_PARTS]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[CRM_BOM]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[CRM_PRODUCT]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[CRM_UCP]"}},"objectType":"Table"}]
+

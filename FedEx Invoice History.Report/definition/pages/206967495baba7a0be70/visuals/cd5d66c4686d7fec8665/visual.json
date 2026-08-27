@@ -1,0 +1,86 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "cd5d66c4686d7fec8665",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 8002,
+    "height": 88.000000000000014,
+    "width": 200.00000000000003,
+    "tabOrder": 8002
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Last Updated"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Last Updated",
+              "nativeQueryRef": "Last Updated"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9f39e90fffac1a503f4d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Last Updated"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

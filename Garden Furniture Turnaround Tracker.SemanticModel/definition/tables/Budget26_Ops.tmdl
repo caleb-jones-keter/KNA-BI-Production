@@ -1,0 +1,122 @@
+table Budget26_Ops
+	lineageTag: bdb68de6-5a55-49d5-a0ce-358a7892ed56
+
+	column Plant
+		dataType: string
+		lineageTag: bfc22d83-ecdd-412d-aa89-4a393d5ec681
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code: Plant'
+		dataType: int64
+		formatString: 0
+		lineageTag: d2ac4dfb-4fe8-4adb-bcce-dcfffe92c4c5
+		summarizeBy: none
+		sourceColumn: Code: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 89eb2b5b-b90e-47a8-8faa-82bc71b4301d
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column OEE
+		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 51e49a4b-6231-4f6c-962b-1ac88714d7c2
+		summarizeBy: sum
+		sourceColumn: OEE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PEE
+		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d90e861f-2c18-4bdb-96b1-4f7ef4c991e5
+		summarizeBy: sum
+		sourceColumn: PEE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Production'
+		dataType: double
+		lineageTag: b4157db4-7b10-4363-940f-c24326dfea7c
+		summarizeBy: sum
+		sourceColumn: Net Production
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Scrap
+		dataType: double
+		lineageTag: e8a4b093-9c5e-4cc8-af93-4a46b3debc44
+		summarizeBy: sum
+		sourceColumn: Scrap
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'OEE subtotal'
+		dataType: double
+		lineageTag: 215f3042-2089-44a3-8ea7-185920ac352e
+		summarizeBy: sum
+		sourceColumn: OEE subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PEE subtotal'
+		dataType: double
+		lineageTag: 05c8ecd3-f257-423a-b9d5-5acea63db57f
+		summarizeBy: sum
+		sourceColumn: PEE subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Scrap subtotal'
+		dataType: double
+		lineageTag: 00516fea-99c7-4d3f-aad0-7dc35f256064
+		summarizeBy: sum
+		sourceColumn: Scrap subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: 7a151db8-a667-4aab-a3c2-ab3ac163e9c7
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Budget26_Ops = m
+		mode: import
+		queryGroup: Operations_ProductionMetrics
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Ops_26Budget.xlsx"), null, true),
+				    Budget26_Ops_Table = Source{[Item="Budget26_Ops",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Budget26_Ops_Table,{{"Months", type date}, {"OEE", type number}, {"PEE", type number}, {"Code: Plant", Int64.Type}, {"Net Production", type number}, {"Scrap", type number}, {"Plant", type text}, {"OEE subtotal", type number}, {"PEE subtotal", type number}, {"Scrap subtotal", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

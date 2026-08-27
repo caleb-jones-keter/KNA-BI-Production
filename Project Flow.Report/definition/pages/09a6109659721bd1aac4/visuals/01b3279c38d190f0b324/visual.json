@@ -1,0 +1,277 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "01b3279c38d190f0b324",
+  "position": {
+    "x": 584,
+    "y": 112.00000000000001,
+    "z": 8000,
+    "height": 479.99999999999994,
+    "width": 528,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "Region",
+              "displayName": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "City List"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.City List",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "POSTAL_CODE"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.POSTAL_CODE",
+              "nativeQueryRef": "Zip Code",
+              "displayName": "Zip Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ftl_material_shipments_model"
+                    }
+                  },
+                  "Property": "_Anderson per Unit Cost"
+                }
+              },
+              "queryRef": "fact_ftl_material_shipments_model._Anderson per Unit Cost",
+              "nativeQueryRef": "Anderson Unit Cost",
+              "displayName": "Anderson Unit Cost",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ftl_material_shipments_model"
+                    }
+                  },
+                  "Property": "_Anderson per TL Cost"
+                }
+              },
+              "queryRef": "fact_ftl_material_shipments_model._Anderson per TL Cost",
+              "nativeQueryRef": "Anderson TL Cost",
+              "displayName": "Anderson TL Cost",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_ftl_material_shipments_model"
+                        }
+                      },
+                      "Property": "Combined_TL_Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact_ftl_material_shipments_model.Combined_TL_Qty)",
+              "nativeQueryRef": "TL Qty",
+              "displayName": "TL Qty",
+              "format": "#,0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_ftl_material_shipments_model"
+                  }
+                },
+                "Property": "_Anderson per Unit Cost"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "129.70190868181356D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM USA CA Zips.City List"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.47169811320755D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_ftl_material_shipments_model._Anderson per Unit Cost"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "588c1b83ce4b097b3559",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f9ffd4e24d0c19f1eb0a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "07a3a2d33c2402b58e4f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ftl_material_shipments_model"
+              }
+            },
+            "Property": "_Anderson per Unit Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "25e0a64abe57d561127b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ftl_material_shipments_model"
+              }
+            },
+            "Property": "_Anderson per TL Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8215c289c5111a7b9fe9",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_ftl_material_shipments_model"
+                  }
+                },
+                "Property": "Combined_TL_Qty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5a445a3a68ece2367332",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

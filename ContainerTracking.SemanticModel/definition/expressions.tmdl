@@ -1,0 +1,23 @@
+expression 'Errors in Dwell' =
+		let
+		Source = Dwell,
+		  #"Detected Type Mismatches" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "The type of the value does not match the type of the column.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Source, pairs),
+		  #"Added Index" = Table.AddIndexColumn(#"Detected Type Mismatches", "Row Number" ,1),
+		  #"Kept Errors" = Table.SelectRowsWithErrors(#"Added Index", {"Container", "Cont. Int. Num.", "Storage Loc.", "Transfer Pending TO", "Date Of Request", "Material", "Quantity", "Expect. Arrival Date", "Container With Sever", "PO", "Vessel", "Manifest", "Count", "Days in Country", "Days In Place", "Reception Date", "Inb. Del.", "Expected PGR", "User", "Mat. Descr.", "Outb.Deliv.", "Customer", "Customer_1", "Stock In QA Inspect."}),
+		  #"Reordered Columns" = Table.ReorderColumns(#"Kept Errors", {"Row Number", "Container", "Cont. Int. Num.", "Storage Loc.", "Transfer Pending TO", "Date Of Request", "Material", "Quantity", "Expect. Arrival Date", "Container With Sever", "PO", "Vessel", "Manifest", "Count", "Days in Country", "Days In Place", "Reception Date", "Inb. Del.", "Expected PGR", "User", "Mat. Descr.", "Outb.Deliv.", "Customer", "Customer_1", "Stock In QA Inspect."})
+		in
+		  #"Reordered Columns"
+	lineageTag: e4a17fd0-cc8e-43e4-b633-de9df529796e
+	queryGroup: 'Query Errors - 11/17/2023 11:15:27 AM'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

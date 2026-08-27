@@ -1,0 +1,133 @@
+table 'FACT Finance'
+	lineageTag: a4f6d5c4-6847-4d7f-9253-e8b268ac95d1
+	sourceLineageTag: [dbo].[FACT Finance]
+
+	measure 'Measure Delta A-B' = SUM('FACT Finance'[2026A])-SUM('FACT Finance'[2026B])
+		lineageTag: 646d259f-5c66-47ee-b719-29554cc2ef80
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Roll Up 1'
+		dataType: string
+		lineageTag: 087d5bf3-2a42-4a8f-952d-22de190abd7c
+		sourceLineageTag: Roll Up 1
+		summarizeBy: none
+		sourceColumn: Roll Up 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Roll Up 2'
+		dataType: string
+		lineageTag: 554974e2-a44d-43e3-ab36-4cf73672cb3d
+		sourceLineageTag: Roll Up 2
+		summarizeBy: none
+		sourceColumn: Roll Up 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BA-Level4-Posting Level'
+		dataType: string
+		lineageTag: e10f3f5a-df1a-40eb-b204-f6526dc58913
+		sourceLineageTag: BA-Level4-Posting Level
+		summarizeBy: none
+		sourceColumn: BA-Level4-Posting Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Center Detail'
+		dataType: string
+		lineageTag: b972e740-17ad-41ca-9c7e-fdfd1d8e5ecb
+		sourceLineageTag: Cost Center Detail
+		summarizeBy: none
+		sourceColumn: Cost Center Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Detail'
+		dataType: string
+		lineageTag: c02ca2a2-83b8-4d88-9f7b-52d1e7090061
+		sourceLineageTag: Account Detail
+		summarizeBy: none
+		sourceColumn: Account Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code: Cost Center Detail'
+		dataType: string
+		lineageTag: b7b67881-872e-4193-8d8e-60c97bd8f993
+		sourceLineageTag: Code: Cost Center Detail
+		summarizeBy: none
+		sourceColumn: Code: Cost Center Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code: Account Detail'
+		dataType: string
+		lineageTag: e0ff91b3-4d99-498b-84a4-b7e6ca226c0c
+		sourceLineageTag: Code: Account Detail
+		summarizeBy: none
+		sourceColumn: Code: Account Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Key'
+		dataType: string
+		lineageTag: 371fb3c1-bcd5-4335-b636-5e8ca363ccf8
+		sourceLineageTag: Finance Key
+		summarizeBy: none
+		sourceColumn: Finance Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: bec65797-317d-4d86-ae16-3ed798e2ff5c
+		sourceLineageTag: Month
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2026A
+		dataType: double
+		lineageTag: 87787e4f-c914-4e14-9f9b-1b70acdf8f4d
+		sourceLineageTag: 2026A
+		summarizeBy: sum
+		sourceColumn: 2026A
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2026B
+		dataType: double
+		lineageTag: 25f1eaa4-8e69-4678-a5f6-d9a044b7b60d
+		sourceLineageTag: 2026B
+		summarizeBy: sum
+		sourceColumn: 2026B
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2025A
+		dataType: double
+		lineageTag: 1d4c2bee-2794-42cd-8288-429c51f00d6c
+		sourceLineageTag: 2025A
+		summarizeBy: sum
+		sourceColumn: 2025A
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT Finance' = entity
+		mode: directLake
+		source
+			entityName: FACT Finance
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

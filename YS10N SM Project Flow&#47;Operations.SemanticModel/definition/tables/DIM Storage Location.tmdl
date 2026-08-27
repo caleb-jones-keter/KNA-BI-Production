@@ -1,0 +1,125 @@
+table 'DIM Storage Location'
+	lineageTag: 8b32db09-20b1-4b7f-8e52-4aa232f9aa23
+	sourceLineageTag: [dbo].[DIM Storage Location]
+
+	column Name
+		dataType: string
+		lineageTag: 99a65838-0773-4cef-bcd8-6b1af9942356
+		sourceLineageTag: Name
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Code
+		dataType: string
+		lineageTag: 567865a2-ee83-4f55-b985-cb684d1fabee
+		sourceLineageTag: Code
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 735d7c0b-4c89-4db7-9ae1-4065ae0793d5
+		sourceLineageTag: Latitude
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 8673b07b-6cc7-4180-b34a-07c5892cb69f
+		sourceLineageTag: Longitude
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Target DOS'
+		dataType: int64
+		formatString: 0
+		lineageTag: f5565a88-f8f9-4dd2-9f3a-2317e8068ce2
+		sourceLineageTag: Target DOS
+		summarizeBy: sum
+		sourceColumn: Target DOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'General Location'
+		dataType: string
+		lineageTag: 6d787d7a-ac18-442c-9eee-d987bd7363b3
+		sourceLineageTag: General Location
+		summarizeBy: none
+		sourceColumn: General Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 675efa9a-474b-4e88-8965-c468ad5374c7
+		sourceLineageTag: Order
+		summarizeBy: sum
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: 92a6a794-9f06-4f26-a375-25df2ee2ba3a
+		sourceLineageTag: Full Name
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grouped Location'
+		dataType: string
+		lineageTag: bbd7566f-7297-4167-9c91-9b70aa7a798d
+		sourceLineageTag: Grouped Location
+		summarizeBy: none
+		sourceColumn: Grouped Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alt Name'
+		dataType: string
+		lineageTag: 618c9353-7706-4a59-b52f-4e92090e60af
+		sourceLineageTag: Alt Name
+		summarizeBy: none
+		sourceColumn: Alt Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column1
+		dataType: string
+		lineageTag: 6a18b898-c955-4367-8f2e-f7669b09556e
+		sourceLineageTag: Column1
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column2
+		dataType: string
+		lineageTag: 9aa0a599-282b-4fa8-bd51-db032ffbced2
+		sourceLineageTag: Column2
+		summarizeBy: none
+		sourceColumn: Column2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Storage Location' = entity
+		mode: directLake
+		source
+			entityName: DIM Storage Location
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

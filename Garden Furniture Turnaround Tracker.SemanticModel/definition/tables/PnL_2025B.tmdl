@@ -1,0 +1,109 @@
+table PnL_2025B
+	lineageTag: 9146bf7b-69a5-46d6-b05a-570918fc66dc
+
+	column Plant
+		dataType: string
+		lineageTag: 43bf77eb-f2ec-438b-b590-8f37fc3c94e8
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Plant (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f425488-647c-4926-99a6-8f2873e20fcb
+		summarizeBy: none
+		sourceColumn: Code:Plant (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: fc424b09-40d2-472f-8580-44ac7203dc4c
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 22942894-e770-43c1-88ad-ea0de56c37f1
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0def1cbc-3068-4705-905d-4b1c6071911b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PnL Metrics'
+		dataType: string
+		lineageTag: 58b3d809-0b47-4782-9c41-1c18eabc9503
+		summarizeBy: none
+		sourceColumn: PnL Metrics
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2025B
+		dataType: double
+		lineageTag: 4613240b-79d8-4e92-a93c-e9d8ee9e9978
+		summarizeBy: sum
+		sourceColumn: 2025B
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: be606354-c242-4b41-a1a3-5a6717526bbd
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PnL_2025B = m
+		mode: import
+		queryGroup: PnL
+		source =
+				let
+				    Source = Table.Combine({PnL_2025B_EURO, PnL_2025B_USD}),
+				    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"Gross Sales - Budget#(lf)(2025)", "Gross Sales"}, {"On Invoice Discounts - Budget#(lf)(2025)", "On Invoice Discounts"}, {"Total Rebates - Budget#(lf)(2025)", "Total Rebates"}, {"Net Sales - Budget#(lf)(2025)", "Net Sales"}, {"Cost Of Sales - Budget#(lf)(2025)", "Cost Of Sales"}, {"Total Logistics - Budget#(lf)(2025)", "Total Logistics"}, {"Total Freight - Budget#(lf)(2025)", "Freight"}, {"Total Warehousing - Budget#(lf)(2025)", "Warehousing"}, {"Direct Contribution - Budget#(lf)(2025)", "Direct Contribution"}, {"Total R&D (ALL) - Budget#(lf)(2025)", "Total R&D"}, {"Total A&P (All) - Budget#(lf)(2025)", "Total A&P"}, {"Total C&R - Budget#(lf)(2025)", "Total C&R"}, {"Total SG&A (All) - Budget#(lf)(2025)", "Total SG&A"}, {"Total IFRS - Budget#(lf)(2025)", "IFRS 16 Adjustments"}, {"EBITDA - Budget#(lf)(2025)", "EBITDA"}, {"RM Weight Sold - Budget#(lf)(2025)", "RM Weight Sold"}, {"RM Weight Production KG - Budget#(lf)(2025)", "Net Production (RM KG)"}, {"Quantity - Budget#(lf)(2025)", "Quantity"}, {"Pallet QTY - Budget#(lf)(2025)", "Pallet QTY"}, {"Container QTY - Budget#(lf)(2025)", "Container QTY"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns", "Invoice Sales", each [Gross Sales]-[On Invoice Discounts]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Gross Profit", each [Net Sales]-[Cost Of Sales]),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "EBIT Before IFRS16", each [Direct Contribution]-[#"Total R&D"]-[#"Total A&P"]-[#"Total C&R"]-[#"Total SG&A"]),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "EBIT", each [EBIT Before IFRS16]+[IFRS 16 Adjustments]),
+				    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "D&A Add Back", each [EBITDA]-[EBIT]),
+				    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "Total Indirect Expenses", each [#"Total R&D"]+[#"Total A&P"]+[#"Total C&R"]+[#"Total SG&A"]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom6",{{"Date", type date}, {"Invoice Sales", type number}, {"Gross Profit", type number}, {"EBIT Before IFRS16", type number}, {"EBIT", type number}, {"D&A Add Back", type number}, {"Total Indirect Expenses", type number}}),
+				    #"Multiplied Column" = Table.TransformColumns(#"Changed Type", {{"On Invoice Discounts", each _ * -1, type number}}),
+				    #"Multiplied Column1" = Table.TransformColumns(#"Multiplied Column", {{"Total Rebates", each _ * -1, type number}}),
+				    #"Multiplied Column2" = Table.TransformColumns(#"Multiplied Column1", {{"Total Logistics", each _ * -1, type number}}),
+				    #"Multiplied Column3" = Table.TransformColumns(#"Multiplied Column2", {{"Freight", each _ * -1, type number}}),
+				    #"Multiplied Column4" = Table.TransformColumns(#"Multiplied Column3", {{"Warehousing", each _ * -1, type number}}),
+				    #"Multiplied Column5" = Table.TransformColumns(#"Multiplied Column4", {{"Total A&P", each _ * -1, type number}}),
+				    #"Multiplied Column6" = Table.TransformColumns(#"Multiplied Column5", {{"Total SG&A", each _ * -1, type number}}),
+				    #"Multiplied Column7" = Table.TransformColumns(#"Multiplied Column6", {{"Total R&D", each _ * -1, type number}}),
+				    #"Multiplied Column8" = Table.TransformColumns(#"Multiplied Column7", {{"Total C&R", each _ * -1, type number}}),
+				    #"Multiplied Column9" = Table.TransformColumns(#"Multiplied Column8", {{"Cost Of Sales", each _ * -1, type number}}),
+				    #"Multiplied Column10" = Table.TransformColumns(#"Multiplied Column9", {{"Total Indirect Expenses", each _ * -1, type number}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Multiplied Column10", {"Plant", "Code:Plant (c1)", "Months", "Currency", "Date"}, "Attribute", "Value"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "PnL Metrics"}, {"Value", "2025B"}}),
+				    #"Added Custom7" = Table.AddColumn(#"Renamed Columns1", "Forecast Version", each "Budget")
+				in
+				    #"Added Custom7"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

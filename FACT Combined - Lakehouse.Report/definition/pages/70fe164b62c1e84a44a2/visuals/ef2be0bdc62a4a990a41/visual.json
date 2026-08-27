@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "ef2be0bdc62a4a990a41",
+  "position": {
+    "x": 1136,
+    "y": 544,
+    "z": 11000,
+    "height": 400,
+    "width": 496,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT YM6P.PO Number",
+              "nativeQueryRef": "PO Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT YM6P.Container",
+              "nativeQueryRef": "Container"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "CalcArravDate"
+                }
+              },
+              "queryRef": "FACT YM6P.CalcArravDate",
+              "nativeQueryRef": "CalcArravDate",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "EnfoPak _MrrContainers_.vessel_name"
+                }
+              },
+              "queryRef": "FACT YM6P.EnfoPak _MrrContainers_.vessel_name",
+              "nativeQueryRef": "VesselName",
+              "displayName": "VesselName"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YM6P"
+                  }
+                },
+                "Property": "CalcArravDate"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "09ea0e75eea48f61caf2",
+  "position": {
+    "x": 464,
+    "y": 0,
+    "z": 1000,
+    "height": 239.99999999999997,
+    "width": 455.99999999999994,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT MB51 Material_Movements Initial"
+                    }
+                  },
+                  "Property": "Data Source"
+                }
+              },
+              "queryRef": "FACT MB51 Material_Movements Initial.Data Source",
+              "nativeQueryRef": "Data Source"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT MB51 Material_Movements Initial"
+                        }
+                      },
+                      "Property": "Combined Date 1"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "FACT MB51 Material_Movements Initial.Combined Date 1",
+              "nativeQueryRef": "Latest Combined Date 1"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT MB51 Material_Movements Initial"
+                        }
+                      },
+                      "Property": "Combined Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT MB51 Material_Movements Initial.Combined Qty)",
+              "nativeQueryRef": "Sum of Combined Qty"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e089268bfed8d9b5e176",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT MB51 Material_Movements Initial"
+                  }
+                },
+                "Property": "Combined Date"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ]
+  }
+}

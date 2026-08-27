@@ -1,0 +1,1526 @@
+expression Probability =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\Keter Group\KETER Seasonal supply chain forum - 2026\BGT 2026 F&P BU.xlsm"), null, true),
+		    EDB_Table = Source{[Item="EDB",Kind="Table"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(EDB_Table,{{"PC Business Unit", type text}, {"Profit Center Detailed", type text}, {"Market", type text}, {"Segment Area", type text}, {"Customer Groups", type text}, {"Code SKU Group", Int64.Type}, {"SKU Group name", type text}, {"Price Group", type text}, {"Product Line", type text}, {"Production plant", type text}, {"Product status", type text}, {"Date", type date}, {"Committed Net Sales (APO)#(lf)(2026)", type number}, {"QTY BGT 2026", Int64.Type}, {"QTY Rolling 2025", type any}, {"QTY FCST 2026", Int64.Type}, {"QTY 2026", Int64.Type}, {"Net  Sales Rolling 2025", type any}, {"Net Sales BGT 2026", type number}, {"Net  Sales 2026", type number}, {"Net sales Fcst 2026", type number}, {"Net sales 2026 total", type number}, {"Probabality Customer level", type number}, {"Probabality Customer / Line ", Int64.Type}, {"Probabality line", type number}, {"Net Sales - Budget recaclulated", type number}})
+		in
+		    #"Changed Type"
+	lineageTag: 9c4c4172-b145-47be-b201-1f7ce51c0c27
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Open_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Open_CurrentYear_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type text}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type text}, {"Column20", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Shippingpoint", type text}, {"Code:Shippingpoint (c6)", Int64.Type}, {"Daily Date", type text}, {"Daily Order Crate Date", type text}, {"Orders - Quantity#(lf)(2026)", type number}, {"Gross Orders#(lf)(2026)", type number}, {"Net Orders#(lf)(2026)", type number}, {"Direct Contribution Orders#(lf)(2026)", type number}, {"img8", type text}, {"Column20", type any}}),
+		    #"Added Currency" = Table.AddColumn(#"Changed Type1", "Currency", each "Euro"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Currency",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: dc7f0365-8bec-4a14-b1f6-38c9ec1b73ec
+	queryGroup: OrdersAutoRefresh
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Open_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Open_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type text}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type text}, {"Column20", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Shippingpoint", type text}, {"Code:Shippingpoint (c6)", Int64.Type}, {"Daily Date", type text}, {"Daily Order Crate Date", type text}, {"Orders - Quantity#(lf)(2026)", type number}, {"Gross Orders#(lf)(2026)", type number}, {"Net Orders#(lf)(2026)", type number}, {"Direct Contribution Orders#(lf)(2026)", type number}, {"img8", type text}, {"Column20", type any}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Currency", each "USD"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 822bcff1-e692-4da1-a17c-42fba0a7eea5
+	queryGroup: OrdersAutoRefresh
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression APO_CurrentYear_Euro =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\APO_CurrentYear_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c3)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c4)", Int64.Type}, {"Months", type text}, {"Committed Demand (APO)#(lf)(2026)", Int64.Type}, {"Committed Gross Sales (APO)#(lf)(2026)", type number}, {"Committed Net Sales (APO)#(lf)(2026)", type number}, {"Column13", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Added Currency" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Currency",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 7fa241db-728c-41ec-826e-38a484f0dcb7
+	queryGroup: APOAutoRefresh
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression APO_CurrentYear_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\APO_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c3)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c4)", Int64.Type}, {"Months", type text}, {"Committed Demand (APO)#(lf)(2026)", Int64.Type}, {"Committed Gross Sales (APO)#(lf)(2026)", type number}, {"Committed Net Sales (APO)#(lf)(2026)", type number}, {"Column13", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Currency" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Currency",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 5152bab0-faf8-45c5-ba1b-a46c99d2b0e5
+	queryGroup: APOAutoRefresh
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Rolling_Sales_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Rolling_Sales_CurrentYear_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type text}, {"Quantity - Rolling#(lf)(2026)", Int64.Type}, {"Gross Sales - Rolling#(lf)(2026)", type number}, {"Net Sales - Rolling#(lf)(2026)", type number}, {"Direct Contribution - Rolling#(lf)(2026)", type number}, {"EBITDA - Rolling#(lf)(2026)", type number}, {"Cost Of Sales - Rolling#(lf)(2026)", type number}, {"RM Weight Sold - Rolling#(lf)(2026)", type number}, {"Column21", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 9976576e-f80b-43b3-9709-e14b28585aa9
+	queryGroup: 'Rolling Budget'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Rolling_Sales_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Rolling_Sales_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type text}, {"Quantity - Rolling#(lf)(2026)", Int64.Type}, {"Gross Sales - Rolling#(lf)(2026)", type number}, {"Net Sales - Rolling#(lf)(2026)", type number}, {"Direct Contribution - Rolling#(lf)(2026)", type number}, {"EBITDA - Rolling#(lf)(2026)", type number}, {"Cost Of Sales - Rolling#(lf)(2026)", type number}, {"RM Weight Sold - Rolling#(lf)(2026)", type number}, {"Column21", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 1b9d5076-5245-49db-bc34-f008fe262fde
+	queryGroup: 'Rolling Budget'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Rolling_Sales_CurrentYear =
+		let
+		    Source = Table.Combine({Rolling_Sales_EURO, Rolling_Sales_USD}),
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"Column21"}),
+		    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: cec1607e-fa36-4a11-9add-d82db6b78469
+	queryGroup: 'Rolling Budget'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Finance_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_CurrentYear_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Units: Units |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico |Sales: Invoice |Exp: Invoice,Delivey |Forecast Version: Consolidated Budget |DepreciationArea: General Depreciation |Empl Group: Internal Employee,Contractor,Inactive employee,Inactive contractors |Empl Sub Group: Global |Restructuring / SFA indicator: Non Restructuring,SFA adj |Clamping Force: 1000-1600 TON,1700-2300TON,170-320 TON,2500 TON,30-65 TON,350-450 TON,500-600 TON,650-900 TON,80-160 TON,EDB Default,EXTRUDER,UNDEFINED,OTHERS,15-20 TON,13-2000,12-1100,11-850,10-800,09-700,08-650,07-550,06-450,05-350,04-280,03-200,02-160,2400-2900 TON,75 EXTRUDER,120 EXTRUDER,WIDE EXTRUDER PG / BATH: KETER GROUP  |EU Contingency: with-out contingency  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2026)", type number}, {"On Invoice Discount ADJ M#(lf)(2026)", type number}, {"Total Rebate ADJ M#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"Total R&D ADJ M#(lf)(2026)", type number}, {"Total A&P ADJ M#(lf)(2026)", type number}, {"Total C&R ADJ M#(lf)(2026)", type number}, {"Total SG&A ADJ M#(lf)(2026)", type number}, {"Add back IFRS 16#(lf)(2026)", Int64.Type}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Pallet QTY #(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"Quantity#(lf)(2026)", Int64.Type}, {"Container QTY#(lf)(2026)", type number}, {"Column24", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 1214bb48-4576-4907-804e-3d972f81b008
+	queryGroup: Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Finance_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Units: Units |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico |Sales: Invoice |Exp: Invoice,Delivey |Forecast Version: Consolidated Budget |DepreciationArea: General Depreciation |Empl Group: Internal Employee,Contractor,Inactive employee,Inactive contractors |Empl Sub Group: Global |Restructuring / SFA indicator: Non Restructuring,SFA adj |Clamping Force: 1000-1600 TON,1700-2300TON,170-320 TON,2500 TON,30-65 TON,350-450 TON,500-600 TON,650-900 TON,80-160 TON,EDB Default,EXTRUDER,UNDEFINED,OTHERS,15-20 TON,13-2000,12-1100,11-850,10-800,09-700,08-650,07-550,06-450,05-350,04-280,03-200,02-160,2400-2900 TON,75 EXTRUDER,120 EXTRUDER,WIDE EXTRUDER PG / BATH: KETER GROUP  |EU Contingency: with-out contingency  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2026)", type number}, {"On Invoice Discount ADJ M#(lf)(2026)", type number}, {"Total Rebate ADJ M#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"Total R&D ADJ M#(lf)(2026)", type number}, {"Total A&P ADJ M#(lf)(2026)", type number}, {"Total C&R ADJ M#(lf)(2026)", type number}, {"Total SG&A ADJ M#(lf)(2026)", type number}, {"Add back IFRS 16#(lf)(2026)", Int64.Type}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Pallet QTY #(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"Quantity#(lf)(2026)", Int64.Type}, {"Container QTY#(lf)(2026)", type number}, {"Column24", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: a762bf62-117e-4b41-b210-018c09da694a
+	queryGroup: Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2026)", type number}, {"On Invoice Discount ADJ M#(lf)(2026)", type number}, {"Total Rebate ADJ M#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"Total R&D ADJ M#(lf)(2026)", type number}, {"Total A&P ADJ M#(lf)(2026)", type number}, {"Total C&R ADJ M#(lf)(2026)", type number}, {"Total SG&A ADJ M#(lf)(2026)", type number}, {"Add back IFRS 16#(lf)(2026)", Int64.Type}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Pallet QTY #(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"Quantity#(lf)(2026)", Int64.Type}, {"Container QTY#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 6ce0cbcb-43c6-441a-b66e-748de68d46d1
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2026)", type number}, {"On Invoice Discount ADJ M#(lf)(2026)", type number}, {"Total Rebate ADJ M#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"Total R&D ADJ M#(lf)(2026)", type number}, {"Total A&P ADJ M#(lf)(2026)", type number}, {"Total C&R ADJ M#(lf)(2026)", type number}, {"Total SG&A ADJ M#(lf)(2026)", type number}, {"Add back IFRS 16#(lf)(2026)", Int64.Type}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Pallet QTY #(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"Quantity#(lf)(2026)", Int64.Type}, {"Container QTY#(lf)(2026)", type number}}),
+		    #"Added Custom6" = Table.AddColumn(#"Changed Type", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom6",{{"Currency", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Plant", "Plant"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: df26a50b-2d93-4baa-8493-7dd926a89683
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Budget_Finance_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL_Budget_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2026)", type number}, {"On Invoice Discounts - Budget#(lf)(2026)", type number}, {"Total Rebates - Budget#(lf)(2026)", type number}, {"Net Sales - Budget#(lf)(2026)", type number}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"Total Logistics - Budget#(lf)(2026)", type number}, {"Total Freight - Budget#(lf)(2026)", type number}, {"Total Warehousing - Budget#(lf)(2026)", type number}, {"Direct Contribution - Budget#(lf)(2026)", type number}, {"Total R&D (ALL) - Budget#(lf)(2026)", type number}, {"Total A&P (All) - Budget#(lf)(2026)", type number}, {"Total C&R - Budget#(lf)(2026)", type number}, {"Total SG&A (All) - Budget#(lf)(2026)", type number}, {"Total IFRS - Budget#(lf)(2026)", Int64.Type}, {"EBITDA - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}, {"RM Weight Production KG - Budget#(lf)(2026)", type number}, {"Quantity - Budget#(lf)(2026)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2026)", type number}, {"Container QTY - Budget#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 68bc9bdb-55ad-4474-877b-29202c2ed99c
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Budget_Finance_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL_Budget_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2026)", type number}, {"On Invoice Discounts - Budget#(lf)(2026)", type number}, {"Total Rebates - Budget#(lf)(2026)", type number}, {"Net Sales - Budget#(lf)(2026)", type number}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"Total Logistics - Budget#(lf)(2026)", type number}, {"Total Freight - Budget#(lf)(2026)", type number}, {"Total Warehousing - Budget#(lf)(2026)", type number}, {"Direct Contribution - Budget#(lf)(2026)", type number}, {"Total R&D (ALL) - Budget#(lf)(2026)", type number}, {"Total A&P (All) - Budget#(lf)(2026)", type number}, {"Total C&R - Budget#(lf)(2026)", type number}, {"Total SG&A (All) - Budget#(lf)(2026)", type number}, {"Total IFRS - Budget#(lf)(2026)", Int64.Type}, {"EBITDA - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}, {"RM Weight Production KG - Budget#(lf)(2026)", type number}, {"Quantity - Budget#(lf)(2026)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2026)", type number}, {"Container QTY - Budget#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 6461035a-edca-49e3-a7db-742523d9d09d
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_Budget_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL_Budget_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2026)", type number}, {"On Invoice Discounts - Budget#(lf)(2026)", type number}, {"Total Rebates - Budget#(lf)(2026)", type number}, {"Net Sales - Budget#(lf)(2026)", type number}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"Total Logistics - Budget#(lf)(2026)", type number}, {"Total Freight - Budget#(lf)(2026)", type number}, {"Total Warehousing - Budget#(lf)(2026)", type number}, {"Direct Contribution - Budget#(lf)(2026)", type number}, {"Total R&D (ALL) - Budget#(lf)(2026)", type number}, {"Total A&P (All) - Budget#(lf)(2026)", type number}, {"Total C&R - Budget#(lf)(2026)", type number}, {"Total SG&A (All) - Budget#(lf)(2026)", type number}, {"Total IFRS - Budget#(lf)(2026)", Int64.Type}, {"EBITDA - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}, {"RM Weight Production KG - Budget#(lf)(2026)", type number}, {"Quantity - Budget#(lf)(2026)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2026)", type number}, {"Container QTY - Budget#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 79f84bcc-1ca8-41c3-82e7-6473eb2590e3
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_Budget_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL_Budget_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2026)", type number}, {"On Invoice Discounts - Budget#(lf)(2026)", type number}, {"Total Rebates - Budget#(lf)(2026)", type number}, {"Net Sales - Budget#(lf)(2026)", type number}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"Total Logistics - Budget#(lf)(2026)", type number}, {"Total Freight - Budget#(lf)(2026)", type number}, {"Total Warehousing - Budget#(lf)(2026)", type number}, {"Direct Contribution - Budget#(lf)(2026)", type number}, {"Total R&D (ALL) - Budget#(lf)(2026)", type number}, {"Total A&P (All) - Budget#(lf)(2026)", type number}, {"Total C&R - Budget#(lf)(2026)", type number}, {"Total SG&A (All) - Budget#(lf)(2026)", type number}, {"Total IFRS - Budget#(lf)(2026)", Int64.Type}, {"EBITDA - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}, {"RM Weight Production KG - Budget#(lf)(2026)", type number}, {"Quantity - Budget#(lf)(2026)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2026)", type number}, {"Container QTY - Budget#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 82172e55-31a3-4d17-b6d0-4ee165c6c258
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_Budget =
+		let
+		    Source = Table.Combine({PnL_Budget_EURO, PnL_Budget_USD}),
+		    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"Gross Sales - Budget#(lf)(2026)", "Gross Sales"}, {"On Invoice Discounts - Budget#(lf)(2026)", "On Invoice Discounts"}, {"Total Rebates - Budget#(lf)(2026)", "Total Rebates"}, {"Net Sales - Budget#(lf)(2026)", "Net Sales"}, {"Cost Of Sales - Budget#(lf)(2026)", "Cost Of Sales"}, {"Total Logistics - Budget#(lf)(2026)", "Total Logistics"}, {"Total Freight - Budget#(lf)(2026)", "Freight"}, {"Total Warehousing - Budget#(lf)(2026)", "Warehousing"}, {"Direct Contribution - Budget#(lf)(2026)", "Direct Contribution"}, {"Total R&D (ALL) - Budget#(lf)(2026)", "Total R&D"}, {"Total A&P (All) - Budget#(lf)(2026)", "Total A&P"}, {"Total C&R - Budget#(lf)(2026)", "Total C&R"}, {"Total SG&A (All) - Budget#(lf)(2026)", "Total SG&A"}, {"Total IFRS - Budget#(lf)(2026)", "IFRS 16 Adjustments"}, {"EBITDA - Budget#(lf)(2026)", "EBITDA"}, {"RM Weight Sold - Budget#(lf)(2026)", "RM Weight Sold"}, {"RM Weight Production KG - Budget#(lf)(2026)", "Net Production (RM KG)"}, {"Quantity - Budget#(lf)(2026)", "Quantity"}, {"Pallet QTY - Budget#(lf)(2026)", "Pallet QTY"}, {"Container QTY - Budget#(lf)(2026)", "Container QTY"}}),
+		    #"Added Custom1" = Table.AddColumn(#"Renamed Columns", "Invoice Sales", each [Gross Sales]-[On Invoice Discounts]),
+		    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Gross Profit", each [Net Sales]-[Cost Of Sales]),
+		    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "EBIT Before IFRS 16", each [Direct Contribution]-[#"Total R&D"]-[#"Total A&P"]-[#"Total C&R"]-[#"Total SG&A"]),
+		    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "EBIT", each [EBIT Before IFRS 16]+(if[IFRS 16 Adjustments] =null then 0 else [IFRS 16 Adjustments])),
+		    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "D&A Add Back", each [EBITDA]-[EBIT]),
+		    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "Total Indirect Expenses", each [#"Total R&D"]+[#"Total A&P"]+[#"Total C&R"]+[#"Total SG&A"]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom6",{{"Date", type date}, {"Invoice Sales", type number}, {"Gross Profit", type number}, {"EBIT Before IFRS 16", type number}, {"EBIT", type number}, {"D&A Add Back", type number}, {"Total Indirect Expenses", type number}}),
+		    #"Multiplied Column" = Table.TransformColumns(#"Changed Type", {{"On Invoice Discounts", each _ * -1, type number}}),
+		    #"Multiplied Column1" = Table.TransformColumns(#"Multiplied Column", {{"Total Rebates", each _ * -1, type number}}),
+		    #"Multiplied Column2" = Table.TransformColumns(#"Multiplied Column1", {{"Total Logistics", each _ * -1, type number}}),
+		    #"Multiplied Column3" = Table.TransformColumns(#"Multiplied Column2", {{"Freight", each _ * -1, type number}}),
+		    #"Multiplied Column4" = Table.TransformColumns(#"Multiplied Column3", {{"Warehousing", each _ * -1, type number}}),
+		    #"Multiplied Column5" = Table.TransformColumns(#"Multiplied Column4", {{"Total A&P", each _ * -1, type number}}),
+		    #"Multiplied Column6" = Table.TransformColumns(#"Multiplied Column5", {{"Total SG&A", each _ * -1, type number}}),
+		    #"Multiplied Column7" = Table.TransformColumns(#"Multiplied Column6", {{"Total R&D", each _ * -1, type number}}),
+		    #"Multiplied Column8" = Table.TransformColumns(#"Multiplied Column7", {{"Total C&R", each _ * -1, type number}}),
+		    #"Multiplied Column9" = Table.TransformColumns(#"Multiplied Column8", {{"Cost Of Sales", each _ * -1, type number}}),
+		    #"Multiplied Column10" = Table.TransformColumns(#"Multiplied Column9", {{"Total Indirect Expenses", each _ * -1, type number}}),
+		    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Multiplied Column10", {"Plant", "Code:Plant (c1)", "Months", "Currency", "Date"}, "Attribute", "Value"),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "PnL Metrics"}, {"Value", "2026B"}}),
+		    #"Added Custom7" = Table.AddColumn(#"Renamed Columns1", "Forecast Version", each "Budget"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom7",{{"Forecast Version", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 37f4b4cb-fa3e-4db5-b846-6aed4869be8d
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Rolling_Finance_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_Rolling_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Rolling#(lf)(2026)", type number}, {"On Invoice Discounts - Rolling#(lf)(2026)", type number}, {"Total Rebates - Rolling#(lf)(2026)", type number}, {"Net Sales - Rolling#(lf)(2026)", type number}, {"Cost Of Sales - Rolling#(lf)(2026)", type number}, {"Total Logistics - Rolling#(lf)(2026)", type number}, {"Total Freight - Rolling#(lf)(2026)", type number}, {"Total Warehousing - Rolling#(lf)(2026)", type number}, {"Direct Contribution - Rolling#(lf)(2026)", type number}, {"Total R&D (ALL) - Rolling#(lf)(2026)", type number}, {"Total A&P (All) - Rolling#(lf)(2026)", type number}, {"Total C&R - Rolling#(lf)(2026)", type number}, {"Total SG&A (All) - Rolling#(lf)(2026)", type number}, {"Total IFRS - Rolling#(lf)(2026)", Int64.Type}, {"EBITDA - Rolling#(lf)(2026)", type number}, {"RM Weight Sold - Rolling#(lf)(2026)", type number}, {"RM Weight Production KG - Rolling#(lf)(2026)", type text}, {"Quantity - Rolling#(lf)(2026)", Int64.Type}, {"Pallet QTY - Rolling#(lf)(2026)", type number}, {"Container QTY - Rolling#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 88e885d4-a05b-49d1-b32f-8db821f10708
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Rolling_Finance_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_Rolling_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Rolling#(lf)(2026)", type number}, {"On Invoice Discounts - Rolling#(lf)(2026)", type number}, {"Total Rebates - Rolling#(lf)(2026)", type number}, {"Net Sales - Rolling#(lf)(2026)", type number}, {"Cost Of Sales - Rolling#(lf)(2026)", type number}, {"Total Logistics - Rolling#(lf)(2026)", type number}, {"Total Freight - Rolling#(lf)(2026)", type number}, {"Total Warehousing - Rolling#(lf)(2026)", type number}, {"Direct Contribution - Rolling#(lf)(2026)", type number}, {"Total R&D (ALL) - Rolling#(lf)(2026)", type number}, {"Total A&P (All) - Rolling#(lf)(2026)", type number}, {"Total C&R - Rolling#(lf)(2026)", type number}, {"Total SG&A (All) - Rolling#(lf)(2026)", type number}, {"Total IFRS - Rolling#(lf)(2026)", Int64.Type}, {"EBITDA - Rolling#(lf)(2026)", type number}, {"RM Weight Sold - Rolling#(lf)(2026)", type number}, {"RM Weight Production KG - Rolling#(lf)(2026)", type text}, {"Quantity - Rolling#(lf)(2026)", Int64.Type}, {"Pallet QTY - Rolling#(lf)(2026)", type number}, {"Container QTY - Rolling#(lf)(2026)", type number}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Plant", "Plant"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: c3a3091d-d16e-4dfb-9eff-38dff6c817af
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Rolling_Finance =
+		let
+		    Source = Table.Combine({Rolling_Finance_EURO, Rolling_Finance_USD}),
+		    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: 1853c429-d0d2-46ec-af21-23cd54e235cd
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Budget_Finance =
+		let
+		    Source = Table.Combine({Budget_Finance_EURO, Budget_Finance_USD}),
+		    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Forecast Version", each "Budget"),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom1",{{"Date", type date}, {"Forecast Version", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Gross Sales - Budget#(lf)(2026)", "Gross Sales"}, {"On Invoice Discounts - Budget#(lf)(2026)", "On Invoice Discounts"}, {"Total Rebates - Budget#(lf)(2026)", "Total Rebates"}, {"Net Sales - Budget#(lf)(2026)", "Net Sales"}, {"Cost Of Sales - Budget#(lf)(2026)", "Cost of Sales"}, {"Total Logistics - Budget#(lf)(2026)", "Total Logistics"}, {"Total Freight - Budget#(lf)(2026)", "Total Freight"}, {"Total Warehousing - Budget#(lf)(2026)", "Total Warehousing"}, {"Direct Contribution - Budget#(lf)(2026)", "Direct Contribution"}, {"Total R&D (ALL) - Budget#(lf)(2026)", "Total R&D"}, {"Total A&P (All) - Budget#(lf)(2026)", "Total A&P"}, {"Total C&R - Budget#(lf)(2026)", "Total C&R"}, {"Total SG&A (All) - Budget#(lf)(2026)", "Total SG&A"}, {"Total IFRS - Budget#(lf)(2026)", "Add back IFRS 16"}, {"EBITDA - Budget#(lf)(2026)", "EBITDA"}, {"RM Weight Sold - Budget#(lf)(2026)", "RM Weight Sold"}, {"RM Weight Production KG - Budget#(lf)(2026)", "RM Weight Production KG"}, {"Quantity - Budget#(lf)(2026)", "Quantity"}, {"Pallet QTY - Budget#(lf)(2026)", "Pallet QTY"}, {"Container QTY - Budget#(lf)(2026)", "Container QTY"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: c3e2263b-6510-49ce-a8d0-e8c9f235ce86
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoiced_CurrentYearEURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Invoiced_CurrentYear.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Promoted Headers", [PromoteAllScalars=true]),
+		    #"Added Custom" = Table.AddColumn(#"Promoted Headers1", "Currency", each "Euro"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Currency", type text}, {"Code:Payer (c1)", Int64.Type}, {"Code:SKU Level (c2)", Int64.Type}, {"Code:Shippingpoint (c3)", Int64.Type}, {"Code:Segment-Region (c4)", Int64.Type}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Quantity#(lf)(2026)", Int64.Type}, {"Gross Sales#(lf)(2026)", type number}, {"Net  Sales#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"Direct Contribution#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"EBITDA#(lf)(2026)", type number}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"Cost of Sales#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Payer", type text}, {"SKU Level", type text}, {"Shippingpoint", type text}, {"Segment-Region", type text}, {"Market Org 2017 (SoldTo)", type text}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c6)", Int64.Type}, {"Daily Date", type text}, {"Daily Order Crate Date", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 473a8bc9-e22c-4208-a9e0-284fec084c7c
+	queryGroup: InvoicedAutoRefresh
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoiced_CurrentYearUSD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Invoiced_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice,Delivery |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type any}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}, {"Column14", type text}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}, {"Column25", type text}, {"Column26", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Shippingpoint", type text}, {"Code:Shippingpoint (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c6)", Int64.Type}, {"Daily Date", type text}, {"Daily Order Crate Date", type text}, {"Quantity#(lf)(2026)", Int64.Type}, {"Gross Sales#(lf)(2026)", type number}, {"Net  Sales#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"Direct Contribution#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"EBITDA#(lf)(2026)", type number}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"Cost of Sales#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"img8", type text}, {"Column26", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Currency" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Currency",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: e36a3ffd-85e7-410a-aa80-c878d0608c58
+	queryGroup: InvoicedAutoRefresh
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression RTP_Euro =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\RTP_CurrentYear_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Sold To Party", type text}, {"Code:Sold To Party (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c4)", Int64.Type}, {"Months", type text}, {"Total RTP EUR#(lf)(2026)", type number}, {"Total RTP#(lf)(2026)", Int64.Type}, {"Total RTP EUR COGS#(lf)(2026)", type number}, {"Column13", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Sold To Party", "Sold To Party"}}),
+		    #"Added Currency" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO")
+		in
+		    #"Added Currency"
+	lineageTag: 30c030ff-6618-4614-acaa-97020fbce41a
+	queryGroup: 'RTP Auto Refresh'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression RTP_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\RTP_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Sold To Party", type text}, {"Code:Sold To Party (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c4)", Int64.Type}, {"Months", type text}, {"Total RTP EUR#(lf)(2026)", type number}, {"Total RTP#(lf)(2026)", Int64.Type}, {"Total RTP EUR COGS#(lf)(2026)", type number}, {"Column13", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Sold To Party", "Sold To Party"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD")
+		in
+		    #"Added Custom"
+	lineageTag: 87ab371f-ea28-4430-b5e5-4f1d4cbfb2fd
+	queryGroup: 'RTP Auto Refresh'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Budget_Sales_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Budget_Sales_CurrentYear_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type text}, {"Quantity - Budget#(lf)(2026)", Int64.Type}, {"Gross Sales - Budget#(lf)(2026)", type number}, {"Net Sales - Budget#(lf)(2026)", type number}, {"Direct Contribution - Budget#(lf)(2026)", type number}, {"EBITDA - Budget#(lf)(2026)", type number}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}, {"Column21", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO")
+		in
+		    #"Added Custom"
+	lineageTag: 9de04ac6-3ebe-463c-95c7-79fbfa4c0c2e
+	queryGroup: 'Budget Sales'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Budget_Sales_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Budget_Sales_CurrentYear_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type text}, {"Quantity - Budget#(lf)(2026)", Int64.Type}, {"Gross Sales - Budget#(lf)(2026)", type number}, {"Net Sales - Budget#(lf)(2026)", type number}, {"Direct Contribution - Budget#(lf)(2026)", type number}, {"EBITDA - Budget#(lf)(2026)", type number}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}, {"Column21", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD")
+		in
+		    #"Added Custom"
+	lineageTag: ed23e7de-15f5-4b5a-8a6b-01e82ed6d3bd
+	queryGroup: 'Budget Sales'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Budget_Sales =
+		let
+		    Source = Table.Combine({Budget_Sales_EURO, Budget_Sales_USD}),
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"Column21"}),
+		    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Forecast Version", each "Budget"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom1",{{"Quantity - Budget#(lf)(2026)", "Quantity"}, {"Gross Sales - Budget#(lf)(2026)", "Gross Sales"}, {"Net Sales - Budget#(lf)(2026)", "Net Sales"}, {"Direct Contribution - Budget#(lf)(2026)", "Direct Contribution"}, {"EBITDA - Budget#(lf)(2026)", "EBITDA"}, {"Cost Of Sales - Budget#(lf)(2026)", "Cost Of Sales"}, {"RM Weight Sold - Budget#(lf)(2026)", "RM Weight Sold"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}, {"Currency", type text}, {"Forecast Version", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: b9c2c2f4-a2af-4091-8ff2-aa8a3515b00a
+	queryGroup: 'Budget Sales'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_Rolling_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_Rolling_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Rolling#(lf)(2026)", type number}, {"On Invoice Discounts - Rolling#(lf)(2026)", type number}, {"Total Rebates - Rolling#(lf)(2026)", type number}, {"Net Sales - Rolling#(lf)(2026)", type number}, {"Cost Of Sales - Rolling#(lf)(2026)", type number}, {"Total Logistics - Rolling#(lf)(2026)", type number}, {"Total Freight - Rolling#(lf)(2026)", type number}, {"Total Warehousing - Rolling#(lf)(2026)", type number}, {"Direct Contribution - Rolling#(lf)(2026)", type number}, {"Total R&D (ALL) - Rolling#(lf)(2026)", type number}, {"Total A&P (All) - Rolling#(lf)(2026)", type number}, {"Total C&R - Rolling#(lf)(2026)", type number}, {"Total SG&A (All) - Rolling#(lf)(2026)", type number}, {"Total IFRS - Rolling#(lf)(2026)", Int64.Type}, {"EBITDA - Rolling#(lf)(2026)", type number}, {"RM Weight Sold - Rolling#(lf)(2026)", type number}, {"RM Weight Production KG - Rolling#(lf)(2026)", type text}, {"Quantity - Rolling#(lf)(2026)", Int64.Type}, {"Pallet QTY - Rolling#(lf)(2026)", type number}, {"Container QTY - Rolling#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 9483821d-308a-43af-8f9d-a0c641e3abd1
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_Rolling_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\PnL_Rolling_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Rolling#(lf)(2026)", type number}, {"On Invoice Discounts - Rolling#(lf)(2026)", type number}, {"Total Rebates - Rolling#(lf)(2026)", type number}, {"Net Sales - Rolling#(lf)(2026)", type number}, {"Cost Of Sales - Rolling#(lf)(2026)", type number}, {"Total Logistics - Rolling#(lf)(2026)", type number}, {"Total Freight - Rolling#(lf)(2026)", type number}, {"Total Warehousing - Rolling#(lf)(2026)", type number}, {"Direct Contribution - Rolling#(lf)(2026)", type number}, {"Total R&D (ALL) - Rolling#(lf)(2026)", type number}, {"Total A&P (All) - Rolling#(lf)(2026)", type number}, {"Total C&R - Rolling#(lf)(2026)", type number}, {"Total SG&A (All) - Rolling#(lf)(2026)", type number}, {"Total IFRS - Rolling#(lf)(2026)", Int64.Type}, {"EBITDA - Rolling#(lf)(2026)", type number}, {"RM Weight Sold - Rolling#(lf)(2026)", type number}, {"RM Weight Production KG - Rolling#(lf)(2026)", type text}, {"Quantity - Rolling#(lf)(2026)", Int64.Type}, {"Pallet QTY - Rolling#(lf)(2026)", type number}, {"Container QTY - Rolling#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD")
+		in
+		    #"Added Custom"
+	lineageTag: b1cf2562-d1f5-42d6-8cc7-d9fb6a4b3f38
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_Rolling =
+		let
+		    Source = Table.Combine({PnL_Rolling_EURO, PnL_Rolling_USD}),
+		    #"Renamed Columns" = Table.RenameColumns(Source,{{"Gross Sales - Rolling#(lf)(2026)", "Gross Sales"}, {"On Invoice Discounts - Rolling#(lf)(2026)", "On Invoice Discounts"}, {"Total Rebates - Rolling#(lf)(2026)", "Total Rebates"}, {"Net Sales - Rolling#(lf)(2026)", "Net Sales"}, {"Cost Of Sales - Rolling#(lf)(2026)", "Cost Of Sales"}, {"Total Logistics - Rolling#(lf)(2026)", "Total Logistics"}, {"Total Freight - Rolling#(lf)(2026)", "Freight"}, {"Total Warehousing - Rolling#(lf)(2026)", "Warehousing"}, {"Direct Contribution - Rolling#(lf)(2026)", "Direct Contribution"}, {"Total R&D (ALL) - Rolling#(lf)(2026)", "Total R&D"}, {"Total A&P (All) - Rolling#(lf)(2026)", "Total A&P"}, {"Total C&R - Rolling#(lf)(2026)", "Total C&R"}, {"Total SG&A (All) - Rolling#(lf)(2026)", "Total SG&A"}, {"Total IFRS - Rolling#(lf)(2026)", "IFRS 16 Adjustments"}, {"EBITDA - Rolling#(lf)(2026)", "EBITDA"}, {"RM Weight Sold - Rolling#(lf)(2026)", "RM Weight Sold"}, {"RM Weight Production KG - Rolling#(lf)(2026)", "Net Production (RM KG)"}, {"Quantity - Rolling#(lf)(2026)", "Quantity"}, {"Pallet QTY - Rolling#(lf)(2026)", "Pallet QTY"}, {"Container QTY - Rolling#(lf)(2026)", "Container QTY"}}),
+		    #"Added Custom6" = Table.AddColumn(#"Renamed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Added Custom" = Table.AddColumn(#"Added Custom6", "Invoice Sales", each [Gross Sales]-[On Invoice Discounts]),
+		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Gross Profit", each [Net Sales]-[Cost Of Sales]),
+		    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "EBIT Before IFRS16", each [Direct Contribution]-[#"Total R&D"]-[#"Total A&P"]-[#"Total C&R"]-[#"Total SG&A"]),
+		    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "EBIT", each [EBIT Before IFRS16]+[IFRS 16 Adjustments]),
+		    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "D&A Add Back", each [EBITDA]-[EBIT]),
+		    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "Total Indirect Expenses", each [#"Total R&D"]+[#"Total A&P"]+[#"Total C&R"]+[#"Total SG&A"]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom5",{{"Total Indirect Expenses", type number}, {"D&A Add Back", type number}, {"EBIT", type number}, {"EBIT Before IFRS16", type number}, {"Gross Profit", type number}, {"Invoice Sales", type number}, {"Currency", type text}}),
+		    #"Multiplied Column" = Table.TransformColumns(#"Changed Type", {{"On Invoice Discounts", each _ * -1, type number}}),
+		    #"Multiplied Column1" = Table.TransformColumns(#"Multiplied Column", {{"Total Rebates", each _ * -1, type number}}),
+		    #"Multiplied Column2" = Table.TransformColumns(#"Multiplied Column1", {{"Total Logistics", each _ * -1, type number}}),
+		    #"Multiplied Column3" = Table.TransformColumns(#"Multiplied Column2", {{"Freight", each _ * -1, type number}}),
+		    #"Multiplied Column4" = Table.TransformColumns(#"Multiplied Column3", {{"Warehousing", each _ * -1, type number}}),
+		    #"Multiplied Column5" = Table.TransformColumns(#"Multiplied Column4", {{"Total A&P", each _ * -1, type number}}),
+		    #"Multiplied Column6" = Table.TransformColumns(#"Multiplied Column5", {{"Total SG&A", each _ * -1, type number}}),
+		    #"Multiplied Column7" = Table.TransformColumns(#"Multiplied Column6", {{"Total R&D", each _ * -1, type number}}),
+		    #"Multiplied Column8" = Table.TransformColumns(#"Multiplied Column7", {{"Total C&R", each _ * -1, type number}}),
+		    #"Multiplied Column9" = Table.TransformColumns(#"Multiplied Column8", {{"Cost Of Sales", each _ * -1, type number}}),
+		    #"Multiplied Column10" = Table.TransformColumns(#"Multiplied Column9", {{"Total Indirect Expenses", each _ * -1, type number}}),
+		    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Multiplied Column10", {"Plant", "Code:Plant (c1)", "Months", "Currency", "Date"}, "Attribute", "Value"),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "PnL Metrics"}, {"Value", "2026B"}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"2026B", type number}, {"Date", type date}})
+		in
+		    #"Changed Type1"
+	lineageTag: 8ba98b73-48e8-4894-baf4-1b2026fb20a5
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Finance_2024_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2024_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2024)", type number}, {"On Invoice Discount ADJ M#(lf)(2024)", type number}, {"Total Rebate ADJ M#(lf)(2024)", type number}, {"Net Sales ADJ M#(lf)(2024)", type number}, {"Cost of Sales ADJ M#(lf)(2024)", type number}, {"Total Logistics ADJ M#(lf)(2024)", type number}, {"Freight ADJ M#(lf)(2024)", type number}, {"Warehousing ADJ M#(lf)(2024)", type number}, {"Direct contribution ADJ M#(lf)(2024)", type number}, {"Total R&D ADJ M#(lf)(2024)", type number}, {"Total A&P ADJ M#(lf)(2024)", type number}, {"Total C&R ADJ M#(lf)(2024)", type number}, {"Total SG&A ADJ M#(lf)(2024)", type number}, {"Add back IFRS 16#(lf)(2024)", Int64.Type}, {"EBITDA ADJ M#(lf)(2024)", type number}, {"RM Weight Sold #(lf)(2024)", type number}, {"Net Production (RM KG)#(lf)(2024)", type number}, {"Quantity#(lf)(2024)", type number}, {"Pallet QTY #(lf)(2024)", type number}, {"Container QTY#(lf)(2024)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 26e7a9a7-a306-4849-9fc5-f9b778e2c252
+	queryGroup: Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Finance_2024_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2024_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2024)", type number}, {"On Invoice Discount ADJ M#(lf)(2024)", type number}, {"Total Rebate ADJ M#(lf)(2024)", type number}, {"Net Sales ADJ M#(lf)(2024)", type number}, {"Cost of Sales ADJ M#(lf)(2024)", type number}, {"Total Logistics ADJ M#(lf)(2024)", type number}, {"Freight ADJ M#(lf)(2024)", type number}, {"Warehousing ADJ M#(lf)(2024)", type number}, {"Direct contribution ADJ M#(lf)(2024)", type number}, {"Total R&D ADJ M#(lf)(2024)", type number}, {"Total A&P ADJ M#(lf)(2024)", type number}, {"Total C&R ADJ M#(lf)(2024)", type number}, {"Total SG&A ADJ M#(lf)(2024)", type number}, {"Add back IFRS 16#(lf)(2024)", Int64.Type}, {"EBITDA ADJ M#(lf)(2024)", type number}, {"RM Weight Sold #(lf)(2024)", type number}, {"Net Production (RM KG)#(lf)(2024)", type number}, {"Quantity#(lf)(2024)", type number}, {"Pallet QTY #(lf)(2024)", type number}, {"Container QTY#(lf)(2024)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 1e4a5140-0476-4846-95b8-cf65243ef152
+	queryGroup: Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2024_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2024_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2024)", type number}, {"On Invoice Discount ADJ M#(lf)(2024)", type number}, {"Total Rebate ADJ M#(lf)(2024)", type number}, {"Net Sales ADJ M#(lf)(2024)", type number}, {"Cost of Sales ADJ M#(lf)(2024)", type number}, {"Total Logistics ADJ M#(lf)(2024)", type number}, {"Freight ADJ M#(lf)(2024)", type number}, {"Warehousing ADJ M#(lf)(2024)", type number}, {"Direct contribution ADJ M#(lf)(2024)", type number}, {"Total R&D ADJ M#(lf)(2024)", type number}, {"Total A&P ADJ M#(lf)(2024)", type number}, {"Total C&R ADJ M#(lf)(2024)", type number}, {"Total SG&A ADJ M#(lf)(2024)", type number}, {"Add back IFRS 16#(lf)(2024)", Int64.Type}, {"EBITDA ADJ M#(lf)(2024)", type number}, {"RM Weight Sold #(lf)(2024)", type number}, {"Net Production (RM KG)#(lf)(2024)", type number}, {"Quantity#(lf)(2024)", type number}, {"Pallet QTY #(lf)(2024)", type number}, {"Container QTY#(lf)(2024)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 9f1d4b32-3832-40b8-bba2-8c982ca3a687
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2024_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2024_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2024)", type number}, {"On Invoice Discount ADJ M#(lf)(2024)", type number}, {"Total Rebate ADJ M#(lf)(2024)", type number}, {"Net Sales ADJ M#(lf)(2024)", type number}, {"Cost of Sales ADJ M#(lf)(2024)", type number}, {"Total Logistics ADJ M#(lf)(2024)", type number}, {"Freight ADJ M#(lf)(2024)", type number}, {"Warehousing ADJ M#(lf)(2024)", type number}, {"Direct contribution ADJ M#(lf)(2024)", type number}, {"Total R&D ADJ M#(lf)(2024)", type number}, {"Total A&P ADJ M#(lf)(2024)", type number}, {"Total C&R ADJ M#(lf)(2024)", type number}, {"Total SG&A ADJ M#(lf)(2024)", type number}, {"Add back IFRS 16#(lf)(2024)", Int64.Type}, {"EBITDA ADJ M#(lf)(2024)", type number}, {"RM Weight Sold #(lf)(2024)", type number}, {"Net Production (RM KG)#(lf)(2024)", type number}, {"Quantity#(lf)(2024)", type number}, {"Pallet QTY #(lf)(2024)", type number}, {"Container QTY#(lf)(2024)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 0d8a70bc-cc69-4986-b26e-e7f8c5db6b6e
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2025_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2025_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2025)", type number}, {"On Invoice Discount ADJ M#(lf)(2025)", type number}, {"Total Rebate ADJ M#(lf)(2025)", type number}, {"Net Sales ADJ M#(lf)(2025)", type number}, {"Cost of Sales ADJ M#(lf)(2025)", type number}, {"Total Logistics ADJ M#(lf)(2025)", type number}, {"Freight ADJ M#(lf)(2025)", type number}, {"Warehousing ADJ M#(lf)(2025)", type number}, {"Direct contribution ADJ M#(lf)(2025)", type number}, {"Total R&D ADJ M#(lf)(2025)", type number}, {"Total A&P ADJ M#(lf)(2025)", type number}, {"Total C&R ADJ M#(lf)(2025)", type number}, {"Total SG&A ADJ M#(lf)(2025)", type number}, {"Add back IFRS 16#(lf)(2025)", Int64.Type}, {"EBITDA ADJ M#(lf)(2025)", type number}, {"RM Weight Sold #(lf)(2025)", type number}, {"Pallet QTY #(lf)(2025)", type number}, {"Net Production (RM KG)#(lf)(2025)", type number}, {"Quantity#(lf)(2025)", type number}, {"Container QTY#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: e1e22a70-2c76-451d-828d-13cc8ba51183
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2025_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2025_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2025)", type number}, {"On Invoice Discount ADJ M#(lf)(2025)", type number}, {"Total Rebate ADJ M#(lf)(2025)", type number}, {"Net Sales ADJ M#(lf)(2025)", type number}, {"Cost of Sales ADJ M#(lf)(2025)", type number}, {"Total Logistics ADJ M#(lf)(2025)", type number}, {"Freight ADJ M#(lf)(2025)", type number}, {"Warehousing ADJ M#(lf)(2025)", type number}, {"Direct contribution ADJ M#(lf)(2025)", type number}, {"Total R&D ADJ M#(lf)(2025)", type number}, {"Total A&P ADJ M#(lf)(2025)", type number}, {"Total C&R ADJ M#(lf)(2025)", type number}, {"Total SG&A ADJ M#(lf)(2025)", type number}, {"Add back IFRS 16#(lf)(2025)", Int64.Type}, {"EBITDA ADJ M#(lf)(2025)", type number}, {"RM Weight Sold #(lf)(2025)", type number}, {"Pallet QTY #(lf)(2025)", type number}, {"Net Production (RM KG)#(lf)(2025)", type number}, {"Quantity#(lf)(2025)", type number}, {"Container QTY#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: d23bff46-6b79-4f90-a6bd-8d490acf6740
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 3plus9_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\3plus9_Sales_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type text}, {"3+9 Quantity#(lf)(2026)", Int64.Type}, {"3+9 Gross Sales#(lf)(2026)", type number}, {"3+9 Net Sales#(lf)(2026)", type number}, {"3+9 Direct Contribution#(lf)(2026)", type number}, {"3+9 EBITDA#(lf)(2026)", type number}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}, {"Column21", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 7d927e40-8066-4e8c-9c0a-0baffb46b87f
+	queryGroup: 2plus10
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 3plus9_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\3plus9_Sales_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type text}, {"3+9 Quantity#(lf)(2026)", Int64.Type}, {"3+9 Gross Sales#(lf)(2026)", type number}, {"3+9 Net Sales#(lf)(2026)", type number}, {"3+9 Direct Contribution#(lf)(2026)", type number}, {"3+9 EBITDA#(lf)(2026)", type number}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}, {"Column21", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 1bf6d5da-1fc2-4f38-9987-0de7c60ae56f
+	queryGroup: 2plus10
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 2plus10_CurrentYear =
+		let
+		    Source = Table.Combine({#"3plus9_EURO", #"3plus9_USD"}),
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"Column21"}),
+		    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"3+9 Quantity#(lf)(2026)", "Quantity"}, {"3+9 Gross Sales#(lf)(2026)", "Gross Sales"}, {"3+9 Net Sales#(lf)(2026)", "Net Sales"}, {"3+9 Direct Contribution#(lf)(2026)", "Direct Contribution"}, {"3+9 EBITDA#(lf)(2026)", "EBITDA"}, {"3+9 Cost Of Sales#(lf)(2026)", "Cost Of Sales"}, {"3+9 RM Weight Sold#(lf)(2026)", "RM Weight Sold"}}),
+		    #"Added Custom1" = Table.AddColumn(#"Renamed Columns", "Forecast Version", each "2+10")
+		in
+		    #"Added Custom1"
+	lineageTag: ae3b0a2f-fc17-4a15-9edc-197b911e9cf6
+	queryGroup: 2plus10
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 3plus9_Finance_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL 3plus9 EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"3+9 Gross Sales#(lf)(2026)", type number}, {"3+9 On Invoice Discounts#(lf)(2026)", type number}, {"3+9 Total Rebates#(lf)(2026)", type number}, {"3+9 Net Sales#(lf)(2026)", type number}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 Total Logistics#(lf)(2026)", type number}, {"3+9 Freight#(lf)(2026)", type number}, {"3+9 Warehousing#(lf)(2026)", type number}, {"3+9 Direct Contribution#(lf)(2026)", type number}, {"3+9 Total R&D#(lf)(2026)", type number}, {"3+9 Total A&P#(lf)(2026)", type number}, {"3+9 Total C&R#(lf)(2026)", type number}, {"3+9 Total SG&A#(lf)(2026)", type number}, {"3+9 IFRS 16 Adj#(lf)(2026)", Int64.Type}, {"3+9 EBITDA#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}, {"RM Weight Production KG - 3+9#(lf)(2026)", type text}, {"3+9 Quantity#(lf)(2026)", Int64.Type}, {"3+9 Pallet QTY #(lf)(2026)", type number}, {"3+9 Container QTY#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: a4d9edfe-a254-491a-b80d-01cef4ba6fb5
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 3plus9_Finance_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL 3plus9 USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"3+9 Gross Sales#(lf)(2026)", type number}, {"3+9 On Invoice Discounts#(lf)(2026)", type number}, {"3+9 Total Rebates#(lf)(2026)", type number}, {"3+9 Net Sales#(lf)(2026)", type number}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 Total Logistics#(lf)(2026)", type number}, {"3+9 Freight#(lf)(2026)", type number}, {"3+9 Warehousing#(lf)(2026)", type number}, {"3+9 Direct Contribution#(lf)(2026)", type number}, {"3+9 Total R&D#(lf)(2026)", type number}, {"3+9 Total A&P#(lf)(2026)", type number}, {"3+9 Total C&R#(lf)(2026)", type number}, {"3+9 Total SG&A#(lf)(2026)", type number}, {"3+9 IFRS 16 Adj#(lf)(2026)", Int64.Type}, {"3+9 EBITDA#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}, {"RM Weight Production KG - 3+9#(lf)(2026)", type text}, {"3+9 Quantity#(lf)(2026)", Int64.Type}, {"3+9 Pallet QTY #(lf)(2026)", type number}, {"3+9 Container QTY#(lf)(2026)", type number}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type", "Currency", each "USD"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"US DOLLAR#(lf)Plant", "Plant"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: 2b780c61-f07e-4ee8-a167-761c7b2394ad
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 2plus10_Finance_CurrentYear =
+		let
+		    Source = Table.Combine({#"3plus9_Finance_EURO", #"3plus9_Finance_USD"}),
+		    #"Added Custom" = Table.AddColumn(Source, "Forecast Version", each "2+10"),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Forecast Version", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"3+9 Gross Sales#(lf)(2026)", "Gross Sales"}, {"3+9 On Invoice Discounts#(lf)(2026)", "On Invoice Discounts"}, {"3+9 Total Rebates#(lf)(2026)", "Total Rebates"}, {"3+9 Net Sales#(lf)(2026)", "Net Sales"}, {"3+9 Cost Of Sales#(lf)(2026)", "Cost of Sales"}, {"3+9 Total Logistics#(lf)(2026)", "Total Logistics"}, {"3+9 Freight#(lf)(2026)", "Total Freight"}, {"3+9 Warehousing#(lf)(2026)", "Total Warehousing"}, {"3+9 Direct Contribution#(lf)(2026)", "Direct Contribution"}, {"3+9 Total R&D#(lf)(2026)", "Total R&D"}, {"3+9 Total A&P#(lf)(2026)", "Total A&P"}, {"3+9 Total C&R#(lf)(2026)", "Total C&R"}, {"3+9 Total SG&A#(lf)(2026)", "Total SG&A"}, {"3+9 IFRS 16 Adj#(lf)(2026)", "Add back IFRS 16"}, {"3+9 EBITDA#(lf)(2026)", "EBITDA"}, {"3+9 RM Weight Sold#(lf)(2026)", "RM Weight Sold"}, {"RM Weight Production KG - 3+9#(lf)(2026)", "RM Weight Production KG"}, {"3+9 Quantity#(lf)(2026)", "Quantity"}, {"3+9 Pallet QTY #(lf)(2026)", "Pallet QTY"}, {"3+9 Container QTY#(lf)(2026)", "Container QTY"}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Currency", type text}}),
+		    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom1",{{"Date", type date}})
+		in
+		    #"Changed Type2"
+	lineageTag: 8117d961-0773-4b1b-96e3-8cea6e92d694
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_3plus9_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL 3plus9 EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"3+9 Gross Sales#(lf)(2026)", type number}, {"3+9 On Invoice Discounts#(lf)(2026)", type number}, {"3+9 Total Rebates#(lf)(2026)", type number}, {"3+9 Net Sales#(lf)(2026)", type number}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 Total Logistics#(lf)(2026)", type number}, {"3+9 Freight#(lf)(2026)", type number}, {"3+9 Warehousing#(lf)(2026)", type number}, {"3+9 Direct Contribution#(lf)(2026)", type number}, {"3+9 Total R&D#(lf)(2026)", type number}, {"3+9 Total A&P#(lf)(2026)", type number}, {"3+9 Total C&R#(lf)(2026)", type number}, {"3+9 Total SG&A#(lf)(2026)", type number}, {"3+9 IFRS 16 Adj#(lf)(2026)", Int64.Type}, {"3+9 EBITDA#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}, {"RM Weight Production KG - 3+9#(lf)(2026)", type text}, {"3+9 Quantity#(lf)(2026)", Int64.Type}, {"3+9 Pallet QTY #(lf)(2026)", type number}, {"3+9 Container QTY#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 9c93a4af-1b9a-4828-ae97-123ff86f3568
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_3plus9_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\PnL 3plus9 USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"3+9 Gross Sales#(lf)(2026)", type number}, {"3+9 On Invoice Discounts#(lf)(2026)", type number}, {"3+9 Total Rebates#(lf)(2026)", type number}, {"3+9 Net Sales#(lf)(2026)", type number}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 Total Logistics#(lf)(2026)", type number}, {"3+9 Freight#(lf)(2026)", type number}, {"3+9 Warehousing#(lf)(2026)", type number}, {"3+9 Direct Contribution#(lf)(2026)", type number}, {"3+9 Total R&D#(lf)(2026)", type number}, {"3+9 Total A&P#(lf)(2026)", type number}, {"3+9 Total C&R#(lf)(2026)", type number}, {"3+9 Total SG&A#(lf)(2026)", type number}, {"3+9 IFRS 16 Adj#(lf)(2026)", Int64.Type}, {"3+9 EBITDA#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}, {"RM Weight Production KG - 3+9#(lf)(2026)", type text}, {"3+9 Quantity#(lf)(2026)", Int64.Type}, {"3+9 Pallet QTY #(lf)(2026)", type number}, {"3+9 Container QTY#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD")
+		in
+		    #"Added Custom"
+	lineageTag: f33f2c55-7b35-41c8-ab79-7aa3ef3dba0e
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2plus10_CurrentYear =
+		let
+		    Source = Table.Combine({PnL_3plus9_EURO, PnL_3plus9_USD}),
+		    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"3+9 Gross Sales#(lf)(2026)", "Gross Sales"}, {"3+9 On Invoice Discounts#(lf)(2026)", "On Invoice Discounts"}, {"3+9 Total Rebates#(lf)(2026)", "Total Rebates"}, {"3+9 Net Sales#(lf)(2026)", "Net Sales"}, {"3+9 Cost Of Sales#(lf)(2026)", "Cost of Sales"}, {"3+9 Total Logistics#(lf)(2026)", "Total Logistics"}, {"3+9 Freight#(lf)(2026)", "Freight"}, {"3+9 Warehousing#(lf)(2026)", "Warehousing"}, {"3+9 Direct Contribution#(lf)(2026)", "Direct Contribution"}, {"3+9 Total R&D#(lf)(2026)", "Total R&D"}, {"3+9 Total A&P#(lf)(2026)", "Total A&P"}, {"3+9 Total C&R#(lf)(2026)", "Total C&R"}, {"3+9 Total SG&A#(lf)(2026)", "Total SG&A"}, {"3+9 IFRS 16 Adj#(lf)(2026)", "IFRS 16 Adjustments"}, {"3+9 EBITDA#(lf)(2026)", "EBITDA"}, {"3+9 RM Weight Sold#(lf)(2026)", "RM Weight Sold"}, {"RM Weight Production KG - 3+9#(lf)(2026)", "Net Production (RM KG)"}, {"3+9 Quantity#(lf)(2026)", "Quantity"}, {"3+9 Pallet QTY #(lf)(2026)", "Pallet QTY"}, {"3+9 Container QTY#(lf)(2026)", "Container QTY"}}),
+		    #"Added Custom1" = Table.AddColumn(#"Renamed Columns", "Invoice Sales", each [Gross Sales]-[On Invoice Discounts]),
+		    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Gross Profit", each [Net Sales]-[Cost of Sales]),
+		    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "EBIT Before IFRS 16", each [Direct Contribution]-[#"Total R&D"]-[#"Total A&P"]-[#"Total C&R"]-[#"Total SG&A"]),
+		    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "EBIT", each [EBIT Before IFRS 16]+(if[IFRS 16 Adjustments]=null then 0 else [IFRS 16 Adjustments])),
+		    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "D&A Add Back", each [EBITDA]-[EBIT]),
+		    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "Total Indirect Expenses", each [#"Total R&D"]+[#"Total A&P"]+[#"Total C&R"]+[#"Total SG&A"]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom6",{{"Currency", type text}, {"Date", type date}, {"Invoice Sales", type number}, {"Gross Profit", type number}, {"EBIT Before IFRS 16", type number}, {"EBIT", type number}, {"D&A Add Back", type number}, {"Total Indirect Expenses", type number}}),
+		    #"Multiplied Column" = Table.TransformColumns(#"Changed Type", {{"On Invoice Discounts", each _ * -1, type number}}),
+		    #"Multiplied Column1" = Table.TransformColumns(#"Multiplied Column", {{"Total Rebates", each _ * -1, type number}}),
+		    #"Multiplied Column2" = Table.TransformColumns(#"Multiplied Column1", {{"Total Logistics", each _ * -1, type number}}),
+		    #"Multiplied Column3" = Table.TransformColumns(#"Multiplied Column2", {{"Freight", each _ * -1, type number}}),
+		    #"Multiplied Column4" = Table.TransformColumns(#"Multiplied Column3", {{"Warehousing", each _ * -1, type number}}),
+		    #"Multiplied Column5" = Table.TransformColumns(#"Multiplied Column4", {{"Total A&P", each _ * -1, type number}}),
+		    #"Multiplied Column6" = Table.TransformColumns(#"Multiplied Column5", {{"Total SG&A", each _ * -1, type number}}),
+		    #"Multiplied Column7" = Table.TransformColumns(#"Multiplied Column6", {{"Total R&D", each _ * -1, type number}}),
+		    #"Multiplied Column8" = Table.TransformColumns(#"Multiplied Column7", {{"Total C&R", each _ * -1, type number}}),
+		    #"Multiplied Column9" = Table.TransformColumns(#"Multiplied Column8", {{"Cost of Sales", each _ * -1, type number}}),
+		    #"Multiplied Column10" = Table.TransformColumns(#"Multiplied Column9", {{"Total Indirect Expenses", each _ * -1, type number}}),
+		    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Multiplied Column10", {"Plant", "Code:Plant (c1)", "Months", "Currency", "Date"}, "Attribute", "Value"),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "PnL Metrics"}, {"Value", "2026B"}}),
+		    #"Added Custom7" = Table.AddColumn(#"Renamed Columns2", "Forecast Version", each "2+10"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom7",{{"Forecast Version", type text}, {"2026B", type number}})
+		in
+		    #"Changed Type1"
+	lineageTag: b215cddb-cbde-4df1-9d93-cf3a519a947d
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2025B_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2025B_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2025)", type number}, {"On Invoice Discounts - Budget#(lf)(2025)", type number}, {"Total Rebates - Budget#(lf)(2025)", type number}, {"Net Sales - Budget#(lf)(2025)", type number}, {"Cost Of Sales - Budget#(lf)(2025)", type number}, {"Total Logistics - Budget#(lf)(2025)", type number}, {"Total Freight - Budget#(lf)(2025)", type number}, {"Total Warehousing - Budget#(lf)(2025)", type number}, {"Direct Contribution - Budget#(lf)(2025)", type number}, {"Total R&D (ALL) - Budget#(lf)(2025)", type number}, {"Total A&P (All) - Budget#(lf)(2025)", type number}, {"Total C&R - Budget#(lf)(2025)", type number}, {"Total SG&A (All) - Budget#(lf)(2025)", type number}, {"Total IFRS - Budget#(lf)(2025)", Int64.Type}, {"EBITDA - Budget#(lf)(2025)", type number}, {"RM Weight Sold - Budget#(lf)(2025)", type number}, {"RM Weight Production KG - Budget#(lf)(2025)", type number}, {"Quantity - Budget#(lf)(2025)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2025)", type number}, {"Container QTY - Budget#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: e7dd279f-6309-403f-9dcf-21a5531bddf4
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PnL_2025B_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2025B_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2025)", type number}, {"On Invoice Discounts - Budget#(lf)(2025)", type number}, {"Total Rebates - Budget#(lf)(2025)", type number}, {"Net Sales - Budget#(lf)(2025)", type number}, {"Cost Of Sales - Budget#(lf)(2025)", type number}, {"Total Logistics - Budget#(lf)(2025)", type number}, {"Total Freight - Budget#(lf)(2025)", type number}, {"Total Warehousing - Budget#(lf)(2025)", type number}, {"Direct Contribution - Budget#(lf)(2025)", type number}, {"Total R&D (ALL) - Budget#(lf)(2025)", type number}, {"Total A&P (All) - Budget#(lf)(2025)", type number}, {"Total C&R - Budget#(lf)(2025)", type number}, {"Total SG&A (All) - Budget#(lf)(2025)", type number}, {"Total IFRS - Budget#(lf)(2025)", Int64.Type}, {"EBITDA - Budget#(lf)(2025)", type number}, {"RM Weight Sold - Budget#(lf)(2025)", type number}, {"RM Weight Production KG - Budget#(lf)(2025)", type number}, {"Quantity - Budget#(lf)(2025)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2025)", type number}, {"Container QTY - Budget#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 983dd60d-691c-42bf-81c5-ce384f9023d4
+	queryGroup: PnL
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 2025B_Finance_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2025B_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2025)", type number}, {"On Invoice Discounts - Budget#(lf)(2025)", type number}, {"Total Rebates - Budget#(lf)(2025)", type number}, {"Net Sales - Budget#(lf)(2025)", type number}, {"Cost Of Sales - Budget#(lf)(2025)", type number}, {"Total Logistics - Budget#(lf)(2025)", type number}, {"Total Freight - Budget#(lf)(2025)", type number}, {"Total Warehousing - Budget#(lf)(2025)", type number}, {"Direct Contribution - Budget#(lf)(2025)", type number}, {"Total R&D (ALL) - Budget#(lf)(2025)", type number}, {"Total A&P (All) - Budget#(lf)(2025)", type number}, {"Total C&R - Budget#(lf)(2025)", type number}, {"Total SG&A (All) - Budget#(lf)(2025)", type number}, {"Total IFRS - Budget#(lf)(2025)", Int64.Type}, {"EBITDA - Budget#(lf)(2025)", type number}, {"RM Weight Sold - Budget#(lf)(2025)", type number}, {"RM Weight Production KG - Budget#(lf)(2025)", type number}, {"Quantity - Budget#(lf)(2025)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2025)", type number}, {"Container QTY - Budget#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: e8bf11e8-6f7b-4e2d-a691-9ef795153af4
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 2025B_Finance_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\PnL2025B_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales - Budget#(lf)(2025)", type number}, {"On Invoice Discounts - Budget#(lf)(2025)", type number}, {"Total Rebates - Budget#(lf)(2025)", type number}, {"Net Sales - Budget#(lf)(2025)", type number}, {"Cost Of Sales - Budget#(lf)(2025)", type number}, {"Total Logistics - Budget#(lf)(2025)", type number}, {"Total Freight - Budget#(lf)(2025)", type number}, {"Total Warehousing - Budget#(lf)(2025)", type number}, {"Direct Contribution - Budget#(lf)(2025)", type number}, {"Total R&D (ALL) - Budget#(lf)(2025)", type number}, {"Total A&P (All) - Budget#(lf)(2025)", type number}, {"Total C&R - Budget#(lf)(2025)", type number}, {"Total SG&A (All) - Budget#(lf)(2025)", type number}, {"Total IFRS - Budget#(lf)(2025)", Int64.Type}, {"EBITDA - Budget#(lf)(2025)", type number}, {"RM Weight Sold - Budget#(lf)(2025)", type number}, {"RM Weight Production KG - Budget#(lf)(2025)", type number}, {"Quantity - Budget#(lf)(2025)", Int64.Type}, {"Pallet QTY - Budget#(lf)(2025)", type number}, {"Container QTY - Budget#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}}),
+		    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Forecast Version", each "Budget"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom1",{{"Forecast Version", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: f7d3736b-69a9-422e-8061-5e5a8e45b6a4
+	queryGroup: Budget_Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression OPS_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Ops_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)BA Plant", type text}, {"Code:BA Plant (c1)", Int64.Type}, {"PC Sub Category", type text}, {"Months", type text}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"RM Weight KG (Manufacture)#(lf)(2026)", type number}, {"Prod Scrap Weight#(lf)(2026)", type number}, {"Work Time#(lf)(2026)", type number}, {"Lost Time#(lf)(2026)", type number}, {"OEE (%)#(lf)(2026)", type number}, {"PEE (%)#(lf)(2026)", type number}, {"Performance (%)#(lf)(2026)", type number}, {"Quality (%)#(lf)(2026)", type number}, {"Availability (%)#(lf)(2026)", type number}, {"Availability Pee (%)#(lf)(2026)", type number}, {"Direct Salary#(lf)(2026)", type number}, {"Indir Salary#(lf)(2026)", type number}, {"Net Production#(lf)(2026)", Int64.Type}, {"Gross Production#(lf)(2026)", Int64.Type}, {"PP Stop#(lf)(2026)", type number}, {"Time (Sec.) / KG#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)BA Plant", "BA Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: bd90b722-20e1-4344-a711-e6835dee785a
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression OPS_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Ops_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)BA Plant", type text}, {"Code:BA Plant (c1)", Int64.Type}, {"PC Sub Category", type text}, {"Months", type text}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"RM Weight KG (Manufacture)#(lf)(2026)", type number}, {"Prod Scrap Weight#(lf)(2026)", type number}, {"Work Time#(lf)(2026)", type number}, {"Lost Time#(lf)(2026)", type number}, {"OEE (%)#(lf)(2026)", type number}, {"PEE (%)#(lf)(2026)", type number}, {"Performance (%)#(lf)(2026)", type number}, {"Quality (%)#(lf)(2026)", type number}, {"Availability (%)#(lf)(2026)", type number}, {"Availability Pee (%)#(lf)(2026)", type number}, {"Direct Salary#(lf)(2026)", type number}, {"Indir Salary#(lf)(2026)", type number}, {"Net Production#(lf)(2026)", Int64.Type}, {"Gross Production#(lf)(2026)", Int64.Type}, {"PP Stop#(lf)(2026)", type number}, {"Time (Sec.) / KG#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)BA Plant", "BA Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: bea5b4ec-0fa4-4269-89b9-b3568f85d5f6
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Scorecard_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Scorecard_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)BA Plant", type text}, {"PC Sub Category", type text}, {"Months", type text}, {"Variable Cost of Production FI#(lf)(2026)", type number}, {"Fixed Costs of Production FI#(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"RM Weight KG (Manufacture)#(lf)(2026)", type number}, {"Direct Labor Expenses FI#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)BA Plant", "BA Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 61d377fe-0d22-44b9-874d-c941c033cf90
+	queryGroup: Scorecard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Scorecard_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Scorecard_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)BA Plant", type text}, {"PC Sub Category", type text}, {"Months", type text}, {"Variable Cost of Production FI#(lf)(2026)", type number}, {"Fixed Costs of Production FI#(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"RM Weight KG (Manufacture)#(lf)(2026)", type number}, {"Direct Labor Expenses FI#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)BA Plant", "BA Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 3a311945-cfd4-4d1d-9ee0-0ff3870ab01f
+	queryGroup: Scorecard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Subcontracting =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Update_Metrics\Subcontracting.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"BA Plant", type text}, {"Date", type date}, {"Kgs Subcontracted", type number}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type", "PC Sub Category", each "Garden Furniture")
+		in
+		    #"Added Custom"
+	lineageTag: 7dd2017a-f609-4992-95ce-d932ec1fe73e
+	queryGroup: Scorecard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Adj_Metrics_PlantEURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\AdjMetrics_Plant_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"On Invoice Discount ADJ M#(lf)(2026)", type number}, {"Total Rebate ADJ M#(lf)(2026)", type number}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Cost of RM ADJ M#(lf)(2026)", type number}, {"Cost Of Other Materials ADJ M#(lf)(2026)", type number}, {"Variable Cost of Production ADJ M#(lf)(2026)", type number}, {"Fixed Costs of Production ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Total R&D ADJ M#(lf)(2026)", type number}, {"Total A&P ADJ M#(lf)(2026)", type number}, {"Total C&R ADJ M#(lf)(2026)", type number}, {"Total SG&A ADJ M#(lf)(2026)", type number}, {"Pallet QTY #(lf)(2026)", type number}, {"Add back IFRS 16#(lf)(2026)", Int64.Type}, {"Depreciation & Amortization ADJ M#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 11bd8426-10a0-44a8-95e2-3df8e5045a44
+	queryGroup: Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Adj_Metrics_PlantUSD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\AdjMetrics_Plant_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Gross Sales ADJ M#(lf)(2026)", type number}, {"Net Sales ADJ M#(lf)(2026)", type number}, {"On Invoice Discount ADJ M#(lf)(2026)", type number}, {"Total Rebate ADJ M#(lf)(2026)", type number}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Cost of RM ADJ M#(lf)(2026)", type number}, {"Cost Of Other Materials ADJ M#(lf)(2026)", type number}, {"Variable Cost of Production ADJ M#(lf)(2026)", type number}, {"Fixed Costs of Production ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"Direct contribution ADJ M#(lf)(2026)", type number}, {"EBITDA ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}, {"Total R&D ADJ M#(lf)(2026)", type number}, {"Total A&P ADJ M#(lf)(2026)", type number}, {"Total C&R ADJ M#(lf)(2026)", type number}, {"Total SG&A ADJ M#(lf)(2026)", type number}, {"Pallet QTY #(lf)(2026)", type number}, {"Add back IFRS 16#(lf)(2026)", Int64.Type}, {"Depreciation & Amortization ADJ M#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: b6c2ffd6-672a-4413-9a0c-ace8ca38d988
+	queryGroup: Finance
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Manuf_Metrics_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Manufacturing Costs ADJ M#(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"Cost of Production Materials ADJ M#(lf)(2026)", type number}, {"Cost of RM ADJ M#(lf)(2026)", type number}, {"Cost Of Other Materials ADJ M#(lf)(2026)", type number}, {"Variable Cost of Production ADJ M#(lf)(2026)", type number}, {"Electricity ADJ M#(lf)(2026)", type number}, {"Direct Labor Expenses ADJ M#(lf)(2026)", type number}, {"Subcontracting ADJ M#(lf)(2026)", type number}, {"Indirect Labor Expense ADJ M#(lf)(2026)", type number}, {"Depreciation & Amortization ADJ M#(lf)(2026)", type number}, {"Other Production Costs ADJ M#(lf)(2026)", type number}, {"Fixed Costs of Production ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: a4974328-12f7-4318-80b6-cb1f30d64053
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Manuf_Metrics_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Cost of Sales ADJ M#(lf)(2026)", type number}, {"Manufacturing Costs ADJ M#(lf)(2026)", type number}, {"Net Production (RM KG)#(lf)(2026)", type number}, {"Cost of Production Materials ADJ M#(lf)(2026)", type number}, {"Cost of RM ADJ M#(lf)(2026)", type number}, {"Cost Of Other Materials ADJ M#(lf)(2026)", type number}, {"Variable Cost of Production ADJ M#(lf)(2026)", type number}, {"Electricity ADJ M#(lf)(2026)", type number}, {"Direct Labor Expenses ADJ M#(lf)(2026)", type number}, {"Subcontracting ADJ M#(lf)(2026)", type number}, {"Indirect Labor Expense ADJ M#(lf)(2026)", type number}, {"Depreciation & Amortization ADJ M#(lf)(2026)", type number}, {"Other Production Costs ADJ M#(lf)(2026)", type number}, {"Fixed Costs of Production ADJ M#(lf)(2026)", type number}, {"Total Logistics ADJ M#(lf)(2026)", type number}, {"Freight ADJ M#(lf)(2026)", type number}, {"Warehousing ADJ M#(lf)(2026)", type number}, {"RM Weight Sold #(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 2f051a45-73eb-4a3a-a210-0d3373b58300
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics26B_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Manuf_Metrics_26B_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"Manufactoring Costs - Budget#(lf)(2026)", type number}, {"Cost Of Production Materials - Budget#(lf)(2026)", type number}, {"Cost Of RM - Budget#(lf)(2026)", type number}, {"Cost Of Other Materials - Budget#(lf)(2026)", type number}, {"Variable Cost Of Production - Budget#(lf)(2026)", type number}, {"Electric - Budget#(lf)(2026)", type number}, {"Direct Labor Expenses - Budget#(lf)(2026)", type number}, {"Subcontracting - Budget#(lf)(2026)", type number}, {"Indirect Labor Expense - Budget#(lf)(2026)", type number}, {"Other Production Costs - Budget#(lf)(2026)", type number}, {"Fixed Costs Of Production - Budget#(lf)(2026)", type number}, {"Total Logistics - Budget#(lf)(2026)", type number}, {"Total Freight - Budget#(lf)(2026)", type number}, {"Total Warehousing - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 2460dea7-095e-46bd-a31e-3b68267aacb2
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics26B_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Manuf_Metrics_26B_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"Cost Of Sales - Budget#(lf)(2026)", type number}, {"Manufactoring Costs - Budget#(lf)(2026)", type number}, {"Cost Of Production Materials - Budget#(lf)(2026)", type number}, {"Cost Of RM - Budget#(lf)(2026)", type number}, {"Cost Of Other Materials - Budget#(lf)(2026)", type number}, {"Variable Cost Of Production - Budget#(lf)(2026)", type number}, {"Electric - Budget#(lf)(2026)", type number}, {"Direct Labor Expenses - Budget#(lf)(2026)", type number}, {"Subcontracting - Budget#(lf)(2026)", type number}, {"Indirect Labor Expense - Budget#(lf)(2026)", type number}, {"Other Production Costs - Budget#(lf)(2026)", type number}, {"Fixed Costs Of Production - Budget#(lf)(2026)", type number}, {"Total Logistics - Budget#(lf)(2026)", type number}, {"Total Freight - Budget#(lf)(2026)", type number}, {"Total Warehousing - Budget#(lf)(2026)", type number}, {"RM Weight Sold - Budget#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: a2f4d673-c846-415a-b2c3-c71ad200bbdb
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics3plus92026_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Manuf_Metrics_3plus9_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 Cost Of Production Materials#(lf)(2026)", type number}, {"3+9 RM Cost#(lf)(2026)", type number}, {"3+9 Cost Of Other Materials#(lf)(2026)", type number}, {"3+9 Variable Costs Of Production#(lf)(2026)", type number}, {"3+9 Electric#(lf)(2026)", type number}, {"3+9 Direct Labor Expenses#(lf)(2026)", type number}, {"3+9 Subcontracting#(lf)(2026)", type number}, {"3+9 Indirect Labor Expense#(lf)(2026)", type number}, {"3+9 Other Production Costs#(lf)(2026)", type number}, {"3+9 Fixed Costs Of Production#(lf)(2026)", type number}, {"3+9 Total Logistics#(lf)(2026)", type number}, {"3+9 Freight#(lf)(2026)", type number}, {"3+9 Warehousing#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 2698ba46-471a-48b3-be09-a2a2aaecff9b
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics3plus92026_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Budget\Manuf_Metrics_3plus9_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Plant", type text}, {"Code:Plant (c1)", Int64.Type}, {"Months", type text}, {"3+9 Cost Of Sales#(lf)(2026)", type number}, {"3+9 Cost Of Production Materials#(lf)(2026)", type number}, {"3+9 RM Cost#(lf)(2026)", type number}, {"3+9 Cost Of Other Materials#(lf)(2026)", type number}, {"3+9 Variable Costs Of Production#(lf)(2026)", type number}, {"3+9 Electric#(lf)(2026)", type number}, {"3+9 Direct Labor Expenses#(lf)(2026)", type number}, {"3+9 Subcontracting#(lf)(2026)", type number}, {"3+9 Indirect Labor Expense#(lf)(2026)", type number}, {"3+9 Other Production Costs#(lf)(2026)", type number}, {"3+9 Fixed Costs Of Production#(lf)(2026)", type number}, {"3+9 Total Logistics#(lf)(2026)", type number}, {"3+9 Freight#(lf)(2026)", type number}, {"3+9 Warehousing#(lf)(2026)", type number}, {"3+9 RM Weight Sold#(lf)(2026)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Plant", "Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: a95f8481-099c-488c-b797-c1755148b301
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Inventory_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Inventory_CurrentYear_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)Sap Material Type", type text}, {"Location Plant", type text}, {"Code:Location Plant (c2)", Int64.Type}, {"PC Sub Category", type text}, {"Product Org", type text}, {"Code:Product Org (c4)", Int64.Type}, {"Product Categories", type text}, {"Code:Product Categories (c5)", Int64.Type}, {"Months", type text}, {"Valuation Value#(lf)(01-05/26)", type number}, {"Inventory QTY#(lf)(01-05/26)", type number}, {"RM.Weight#(lf)(01-05/26)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)Sap Material Type", "Sap Material Type"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 6d63ea88-bc5b-4fc0-902d-c594ced90f45
+	queryGroup: Inventory
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Inventory_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Revised files for automation\Inventory_CurrentYear_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)Sap Material Type", type text}, {"Location Plant", type text}, {"Code:Location Plant (c2)", Int64.Type}, {"PC Sub Category", type text}, {"Product Org", type text}, {"Code:Product Org (c4)", Int64.Type}, {"Product Categories", type text}, {"Code:Product Categories (c5)", Int64.Type}, {"Months", type text}, {"Valuation Value#(lf)(01-05/26)", type number}, {"Inventory QTY#(lf)(01-05/26)", type number}, {"RM.Weight#(lf)(01-05/26)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)Sap Material Type", "Sap Material Type"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 071de8f0-7f3d-4fe2-8c7a-8b2f20bcfaa6
+	queryGroup: Inventory
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Inventory_Lookup =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Inventory_lookup.xlsx"), null, true),
+		    Inventory_Type_Table = Source{[Item="Inventory_Type",Kind="Table"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(Inventory_Type_Table,{{"Sap Material Type", type text}, {"Budget Inventory Type", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 68a1bc1a-670d-4217-9a2a-1ea30d3b051a
+	queryGroup: Inventory
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics26B =
+		let
+		    Source = Table.Combine({Manuf_Metrics26B_EURO, Manuf_Metrics26B_USD}),
+		    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}}),
+		    #"Added Custom1" = Table.AddColumn(#"Changed Type", "Forecast Version", each "Budget"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom1",{{"Cost Of Sales - Budget#(lf)(2026)", "Cost Of Sales"}, {"Manufactoring Costs - Budget#(lf)(2026)", "Manufacturing Costs"}, {"Cost Of Production Materials - Budget#(lf)(2026)", "Cost Of Production Materials"}, {"Cost Of RM - Budget#(lf)(2026)", "Cost of RM"}, {"Cost Of Other Materials - Budget#(lf)(2026)", "Cost Of Other Materials"}, {"Variable Cost Of Production - Budget#(lf)(2026)", "Variable Cost Of Production"}, {"Electric - Budget#(lf)(2026)", "Electric"}, {"Direct Labor Expenses - Budget#(lf)(2026)", "Direct Labor Expenses"}, {"Subcontracting - Budget#(lf)(2026)", "Subcontracting"}, {"Indirect Labor Expense - Budget#(lf)(2026)", "Indirect Labor Expense"}, {"Other Production Costs - Budget#(lf)(2026)", "Other Production Costs"}, {"Fixed Costs Of Production - Budget#(lf)(2026)", "Fixed Costs Of Production"}, {"Total Logistics - Budget#(lf)(2026)", "Total Logistics"}, {"Total Freight - Budget#(lf)(2026)", "Total Freight"}, {"Total Warehousing - Budget#(lf)(2026)", "Total Warehousing"}, {"RM Weight Sold - Budget#(lf)(2026)", "RM Weight Sold"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: 6d7b9b0e-0d5d-4abb-8bf4-ccca16656d09
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Manuf_Metrics3plus92026 =
+		let
+		    Source = Table.Combine({Manuf_Metrics3plus92026_EURO, Manuf_Metrics3plus92026_USD}),
+		    #"Added Custom" = Table.AddColumn(Source, "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Forecast Version", each "2+10"),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom1",{{"Date", type date}, {"Forecast Version", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"3+9 Cost Of Sales#(lf)(2026)", "Cost Of Sales"}, {"3+9 Cost Of Production Materials#(lf)(2026)", "Cost Of Production Materials"}, {"3+9 RM Cost#(lf)(2026)", "Cost of RM"}, {"3+9 Cost Of Other Materials#(lf)(2026)", "Cost Of Other Materials"}, {"3+9 Variable Costs Of Production#(lf)(2026)", "Variable Cost Of Production"}, {"3+9 Electric#(lf)(2026)", "Electric"}, {"3+9 Direct Labor Expenses#(lf)(2026)", "Direct Labor Expenses"}, {"3+9 Subcontracting#(lf)(2026)", "Subcontracting"}, {"3+9 Indirect Labor Expense#(lf)(2026)", "Indirect Labor Expense"}, {"3+9 Other Production Costs#(lf)(2026)", "Other Production Costs"}, {"3+9 Fixed Costs Of Production#(lf)(2026)", "Fixed Costs Of Production"}, {"3+9 Total Logistics#(lf)(2026)", "Total Logistics"}, {"3+9 Freight#(lf)(2026)", "Total Freight"}, {"3+9 Warehousing#(lf)(2026)", "Total Warehousing"}, {"3+9 RM Weight Sold#(lf)(2026)", "RM Weight Sold"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: 879499ba-c5de-4ce1-92ae-47ff20682b1d
+	queryGroup: Operations_ProductionMetrics
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoiced_2025_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Invoiced_2025_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c6)", Int64.Type}, {"Months", type text}, {"Quantity#(lf)(2025)", Int64.Type}, {"Gross Sales#(lf)(2025)", type number}, {"Net  Sales#(lf)(2025)", type number}, {"Net Sales ADJ M#(lf)(2025)", type number}, {"Direct Contribution#(lf)(2025)", type number}, {"Direct contribution ADJ M#(lf)(2025)", type number}, {"EBITDA#(lf)(2025)", type number}, {"EBITDA ADJ M#(lf)(2025)", type number}, {"Cost of Sales#(lf)(2025)", type number}, {"RM Weight Sold #(lf)(2025)", type number}, {"Column24", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 07983be0-125b-4fb8-860d-ceb2839e9f42
+	queryGroup: StaticPYs
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoiced_2025_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Invoiced_2025_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c6)", Int64.Type}, {"Months", type text}, {"Quantity#(lf)(2025)", Int64.Type}, {"Gross Sales#(lf)(2025)", type number}, {"Net  Sales#(lf)(2025)", type number}, {"Net Sales ADJ M#(lf)(2025)", type number}, {"Direct Contribution#(lf)(2025)", type number}, {"Direct contribution ADJ M#(lf)(2025)", type number}, {"EBITDA#(lf)(2025)", type number}, {"EBITDA ADJ M#(lf)(2025)", type number}, {"Cost of Sales#(lf)(2025)", type number}, {"RM Weight Sold #(lf)(2025)", type number}, {"Column24", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 8d012153-d2a7-4bc2-b631-78bf3abc430f
+	queryGroup: StaticPYs
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoiced_2024_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Invoiced_2024_EURO.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c6)", Int64.Type}, {"Months", type text}, {"Quantity#(lf)(2024)", Int64.Type}, {"Gross Sales#(lf)(2024)", type number}, {"Net  Sales#(lf)(2024)", type number}, {"Net Sales ADJ M#(lf)(2024)", type number}, {"Direct Contribution#(lf)(2024)", type number}, {"Direct contribution ADJ M#(lf)(2024)", type number}, {"EBITDA#(lf)(2024)", type number}, {"EBITDA ADJ M#(lf)(2024)", type number}, {"Cost of Sales#(lf)(2024)", type number}, {"RM Weight Sold #(lf)(2024)", type number}, {"Column24", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"EURO#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 30bde5aa-5306-48e5-9514-0e361f24b6ad
+	queryGroup: StaticPYs
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoiced_2024_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Invoiced_2024_USD.xlsx"), null, true),
+		    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: US DOLLAR |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"US DOLLAR#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c6)", Int64.Type}, {"Months", type text}, {"Quantity#(lf)(2024)", Int64.Type}, {"Gross Sales#(lf)(2024)", type number}, {"Net  Sales#(lf)(2024)", type number}, {"Net Sales ADJ M#(lf)(2024)", type number}, {"Direct Contribution#(lf)(2024)", type number}, {"Direct contribution ADJ M#(lf)(2024)", type number}, {"EBITDA#(lf)(2024)", type number}, {"EBITDA ADJ M#(lf)(2024)", type number}, {"Cost of Sales#(lf)(2024)", type number}, {"RM Weight Sold #(lf)(2024)", type number}, {"Column24", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"US DOLLAR#(lf)Payer", "Payer"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: f1d21542-30ea-4df7-8757-7604697a88c0
+	queryGroup: StaticPYs
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression subcontract25 =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Subcontracting_2025.xlsx"), null, true),
+		    subcontract25_Table = Source{[Item="subcontract25",Kind="Table"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(subcontract25_Table,{{"BA Plant", type text}, {"PC Sub Category", type text}, {"Months", type date}, {"Subcontracting KGS", type number}})
+		in
+		    #"Changed Type"
+	lineageTag: 06370a66-8a53-45ff-ad96-29684d49bb45
+	queryGroup: Scorecard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Scorecard_2025_EURO =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Scorecard_2025_EURO.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EURO#(lf)BA Plant", type text}, {"PC Sub Category", type text}, {"Months", type text}, {"Variable Cost of Production FI#(lf)(2025)", type number}, {"Fixed Costs of Production FI#(lf)(2025)", type number}, {"Net Production (RM KG)#(lf)(2025)", type number}, {"RM Weight KG (Manufacture)#(lf)(2025)", type number}, {"Direct Labor Expenses FI#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"EURO#(lf)BA Plant", "BA Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "EURO"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 08c116ba-0380-4981-9ba0-3c3c575b9c82
+	queryGroup: Scorecard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Scorecard_2025_USD =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Scorecard_2025_USD.xlsx"), null, false),
+		    EDBPlusExcel_sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(EDBPlusExcel_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 2)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"US DOLLAR#(lf)BA Plant", type text}, {"PC Sub Category", type text}, {"Months", type text}, {"Variable Cost of Production FI#(lf)(2025)", type number}, {"Fixed Costs of Production FI#(lf)(2025)", type number}, {"Net Production (RM KG)#(lf)(2025)", type number}, {"RM Weight KG (Manufacture)#(lf)(2025)", type number}, {"Direct Labor Expenses FI#(lf)(2025)", type number}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"US DOLLAR#(lf)BA Plant", "BA Plant"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Currency", each "USD"),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Currency", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: a53eb1f7-dcf9-4499-a009-a83efb3ca5ac
+	queryGroup: Scorecard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

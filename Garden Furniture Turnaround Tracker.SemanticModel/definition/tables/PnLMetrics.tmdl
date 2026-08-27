@@ -1,0 +1,39 @@
+table PnLMetrics
+	lineageTag: adce749d-4b9d-484f-ba32-008bb4c071e2
+
+	column 'PnL Metrics'
+		dataType: string
+		lineageTag: 5bfe284f-1fb3-48aa-9fa3-9f10ea490fbc
+		summarizeBy: none
+		sourceColumn: PnL Metrics
+		sortByColumn: 'Sort Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67305ca0-ffce-4a78-882f-99e401fa5f57
+		summarizeBy: sum
+		sourceColumn: Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PnLMetrics = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\PnL_metrics.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PnL Metrics", type text}, {"Sort Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

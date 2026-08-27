@@ -1,0 +1,180 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "de06f1df2d56e0817660",
+  "position": {
+    "x": 0,
+    "y": 112.00000000000001,
+    "z": 5000,
+    "height": 455.99999999999994,
+    "width": 1280,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "MonthStartDate"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.MonthStartDate",
+              "nativeQueryRef": "MonthStartDate",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Payer"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Payer",
+              "nativeQueryRef": "Payer",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Payer"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Payer",
+              "nativeQueryRef": "Payer"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "_$weightedaccuracylag3"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST._$weightedaccuracylag3",
+              "nativeQueryRef": "Lag 3 Accuracy",
+              "displayName": "Lag 3 Accuracy"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TEST EDB LAG FCST"
+                  }
+                },
+                "Property": "MonthStartDate"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TEST EDB LAG FCST"
+                  }
+                },
+                "Property": "Payer"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Product"
+                  }
+                },
+                "Property": "SKU & Desc"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lag 3 Accuracy'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

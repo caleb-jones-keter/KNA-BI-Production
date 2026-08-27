@@ -1,0 +1,413 @@
+table 'FACT MB51 Material_Movements Initial'
+	lineageTag: 6f916ca0-946b-4ba7-bbc4-32f9cf5adb8b
+	sourceLineageTag: [dbo].[FACT MB51 Material_Movements Initial]
+
+	column Material
+		dataType: string
+		lineageTag: c4e3e2c6-111f-4fb9-b914-6ccd053e0504
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 813b2229-f318-4dea-b1ce-13b5d2bf9402
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 65462b54-2cf3-417e-9cd4-874801f06908
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: double
+		lineageTag: 944f5206-2bbb-4734-9c18-b5dfb7589007
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Combined Date 1'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5fd9b69e-7ee2-4c1e-a32f-cab1f2c0c8b2
+		sourceLineageTag: Combined Date 1
+		summarizeBy: none
+		sourceColumn: Combined Date 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 396b95d5-d1e2-4b30-9651-e69e263c0c73
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day On Which Accounting Document Was Entered'
+		dataType: int64
+		formatString: 0
+		lineageTag: 324565c9-e6f9-46dc-881a-77ef7a8c4f40
+		sourceLineageTag: Day On Which Accounting Document Was Entered
+		summarizeBy: sum
+		sourceColumn: Day On Which Accounting Document Was Entered
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Header Text'
+		dataType: string
+		lineageTag: 50731c00-62ff-4f71-b211-6c2fcbf0a411
+		sourceLineageTag: Document Header Text
+		summarizeBy: none
+		sourceColumn: Document Header Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item in Material Document'
+		dataType: string
+		lineageTag: 1ea19e51-402e-48fe-9091-7bc08d62c8d4
+		sourceLineageTag: Item in Material Document
+		summarizeBy: none
+		sourceColumn: Item in Material Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Document Year'
+		dataType: string
+		lineageTag: bfc5f121-76fb-46d9-907c-d338ea598d32
+		sourceLineageTag: Material Document Year
+		summarizeBy: none
+		sourceColumn: Material Document Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Movement Type'
+		dataType: string
+		lineageTag: d4950934-432a-4058-b2e9-092f16957933
+		sourceLineageTag: Movement Type
+		summarizeBy: none
+		sourceColumn: Movement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of Material Document'
+		dataType: string
+		lineageTag: 6cd0f0e2-cd3a-4ccf-b865-830c766359c5
+		sourceLineageTag: Number of Material Document
+		summarizeBy: none
+		sourceColumn: Number of Material Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Order Number'
+		dataType: string
+		lineageTag: 5ff14511-1f37-4593-92a0-d2444358cb98
+		sourceLineageTag: Purchasing Order Number
+		summarizeBy: none
+		sourceColumn: Purchasing Order Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time of Entry'
+		dataType: string
+		lineageTag: faff6a8b-d12a-478b-a051-2818d2629eab
+		sourceLineageTag: Time of Entry
+		summarizeBy: none
+		sourceColumn: Time of Entry
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubContainer
+		dataType: string
+		lineageTag: b79cb0bf-fcae-4226-b9b7-7fb889f59d0f
+		sourceLineageTag: SubContainer
+		summarizeBy: none
+		sourceColumn: SubContainer
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContainerMove
+		dataType: string
+		lineageTag: c6d31023-602d-4fc3-ae12-d4dad6d2ad14
+		sourceLineageTag: ContainerMove
+		summarizeBy: none
+		sourceColumn: ContainerMove
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Simple Storage Location'
+		dataType: string
+		lineageTag: ebb1b8c6-3e42-4db2-9f25-8b9950868b33
+		sourceLineageTag: Simple Storage Location
+		summarizeBy: none
+		sourceColumn: Simple Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: a7acbc8c-cdd8-4402-97b8-ccf850de391f
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2af48daa-a592-4322-9317-b5a7f822d621
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_ContQty
+		dataType: double
+		lineageTag: 70c2f61d-a3a0-4479-a8ca-70fed5f8157b
+		sourceLineageTag: CombinedQty_per_ContQty
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_ContQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 8762eb34-3131-4cde-b917-111cc33ca5df
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 844135cb-1ead-4dac-8ec5-ca31952f37db
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2147a295-3d7d-4214-b28f-978107271993
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 0ef53832-16d7-453c-a921-7edffeec16bb
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 99a0b38e-2226-4dee-80a2-ceb9ab3a3600
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cont_Qty
+		dataType: double
+		lineageTag: 9338d50d-114f-420e-b3b3-fe8b0fa12729
+		sourceLineageTag: Cont_Qty
+		summarizeBy: sum
+		sourceColumn: Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reference Document Number_'
+		dataType: string
+		lineageTag: 229915f1-9fcb-4f4b-8992-4c1dfa14acb6
+		sourceLineageTag: Reference Document Number_
+		summarizeBy: none
+		sourceColumn: Reference Document Number_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Client
+		dataType: string
+		lineageTag: 0debd8ac-9f66-4063-a0b3-38d40a82698e
+		sourceLineageTag: Client
+		summarizeBy: none
+		sourceColumn: Client
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Key'
+		dataType: string
+		lineageTag: 951778c5-0a05-4cca-882a-6ef108a6939c
+		sourceLineageTag: Currency Key
+		summarizeBy: none
+		sourceColumn: Currency Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Base Unit of Measure'
+		dataType: string
+		lineageTag: 4ceda817-6699-42a6-9fb8-3eaf18fd5098
+		sourceLineageTag: Base Unit of Measure
+		summarizeBy: none
+		sourceColumn: Base Unit of Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Debit/Credit Indicator'
+		dataType: string
+		lineageTag: 909430bb-49da-40e2-8714-60a0e0f2aa9f
+		sourceLineageTag: Debit/Credit Indicator
+		summarizeBy: none
+		sourceColumn: Debit/Credit Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction/Event Type'
+		dataType: string
+		lineageTag: 14a8949d-51b4-4041-b3cd-26c666ae764e
+		sourceLineageTag: Transaction/Event Type
+		summarizeBy: none
+		sourceColumn: Transaction/Event Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User name'
+		dataType: string
+		lineageTag: 8d9a2eb3-c19e-4ccc-b5fa-f46523921013
+		sourceLineageTag: User name
+		summarizeBy: none
+		sourceColumn: User name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Code'
+		dataType: string
+		lineageTag: 877ea9e1-e0d1-4a15-b08c-5f7a5a0a673e
+		sourceLineageTag: Transaction Code
+		summarizeBy: none
+		sourceColumn: Transaction Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount in Local Currency'
+		dataType: double
+		lineageTag: 14a7ca9e-5ba4-4fe5-bb8c-8ad7a79f715b
+		sourceLineageTag: Amount in Local Currency
+		summarizeBy: sum
+		sourceColumn: Amount in Local Currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MENGE
+		dataType: double
+		lineageTag: b40abeaf-ef01-4c12-a934-f2f032bb950a
+		sourceLineageTag: MENGE
+		summarizeBy: sum
+		sourceColumn: MENGE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Amount
+		dataType: double
+		lineageTag: 60c8cfc1-174d-484b-af2d-b4cd4301f88f
+		sourceLineageTag: Amount
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SS/PLT_Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: ea6b8be6-307a-4ba1-b554-0aafabbd97ec
+		sourceLineageTag: SS/PLT_Qty
+		summarizeBy: sum
+		sourceColumn: SS/PLT_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carton/Bag_Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 50b4593f-2c8b-4019-b2f8-a8c9d5f23fd3
+		sourceLineageTag: Carton/Bag_Qty
+		summarizeBy: sum
+		sourceColumn: Carton/Bag_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 997f127c-c124-42db-a409-70a5dc81708f
+		sourceLineageTag: TL Qty
+		summarizeBy: sum
+		sourceColumn: TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Picks
+		dataType: int64
+		formatString: 0
+		lineageTag: 8563466c-c589-430b-9e49-5a21a41a643b
+		sourceLineageTag: Picks
+		summarizeBy: sum
+		sourceColumn: Picks
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_TLQty
+		dataType: double
+		lineageTag: fd4fe9d8-e460-4acb-8ccd-ae354dff44ea
+		sourceLineageTag: CombinedQty_per_TLQty
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_TLQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT MB51 Material_Movements Initial' = entity
+		mode: directLake
+		source
+			entityName: FACT MB51 Material_Movements Initial
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

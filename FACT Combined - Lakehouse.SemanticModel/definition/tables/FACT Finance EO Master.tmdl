@@ -1,0 +1,397 @@
+table 'FACT Finance EO Master'
+	lineageTag: 6fb798a8-ae6e-4ad2-a79d-b18eb4a2e5b2
+	sourceLineageTag: [dbo].[FACT Finance EO Master]
+
+	column Plnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 83397c8e-cbbd-4b31-8065-41af737254cb
+		sourceLineageTag: Plnt
+		summarizeBy: sum
+		sourceColumn: Plnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Basic material'
+		dataType: string
+		lineageTag: 4f13bdd7-3930-4954-9298-d46494b300b6
+		sourceLineageTag: Basic material
+		summarizeBy: none
+		sourceColumn: Basic material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: bcc2b739-bcc4-4ed7-965f-97738900d96c
+		sourceLineageTag: Material
+		summarizeBy: sum
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Number'
+		dataType: string
+		lineageTag: 61e1fd7e-e1e4-4084-93a0-e9b707e34ba6
+		sourceLineageTag: Material Number
+		summarizeBy: none
+		sourceColumn: Material Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9e8689d1-5b77-444c-9314-40fafd4799ad
+		sourceLineageTag: End date
+		summarizeBy: none
+		sourceColumn: End date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Stock'
+		dataType: double
+		lineageTag: 23ab2e83-3aa9-4902-8a90-84086c35c0a7
+		sourceLineageTag: Total Stock
+		summarizeBy: sum
+		sourceColumn: Total Stock
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Free Stock'
+		dataType: double
+		lineageTag: 45e1aebf-4193-4c75-9a90-f760af6ba399
+		sourceLineageTag: Total Free Stock
+		summarizeBy: sum
+		sourceColumn: Total Free Stock
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Planned Price'
+		dataType: double
+		lineageTag: a452fb0f-a4e4-451f-8951-c565d2dfa51a
+		sourceLineageTag: Planned Price
+		summarizeBy: sum
+		sourceColumn: Planned Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price
+		dataType: int64
+		formatString: 0
+		lineageTag: a8d4ba85-caa0-4c73-ac9f-64d67bc1620d
+		sourceLineageTag: Price
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 86aa1056-16c9-483b-a791-16b4377e9843
+		sourceLineageTag: Created
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column MS
+		dataType: string
+		lineageTag: 99d29950-8cd5-4e82-831c-92e75b1ff4b5
+		sourceLineageTag: MS
+		summarizeBy: none
+		sourceColumn: MS
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant_Name
+		dataType: string
+		lineageTag: c63b558a-8434-41d7-ba3a-64324a7b51ad
+		sourceLineageTag: Plant_Name
+		summarizeBy: none
+		sourceColumn: Plant_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 04e93fd8-f5ee-4de6-ab02-605f79f4e085
+		sourceLineageTag: Status
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mat_Code
+		dataType: int64
+		formatString: 0
+		lineageTag: 4aff715e-1d95-4a7a-9730-c3290cd09f64
+		sourceLineageTag: Mat_Code
+		summarizeBy: count
+		sourceColumn: Mat_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU
+		dataType: string
+		lineageTag: 4eaa1244-822d-4012-8a4e-46f055ce5dea
+		sourceLineageTag: BU
+		summarizeBy: none
+		sourceColumn: BU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center'
+		dataType: int64
+		formatString: 0
+		lineageTag: b222c04f-8b64-47c9-b763-c2d9a70d810b
+		sourceLineageTag: Profit Center
+		summarizeBy: sum
+		sourceColumn: Profit Center
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PL GL'
+		dataType: int64
+		formatString: 0
+		lineageTag: f2ac4443-6fa6-4a33-9358-a526e06deb97
+		sourceLineageTag: PL GL
+		summarizeBy: sum
+		sourceColumn: PL GL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BS GL'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e822b27-7cda-4185-8840-a5aef711f4e5
+		sourceLineageTag: BS GL
+		summarizeBy: sum
+		sourceColumn: BS GL
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost-conter
+		dataType: string
+		lineageTag: 1d7f2777-fdb5-421b-ac8a-3f6757ad3889
+		sourceLineageTag: cost-conter
+		summarizeBy: none
+		sourceColumn: cost-conter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory Type'
+		dataType: string
+		lineageTag: 0922db55-f22e-4272-a0aa-8fe117c60308
+		sourceLineageTag: Inventory Type
+		summarizeBy: none
+		sourceColumn: Inventory Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCTS
+		dataType: double
+		lineageTag: 42204a59-b0e1-4424-9885-0730e534ee59
+		sourceLineageTag: FCTS
+		summarizeBy: sum
+		sourceColumn: FCTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Monthly Coverage__L12M Sales/12_'
+		dataType: double
+		lineageTag: 69f4d150-1bf8-4257-a2fe-b69b17497e5b
+		sourceLineageTag: Monthly Coverage__L12M Sales/12_
+		summarizeBy: sum
+		sourceColumn: Monthly Coverage__L12M Sales/12_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'positive Open order'
+		dataType: double
+		lineageTag: c11c8493-a1c1-4ff6-b1ec-c1c00b951256
+		sourceLineageTag: positive Open order
+		summarizeBy: sum
+		sourceColumn: positive Open order
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TYPE
+		dataType: string
+		lineageTag: d33242d8-8b18-49c5-a5a1-a700c5bc0e82
+		sourceLineageTag: TYPE
+		summarizeBy: none
+		sourceColumn: TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Months of existence'
+		dataType: int64
+		formatString: 0
+		lineageTag: 55787cd6-0023-41bf-9676-a97f7811fbf1
+		sourceLineageTag: Months of existence
+		summarizeBy: sum
+		sourceColumn: Months of existence
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SAP Item Status'
+		dataType: string
+		lineageTag: a238ffab-6ce2-43a5-93a7-1646110ad008
+		sourceLineageTag: SAP Item Status
+		summarizeBy: none
+		sourceColumn: SAP Item Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COOIS - 3LM_Prod&Purch'
+		dataType: double
+		lineageTag: 7d0c27b8-e502-4bcd-b513-651bdae99ff9
+		sourceLineageTag: COOIS - 3LM_Prod&Purch
+		summarizeBy: sum
+		sourceColumn: COOIS - 3LM_Prod&Purch
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Stock At Sea $'
+		dataType: int64
+		formatString: 0
+		lineageTag: 298ea232-8940-40ea-8b5f-b1a01e1438ea
+		sourceLineageTag: Stock At Sea $
+		summarizeBy: sum
+		sourceColumn: Stock At Sea $
+
+		annotation SummarizationSetBy = Automatic
+
+	column Healthy
+		dataType: double
+		lineageTag: 54355a19-b6d2-4691-af73-69e9d9e10b89
+		sourceLineageTag: Healthy
+		summarizeBy: sum
+		sourceColumn: Healthy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Excessive
+		dataType: double
+		lineageTag: 0203ec31-6e0d-49db-86e3-5cc02900070d
+		sourceLineageTag: Excessive
+		summarizeBy: sum
+		sourceColumn: Excessive
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Obsolete
+		dataType: int64
+		formatString: 0
+		lineageTag: 083572fe-71e1-418a-8766-174e2a98a534
+		sourceLineageTag: Obsolete
+		summarizeBy: sum
+		sourceColumn: Obsolete
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Healthy  $'
+		dataType: double
+		lineageTag: f776201a-c3f0-4a19-a739-e0f762168326
+		sourceLineageTag: Healthy  $
+		summarizeBy: sum
+		sourceColumn: Healthy  $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Excessive $'
+		dataType: double
+		lineageTag: 931495e6-008d-49ae-bbc1-0bf9876e06ec
+		sourceLineageTag: Excessive $
+		summarizeBy: sum
+		sourceColumn: Excessive $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Obs $'
+		dataType: double
+		lineageTag: f3b61724-9ef3-446c-9930-a692e90331e8
+		sourceLineageTag: Obs $
+		summarizeBy: sum
+		sourceColumn: Obs $
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Provision Excessive Stock'
+		dataType: double
+		lineageTag: 46f5e014-9057-4cc6-8c5c-a9b329b89ec2
+		sourceLineageTag: Provision Excessive Stock
+		summarizeBy: sum
+		sourceColumn: Provision Excessive Stock
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Provision Obsolete stock'
+		dataType: double
+		lineageTag: 3f2826a8-285d-4d19-8e6a-ba7f9e7951c7
+		sourceLineageTag: Provision Obsolete stock
+		summarizeBy: sum
+		sourceColumn: Provision Obsolete stock
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Provision With Var Cap Adjustment'
+		dataType: double
+		lineageTag: 79807db6-6dff-48da-a907-30fe6cb3f4e5
+		sourceLineageTag: Provision With Var Cap Adjustment
+		summarizeBy: sum
+		sourceColumn: Provision With Var Cap Adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '$ This Month Less $ Last Month'
+		dataType: double
+		lineageTag: 001f55b8-f001-41d7-9d47-1432ff1fff5e
+		sourceLineageTag: $ This Month Less $ Last Month
+		summarizeBy: sum
+		sourceColumn: $ This Month Less $ Last Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT Finance EO Master' = entity
+		mode: directLake
+		source
+			entityName: FACT Finance EO Master
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

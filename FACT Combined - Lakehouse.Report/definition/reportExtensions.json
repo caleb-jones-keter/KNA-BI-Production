@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
+  "name": "extension",
+  "entities": [
+    {
+      "name": "DIM MRPSKU",
+      "measures": [
+        {
+          "name": "_Keep_MRPSKU",
+          "dataType": "Double",
+          "expression": "\nVAR col1 = MAXX(VALUES('FACT Combined'[MRPSKU Key]), ABS([_MB52 Future]))\nVAR col2 = MAXX(VALUES('FACT Combined'[MRPSKU Key]), ABS([_YM6P]))\nVAR col3 = MAXX(VALUES('FACT Combined'[MRPSKU Key]), ABS([_YS10N]))\nVAR col4 = MAXX(VALUES('FACT Component Forecast Initial'[MRPSKU Key]), ABS([_Original Forecast]))\nRETURN\nIF(\n    (NOT ISBLANK(col1) && col1 > 0) ||\n    (NOT ISBLANK(col2) && col2 > 0) ||\n    (NOT ISBLANK(col3) && col3 > 0) ||\n    (NOT ISBLANK(col4) && col4 > 0),\n    1,\n    0\n)\n\n",
+          "references": {
+            "measures": [
+              {
+                "entity": "FACT Combined",
+                "name": "_MB52 Future"
+              },
+              {
+                "entity": "FACT Combined",
+                "name": "_YM6P"
+              },
+              {
+                "entity": "FACT Combined",
+                "name": "_YS10N"
+              },
+              {
+                "entity": "FACT Component Forecast Initial",
+                "name": "_Original Forecast"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "FACT YS10N Average Sales Price",
+      "measures": [
+        {
+          "name": "_Avg Sales Price",
+          "dataType": "Double",
+          "expression": "SUM('FACT YS10N Average Sales Price'[Net Value USD])/SUM('FACT YS10N Average Sales Price'[Combined Qty])"
+        }
+      ]
+    }
+  ]
+}

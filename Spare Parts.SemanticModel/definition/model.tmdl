@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - NA_Supply_Chain","DirectLake - BRZ_NA_SC_LH","DirectLake - Spare_Parts_Lakehouse"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table 'FACT RPA Report MPL'
+ref table 'Finished Goods EDB'
+ref table 'Spare Parts Notes'
+ref table 'Finished Goods Notes'
+ref table 'SP _FG Product Link_'
+ref table 'FACT YM6P'
+ref table 'SP ZMM02'
+ref table 'FACT MB52 All'
+ref table 'DIM Product'
+ref table 'SP BOM'
+ref table 'Last week spare part list'
+

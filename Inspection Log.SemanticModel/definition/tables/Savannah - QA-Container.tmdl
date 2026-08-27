@@ -1,0 +1,221 @@
+table 'Savannah - QA-Container'
+	lineageTag: f9c7515a-e9f9-49a0-a76a-d630f1eb9292
+
+	column Title
+		dataType: string
+		lineageTag: 2c725f1e-6ad1-4f99-9ac0-86bb59cea8f5
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Door_Location
+		dataType: string
+		lineageTag: 26164404-94b0-4639-95a3-247d27c47ffe
+		summarizeBy: none
+		sourceColumn: Door_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column LPNs
+		dataType: string
+		lineageTag: db2cdcac-e13d-4e13-909d-702e65d00ddd
+		summarizeBy: none
+		sourceColumn: LPNs
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f1b1bc37-c1fe-4b68-b68b-53969c3ae9da
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: ee1b2520-5773-4fd0-9e16-8b54dc5b115f
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created By'
+		dataType: string
+		lineageTag: 2d544706-c86f-4893-9df0-1432bcd285ac
+		summarizeBy: none
+		sourceColumn: Created By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Inspection'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3b7484a7-20d1-476c-adc3-a05cdb4eee82
+		summarizeBy: none
+		sourceColumn: Start Inspection
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Inspection'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9f6c6c6f-539d-4523-9c17-4367cec3dcc5
+		summarizeBy: none
+		sourceColumn: End Inspection
+
+		variation Variation
+			isDefault
+			relationship: 4607f6a8-edb4-4b27-b4df-e5f7f261c239
+			defaultHierarchy: LocalDateTable_e23ac459-b44d-4ef5-9fce-00713887353e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Description'
+		dataType: string
+		lineageTag: 8d1dc433-08a1-42b7-b798-869d3e08801b
+		summarizeBy: none
+		sourceColumn: Item Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspection Type'
+		dataType: string
+		lineageTag: 9d7bf251-59a9-45c3-959d-16edd7b5f948
+		summarizeBy: none
+		sourceColumn: Inspection Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Num'
+		dataType: string
+		lineageTag: 6e64b4c8-bdbb-4c07-aae4-282472fae367
+		summarizeBy: none
+		sourceColumn: Item Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspection Reference'
+		dataType: string
+		lineageTag: 60b12950-6a90-49e3-b207-ae9104015b9b
+		summarizeBy: none
+		sourceColumn: Inspection Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspection Quantity'
+		dataType: double
+		lineageTag: d51ed867-2f64-4492-8edb-92f18f3963a2
+		summarizeBy: sum
+		sourceColumn: Inspection Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'General Comments'
+		dataType: string
+		lineageTag: ae8d86f0-32f9-478e-9509-7a8a8c5d788a
+		summarizeBy: none
+		sourceColumn: General Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Initial Damage Type'
+		dataType: string
+		lineageTag: f095feda-9024-4598-bc18-70b93d8107d6
+		summarizeBy: none
+		sourceColumn: Initial Damage Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Savannah - QA-Container' = m
+		mode: import
+		source = ```
+				let
+				                    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer", [Implementation= "2.0", ViewMode = "Default"]), 
+				                    Navigation = Source{[Id="b195ecf9-a6c3-4ee7-bf3b-05bd757023b2"]}[Items],
+				                    TableSchema = Table.Schema(Navigation),
+				                    UserMultiTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "UserMulti"),
+				UserMultiFieldNames = {"id", "value", "title", "email", "sip", "picture", "jobTitle", "department"},
+				UserMultiTransforms = Table.AddColumn(UserMultiTypeRows, "UserMultiTransform", each(name) => 
+				                    if (name is null or name = "") then null
+				                    else if (Type.Is(Value.Type(name), List.Type)) then @Text.Combine(List.Transform(name, each Record.FieldOrDefault(_, "title", null)), ", ")
+				                    else if (Type.Is(Value.Type(name), Table.Type)) then @Text.Combine(Table.Column(name, "title"), ", ")
+				                    else if (Type.Is(Value.Type(name), Record.Type)) then Record.FieldOrDefault(name, "title", null)
+				                    else null, Function.Type),
+				UserMultiChanges = Table.ToRows(Table.SelectColumns(UserMultiTransforms, { "Name","UserMultiTransform"})),
+				ExpandedUserMulti = Table.TransformColumns(Navigation, UserMultiChanges, null, MissingField.UseNull),
+				                    UserTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "User"),
+				UserFieldNames = {"id", "title", "email", "sip", "picture", "jobTitle", "department"},
+				UserTransforms = Table.AddColumn(UserTypeRows, "UserTransform", each(name) => 
+				                    if (name is null or name = "") then null
+				                    else if (Type.Is(Value.Type(name), List.Type)) then @Text.Combine(List.Transform(name, each Record.FieldOrDefault(_, "title", null)), ", ")
+				                    else if (Type.Is(Value.Type(name), Table.Type)) then @Text.Combine(Table.Column(name, "title"), ", ")
+				                    else if (Type.Is(Value.Type(name), Record.Type)) then Record.FieldOrDefault(name, "title", null)
+				                    else null, Function.Type),
+				UserChanges = Table.ToRows(Table.SelectColumns(UserTransforms, { "Name","UserTransform"})),
+				ExpandedUser = Table.TransformColumns(ExpandedUserMulti, UserChanges, null, MissingField.UseNull),
+				                    LookupTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "Lookup"),
+				LookupFieldNames = {"lookupId", "lookupValue", "isSecretFieldValue"},
+				LookupTransforms = Table.AddColumn(LookupTypeRows, "LookupTransform", each(name) => 
+				                    if (name is null or name = "") then null
+				                    else if (Type.Is(Value.Type(name), List.Type)) then @Text.Combine(List.Transform(name, each Record.FieldOrDefault(_, "lookupValue", null)), ", ")
+				                    else if (Type.Is(Value.Type(name), Table.Type)) then @Text.Combine(Table.Column(name, "lookupValue"), ", ")
+				                    else if (Type.Is(Value.Type(name), Record.Type)) then Record.FieldOrDefault(name, "lookupValue", null)
+				                    else null, Function.Type),
+				LookupChanges = Table.ToRows(Table.SelectColumns(LookupTransforms, { "Name","LookupTransform"})),
+				ExpandedLookup = Table.TransformColumns(ExpandedUser, LookupChanges, null, MissingField.UseNull),
+				                    TaxonomyFieldTypeTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "TaxonomyFieldType"),
+				TaxonomyFieldTypeTransforms = Table.AddColumn(TaxonomyFieldTypeTypeRows, "TaxonomyFieldTypeTransform", each (name) => 
+				                        if (name <> "") then @Text.Combine(Table.Column(Table.FromRecords({ name }), "Label")) else null, Function.Type),
+				TaxonomyFieldTypeChanges = Table.ToRows(Table.SelectColumns(TaxonomyFieldTypeTransforms, { "Name","TaxonomyFieldTypeTransform"})),
+				ExpandedTaxonomyFieldType = Table.TransformColumns(ExpandedLookup, TaxonomyFieldTypeChanges, null, MissingField.UseNull),
+				                    LocationTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "Location"),
+				LocationTransforms = Table.AddColumn(LocationTypeRows, "LocationTransform", each (name) => 
+				                        if (name <> "") then @Text.Combine(Table.Column(Table.FromRecords({ name }), "DisplayName")) else null, Function.Type),
+				LocationChanges = Table.ToRows(Table.SelectColumns(LocationTransforms, { "Name","LocationTransform"})),
+				ExpandedLocation = Table.TransformColumns(ExpandedTaxonomyFieldType, LocationChanges, null, MissingField.UseNull),
+				                    ThumbnailTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "Thumbnail"),
+				ThumbnailTransforms = Table.AddColumn(ThumbnailTypeRows, "ThumbnailTransform", each (name) => 
+				                        if (name <> "") then @Text.Combine(Table.Column(Table.FromRecords({ name }), "fileName")) else null, Function.Type),
+				ThumbnailChanges = Table.ToRows(Table.SelectColumns(ThumbnailTransforms, { "Name","ThumbnailTransform"})),
+				ExpandedThumbnail = Table.TransformColumns(ExpandedLocation, ThumbnailChanges, null, MissingField.UseNull),
+				                    LookupMultiTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "LookupMulti"),
+				LookupMultiFieldNames = {"lookupId", "lookupValue", "isSecretFieldValue"},
+				LookupMultiTransforms = Table.AddColumn(LookupMultiTypeRows, "LookupMultiTransform", each(name) => 
+				                    if (name is null or name = "") then null
+				                    else if (Type.Is(Value.Type(name), List.Type)) then @Text.Combine(List.Transform(name, each Record.FieldOrDefault(_, "lookupValue", null)), ", ")
+				                    else if (Type.Is(Value.Type(name), Table.Type)) then @Text.Combine(Table.Column(name, "lookupValue"), ", ")
+				                    else if (Type.Is(Value.Type(name), Record.Type)) then Record.FieldOrDefault(name, "lookupValue", null)
+				                    else null, Function.Type),
+				LookupMultiChanges = Table.ToRows(Table.SelectColumns(LookupMultiTransforms, { "Name","LookupMultiTransform"})),
+				ExpandedLookupMulti = Table.TransformColumns(ExpandedThumbnail, LookupMultiChanges, null, MissingField.UseNull),
+				                    TaxonomyFieldTypeMultiTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "TaxonomyFieldTypeMulti"),
+				TaxonomyFieldTypeMultiFieldNames = {"Label", "TermID"},
+				TaxonomyFieldTypeMultiTransforms = Table.AddColumn(TaxonomyFieldTypeMultiTypeRows, "TaxonomyFieldTypeMultiTransform", each(name) => 
+				                    if (name is null or name = "") then null
+				                    else if (Type.Is(Value.Type(name), List.Type)) then @Text.Combine(List.Transform(name, each Record.FieldOrDefault(_, "Label", null)), ", ")
+				                    else if (Type.Is(Value.Type(name), Table.Type)) then @Text.Combine(Table.Column(name, "Label"), ", ")
+				                    else if (Type.Is(Value.Type(name), Record.Type)) then Record.FieldOrDefault(name, "Label", null)
+				                    else null, Function.Type),
+				TaxonomyFieldTypeMultiChanges = Table.ToRows(Table.SelectColumns(TaxonomyFieldTypeMultiTransforms, { "Name","TaxonomyFieldTypeMultiTransform"})),
+				ExpandedTaxonomyFieldTypeMulti = Table.TransformColumns(ExpandedLookupMulti, TaxonomyFieldTypeMultiChanges, null, MissingField.UseNull),
+				                    MultiChoiceTypeRows = Table.SelectRows(TableSchema, each [NativeTypeName] = "MultiChoice"),
+				MultiChoiceTransforms = Table.AddColumn(MultiChoiceTypeRows, "MultiChoiceTransform", each(name) => 
+				                    if (name <> "") then @Text.Combine(name, ", ") else null, Function.Type),
+				MultiChoiceChanges = Table.ToRows(Table.SelectColumns(MultiChoiceTransforms, { "Name","MultiChoiceTransform"})),
+				ExpandedMultiChoice = Table.TransformColumns(ExpandedTaxonomyFieldTypeMulti, MultiChoiceChanges, null, MissingField.UseNull)
+				                in ExpandedMultiChoice
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

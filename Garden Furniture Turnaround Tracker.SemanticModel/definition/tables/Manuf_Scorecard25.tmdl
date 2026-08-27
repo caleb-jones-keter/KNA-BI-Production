@@ -1,0 +1,124 @@
+table Manuf_Scorecard25
+	lineageTag: b715531b-b7b9-427f-99ef-f04a10057de6
+
+	column 'BA Plant'
+		dataType: string
+		lineageTag: c389bcfe-4f2b-4643-8a33-e043d5a7def8
+		summarizeBy: none
+		sourceColumn: BA Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 16c3cb2f-1fa8-4ade-b14b-0f243adc8267
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Variable Cost of Production FI'
+		dataType: double
+		lineageTag: 031a5a3d-95f2-4823-8789-c19f4f8bacfc
+		summarizeBy: sum
+		sourceColumn: Variable Cost of Production FI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fixed Costs of Production FI'
+		dataType: double
+		lineageTag: 4889b830-df9c-4831-8e3a-414d4b2dfe58
+		summarizeBy: sum
+		sourceColumn: Fixed Costs of Production FI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Production (RM KG)'
+		dataType: double
+		lineageTag: abee8b61-4c54-4223-94ca-07b17c064430
+		summarizeBy: sum
+		sourceColumn: Net Production (RM KG)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Labor Expenses FI'
+		dataType: double
+		lineageTag: c1b9410e-bea3-45a7-b07f-4b1c67ed7d60
+		summarizeBy: sum
+		sourceColumn: Direct Labor Expenses FI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: adbb28b5-4462-4237-8afb-0ef5744ef70e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'RM Weight KG (Manufacture)'
+		dataType: double
+		lineageTag: 68fa2c9b-1aaf-47bc-8fc7-a4063194e1a3
+		summarizeBy: sum
+		sourceColumn: RM Weight KG (Manufacture)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Subcontracting KGS'
+		dataType: double
+		lineageTag: 6c448bba-1c1a-45aa-9981-3fffdbb67528
+		summarizeBy: sum
+		sourceColumn: Subcontracting KGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Scorecard Wgt'
+		dataType: double
+		lineageTag: 77ada035-8b94-490c-ac41-9443f6486624
+		summarizeBy: sum
+		sourceColumn: Total Scorecard Wgt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PC Sub Category'
+		dataType: string
+		lineageTag: e6906d5a-50d6-4b3e-9fc8-13bd44aaf5c4
+		summarizeBy: none
+		sourceColumn: PC Sub Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Manuf_Scorecard25 = m
+		mode: import
+		queryGroup: 'Archive 2025'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Archive\ADJ_metrics_GF_global.xlsx"), null, true),
+				    Manuf_Scorecard_Sheet = Source{[Item="Manuf_Scorecard",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Manuf_Scorecard_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"BA Plant", type text}, {"Variable Cost of Production FI", type number}, {"Fixed Costs of Production FI", type number}, {"Net Production (RM KG)", type number}, {"Direct Labor Expenses FI", type number}, {"Date", type date}, {"RM Weight KG (Manufacture)", type number}, {"Subcontracting KGS", type number}, {"Total Scorecard Wgt", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

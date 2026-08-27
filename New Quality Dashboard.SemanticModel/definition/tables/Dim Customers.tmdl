@@ -1,0 +1,72 @@
+table 'Dim Customers'
+	lineageTag: 01bd06b0-8281-40d0-907e-27451cccd034
+
+	column Country
+		dataType: string
+		lineageTag: 5661c1e1-1149-4b2e-a980-1751d52c40ef
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COUNTRY #'
+		dataType: string
+		lineageTag: 2887da18-7a43-4acc-b747-45c4351fb022
+		summarizeBy: none
+		sourceColumn: COUNTRY #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Retailer
+		dataType: string
+		lineageTag: d5ff7d76-b7f2-4075-b501-9f26548fe3e2
+		summarizeBy: none
+		sourceColumn: Retailer
+
+		annotation SummarizationSetBy = Automatic
+
+	column RetailerKey
+		dataType: string
+		lineageTag: 01db1e7e-0efd-4533-b909-64f491b82609
+		summarizeBy: none
+		sourceColumn: RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ECOM
+		dataType: string
+		lineageTag: 0cc7a0ac-6ec1-4cba-b108-5cfc9fcd4c6d
+		summarizeBy: none
+		sourceColumn: ECOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ECommerce = IF([Parcel %]>.1,"ECOM",IF(ISBLANK('Dim Customers'[ECOM]),"Retail",'Dim Customers'[ECOM]))
+		lineageTag: 3409af39-5b18-4ee7-a3f6-6323ebd5219a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Customers' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Customers]", {"[Dim Customers].[Country].[Country]", "[Dim Customers].[COUNTRY #].[COUNTRY #]", "[Dim Customers].[Retailer].[Retailer]", "[Dim Customers].[RetailerKey].[RetailerKey]"}, {"Dim Customers.Country", "Dim Customers.COUNTRY #", "Dim Customers.Retailer", "Dim Customers.RetailerKey"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Customers.Country", "Country"}, {"Dim Customers.COUNTRY #", "COUNTRY #"}, {"Dim Customers.Retailer", "Retailer"}, {"Dim Customers.RetailerKey", "RetailerKey"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"RetailerKey"}, ECOM, {"Payer"}, "ECOM", JoinKind.LeftOuter),
+				    #"Expanded ECOM" = Table.ExpandTableColumn(#"Merged Queries", "ECOM", {"ECOM"}, {"ECOM.ECOM"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded ECOM",{{"ECOM.ECOM", "ECOM"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

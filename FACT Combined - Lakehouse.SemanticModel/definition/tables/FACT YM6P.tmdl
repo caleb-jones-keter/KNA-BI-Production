@@ -1,0 +1,888 @@
+table 'FACT YM6P'
+	lineageTag: 7e64596f-3f37-4a9d-b60a-a12c5aa35fe3
+	sourceLineageTag: [dbo].[FACT YM6P]
+
+	measure __$ANCHORDATE = ```
+			
+			    MAX ( 'FACT YM6P'[StartOfWeek_CalcArravDate_Plus7] )
+			
+			
+			```
+		formatString: General Date
+		lineageTag: e73ecf2a-f0a9-45a5-bcf6-82558030ae7e
+
+		changedProperty = Name
+
+	measure '__$DOC (YM6P Stable)' =
+			
+			VAR AnchorDate = [__$ANCHORDATE]
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_DOC],
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		lineageTag: 1e68bfd8-79eb-4bd8-86e4-57888a0dd44a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _MinDate = ```
+			
+			    CALCULATE (
+			        MIN ( 'DIM Date'[Full Date] ),
+			        ALL ( 'DIM Date' )
+			    )
+			```
+		formatString: General Date
+		lineageTag: d13e9248-eee2-41a7-b21d-07fe052d71a1
+
+		changedProperty = Name
+
+	measure _MaxPONumber = ```
+			
+			    MAX ( 'FACT Combined'[PO Number] )
+			```
+		lineageTag: 25abbcee-505c-4a2a-b450-907c7b944715
+
+		changedProperty = Name
+
+	measure _MaxBillingDate = ```
+			
+			    MAX ( 'FACT Combined'[Billing Date Supply Order] )
+			```
+		formatString: General Date
+		lineageTag: 77b43e6e-27e3-4b92-8e1b-9120bea499cc
+
+		changedProperty = Name
+
+	measure '_$Review SKU' = if([__$DOC (YM6P Stable)]>55,"Review SKU")
+		lineageTag: 54cdb399-2feb-4cfb-bb19-4032c4e65279
+
+		changedProperty = Name
+
+	measure '_$Distinct Orders by ABC' =
+			DISTINCTCOUNT('FACT YM6P'[PO Number]
+			)
+		formatString: 0
+		lineageTag: 329278d8-6750-4191-9678-42d9d0aa6bab
+
+		changedProperty = Name
+
+	measure _$orderneedreview = ```
+			
+			CALCULATE(
+			    [_$Distinct Orders by ABC],
+			    FILTER(
+			        'FACT YM6P',
+			        [_$finalreview] = "Review Container"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 54f56eb4-c589-4ec4-b5e7-a1154cf508e2
+
+		changedProperty = Name
+
+	measure 'Measure 5'
+		lineageTag: 654af14d-709a-4fdb-b59a-bbc693fa2e5d
+
+		annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":null}
+
+		annotation 277cc1b9-af89-4597-8e15-cacc25c0886b = To use special characters in a measure name, enclose the entire name in brackets ( [] ) and add a ] to any closing brackets in the name.
+
+	measure _$%check = [_$orderneedreview]/[_$Distinct Orders by ABC]
+		lineageTag: 9c2fc98d-5a21-46a2-963e-135dd5d2b08d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '__$upper (YM6P Stable)' =
+			
+			VAR AnchorDate = [__$ANCHORDATE]-7
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_DOC Target Cont]+max('FACT YM6P'[Order Quantity]),
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		lineageTag: f9024633-7bc2-40fd-a28e-bd21e2ebed20
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '__$inv (YM6P Stable)' =
+			
+			VAR AnchorDate = [__$ANCHORDATE]
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_INV 3M FCST],
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		formatString: 0
+		lineageTag: 2e2ab6fd-51a2-41be-959a-7bf6eaef7479
+
+		changedProperty = Name
+
+	measure _Counter = ```
+			
+			VAR vMaterial =
+			    MAX('FACT YM6P'[Material])
+			VAR vPONumber =
+			    MAX('FACT YM6P'[PO Number])
+			VAR vCalcDate = 
+			    MAX('FACT YM6P'[SOW])
+			RETURN
+			IF (
+			    [_$Review SKU]="Review SKU",
+			    CALCULATE (
+			        DISTINCTCOUNT ( 'FACT YM6P'[PO Number] ),
+			        FILTER (
+			            ALL('FACT YM6P'),
+			            'FACT YM6P'[Material] = vMaterial
+			                && 'FACT YM6P'[PO Number] <= vPONumber
+			                && 'FACT YM6P'[SOW] = vCalcDate
+			        )
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: dcdd8dd2-4b9a-4f08-a034-6eddaf74c218
+
+		changedProperty = Name
+
+	measure 'Measure 6' = MAX('FACT YM6P'[PO Number])/1
+		formatString: 0
+		lineageTag: cc34a585-4fd1-47e6-81d7-f01735adca04
+
+	measure '__$dostarget (YM6P Stable)' =
+			
+			VAR AnchorDate = [__$ANCHORDATE]-7
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_DOC Target Cont],
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		lineageTag: 6d0b42be-99e0-4005-a5f3-3391e83c1b55
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$inv-upper = roundup( ( [__$inv (YM6P Stable)]-[__$upper (YM6P Stable)])/max( 'FACT YM6P'[Order Quantity]),0)
+		lineageTag: 0aac907d-48fb-46bf-8271-37c0bd78293a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$finalreview = if([_Counter]>0,if([_$inv-upper]>=[_Counter],"Review Container"))
+		lineageTag: ce4293c2-62d5-4cf5-8453-4b92697e1423
+
+		changedProperty = Name
+
+	measure _$maxTodaysow = max('DIM Date'[Today SOW])
+		formatString: General Date
+		lineageTag: 7fef65c5-a557-42ac-a355-96f05895c01d
+
+		changedProperty = Name
+
+	measure '__$DOC (7 weeks out)' =
+			
+			VAR AnchorDate = [_$maxTodaysow]+55
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_DOC],
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		lineageTag: 9d704f28-170d-4428-ac1a-2e68753073be
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '__$dostarget (7 weeks out)' =
+			
+			VAR AnchorDate = [_$maxTodaysow]+55
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_DOC Target Cont],
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		formatString: 0
+		lineageTag: f34b143b-d303-46bc-ae30-183f5008e53c
+
+		changedProperty = Name
+
+	measure '__$inv (7 weeks out)' =
+			
+			VAR AnchorDate = [_$maxTodaysow]+55
+			RETURN
+			IF (
+			    NOT ISBLANK ( AnchorDate ),
+			    CALCULATE (
+			        [_INV 3M FCST],
+			        'DIM Date'[Full Date] = AnchorDate
+			    )
+			)
+		formatString: 0
+		lineageTag: 7f2708c1-42c1-4baa-b2f8-9302d438163b
+
+		changedProperty = Name
+
+	measure '_In Transit Value EOM' =
+			
+			VAR AsOfDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			RETURN
+			    CALCULATE (
+			        SUM ( 'FACT YM6P'[Net Order Value]),
+			
+			        -- Remove the active Combined Date relationship filter from the Date table
+			        REMOVEFILTERS ( 'DIM Date' ),
+			
+			        -- Product has shipped by month end
+			        KEEPFILTERS (
+			            'FACT YM6P'[Ship Date] <= AsOfDate
+			                && NOT ISBLANK ( 'FACT YM6P'[Ship Date] )
+			        ),
+			
+			        -- Product has not arrived in the US by month end
+			        KEEPFILTERS (
+			            'FACT YM6P'[Combined Date] > AsOfDate
+			                || ISBLANK ( 'FACT YM6P'[Combined Date] )
+			        )
+			    )
+		lineageTag: f478ed60-a73a-421d-8838-3727797aee23
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_In Transit KG EOM' = ```
+			
+			VAR AsOfDate =
+			    EOMONTH ( MAX ( 'DIM Date'[Full Date] ), 0 )
+			
+			RETURN
+			    CALCULATE (
+			        SUMX (
+			            'FACT YM6P',
+			            DIVIDE (
+			                'FACT YM6P'[Combined Qty],
+			                RELATED ( 'DIM Product'[Carton/Bag_Qty] )
+			            )
+			                * RELATED ( 'DIM Product'[Specs.Carton - Weight] )
+			                * 0.453592
+			        ),
+			
+			        REMOVEFILTERS ( 'DIM Date' ),
+			
+			        KEEPFILTERS (
+			            'FACT YM6P'[Ship Date] <= AsOfDate
+			                && NOT ISBLANK ( 'FACT YM6P'[Ship Date] )
+			        ),
+			
+			        KEEPFILTERS (
+			            'FACT YM6P'[Combined Date] > AsOfDate
+			                || ISBLANK ( 'FACT YM6P'[Combined Date] )
+			        )
+			    )
+			
+			```
+		lineageTag: 55a9a283-680b-474f-b6b9-45e5efcedb2c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _ReceivedCheck =
+			
+			VAR PO = CONVERT(MAX('FACT YM6P'[PO Number]),STRING)
+			RETURN
+			CALCULATE(COUNT('FACT MB51 Material_Movements Initial'[Purchasing Order Number]),FILTER('FACT MB51 Material_Movements Initial','FACT MB51 Material_Movements Initial'[Purchasing Order Number] = PO))
+		formatString: 0
+		lineageTag: 6615aede-24b5-4b79-897c-48d52c80f794
+
+		changedProperty = Name
+
+	column Material
+		dataType: string
+		lineageTag: c1e85ab3-5c7c-43bc-b25a-63e027786619
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 41f86c97-c033-4d00-ae62-842d58e5bc8c
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 94262ea5-76a4-43dd-82f9-fd5e464dcf47
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f935ba8c-0119-48d5-b277-c9f786c3b0f1
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 86b59762-3fb2-4644-a8cb-14c98cd676e6
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dda9760f-00ad-4e7a-8058-c5f1611b2d92
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: ef70fdee-88e6-4a52-94ec-c8f8293b5bd5
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: fb594a85-46fb-40e0-ae1a-2537f76e8b4b
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: b3cf1baa-4a06-4467-9cc8-ac8e6a975cd5
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e52a0ce-434e-4f44-9cbc-36d63a70dae8
+		sourceLineageTag: Plant
+		summarizeBy: sum
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 24632449-ef3c-46ce-8bdc-3092ebc16eb6
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f189ff3-eba6-44e4-95a6-413e39717bb6
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: eb005d67-68ac-4a74-93b2-2d8e77ac5952
+		sourceLineageTag: PO Number
+		summarizeBy: sum
+		sourceColumn: PO Number
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Group'
+		dataType: string
+		lineageTag: 32496165-3d10-4113-afcd-8a200b89996e
+		sourceLineageTag: Purchasing Group
+		summarizeBy: none
+		sourceColumn: Purchasing Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location Orig'
+		dataType: string
+		lineageTag: 28a3fcb5-4183-4a84-af3d-766db1353d09
+		sourceLineageTag: Storage Location Orig
+		summarizeBy: none
+		sourceColumn: Storage Location Orig
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchase Order Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 70478798-1929-4028-999d-c6fe0e214736
+		sourceLineageTag: Purchase Order Date
+		summarizeBy: none
+		sourceColumn: Purchase Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column AASalOrd
+		dataType: string
+		lineageTag: 665af9c1-6f6e-4237-a069-e27eb03ac0d0
+		sourceLineageTag: AASalOrd
+		summarizeBy: none
+		sourceColumn: AASalOrd
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: int64
+		formatString: 0
+		lineageTag: 23ea319c-cc16-47d2-967f-fa1e639c70a5
+		sourceLineageTag: Supplier
+		summarizeBy: sum
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: int64
+		formatString: 0
+		lineageTag: bf0dc285-356c-42c4-92ba-13a3f69ecba2
+		sourceLineageTag: Item
+		summarizeBy: sum
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Description'
+		dataType: string
+		lineageTag: 267b049c-b781-471d-9c6f-b03d335286fe
+		sourceLineageTag: Material Description
+		summarizeBy: none
+		sourceColumn: Material Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a3a9e59-d4e5-4b9e-82a9-ec74211b2634
+		sourceLineageTag: Order Quantity
+		summarizeBy: sum
+		sourceColumn: Order Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Order Value'
+		dataType: double
+		lineageTag: f80f9c8d-9d97-40bc-ac93-d56fc2f5c91e
+		sourceLineageTag: Net Order Value
+		summarizeBy: sum
+		sourceColumn: Net Order Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales document'
+		dataType: int64
+		formatString: 0
+		lineageTag: a3851d17-f543-4470-828a-c94d4c1952c0
+		sourceLineageTag: Sales document
+		summarizeBy: sum
+		sourceColumn: Sales document
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReqDelivDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 81e5bdc9-32ed-41df-ab22-1335c51150ff
+		sourceLineageTag: ReqDelivDate
+		summarizeBy: none
+		sourceColumn: ReqDelivDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Confirm. Category'
+		dataType: string
+		lineageTag: 3e1154f1-b616-4c1d-b6a3-7cebca4611d5
+		sourceLineageTag: Confirm. Category
+		summarizeBy: none
+		sourceColumn: Confirm. Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConfirmDelvDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f815008f-deab-4456-a36a-2db784436c29
+		sourceLineageTag: ConfirmDelvDate
+		summarizeBy: none
+		sourceColumn: ConfirmDelvDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GR Processing Time'
+		dataType: int64
+		formatString: 0
+		lineageTag: b6e3b8fb-e08f-41e1-904e-da745685f109
+		sourceLineageTag: GR Processing Time
+		summarizeBy: sum
+		sourceColumn: GR Processing Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 57ce3b7c-0311-4c98-8b5b-2acb4d2e5d4b
+		sourceLineageTag: LA Date
+		summarizeBy: none
+		sourceColumn: LA Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalcArravDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 12ea5f15-1542-4f6d-86b0-c914b20ac0c1
+		sourceLineageTag: CalcArravDate
+		summarizeBy: none
+		sourceColumn: CalcArravDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery
+		dataType: int64
+		formatString: 0
+		lineageTag: 9db2d892-4bc4-43da-a7e4-e8f5c7db9e58
+		sourceLineageTag: Delivery
+		summarizeBy: sum
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing Document'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61418dcf-9a28-4536-b65a-077812e88f3e
+		sourceLineageTag: Billing Document
+		summarizeBy: sum
+		sourceColumn: Billing Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Container
+		dataType: string
+		lineageTag: d99305b4-066d-48c6-b7fc-345752dc979d
+		sourceLineageTag: Container
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inb.delivery'
+		dataType: int64
+		formatString: 0
+		lineageTag: c20d1b1a-2709-42ca-99f5-9ee17bcf51fd
+		sourceLineageTag: Inb.delivery
+		summarizeBy: sum
+		sourceColumn: Inb.delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Port'
+		dataType: string
+		lineageTag: 74abd324-323a-488a-8fe9-376acc1ebf78
+		sourceLineageTag: Entry Port
+		summarizeBy: none
+		sourceColumn: Entry Port
+
+		annotation SummarizationSetBy = Automatic
+
+	column VesselName
+		dataType: string
+		lineageTag: 5bc1d6db-f47e-4582-8a26-ebe55ca4d274
+		sourceLineageTag: VesselName
+		summarizeBy: none
+		sourceColumn: VesselName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First GR date for item'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ac0858b0-2524-4ae1-8401-35628202caab
+		sourceLineageTag: First GR date for item
+		summarizeBy: none
+		sourceColumn: First GR date for item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deletion Indicator'
+		dataType: string
+		lineageTag: 0c0d46b4-5184-4181-9ab2-ee8938d465f0
+		sourceLineageTag: Deletion Indicator
+		summarizeBy: none
+		sourceColumn: Deletion Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-to party'
+		dataType: string
+		lineageTag: 9e625bac-e3de-4777-b441-73db20878df5
+		sourceLineageTag: Ship-to party
+		summarizeBy: none
+		sourceColumn: Ship-to party
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5ec32014-309f-4f79-8cb3-c748fe37a415
+		sourceLineageTag: Ship Date
+		summarizeBy: none
+		sourceColumn: Ship Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days to Port'
+		dataType: int64
+		formatString: 0
+		lineageTag: 73564d07-abb6-4ad2-9af0-b6079fd0b0c7
+		sourceLineageTag: Days to Port
+		summarizeBy: sum
+		sourceColumn: Days to Port
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Type'
+		dataType: string
+		lineageTag: de9a8813-0c22-4940-b4d1-8593e3c145f4
+		sourceLineageTag: Storage Type
+		summarizeBy: none
+		sourceColumn: Storage Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DTP Group'
+		dataType: string
+		lineageTag: e535ac7f-9c9b-49b2-b8d2-eddcdb404131
+		sourceLineageTag: DTP Group
+		summarizeBy: none
+		sourceColumn: DTP Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO | Container'
+		dataType: string
+		lineageTag: 60b9269e-e3c9-4c96-9fd3-55e4cb481bdc
+		sourceLineageTag: PO | Container
+		summarizeBy: none
+		sourceColumn: PO | Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.booking_number'
+		dataType: string
+		lineageTag: 1736ba08-1e88-48ba-a50b-d8340b6de32c
+		sourceLineageTag: EnfoPak _MrrContainers_.booking_number
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.booking_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.carrier_name'
+		dataType: string
+		lineageTag: 12cfbc94-a7c9-4501-869c-f4222efb90bd
+		sourceLineageTag: EnfoPak _MrrContainers_.carrier_name
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.carrier_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.eta_date'
+		dataType: string
+		lineageTag: 27444f0a-8d71-4b63-a76d-2bdb9a62b8f1
+		sourceLineageTag: EnfoPak _MrrContainers_.eta_date
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.eta_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.ship_to'
+		dataType: string
+		lineageTag: e438a4d7-f29d-4ab1-9b85-7e6f0c39dd65
+		sourceLineageTag: EnfoPak _MrrContainers_.ship_to
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.ship_to
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.vessel_name'
+		dataType: string
+		lineageTag: f1cb32bd-dfcd-4791-86c6-c44f8e99849f
+		sourceLineageTag: EnfoPak _MrrContainers_.vessel_name
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.vessel_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.voyage_number'
+		dataType: string
+		lineageTag: a3c8b1a6-364c-43f5-965b-2affaeb996a7
+		sourceLineageTag: EnfoPak _MrrContainers_.voyage_number
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.voyage_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EnfoPak _MrrContainers_.bl_number'
+		dataType: string
+		lineageTag: a3366470-6782-4b5a-84ba-1cbd26b667fd
+		sourceLineageTag: EnfoPak _MrrContainers_.bl_number
+		summarizeBy: none
+		sourceColumn: EnfoPak _MrrContainers_.bl_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 02d5b152-5bbb-4e68-8c99-db8c3295d78a
+		sourceLineageTag: Billing Date
+		summarizeBy: none
+		sourceColumn: Billing Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_MrrContainers_.status'
+		dataType: string
+		lineageTag: e57a08b2-a63a-4b85-93b1-0d4d8f3ef7b3
+		sourceLineageTag: _MrrContainers_.status
+		summarizeBy: none
+		sourceColumn: _MrrContainers_.status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing Date Supply Order'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a554392-99dd-438d-a5ef-c5058a7f9ad4
+		sourceLineageTag: Billing Date Supply Order
+		summarizeBy: none
+		sourceColumn: Billing Date Supply Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartOfWeek_CalcArravDate_Plus7
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 553012cf-f4d9-4655-9e5d-e55fd2aa0e05
+		sourceLineageTag: StartOfWeek_CalcArravDate_Plus7
+		summarizeBy: none
+		sourceColumn: StartOfWeek_CalcArravDate_Plus7
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-to party''s purchase order no.'
+		dataType: string
+		lineageTag: cd94c12a-09e5-40b9-937c-1196a5614fc7
+		sourceLineageTag: Ship-to party's purchase order no.
+		summarizeBy: none
+		sourceColumn: Ship-to party's purchase order no.
+
+		annotation SummarizationSetBy = Automatic
+
+	column DailyProductionHours
+		dataType: double
+		lineageTag: 356b77fa-ae1f-41da-91ef-fcd7aa7fdcd4
+		sourceLineageTag: DailyProductionHours
+		summarizeBy: sum
+		sourceColumn: DailyProductionHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RemainingProductionQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 6445aae7-348f-43e7-a545-85a3413665aa
+		sourceLineageTag: RemainingProductionQty
+		summarizeBy: sum
+		sourceColumn: RemainingProductionQty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT YM6P' = entity
+		mode: directLake
+		source
+			entityName: FACT YM6P
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

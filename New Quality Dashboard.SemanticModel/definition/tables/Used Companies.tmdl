@@ -1,0 +1,19 @@
+table 'Used Companies'
+	lineageTag: 21f3ec8a-75b7-4208-8f70-4b63315092cb
+
+	column 'Company Code'
+		lineageTag: 4b801cb1-699e-45de-ba0c-a169e000e47d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: FACT YS10N[Company Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Used Companies' = calculated
+		mode: import
+		source =
+				SUMMARIZE('FACT YS10N',
+				'FACT YS10N'[Company Code])
+
+	annotation PBI_Id = f29833d5b01c4ef09b9dfb8d0569eaf7
+

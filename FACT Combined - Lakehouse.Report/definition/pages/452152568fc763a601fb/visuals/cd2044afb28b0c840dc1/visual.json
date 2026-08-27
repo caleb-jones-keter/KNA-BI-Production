@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "cd2044afb28b0c840dc1",
+  "position": {
+    "x": 1152,
+    "y": 192,
+    "z": 14000,
+    "height": 96,
+    "width": 240,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT EDB Budget- Finance"
+                    }
+                  },
+                  "Property": "DC WO Fixed/NS _%_"
+                }
+              },
+              "queryRef": "FACT EDB Budget- Finance.DC WO Fixed/NS _%_",
+              "nativeQueryRef": "DC WO Fixed/NS _%_",
+              "active": true,
+              "format": "0.00 %;-0.00 %;0.00 %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "4871233bdcf8a852b15b",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 688,
+    "width": 624
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "CalcArravDate"
+                }
+              },
+              "queryRef": "FACT YM6P.CalcArravDate",
+              "nativeQueryRef": "CalcArravDate",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YM6P"
+                        }
+                      },
+                      "Property": "PO | Container"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "FACT YM6P.PO | Container",
+              "nativeQueryRef": "Count of PO | Container"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YM6P"
+                        }
+                      },
+                      "Property": "Inb.delivery"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Sum(FACT YM6P.Inb.delivery)",
+              "nativeQueryRef": "Count of Inb.delivery"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "ConfirmDelvDate"
+                }
+              },
+              "queryRef": "FACT YM6P.ConfirmDelvDate",
+              "nativeQueryRef": "ConfirmDelvDate"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5a4ce7b9c26f5b408bf6",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "CalcArravDate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "52bf5335961b70af356d",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Container"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "0a05d956044b2e57e14a",
+        "ordinal": 2,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YM6P"
+                  }
+                },
+                "Property": "Inb.delivery"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ee0f77b931af7f20ff5a",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "MRP Area"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YM6P",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "MRP Area"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'67_4674 - DHL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "40ab316ab444aabcfbe4",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "LA Date"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

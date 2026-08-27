@@ -1,0 +1,57 @@
+relationship 42cf238d-fbcb-8a5c-4d8d-620632391d6a
+	fromColumn: 'FACT Future'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 082252b5-fbc7-867c-6d65-60adde67b0c5
+	fromColumn: 'FACT Future'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 268d5560-6c96-4c11-37ef-e2f456e0a28b
+	fromColumn: 'FACT Future'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 2bdaa5ec-e15c-f606-ddbb-72bb5a994a50
+	fromColumn: 'DIM MRPSKU'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship c8815a5c-e25a-704b-263d-7f217ce5f011
+	fromColumn: 'FACT Future'.Plant
+	toColumn: 'DIM Plant'.Plant
+
+relationship ac49d22e-1b34-d9fd-eddc-97d11f84a702
+	fromColumn: 'FACT Future'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship f864970e-2256-7cc2-508d-c6f5cf102d3a
+	fromColumn: 'FACT Component Forecast Initial'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship d2d95892-2fa9-8e08-2058-98e24769edc7
+	fromColumn: 'FACT Component Forecast Initial'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship d9372d3d-f9cf-ea66-8af4-09fe44b17ed6
+	fromColumn: 'FACT Future'.'FACT YM6P.Storage Location'
+	toColumn: 'Dim Location Dimension 2'.Code
+
+relationship 6b58eb43-cb29-4ec9-21c0-f7e10cd2a7c2
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship f422426b-a66e-21f4-9a59-1e6ab18fc47c
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'DIM Account'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship b4c06d4d-0c58-1312-3382-0f7416df098e
+	fromColumn: 'FACT YS10N Average Sales Price'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 313cf830-2386-7e99-e001-ba2790b421fb
+	fromColumn: 'FACT Component Forecast Initial'.SOW
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 97f31c67-7990-3be2-14fd-92dc50c0c54b
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'THD Filter'.'SKU Level'
+

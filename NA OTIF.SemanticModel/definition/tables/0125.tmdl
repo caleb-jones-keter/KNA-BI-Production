@@ -1,0 +1,2032 @@
+table 0125
+	lineageTag: 592b8247-53d5-49ee-9c82-1ad5c34c3b49
+
+	measure 'Measure (OTIF,SO)' = [Measure (Distinct Count of OTIF SO)]/DISTINCTCOUNT('0125'[Sales Order])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e817ba7a-995b-4ae4-9cd5-f56d1c351378
+
+	measure 'Measure (Distinct Count of OTIF SO)' = DISTINCTCOUNT('0125'[Sales Order])-[Measure (Distinct Count of Not OTIF SO)]
+		formatString: 0
+		lineageTag: ee2ae70d-722c-4651-abe6-378be6e70aab
+
+	measure _!SumGoodFillQty = SUM('0125'[Order Qty])-[_!SumNonFillQty]
+		formatString: 0
+		lineageTag: 154ad311-c32d-487c-83af-8cd0a7147c76
+
+	measure 'Measure (All Valid Qty)' = CALCULATE(SUM('0125'[Order Qty]),KEEPFILTERS('0125'[_!FillRate]="FILL RATE"||'0125'[_!FillRate]="NOT FILL RATE"))
+		formatString: 0
+		lineageTag: 7cd8bc29-dd92-43d9-b624-63730e38b9d8
+
+	measure _!FillRate% = [_!SumGoodFillQty]/SUM('0125'[Order Qty])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bb2d099c-0d8c-44d3-8686-b3686412edcc
+
+	measure _!SumNonFillQty = CALCULATE(SUM('0125'[Order Qty]),KEEPFILTERS('0125'[_!FillRate]="NOT FILL RATE"))
+		formatString: 0
+		lineageTag: 2f89bcb8-7893-48cf-83b0-95f8518f9944
+
+	measure _!ValueNotOtifLines = CALCULATE(SUM('0125'[Net value]),'0125'[_!OtifLine]="Not OTIF")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: b2578fcf-f139-4375-b5e6-fc399ae3d3bc
+
+	measure _!ValueNotFillLines = CALCULATE(SUM('0125'[Net value]),'0125'[_!FillRate]="NOT FILL RATE")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 294d8197-ccaa-49e0-86db-1e8953ab0c7f
+
+	measure _!OTS%SO = [_!DistinctCountOtsSO]/DISTINCTCOUNT('0125'[Sales Order])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8bd1759f-ecb1-448b-aeb3-c569dbfd697e
+
+	measure _!DistinctCountNotOtsSO = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),KEEPFILTERS('0125'[_!OTSSO]="NOT OTD"))
+		formatString: 0
+		lineageTag: 8c3a0c1b-9634-4ede-878e-06e296788aa4
+
+	measure _!DistinctCountOtsSO = DISTINCTCOUNT('0125'[Sales Order])-[_!DistinctCountNotOtsSO]
+		formatString: 0
+		lineageTag: 6f09a3c9-d584-4bcf-9c7f-48d0a8d428b1
+
+	measure _!ValueNotOTDLines = CALCULATE(SUM('0125'[Net value]),'0125'[_!OTS]="Not OTD")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 4b599986-dec9-4706-a32b-1ebc6560d324
+
+	measure _!DistinctCountAllSO =
+			CALCULATE(
+			    DISTINCTCOUNT('0125'[Sales Order]),
+			    ALLSELECTED('0125')
+			)
+		formatString: 0
+		lineageTag: 6e4ae102-0ea0-4ccb-98c2-8922b5d34b0e
+
+	measure _!DistinctCountNotOtifSO = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),KEEPFILTERS('0125'[_!OtifSO]="NOT OTIF"))
+		formatString: 0
+		lineageTag: d3ece870-9d29-4d24-9eba-9036eddcd641
+
+	measure _!DistinctCountOtifSO = DISTINCTCOUNT('0125'[Sales Order])-[_!DistinctCountNotOtifSO]
+		formatString: 0
+		lineageTag: 01b745d5-efac-4eb6-a977-ad62c2584264
+
+	measure _!Otif%SO = [_!DistinctCountOtifSO]/DISTINCTCOUNT('0125'[Sales Order])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d4d4b225-f302-4f5b-ae53-dccf6065c59b
+
+	measure 'Measure (QTY of OTIF Lines)' = CALCULATE(SUM('0125'[Order Qty]),KEEPFILTERS('0125'[_!OtifLine]="OTIF"))
+		formatString: 0
+		lineageTag: 77a6284b-00c3-47ac-94fe-c79f3bda525c
+
+	measure _!DistinctCountNotOtifLines = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),'0125'[_!OtifLine]="NOT OTIF")
+		formatString: 0
+		lineageTag: d66f6331-e00b-4a05-bb04-caa334423eb4
+
+	measure 'Measure (OTIF,Lines)' = [Measure (Count of OTIF Lines)]/COUNT('0125'[_!Delivery])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d99ecc5c-e6e9-4a33-b59c-3af34f8f3530
+
+	measure 'Measure (Total SO Qty)' = CALCULATE(SUM('0125'[Order Qty]),ALLEXCEPT('0125','0125'[Sales Order]))
+		formatString: 0
+		lineageTag: c748f51a-b33a-4a25-9e84-070d0484fb73
+
+	measure 'Measure (Sum of Not OTIF Qty)' = CALCULATE(SUM([Order Qty]),KEEPFILTERS('0125'[Column (OTIF,SO)]="Not OTIF"))
+		formatString: 0
+		lineageTag: 02ad4857-04bc-449f-9e45-4a86e04ed4fd
+
+	measure 'Measure (Sum of OTIF Qty)' = SUM('0125'[Order Qty])-[Measure (Sum of Not OTIF Qty)]
+		formatString: 0
+		lineageTag: 27044c2e-efef-4895-88ad-ecd3cc484aff
+
+	measure 'Measure (OTIF,Qty)' = [Measure (Sum of OTIF Qty)]/Sum([Order Qty])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 97d16a24-5f55-4863-b73d-1fbf4880ec69
+
+	measure 'Measure (Count of OTIF Lines)' = COUNT('0125'[_!Delivery])-[_!DistinctCountNotOtifLines]
+		formatString: 0
+		lineageTag: 9755f95c-7cc2-430a-aafb-49037ddd3468
+
+	measure 'Redistributed Count' =
+			
+			VAR BlankCount =
+			    CALCULATE(
+			        COUNTROWS('0125'),
+			        ISBLANK('0125'[_!Reason])
+			    )
+			VAR ProportionalBlank =
+			    BlankCount * [ProportionPerReason]
+			RETURN
+			    COUNTROWS('0125') + ProportionalBlank
+		formatString: 0
+		lineageTag: b8a90aa2-b383-4f89-9f2b-1c1faec90551
+
+	measure ProportionPerReason =
+			
+			DIVIDE(
+			    COUNTROWS('0125'),
+			    CALCULATE(
+			        COUNTROWS('0125'),
+			        NOT ISBLANK('0125'[_!Reason])
+			    )
+			)
+		lineageTag: b8e35b5f-f54a-478d-92a1-735563a47f58
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ParetoPercentage =
+			
+			VAR TotalRedistributed =
+			    SUMX(
+			        ALL('0125'[_!Reason]),
+			        [Redistributed Count]
+			    )
+			RETURN
+			    DIVIDE(
+			        SUMX(
+			            FILTER(
+			                ALL('0125'[_!Reason]),
+			                '0125'[_!Reason] <= MAX('0125'[_!Reason])
+			            ),
+			            [Redistributed Count]
+			        ),
+			        TotalRedistributed
+			    )
+		lineageTag: 337abf15-cfba-454c-a8db-d0f8e61a40c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _!NotOtif%SO = [_!DistinctCountNotOtifSO]/[_!DistinctCountAllSO]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 168328bb-87f9-4f54-8ff7-422cd4baf437
+
+	measure _!SumAllQty = Calculate(SUM('0125'[Order Qty]),ALLSELECTED('0125'))
+		formatString: 0
+		lineageTag: c250c86a-4a57-4ede-a436-23fd1c56cd10
+
+	measure _!NotFillRate% = [_!SumNonFillQty]/[_!SumAllQty]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5f53a6d8-a555-451f-945d-11608c875964
+
+	measure 'Measure (Distinct Count of Not OTIF SO)' = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),KEEPFILTERS('0125'[_!OtifLine]="Not OTIF"))
+		formatString: 0
+		lineageTag: 733d9823-790b-4a53-993f-33b167829666
+
+	measure _$FinesProjectionRemoveAmazon = ```
+			
+			SUMX(
+			    '0125',
+			    IF(
+			        AND(
+			            '0125'[Payer] = 150361,
+			            '0125'[Reason for rejection] = "07"
+			        ),
+			        BLANK(),
+			        IF(
+			            AND(
+			                '0125'[Payer] = 148600,
+			                '0125'[Reason for rejection] = "07"
+			            ),
+			            BLANK(),
+			            [_$FinesPredictionCuts]
+			        )
+			    )
+			)
+			 
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a32c2c9a-0354-490a-b5fc-56967f41dbcc
+
+	measure _$FinesPredictionCuts =
+			VAR __table = SUMMARIZE('0125','0125'[Payer],"__value",[_$FinesPredictionCalculationCuts])
+			RETURN
+			IF(HASONEVALUE('0125'[Payer]),[_$FinesPredictionCalculationCuts],SUMX(__table,[__value]))
+		lineageTag: acde5269-8f39-4221-9165-c3b8f45645ab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$FinesPredictionCalculationCuts = sum('0125'[Actual Cuts Invoice])*MAX(Sheet1[Fill Rate Fine (Cut)])
+		lineageTag: 76b29868-3492-458a-8796-7953418ebe1e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ONETIMEFEE = SUMX(filter('0125','0125'[_!FillRate]=="NOT FILL RATE"),max(Sheet1[one time Fee]))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 79a285fd-f936-49cd-ae87-127199979855
+
+	measure _$FinesPredictionCalculationOnTime = SUMX(filter('0125','0125'[_!OtsDetail]=="LATE"),'0125'[Actual Shipped Invoice])*MAX(Sheet1[On- Time Fine (whole order)])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b5e80c74-c29e-49ff-aa23-6ca857665916
+
+	measure _$FillRateFinesCombined = [_$FinesProjectionRemoveAmazon]+[_$ONETIMEFEE]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 325742b6-bc5d-4d41-81f6-a3c73a78f86f
+
+	measure _$TotalFines = ```
+			[_$FinesProjectionRemoveAmazon]+[_$FinesPredictionCalculationOnTime]+[_$ONETIMEFEE]
+			 
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1231f30d-52bc-484a-8c90-78f34629aedb
+
+	measure _!ActiveFilterM = CALCULATE(MAX('0125'[_!ShipDate]),ALL('0125'))
+		formatString: Short Date
+		lineageTag: 9d31228c-0aa7-46da-bdfe-33da2470dd69
+
+	measure Measure = CALCULATE(DISTINCTCOUNT('0125'[_!Reason]),ISBLANK('0125'[_!Reason]))
+		formatString: 0
+		lineageTag: d384c79c-9866-4fef-bf0e-58f976ab0d73
+
+	measure 'Measure 3' = CALCULATE(COUNT('0125'[Material]),FILTER('0125','0125'[Sales Order]=MAX('0125'[Sales Order])&&'0125'[_!SpareParts]="Non-finished Goods"))
+		formatString: 0
+		lineageTag: a1dd6917-e11c-4ce4-9456-0c4d283067c6
+
+	measure 'Measure 4' = CALCULATE(COUNT('0125'[Material]),FILTER('0125','0125'[Sales Order]=MAX('0125'[Sales Order])&&'0125'[_!SpareParts]="Non-finished Goods"&&'0125'[_!OtifLine]="NOT OTIF"))
+		formatString: 0
+		lineageTag: f8a06809-b057-4f35-90a0-bbda1ebea71c
+
+	measure _$sumqtyoffirstcut = CALCULATE(SUM('0125'[Order Qty]),KEEPFILTERS('0125'[Reason for rejection]="07"))
+		formatString: 0
+		lineageTag: 97b9db2f-38c7-4a75-98dc-575253eb9008
+
+	measure _$ValueNotFillLinesFIRSTCUT = CALCULATE(SUM('0125'[Net value]),'0125'[Reason for rejection]="07")
+		lineageTag: 000154dc-45bf-4668-8af7-ec2ac02021e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ValueFillLines = CALCULATE(SUM('0125'[Net value]),'0125'[_!FillRate]="FILL RATE")
+		lineageTag: 700c538e-12a4-4b4e-9654-eb4d042f05a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Justin Return Counter on 0125' = ```
+			
+			CALCULATE(
+			    COUNTROWS('RTV Summary'),
+			    'RTV Summary'[Reason] = "Refund",
+			    TREATAS(VALUES('0125'[Storage Location]), 'RTV Summary'[Storage])
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 992eb83a-ad28-48f3-a4d7-a88cb2576f67
+
+	measure '_Justin Reship Counter on 0125' = ```
+			
+			CALCULATE(
+			    COUNTROWS('RTV Summary'),
+			    'RTV Summary'[Reason] = "Reship",
+			    TREATAS(VALUES('0125'[Storage Location]), 'RTV Summary'[Storage])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 6782f5cd-5d00-4ea3-9b54-09dff052f541
+
+	measure '_$Justin total issue' = [_Justin Return Counter on 0125]+[_Justin Reship Counter on 0125]
+		formatString: 0
+		lineageTag: fd134461-3ad6-4a37-b8e8-b9f389039b7e
+
+	measure '_$Justin RTV rate' = [_$Justin total issue]/count('0125'[PO Number])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 82c56601-2304-4eec-bb72-7baf4eeaaf38
+
+	measure '__$ Original First NotOtif%SO' = [__$ Original First DistinctCountNotOtifSO]/[_!DistinctCountAllSO]
+		lineageTag: 3aa19d1d-bd7c-458f-9667-6aa1a92a5739
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '__$ Original First DistinctCountNotOtifSO' = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),KEEPFILTERS('0125'[__$ Original First OtifSO]="NOT OTIF"))
+		formatString: 0
+		lineageTag: c2706432-ebf0-41e2-a7a7-43d453799a47
+
+	measure 'Measure 2'
+		lineageTag: fa22b958-dd6a-4cd3-a6b8-2346ab3ce0af
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure '__$ Original First DistinctCountOtifSO' = DISTINCTCOUNT('0125'[Sales Order])-[__$ Original First DistinctCountNotOtifSO]
+		formatString: 0
+		lineageTag: 6576a2a9-f874-4a1c-a38a-dcb337dc97c8
+
+	measure '__$ Original First Otif%SO' = [__$ Original First DistinctCountOtifSO]/DISTINCTCOUNT('0125'[Sales Order])
+		lineageTag: 12ac441c-9b3b-407b-87ca-9d51057fb698
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '__$ Original First DistinctCountNotOtifLines' = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),'0125'[__$ Original First OtifLine]="NOT OTIF")
+		formatString: 0
+		lineageTag: 3aece178-064d-438d-a178-e711d68c5664
+
+	measure '__$ Original First ValueNotOtifLines' = CALCULATE(SUM('0125'[Net value]),'0125'[__$ Original First OtifLine]="Not OTIF")
+		lineageTag: 1754db50-701d-4e3f-9bde-5c7899ad9456
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _!DistinctCountAllNotOTIFSO =
+			CALCULATE(
+			    DISTINCTCOUNT('0125'[Sales Order]),
+			    ALLSELECTED('0125'),
+			    '0125'[_!OtifSO]="Not OTIF"
+			)
+		formatString: 0
+		lineageTag: 1c97654c-0138-48d4-b92b-2cc6ec51bab1
+
+	measure _LinesPerOrder = COUNT('0125'[Sales Order])/DISTINCTCOUNT('0125'[Sales Order])
+		lineageTag: be1ebfc4-41e7-45f1-9420-d6bbe0c29deb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Below Expectation' =
+			
+			IF(
+			    NOT(HASONEVALUE('0125'[Plant])),
+			    .91,
+			    IF(
+			        MAX('0125'[Plant])=66,
+			        .96,
+			        IF(
+			            MAX('0125'[Plant])=67,
+			            .89,
+			            IF(
+			                MAX('0125'[Plant])=73,
+			                .89,
+			                IF(
+			                    MAX('0125'[Plant])=65,
+			                    .95,
+			                    0
+			                )
+			            )
+			        )+
+			        IF(QUARTER(MAX('0125'[_!OnTimeDate]))=1,-.03)+
+			        IF(QUARTER(MAX('0125'[_!OnTimeDate]))=2,-.02)+
+			        IF(QUARTER(MAX('0125'[_!OnTimeDate]))=3,-.01)
+			    )
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 44cfdae2-4fbe-4e9c-8329-4454cb833124
+
+	measure _!Otif%SO2 = MAX(0,[_!DistinctCountOtifSO]/DISTINCTCOUNT('0125'[Sales Order]))
+		lineageTag: 4c6a758a-b50d-4fd5-a168-fe31c31c9a11
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _!DistinctCountCFLines = CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),or('Load Delay Reason (2)'[Delay Reason]="LTL Carrier Failure",'Load Delay Reason (2)'[Delay Reason]="Carrier Failure"))
+		formatString: 0
+		lineageTag: d66e01a4-9d6e-4e67-9cdc-c09f1041ed8e
+
+	measure _$Dollar%firstcut = [_$ValueNotFillLinesFIRSTCUT]/sum('0125'[Net value])
+		lineageTag: 88e8999e-f4e2-4528-b6ba-1670bc65e8bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Max Net Value per Day' = MAXX(VALUES('0125'[_!ShipDate]),SUM('0125'[Net value]))
+		lineageTag: c07d080f-9407-42bd-8965-2d80ca5d7cd1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$Backorderfailcount =
+			
+			CALCULATE(DISTINCTCOUNT('0125'[Sales Order]),'0125'[_$backorder reason]="NOT OTIF")
+		formatString: 0
+		lineageTag: 566d9488-21e4-409e-9899-d5a6061043e7
+
+	measure '_$Backorder rate' = [_$Backorderfailcount]/distinctcount('0125'[Sales Order])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 02cb7aa4-d44f-4377-84b3-0610b76eeac6
+
+	measure '_$backorder success' = if([_$Backorder rate]>0,1-[_$Backorder rate])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 88db6b37-771b-4079-9d15-5d8939d0f1d3
+
+	measure 'Initial Net Value' = SUM('0125'[Net value])
+		lineageTag: abb826ce-dfd9-43f8-a679-175c3706e0af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sum 3 Day Net Value' = ```
+			
+			
+			VAR MinVisibleDate =
+			    MINX ( ALLSELECTED ( Dates[Date] ), Dates[Date] )
+			
+			VAR MaxVisibleDate =
+			    MAXX ( ALLSELECTED ( Dates[Date] ), Dates[Date] )
+			
+			VAR DateWindow =
+			    FILTER (
+			        ALL ( Dates[Date] ),
+			        Dates[Date] >= MinVisibleDate
+			            && Dates[Date] <= MaxVisibleDate
+			    )
+			
+			RETURN
+			    SUMX (
+			        DateWindow,
+			        CALCULATE (
+			            [Initial Net Value],
+			            DATESINPERIOD (
+			                Dates[Date],
+			                Dates[Date],
+			                -3,
+			                DAY
+			            )
+			        )
+			    )
+			
+			```
+		lineageTag: 1b6b5b97-e64c-4cc8-b526-1ca59bcc255f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max 3 Day Net Value' = ```
+			
+			MAXX (
+			    ALLSELECTED ( 'Dates'[Date] ),
+			    [Sum 3 Day Net Value]
+			)
+			
+			
+			```
+		lineageTag: 83c47158-95b9-4f97-a6f1-b7b54e748b5c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Organization'
+		dataType: int64
+		formatString: 0
+		lineageTag: b631309f-3de4-4875-91ed-8e7c7f25c4e5
+		summarizeBy: sum
+		sourceColumn: Sales Organization
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: int64
+		formatString: 0
+		lineageTag: 49507d7f-f9ab-4969-8759-1d5b8272309e
+		summarizeBy: sum
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Point/Receiving Pt'
+		dataType: string
+		lineageTag: db84405f-9de0-44a3-a825-48c2fb80e92a
+		summarizeBy: none
+		sourceColumn: Shipping Point/Receiving Pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: dbcf74b4-cac1-408f-94dd-4cd6647471d5
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: int64
+		formatString: 0
+		lineageTag: 111f6161-b696-41af-9c0b-91015eeb871d
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer name'
+		dataType: string
+		lineageTag: 6f1481bb-9c0a-40a4-bb0a-2429bb4354c9
+		summarizeBy: none
+		sourceColumn: Payer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection'
+		dataType: string
+		lineageTag: cdb082d9-b485-4ad0-8501-a223ff88b706
+		summarizeBy: none
+		sourceColumn: Reason for rejection
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection description'
+		dataType: string
+		lineageTag: ad2d2255-42d3-4d71-96cc-0d67d93584b0
+		summarizeBy: none
+		sourceColumn: Reason for rejection description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason'
+		dataType: string
+		lineageTag: 9b2ff7c1-05c0-47cf-b022-a3776cf11f88
+		summarizeBy: none
+		sourceColumn: Order reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason_1'
+		dataType: string
+		lineageTag: 6536c963-0aa8-4405-b114-9ef539a16be1
+		summarizeBy: none
+		sourceColumn: Order reason_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number'
+		dataType: string
+		lineageTag: d37d7fd7-15f4-4be2-9315-8de4f37b69a7
+		summarizeBy: none
+		sourceColumn: PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: d3f83f21-ea84-40df-80cc-58c0e062ae18
+		summarizeBy: sum
+		sourceColumn: Sales Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery
+		dataType: int64
+		formatString: 0
+		lineageTag: 770f5533-9a4d-4232-9417-e15a3ee3b95e
+		summarizeBy: sum
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 13fc3f55-3df5-4517-84ef-0e2e9af72a94
+		summarizeBy: sum
+		sourceColumn: Shipment Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping type'
+		dataType: int64
+		formatString: 0
+		lineageTag: 69a5cba3-c0a1-43d9-bfcd-0470fa69fbcd
+		summarizeBy: sum
+		sourceColumn: Shipping type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: ae938f7b-e7d5-4952-a88f-b731bca98844
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer SKU'
+		dataType: string
+		lineageTag: f48a4c2d-b88f-48bf-8fb3-db14de76fcc2
+		summarizeBy: none
+		sourceColumn: Customer SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material description MM'
+		dataType: string
+		lineageTag: ef8d0767-9377-40ef-bb9f-4eccf7541cd1
+		summarizeBy: none
+		sourceColumn: Material description MM
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 950d3672-8512-4636-b4ec-3bdba4abdc07
+		summarizeBy: sum
+		sourceColumn: Order Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net value'
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 78c86a07-ed43-438a-82e2-32dbcd33680c
+		summarizeBy: sum
+		sourceColumn: Net value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'SO Created Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cf6f7068-4d60-4fa1-b523-862a51e2c386
+		summarizeBy: none
+		sourceColumn: SO Created Date
+
+		variation Variation
+			isDefault
+			relationship: 7f6d67dd-df75-4b73-9512-a5df2aa6a949
+			defaultHierarchy: LocalDateTable_c1c8b348-2b7c-4a9e-8d48-f462075390a4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Delivery Creation Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8e67dafc-58f6-453e-a482-7b820d75bc56
+		summarizeBy: none
+		sourceColumn: Delivery Creation Date
+
+		variation Variation
+			isDefault
+			relationship: 9f01c8d6-ce76-4f77-b6c4-e72270246e39
+			defaultHierarchy: LocalDateTable_19f805e6-6411-4ca7-a747-a37560844117.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'First Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1ee1989e-3a1f-474d-b7c0-9c30e1d29050
+		summarizeBy: none
+		sourceColumn: First Date
+
+		variation Variation
+			isDefault
+			relationship: ddc00818-cf00-4b63-95bb-deddf690b08a
+			defaultHierarchy: LocalDateTable_ff133ef4-ee22-4fa4-9275-4b502df699e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Confirmation Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fe753e40-47f7-44de-b01b-17aa538a5a4d
+		summarizeBy: none
+		sourceColumn: Confirmation Date
+
+		variation Variation
+			isDefault
+			relationship: da0e5fb2-6644-4d6d-86cb-823edb8fda00
+			defaultHierarchy: LocalDateTable_c12a0846-d1d0-40fc-be2a-acbda4094eb8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Requested deliv.date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7a27d508-d1aa-429c-8e6c-eecc7cd68fe3
+		summarizeBy: none
+		sourceColumn: Requested deliv.date
+
+		variation Variation
+			isDefault
+			relationship: f054d1ba-5fa8-4823-98d5-f309ba0a9396
+			defaultHierarchy: LocalDateTable_02901bd0-2a15-476d-a3c1-84535d9acafb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Guarantee Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e416104c-1071-48bf-b405-46320275c84d
+		summarizeBy: none
+		sourceColumn: Guarantee Date
+
+		variation Variation
+			isDefault
+			relationship: a60bf889-f8fe-4506-a93f-d58dcc3fc52d
+			defaultHierarchy: LocalDateTable_b5563ef9-e8f1-4757-a2a9-05f2f100de06.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Original Delivery Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 26194817-a0a0-481a-a6cc-1799e6b908cd
+		summarizeBy: none
+		sourceColumn: Original Delivery Date
+
+		variation Variation
+			isDefault
+			relationship: ef1c8271-23d1-459c-bb7f-b17a53227ca2
+			defaultHierarchy: LocalDateTable_557d7ac0-fa4f-4968-b9a5-3bd2599ff80c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'SO Billing Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 77734243-049c-49cc-aa76-7ab78f0d431a
+		summarizeBy: none
+		sourceColumn: SO Billing Date
+
+		variation Variation
+			isDefault
+			relationship: 357c605d-acfa-4dfe-aa16-65cf06e41149
+			defaultHierarchy: LocalDateTable_79d08aee-2f65-4ed8-a6b5-750985e50eef.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Ship-To Party Region'
+		dataType: string
+		lineageTag: daf6addf-b8c9-4506-83f7-3456999bc0a1
+		summarizeBy: none
+		sourceColumn: Ship-To Party Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning end'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: be4f2d4a-0cfd-4aae-b578-7f087aa3ae2d
+		summarizeBy: none
+		sourceColumn: Planning end
+
+		variation Variation
+			isDefault
+			relationship: c4bca99b-fdee-4ae5-af4b-6d44ee67501a
+			defaultHierarchy: LocalDateTable_bdce87a4-eb47-413c-90c5-7bab778f504a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Planned date CheckIn'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f87bc26d-1f34-44a2-8a5f-bbe2ed41a8f7
+		summarizeBy: none
+		sourceColumn: Planned date CheckIn
+
+		variation Variation
+			isDefault
+			relationship: 1f2eabf1-7136-466f-8bb9-c2ae4835e535
+			defaultHierarchy: LocalDateTable_cde14b50-4cce-4b95-92a5-af6fb01d42cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Planned time CheckIn'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a4bd0399-5404-4f26-b0d3-568ba97bc83f
+		summarizeBy: none
+		sourceColumn: Planned time CheckIn
+
+		variation Variation
+			isDefault
+			relationship: 28867e0a-2e1d-4683-abf0-1a3d07a26542
+			defaultHierarchy: LocalDateTable_99c7c758-aec6-460f-868f-62e063344c93.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trailer No.'
+		dataType: string
+		lineageTag: 29737fb2-a94c-494e-aad3-1d0f6c6c53f1
+		summarizeBy: none
+		sourceColumn: Trailer No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned shipment end'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 953ca052-731c-4484-874e-84cd381be2e8
+		summarizeBy: none
+		sourceColumn: Planned shipment end
+
+		variation Variation
+			isDefault
+			relationship: b97bb1c7-7069-4cb5-9c01-2a9046ec8b86
+			defaultHierarchy: LocalDateTable_13379a52-b63c-49e6-8c6f-f97e2e0aace6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Load Delay Reason'
+		dataType: int64
+		formatString: 0
+		lineageTag: dd3acdd5-44ab-4932-b41f-b2aeaaab7a5c
+		summarizeBy: none
+		sourceColumn: Load Delay Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Act. Gds Mvmnt Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: aef35e0a-77d2-46f9-b9e6-8c1dfe6aef03
+		summarizeBy: none
+		sourceColumn: Act. Gds Mvmnt Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Invoice Billing Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 96c1151d-a769-4202-8611-7a6537d15ec4
+		summarizeBy: none
+		sourceColumn: Invoice Billing Date
+
+		variation Variation
+			isDefault
+			relationship: d1b65cd9-c63a-49e7-bde0-fcb8568ca168
+			defaultHierarchy: LocalDateTable_274e428a-22ba-4aac-976f-e4e7e03e656e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Profit Center'
+		dataType: int64
+		formatString: 0
+		lineageTag: e769e113-0cd4-47ab-907a-853802c39d39
+		summarizeBy: none
+		sourceColumn: Profit Center
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OnTimeDate = ```
+			
+			        IF (
+			            RELATED('Measures (2)'[Use ]) = "First Date",
+			            '0125'[First Date],
+			            IF (
+			                RELATED('Measures (2)'[Use ]) = "Planning End",
+			                '0125'[Planning end],
+			                IF (
+			                    RELATED('Measures (2)'[Use ]) = "Requested deliv.date",
+			                    '0125'[Requested deliv.date],
+			                    IF (
+			                        RELATED('Measures (2)'[Use ]) = "Planned date CheckIn",
+			                        '0125'[Planned date CheckIn],
+			                        IF ( RELATED('Measures (2)'[Use ]) = "Guarantee Date", '0125'[Guarantee Date])
+			                )
+			            )
+			        )
+			    )
+			```
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 4015167c-07f0-4f10-a73d-edcca8a5f6f8
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 88b46bf0-c36f-47ff-9796-37064b122d35
+			defaultHierarchy: LocalDateTable_25ce0ecb-e940-478c-877b-53f18e7283b3.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column _!Variance = IF(NOT(ISBLANK([_!ShipDate])),[_!ShipDate]-[_!OnTimeDate])
+		dataType: int64
+		formatString: 0
+		lineageTag: 49cd9613-9511-49b5-862b-17836e4784f1
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+	column _!LateDate = [_!OnTimeDate]+RELATED('Measures (2)'[MAX])
+		formatString: Short Date
+		lineageTag: 47f5b162-0e75-4240-a7e2-d74f846122c6
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: c59e4a1f-8e3b-4ca4-9131-1375e0bf67fb
+			defaultHierarchy: LocalDateTable_4e34a643-cf2a-4e5e-81d9-c1dcdde77ee2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!ShippedLate = IF([_!ShipDate]>[_!LateDate],1)
+		formatString: 0
+		lineageTag: 2ccbe946-e816-45db-9bef-24e687cfbd56
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!EarlyDate = [_!OnTimeDate]+RELATED('Measures (2)'[MIN])
+		formatString: Short Date
+		lineageTag: 3dab3386-8c92-4361-9062-c6fce204f3c2
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 08eb357a-aaf7-4c92-bcf9-9aa672924049
+			defaultHierarchy: LocalDateTable_43abfe4a-733d-462f-8226-6abd88bd3d69.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!ShippedEarly = IF(AND(NOT(ISBLANK([_!ShipDate])),[_!ShipDate]<[_!EarlyDate]),1)
+		formatString: 0
+		lineageTag: 95e9f0ad-443e-47ca-bb33-5e8e0b681dc9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!ShipDate = IF(NOT(ISBLANK([Act. Gds Mvmnt Date])),[Act. Gds Mvmnt Date],IF(NOT(ISBLANK([Invoice Billing Date])),[Invoice Billing Date]))
+		formatString: Short Date
+		lineageTag: 0ecabecf-75f4-4ad5-aa93-03e779145c07
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: b1e4005e-b89d-43c9-98da-692db09cea70
+			defaultHierarchy: LocalDateTable_3efdb083-e34e-4548-8bd8-48fcafb25796.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!PastDueNotShipped = IF(NOT(LEN([Reason for rejection])>0),IF(AND(ISBLANK([_!ShipDate]),NOW()>[_!LateDate]),1))
+		formatString: 0
+		lineageTag: bef09933-1095-401b-9c74-caf92bbbe294
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OtifLine = IF(RELATED(RfR[Valid Orders])<>"NO",IF('0125'[_!SpareParts]="Finished Goods",IF('0125'[_!ActiveFilter]=0,IF('0125'[Payer name]<>"Samples",IF('0125'[Payer name]<>"Sample",IF('0125'[Payer name]<>"Keter Canada Inc. - Import",IF('0125'[Storage Location]<>"367J",IF([_!NotOnTime]>0,"NOT OTIF",IF([_!NotInFull],"NOT OTIF","OTIF")))))))))
+		lineageTag: 58d88514-29c5-4176-9a90-d44cc7e23eae
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!Reason = IF(LEN([Reason for rejection])>0,"Cut - " & RELATED(RfR[SAP Text]),IF([_!ShippedLate]>0,IF(LEN([Load Delay Reason])>0,"Late - "&RELATED('Delay Reasons'[Delay Reason]),IF(AND('0125'[Shipping type]=7,'0125'[_!Variance]=1),"Late - Parcel (1 Day)",IF('0125'[Shipping type]=7,"Late - Parcel (> 1 Day)",IF('0125'[_!NeedsCode]="Needs Code","Late - Needs Code", "Late - Other")))),IF([_!ShippedEarly]>0,"Early - Shipped Early",IF([_!PastDueNotShipped]>0,IF(LEN([Load Delay Reason])>0,"Late - "&RELATED('Delay Reasons'[Delay Reason]),"Late - Past Due, Not Shipped")))))
+		lineageTag: 62e43611-80c8-40a8-b3fd-4c1c67f48927
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OrderCut = IF(LEN([Reason for rejection])>0,1)
+		formatString: 0
+		lineageTag: 1ef91fe6-ff1a-44a7-bf67-9d8807ca59b8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (Total Issues)' = '0125'[_!ShippedEarly]+'0125'[_!ShippedLate]+'0125'[_!PastDueNotShipped]+'0125'[_!OrderCut]
+		formatString: 0
+		lineageTag: 9da4a14f-99d1-4fd6-84c8-8de268e41208
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!NotOnTime = IF(RELATED('Delay Reasons'[On-time?])=1,0,IF('0125'[_!ShippedEarly]+[_!ShippedLate]+'0125'[_!PastDueNotShipped]>0,1,0))
+		formatString: 0
+		lineageTag: 5b0154cc-335d-434b-a7c4-7283c3c5eaf7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!NotInFull = IF('0125'[_!OrderCut]>0,1,0)
+		formatString: 0
+		lineageTag: 157109a1-c587-41f3-b792-ecf552d27c12
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!LateGroup = IF('0125'[_!Variance]=1,"One Day Late",IF('0125'[_!Variance]<=7,"One Week Late",IF('0125'[_!Variance]<=30, "Multiple Weeks Late","One Month or More Late")))
+		lineageTag: c5b5ea34-feb6-4bc9-b07e-69dc83a1a72d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!FillRate = IF(RELATED(RfR[Valid Orders])<>"NO",IF('0125'[_!SpareParts]="Finished Goods",IF('0125'[_!ActiveFilter]=0,IF('0125'[Payer name]<>"Samples",IF('0125'[Payer name]<>"Sample",IF('0125'[Payer name]<>"Keter Canada Inc. - Import",IF('0125'[Storage Location]<>"367J",IF('0125'[_!NotInFull]>0,"NOT FILL RATE",IF(ISBLANK('0125'[_!ShipDate]),"EXCLUDE","FILL RATE")))))))))
+		lineageTag: ed317b32-f144-4998-a6a0-133dd1dfcfae
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OTS = IF(RELATED(RfR[Valid Orders])<>"NO",IF('0125'[_!SpareParts]="Finished Goods",IF('0125'[_!ActiveFilter]=0,IF('0125'[Payer name]<>"Samples",IF('0125'[Payer name]<>"Sample",IF('0125'[Payer name]<>"Keter Canada Inc. - Import",IF('0125'[Storage Location]<>"367J",IF([_!NotOnTime]>0,"NOT OTD","OTD"))))))))
+		lineageTag: a4d88e36-e6c0-47c7-8146-0f9b73cf19be
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (Late Date Weekday)' = WEEKDAY('0125'[_!LateDate])
+		formatString: 0
+		lineageTag: 3a50fa57-95ef-4644-9dc9-ee82defa2623
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!YearMonth = DATE('0125'[_!OnTimeDate].[Year],[_!OnTimeDate].[MonthNo],1)
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: d3f39508-6710-4ad4-ab59-98b3d6375802
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 482f9dd8-bd96-44d7-80e8-609cdd0b1a48
+			defaultHierarchy: LocalDateTable_7bc426a0-de28-4f12-abd8-a4ffc5565ab8.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column _!Error = IF(ISBLANK('0125'[_!OnTimeDate]),"Error - Blank On-Time Date",IF(ISBLANK('0125'[_!ShippingType]),"Error - Blank Shipping Type"))
+		lineageTag: 5ee9d718-318a-47b6-94d6-bc269a10754a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column _!Variance2 = IF(ISBLANK([_!ShipDate]),TODAY()-[_!OnTimeDate],[_!ShipDate]-[_!OnTimeDate])
+		dataType: int64
+		formatString: 0
+		lineageTag: 86e26332-1320-46e9-89b6-3e86d8b19082
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!NeedsCode = IF(SUM('0125'[_!ShippedLate])>0,IF(NOT('0125'[Shipping type]=7),IF(NOT('0125'[Payer name]="Samples"),IF(NOT(LEN([Load Delay Reason])>0),"Needs Code"))))
+		lineageTag: 39e7a44d-d614-4bb5-8974-254e96dcf07c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OtifSO = IF(LEN('0125'[_!OtifLine])>0,IF(CALCULATE(COUNT('0125'[Sales Order]),FILTER(ALLEXCEPT('0125','0125'[Sales Order]),'0125'[_!OtifLine]="NOT OTIF"))>0,"NOT OTIF","OTIF"))
+		lineageTag: a63423a0-5f25-4406-90d6-48b78e898744
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!YearWeek =
+			'0125'[_!OnTimeDate].[Year]&
+			FORMAT(WEEKNUM('0125'[_!OnTimeDate]),"00")
+		lineageTag: 84771531-059e-4d31-a969-70fa91065477
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (Total PO Qty)' = CALCULATE(SUM('0125'[Order Qty]),ALLEXCEPT('0125','0125'[PO Number]))
+		formatString: 0
+		lineageTag: c9f8c121-af2f-4129-ad53-b19c692c07ed
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (Blank Qty)' = IF('0125'[_!Reason]=BLANK(),IF('0125'[_!OtifSO]="NOT OTIF",'0125'[Order Qty]))
+		formatString: 0
+		lineageTag: 56029612-4afe-4ed7-b2bf-c838e35e3c35
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OTSSO = IF(LEN('0125'[_!OTS])>0,IF(CALCULATE(COUNT('0125'[Sales Order]),FILTER(ALLEXCEPT('0125','0125'[Sales Order]),'0125'[_!OTS]="NOT OTD"))>0,"NOT OTD","OTD"))
+		lineageTag: 955a3292-1846-4c48-adcb-ba1f81825ef6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OtsDetail = IF(RELATED(RfR[Valid Orders])<>"NO",IF([_!NotOnTime]>0,IF('0125'[_!ShippedEarly]>0,"EARLY",IF(OR('0125'[_!PastDueNotShipped]>0,'0125'[_!ShippedLate]>0),"LATE")),"ON TIME"))
+		lineageTag: a21fff2b-8735-44a6-b28e-44129fdd5388
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!SkuCombined = CONVERT('0125'[Material],STRING) & " " & '0125'[Material description MM]
+		lineageTag: 23c7840c-3f00-4158-bcc7-3492d83c5e82
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!Delivery =
+			
+			IF(ISBLANK('0125'[Delivery]),
+			VAR CurrentSO = '0125'[Sales Order]
+			
+			VAR FilteredTable =
+			    FILTER(
+			        '0125',
+			        '0125'[Sales Order] = CurrentSO &&
+			        NOT(ISBLANK('0125'[Delivery]))
+			    )
+			VAR DelivNum = MAXX(FilteredTable, '0125'[Delivery])
+			RETURN
+			    IF(ISBLANK(DelivNum),'0125'[Sales Order],DelivNum),
+			    '0125'[Delivery]
+			)
+		formatString: 0
+		lineageTag: c45f2ba3-ae11-46c4-b0ef-c3437362cf1a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!ShippingType =
+			
+			IF(ISBLANK('0125'[Shipping type]),
+			VAR CurrentSO = '0125'[Sales Order]
+			
+			VAR FilteredTable =
+			    FILTER(
+			        '0125',
+			        '0125'[Sales Order] = CurrentSO &&
+			        NOT(ISBLANK('0125'[Shipping type]))
+			    )
+			RETURN
+			    MAXX(FilteredTable, '0125'[Shipping type]),
+			    '0125'[Shipping type]
+			)
+		formatString: 0
+		lineageTag: cecf02f0-53d4-4766-8297-e1e18e2da0d1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (OTIF,SO)' = IF(CALCULATE(COUNT('0125'[Sales Order]),FILTER(ALLEXCEPT('0125','0125'[Sales Order]),'0125'[_!OtifLine]="NOT OTIF"))>0,"NOT OTIF","OTIF")
+		lineageTag: bad4fc3b-1ead-4806-b8f7-c33d1b9426b5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Cuts Invoice' = if(LEN('0125'[Reason for rejection])>0,'0125'[Net value],0)
+		lineageTag: 6386177f-81e8-47f7-8608-174dfb6e78f3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Actual Shipped Invoice' = IF(LEN('0125'[_!ShipDate])>0,'0125'[Net value])
+		lineageTag: d83fbe77-9998-4894-af78-a2db6bd37477
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _!ActiveFilter = IF(AND(LEN('0125'[Load Delay Reason])=0,LEN('0125'[_!ShipDate])=0),IF('0125'[_!LateDate]>=[_!ActiveFilterM],1,0),0)
+		formatString: 0
+		lineageTag: 40983cb5-652f-43eb-ab1a-2b92f8efbc4d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!YearWeekShip =
+			
+			'0125'[_!MwkShipDate].[Year]&
+			FORMAT(WEEKNUM('0125'[_!MwkShipDate]),"00")
+		lineageTag: 62004bba-f002-43e0-831c-897a3e256284
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!MwkShipDate =
+			
+			
+			VAR CurrentSO = '0125'[Sales Order]
+			VAR CurrentLoc = '0125'[Storage Location]
+			
+			VAR FilteredTable =
+			    FILTER(
+			        '0125',
+			        '0125'[Sales Order] = CurrentSO &&
+			        '0125'[Storage Location] = CurrentLoc &&
+			        NOT(ISBLANK('0125'[Delivery]))
+			    )
+			
+			VAR NewShip = MAXX(FilteredTable, '0125'[_!ShipDate])
+			RETURN
+			
+			IF('0125'[_!OrderCut]=1,
+			    IF(ISBLANK('0125'[_!ShipDate]),
+			        IF(ISBLANK(NewShip),'0125'[_!LateDate],NewShip),
+			        '0125'[_!ShipDate]
+			    ),
+			    '0125'[_!ShipDate]
+			)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 962c3426-284e-43f7-9c2f-3f4b5e71662c
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: b96d5985-3caa-4860-9813-3f65f8f80bba
+			defaultHierarchy: LocalDateTable_3a243cba-dc59-490b-909d-8c55b52b6aa5.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column _!SpareParts = IF(CONVERT(LEFT('0125'[Material],1),INTEGER)<3,"Finished Goods","Non-Finished Goods")
+		lineageTag: 1c2daa82-904c-4a74-a82e-24b322ae8d69
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!YearMonthShip = DATE('0125'[_!MwkShipDate].[Year],'0125'[_!MwkShipDate].[MonthNo],1)
+		formatString: General Date
+		lineageTag: 7fd7c6ff-96da-4c2a-bc4d-b5e0711bcbaa
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 60c13d2e-ad42-45df-9a4c-458250ae5295
+			defaultHierarchy: LocalDateTable_7de94488-a44b-48b2-ad8c-4f3cacf05fa1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!CutLabel = IF('0125'[_!OrderCut]=1,"Cut","Shipped")
+		lineageTag: c7812fcd-9e19-4300-9580-b06e5aeed326
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!ReasonOrder =
+			
+			VAR CurrOrder = '0125'[Sales Order]
+			RETURN
+			CALCULATE(
+			    FIRSTNONBLANK('0125'[_!Reason], 1),
+			    FILTER(
+			        '0125',
+			        '0125'[Sales Order] = CurrOrder &&
+			        NOT(ISBLANK('0125'[_!Reason])) &&
+			        '0125'[_!OtifLine] = "NOT OTIF"
+			    )
+			)
+		lineageTag: aa6c6787-1a52-4735-9638-9bc0a8ead408
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$Open Order' = ```
+			
+			IF(
+			  or( '0125'[Act. Gds Mvmnt Date]>0 ,'0125'[Reason for rejection]<>"")
+			    , "Closed", "Open"
+			)
+			
+			
+			```
+		lineageTag: 11679c01-e07c-4af4-9b53-86ab719255c1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$First Date 7 days future or before Filter' = if( '0125'[First Date]<=today()+7,1,0)
+		formatString: 0
+		lineageTag: 2b2bd663-bc48-4322-8d27-ae8f90cf4863
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$Payer Name Merged' = '0125'[Payer] &" || "&'0125'[Payer name]
+		lineageTag: 7e96e4ce-9143-42b3-a35b-92e776f0bb7f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$Delivery Creation yesterday or before filter' = if( '0125'[Delivery Creation Date]<=today()-1,"On","Off")
+		lineageTag: ba76d5aa-24f4-4bb1-a60c-b1110885431c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$First Date Tomorrow or Before' = if( '0125'[First Date].[Date]<=today()+1,"On","Off")
+		lineageTag: 624e45f2-2964-4b1b-b9f9-7f4f43bfcdf2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContainerOut = ```
+			
+			VAR OrderQty = '0125'[Order Qty]
+			VAR ContQty  = RELATED(SAP[ContQty])
+			RETURN
+			OrderQty / IF(NOT(ISBLANK(ContQty)) && ContQty <> 0, ContQty, OrderQty)
+			
+			```
+		lineageTag: 009cadbe-6ebe-4310-b303-6de0e1c0f54f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _$Avg_DHLOrderToShip = ```
+			
+			VAR GoodsDate = '0125'[Act. Gds Mvmnt Date]
+			VAR StartDate =
+			    IF(
+			        '0125'[Storage Location] = "4674",
+			        '0125'[SO Created Date],
+			        '0125'[Delivery Creation Date]
+			    )
+			RETURN
+			IF(
+			    NOT(ISBLANK(GoodsDate)) && NOT(ISBLANK(StartDate)),
+			    ROUND(DATEDIFF(StartDate, GoodsDate, DAY), 0),
+			    BLANK()
+			)
+			
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: fc61b4b6-8b88-41a7-9abb-e6f589fafd81
+		summarizeBy: average
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+	column 'Spreetail Filter' =
+			
+			VAR Material = '0125'[Material]
+			VAR CheckingMaterial  = RELATED('Spreetail SKUs list'[SKU])
+			RETURN
+			CheckingMaterial && '0125'[Material] <> 0
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7301ec39-7f3f-4507-ac31-f0f7dce29a80
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$DHL Global Tranz Actual Delivery Date' = ```
+			
+			CALCULATE(
+			    MAX('Global Tranz shipments'[Actual Delivery]),
+			    FILTER(
+			        'Global Tranz shipments',
+			        'Global Tranz shipments'[PO#] = '0125'[PO Number]
+			    )
+			)
+			
+			```
+		formatString: Short Date
+		lineageTag: 11f7ca75-857b-42b7-8cb9-958b4cdf84e6
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: d13d7246-2eb2-4c59-b1e2-d1d3d20c6bb6
+			defaultHierarchy: LocalDateTable_a12e3e73-c2f7-4781-8578-441fda0264fb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$DHL Global Tranz  actual Pickup Date' = ```
+			
+			LOOKUPVALUE(
+			    'Global Tranz shipments'[Actual Pickup],
+			    'Global Tranz shipments'[PO#], '0125'[PO Number]
+			)
+			
+			```
+		formatString: Short Date
+		lineageTag: 7dfc791a-7997-48ea-ba9d-984baf10121c
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 7b516512-fc51-4bfd-8e53-e7611087d44e
+			defaultHierarchy: LocalDateTable_de65a6a0-bf1a-42c5-81f2-f4f883a9129e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$DHL Global Tranz Ship to Deliver' = ```
+			
+			AVERAGEX(
+			    FILTER(
+			        'Global Tranz shipments',
+			        NOT ISBLANK('Global Tranz shipments'[Transit Time ])
+			    ),
+			    'Global Tranz shipments'[Transit Time ]
+			)
+			
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c1eb640-7759-4681-a58d-a1c323ad36b3
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$ Ship to Deliver' = if('0125'[Storage Location]="4674",'0125'[_$DHL Global Tranz Ship to Deliver],'0125'[_$DHL SpreeTAIL Ship to Deliver])
+		lineageTag: 9cd0d0ce-6332-4246-b530-ab5b7710938f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_$DHL SpreeTAIL Ship to Deliver' =
+			
+			AVERAGEX(
+			    FILTER(
+			        'SpreeTail Order Shipments'
+			        ,
+			        NOT ISBLANK('SpreeTail Order Shipments'[Transit Time])
+			    ),
+			    'SpreeTail Order Shipments'[Transit Time]
+			)
+		lineageTag: e0c1c926-d80c-4c97-82dc-4c7433574130
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_$ Justin Order to delivery' = '0125'[_$Avg_DHLOrderToShip]+'0125'[_$ Ship to Deliver]
+		formatString: 0.0
+		lineageTag: f5d4f5e2-ae7d-42c1-b667-9bb05e081dae
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$Justin Total Lead time' = '0125'[_$Avg_DHLOrderToShip]+'0125'[_$ Ship to Deliver]
+		lineageTag: cff6db11-3bc1-49d2-9f53-b157ecb72057
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SpreeTail Names' = if('0125'[Storage Location]="4674","DHL","Spreetail")
+		lineageTag: 3c58ba75-2358-45f5-a799-54e9ba8f5340
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier SCAC code'
+		dataType: string
+		lineageTag: 0332bec1-a5cf-4aac-9366-de255e551360
+		summarizeBy: none
+		sourceColumn: Carrier SCAC code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Name'
+		dataType: string
+		lineageTag: a92b2fe0-73c2-4e64-b7cd-bf041a8a7b56
+		summarizeBy: none
+		sourceColumn: Carrier Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Code'
+		dataType: string
+		lineageTag: a7015139-6d1b-4665-a4ef-45d9e2ebbbb0
+		summarizeBy: none
+		sourceColumn: Carrier Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Service'
+		dataType: string
+		lineageTag: c952f220-dee9-4d6b-8879-62dc705b8c16
+		summarizeBy: none
+		sourceColumn: Carrier Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load No.'
+		dataType: string
+		lineageTag: 2b2eed47-6e1e-4341-bdb3-1a6046f6b126
+		summarizeBy: none
+		sourceColumn: Load No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Zip'
+		dataType: string
+		lineageTag: bc38a78f-f50b-4670-82d8-0c06d71c67f8
+		summarizeBy: none
+		sourceColumn: Ship-To Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Indicator'
+		dataType: string
+		lineageTag: 5021e85c-e56c-44c1-ad24-60b04f85d30c
+		summarizeBy: none
+		sourceColumn: Spare Part Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Del. Qty'
+		dataType: string
+		lineageTag: 4fd90c3b-9922-4971-a815-e04677e7a750
+		summarizeBy: none
+		sourceColumn: Del. Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original First Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dd3ab418-39b8-416f-92e6-6fcde823a981
+		summarizeBy: none
+		sourceColumn: Original First Date
+
+		variation Variation
+			isDefault
+			relationship: f28d5b91-93ea-4db3-8bf5-407f2b75fd13
+			defaultHierarchy: LocalDateTable_bfd00058-80f9-4022-bed5-1733737af59e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Ship-To Party'
+		dataType: string
+		lineageTag: d4632b2e-0a93-4864-a71a-099c892aac59
+		summarizeBy: none
+		sourceColumn: Ship-To Party
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carrier
+		dataType: string
+		lineageTag: ee5fb8bc-1bce-4df4-a006-42b254df30a4
+		summarizeBy: none
+		sourceColumn: Carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manifest/PRO No.'
+		dataType: string
+		lineageTag: 9b7e82f5-559a-45ee-827c-f79b738564f8
+		summarizeBy: none
+		sourceColumn: Manifest/PRO No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Door No.'
+		dataType: string
+		lineageTag: 0b7cef77-0ba0-4ab7-b1fc-ba81d4c1fc38
+		summarizeBy: none
+		sourceColumn: Door No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Remarks'
+		dataType: string
+		lineageTag: e2e57f37-6e56-4485-a8b3-db1db0817d81
+		summarizeBy: none
+		sourceColumn: SO Remarks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delv Remarks'
+		dataType: string
+		lineageTag: 708b196b-f54a-4d9d-a74f-19f1332e5e68
+		summarizeBy: none
+		sourceColumn: Delv Remarks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Overall Pick Status'
+		dataType: string
+		lineageTag: 2caa8cae-f5cd-44f6-9c91-537620cd1a5e
+		summarizeBy: none
+		sourceColumn: Overall Pick Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Notes'
+		dataType: string
+		lineageTag: a398cc26-a590-4a4c-a216-00a290f637cb
+		summarizeBy: none
+		sourceColumn: Load Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Description'
+		dataType: string
+		lineageTag: f298f8e8-08ab-4864-8feb-ed4d637acbb3
+		summarizeBy: none
+		sourceColumn: Service Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First OnTimeDate' = ```
+			
+			IF (
+			    RELATED('Measures (2)'[Use ]) = "First Date",
+			    '0125'[Original First Date],
+			    IF (
+			        RELATED('Measures (2)'[Use ]) = "Planning End",
+			        '0125'[Planning end],
+			        IF (
+			            RELATED('Measures (2)'[Use ]) = "Requested deliv.date",
+			            '0125'[Requested deliv.date],
+			            IF (
+			                RELATED('Measures (2)'[Use ]) = "Planned date CheckIn",
+			                '0125'[Planned date CheckIn],
+			                IF (
+			                    RELATED('Measures (2)'[Use ]) = "Guarantee Date",
+			                    '0125'[Guarantee Date],
+			                    '0125'[Original First Date]   // Default fallback
+			                )
+			            )
+			        )
+			    )
+			)
+			
+			```
+		formatString: General Date
+		lineageTag: 6cd676c0-bbb3-48cf-9a5e-a95ba713bf3b
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: f910e9d7-083c-422f-967d-2d65aa364e70
+			defaultHierarchy: LocalDateTable_6f729f6a-1fd2-4f22-9d7e-a57a8b50b961.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First LateDate' = [__$ Original First OnTimeDate]+RELATED('Measures (2)'[MAX])
+		formatString: General Date
+		lineageTag: 06a4645b-c291-48b3-bb7f-b47810f485c2
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: fb00bddd-2fc0-45fe-8701-0106dbbe7417
+			defaultHierarchy: LocalDateTable_2424505a-ee63-4175-a85a-0bf9164ae131.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original first EarlyDate' = [__$ Original First OnTimeDate]+RELATED('Measures (2)'[MIN])
+		formatString: General Date
+		lineageTag: fdf37e90-e13c-4c5a-9afa-f67b952ce611
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 06dc9729-15d8-4417-b6c0-5b7a73107e3d
+			defaultHierarchy: LocalDateTable_16ac6a71-abaa-472a-ad43-bb3183da852b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First Shipped Early' = IF(AND(NOT(ISBLANK([_!ShipDate])),[_!ShipDate]<[__$ Original first EarlyDate]),1)
+		formatString: 0
+		lineageTag: 600dbd5f-9ca2-4e91-a115-fd64994237f9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First ShippedLate' = IF([_!ShipDate]>[__$ Original First LateDate],1)
+		formatString: 0
+		lineageTag: 4734e2c0-787f-4b08-9458-8dc80976fdd9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!OriginalFirstNotOnTime = ```
+			
+			VAR OnTimeFlag = RELATED('Delay Reasons'[On-time?])
+			VAR ShipmentIssues =
+			    '0125'[__$ Original First Shipped Early] +
+			    [__$ Original First ShippedLate] +
+			    '0125'[__$ Original First PastDueNotShipped]
+			VAR UseFlag = RELATED('Measures (2)'[Use ])  -- same way you call MAX
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    (UseFlag = "First Date" && '0125'[First Date] > '0125'[Original First Date]), 1,
+			    OnTimeFlag = 1, 0,
+			    ShipmentIssues > 0, 1,
+			    0
+			)
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: ec403b37-4386-4081-9ea3-dd49e5d11666
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First PastDueNotShipped' = IF(NOT(LEN([Reason for rejection])>0),IF(AND(ISBLANK([_!ShipDate]),NOW()>[__$ Original First LateDate]),1))
+		formatString: 0
+		lineageTag: e61be15e-dd96-4108-9936-1b9b3f695bfd
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First OtifLine' = IF(RELATED(RfR[Valid Orders])<>"NO",IF('0125'[_!SpareParts]="Finished Goods",IF('0125'[_!ActiveFilter]=0,IF('0125'[Payer name]<>"Samples",IF('0125'[Payer name]<>"Sample",IF('0125'[Payer name]<>"Keter Canada Inc. - Import",IF('0125'[Storage Location]<>"367J",IF([_!OriginalFirstNotOnTime]>0,"NOT OTIF",IF([_!NotInFull],"NOT OTIF","OTIF")))))))))
+		lineageTag: fa64c01e-1835-4c28-a297-55db6002546e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First OtifSO' = IF(LEN('0125'[__$ Original First OtifLine])>0,IF(CALCULATE(COUNT('0125'[Sales Order]),FILTER(ALLEXCEPT('0125','0125'[Sales Order]),'0125'[__$ Original First OtifLine]="NOT OTIF"))>0,"NOT OTIF","OTIF"))
+		lineageTag: 173e4a54-babe-438e-af9a-6d39d9ab440c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First ReasonOrder' =
+			
+			VAR CurrOrder = '0125'[Sales Order]
+			RETURN
+			CALCULATE(
+			    FIRSTNONBLANK('0125'[__$ Original First Reason], 1),
+			    FILTER(
+			        '0125',
+			        '0125'[Sales Order] = CurrOrder &&
+			        NOT(ISBLANK('0125'[__$ Original First Reason])) &&
+			        '0125'[__$ Original First OtifLine] = "NOT OTIF"
+			    )
+			)
+		lineageTag: 85b28baf-d86a-4e96-a6cc-747f79e8a396
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First Variance' = IF(NOT(ISBLANK([_!ShipDate])),[_!ShipDate]-[__$ Original First OnTimeDate])
+		formatString: General Date
+		lineageTag: 8929c2ff-5665-4f9c-9cfb-806982ca8ca9
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 7bfefcb6-b1c7-4a32-9254-dbb0b4ef4a34
+			defaultHierarchy: LocalDateTable_4dff0e4d-b8c8-41c4-b764-747997e1dd91.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First LateGroup' = IF('0125'[__$ Original First Variance]=1,"One Day Late",IF('0125'[__$ Original First Variance]<=7,"One Week Late",IF('0125'[__$ Original First Variance]<=30, "Multiple Weeks Late","One Month or More Late")))
+		lineageTag: 9bda539d-50c1-4257-8b08-cd542adb0a46
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First Reason' = ```
+			
+			IF(
+			    '0125'[First Date] > '0125'[Original First Date],
+			    "Late - Date Moved",
+			    IF(
+			        LEN([Reason for rejection]) > 0,
+			        "Cut - " & RELATED(RfR[SAP Text]),
+			        IF(
+			            [__$ Original First ShippedLate] > 0,
+			            IF(
+			                LEN([Load Delay Reason]) > 0,
+			                "Late - " & RELATED('Delay Reasons'[Delay Reason]),
+			                IF(
+			                    AND('0125'[Shipping type] = 7, '0125'[__$ Original First Variance] = 1),
+			                    "Late - Parcel (1 Day)",
+			                    IF(
+			                        '0125'[Shipping type] = 7,
+			                        "Late - Parcel (> 1 Day)",
+			                        IF(
+			                            '0125'[_!NeedsCode] = "Needs Code",
+			                            "Late - Needs Code",
+			                            "Late - Other"
+			                        )
+			                    )
+			                )
+			            ),
+			            IF(
+			                [__$ Original First Shipped Early] > 0,
+			                "Early - Shipped Early",
+			                IF(
+			                    [__$ Original First PastDueNotShipped] > 0,
+			                    IF(
+			                        LEN([Load Delay Reason]) > 0,
+			                        "Late - " & RELATED('Delay Reasons'[Delay Reason]),
+			                        "Late - Past Due, Not Shipped"
+			                    )
+			                )
+			            )
+			        )
+			    )
+			)
+			
+			```
+		lineageTag: 949adfd8-df3f-440c-80b7-6c17ca80747a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First Variance 2' = IF(ISBLANK([_!ShipDate]),TODAY()-[__$ Original First OnTimeDate],[_!ShipDate]-[__$ Original First OnTimeDate])
+		dataType: double
+		formatString: 0
+		lineageTag: d48e362f-93c7-40d7-87f9-eb5bf4786f68
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column '__$ Original First OTS' = IF(RELATED(RfR[Valid Orders])<>"NO",IF('0125'[_!SpareParts]="Finished Goods",IF('0125'[_!ActiveFilter]=0,IF('0125'[Payer name]<>"Samples",IF('0125'[Payer name]<>"Sample",IF('0125'[Payer name]<>"Keter Canada Inc. - Import",IF('0125'[Storage Location]<>"367J",IF([_!OriginalFirstNotOnTime]>0,"NOT OTD","OTD"))))))))
+		lineageTag: 55ef024a-d579-421f-88b8-fff7fbd8fcef
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '__$ Original First OtsDetail' = IF(RELATED(RfR[Valid Orders])<>"NO",IF([_!OriginalFirstNotOnTime]>0,IF('0125'[__$ Original First Shipped Early]>0,"EARLY",IF(OR('0125'[__$ Original First PastDueNotShipped]>0,'0125'[__$ Original First ShippedLate]>0),"LATE")),"ON TIME"))
+		lineageTag: 2159a301-96f6-48b1-aaf9-13ee69f34713
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$ Original First YearWeek' =
+			'0125'[__$ Original First OnTimeDate].[Year]&
+			FORMAT(WEEKNUM('0125'[__$ Original First OnTimeDate]),"00")
+		lineageTag: 92451c08-a735-4c0d-b5ee-ace268eb85ce
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!ShippingType2 =
+			
+			IF(ISBLANK('0125'[_!ShippingType]),
+			    IF('0125'[_Total TL Qty]> .5,
+			        1,
+			        IF(RELATED('ECOMM FILTER'[ECOMM/ Store])="Store",
+			            6,
+			            7
+			        )
+			    ),
+			    IF(ISBLANK('0125'[Shipping type]),
+			    VAR CurrentSO = '0125'[Sales Order]
+			
+			    VAR FilteredTable =
+			        FILTER(
+			            '0125',
+			            '0125'[Sales Order] = CurrentSO &&
+			            NOT(ISBLANK('0125'[Shipping type]))
+			        )
+			    RETURN
+			        MAXX(FilteredTable, '0125'[Shipping type]),
+			        '0125'[Shipping type]
+			    )
+			)
+		lineageTag: f092e64e-7714-4089-8c0b-d1a24afea12f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Total TL Qty' =
+			
+			VAR CurrentPO = '0125'[PO Number]
+			RETURN
+			CALCULATE(
+			    SUM('0125'[_TLQty]),
+			    FILTER('0125', '0125'[PO Number] = CurrentPO)
+			)
+		lineageTag: 34174ec6-8315-46dc-9a4a-c4221d194566
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column _TLQty = IFERROR('0125'[Order Qty]/RELATED(SAP[TL Qty]),0)
+		lineageTag: 59f8b950-511b-48c7-b497-c84e7681cb24
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _!BestDate = IF(ISBLANK('0125'[_!ShipDate]),'0125'[SO Billing Date],'0125'[_!ShipDate])
+		formatString: General Date
+		lineageTag: e50e2363-21c9-4f17-890b-243fdc451751
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 6d6a7c72-c244-4036-893e-afc68491171c
+			defaultHierarchy: LocalDateTable_9d18135f-da89-41a6-b760-8463a4155081.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column _!BestDate2 = IF(ISBLANK('0125'[_!ShipDate]),MAX(Today(),'0125'[_!LateDate]),'0125'[_!ShipDate])
+		formatString: General Date
+		lineageTag: 89298fb6-e3f6-48b9-9070-8206111a84b5
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 49a8174e-f0ac-4f3a-a75c-a63bb4405931
+			defaultHierarchy: LocalDateTable_126d0bc0-8953-49f0-a1f2-fffaf402ce2c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status = IF(ISBLANK('0125'[_!ShipDate]),IF('0125'[_!LateDate]<TODAY(),'0125'[Simple Reason],"Open"),"Shipped")
+		lineageTag: 6e5bc045-ac0e-4e19-bece-e80ad086bd52
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Simple Reason' = IF('0125'[_!Reason] = "Late - Late Warehouse Failure","Late  - Warehouse",IF(CONTAINSSTRING('0125'[_!Reason],"Carrier"),"Late - Carrier",IF('0125'[_!Reason] = "Late - Past Due, Not Shipped","Overdue - Pending Code",'0125'[_!Reason])))
+		lineageTag: 761e6d30-305c-4f75-9b15-5d629e060075
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status2 = IF(ISBLANK('0125'[_!ShipDate]),IF('0125'[_!LateDate]<TODAY(),"Overdue","Open"),"Shipped")
+		lineageTag: cf2d81cd-b8c1-4715-9dea-1f72f04b7cec
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_$backorder late date' = if('0125'[Shipping type]= 7, '0125'[Planned date CheckIn],if('0125'[Shipping type]=6,'0125'[Planned date CheckIn],'0125'[_!LateDate]))
+		dataType: dateTime
+		formatString: m/d/yyyy
+		lineageTag: 9da300da-66c0-4f5c-ba73-96fe3966fc4f
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: ce48f6aa-3c9b-4327-92a3-516b9e596772
+			defaultHierarchy: LocalDateTable_ef711ba1-95ee-473c-a1a4-8feb20bcf54a.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column '_$backorder reason' = if('0125'[_!ShipDate]>'0125'[_$backorder late date],"NOT OTIF",if('0125'[Reason for rejection]<>BLANK(),"NOT OTIF","OTIF"))
+		lineageTag: 7ee60c41-53d6-437c-b67f-5c7b8b005bf0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column _$Shipmentnumber =
+			
+			IF(ISBLANK('0125'[Shipment Number]),
+			VAR CurrentSO = '0125'[Sales Order]
+			
+			VAR FilteredTable =
+			    FILTER(
+			        '0125',
+			        '0125'[Sales Order] = CurrentSO &&
+			        NOT(ISBLANK('0125'[Shipment Number]))
+			    )
+			VAR DelivNum = MAXX(FilteredTable, '0125'[Shipment Number])
+			RETURN
+			    IF(ISBLANK(DelivNum),'0125'[Sales Order],DelivNum),
+			    '0125'[Shipment Number]
+			)
+		formatString: 0
+		lineageTag: f81452f3-915e-42da-895d-447a0c571d7c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 0125 = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://keteronline.sharepoint.com/teams/KNADemandPlanning", [ApiVersion = 15]),
+				    Filtered = Table.SelectRows(Source, each [Name] = "New OTIF Data Upload-- Feb 2026 - Present.xlsx"),
+				    FileBinary = Filtered{0}[Content],
+				    Workbook = Excel.Workbook(FileBinary, null, true),
+				    YS10N_Sheet = Workbook{[Item="YS10N",Kind="Sheet"]}[Data],
+				    #"Promoted Headers1" = Table.PromoteHeaders(YS10N_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"Sales Organization", Int64.Type}, {"Plant", Int64.Type}, {"Shipping Point/Receiving Pt", type text}, {"Storage Location", type text}, {"Payer", Int64.Type}, {"Payer name", type text}, {"Reason for rejection", type text}, {"Reason for rejection description", type text}, {"Order reason", type text}, {"Order reason_1", type text}, {"PO Number", type text}, {"Sales Order", Int64.Type}, {"Delivery", Int64.Type}, {"Shipment Number", Int64.Type}, {"Shipping type", Int64.Type}, {"Material", Int64.Type}, {"Customer SKU", type text}, {"Material description MM", type text}, {"Order Qty", Int64.Type}, {"Net value", type number}, {"SO Created Date", type date}, {"Delivery Creation Date", type date}, {"First Date", type date}, {"Confirmation Date", type date}, {"Requested deliv.date", type date}, {"Guarantee Date", type date}, {"Original Delivery Date", type date}, {"SO Billing Date", type date}, {"Ship-To Party Region", type text}, {"Planning end", type date}, {"Planned date CheckIn", type date}, {"Planned time CheckIn", type datetime}, {"Trailer No.", type text}, {"Planned shipment end", type date}, {"Load Delay Reason", Int64.Type}, {"Act. Gds Mvmnt Date", type date}, {"Invoice Billing Date", type date}, {"Profit Center", Int64.Type}, {"Carrier SCAC code", type text}, {"Carrier Name", type text}, {"Carrier Code", type text}, {"Carrier Service", type text}, {"Load No.", type text}, {"Ship-To Zip", type text}, {"Spare Part Indicator", type text}, {"Del. Qty", type text}, {"Original First Date", type date}, {"Ship-To Party", type text},  {"Carrier", type text}, {"Manifest/PRO No.", type text}, {"Door No.", type text}, {"SO Remarks", type text}, {"Delv Remarks", type text}, {"Overall Pick Status", type text}, {"Load Notes", type text}, {"Service Description", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

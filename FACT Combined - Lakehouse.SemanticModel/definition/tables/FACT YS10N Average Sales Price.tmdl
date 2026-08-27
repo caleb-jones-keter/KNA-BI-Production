@@ -1,0 +1,53 @@
+table 'FACT YS10N Average Sales Price'
+	lineageTag: b2f0723d-5855-495a-9087-dd2eeee46119
+	sourceLineageTag: [dbo].[FACT YS10N Average Sales Price]
+
+	column Material
+		dataType: string
+		lineageTag: c80918be-ec53-457e-b627-3cfdf0515c8a
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average Sales Price'
+		dataType: double
+		lineageTag: f0451a59-0416-4e59-bb32-7d9bf2e9e78b
+		sourceLineageTag: Average Sales Price
+		summarizeBy: sum
+		sourceColumn: Average Sales Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Combined Qty'
+		dataType: double
+		lineageTag: 292e2e2a-15c5-4bea-9739-36905ff0d385
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Value USD'
+		dataType: double
+		lineageTag: 2b70b877-d4b2-4f96-aeef-1cb52238e8f0
+		sourceLineageTag: Net Value USD
+		summarizeBy: sum
+		sourceColumn: Net Value USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT YS10N Average Sales Price' = entity
+		mode: directLake
+		source
+			entityName: FACT YS10N Average Sales Price
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

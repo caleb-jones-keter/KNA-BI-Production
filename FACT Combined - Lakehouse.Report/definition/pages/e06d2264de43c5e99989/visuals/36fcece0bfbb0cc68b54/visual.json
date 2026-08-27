@@ -1,0 +1,157 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "36fcece0bfbb0cc68b54",
+  "position": {
+    "x": 0,
+    "y": 80,
+    "z": 0,
+    "height": 640,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Cont_Qty"
+                }
+              },
+              "queryRef": "Sum(DIM Product.Cont_Qty)",
+              "nativeQueryRef": "Cont_Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "TL Qty"
+                }
+              },
+              "queryRef": "Sum(DIM Product.TL Qty)",
+              "nativeQueryRef": "TL Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SS/PLT_Qty"
+                }
+              },
+              "queryRef": "Sum(DIM Product.SS/PLT_Qty)",
+              "nativeQueryRef": "SS/PLT_Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Carton/Bag_Qty"
+                }
+              },
+              "queryRef": "Sum(DIM Product.Carton/Bag_Qty)",
+              "nativeQueryRef": "Carton/Bag_Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.MARKET GROUP"
+                }
+              },
+              "queryRef": "DIM Product.Dim Products.MARKET GROUP",
+              "nativeQueryRef": "MARKET GROUP",
+              "displayName": "MARKET GROUP"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.SKU Group"
+                }
+              },
+              "queryRef": "DIM Product.Dim Products.SKU Group",
+              "nativeQueryRef": "SKU Group",
+              "displayName": "SKU Group"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3eb0d5187964e2a5ad3f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

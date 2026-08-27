@@ -1,0 +1,26 @@
+table Inventory_Type
+	lineageTag: bc2fc225-7886-48d6-b1d2-e1f78d32fe36
+
+	column 'Budget Inventory Type'
+		dataType: string
+		lineageTag: 0b0fc49a-b0f7-411c-b855-8e99ce861358
+		summarizeBy: none
+		sourceColumn: Budget Inventory Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Inventory_Type = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Inventory_Type.xlsx"), null, true),
+				    Inventory_Type_Table = Source{[Item="Inventory_Type",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Inventory_Type_Table,{{"Budget Inventory Type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

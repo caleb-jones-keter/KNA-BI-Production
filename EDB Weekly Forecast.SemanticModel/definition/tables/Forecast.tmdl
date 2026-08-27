@@ -1,0 +1,86 @@
+table Forecast
+	lineageTag: fa854d29-d636-4aa2-8d20-d0735e517d76
+
+	measure '_$Original Forecast per TL QTY' = ```
+			
+			SUMX(
+			    Forecast,
+			    DIVIDE(
+			        Forecast[Customer Demand (APO)],
+			        LOOKUPVALUE(
+			            'DIM Product'[TL Qty],
+			            'DIM Product'[Material], Forecast[Product.SKU Level Code]
+			        ),
+			        0
+			    )
+			)
+			
+			```
+		lineageTag: ee39beb8-b7ea-493f-93e8-3f09a5172ee7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product.SKU Level Code'
+		dataType: string
+		lineageTag: f0bd53a9-30e2-4575-8d7b-bdd0b6295a81
+		summarizeBy: none
+		sourceColumn: Product.SKU Level Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date.Date (Numeric)'
+		dataType: string
+		lineageTag: efa19cdc-2f57-4329-920b-a3a605b3f26b
+		summarizeBy: none
+		sourceColumn: Date.Date (Numeric)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mrp Area.MRP_CODE'
+		dataType: string
+		lineageTag: cd53e3f4-4993-49d3-bd25-ff273a074742
+		summarizeBy: none
+		sourceColumn: Mrp Area.MRP_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Demand (APO)'
+		dataType: double
+		lineageTag: 577315ec-1351-484f-b132-3503501071ba
+		summarizeBy: sum
+		sourceColumn: Customer Demand (APO)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Retailer Payer.Payer Code'
+		dataType: string
+		lineageTag: bcb8818c-b8a1-404a-ba0e-cf59d2e1a227
+		summarizeBy: none
+		sourceColumn: Retailer Payer.Payer Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Forecast = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Database("AZBIASTABMP", "EDB_Plus", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    Model1 = Source{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim_Product]", {"[Dim_Product].[ProductKey].[ProductKey]"}, {"Product.SKU Level Code"}},
+				            {Cube.AddAndExpandDimensionColumn, "[Dim_Date]", {"[Dim_Date].[DB2DateKey].[DB2DateKey]"}, {"Date.Date (Numeric)"}},
+				            {Cube.AddAndExpandDimensionColumn, "[Dim_MrpArea]", {"[Dim_MrpArea].[MRP_CODE].[MRP_CODE]"}, {"Mrp Area.MRP_CODE"}},
+				            {Cube.AddMeasureColumn, "Customer Demand (APO)", "[Measures].[NC_Total_Unconstrained_Forecast_Fact_Weekly_Operational_Forecast]"},
+				            {Cube.AddAndExpandDimensionColumn, "[Dim_RetailerPayer]", {"[Dim_RetailerPayer].[retailerkey].[retailerkey]"}, {"Retailer Payer.Payer Code"}}
+				        })
+				in
+				    #"Added Items"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

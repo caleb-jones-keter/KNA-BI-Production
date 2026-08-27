@@ -1,0 +1,39 @@
+table 'Dim SBU'
+	lineageTag: 837ca98b-4bbd-4a0e-8658-af1b34226aba
+
+	column SBU
+		dataType: string
+		lineageTag: 870a9f33-d73c-4834-ac88-9a6050d1a52e
+		summarizeBy: none
+		sourceColumn: SBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SBU #'
+		dataType: string
+		lineageTag: d0176c2b-a124-485e-a9bc-8ef5c3f3be7f
+		summarizeBy: none
+		sourceColumn: SBU #
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim SBU' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim SBU]", {"[Dim SBU].[SBU].[SBU]", "[Dim SBU].[SBU #].[SBU #]"}, {"Dim SBU.SBU", "Dim SBU.SBU #"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim SBU.SBU", "SBU"}, {"Dim SBU.SBU #", "SBU #"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

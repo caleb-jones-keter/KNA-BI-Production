@@ -1,0 +1,270 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "artifactId": "e8735c39-ab13-9ec2-460e-5e90c63eb910",
+          "rootFolder": "Tables"
+        }
+      }
+    },
+    "destination": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "artifactId": "e8735c39-ab13-9ec2-460e-5e90c63eb910",
+          "rootFolder": "Tables"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00",
+      "retry": 0
+    }
+  },
+  "activities": [
+    {
+      "id": "b1f00645-7f91-4353-8e67-8d0b3d83a313",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "schema": "dbo",
+            "table": "New Spare Parts List"
+          },
+          "partitionSettings": {
+            "partitionOption": "None"
+          }
+        },
+        "destination": {
+          "partitionOption": "None",
+          "writeBehavior": "Overwrite",
+          "datasetSettings": {
+            "schema": "dbo",
+            "table": "Last week spare part list"
+          },
+          "applyVOrder": false
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator",
+          "mappings": [
+            {
+              "source": {
+                "name": "Spare Part Name",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Spare Part Name",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Qty Spare Parts per ptoduct",
+                "type": "Decimal",
+                "physicalType": "decimal",
+                "scale": 6,
+                "precision": 34
+              },
+              "destination": {
+                "name": "Qty Spare Parts per ptoduct",
+                "physicalType": "decimal",
+                "scale": 6,
+                "precision": 34
+              }
+            },
+            {
+              "source": {
+                "name": "set/apart",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "set/apart",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Spare Part Previous Version",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Spare Part Previous Version",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Sign",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Sign",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Spare Part Size",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Spare Part Size",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Product Color Code",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Product Color Code",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Product Color Desc",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Product Color Desc",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "ZZIMLCODE_SKU",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "ZZIMLCODE_SKU",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "SP_IML",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "SP_IML",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Unique_key",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Unique_key",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "KUNNR",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "KUNNR",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "CountryKey_SKU",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "CountryKey_SKU",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Country",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Country",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "GMD24",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "GMD24",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "STD.PROD.SITE _SOURCE_ GMD 5 desc",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "STD.PROD.SITE _SOURCE_ GMD 5 desc",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Product SKU",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Product SKU",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Spare Part SKU",
+                "type": "String",
+                "physicalType": "string"
+              },
+              "destination": {
+                "name": "Spare Part SKU",
+                "physicalType": "string"
+              }
+            }
+          ]
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}

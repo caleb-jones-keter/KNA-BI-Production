@@ -1,0 +1,35 @@
+table 'SKU LIST CROSSDOCK'
+	lineageTag: fb17789d-b202-461d-93b1-a2c44fe3c4f5
+
+	column SAP
+		dataType: int64
+		formatString: 0
+		lineageTag: ad63a87d-b73b-40e1-b91c-46c4726943e3
+		summarizeBy: none
+		sourceColumn: SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 8f315a4a-a745-4edd-8fe6-90337648a7d2
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SKU LIST CROSSDOCK' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/CrossDock%20SKUS.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Crossdock SKUS",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SAP", Int64.Type}, {"Description", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

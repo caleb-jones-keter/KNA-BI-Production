@@ -1,0 +1,144 @@
+table 'Dates Table'
+	lineageTag: b60c721d-11c4-4473-b8b7-e8c5bc2ac3a5
+
+	column CDayDesc
+		dataType: string
+		lineageTag: 7e3ae7b2-0e18-41b0-958d-9d8d4da63a5b
+		summarizeBy: none
+		sourceColumn: CDayDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: string
+		lineageTag: 27a25fa7-ff7b-4aea-a684-c74962f54983
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishMonth
+		dataType: string
+		lineageTag: 4a70d1c5-5268-4ae0-8d0d-310949b829bf
+		summarizeBy: none
+		sourceColumn: EnglishMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f0e1becb-3c28-415b-8f90-9c38331fe7cb
+		summarizeBy: none
+		sourceColumn: Full Date
+
+		variation Variation
+			isDefault
+			relationship: 7c805afa-d6fd-45de-b7fe-dd665dab7677
+			defaultHierarchy: LocalDateTable_d7d2aa95-178b-42d1-adc2-566492b3fbd8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month In Year'
+		dataType: string
+		lineageTag: 6831b46d-a782-4249-aaac-72e88ab18bbe
+		summarizeBy: none
+		sourceColumn: Month In Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month In Year/ Year'
+		dataType: string
+		lineageTag: c3db18c6-f0de-4fd7-9999-22e52c64615c
+		summarizeBy: none
+		sourceColumn: Month In Year/ Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthDateKey
+		dataType: string
+		lineageTag: 2ec91a2c-0be0-4e6d-9ae5-147f809ea083
+		summarizeBy: none
+		sourceColumn: MonthDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column montnum
+		dataType: string
+		lineageTag: ab19b014-87cf-4e26-82ff-d09797e3d248
+		summarizeBy: none
+		sourceColumn: montnum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Combinations'
+		dataType: string
+		lineageTag: ef77ec15-01cb-4e51-beac-bb58e7920d57
+		summarizeBy: none
+		sourceColumn: Period Combinations
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 480cdffe-40e9-4e31-aac4-99eaa046d67d
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterInYear
+		dataType: string
+		lineageTag: 89ce8769-3f26-4a8f-bf26-4297f64ed45a
+		summarizeBy: none
+		sourceColumn: QuarterInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekInYear
+		dataType: string
+		lineageTag: b34cb635-b2a7-4bf9-8779-e14f3784d096
+		summarizeBy: none
+		sourceColumn: WeekInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekly Order'
+		dataType: string
+		lineageTag: 9ac1f20e-e4fd-41dc-944e-ea9f778081f8
+		summarizeBy: none
+		sourceColumn: Weekly Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 10eb7059-d7aa-42e0-85db-db88241f3a3a
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dates Table' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dates Table]", {"[Dates Table].[CDayDesc].[CDayDesc]", "[Dates Table].[DateKey].[DateKey]", "[Dates Table].[EnglishMonth].[EnglishMonth]", "[Dates Table].[Full Date].[Full Date]", "[Dates Table].[Month In Year].[Month In Year]", "[Dates Table].[Month In Year/ Year].[Month In Year/ Year]", "[Dates Table].[MonthDateKey].[MonthDateKey]", "[Dates Table].[montnum].[montnum]", "[Dates Table].[Period Combinations].[Period Combinations]", "[Dates Table].[Quarter].[Quarter]", "[Dates Table].[QuarterInYear].[QuarterInYear]", "[Dates Table].[WeekInYear].[WeekInYear]", "[Dates Table].[Weekly Order].[Weekly Order]", "[Dates Table].[Year].[Year]"}, {"Dates Table.CDayDesc", "Dates Table.DateKey", "Dates Table.EnglishMonth", "Dates Table.Full Date", "Dates Table.Month In Year", "Dates Table.Month In Year/ Year", "Dates Table.MonthDateKey", "Dates Table.montnum", "Dates Table.Period Combinations", "Dates Table.Quarter", "Dates Table.QuarterInYear", "Dates Table.WeekInYear", "Dates Table.Weekly Order", "Dates Table.Year"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dates Table.CDayDesc", "CDayDesc"}, {"Dates Table.DateKey", "DateKey"}, {"Dates Table.EnglishMonth", "EnglishMonth"}, {"Dates Table.Full Date", "Full Date"}, {"Dates Table.Month In Year", "Month In Year"}, {"Dates Table.Month In Year/ Year", "Month In Year/ Year"}, {"Dates Table.MonthDateKey", "MonthDateKey"}, {"Dates Table.montnum", "montnum"}, {"Dates Table.Period Combinations", "Period Combinations"}, {"Dates Table.Quarter", "Quarter"}, {"Dates Table.QuarterInYear", "QuarterInYear"}, {"Dates Table.WeekInYear", "WeekInYear"}, {"Dates Table.Weekly Order", "Weekly Order"}, {"Dates Table.Year", "Year"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Full Date", type datetime}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"DateKey"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each [DateKey] <> null and [DateKey] <> "")
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

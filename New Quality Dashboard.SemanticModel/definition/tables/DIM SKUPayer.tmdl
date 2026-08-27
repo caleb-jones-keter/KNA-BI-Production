@@ -1,0 +1,371 @@
+table 'DIM SKUPayer'
+	lineageTag: 642fea71-a80d-4a77-b0c0-a9b85eee4db1
+
+	measure 'TL % and YS10N Defect % correlation for ITEM GROUP' = ```
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Products'[ITEM GROUP])
+			VAR __COUNT =
+			    COUNTROWS(__CORRELATION_TABLE)
+			VAR __SUM_X =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        VALUE(COALESCE([TL %], 0))
+			    )
+			VAR __SUM_Y =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        VALUE(COALESCE([YS10N COPQ %], 0))
+			    )
+			VAR __SUM_XY =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        VALUE(COALESCE([TL %], 0)) * VALUE(COALESCE([YS10N COPQ %], 0))
+			    )
+			VAR __SUM_X2 =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        POWER(VALUE(COALESCE([TL %], 0)), 2)
+			    )
+			VAR __SUM_Y2 =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        POWER(VALUE(COALESCE([YS10N COPQ %], 0)), 2)
+			    )
+			VAR __DENOM =
+			    SQRT(
+			        (__COUNT * __SUM_X2 - __SUM_X ^ 2) *
+			        (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+			    )
+			RETURN
+			IF(
+			    __DENOM = 0 || ISBLANK(__DENOM),
+			    BLANK(),
+			    DIVIDE(
+			        __COUNT * __SUM_XY - (__SUM_X * __SUM_Y),
+			        __DENOM
+			    )
+			)
+			
+			
+			```
+		lineageTag: 9a783837-c4b0-4be9-97c0-0eeab1d96858
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TL % and YS10N Defect % correlation for ITEM GROUP 2' =
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Products'[ITEM GROUP])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [YS10N COPQ %])
+				)
+			VAR __SUM_X = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %]))
+			VAR __SUM_Y = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([YS10N COPQ %]))
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [YS10N COPQ %] * 1.)
+				)
+			VAR __SUM_X2 = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %] ^ 2))
+			VAR __SUM_Y2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([YS10N COPQ %] ^ 2)
+				)
+			RETURN
+				DIVIDE(
+					__COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+					SQRT(
+						(__COUNT * __SUM_X2 - __SUM_X ^ 2)
+							* (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+					)
+				)
+		lineageTag: fcbe111b-8846-427e-8abb-b4dc320d6661
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TL % and YS10N Defect % correlation for Customer Group' = ```
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Customer Group'[New Customer Group])
+			VAR __COUNT =
+			    COUNTROWS(__CORRELATION_TABLE)
+			VAR __SUM_X =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        VALUE(COALESCE([TL %], 0))
+			    )
+			VAR __SUM_Y =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        VALUE(COALESCE([YS10N COPQ %], 0))
+			    )
+			VAR __SUM_XY =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        VALUE(COALESCE([TL %], 0)) * VALUE(COALESCE([YS10N COPQ %], 0))
+			    )
+			VAR __SUM_X2 =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        POWER(VALUE(COALESCE([TL %], 0)), 2)
+			    )
+			VAR __SUM_Y2 =
+			    SUMX(
+			        KEEPFILTERS(__CORRELATION_TABLE),
+			        POWER(VALUE(COALESCE([YS10N COPQ %], 0)), 2)
+			    )
+			VAR __DENOM =
+			    SQRT(
+			        (__COUNT * __SUM_X2 - __SUM_X ^ 2) *
+			        (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+			    )
+			RETURN
+			IF(
+			    __DENOM = 0 || ISBLANK(__DENOM),
+			    BLANK(),
+			    DIVIDE(
+			        __COUNT * __SUM_XY - (__SUM_X * __SUM_Y),
+			        __DENOM
+			    )
+			)
+			
+			
+			```
+		lineageTag: 40bd0299-a3f9-46e6-b8dc-b5fdd72f2df8
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TL % and YS10N Defect % correlation for New Customer Group' =
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Customer Group'[New Customer Group])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [YS10N COPQ %])
+				)
+			VAR __SUM_X = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %]))
+			VAR __SUM_Y = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([YS10N COPQ %]))
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [YS10N COPQ %] * 1.)
+				)
+			VAR __SUM_X2 = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %] ^ 2))
+			VAR __SUM_Y2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([YS10N COPQ %] ^ 2)
+				)
+			RETURN
+				DIVIDE(
+					__COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+					SQRT(
+						(__COUNT * __SUM_X2 - __SUM_X ^ 2)
+							* (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+					)
+				)
+		lineageTag: 626ba450-dbc0-4218-afc5-4dd124100426
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TL % and YS10N Defect % correlation for New Customer Group 2' =
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Customer Group'[New Customer Group])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [YS10N COPQ %])
+				)
+			VAR __SUM_X = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %]))
+			VAR __SUM_Y = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([YS10N COPQ %]))
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [YS10N COPQ %] * 1.)
+				)
+			VAR __SUM_X2 = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %] ^ 2))
+			VAR __SUM_Y2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([YS10N COPQ %] ^ 2)
+				)
+			RETURN
+				DIVIDE(
+					__COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+					SQRT(
+						(__COUNT * __SUM_X2 - __SUM_X ^ 2)
+							* (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+					)
+				)
+		lineageTag: 7c3e4e7e-138a-4575-9202-642092d326f4
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect % and TL % correlation for New Customer Group' =
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Customer Group'[New Customer Group])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([RTV %] * [TL %])
+				)
+			VAR __SUM_X = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([RTV %]))
+			VAR __SUM_Y = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %]))
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([RTV %] * [TL %] * 1.)
+				)
+			VAR __SUM_X2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([RTV %] ^ 2)
+				)
+			VAR __SUM_Y2 = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %] ^ 2))
+			RETURN
+			    ABS(
+			        DIVIDE(
+			            __COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+			            SQRT(
+			                (__COUNT * __SUM_X2 - __SUM_X ^ 2)
+			                    * (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+			            )
+			        )
+			    )
+		lineageTag: ffa7ddbe-8690-4ca6-8c4c-028165c9b079
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SKUPayer
+		dataType: string
+		lineageTag: 98f71739-fa0b-406a-8820-93fae00f8eb7
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM SKUPayer' = m
+		mode: import
+		source = ```
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Sorted Rows" = Table.Sort(Source,{{"Name", Order.Ascending}}),
+				    OTIF = #"Sorted Rows"{[Name="OTIF"]}[Data],
+				    Model1 = OTIF{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Fact Service Level]", {"[Fact Service Level].[ActGdsMvmntDate].[ActGdsMvmntDate]", "[Fact Service Level].[ConfiramtionDate].[ConfiramtionDate]", "[Fact Service Level].[CustomerGroupKey].[CustomerGroupKey]", "[Fact Service Level].[DateDailyKey].[DateDailyKey]", "[Fact Service Level].[DELIVERY].[DELIVERY]", "[Fact Service Level].[DeliveryCreationDate].[DeliveryCreationDate]", "[Fact Service Level].[FIRST_DAY].[FIRST_DAY]", "[Fact Service Level].[GOOD_IS_Key].[GOOD_IS_Key]", "[Fact Service Level].[GUARANT].[GUARANT]", "[Fact Service Level].[IncotermKey].[IncotermKey]", "[Fact Service Level].[InvoiceBillingDate].[InvoiceBillingDate]", "[Fact Service Level].[LastShipDate (NA)].[LastShipDate (NA)]", "[Fact Service Level].[LineFailureReason].[LineFailureReason]", "[Fact Service Level].[LineInFullStatus].[LineInFullStatus]", "[Fact Service Level].[LoadDelayReason].[LoadDelayReason]", "[Fact Service Level].[On Time date].[On Time date]", "[Fact Service Level].[Order Number].[Order Number]", "[Fact Service Level].[Order Type].[Order Type]", "[Fact Service Level].[Order with Line Number].[Order with Line Number]", "[Fact Service Level].[OrderReason].[OrderReason]", "[Fact Service Level].[OrderReasonDesc].[OrderReasonDesc]", "[Fact Service Level].[PAYER].[PAYER]", "[Fact Service Level].[Plant DC].[Plant DC]", "[Fact Service Level].[PO_Number].[PO_Number]", "[Fact Service Level].[ProductKey].[ProductKey]", "[Fact Service Level].[PSTYV].[PSTYV]", "[Fact Service Level].[REQUEST].[REQUEST]", "[Fact Service Level].[RetailerKey].[RetailerKey]", "[Fact Service Level].[RetailGroupKey].[RetailGroupKey]", "[Fact Service Level].[SalesOrgKey].[SalesOrgKey]", "[Fact Service Level].[SegmentKey].[SegmentKey]", "[Fact Service Level].[ship_to].[ship_to]", "[Fact Service Level].[ShipmentNumber].[ShipmentNumber]", "[Fact Service Level].[ShippingType].[ShippingType]", "[Fact Service Level].[ShipPoint_KEY].[ShipPoint_KEY]", "[Fact Service Level].[ShipToRegion].[ShipToRegion]", "[Fact Service Level].[SO_BillingDate].[SO_BillingDate]", "[Fact Service Level].[SO_CreatedDate].[SO_CreatedDate]", "[Fact Service Level].[SOLDTO].[SOLDTO]", "[Fact Service Level].[TrailerNo].[TrailerNo]", "[Fact Service Level].[ValidLine].[ValidLine]", "[Fact Service Level].[VSTEL].[VSTEL]"}, {"Fact Service Level.ActGdsMvmntDate", "Fact Service Level.ConfiramtionDate", "Fact Service Level.CustomerGroupKey", "Fact Service Level.DateDailyKey", "Fact Service Level.DELIVERY", "Fact Service Level.DeliveryCreationDate", "Fact Service Level.FIRST_DAY", "Fact Service Level.GOOD_IS_Key", "Fact Service Level.GUARANT", "Fact Service Level.IncotermKey", "Fact Service Level.InvoiceBillingDate", "Fact Service Level.LastShipDate (NA)", "Fact Service Level.LineFailureReason", "Fact Service Level.LineInFullStatus", "Fact Service Level.LoadDelayReason", "Fact Service Level.On Time date", "Fact Service Level.Order Number", "Fact Service Level.Order Type", "Fact Service Level.Order with Line Number", "Fact Service Level.OrderReason", "Fact Service Level.OrderReasonDesc", "Fact Service Level.PAYER", "Fact Service Level.Plant DC", "Fact Service Level.PO_Number", "Fact Service Level.ProductKey", "Fact Service Level.PSTYV", "Fact Service Level.REQUEST", "Fact Service Level.RetailerKey", "Fact Service Level.RetailGroupKey", "Fact Service Level.SalesOrgKey", "Fact Service Level.SegmentKey", "Fact Service Level.ship_to", "Fact Service Level.ShipmentNumber", "Fact Service Level.ShippingType", "Fact Service Level.ShipPoint_KEY", "Fact Service Level.ShipToRegion", "Fact Service Level.SO_BillingDate", "Fact Service Level.SO_CreatedDate", "Fact Service Level.SOLDTO", "Fact Service Level.TrailerNo", "Fact Service Level.ValidLine", "Fact Service Level.VSTEL"}},
+				            {Cube.AddMeasureColumn, "Gross_Sales (SL)", "[Measures].[Gross_Sales (SL)]"},
+				            {Cube.AddMeasureColumn, "Order QTY", "[Measures].[Order QTY]"}
+				        }),
+				    #"Filtered Rows2" = Table.SelectRows(#"Added Items", 
+				        each Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[68]" 
+				        meta [DisplayName = "68"] 
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[70]" 
+				        meta [DisplayName = "70"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[71]" 
+				        meta [DisplayName = "71"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[72]" 
+				        meta [DisplayName = "72"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[136]" 
+				        meta [DisplayName = "136"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[145]" 
+				        meta [DisplayName = "145"]
+				        or 
+				        Cube.AttributeMemberId([Fact Service Level.SalesOrgKey]) = "[Fact Service Level].[SalesOrgKey].&[208]" 
+				        meta [DisplayName = "208"]
+				        ),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows2", each [Order QTY] <> 0),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows1",{{"Fact Service Level.ActGdsMvmntDate", "FSL_ActGdsMvmntDate"}, {"Fact Service Level.ConfiramtionDate", "FSL_ConfiramtionDate"}, {"Fact Service Level.DELIVERY", "FSL_DELIVERY"}, {"Fact Service Level.DeliveryCreationDate", "FSL_DeliveryCreationDate"}, {"Fact Service Level.FIRST_DAY", "FSL_FIRST_DAY"}, {"Fact Service Level.GUARANT", "FSL_GUARANT"}, {"Fact Service Level.InvoiceBillingDate", "FSL_InvoiceBillingDate"}, {"Fact Service Level.LoadDelayReason", "FSL_LoadDelayReason"}, {"Fact Service Level.Order Number", "FSL_Order Number"}, {"Fact Service Level.OrderReason", "FSL_OrderReason"}, {"Fact Service Level.OrderReasonDesc", "FSL_OrderReasonDesc"}, {"Fact Service Level.PAYER", "FSL_PAYER"}, {"Fact Service Level.Plant DC","FSL_Plant DC"}, {"Fact Service Level.PO_Number", "FSL_PO_Number"}, {"Fact Service Level.ProductKey", "FSL_ProductKey"}, {"Fact Service Level.PSTYV", "FSL_PSTYV"}, {"Fact Service Level.REQUEST", "FSL_REQUEST"}, {"Fact Service Level.RetailGroupKey", "FSL_RetailGroupKey"}, {"Fact Service Level.SalesOrgKey", "FSL_SalesOrgKey"}, {"Fact Service Level.ShipmentNumber", "FSL_ShipmentNumber"}, {"Fact Service Level.ShippingType", "FSL_ShippingType"}, {"Fact Service Level.ShipPoint_KEY", "FSL_ShipPoint_KEY"}, {"Fact Service Level.ShipToRegion", "FSL_ShipToRegion"}, {"Fact Service Level.SO_BillingDate", "FSL_SO_BillingDate"}, {"Fact Service Level.SO_CreatedDate", "FSL_SO_CreatedDate"}, {"Fact Service Level.SOLDTO", "FSL_SOLDTO"}, {"Fact Service Level.TrailerNo", "FSL_TrailerNo"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", 
+				        each Cube.AttributeMemberId([Fact Service Level.Order Type]) = "[Fact Service Level].[Order Type].&[YDOR]" 
+				        meta [DisplayName = "YDOR"]
+				        or
+				        Cube.AttributeMemberId([Fact Service Level.Order Type]) = "[Fact Service Level].[Order Type].&[FD]" 
+				        meta [DisplayName = "FD"]
+				        or
+				        Cube.AttributeMemberId([Fact Service Level.Order Type]) = "[Fact Service Level].[Order Type].&[KB]" 
+				        meta [DisplayName = "KB"]
+				        or
+				        Cube.AttributeMemberId([Fact Service Level.Order Type]) = "[Fact Service Level].[Order Type].&[KE]" 
+				        meta [DisplayName = "KE"]
+				        ),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"FSL_FIRST_DAY", type date}, {"FSL_GUARANT", type date}, {"FSL_InvoiceBillingDate", type date}, {"FSL_SO_BillingDate", type date}, {"FSL_ActGdsMvmntDate", type date}, {"FSL_ConfiramtionDate", type date}, {"FSL_DeliveryCreationDate", type date}, {"FSL_SO_CreatedDate", type date}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type", {{"FSL_ActGdsMvmntDate", null}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Replaced Errors",{{"FSL_ActGdsMvmntDate", "Act. Gds Mvmnt Date"}, {"FSL_ConfiramtionDate", "Confirmation Date"}, {"FSL_DELIVERY", "Delivery"}, {"FSL_DeliveryCreationDate", "Delivery Creation Date"}, {"FSL_FIRST_DAY", "First Date"}, {"FSL_GUARANT", "Guarantee Date"}, {"FSL_InvoiceBillingDate", "Invoice Billing Date"}, {"FSL_Order Number", "Sales Order"}, {"FSL_OrderReason", "Order reason"}, {"FSL_OrderReasonDesc", "Order reason_1"}, {"FSL_PO_Number", "PO Number"}, {"FSL_PSTYV", "FSL_PSTYV"}, {"FSL_REQUEST", "Requested deliv.date"}, {"FSL_RetailGroupKey", "Payer name"}, {"FSL_Plant DC","Plant"}, {"FSL_ShipmentNumber", "Shipment Number"}, {"FSL_ShippingType", "Shipping type"}, {"FSL_ShipToRegion", "Ship-To Party Region"}, {"FSL_SO_BillingDate", "SO Billing Date"}, {"FSL_SO_CreatedDate", "SO Created Date"}, {"FSL_PAYER", "Payer"}, {"FSL_ProductKey", "Material"}, {"FSL_SalesOrgKey", "FSL_SalesOrgKey"}, {"FSL_ShipPoint_KEY", "Shipping Point/Receiving Pt"}, {"Gross_Sales (SL)", "Net value"}, {"Order QTY", "Order Qty"}, {"FSL_TrailerNo", "Trailer No."}, {"Fact Service Level.VSTEL", "Storage Location"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns1", "YS10N Source", each "Semantic Model"),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"Confirmation Date", "Fact Service Level.CustomerGroupKey", "Fact Service Level.DateDailyKey", "Delivery Creation Date", "Fact Service Level.GOOD_IS_Key", "Guarantee Date", "Fact Service Level.IncotermKey", "FSL_LoadDelayReason", "Fact Service Level.Order with Line Number", "Order reason", "Order reason_1", "Requested deliv.date", "Fact Service Level.SegmentKey", "Ship-To Party Region", "SO Billing Date", "SO Created Date", "Trailer No."}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Columns", "Reason for rejection", each if [Fact Service Level.LineInFullStatus] = "SHORT" then [Fact Service Level.LineFailureReason] else null),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"YS10N Source", type text}, {"Reason for rejection", type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "SKUPayer", each [Material] & "|" & [Payer]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Status", each if ([Invoice Billing Date] <> null or [Act. Gds Mvmnt Date] <> null) then
+				    if [Reason for rejection] = null then "Shipped" else null
+				else
+				    if [Reason for rejection] = null then "Open" else null),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Added Custom2",{"Act. Gds Mvmnt Date", "Delivery", "First Date", "Invoice Billing Date", "Fact Service Level.LastShipDate (NA)", "Fact Service Level.LineFailureReason", "Fact Service Level.LineInFullStatus", "Fact Service Level.On Time date", "Sales Order", "Fact Service Level.Order Type", "Payer", "Plant", "PO Number", "Material", "FSL_PSTYV", "Fact Service Level.RetailerKey", "Payer name", "FSL_SalesOrgKey", "Fact Service Level.ship_to", "Shipment Number", "Shipping type", "Shipping Point/Receiving Pt", "FSL_SOLDTO", "Fact Service Level.ValidLine", "Storage Location", "Net value", "Order Qty", "YS10N Source", "Reason for rejection", "Status"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns1"),
+				    #"Appended Query" = Table.Combine({#"Removed Duplicates", #"Calc SKUPayer Rejections"}),
+				    #"Removed Duplicates1" = Table.Distinct(#"Appended Query")
+				in
+				    #"Removed Duplicates1"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,558 @@
+-- Fabric notebook source
+
+-- METADATA ********************
+
+-- META {
+-- META   "kernel_info": {
+-- META     "name": "synapse_pyspark"
+-- META   },
+-- META   "dependencies": {
+-- META     "lakehouse": {
+-- META       "default_lakehouse": "624ea251-e87f-45d7-8358-a55b3fa46385",
+-- META       "default_lakehouse_name": "NA_Supply_Chain",
+-- META       "default_lakehouse_workspace_id": "8e2b746d-3224-4a82-8467-a2800eef337e",
+-- META       "known_lakehouses": [
+-- META         {
+-- META           "id": "624ea251-e87f-45d7-8358-a55b3fa46385"
+-- META         }
+-- META       ]
+-- META     }
+-- META   }
+-- META }
+
+-- CELL ********************
+
+-- MAGIC %%sql
+-- MAGIC -- Change Log
+-- MAGIC -- CJ - 07-08-2026.2: avg delivery time
+-- MAGIC -- CJ - 07-08-2026.1: update N/A to NULL
+-- MAGIC -- CJ - 06-23-2026.1: add remaining spreetail nodes
+-- MAGIC -- CJ - 06-15-2026.1: backfill ADS with average forecast
+-- MAGIC -- CJ - 06-12-2026.2: per Tom, double DOS for SpreeTail by splitting forecast evenly between 2 nodes (later we will split by region); filter to only Keter website
+-- MAGIC -- CJ - 06-12-2026.1: refine daily storage cost logic (cleaned up math and more readable CTEs)
+-- MAGIC -- CJ - 06-11-2026.2: add daily storage cost per unit (based on half a container DOS)
+-- MAGIC -- CJ - 06-11-2026.1: add daily storage rates
+-- MAGIC -- CJ - 05-11-2026.1: updated how we're pulling origins
+-- MAGIC -- CJ - 05-07-2026.1: separate pallet_cost, COGS, and picking_and_processing from net fulfillment cost
+-- MAGIC -- CJ - 04-28-2026.1: add backup for average sales price (all sales * 1.1)
+-- MAGIC -- CJ - 04-27-2026.2: add revenue share for SpreeTail, backfill avg sales price with max model number sales price
+-- MAGIC -- CJ - 04-27-2026.1: Add LTL / Parcel logic, include carton weight
+-- MAGIC -- CJ - 04-24-2026.2: removed unnecessary columns
+-- MAGIC -- CJ - 04-24-2026.1: Add model, min_model_cont_qty, ss_plt_qty, stacked_cont_tl, pallet_present, max_model_cogs, act_cogs, pallet_cost
+
+-- METADATA ********************
+
+-- META {
+-- META   "language": "sparksql",
+-- META   "language_group": "synapse_pyspark",
+-- META   "frozen": true,
+-- META   "editable": false
+-- META }
+
+-- CELL ********************
+
+-- MAGIC %%sql
+-- MAGIC CREATE OR REPLACE TABLE fact_spreetail_dtc_rates
+-- MAGIC USING DELTA
+-- MAGIC AS
+-- MAGIC 
+-- MAGIC WITH 
+-- MAGIC params AS (
+-- MAGIC   SELECT
+-- MAGIC     0.5  AS ooz_delivery, --out of zone delivery (> 300 miles outside of zone)
+-- MAGIC     20.0  AS ca_compliance, --any destination or origin zip code in california
+-- MAGIC     7.5 AS past_zone_3, --each additional zone past zone 3
+-- MAGIC 
+-- MAGIC     --when SKU has avg price and dims
+-- MAGIC     26.80127157 AS sales_dims_cost_intercept,
+-- MAGIC     0.140988446 AS avg_price_coefficient,
+-- MAGIC     2.156462014 AS carton_volume_ft3_coefficient,
+-- MAGIC 
+-- MAGIC     --when SKU has dims only (no average price)
+-- MAGIC     69.83406096 AS dims_cost_intercept,
+-- MAGIC     5.221558328 AS carton_volume_ft3_coefficient_2,
+-- MAGIC 
+-- MAGIC     -- SpreeTail Revenue Share
+-- MAGIC     0.0625 AS rev_share_rate -- CJ - 04-27-2026.2
+-- MAGIC 
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC origins AS (
+-- MAGIC     -- CJ - 05-11-2026.1
+-- MAGIC     SELECT *
+-- MAGIC     FROM `DIM DTC Ship Point Key`
+-- MAGIC     WHERE shipping_point_key in (
+-- MAGIC         '367D - 06', '367B - 06',
+-- MAGIC         '367A - 06', '367O - 06', '367I - 06' -- CJ - 06-23-2026.1
+-- MAGIC     )
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC zips AS (
+-- MAGIC     SELECT 
+-- MAGIC         CAST(`Postal Code Clean` AS STRING) AS dest_zip_clean,
+-- MAGIC         CAST(POSTAL_CODE AS STRING)         AS destination_zip,
+-- MAGIC         REGION                              AS region,
+-- MAGIC         `Alt Region`                        AS alt_region, -- CJ - 07-08-2026.2
+-- MAGIC         `City List`                         AS city_list,
+-- MAGIC         `Distance from SpreeTail Vegas`     AS dist_vegas,
+-- MAGIC         `Distance from SpreeTail Nanticoke` AS dist_nanticoke,
+-- MAGIC         -- CJ - 06-23-2026.1
+-- MAGIC         `Distance from SpreeTail Tacoma`    AS dist_tacoma,
+-- MAGIC         `Distance from SpreeTail Greenwood` AS dist_greenwood,
+-- MAGIC         `Distance from SpreeTail Ellabell`  AS dist_ellabell
+-- MAGIC 
+-- MAGIC     FROM `DIM USA CA Zips`
+-- MAGIC     WHERE `Postal Code Country` = 'USA'
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC sku_base AS (
+-- MAGIC     SELECT
+-- MAGIC         CAST(P.Material AS STRING)                                          AS material,
+-- MAGIC         P.`Specs.Carton - Volume`                                           AS carton_volume_ft3,  
+-- MAGIC         P.`Specs.Carton - Length`                                           AS carton_len,  
+-- MAGIC         P.`Specs.Carton - Width`                                            AS carton_width,  
+-- MAGIC         P.`Specs.Carton - Height`                                           AS carton_height,
+-- MAGIC         P.`Specs.Carton - Weight`                                           AS carton_weight, -- CJ - 04-27-2026.1
+-- MAGIC         P.`Cont_Qty`                                                        AS cont_qty,  
+-- MAGIC         P.`TL Qty`                                                          AS tl_qty,
+-- MAGIC         P.LTL_Parcel                                                        AS ltl_parcel, -- CJ - 04-27-2026.1
+-- MAGIC         -- CJ - 04-27-2026.2; -- CJ - 04-28-2026.1
+-- MAGIC         coalesce(S.avg_sales_price_dtc, max(S.avg_sales_price_dtc) over X, S1.avg_sales_price_dtc ) AS avg_sales_price_dtc,
+-- MAGIC 
+-- MAGIC         Z.COGS,
+-- MAGIC 
+-- MAGIC         -- CJ - 04-24-2026.1
+-- MAGIC         P.`Model`                                       AS model,
+-- MAGIC         min(P.`Cont_Qty`) over X                        AS min_model_cont_qty,   
+-- MAGIC         P.`SS/PLT_Qty`                                  AS ss_plt_qty,           
+-- MAGIC         P.`Stacked_Cont/TL`                             AS stacked_cont_tl,
+-- MAGIC         -- CJ - 04-27-2026.1
+-- MAGIC         IF(upper(`Stacked_Cont/TL`) like ('%P%'), 1, 0) AS pallet_present,
+-- MAGIC 
+-- MAGIC         max(Z.COGS) over X         AS max_model_cogs
+-- MAGIC 
+-- MAGIC     FROM `DIM Product` P
+-- MAGIC 
+-- MAGIC     LEFT JOIN (
+-- MAGIC         SELECT
+-- MAGIC             Material,
+-- MAGIC             SUM(`Net Value USD`) / NULLIF(-SUM(`Combined Qty`), 0) AS avg_sales_price_dtc
+-- MAGIC         FROM `FACT YS10N Past`
+-- MAGIC         WHERE
+-- MAGIC             `Combined Date` >= DATEADD(YEAR, -1, CURRENT_DATE())
+-- MAGIC             AND `Payer` = '172315'
+-- MAGIC         GROUP BY Material
+-- MAGIC     ) S ON P.Material = S.Material
+-- MAGIC 
+-- MAGIC     -- CJ - 04-28-2026.1
+-- MAGIC     LEFT JOIN (
+-- MAGIC         SELECT
+-- MAGIC             Material,
+-- MAGIC             (SUM(`Net Value USD`) / NULLIF(-SUM(`Combined Qty`), 0) ) * 1.1 AS avg_sales_price_dtc
+-- MAGIC         FROM `FACT YS10N Past`
+-- MAGIC         WHERE
+-- MAGIC             `Combined Date` >= DATEADD(YEAR, -1, CURRENT_DATE())
+-- MAGIC             -- AND `Payer` = '172315'
+-- MAGIC         GROUP BY Material
+-- MAGIC     ) S1 ON P.Material = S1.Material
+-- MAGIC     
+-- MAGIC     -- CJ - 04-24-2026.1
+-- MAGIC     LEFT JOIN (
+-- MAGIC         WITH cte AS (
+-- MAGIC             SELECT *,
+-- MAGIC                 row_number() OVER (PARTITION BY Material ORDER BY Plnt) AS rn
+-- MAGIC             FROM `dbo`.`DIM ZMM02 COGS`
+-- MAGIC             WHERE Plnt in ('67', '73')
+-- MAGIC         )
+-- MAGIC         SELECT
+-- MAGIC             Material
+-- MAGIC             , `Standard price`/per as COGS
+-- MAGIC         FROM cte
+-- MAGIC         WHERE rn = 1
+-- MAGIC     ) Z on P.Material = Z.Material
+-- MAGIC 
+-- MAGIC     -- WHERE (P.`Specs.Carton - Volume` IS NOT NULL OR coalesce(S.avg_sales_price_dtc, max(S.avg_sales_price_dtc) over X, S1.avg_sales_price_dtc ) IS NOT NULL)
+-- MAGIC     WINDOW X as (partition by `Model`)
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC sku as (
+-- MAGIC     select *
+-- MAGIC     from sku_base
+-- MAGIC     where carton_volume_ft3 is not null or avg_sales_price_dtc is not null
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC -- CJ - 06-12-2026.1: SpreeTail Storage Logic V3
+-- MAGIC -- ecomm_materials as (
+-- MAGIC --     select distinct a.Material
+-- MAGIC --     from `DIM Account` a
+-- MAGIC --     join `DIM Customer` b
+-- MAGIC --         on a.Payer = b.`Payer Key`
+-- MAGIC --     where b.ECOM is not null
+-- MAGIC --         and `Payer Key` = '172315' -- CJ - 06-12-2026.2
+-- MAGIC -- ),
+-- MAGIC 
+-- MAGIC 
+-- MAGIC -- storage_base as (
+-- MAGIC --     select
+-- MAGIC --         a.Material,
+-- MAGIC --         b.`Cont_Qty` / 2.0 as half_container_units,
+-- MAGIC --         b.`Specs.Carton - Volume` as carton_volume_ft3,
+-- MAGIC --         coalesce(sum(-a.`Combined Qty`)/2.0 , c.avg_fc_sales_units/2.0) as fc_sales_units -- CJ - 06-12-2026.2
+-- MAGIC --     from `FACT Component Forecast Initial` a
+-- MAGIC --     left join `DIM Product` b
+-- MAGIC --         on a.Material = b.Material
+-- MAGIC     -- left join `DIM Customer` c
+-- MAGIC     --     on a.payer = c.`Payer Key`    
+-- MAGIC --     where a.`SOW` between a.`Today SOW` and (a.`Today SOW` + 139)
+-- MAGIC --         and `Payer Key` = '172315' -- CJ - 06-12-2026.2
+-- MAGIC --     group by
+-- MAGIC --         a.Material,
+-- MAGIC --         b.`Cont_Qty`,
+-- MAGIC --         b.`Specs.Carton - Volume`,
+-- MAGIC --         c.avg_fc_sales_units
+-- MAGIC -- ),
+-- MAGIC 
+-- MAGIC -- CJ - 06-15-2026.1
+-- MAGIC 
+-- MAGIC material_fc as (
+-- MAGIC     select
+-- MAGIC         a.Material,
+-- MAGIC         sum(-a.`Combined Qty`) / 5.0 as fc_sales_units -- divide by 5 for 5 SpreeTail nodes
+-- MAGIC     from `FACT Component Forecast Initial` a    
+-- MAGIC     where a.`SOW` between a.`Today SOW` and (a.`Today SOW` + 139)
+-- MAGIC         and a.payer = '172315'
+-- MAGIC     group by a.Material
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC avg_fc as (
+-- MAGIC     select 
+-- MAGIC         avg(fc_sales_units) as avg_fc_sales_units
+-- MAGIC     from material_fc
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC storage_base as (
+-- MAGIC     select
+-- MAGIC         P.Material,
+-- MAGIC         P.`Cont_Qty` / 2.0 as half_container_units,
+-- MAGIC         P.`Specs.Carton - Volume` as carton_volume_ft3,
+-- MAGIC         coalesce(
+-- MAGIC             a.fc_sales_units,
+-- MAGIC             b.avg_fc_sales_units
+-- MAGIC         ) as fc_sales_units
+-- MAGIC     from `DIM Product` P
+-- MAGIC     left join material_fc a on P.Material = a.Material
+-- MAGIC     cross join avg_fc b
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC storage_drivers as (
+-- MAGIC     select
+-- MAGIC         Material,
+-- MAGIC         half_container_units,
+-- MAGIC         carton_volume_ft3,
+-- MAGIC 
+-- MAGIC         140.0 as fc_sales_days,
+-- MAGIC         60.0 as free_storage_days,
+-- MAGIC 
+-- MAGIC         fc_sales_units,
+-- MAGIC         fc_sales_units / 140.0 as fc_ADS, 
+-- MAGIC 
+-- MAGIC         half_container_units / nullif(fc_sales_units / 140.0, 0) as half_container_DOS,
+-- MAGIC 
+-- MAGIC         (0.60 / 30.4167) * carton_volume_ft3 as daily_storage_rate_61_120,
+-- MAGIC         (1.20 / 30.4167) * carton_volume_ft3 as daily_storage_rate_121_plus
+-- MAGIC     from storage_base
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC storage_inventory_points as (
+-- MAGIC     select
+-- MAGIC         *,
+-- MAGIC 
+-- MAGIC         -- units remaining when free storage ends
+-- MAGIC         greatest(half_container_units - (fc_ADS * free_storage_days), 0) as units_start_61_120,
+-- MAGIC 
+-- MAGIC         -- units remaining at day 120
+-- MAGIC         greatest(half_container_units - (fc_ADS * 120.0), 0) as units_start_121_plus,
+-- MAGIC 
+-- MAGIC         -- number of billable days in each tier
+-- MAGIC         least(greatest(half_container_DOS - free_storage_days, 0), 60.0) as days_61_120,
+-- MAGIC         greatest(half_container_DOS - 120.0, 0) as days_121_plus
+-- MAGIC     from storage_drivers
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC storage_tier_endpoints as (
+-- MAGIC     select
+-- MAGIC         *,
+-- MAGIC 
+-- MAGIC         -- ending units for the 61-120 tier
+-- MAGIC         greatest(units_start_61_120 - (fc_ADS * days_61_120), 0) as units_end_61_120,
+-- MAGIC 
+-- MAGIC         -- ending units for the 121+ tier
+-- MAGIC         greatest(units_start_121_plus - (fc_ADS * days_121_plus), 0) as units_end_121_plus
+-- MAGIC     from storage_inventory_points
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC storage_costs as (
+-- MAGIC     select
+-- MAGIC         *,
+-- MAGIC 
+-- MAGIC         -- trapezoid area × daily rate
+-- MAGIC         (
+-- MAGIC             days_61_120
+-- MAGIC             * ((units_start_61_120 + units_end_61_120) / 2.0)
+-- MAGIC             * daily_storage_rate_61_120
+-- MAGIC         ) as total_storage_cost_61_120,
+-- MAGIC 
+-- MAGIC         (
+-- MAGIC             days_121_plus
+-- MAGIC             * ((units_start_121_plus + units_end_121_plus) / 2.0)
+-- MAGIC             * daily_storage_rate_121_plus
+-- MAGIC         ) as total_storage_cost_121_plus
+-- MAGIC     from storage_tier_endpoints
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC final_storage_costs as (
+-- MAGIC     select
+-- MAGIC         Material,
+-- MAGIC         half_container_units,
+-- MAGIC         carton_volume_ft3,
+-- MAGIC         fc_sales_days,
+-- MAGIC         free_storage_days,
+-- MAGIC 
+-- MAGIC         daily_storage_rate_61_120,
+-- MAGIC         daily_storage_rate_121_plus,
+-- MAGIC 
+-- MAGIC         fc_sales_units,
+-- MAGIC         fc_ADS,
+-- MAGIC         half_container_DOS,
+-- MAGIC 
+-- MAGIC         units_start_61_120,
+-- MAGIC         units_end_61_120,
+-- MAGIC         days_61_120,
+-- MAGIC         total_storage_cost_61_120,
+-- MAGIC 
+-- MAGIC         units_start_121_plus,
+-- MAGIC         units_end_121_plus,
+-- MAGIC         days_121_plus,
+-- MAGIC         total_storage_cost_121_plus,
+-- MAGIC 
+-- MAGIC         total_storage_cost_61_120 + total_storage_cost_121_plus as total_storage_cost,
+-- MAGIC 
+-- MAGIC         (total_storage_cost_61_120 + total_storage_cost_121_plus)
+-- MAGIC             / nullif(half_container_units, 0) as total_storage_cost_per_unit
+-- MAGIC 
+-- MAGIC     from storage_costs
+-- MAGIC ),
+-- MAGIC -- CJ - 06-12-2026.1: end SpreeTail Storage Logic V3
+-- MAGIC 
+-- MAGIC rates AS (
+-- MAGIC     SELECT /*+ BROADCAST(p) */
+-- MAGIC         s.material,
+-- MAGIC         
+-- MAGIC         s.carton_len,
+-- MAGIC         s.carton_width,
+-- MAGIC         s.carton_height,
+-- MAGIC         s.carton_weight, -- CJ - 04-27-2026.1
+-- MAGIC         s.carton_volume_ft3,
+-- MAGIC         s.ltl_parcel, -- CJ - 04-27-2026.1
+-- MAGIC         s.cont_qty,
+-- MAGIC         s.tl_qty,
+-- MAGIC         s.avg_sales_price_dtc,
+-- MAGIC 
+-- MAGIC         -- CJ - 04-24-2026.1
+-- MAGIC         s.model,
+-- MAGIC         s.min_model_cont_qty,
+-- MAGIC         s.COGS,
+-- MAGIC         s.max_model_cogs,
+-- MAGIC         s.stacked_cont_tl,
+-- MAGIC         s.ss_plt_qty,
+-- MAGIC         -- exclusive to spreetail
+-- MAGIC         case
+-- MAGIC             when s.min_model_cont_qty <> s.cont_qty then s.max_model_cogs
+-- MAGIC             else s.COGS
+-- MAGIC         end as act_cogs,
+-- MAGIC 
+-- MAGIC         (p.rev_share_rate * s.avg_sales_price_dtc) as revenue_share_cost, -- CJ - 04-27-2026.2
+-- MAGIC 
+-- MAGIC         -- applicable to all LTL
+-- MAGIC         CASE
+-- MAGIC             WHEN s.ltl_parcel = 'LTL' THEN
+-- MAGIC                 ( ( (s.carton_len * s.carton_width) / POW(12.0,2) ) * 0.83 * (s.ss_plt_qty - pallet_present) / (s.ss_plt_qty) )
+-- MAGIC             ELSE 0
+-- MAGIC         END as pallet_cost,
+-- MAGIC 
+-- MAGIC         COALESCE(
+-- MAGIC             r.Amount,
+-- MAGIC             case
+-- MAGIC                 when s.avg_sales_price_dtc is not null and s.carton_volume_ft3 is not null then
+-- MAGIC                     p.sales_dims_cost_intercept
+-- MAGIC                     + (s.carton_volume_ft3   * p.carton_volume_ft3_coefficient )
+-- MAGIC                     + (s.avg_sales_price_dtc * p.avg_price_coefficient         )
+-- MAGIC                 else
+-- MAGIC                     p.dims_cost_intercept
+-- MAGIC                     + (p.carton_volume_ft3_coefficient_2 * s.carton_volume_ft3 )
+-- MAGIC             end
+-- MAGIC         ) AS spreetail_base_rate,
+-- MAGIC         case when r.Amount is not null then true else false end as base_rate_actual_flag,
+-- MAGIC 
+-- MAGIC         -- CJ - 06-11-2026.1
+-- MAGIC         -- 0 as daily_storage_rate_0_60,
+-- MAGIC         -- (0.60 / (365/12) ) * s.carton_volume_ft3 as daily_storage_rate_60_120,
+-- MAGIC         -- (1.20 / (365/12) ) * s.carton_volume_ft3 as daily_storage_rate_121_plus
+-- MAGIC 
+-- MAGIC         -- CJ - 06-11-2026.2        
+-- MAGIC         -- t.free_storage_days,
+-- MAGIC         -- t.daily_storage_rate_61_120,
+-- MAGIC         -- t.daily_storage_rate_121_plus,
+-- MAGIC         -- t.half_container_units,
+-- MAGIC         -- t.fc_sales_units,
+-- MAGIC         -- t.fc_sales_days,
+-- MAGIC         -- t.fc_ADS,
+-- MAGIC         -- t.half_container_DOS,
+-- MAGIC         -- t.total_billable_storage_days,
+-- MAGIC         -- t.total_billable_storage_units,
+-- MAGIC         -- t.billable_storage_days_61_120,
+-- MAGIC         -- t.billable_storage_units_61_120,
+-- MAGIC         -- t.total_storage_cost_61_120,
+-- MAGIC         -- t.billable_storage_days_121_plus,
+-- MAGIC         -- t.billable_storage_units_121_plus,
+-- MAGIC         -- t.total_storage_cost_121_plus,
+-- MAGIC         -- t.total_storage_cost_61_120 + t.total_storage_cost_121_plus as total_storage_cost,
+-- MAGIC         -- t.total_storage_cost_per_unit
+-- MAGIC 
+-- MAGIC         -- CJ - 06-12-2026.1
+-- MAGIC         t.half_container_units,
+-- MAGIC         t.fc_sales_days,
+-- MAGIC         t.free_storage_days,
+-- MAGIC         t.daily_storage_rate_61_120,
+-- MAGIC         t.daily_storage_rate_121_plus,
+-- MAGIC         t.fc_sales_units,
+-- MAGIC         t.fc_ADS,
+-- MAGIC         t.half_container_DOS,
+-- MAGIC         t.units_start_61_120,
+-- MAGIC         t.units_end_61_120,
+-- MAGIC         t.days_61_120,
+-- MAGIC         t.total_storage_cost_61_120,
+-- MAGIC         t.units_start_121_plus,
+-- MAGIC         t.units_end_121_plus,
+-- MAGIC         t.days_121_plus,
+-- MAGIC         t.total_storage_cost_121_plus,
+-- MAGIC         t.total_storage_cost,
+-- MAGIC         t.total_storage_cost_per_unit
+-- MAGIC     FROM sku s
+-- MAGIC     LEFT JOIN `BRZ_NA_SC_LH`.`dbo`.`Spreetail Rates` r ON s.material = r.Material
+-- MAGIC     -- CJ - 06-11-2026.2
+-- MAGIC     -- LEFT JOIN storage t on s.material = t.Material
+-- MAGIC     -- CJ - 06-12-2026.1
+-- MAGIC     LEFT JOIN final_storage_costs t ON s.material = t.Material
+-- MAGIC 
+-- MAGIC     CROSS JOIN params p
+-- MAGIC     
+-- MAGIC     WHERE 
+-- MAGIC         COALESCE(
+-- MAGIC             r.Amount,
+-- MAGIC             s.avg_sales_price_dtc,
+-- MAGIC             s.carton_volume_ft3
+-- MAGIC         ) IS NOT NULL
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC zip_origin AS (
+-- MAGIC     SELECT
+-- MAGIC         o.*,
+-- MAGIC         z.dest_zip_clean,
+-- MAGIC         z.destination_zip,
+-- MAGIC         z.region,
+-- MAGIC         z.city_list,
+-- MAGIC         z.alt_region, -- CJ - 07-08-2026.2
+-- MAGIC         CASE
+-- MAGIC             WHEN o.shipping_point = '367D' THEN z.dist_nanticoke
+-- MAGIC             WHEN o.shipping_point = '367B' THEN z.dist_vegas
+-- MAGIC             -- CJ - 06-23-2026.1
+-- MAGIC             WHEN o.shipping_point = '367A' THEN z.dist_tacoma
+-- MAGIC             WHEN o.shipping_point = '367O' THEN z.dist_greenwood
+-- MAGIC             WHEN o.shipping_point = '367I' THEN z.dist_ellabell
+-- MAGIC         END AS distance
+-- MAGIC     FROM origins o
+-- MAGIC     CROSS JOIN zips z
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC -- CJ - 07-08-2026.2
+-- MAGIC delivery_time as (
+-- MAGIC     select a.*
+-- MAGIC         ,b.`Avg Delivery Time` as avg_ltl_delv_time
+-- MAGIC     from zip_origin a
+-- MAGIC     left join `DIM LTL State to State` b on a.origin_state = b.`Origin State`
+-- MAGIC         and a.alt_region = b.`Destination State`
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC zip_fees AS (
+-- MAGIC     SELECT /*+ BROADCAST(p) */
+-- MAGIC         zo.*,
+-- MAGIC 
+-- MAGIC         /* Out‑of‑zone delivery */
+-- MAGIC         GREATEST((zo.distance - 300) * p.ooz_delivery, 0) AS ooz_delivery_fee,
+-- MAGIC 
+-- MAGIC         /* California compliance */
+-- MAGIC         CASE WHEN zo.region = 'CA' THEN p.ca_compliance ELSE 0 END AS ca_compliance_fee,
+-- MAGIC 
+-- MAGIC         /* Delivery area surcharge */
+-- MAGIC         COALESCE(z.Area, NULL)      AS delivery_area_surcharge_type, -- CJ - 07-08-2026.1
+-- MAGIC         COALESCE(z.Surcharge, 0.0)  AS delivery_area_surcharge
+-- MAGIC     FROM delivery_time zo
+-- MAGIC     LEFT JOIN `BRZ_NA_SC_LH`.`dbo`.`Spreetail High Cost Service Area Zips` z
+-- MAGIC         ON zo.dest_zip_clean = z.ZipCode
+-- MAGIC     CROSS JOIN params p
+-- MAGIC ),
+-- MAGIC 
+-- MAGIC final_keys AS (
+-- MAGIC     SELECT
+-- MAGIC         f.shipping_point_key,
+-- MAGIC         f.destination_zip,
+-- MAGIC         r.material                                                                     
+-- MAGIC         -- r.spreetail_base_rate as base_rate, -- CJ - 04-24-2026.2
+-- MAGIC         -- r.base_rate_actual_flag             -- CJ - 04-24-2026.2
+-- MAGIC     FROM zip_fees f
+-- MAGIC     CROSS JOIN rates r
+-- MAGIC )
+-- MAGIC 
+-- MAGIC SELECT
+-- MAGIC     *,
+-- MAGIC 
+-- MAGIC     -- CJ - 07-08-2026.2
+-- MAGIC     case
+-- MAGIC         when ltl_parcel = 'Parcel' then 
+-- MAGIC             least(
+-- MAGIC                 avg_ltl_delv_time,
+-- MAGIC                 case
+-- MAGIC                     when distance <= 100 then 1
+-- MAGIC                     when distance <= 300 then 2
+-- MAGIC                     when distance <= 700 then 3
+-- MAGIC                     when distance <= 1200 then 4
+-- MAGIC                     when distance <= 1800 then 5
+-- MAGIC                     else 6
+-- MAGIC                 end
+-- MAGIC             )
+-- MAGIC         else avg_ltl_delv_time
+-- MAGIC     end as est_delv_time,
+-- MAGIC 
+-- MAGIC     r.spreetail_base_rate
+-- MAGIC         + r.revenue_share_cost -- CJ - 04-27-2026.2
+-- MAGIC         -- + r.act_cogs           -- CJ - 04-24-2026.1 -- CJ - 05-07-2026.1
+-- MAGIC         -- + r.pallet_cost        -- CJ - 04-24-2026.1 -- CJ - 05-07-2026.1
+-- MAGIC         + f.ooz_delivery_fee
+-- MAGIC         + f.ca_compliance_fee
+-- MAGIC         + f.delivery_area_surcharge
+-- MAGIC     AS spreetail_net_rate
+-- MAGIC FROM final_keys k
+-- MAGIC JOIN rates r     USING (material)
+-- MAGIC JOIN zip_fees f  USING (shipping_point_key, destination_zip)
+-- MAGIC -- where material in ('236780', '250950')
+-- MAGIC --     and destination_zip = '30305'
+-- MAGIC -- order by material, shipping_point_key, destination_zip
+-- MAGIC ;
+
+-- METADATA ********************
+
+-- META {
+-- META   "language": "sparksql",
+-- META   "language_group": "synapse_pyspark"
+-- META }

@@ -1,0 +1,65 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	maxParallelismPerRefresh: 6
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Customer Info'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Product Info'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["FACT Rejections","Dim Activity Group","Dim Order Reason","Dim Order Reason Group","Dim Penalty Type","Dim Plant","Dim Customer Group","Dim SBU","Dim Products","Dates Table","Dim Company Code","Dim Segment","Dim Sale Type","Dim Customers","Dim Countries","Dim Profit Centers","Dim Currency Rate","Dim Activity","Dim Currency","Dim Currency Rate (2)","ECOM","FACT YS10N","Defective Allowance","Calc SKUPayer Rejections","DIM SKUPayer","Pack Type","DirectLake - NA_Supply_Chain"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table 'FACT Rejections'
+ref table 'Dim Activity Group'
+ref table 'Dim Order Reason'
+ref table 'Dim Order Reason Group'
+ref table 'Dim Penalty Type'
+ref table 'Dim Plant'
+ref table 'Dim Customer Group'
+ref table 'Dim SBU'
+ref table 'Dim Products'
+ref table 'Dates Table'
+ref table 'Dim Company Code'
+ref table 'Dim Segment'
+ref table 'Dim Sale Type'
+ref table 'Dim Customers'
+ref table 'Dim Countries'
+ref table 'Dim Profit Centers'
+ref table 'Dim Currency Rate'
+ref table DateTableTemplate_1bade5d8-26d2-4dbe-be15-63c23f5b6117
+ref table LocalDateTable_2c29b5bc-bfaf-4bc6-aab9-f2d50343ec4d
+ref table LocalDateTable_d7d2aa95-178b-42d1-adc2-566492b3fbd8
+ref table 'Dim Activity'
+ref table 'Dim Currency'
+ref table 'Dim Currency Rate (2)'
+ref table LocalDateTable_068a5d6d-7b73-42a2-b26b-9b75655d0337
+ref table 'FACT YS10N'
+ref table LocalDateTable_8a3e569a-8354-4e97-af0d-49180d6c586f
+ref table 'Defective Allowance'
+ref table 'DIM SKUPayer'
+ref table LocalDateTable_10447767-e0e5-4c7d-8197-a8e8c27b4b41
+ref table LocalDateTable_06762d84-f441-4836-b30e-f3f62020fd46
+ref table LocalDateTable_467bcc8a-48f8-425a-b5ba-ac9f2db3e030
+ref table LocalDateTable_a08e7137-3e14-4fb8-a096-f2a49d8a7d78
+ref table LocalDateTable_d54b7def-66d9-4be1-b676-7c1dff450803
+ref table LocalDateTable_5f45f572-d7fa-4f26-b085-d74cd6f0d1b4
+ref table LocalDateTable_cb173e2e-ae76-4629-bbf1-dc35514713b8
+ref table 'Used Companies'
+ref table SKUPayerCompany
+ref table 'dbo FACT YS10N'
+ref table 'dbo FACT Rejections'
+
+ref cultureInfo en-US
+

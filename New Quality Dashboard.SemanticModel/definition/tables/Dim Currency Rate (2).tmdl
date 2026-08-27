@@ -1,0 +1,66 @@
+table 'Dim Currency Rate (2)'
+	excludeFromModelRefresh
+	lineageTag: b6f494fa-ce27-4876-affa-e06f25e5efac
+
+	column DateKey
+		dataType: string
+		lineageTag: 5da4b77d-4539-4b1e-be1f-6d7e4ed97016
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndMonthRate
+		dataType: string
+		lineageTag: 1f5669ac-cb54-4f95-be21-34f8efb8e1ae
+		summarizeBy: none
+		sourceColumn: EndMonthRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDateDesc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 87ecc03d-7cd5-45e5-9561-027b67c0c5fd
+		summarizeBy: none
+		sourceColumn: FullDateDesc
+
+		variation Variation
+			isDefault
+			relationship: 0d4e5079-2855-488e-96e3-e418cbf4856c
+			defaultHierarchy: LocalDateTable_068a5d6d-7b73-42a2-b26b-9b75655d0337.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rate USD'
+		dataType: string
+		lineageTag: fce0bc96-c207-436d-8018-274c3406e4a6
+		summarizeBy: none
+		sourceColumn: Rate USD
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Currency Rate (2)' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Currency rate]", {"[Currency rate].[CurrencyID].[CurrencyID]", "[Currency rate].[DateKey].[DateKey]", "[Currency rate].[EndMonthRate].[EndMonthRate]", "[Currency rate].[FullDateDesc].[FullDateDesc]", "[Currency rate].[Rate].[Rate]"}, {"Currency rate.CurrencyID", "Currency rate.DateKey", "Currency rate.EndMonthRate", "Currency rate.FullDateDesc", "Currency rate.Rate"}}
+				        }),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Items", each [Currency rate.CurrencyID] = "1"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"Currency rate.CurrencyID", "CurrencyID"}, {"Currency rate.DateKey", "DateKey"}, {"Currency rate.EndMonthRate", "EndMonthRate"}, {"Currency rate.FullDateDesc", "FullDateDesc"}, {"Currency rate.Rate", "Rate"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"FullDateDesc", type datetime}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type",{{"Rate", "Rate USD"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns1",{"CurrencyID"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

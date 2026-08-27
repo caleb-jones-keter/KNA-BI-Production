@@ -1,0 +1,59 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - NA_Supply_Chain","DirectLake - BRZ_NA_SC_LH","DirectLake - Spare_Parts_Lakehouse","THD Filter"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["RemoteModeling","DirectLakeOnOneLakeCreatedInDesktop","DirectLakeOnOneLakeInWeb","WebModelingEdit","DaxQueryView_Desktop"]
+
+ref table 'DIM Storage Location'
+ref table 'FACT MB51 Material_Movements Initial'
+ref table 'DIM Date'
+ref table 'DIM MRP Area'
+ref table 'FACT Combined'
+ref table 'DIM Customer'
+ref table 'DIM Product'
+ref table 'FACT Component Forecast Initial'
+ref table 'DIM MRPSKU'
+ref table 'FACT MB51 Grouped'
+ref table 'DIM Plant'
+ref table 'FACT Future'
+ref table 'PO Status Selector'
+ref table 'Ship Status Selector'
+ref table 'FACT YS10N Average Sales Price'
+ref table 'DOC Parameter'
+ref table 'DIM Account'
+ref table 'Max DOS'
+ref table 'FACT MB52 All'
+ref table 'Dim Location Dimension 2'
+ref table 'TEST EDB LAG FCST'
+ref table 'FACT YM6P'
+ref table 'Adams MB51'
+ref table 'EnfoPak _MrrContainers_'
+ref table 'FACT YS10N Past'
+ref table 'FACT EDB Budget- QTY'
+ref table '_$Budget QTY Parameter'
+ref table '_$budgettk/cont parameter'
+ref table 'FACT EDB Budget- Finance'
+ref table _$budgetfinanceparameter
+ref table 'FACT YS10N Open'
+ref table Ecomm-Store
+ref table 'Justins YS10n Test _DELETE THIS AFTER 6-15_'
+ref table 'Lag '
+ref table 'DOS Param'
+ref table 'DOS On?'
+ref table PvillewarehousematchCOOIS
+ref table 'THD Filter'
+ref table 'FACT YS10N All'
+ref table 'FACT YS10N Base'
+ref table 'DIM Date _2_'
+ref table fact_coois_pbi_daily_split
+ref table Table
+ref table 'FACT Finance EO Master'
+

@@ -1,0 +1,1151 @@
+table fact_dummy_ys10n_top_12
+	lineageTag: d5aeb095-c6c6-4f93-99b3-83b1fb00e5f7
+	sourceLineageTag: [dbo].[fact_dummy_ys10n_top_12]
+
+	measure '_Loaded Cost' =
+			
+			// SUMX(
+			//     SUMMARIZE(
+			//         fact_dummy_ys10n_top_12,
+			//         'DIM Product'[Material],
+			//         'DIM USA CA Zips'[POSTAL_CODE]
+			//     ),
+			//     CALCULATE(
+			//         DISTINCTCOUNT(fact_dummy_ys10n_top_12[Delivery])
+			//             * MIN(fact_dummy_ys10n_top_12[ranked_total_cost])
+			//     )
+			// )
+			SUMX(
+			    fact_dummy_ys10n_top_12,
+			    -fact_dummy_ys10n_top_12[combined_qty]
+			        * fact_dummy_ys10n_top_12[ranked_total_cost]
+			)
+		lineageTag: 8ddc42c6-710e-4977-b5e8-97748ec46423
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Is Best Zip Ship Point' = IF(NOT(ISBLANK(MIN(fact_dummy_ys10n_top_12[cost_ranking]))),IF(MIN(fact_dummy_ys10n_top_12[cost_ranking])=[_Min Zip Rank],1))
+		formatString: 0
+		lineageTag: 70380f0c-fc0c-468f-9f8a-11da40e6f727
+
+		changedProperty = Name
+
+	measure '_Min Zip Rank' =
+			
+			CALCULATE(
+			    MIN(fact_dummy_ys10n_top_12[cost_ranking]),
+			    REMOVEFILTERS('DIM DTC Ship Point Key'),
+			    ALLSELECTED('DIM DTC Ship Point Key'[shipping_point_key_desc])
+			)
+		formatString: 0
+		lineageTag: c4f33be6-d7f2-4c85-8090-786e30033926
+
+		changedProperty = Name
+
+	measure '_Other Min' =
+			MINX(
+			    VALUES(fact_dummy_ys10n_top_12[Delivery]),MIN(fact_dummy_ys10n_top_12[cost_ranking]))
+		formatString: 0
+		lineageTag: f373ddc2-c651-424e-a063-e74a7329f204
+
+		changedProperty = Name
+
+	measure '_One Last Thing That Won''t Work' = SUMX(Values(fact_dummy_ys10n_top_12[Delivery]),[_Is Best Zip Ship Point])
+		formatString: 0
+		lineageTag: 52fb2951-fc04-4796-908e-10dc16dd3b26
+
+		changedProperty = Name
+
+	measure '_Loaded Cost Actual' =
+			
+			// SUMX(
+			//     SUMMARIZE(
+			//         fact_dummy_ys10n_top_12,
+			//         'DIM Product'[Material],
+			//         'DIM USA CA Zips'[POSTAL_CODE]
+			//     ),
+			//     CALCULATE(
+			//         DISTINCTCOUNT(fact_dummy_ys10n_top_12[Delivery])
+			//             * (MIN(fact_dummy_ys10n_top_12[actual_total_cost])-MIN(fact_dummy_ys10n_top_12[actual_YR51_ea_cost]))
+			//     )
+			// )
+			
+			SUMX(
+			    fact_dummy_ys10n_top_12,
+			    -fact_dummy_ys10n_top_12[combined_qty]
+			        * fact_dummy_ys10n_top_12[actual_total_cost]
+			)
+		lineageTag: 1c1dd50a-bfe3-4bfc-8400-63325a660a1e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Caleb''s Stupid Filter that Might Work' = ```
+			IF(NOT(ISBLANK(MIN(fact_dummy_ys10n_top_12[cost_ranking_no_storage]))),IF(MIN(fact_dummy_ys10n_top_12[cost_ranking_no_storage])=[_Min Zip Rank No Storage],1))
+			
+			```
+		formatString: 0
+		lineageTag: de5a7ac4-dd29-4d29-a848-579ca5d4212f
+
+		changedProperty = Name
+
+	measure '_Min Zip Rank No Storage' =
+			CALCULATE(
+			    MIN(fact_dummy_ys10n_top_12[cost_ranking_no_storage]),
+			    REMOVEFILTERS('DIM DTC Ship Point Key'),
+			    ALLSELECTED('DIM DTC Ship Point Key'[shipping_point_key_desc]))
+		formatString: 0
+		lineageTag: 6a377558-e7bc-4261-8023-afdace18823f
+
+		changedProperty = Name
+
+	measure '_One Last Thing That WILL Work' = SUMX(VALUES(fact_dummy_ys10n_top_12[Delivery]),[_Caleb's Stupid Filter that Might Work])
+		formatString: 0
+		lineageTag: 7e1c8fa1-60fc-46c8-aa32-df8619125f3f
+
+		changedProperty = Name
+
+	measure '_Loaded Cost No Storage' =
+			
+			SUMX(
+			    SUMMARIZE(
+			        fact_dummy_ys10n_top_12,
+			        'DIM Product'[Material],
+			        'DIM USA CA Zips'[POSTAL_CODE]
+			    ),
+			    CALCULATE(
+			        DISTINCTCOUNT(fact_dummy_ys10n_top_12[Delivery])
+			            * MIN(fact_dummy_ys10n_top_12[ranked_total_cost_no_storage])
+			    )
+			)
+		lineageTag: d10428bf-3411-4820-bb2b-376b302afb99
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _NetFullfill =
+			
+			IF(
+			    NOT(ISBLANK(MIN(fact_dummy_ys10n_top_12[cost_ranking]))),
+			    IF(MIN(fact_dummy_ys10n_top_12[cost_ranking])=[_Min Zip Rank],
+			        MIN(fact_dummy_ys10n_top_12[ranked_net_fulfillment_cost])
+			    )
+			)
+		lineageTag: db3b48e9-689c-44eb-818f-3593735450aa
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total NetFulfill' = SUMX(Values(fact_dummy_ys10n_top_12[Delivery]),[_NetFullfill])
+		lineageTag: 0ff4e438-b9ef-4a6f-bc7a-7d5e6035e0ed
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Avg NetFulfill' = AVERAGEX(Values(fact_dummy_ys10n_top_12[Delivery]),[_NetFullfill])
+		lineageTag: 15b5de94-6533-46bb-b4d3-d675f672e026
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_One Last Thing That Won''t Work 2' = SUMX(Values(fact_dummy_ys10n_top_12[Delivery]),fact_ys10n_past_with_material_state_rankings[_Is Best State Ship Point])
+		formatString: 0
+		lineageTag: f4585fe8-ef96-409b-bd2d-2493132585f4
+
+		changedProperty = Name
+
+	measure Qty = -SUM(fact_dummy_ys10n_top_12[combined_qty])
+		lineageTag: 03bbf4e9-27f9-447a-ae04-03331e556ba2
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Loaded Cost Actual No Storage' =
+			
+			// SUMX(
+			//     SUMMARIZE(
+			//         fact_dummy_ys10n_top_12,
+			//         'DIM Product'[Material],
+			//         'DIM USA CA Zips'[POSTAL_CODE]
+			//     ),
+			//     CALCULATE(
+			//         DISTINCTCOUNT(fact_dummy_ys10n_top_12[Delivery])
+			//             * (MIN(fact_dummy_ys10n_top_12[actual_total_cost])-MIN(fact_dummy_ys10n_top_12[actual_YR51_ea_cost]))
+			//     )
+			// )
+			
+			SUMX(
+			    fact_dummy_ys10n_top_12,
+			    -fact_dummy_ys10n_top_12[combined_qty]
+			        * fact_dummy_ys10n_top_12[actual_total_cost_no_storage]
+			)
+		lineageTag: 9a6dffd7-6a26-47dc-adb5-5ad370001f74
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Loaded Cost Actual (old)' =
+			
+			SUMX(
+			    SUMMARIZE(
+			        fact_dummy_ys10n_top_12,
+			        'DIM Product'[Material],
+			        'DIM USA CA Zips'[POSTAL_CODE]
+			    ),
+			    CALCULATE(
+			        DISTINCTCOUNT(fact_dummy_ys10n_top_12[Delivery])
+			            * (MIN(fact_dummy_ys10n_top_12[actual_total_cost]))
+			    )
+			)
+		lineageTag: 9fd25397-1381-47f7-9538-28ff6be7b4fd
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Loaded Cost (old)' =
+			
+			SUMX(
+			    SUMMARIZE(
+			        fact_dummy_ys10n_top_12,
+			        'DIM Product'[Material],
+			        'DIM USA CA Zips'[POSTAL_CODE]
+			    ),
+			    CALCULATE(
+			        DISTINCTCOUNT(fact_dummy_ys10n_top_12[Delivery])
+			            * MIN(fact_dummy_ys10n_top_12[ranked_total_cost])
+			    )
+			)
+		lineageTag: a3b7b398-e922-41e7-ac85-51ec7a09da01
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Material
+		dataType: string
+		lineageTag: 71d5ea5b-44da-4ee6-98dd-f2ac6a6d9d14
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d09013d-58f9-4192-bba2-ffb987cdf0e3
+		sourceLineageTag: sales_order
+		summarizeBy: sum
+		sourceColumn: sales_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 454b0bce-dd00-4ac7-82d0-bdf3742a39e2
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point
+		dataType: string
+		lineageTag: b8f33ecd-36c0-4abc-a867-210e93c6ab63
+		sourceLineageTag: shipping_point
+		summarizeBy: none
+		sourceColumn: shipping_point
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 16710f9e-5ac0-4cc3-8ca7-0bc344213567
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column po_number
+		dataType: string
+		lineageTag: 4c3d1600-c346-47b9-bca7-c8966bca7bd4
+		sourceLineageTag: po_number
+		summarizeBy: none
+		sourceColumn: po_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_number
+		dataType: int64
+		formatString: 0
+		lineageTag: b8a7be86-c832-4222-b8ad-698b0a35892a
+		sourceLineageTag: shipment_number
+		summarizeBy: sum
+		sourceColumn: shipment_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery
+		dataType: int64
+		formatString: 0
+		lineageTag: 70e747c3-f67d-4ee5-993c-f8ae2d13c6fc
+		sourceLineageTag: Delivery
+		summarizeBy: sum
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_type
+		dataType: string
+		lineageTag: 35601125-fbd8-45b8-a845-08061fbe96e2
+		sourceLineageTag: shipping_type
+		summarizeBy: none
+		sourceColumn: shipping_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_to_zip
+		dataType: string
+		lineageTag: 5280ba15-cfb4-4f6c-bf63-253f0cce4b94
+		sourceLineageTag: ship_to_zip
+		summarizeBy: none
+		sourceColumn: ship_to_zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_to_zip_clean
+		dataType: string
+		lineageTag: bad77107-276f-4a1c-bbf2-16ed1ada9269
+		sourceLineageTag: ship_to_zip_clean
+		summarizeBy: none
+		sourceColumn: ship_to_zip_clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column act_gds_mvmnt_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b1cbf118-b2e6-445c-afec-57ad5991d8c0
+		sourceLineageTag: act_gds_mvmnt_date
+		summarizeBy: none
+		sourceColumn: act_gds_mvmnt_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column combined_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6a6ee1b-9624-4547-b651-ac6ac2ed5105
+		sourceLineageTag: combined_date
+		summarizeBy: none
+		sourceColumn: combined_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceTable
+		dataType: string
+		lineageTag: 0ee8c8b1-8687-4ad3-99c8-38af5a6154d0
+		sourceLineageTag: SourceTable
+		summarizeBy: none
+		sourceColumn: SourceTable
+
+		annotation SummarizationSetBy = Automatic
+
+	column ys10n_source
+		dataType: string
+		lineageTag: 98e73b09-9543-42e9-a961-9a1972a1cf21
+		sourceLineageTag: ys10n_source
+		summarizeBy: none
+		sourceColumn: ys10n_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_source
+		dataType: string
+		lineageTag: fb323e12-1b1c-4ccf-a21c-d6d36c79f799
+		sourceLineageTag: data_source
+		summarizeBy: none
+		sourceColumn: data_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBU
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dc9f3de-40b8-46c4-84ea-b3fb73158e4d
+		sourceLineageTag: SBU
+		summarizeBy: sum
+		sourceColumn: SBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcquisitionStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: afce8b40-04f8-4c9b-aa44-2ad3b895e78b
+		sourceLineageTag: AcquisitionStatus
+		summarizeBy: sum
+		sourceColumn: AcquisitionStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column RetailerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b627c31c-5239-4fcb-9277-94d4644c05a7
+		sourceLineageTag: RetailerKey
+		summarizeBy: count
+		sourceColumn: RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_to
+		dataType: int64
+		formatString: 0
+		lineageTag: 511a2c20-0ca4-43ec-8764-deac875522d2
+		sourceLineageTag: ship_to
+		summarizeBy: sum
+		sourceColumn: ship_to
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderLine
+		dataType: string
+		lineageTag: e4c46b02-29b4-46e3-bb61-399b3805b3a5
+		sourceLineageTag: OrderLine
+		summarizeBy: none
+		sourceColumn: OrderLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_cost_ranking
+		dataType: int64
+		formatString: 0
+		lineageTag: 36cc8bbe-dfd5-4252-aa25-087b86655b87
+		sourceLineageTag: actual_cost_ranking
+		summarizeBy: sum
+		sourceColumn: actual_cost_ranking
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_port
+		dataType: string
+		lineageTag: 75c00225-f4e5-4fe6-a733-df887361799c
+		sourceLineageTag: actual_port
+		summarizeBy: none
+		sourceColumn: actual_port
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_YR51
+		dataType: double
+		lineageTag: 88507bbd-618e-4ee6-b1ba-0d9ad9ac29dc
+		sourceLineageTag: actual_YR51
+		summarizeBy: sum
+		sourceColumn: actual_YR51
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_YR51_ea_cost
+		dataType: double
+		lineageTag: e150938a-c965-4788-aeb3-3ef1b4010715
+		sourceLineageTag: actual_YR51_ea_cost
+		summarizeBy: sum
+		sourceColumn: actual_YR51_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_YR53
+		dataType: double
+		lineageTag: 3b46facd-1b23-466a-a5c7-570e3016788f
+		sourceLineageTag: actual_YR53
+		summarizeBy: sum
+		sourceColumn: actual_YR53
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_YR53_ea_cost
+		dataType: double
+		lineageTag: fd3ed0a6-97aa-4b8c-9a56-e3c76a27bae8
+		sourceLineageTag: actual_YR53_ea_cost
+		summarizeBy: sum
+		sourceColumn: actual_YR53_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_ship_point
+		dataType: string
+		lineageTag: 49a30516-5dfc-4a7b-84a6-51170f7bc859
+		sourceLineageTag: actual_ship_point
+		summarizeBy: none
+		sourceColumn: actual_ship_point
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_ship_point_zip
+		dataType: string
+		lineageTag: 0bff0e5e-c869-4e9d-acb8-e1bd12bfd559
+		sourceLineageTag: actual_ship_point_zip
+		summarizeBy: none
+		sourceColumn: actual_ship_point_zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_ship_type
+		dataType: string
+		lineageTag: 7966d2a0-4c34-4917-aedc-66935ec90e13
+		sourceLineageTag: actual_ship_type
+		summarizeBy: none
+		sourceColumn: actual_ship_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_ship_point_key
+		dataType: string
+		lineageTag: d65df1a4-fb96-469a-93e6-9d8a950939f1
+		sourceLineageTag: actual_ship_point_key
+		summarizeBy: none
+		sourceColumn: actual_ship_point_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_parcel_ahs_type
+		dataType: string
+		lineageTag: 0a4f0bb5-60e3-4ac0-8d51-a1d0594f8a1c
+		sourceLineageTag: actual_parcel_ahs_type
+		summarizeBy: none
+		sourceColumn: actual_parcel_ahs_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_das_type
+		dataType: string
+		lineageTag: bffcef0b-e5f5-4dc8-bf32-4e91b17b4e28
+		sourceLineageTag: actual_das_type
+		summarizeBy: none
+		sourceColumn: actual_das_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_base_fulfillment_cost
+		dataType: double
+		lineageTag: 9ff711bb-b307-4249-b388-5452ca3ab5c0
+		sourceLineageTag: actual_base_fulfillment_cost
+		summarizeBy: sum
+		sourceColumn: actual_base_fulfillment_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_pallet_cost
+		dataType: double
+		lineageTag: 7b83095e-0ce5-4150-b9d7-3fa8e145036e
+		sourceLineageTag: actual_pallet_cost
+		summarizeBy: sum
+		sourceColumn: actual_pallet_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_COGS
+		dataType: double
+		lineageTag: 13713596-0482-4d00-aab6-f72cb46fed52
+		sourceLineageTag: actual_COGS
+		summarizeBy: sum
+		sourceColumn: actual_COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_net_fulfillment_cost
+		dataType: double
+		lineageTag: a66fa9a0-6de5-4d2b-9d4f-9a634da65d2b
+		sourceLineageTag: actual_net_fulfillment_cost
+		summarizeBy: sum
+		sourceColumn: actual_net_fulfillment_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_total_cost
+		dataType: double
+		lineageTag: decb2ce9-cd73-4bc2-88da-576c67577064
+		sourceLineageTag: actual_total_cost
+		summarizeBy: sum
+		sourceColumn: actual_total_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost_ranking
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d5c1a5d-9694-456e-ab19-19bd6848daef
+		sourceLineageTag: cost_ranking
+		summarizeBy: sum
+		sourceColumn: cost_ranking
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_port
+		dataType: string
+		lineageTag: 274d4871-c1f3-4039-89d2-e306f7209c1a
+		sourceLineageTag: ranked_port
+		summarizeBy: none
+		sourceColumn: ranked_port
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_YR51
+		dataType: double
+		lineageTag: bd786d0e-2c3f-42ac-ad6d-7a4058a602b3
+		sourceLineageTag: ranked_YR51
+		summarizeBy: sum
+		sourceColumn: ranked_YR51
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR51_ea_cost
+		dataType: double
+		lineageTag: 3c73723a-b234-411c-b06e-ecfa4fcc9e3d
+		sourceLineageTag: ranked_YR51_ea_cost
+		summarizeBy: sum
+		sourceColumn: ranked_YR51_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR53
+		dataType: double
+		lineageTag: 2a744b6a-6e83-4ab5-a742-293cb6ad7f23
+		sourceLineageTag: ranked_YR53
+		summarizeBy: sum
+		sourceColumn: ranked_YR53
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR53_ea_cost
+		dataType: double
+		lineageTag: afe0c43c-09d5-47a1-85dd-17323d16fd16
+		sourceLineageTag: ranked_YR53_ea_cost
+		summarizeBy: sum
+		sourceColumn: ranked_YR53_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_ship_point
+		dataType: string
+		lineageTag: f9f88aae-fcfa-472f-8c96-aa254bd780ce
+		sourceLineageTag: ranked_ship_point
+		summarizeBy: none
+		sourceColumn: ranked_ship_point
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_ship_point_zip
+		dataType: string
+		lineageTag: fe6ed1c1-990f-4648-bedc-5a58efbac496
+		sourceLineageTag: ranked_ship_point_zip
+		summarizeBy: none
+		sourceColumn: ranked_ship_point_zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_ship_type
+		dataType: string
+		lineageTag: 8f059bca-6619-4c0c-9a10-c0b90958fc27
+		sourceLineageTag: ranked_ship_type
+		summarizeBy: none
+		sourceColumn: ranked_ship_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_ship_point_key
+		dataType: string
+		lineageTag: 8428c6cd-3aa9-4fdf-9211-1783ec176f30
+		sourceLineageTag: ranked_ship_point_key
+		summarizeBy: none
+		sourceColumn: ranked_ship_point_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_parcel_ahs_type
+		dataType: string
+		lineageTag: fa6e8b75-1df6-40e8-8bc3-e08b1aebe67a
+		sourceLineageTag: ranked_parcel_ahs_type
+		summarizeBy: none
+		sourceColumn: ranked_parcel_ahs_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_das_type
+		dataType: string
+		lineageTag: 52dab5aa-8369-4862-8ba3-301f6c842376
+		sourceLineageTag: ranked_das_type
+		summarizeBy: none
+		sourceColumn: ranked_das_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_base_fulfillment_cost
+		dataType: double
+		lineageTag: f9b2dba3-5cc3-427d-8fc2-0fbb0ecb6e89
+		sourceLineageTag: ranked_base_fulfillment_cost
+		summarizeBy: sum
+		sourceColumn: ranked_base_fulfillment_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_pallet_cost
+		dataType: double
+		lineageTag: 0d104cee-fcb7-4d93-a74d-030a31faac25
+		sourceLineageTag: ranked_pallet_cost
+		summarizeBy: sum
+		sourceColumn: ranked_pallet_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_COGS
+		dataType: double
+		lineageTag: de3f5231-124d-491b-9773-4ec9dace5046
+		sourceLineageTag: ranked_COGS
+		summarizeBy: sum
+		sourceColumn: ranked_COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_net_fulfillment_cost
+		dataType: double
+		lineageTag: c5722f52-33bb-41ca-8801-3e676c3f960d
+		sourceLineageTag: ranked_net_fulfillment_cost
+		summarizeBy: sum
+		sourceColumn: ranked_net_fulfillment_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_total_cost
+		dataType: double
+		lineageTag: 655de12d-2d4b-4e29-9974-5864135507cd
+		sourceLineageTag: ranked_total_cost
+		summarizeBy: sum
+		sourceColumn: ranked_total_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_shipping_point
+		dataType: string
+		lineageTag: 857d9784-4401-42af-83ba-92cba8ee6c98
+		sourceLineageTag: actual_shipping_point
+		summarizeBy: none
+		sourceColumn: actual_shipping_point
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_shipping_point_type
+		dataType: string
+		lineageTag: aca68103-6218-482c-8e0c-0b74455d6ac8
+		sourceLineageTag: actual_shipping_point_type
+		summarizeBy: none
+		sourceColumn: actual_shipping_point_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_YR50
+		dataType: double
+		lineageTag: 67729a7d-813c-4a76-a24b-bf107b78c68b
+		sourceLineageTag: actual_YR50
+		summarizeBy: sum
+		sourceColumn: actual_YR50
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_YR73
+		dataType: double
+		lineageTag: 8adfaf63-e551-4bfb-a1f0-73de3ee6c5a2
+		sourceLineageTag: actual_YR73
+		summarizeBy: sum
+		sourceColumn: actual_YR73
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_YR50_ea_cost
+		dataType: double
+		lineageTag: e10c2803-255b-4686-948b-219ef9dbed95
+		sourceLineageTag: actual_YR50_ea_cost
+		summarizeBy: sum
+		sourceColumn: actual_YR50_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_YR73_ea_cost
+		dataType: double
+		lineageTag: 30c044bd-48d0-42d1-8a20-da96f83b6443
+		sourceLineageTag: actual_YR73_ea_cost
+		summarizeBy: sum
+		sourceColumn: actual_YR73_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_shipping_point
+		dataType: string
+		lineageTag: 64ed1165-9308-443f-9271-40e4785e4210
+		sourceLineageTag: ranked_shipping_point
+		summarizeBy: none
+		sourceColumn: ranked_shipping_point
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_shipping_point_type
+		dataType: string
+		lineageTag: cc4b993d-d035-4171-add3-a9bad1df12b9
+		sourceLineageTag: ranked_shipping_point_type
+		summarizeBy: none
+		sourceColumn: ranked_shipping_point_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_YR50
+		dataType: double
+		lineageTag: 9facc451-8941-465c-b200-724259847123
+		sourceLineageTag: ranked_YR50
+		summarizeBy: sum
+		sourceColumn: ranked_YR50
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR73
+		dataType: double
+		lineageTag: e2bda251-3d35-4ffc-952d-29957549a3c0
+		sourceLineageTag: ranked_YR73
+		summarizeBy: sum
+		sourceColumn: ranked_YR73
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR50_ea_cost
+		dataType: double
+		lineageTag: bfe1554f-9f7b-4f4d-9507-8c39dc9adcb3
+		sourceLineageTag: ranked_YR50_ea_cost
+		summarizeBy: sum
+		sourceColumn: ranked_YR50_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR73_ea_cost
+		dataType: double
+		lineageTag: 3d445118-2349-4486-9eb7-99b57e502ebe
+		sourceLineageTag: ranked_YR73_ea_cost
+		summarizeBy: sum
+		sourceColumn: ranked_YR73_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_shipping_point_key_desc
+		dataType: string
+		lineageTag: ebb429ac-f3d0-4c12-abf1-28605b8d99ee
+		sourceLineageTag: actual_shipping_point_key_desc
+		summarizeBy: none
+		sourceColumn: actual_shipping_point_key_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_shipping_point_key_desc
+		dataType: string
+		lineageTag: 4af26dca-c2f9-49b7-9611-921f4e59fb8e
+		sourceLineageTag: ranked_shipping_point_key_desc
+		summarizeBy: none
+		sourceColumn: ranked_shipping_point_key_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_YR60
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 610de2ac-5881-4580-98d0-a398dfbf8885
+		sourceLineageTag: actual_YR60
+		summarizeBy: sum
+		sourceColumn: actual_YR60
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column actual_YR60_ea_cost
+		dataType: double
+		lineageTag: 0cf11b24-246f-4571-b20b-b652c3eed00d
+		sourceLineageTag: actual_YR60_ea_cost
+		summarizeBy: sum
+		sourceColumn: actual_YR60_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_YR60
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 309c4814-28a0-41f6-afff-c910e8ea0181
+		sourceLineageTag: ranked_YR60
+		summarizeBy: sum
+		sourceColumn: ranked_YR60
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ranked_YR60_ea_cost
+		dataType: double
+		lineageTag: 36580f31-b298-43e6-a3d2-4b33ef9e9686
+		sourceLineageTag: ranked_YR60_ea_cost
+		summarizeBy: sum
+		sourceColumn: ranked_YR60_ea_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_IB_Trans_Cost
+		dataType: double
+		lineageTag: f7c5a81f-5ee4-47bb-ae9a-d29e7ae06202
+		sourceLineageTag: actual_IB_Trans_Cost
+		summarizeBy: sum
+		sourceColumn: actual_IB_Trans_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_IB_Trans_Cost
+		dataType: double
+		lineageTag: f3aa6ba2-7292-4580-9324-62203469ab0a
+		sourceLineageTag: ranked_IB_Trans_Cost
+		summarizeBy: sum
+		sourceColumn: ranked_IB_Trans_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_ADS
+		dataType: double
+		lineageTag: 048e15ea-a656-4a09-855a-8c9d6ea5cb3b
+		sourceLineageTag: actual_ADS
+		summarizeBy: sum
+		sourceColumn: actual_ADS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_avg_DOS
+		dataType: double
+		lineageTag: 79324d6b-1f6b-4974-9652-597abe624da9
+		sourceLineageTag: actual_avg_DOS
+		summarizeBy: sum
+		sourceColumn: actual_avg_DOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_avg_unit_storage_cost
+		dataType: double
+		lineageTag: 6921eff0-1e3d-4983-82ac-e9f9115dcc58
+		sourceLineageTag: actual_avg_unit_storage_cost
+		summarizeBy: sum
+		sourceColumn: actual_avg_unit_storage_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_ADS
+		dataType: double
+		lineageTag: c5f2ce19-173c-44d7-96a0-d58e0713afbd
+		sourceLineageTag: ranked_ADS
+		summarizeBy: sum
+		sourceColumn: ranked_ADS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_avg_DOS
+		dataType: double
+		lineageTag: 9b157439-d6be-4079-a692-cbd0b8766f7d
+		sourceLineageTag: ranked_avg_DOS
+		summarizeBy: sum
+		sourceColumn: ranked_avg_DOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_avg_unit_storage_cost
+		dataType: double
+		lineageTag: cebd5a81-a383-42a4-89f9-63f0eaea681a
+		sourceLineageTag: ranked_avg_unit_storage_cost
+		summarizeBy: sum
+		sourceColumn: ranked_avg_unit_storage_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_cost_ranking_no_storage
+		dataType: int64
+		formatString: 0
+		lineageTag: b5040ac1-86b0-4b35-a5ca-b1bb2a7fcac0
+		sourceLineageTag: actual_cost_ranking_no_storage
+		summarizeBy: sum
+		sourceColumn: actual_cost_ranking_no_storage
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_ranking_no_storage
+		dataType: int64
+		formatString: 0
+		lineageTag: b100c869-a12a-488c-b220-858cf9fd6857
+		sourceLineageTag: cost_ranking_no_storage
+		summarizeBy: sum
+		sourceColumn: cost_ranking_no_storage
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_total_cost_no_storage
+		dataType: double
+		lineageTag: 118a72c7-ebd7-4055-9943-8a5dd50069e1
+		sourceLineageTag: actual_total_cost_no_storage
+		summarizeBy: sum
+		sourceColumn: actual_total_cost_no_storage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranked_total_cost_no_storage
+		dataType: double
+		lineageTag: 5422165b-85c0-4d2d-8b98-75582598dc8a
+		sourceLineageTag: ranked_total_cost_no_storage
+		summarizeBy: sum
+		sourceColumn: ranked_total_cost_no_storage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_distance
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f7a4016-22dc-415a-8776-ecca320ec36d
+		sourceLineageTag: actual_distance
+		summarizeBy: sum
+		sourceColumn: actual_distance
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_distance
+		dataType: int64
+		formatString: 0
+		lineageTag: b834e5ee-59f6-414f-aa0b-e34f4473a7f3
+		sourceLineageTag: ranked_distance
+		summarizeBy: sum
+		sourceColumn: ranked_distance
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_est_delv_time
+		dataType: int64
+		formatString: 0
+		lineageTag: 66c1c870-eb81-42d0-adfa-946ca8033049
+		sourceLineageTag: actual_est_delv_time
+		summarizeBy: sum
+		sourceColumn: actual_est_delv_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column ranked_est_delv_time
+		dataType: int64
+		formatString: 0
+		lineageTag: e9bb55dd-df05-4f72-898a-c1101ddf1db9
+		sourceLineageTag: ranked_est_delv_time
+		summarizeBy: sum
+		sourceColumn: ranked_est_delv_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column combined_qty
+		dataType: double
+		lineageTag: 24221b31-30bd-411e-b5c7-5c797e5df516
+		sourceLineageTag: combined_qty
+		summarizeBy: sum
+		sourceColumn: combined_qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_dummy_ys10n_top_12 = entity
+		mode: directLake
+		source
+			entityName: fact_dummy_ys10n_top_12
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,956 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "a51c5f2cfd43ab7d7453",
+  "position": {
+    "x": 0,
+    "y": 208,
+    "z": 0,
+    "height": 688,
+    "width": 1648,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Date"
+                    }
+                  },
+                  "Property": "Full Date"
+                }
+              },
+              "queryRef": "DIM Date.Full Date",
+              "nativeQueryRef": "Full Date",
+              "active": true,
+              "format": "MM/dd"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Past"
+                        }
+                      },
+                      "Property": "Net Value USD"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT YS10N Past.Net Value USD)",
+              "nativeQueryRef": "Sum of Net Value USD",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "if([Full Date]=today(),blank(),\r\nIF (\r\n    MAX([Full Date]) > TODAY(),\r\n    BLANK(),\r\n    RUNNINGSUM([Sum of Net Value USD])\r\n))",
+                  "Name": "Actuals"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Actuals",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "runningsum([Sum of Net value])",
+                  "Name": "Open Orders"
+                }
+              },
+              "queryRef": "select5",
+              "nativeQueryRef": "Open Orders",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "if([Full Date]=today(),BLANK(),\nIF(\n    DAY(MAX([Full Date])) =1,\n    [Sum of Customer Demand Net sales _APO_],\n    [Actuals] / ((DAY(MAX([Full Date]))-0)  / DAY(EOMONTH(MAX([Full Date]), 0)))\n))",
+                  "Name": "RunRate"
+                }
+              },
+              "queryRef": "select4",
+              "nativeQueryRef": "RunRate",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "RUNNINGSUM([_$Selected Budget APO daily])",
+                  "Name": "Customer Demand APO"
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "Customer Demand APO",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "RUNNINGSUM([_$Selected Budget Financedaily])",
+                  "Name": "Rolling FCST"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Rolling FCST",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "RUNNINGSUM([_$Selected Budget Budget Daily])",
+                  "Name": "2026 Budget"
+                }
+              },
+              "queryRef": "select3",
+              "nativeQueryRef": "2026 Budget",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT EDB Budget- Finance"
+                    }
+                  },
+                  "Property": "_$Selected Budget Financedaily"
+                }
+              },
+              "queryRef": "FACT EDB Budget- Finance._$Selected Budget Financedaily",
+              "nativeQueryRef": "_$Selected Budget Financedaily",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT EDB Budget- Finance"
+                    }
+                  },
+                  "Property": "_$Selected Budget APO daily"
+                }
+              },
+              "queryRef": "FACT EDB Budget- Finance._$Selected Budget APO daily",
+              "nativeQueryRef": "_$Selected Budget APO daily",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT EDB Budget- Finance"
+                    }
+                  },
+                  "Property": "_$Selected Budget Budget Daily"
+                }
+              },
+              "queryRef": "FACT EDB Budget- Finance._$Selected Budget Budget Daily",
+              "nativeQueryRef": "_$Selected Budget Budget Daily",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Open"
+                        }
+                      },
+                      "Property": "Net value"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT YS10N Open.Net value)",
+              "nativeQueryRef": "Sum of Net value",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT EDB Budget- Finance"
+                        }
+                      },
+                      "Property": "Customer Demand Net sales _APO_"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT EDB Budget- Finance.Customer Demand Net sales _APO_)",
+              "nativeQueryRef": "Sum of Customer Demand Net sales _APO_",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "\r\nIF(\r\n    MAX([Full Date]) = TODAY(),\r\n    BLANK(),\r\n    VAR CurrentDate = MAX([Full Date])\r\n\r\n    VAR WorkingDaysElapsedRaw =\r\n        CALCULATE(\r\n            COUNTROWS(VALUES([Full Date])),\r\n            FILTER(\r\n                ALL([Full Date]),\r\n                [Full Date] <= CurrentDate &&\r\n                WEEKDAY([Full Date], 2) <= 5\r\n            )\r\n        )\r\n\r\n    VAR WorkingDaysElapsed =\r\n        MAX(1, WorkingDaysElapsedRaw)\r\n\r\n    VAR TotalWorkingDaysInMonth =\r\n        CALCULATE(\r\n            COUNTROWS(VALUES([Full Date])),\r\n            FILTER(\r\n                ALL([Full Date]),\r\n                MONTH([Full Date]) = MONTH(CurrentDate) &&\r\n                YEAR([Full Date]) = YEAR(CurrentDate) &&\r\n                WEEKDAY([Full Date], 2) <= 5\r\n            )\r\n        )\r\n\r\n    RETURN\r\n        IF(\r\n            WorkingDaysElapsed = 1,\r\n            [Sum of Customer Demand Net sales _APO_],\r\n            [Actuals] / (WorkingDaysElapsed / TotalWorkingDaysInMonth)\r\n        )\r\n)",
+                  "Name": "Run Rate"
+                }
+              },
+              "queryRef": "select7",
+              "nativeQueryRef": "Run Rate",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "MOVINGAVERAGE([Run Rate], 14)",
+                  "Name": "RR Moving Average"
+                }
+              },
+              "queryRef": "select6",
+              "nativeQueryRef": "RR Moving Average"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "\r\nVAR CurrentDate = MAX([Full Date])\r\nRETURN\r\n    CALCULATE(\r\n        COUNTROWS(VALUES([Full Date])),\r\n        FILTER(\r\n            ALL([Full Date]),\r\n            [Full Date] <= CurrentDate &&\r\n            WEEKDAY([Full Date],2) <= 5\r\n        )\r\n    )",
+                  "Name": "Test WD Elapsed"
+                }
+              },
+              "queryRef": "select8",
+              "nativeQueryRef": "Test WD Elapsed",
+              "hidden": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Date"
+                  }
+                },
+                "Property": "Full Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0FF10F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E9AA36'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select1"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select3"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#60E0C0'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select5"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6998D5'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select2"
+          }
+        }
+      ],
+      "zoom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Scalar'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select5"
+          }
+        },
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dotted'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select6"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Intra- Month Projection'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "01685e6ed3d3ee1fa235",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Month"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "9d7135d66f4be0ff06f6",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Past"
+              }
+            },
+            "Property": "Ship Date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "5de9884b7ac23a60f00b",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "bb3e58c794a058822e0a",
+        "ordinal": 3,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT EDB Budget- QTY"
+                  }
+                },
+                "Property": "3+9 Quantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "24ad66fde6c5fcd5ec12",
+        "ordinal": 4,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT EDB Budget- QTY"
+                  }
+                },
+                "Property": "6+6 Quantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "a0263546e1aeaabdf858",
+        "ordinal": 5,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT EDB Budget- QTY"
+                  }
+                },
+                "Property": "9+3 Quantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "d84d097dcc345c17567b",
+        "ordinal": 6,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT EDB Budget- QTY"
+                  }
+                },
+                "Property": "Quantity - Budget"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "7dbd21dc8851c62e18c0",
+        "ordinal": 7,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Past"
+                  }
+                },
+                "Property": "Combined Qty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "fb938238dd0d0e1c8d8c",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Past"
+              }
+            },
+            "Property": "Act. Gds Mvmnt Date Converted"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "93d3d78c5917483e1a8a",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Past"
+              }
+            },
+            "Property": "Reason for rejection"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YS10N Past",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Reason for rejection"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "3fc910716f990d9dd6ae",
+        "ordinal": 10,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "_$Selected Budget QTY"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "a0f2781e10df38301137",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "20451154839215171ea7",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "MRP Area"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "69dc7a6b99be9d8101bb",
+        "ordinal": 13,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "Payer"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "32112f1dfb506d06915c",
+        "ordinal": 16,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "_$Order Qty"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "b436af61bc965949dbdc",
+        "ordinal": 17,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "_$overunderbudget"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "18230aa3e116df65cb5b",
+        "ordinal": 18,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "_$VarTobudget"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "ebe8a71285b4e6354a66",
+        "ordinal": 19,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- QTY"
+              }
+            },
+            "Property": "_$vartovudgetconttk"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "dcc5056bdfa893b0cc5d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "35cd550f849613c3653a",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Past"
+                  }
+                },
+                "Property": "Net Value USD"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6119a2159acf7db4fad7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- Finance"
+              }
+            },
+            "Property": "_$Selected Budget Financedaily"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "63baae9b4f82e4b5eaf4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- Finance"
+              }
+            },
+            "Property": "_$Selected Budget APO daily"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6401a35482a6a6409ff3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT EDB Budget- Finance"
+              }
+            },
+            "Property": "_$Selected Budget Budget Daily"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b7fefa433b1e64d8b3c1",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Open"
+                  }
+                },
+                "Property": "Net value"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a4aeaad7bcd68d531a9e",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT EDB Budget- Finance"
+                  }
+                },
+                "Property": "Customer Demand Net sales _APO_"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

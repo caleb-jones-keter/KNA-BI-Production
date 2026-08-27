@@ -1,0 +1,51 @@
+table Plants
+	lineageTag: cbfdd92e-934e-46a7-a1c3-0652a40044fb
+
+	column Plant
+		dataType: string
+		lineageTag: 278533db-d139-4cdf-a109-213ed8ffa5b3
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code: Plant'
+		dataType: int64
+		formatString: 0
+		lineageTag: bdb7e156-e9ca-4c36-8d5c-c42af75157ef
+		summarizeBy: none
+		sourceColumn: Code: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BA Plant'
+		dataType: string
+		lineageTag: 3d160142-c7b8-4caf-bffa-c2aec219a65f
+		summarizeBy: none
+		sourceColumn: BA Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Display Name'
+		dataType: string
+		lineageTag: 2b41011b-462e-49dc-b815-dfa11db54ca6
+		summarizeBy: none
+		sourceColumn: Display Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Plants = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Plant_Table.xlsx"), null, true),
+				    Plants_Table = Source{[Item="Plants",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Plants_Table,{{"Plant", type text}, {"Code: Plant", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

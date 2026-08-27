@@ -1,0 +1,346 @@
+table 'Dim Products'
+	lineageTag: 58c747aa-e063-4781-9a07-2df13554862f
+
+	measure 'TL % and YS10N RTV % correlation for MARKET GROUP' =
+			
+			VAR __CORRELATION_TABLE = VALUES('Dim Products'[MARKET GROUP])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [RTV %])
+				)
+			VAR __SUM_X = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %]))
+			VAR __SUM_Y = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([RTV %]))
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE([TL %] * [RTV %] * 1.)
+				)
+			VAR __SUM_X2 = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([TL %] ^ 2))
+			VAR __SUM_Y2 = SUMX(KEEPFILTERS(__CORRELATION_TABLE), CALCULATE([RTV %] ^ 2))
+			RETURN
+				ABS(DIVIDE(
+					__COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+					SQRT(
+						(__COUNT * __SUM_X2 - __SUM_X ^ 2)
+							* (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+					)
+				))
+		lineageTag: 19ceac73-715e-499e-9c95-6809a08b8e46
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ACT PROD SITE'
+		dataType: string
+		lineageTag: ec2fcf58-be47-4439-8e51-b6fefef89189
+		summarizeBy: none
+		sourceColumn: ACT PROD SITE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ACT PROD SITE Region'
+		dataType: string
+		lineageTag: 80ca5b21-3b27-439a-b50a-b16dd97daf8e
+		summarizeBy: none
+		sourceColumn: ACT PROD SITE Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brand desc'
+		dataType: string
+		lineageTag: b9157434-8e62-48bf-be19-19b88f384254
+		summarizeBy: none
+		sourceColumn: Brand desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COUNTRY OF PRODUCT(24)'
+		dataType: string
+		lineageTag: 2f568f20-8c4a-49d0-bcce-060b1c99b228
+		summarizeBy: none
+		sourceColumn: COUNTRY OF PRODUCT(24)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COUNTRY OF PRODUCT(24) (groups)'
+		dataType: string
+		lineageTag: f5900d75-977b-4134-b4f7-00084acefd5f
+		summarizeBy: none
+		sourceColumn: COUNTRY OF PRODUCT(24) (groups)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COUNTRY OF PRODUCTION(5)'
+		dataType: string
+		lineageTag: 19ce8e15-bc05-4ecf-8f3a-cb21022e21d8
+		summarizeBy: none
+		sourceColumn: COUNTRY OF PRODUCTION(5)
+
+		annotation SummarizationSetBy = Automatic
+
+	column EAN
+		dataType: string
+		lineageTag: dd453c00-e971-4125-846b-409d0ce7948d
+		summarizeBy: none
+		sourceColumn: EAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Image
+		dataType: string
+		lineageTag: 77f10dda-0c72-4040-8f2c-eaec5eb40460
+		summarizeBy: none
+		sourceColumn: Image
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ITEM GROUP'
+		dataType: string
+		lineageTag: dec19b66-50df-434e-8370-869dec158153
+		summarizeBy: none
+		sourceColumn: ITEM GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ITEM GROUP (prod cat)'
+		dataType: string
+		lineageTag: 16ddf82d-4abc-411c-ba7e-fbaf952b928f
+		summarizeBy: none
+		sourceColumn: ITEM GROUP (prod cat)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MARKET GROUP'
+		dataType: string
+		lineageTag: 686b228f-1b5d-4719-a3a7-e3749a9ce484
+		summarizeBy: none
+		sourceColumn: MARKET GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OUTDOOR / INDOOR (groups)'
+		dataType: string
+		lineageTag: 4aab17bf-17a4-4d8f-8be3-868ba665665f
+		summarizeBy: none
+		sourceColumn: OUTDOOR / INDOOR (groups)
+
+		annotation SummarizationSetBy = Automatic
+
+	column OUTDOOR/INDOOR
+		dataType: string
+		lineageTag: bb0fd849-914b-4fdb-aa5a-8406727278f7
+		summarizeBy: none
+		sourceColumn: OUTDOOR/INDOOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PRODUCT CATEGORY'
+		dataType: string
+		lineageTag: a4bae0e7-cdea-4b5b-b37e-f75d12a2d6e9
+		summarizeBy: none
+		sourceColumn: PRODUCT CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PRODUCT CATEGORY (groups)'
+		dataType: string
+		lineageTag: e8267e31-e109-4625-a278-32040f1b90ae
+		summarizeBy: none
+		sourceColumn: PRODUCT CATEGORY (groups)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PRODUCT LINE DESC'
+		dataType: string
+		lineageTag: 9973a3c1-5020-41b6-a2cb-7267ef7d02e7
+		summarizeBy: none
+		sourceColumn: PRODUCT LINE DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PRODUCT MANAGEMENT/Category'
+		dataType: string
+		lineageTag: 6abe1920-dd64-4584-84f9-302799d0ec09
+		summarizeBy: none
+		sourceColumn: PRODUCT MANAGEMENT/Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PRODUCT TYPE'
+		dataType: string
+		lineageTag: bb00fe56-815c-4022-94b5-42b1d18596db
+		summarizeBy: none
+		sourceColumn: PRODUCT TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductOrg
+		dataType: string
+		lineageTag: 26b059fa-8aad-4f7d-adcd-117a74932c33
+		summarizeBy: none
+		sourceColumn: ProductOrg
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 0ec88811-97ab-4f12-91fa-dc043984aabd
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column SAP_MATERIALTYPE
+		dataType: string
+		lineageTag: f8364242-efaf-444c-a1f4-ed662558028e
+		summarizeBy: none
+		sourceColumn: SAP_MATERIALTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Group'
+		dataType: string
+		lineageTag: 29a3d9a0-680a-487c-8756-717a637cbe82
+		summarizeBy: none
+		sourceColumn: SKU Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Group #'
+		dataType: string
+		lineageTag: 4250c26a-d5c9-4830-9b03-28f8ecfa3a2c
+		summarizeBy: none
+		sourceColumn: SKU Group #
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Group # & Desc'
+		dataType: string
+		lineageTag: 78f76aa5-4be9-4da7-8604-d6906376e697
+		summarizeBy: none
+		sourceColumn: SKU Group # & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 437048f0-ca28-4621-8631-881d5a5172cc
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level #'
+		dataType: string
+		lineageTag: dc493046-579d-465c-977e-0545b3121656
+		summarizeBy: none
+		sourceColumn: SKU Level #
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level # & Desc'
+		dataType: string
+		lineageTag: b2587a97-41dd-40c8-83a3-44f34ccc5b0b
+		summarizeBy: none
+		sourceColumn: SKU Level # & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SubContinent Production'
+		dataType: string
+		lineageTag: eae37218-1a31-458e-8742-25f5eaca5104
+		summarizeBy: none
+		sourceColumn: SubContinent Production
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pack Type.Final'
+		dataType: string
+		lineageTag: eed34841-be9b-4003-a733-cf6011813319
+		summarizeBy: none
+		sourceColumn: Pack Type.Final
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pack Type.General'
+		dataType: string
+		lineageTag: e7f140a1-27a2-4692-a02d-7c5e9dad5782
+		summarizeBy: none
+		sourceColumn: Pack Type.General
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pack = IF(NOT(ISBLANK('Dim Products'[Pack Type.General])),IF('Dim Products'[Pack Type.General]="ECOM","ECOM",IF('Dim Products'[Pack Type.General]="Display","Display","Other")))
+		lineageTag: 59f5b7d9-dd51-455e-8d77-3f26809bf05d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filter = CALCULATE(COUNT('FACT YS10N'[Shipping Point/Receiving Pt]),FILTER('FACT YS10N','FACT YS10N'[Shipping Point/Receiving Pt]="4674"))
+		formatString: 0
+		lineageTag: a3cd2436-f77d-4890-9e1b-7451de7e9099
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Market Group' =
+			
+			
+			VAR test = LOWER(TRIM(SUBSTITUTE('Dim Products'[MARKET GROUP],"&"," ")))
+			VAR _lastName =
+			    MID (
+			        test,
+			        SEARCH ( " ", test, 1, 1 ),
+			        LEN ( test ) - 1
+			    )
+			VAR _firstName =
+			    MID ( test, 1, SEARCH ( " ", test, 1, 1 ) - 1 )
+			RETURN
+			    SUBSTITUTE(IFERROR(
+			        UPPER ( LEFT ( _firstName, 1 ) )
+			            & RIGHT ( _firstName, LEN ( _firstName ) - 1 ) & " "
+			            & UPPER ( LEFT ( TRIM ( _lastName ), 1 ) )
+			            & RIGHT ( TRIM ( _lastName ), LEN ( TRIM ( _lastName ) ) - 1 ),
+			        IFERROR(
+			            UPPER ( LEFT (test, 1 ) )
+			                & RIGHT ( test, LEN ( test ) - 1 ),""))," "," & ")
+		lineageTag: 963ecee1-e4f0-4aaa-bae9-efd24717540a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'No Sales Filter' = IF([Sales (12M,-3M)]<=0,"No Sales","Sales")
+		lineageTag: 1c2eade1-c576-4a57-bbe8-462515ce534a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Products' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Products]", {"[Dim Products].[ACT PROD SITE].[ACT PROD SITE]", "[Dim Products].[ACT PROD SITE Region].[ACT PROD SITE Region]", "[Dim Products].[Brand desc].[Brand desc]", "[Dim Products].[COUNTRY OF PRODUCT(24)].[COUNTRY OF PRODUCT(24)]", "[Dim Products].[COUNTRY OF PRODUCT(24) (groups)].[COUNTRY OF PRODUCT(24) (groups)]", "[Dim Products].[COUNTRY OF PRODUCTION(5)].[COUNTRY OF PRODUCTION(5)]", "[Dim Products].[EAN].[EAN]", "[Dim Products].[Image].[Image]", "[Dim Products].[ITEM GROUP].[ITEM GROUP]", "[Dim Products].[ITEM GROUP (prod cat)].[ITEM GROUP (prod cat)]", "[Dim Products].[MARKET GROUP].[MARKET GROUP]", "[Dim Products].[OUTDOOR / INDOOR (groups)].[OUTDOOR / INDOOR (groups)]", "[Dim Products].[OUTDOOR/INDOOR].[OUTDOOR/INDOOR]", "[Dim Products].[PRODUCT CATEGORY].[PRODUCT CATEGORY]", "[Dim Products].[PRODUCT CATEGORY (groups)].[PRODUCT CATEGORY (groups)]", "[Dim Products].[PRODUCT LINE DESC].[PRODUCT LINE DESC]", "[Dim Products].[PRODUCT MANAGEMENT/Category].[PRODUCT MANAGEMENT/Category]", "[Dim Products].[PRODUCT TYPE].[PRODUCT TYPE]", "[Dim Products].[ProductOrg].[ProductOrg]", "[Dim Products].[Region].[Region]", "[Dim Products].[SAP_MATERIALTYPE].[SAP_MATERIALTYPE]", "[Dim Products].[SKU Group].[SKU Group]", "[Dim Products].[SKU Group #].[SKU Group #]", "[Dim Products].[SKU Group # & Desc].[SKU Group # & Desc]", "[Dim Products].[SKU Level].[SKU Level]", "[Dim Products].[SKU Level #].[SKU Level #]", "[Dim Products].[SKU Level # & Desc].[SKU Level # & Desc]", "[Dim Products].[SubContinent Production].[SubContinent Production]"}, {"Dim Products.ACT PROD SITE", "Dim Products.ACT PROD SITE Region", "Dim Products.Brand desc", "Dim Products.COUNTRY OF PRODUCT(24)", "Dim Products.COUNTRY OF PRODUCT(24) (groups)", "Dim Products.COUNTRY OF PRODUCTION(5)", "Dim Products.EAN", "Dim Products.Image", "Dim Products.ITEM GROUP", "Dim Products.ITEM GROUP (prod cat)", "Dim Products.MARKET GROUP", "Dim Products.OUTDOOR / INDOOR (groups)", "Dim Products.OUTDOOR/INDOOR", "Dim Products.PRODUCT CATEGORY", "Dim Products.PRODUCT CATEGORY (groups)", "Dim Products.PRODUCT LINE DESC", "Dim Products.PRODUCT MANAGEMENT/Category", "Dim Products.PRODUCT TYPE", "Dim Products.ProductOrg", "Dim Products.Region", "Dim Products.SAP_MATERIALTYPE", "Dim Products.SKU Group", "Dim Products.SKU Group #", "Dim Products.SKU Group # & Desc", "Dim Products.SKU Level", "Dim Products.SKU Level #", "Dim Products.SKU Level # & Desc", "Dim Products.SubContinent Production"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Products.ACT PROD SITE", "ACT PROD SITE"}, {"Dim Products.ACT PROD SITE Region", "ACT PROD SITE Region"}, {"Dim Products.Brand desc", "Brand desc"}, {"Dim Products.COUNTRY OF PRODUCT(24)", "COUNTRY OF PRODUCT(24)"}, {"Dim Products.COUNTRY OF PRODUCT(24) (groups)", "COUNTRY OF PRODUCT(24) (groups)"}, {"Dim Products.COUNTRY OF PRODUCTION(5)", "COUNTRY OF PRODUCTION(5)"}, {"Dim Products.EAN", "EAN"}, {"Dim Products.Image", "Image"}, {"Dim Products.ITEM GROUP", "ITEM GROUP"}, {"Dim Products.ITEM GROUP (prod cat)", "ITEM GROUP (prod cat)"}, {"Dim Products.MARKET GROUP", "MARKET GROUP"}, {"Dim Products.OUTDOOR / INDOOR (groups)", "OUTDOOR / INDOOR (groups)"}, {"Dim Products.OUTDOOR/INDOOR", "OUTDOOR/INDOOR"}, {"Dim Products.PRODUCT CATEGORY", "PRODUCT CATEGORY"}, {"Dim Products.PRODUCT CATEGORY (groups)", "PRODUCT CATEGORY (groups)"}, {"Dim Products.PRODUCT LINE DESC", "PRODUCT LINE DESC"}, {"Dim Products.PRODUCT MANAGEMENT/Category", "PRODUCT MANAGEMENT/Category"}, {"Dim Products.PRODUCT TYPE", "PRODUCT TYPE"}, {"Dim Products.ProductOrg", "ProductOrg"}, {"Dim Products.Region", "Region"}, {"Dim Products.SAP_MATERIALTYPE", "SAP_MATERIALTYPE"}, {"Dim Products.SKU Group", "SKU Group"}, {"Dim Products.SKU Group #", "SKU Group #"}, {"Dim Products.SKU Group # & Desc", "SKU Group # & Desc"}, {"Dim Products.SKU Level", "SKU Level"}, {"Dim Products.SKU Level #", "SKU Level #"}, {"Dim Products.SKU Level # & Desc", "SKU Level # & Desc"}, {"Dim Products.SubContinent Production", "SubContinent Production"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each [#"SKU Level #"] <> null and [#"SKU Level #"] <> ""),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"SKU Level #"}, #"Pack Type", {"SKU"}, "Pack Type", JoinKind.LeftOuter),
+				    #"Expanded Pack Type" = Table.ExpandTableColumn(#"Merged Queries", "Pack Type", {"Final", "General"}, {"Pack Type.Final", "Pack Type.General"})
+				in
+				    #"Expanded Pack Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

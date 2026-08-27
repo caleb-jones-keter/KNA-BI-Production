@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "c5116bc2473ec6799b92",
+  "position": {
+    "x": 192,
+    "y": 128,
+    "z": 4000,
+    "height": 720,
+    "width": 1440,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT MB51 Material_Movements Initial"
+                    }
+                  },
+                  "Property": "Combined Date 1"
+                }
+              },
+              "queryRef": "FACT MB51 Material_Movements Initial.Combined Date 1",
+              "nativeQueryRef": "Combined Date 1",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT MB51 Material_Movements Initial"
+                    }
+                  },
+                  "Property": "_$containersintolocation"
+                }
+              },
+              "queryRef": "FACT MB51 Material_Movements Initial._$containersintolocation",
+              "nativeQueryRef": "_$containersintolocation"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT MB51 Material_Movements Initial"
+                  }
+                },
+                "Property": "Combined Date 1"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "40ffd9452d97065b0b19",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT MB51 Material_Movements Initial"
+              }
+            },
+            "Property": "Combined Date 1"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+table 'DOC Parameter'
+	lineageTag: b70c028a-0b3c-4340-84ce-81cae8a47453
+
+	measure 'DOS Parameter Value' = SELECTEDVALUE('DOC Parameter'[DOC Parameter], 45)*28/45
+		formatString: 0
+		lineageTag: f628a1d6-6f80-411c-aabe-bd2ec031924e
+
+	measure 'DOC Parameter Value' = SELECTEDVALUE('DOC Parameter'[DOC Parameter], 28)
+		formatString: 0
+		lineageTag: 0d9dcb61-7454-4dbb-b7bc-93867d2a4686
+
+	column 'DOC Parameter'
+		formatString: 0
+		lineageTag: f0db45f5-53f6-4257-9ee6-0a930b35c74d
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'DOC Parameter' = calculated
+		mode: import
+		source = GENERATESERIES(0, 365, 1)
+
+	annotation PBI_Id = 5cbbb9a327ee4c84957899c2bc694dda
+

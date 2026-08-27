@@ -1,0 +1,72 @@
+table 'THD Filter'
+	lineageTag: 825cfa6a-2a4b-40bb-9d04-a0ba2fc4a82c
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 0e7aadcf-5def-4442-ad75-344479418ddd
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'THD SKU '
+		dataType: int64
+		formatString: 0
+		lineageTag: 828863e7-a047-4c1a-88e7-adcfa897521e
+		summarizeBy: none
+		sourceColumn: "THD SKU "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 6b9cfb93-5e5c-4027-9898-3d58abc021e1
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Forecast '
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e00abd8-e350-4952-916f-d0743a6266e8
+		summarizeBy: none
+		sourceColumn: "Total Forecast "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Invoice'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cae999c-3e45-472e-9536-9ebed0ad9cd6
+		summarizeBy: none
+		sourceColumn: Total Invoice
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AVG Forecast'
+		dataType: double
+		lineageTag: 2de25d77-5698-47db-9cb3-67a5061a1f47
+		summarizeBy: none
+		sourceColumn: AVG Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'THD Filter' = m
+		mode: import
+		source =
+				let
+				  Source = Excel.Workbook(Web.Contents("https://keteronline-my.sharepoint.com/personal/justinn_keter_com/Documents/Apps/Microsoft Power Query/Uploaded Files/Marshal THD SKUS (Temp for filter on THD Sample).xlsx"), null, true),
+				  #"Navigation 1" = Source{[Item = "Sheet5", Kind = "Sheet"]}[Data],
+				  #"Changed column type" = Table.TransformColumnTypes(#"Navigation 1", {{"Column1", type text}, {"Column4", type text}}),
+				  #"Removed columns" = Table.RemoveColumns(#"Changed column type", {"Column1"}),
+				  #"Removed top rows" = Table.Skip(#"Removed columns", 1),
+				  #"Promoted headers" = Table.PromoteHeaders(#"Removed top rows", [PromoteAllScalars = true]),
+				  #"Changed column type 1" = Table.TransformColumnTypes(#"Promoted headers", {{"SKU Level", type text}, {"THD SKU ", Int64.Type}, {"Total Forecast ", Int64.Type}, {"Total Invoice", Int64.Type}, {"AVG Forecast", type number}})
+				in
+				  #"Changed column type 1"
+
+	annotation PBI_ResultType = Table
+

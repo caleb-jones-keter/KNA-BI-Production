@@ -1,0 +1,36 @@
+table Profit_Center
+	lineageTag: 7b530668-185a-4a22-b627-9c08aec8d3fa
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: e3b986ed-44ac-48a7-84d7-1b71eac13a81
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Profit Center Detailed (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: e348379e-96c9-4566-b830-205df77231f9
+		summarizeBy: sum
+		sourceColumn: Code:Profit Center Detailed (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Profit_Center = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Profit_Center_GF_Global.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

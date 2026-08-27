@@ -1,0 +1,166 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ddf7b7b05b6a7f0d38cc",
+  "position": {
+    "x": 8,
+    "y": 16,
+    "z": 0,
+    "height": 704,
+    "width": 1272,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance EO Master"
+                    }
+                  },
+                  "Property": "Plant_Name"
+                }
+              },
+              "queryRef": "FACT Finance EO Master.Plant_Name",
+              "nativeQueryRef": "Plant_Name",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance EO Master"
+                    }
+                  },
+                  "Property": "Material Number"
+                }
+              },
+              "queryRef": "FACT Finance EO Master.Material Number",
+              "nativeQueryRef": "Material Number",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Finance EO Master"
+                        }
+                      },
+                      "Property": "Provision With Var Cap Adjustment"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Finance EO Master.Provision With Var Cap Adjustment)",
+              "nativeQueryRef": "Provision With Var Cap Adjustment",
+              "displayName": "Provision With Var Cap Adjustment",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FACT Finance EO Master.Plant_Name"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance EO Master"
+                    }
+                  },
+                  "Property": "Plant_Name"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FACT Finance EO Master.Material Number"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "051f7530504b33e7820e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Finance EO Master"
+              }
+            },
+            "Property": "Plant_Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5720d9974bbbc1b743b5",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Finance EO Master"
+                  }
+                },
+                "Property": "Provision With Var Cap Adjustment"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1e021c436f85c8aa9403",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Finance EO Master"
+              }
+            },
+            "Property": "Material Number"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

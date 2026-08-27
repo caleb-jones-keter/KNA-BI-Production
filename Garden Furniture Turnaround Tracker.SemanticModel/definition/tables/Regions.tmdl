@@ -1,0 +1,36 @@
+table Regions
+	lineageTag: 48491f35-7b59-44f3-97e4-1676e3a60d25
+
+	column Segment-Region
+		dataType: string
+		lineageTag: 59026173-0d61-4d1f-b556-cc6f3b31b574
+		summarizeBy: none
+		sourceColumn: Segment-Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Segment-Region (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: a8a64663-8402-4cad-8b00-5607a32d276e
+		summarizeBy: sum
+		sourceColumn: Code:Segment-Region (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Regions = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Regions_GF_Global.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

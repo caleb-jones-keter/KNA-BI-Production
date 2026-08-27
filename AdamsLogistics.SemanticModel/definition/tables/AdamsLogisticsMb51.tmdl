@@ -1,0 +1,331 @@
+table AdamsLogisticsMb51
+	lineageTag: 33724615-bd10-4e42-8d96-69c87a47d5a7
+	sourceLineageTag: [dbo].[AdamsLogisticsMb51]
+
+	measure _101QTY = calculate(sum(AdamsLogisticsMb51[Quantity]),AdamsLogisticsMb51[Movement Type]=101)
+		formatString: 0
+		lineageTag: 9dcd310b-af85-4ac2-8ce1-33e7c09e5284
+
+		changedProperty = Name
+
+	measure _641QTY = ```
+			
+			
+			calculate(sum(AdamsLogisticsMb51[Quantity]),AdamsLogisticsMb51[Movement Type]=641)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 93c54595-707b-4a50-bb34-5cf57fb062d8
+
+		changedProperty = Name
+
+	measure _varcreatedshipped = [_101QTY]+[_641QTY]+[_311QTY]
+		formatString: 0
+		lineageTag: 8268f41d-1fda-4f61-a898-3918c59f8f13
+
+		changedProperty = Name
+
+	measure _varcreatedshippedTL =
+			
+			SUMX(
+			    SUMMARIZE(
+			        AdamsLogisticsMb51,
+			        AdamsLogisticsMb51[Material],
+			        AdamsLogisticsMb51[Posting Date]
+			    ),
+			    [_Scanned in TL] + [_Shipped out TL]+[_311 TL]
+			
+			)
+		lineageTag: 5275f88c-9612-47cc-b0ee-311b4711a3cd
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Scanned in TL' = ```
+			
+			
+			SUMX(
+			    SUMMARIZE(
+			        AdamsLogisticsMb51,
+			        AdamsLogisticsMb51[Material],
+			        AdamsLogisticsMb51[Posting Date]
+			    ),
+			    VAR Qty101 =
+			        CALCULATE(
+			            SUM(AdamsLogisticsMb51[Quantity]),
+			            AdamsLogisticsMb51[Movement Type] = 101
+			        )
+			    VAR TLQty =
+			        CALCULATE(
+			            MAX(AdamsMaster[TL Qty])
+			        )
+			    RETURN
+			        DIVIDE(Qty101, TLQty)
+			)
+			
+			
+			
+			```
+		lineageTag: 5a65bbb4-13d5-4971-bfc3-6826ed7b916a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Shipped out TL' = ```
+			
+			
+			SUMX(
+			    SUMMARIZE(
+			        AdamsLogisticsMb51,
+			        AdamsLogisticsMb51[Material],
+			        AdamsLogisticsMb51[Posting Date]
+			    ),
+			    VAR Qty641 =
+			        CALCULATE(
+			            SUM(AdamsLogisticsMb51[Quantity]),
+			            AdamsLogisticsMb51[Movement Type] = 641
+			        )
+			    VAR TLQty =
+			        CALCULATE(
+			            MAX(AdamsMaster[TL Qty])
+			        )
+			    RETURN
+			        DIVIDE(Qty641, TLQty)
+			)
+			
+			
+			```
+		lineageTag: c193058b-8605-4e47-9f74-cd92c53ce67b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_TL Tester' = max(AdamsMaster[TL Qty])
+		formatString: 0
+		lineageTag: a24f4e9b-8941-4b1d-b63c-522a530586fb
+
+		changedProperty = Name
+
+	measure _311QTY = calculate(sum(AdamsLogisticsMb51[Quantity]),AdamsLogisticsMb51[Movement Type]=311)
+		formatString: 0
+		lineageTag: 109f3029-62ec-4431-a7bc-3a1c8935f0d7
+
+		changedProperty = Name
+
+	measure '_311 TL' =
+			
+			
+			SUMX(
+			    SUMMARIZE(
+			        AdamsLogisticsMb51,
+			        AdamsLogisticsMb51[Material],
+			        AdamsLogisticsMb51[Posting Date]
+			    ),
+			    VAR Qty641 =
+			        CALCULATE(
+			            SUM(AdamsLogisticsMb51[Quantity]),
+			            AdamsLogisticsMb51[Movement Type] = 311
+			        )
+			    VAR TLQty =
+			        CALCULATE(
+			            MAX(AdamsMaster[TL Qty])
+			        )
+			    RETURN
+			        DIVIDE(Qty641, TLQty)
+			)
+		lineageTag: 383e1724-8710-4312-bec7-095bccac9494
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Plant
+		dataType: string
+		lineageTag: 1d91a0f7-291b-4a78-9434-6d752c9bda48
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 3c5756e2-f8be-49e1-8bc9-3b4bfea0ac3a
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 6cac6b77-e102-451c-9b6d-a48697f7292c
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Description'
+		dataType: string
+		lineageTag: 3a1ac1db-36e6-4807-80fe-e81007ceca93
+		sourceLineageTag: Material Description
+		summarizeBy: none
+		sourceColumn: Material Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Document'
+		dataType: string
+		lineageTag: 93f5fa6d-43b6-4bad-bcba-11ffa9432379
+		sourceLineageTag: Material Document
+		summarizeBy: none
+		sourceColumn: Material Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reference
+		dataType: string
+		lineageTag: cdc21de1-ec07-4a1a-88e6-1dffe717ac36
+		sourceLineageTag: Reference
+		summarizeBy: none
+		sourceColumn: Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: string
+		lineageTag: dc81dfdd-d59b-4b08-8332-59fcca0d1372
+		sourceLineageTag: Order
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: ec890e73-0750-49b1-83b2-6d268e3c15fd
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Movement Type'
+		dataType: int64
+		formatString: 0
+		lineageTag: d04e4de3-7ecf-412d-9e74-933f01e7075e
+		sourceLineageTag: Movement Type
+		summarizeBy: sum
+		sourceColumn: Movement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Qty in Un. of Entry'
+		dataType: int64
+		formatString: 0
+		lineageTag: e36651b5-9fd8-40e0-a5ba-d0145757c1ce
+		sourceLineageTag: Qty in Un. of Entry
+		summarizeBy: sum
+		sourceColumn: Qty in Un. of Entry
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount in LC'
+		dataType: double
+		lineageTag: 7c9dd01d-78c8-4910-8da5-07c4e3690dd4
+		sourceLineageTag: Amount in LC
+		summarizeBy: sum
+		sourceColumn: Amount in LC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Purchase Order'
+		dataType: string
+		lineageTag: aa03f116-a12f-49c6-ab56-e3673abf51d4
+		sourceLineageTag: Purchase Order
+		summarizeBy: none
+		sourceColumn: Purchase Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Header Text'
+		dataType: string
+		lineageTag: 666bc539-1851-4058-a4c8-d4e7505106f6
+		sourceLineageTag: Document Header Text
+		summarizeBy: none
+		sourceColumn: Document Header Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Posting Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7777c46-015f-48a2-bfb6-574b8a268d34
+		sourceLineageTag: Posting Date
+		summarizeBy: none
+		sourceColumn: Posting Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Entry Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 642a06af-079d-45d0-a6f6-1c91917031cc
+		sourceLineageTag: Local Entry Date
+		summarizeBy: none
+		sourceColumn: Local Entry Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Entry Time'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3c9bc43-939f-4a35-8edf-b257374ffce1
+		sourceLineageTag: Local Entry Time
+		summarizeBy: none
+		sourceColumn: Local Entry Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User name'
+		dataType: string
+		lineageTag: 33bfb45e-92fd-4be5-971f-45204f561afd
+		sourceLineageTag: User name
+		summarizeBy: none
+		sourceColumn: User name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU & DESC'
+		dataType: string
+		lineageTag: 8ce4345b-52a8-4a9c-979a-1db2c5ff9692
+		sourceLineageTag: SKU & DESC
+		summarizeBy: none
+		sourceColumn: SKU & DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Receiving Stor. Loc.'
+		dataType: string
+		lineageTag: b2bd2958-c3bb-433f-9b7d-c0d668e9f498
+		sourceLineageTag: Receiving Stor. Loc.
+		summarizeBy: none
+		sourceColumn: Receiving Stor. Loc.
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AdamsLogisticsMb51 = entity
+		mode: directLake
+		source
+			entityName: AdamsLogisticsMb51
+			schemaName: dbo
+			expressionSource: 'DirectLake - Spare_Parts_Lakehouse'
+

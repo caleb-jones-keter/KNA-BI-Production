@@ -1,0 +1,287 @@
+table YM6p
+	lineageTag: eb8e75bb-3b4d-42b5-8de6-ea4cbd12dd7d
+
+	column 'Purchasing Document'
+		dataType: int64
+		formatString: 0
+		lineageTag: e84f88f3-95f3-41f1-ae2e-5c77b62e79b0
+		summarizeBy: sum
+		sourceColumn: Purchasing Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: int64
+		formatString: 0
+		lineageTag: 8327151a-16a9-480c-849f-8be54d5a71d0
+		summarizeBy: sum
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Group'
+		dataType: string
+		lineageTag: 202e5a62-2d09-4aca-8c4a-48c5fca43363
+		summarizeBy: none
+		sourceColumn: Purchasing Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 06b2348c-2b8d-4977-9ab3-efce2e3af293
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchase Order Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9871e92b-0f26-485f-ba3e-f0742c67ec4e
+		summarizeBy: none
+		sourceColumn: Purchase Order Date
+
+		variation Variation
+			isDefault
+			relationship: 5c7feb37-8136-4dcd-b43c-4f24dcbe2540
+			defaultHierarchy: LocalDateTable_44a79ff8-5622-41a1-b446-b027da8b82a6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AASalOrd
+		dataType: string
+		lineageTag: 6dd7fb1b-b8a3-4cb6-b028-55e53fd4cf6d
+		summarizeBy: none
+		sourceColumn: AASalOrd
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: int64
+		formatString: 0
+		lineageTag: e7d68718-c016-4ba1-b445-3086c5b1ef0e
+		summarizeBy: sum
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f0e0367-e3fe-425e-9e07-9dc391303071
+		summarizeBy: sum
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: 541dea77-f136-4c89-b539-81569e984c8d
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Description'
+		dataType: string
+		lineageTag: b4f6e220-cbda-467b-ab49-74790faf5953
+		summarizeBy: none
+		sourceColumn: Material Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: a02de79b-2b3d-41cc-b90d-1c973c0fb8d1
+		summarizeBy: sum
+		sourceColumn: Order Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Order Value'
+		dataType: double
+		lineageTag: 7a11c5ba-2ad6-47b0-ada8-e0683e686cd8
+		summarizeBy: sum
+		sourceColumn: Net Order Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales document'
+		dataType: int64
+		formatString: 0
+		lineageTag: fd843d8f-3f93-4b5a-9c61-fb4171fe8221
+		summarizeBy: sum
+		sourceColumn: Sales document
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReqDelivDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 06fd4762-217f-45ab-ae25-d9a5de37f08a
+		summarizeBy: none
+		sourceColumn: ReqDelivDate
+
+		variation Variation
+			isDefault
+			relationship: 3b81dd83-7533-4871-ac34-72d2c150908e
+			defaultHierarchy: LocalDateTable_7ad1abb2-77d6-4773-b9f3-2fa40bb774b7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Confirm. Category'
+		dataType: string
+		lineageTag: d4bfc911-2bfd-4bff-8b2c-1ce643b87894
+		summarizeBy: none
+		sourceColumn: Confirm. Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConfirmDelvDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4cb858fc-44b1-4dc4-9cdb-4ace93e3394b
+		summarizeBy: none
+		sourceColumn: ConfirmDelvDate
+
+		variation Variation
+			isDefault
+			relationship: 8ab57d6a-69de-4ff9-b081-b4bd6eb6f17f
+			defaultHierarchy: LocalDateTable_91cf1e1c-8f00-42d0-b59d-3acfed3997c4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'GR Processing Time'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e80e34d-5d0a-4614-aaae-c55d97e6b19a
+		summarizeBy: sum
+		sourceColumn: GR Processing Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 782ddf93-1c32-4707-99e2-8f50e96b3ab9
+		summarizeBy: none
+		sourceColumn: LA Date
+
+		variation Variation
+			isDefault
+			relationship: b3bf09a4-62e3-46ab-8d45-dd78a2153013
+			defaultHierarchy: LocalDateTable_3a725840-def7-4918-839b-a4fd1edb097e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalcArravDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f716d6a3-81e5-4c23-99ee-5dd4a3c58223
+		summarizeBy: none
+		sourceColumn: CalcArravDate
+
+		variation Variation
+			isDefault
+			relationship: 09fc85f1-dbd7-4e06-b8f6-85052e752505
+			defaultHierarchy: LocalDateTable_ba984c6d-f748-4204-8b38-4cabdab2e6ad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Delivery
+		dataType: int64
+		formatString: 0
+		lineageTag: a44ec432-f302-41c8-baaa-7e5f23ada409
+		summarizeBy: sum
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing Document'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bcbb904-f4ac-4f4d-98e0-6b196fe24dca
+		summarizeBy: sum
+		sourceColumn: Billing Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Container
+		dataType: string
+		lineageTag: 36efbbcf-3753-46c3-bace-7c2ad580ed7d
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inb.delivery'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6543d6a5-94a9-43f8-a1e2-223fc12e1380
+		summarizeBy: sum
+		sourceColumn: Inb.delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Port'
+		dataType: string
+		lineageTag: 6075dd87-b2cd-4bc8-ae9f-d83f39a0d368
+		summarizeBy: none
+		sourceColumn: Entry Port
+
+		annotation SummarizationSetBy = Automatic
+
+	column VesselName
+		dataType: string
+		lineageTag: c6ff9fd5-b35f-44cd-b7b4-831529113cc7
+		summarizeBy: none
+		sourceColumn: VesselName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First GR date for item'
+		dataType: string
+		lineageTag: 21fbe9dc-8166-448d-a3a4-34558022fb4f
+		summarizeBy: none
+		sourceColumn: First GR date for item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deletion Indicator'
+		dataType: string
+		lineageTag: e7b05392-cec3-4eed-8622-de40a19ca665
+		summarizeBy: none
+		sourceColumn: Deletion Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	partition YM6p = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Ym6P.XLSX"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Purchasing Document", Int64.Type}, {"Plant", Int64.Type}, {"Purchasing Group", type text}, {"Storage Location", type text}, {"Purchase Order Date", type date}, {"AASalOrd", type text}, {"Supplier", Int64.Type}, {"Item", Int64.Type}, {"Material", Int64.Type}, {"Material Description", type text}, {"Order Quantity", Int64.Type}, {"Net Order Value", type number}, {"Sales document", Int64.Type}, {"ReqDelivDate", type date}, {"Confirm. Category", type text}, {"ConfirmDelvDate", type date}, {"GR Processing Time", Int64.Type}, {"LA Date", type date}, {"CalcArravDate", type date}, {"Delivery", Int64.Type}, {"Billing Document", Int64.Type}, {"Container", type text}, {"Inb.delivery", Int64.Type}, {"Entry Port", type text}, {"VesselName", type text}, {"First GR date for item", type any}, {"Deletion Indicator", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

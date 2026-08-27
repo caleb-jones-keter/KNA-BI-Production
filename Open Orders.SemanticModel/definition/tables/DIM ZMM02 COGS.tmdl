@@ -1,0 +1,165 @@
+table 'DIM ZMM02 COGS'
+	lineageTag: 3a07501b-0c20-42d0-8183-3c30c7e2da6a
+	sourceLineageTag: [dbo].[DIM ZMM02 COGS]
+
+	column Plnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 671d923e-6ecd-4228-8260-6f37f54a0dca
+		sourceLineageTag: Plnt
+		summarizeBy: sum
+		sourceColumn: Plnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Old material no_'
+		dataType: string
+		lineageTag: d7e843bf-e4e5-4615-8966-dc5723b32af6
+		sourceLineageTag: Old material no_
+		summarizeBy: none
+		sourceColumn: Old material no_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: ca81ab1d-9e43-4219-b048-2c96656a2771
+		sourceLineageTag: Material
+		summarizeBy: sum
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column MS
+		dataType: string
+		lineageTag: fdf21a36-a7cc-4496-b4d6-0ef8fd85ed90
+		sourceLineageTag: MS
+		summarizeBy: none
+		sourceColumn: MS
+
+		annotation SummarizationSetBy = Automatic
+
+	column MTyp
+		dataType: string
+		lineageTag: 37c6cb4f-dbe8-4c38-9c6f-7476ac877270
+		sourceLineageTag: MTyp
+		summarizeBy: none
+		sourceColumn: MTyp
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Type'
+		dataType: string
+		lineageTag: d0685a8a-4234-42e3-a08d-a8c8c84e03fe
+		sourceLineageTag: Material Type
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Standard price'
+		dataType: double
+		lineageTag: c4b3ec7d-3ef3-4939-aa40-e4daf25ead65
+		sourceLineageTag: Standard price
+		summarizeBy: sum
+		sourceColumn: Standard price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Crcy
+		dataType: string
+		lineageTag: ca8370d3-46b9-4b18-b4a9-98c25c0f91b9
+		sourceLineageTag: Crcy
+		summarizeBy: none
+		sourceColumn: Crcy
+
+		annotation SummarizationSetBy = Automatic
+
+	column per
+		dataType: int64
+		formatString: 0
+		lineageTag: 84cd96ea-ed6d-431f-ad3b-8ff7de7e4bd1
+		sourceLineageTag: per
+		summarizeBy: sum
+		sourceColumn: per
+
+		annotation SummarizationSetBy = Automatic
+
+	column ABC
+		dataType: string
+		lineageTag: c501b3d2-7ec4-4bfa-adec-2858f01b4d9c
+		sourceLineageTag: ABC
+		summarizeBy: none
+		sourceColumn: ABC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 825184cc-a343-4f99-aa4d-9a4109584326
+		sourceLineageTag: Created
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Ctr'
+		dataType: int64
+		formatString: 0
+		lineageTag: c324a070-4667-4537-b1db-8b84a163feea
+		sourceLineageTag: Profit Ctr
+		summarizeBy: sum
+		sourceColumn: Profit Ctr
+
+		annotation SummarizationSetBy = Automatic
+
+	column LS
+		dataType: string
+		lineageTag: 3b1a24c5-1bf9-4848-b647-b31890a0d79d
+		sourceLineageTag: LS
+		summarizeBy: none
+		sourceColumn: LS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix. lot size'
+		dataType: int64
+		formatString: 0
+		lineageTag: fdf03ee7-7f2a-4b84-82a3-b802c212e777
+		sourceLineageTag: Fix. lot size
+		summarizeBy: sum
+		sourceColumn: Fix. lot size
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Key'
+		dataType: string
+		lineageTag: e1da6186-e5da-40ad-8ecf-b268d71522c8
+		sourceLineageTag: Cost Key
+		summarizeBy: none
+		sourceColumn: Cost Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		lineageTag: 234b1c0c-7309-4a68-845b-27d69dd584ae
+		sourceLineageTag: Cost
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'DIM ZMM02 COGS' = entity
+		mode: directLake
+		source
+			entityName: DIM ZMM02 COGS
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

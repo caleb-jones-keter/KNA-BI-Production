@@ -1,0 +1,221 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "7ddff6950ee1820e005b",
+  "position": {
+    "x": 824,
+    "y": 96,
+    "z": 5000,
+    "height": 480,
+    "width": 824,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Date _2_"
+                    }
+                  },
+                  "Property": "NYA SOW"
+                }
+              },
+              "queryRef": "DIM Date _2_.NYA SOW",
+              "nativeQueryRef": "NYA SOW",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.CombinedQty_per_TLQty)",
+              "nativeQueryRef": "Production Trucks",
+              "hidden": true,
+              "displayName": "Production Trucks"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Past"
+                        }
+                      },
+                      "Property": "Trailer No"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "CountNonNull(FACT YS10N Past.Trailer No)",
+              "nativeQueryRef": "OB Trucks",
+              "displayName": "OB Trucks"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Production Trucks]+[OB Trucks]",
+                  "Name": "Total Trucks"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Total Trucks",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[OB Trucks]*2",
+                  "Name": "Hours Needed OB"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Hours Needed OB"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Production Trucks]",
+                  "Name": "Hours Needed IB"
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "Hours Needed IB"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Hours Needed IB]+[Hours Needed OB]",
+                  "Name": "Total Labor Hours"
+                }
+              },
+              "queryRef": "select3",
+              "nativeQueryRef": "Total Labor Hours"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "MOVINGAVERAGE([Total Labor Hours], 10)",
+                  "Name": "AVG Labor Hours"
+                }
+              },
+              "queryRef": "select4",
+              "nativeQueryRef": "AVG Labor Hours"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Date _2_"
+                  }
+                },
+                "Property": "NYA SOW"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3848d6e407a2fe2c4c74",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date _2_"
+              }
+            },
+            "Property": "NYA SOW"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3d37184212fa29586aa3",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Future"
+                  }
+                },
+                "Property": "CombinedQty_per_TLQty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b321d37d5b0d4ecf6ef4",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Past"
+                  }
+                },
+                "Property": "Trailer No"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

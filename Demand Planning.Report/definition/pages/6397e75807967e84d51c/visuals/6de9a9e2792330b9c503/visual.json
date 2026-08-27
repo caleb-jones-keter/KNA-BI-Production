@@ -1,0 +1,204 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "6de9a9e2792330b9c503",
+  "position": {
+    "x": 0,
+    "y": 144,
+    "z": 0,
+    "height": 736,
+    "width": 1647.9999999999998,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "EnfoPak _MrrContainers_.vessel_name"
+                }
+              },
+              "queryRef": "FACT YM6P.EnfoPak _MrrContainers_.vessel_name",
+              "nativeQueryRef": "ENFO Vessel",
+              "displayName": "ENFO Vessel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "EnfoPak _MrrContainers_.bl_number"
+                }
+              },
+              "queryRef": "FACT YM6P.EnfoPak _MrrContainers_.bl_number",
+              "nativeQueryRef": "ENFO BL #",
+              "displayName": "ENFO BL #"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Billing Date Supply Order"
+                }
+              },
+              "queryRef": "FACT YM6P.Billing Date Supply Order",
+              "nativeQueryRef": "Billing Date Supply Order",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Plant"
+                }
+              },
+              "queryRef": "Sum(FACT YM6P.Plant)",
+              "nativeQueryRef": "Plant"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Storage Location Orig"
+                }
+              },
+              "queryRef": "FACT YM6P.Storage Location Orig",
+              "nativeQueryRef": "Storage Location Orig"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRPSKU"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM MRPSKU.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT YM6P.Container",
+              "nativeQueryRef": "Container"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "CalcArravDate"
+                }
+              },
+              "queryRef": "FACT YM6P.CalcArravDate",
+              "nativeQueryRef": "Calc Arriv Date",
+              "displayName": "Calc Arriv Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_MrrContainers_.status"
+                }
+              },
+              "queryRef": "FACT YM6P._MrrContainers_.status",
+              "nativeQueryRef": "_MrrContainers_.status"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YM6P"
+                  }
+                },
+                "Property": "Billing Date Supply Order"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "150.07851862755118D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.Billing Date Supply Order"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101.91567898673988D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P.Storage Location Orig"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "ae37cfa123e9c50050e3",
+  "position": {
+    "x": 656,
+    "y": 88,
+    "z": 0,
+    "height": 808,
+    "width": 992.00000000000011,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "SKU & DESC"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.SKU & DESC",
+              "nativeQueryRef": "SKU & DESC"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AdamsLogisticsMb51"
+                        }
+                      },
+                      "Property": "Posting Date"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51.Posting Date",
+              "nativeQueryRef": "Latest Posting Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_101QTY"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._101QTY",
+              "nativeQueryRef": "Scanned In Units",
+              "displayName": "Scanned In Units",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_Scanned in TL"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._Scanned in TL",
+              "nativeQueryRef": "Scanned in TL",
+              "displayName": "Scanned in TL"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_641QTY"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._641QTY",
+              "nativeQueryRef": "Shipped Units",
+              "displayName": "Shipped Units",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_varcreatedshipped"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._varcreatedshipped",
+              "nativeQueryRef": "Scanned Units-Ship Units",
+              "displayName": "Scanned Units-Ship Units",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_Shipped out TL"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._Shipped out TL",
+              "nativeQueryRef": "Shipped out TL",
+              "displayName": "Shipped out TL"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_311QTY"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._311QTY",
+              "nativeQueryRef": "311 QTY",
+              "displayName": "311 QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AdamsLogisticsMb51"
+                    }
+                  },
+                  "Property": "_varcreatedshippedTL"
+                }
+              },
+              "queryRef": "AdamsLogisticsMb51._varcreatedshippedTL",
+              "nativeQueryRef": "Scanned TL- Shipped TL",
+              "displayName": "Scanned TL- Shipped TL"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AdamsLogisticsMb51"
+                  }
+                },
+                "Property": "_101QTY"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.84848484848484D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51._varcreatedshippedTL"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.8807459654409D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51._varcreatedshipped"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "337.95240687764465D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51.SKU & DESC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "68.58402998017367D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51._Scanned in TL"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.82121572070443D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51._641QTY"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "60.58506319417848D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51._Shipped out TL"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.42857142857143D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AdamsLogisticsMb51.Posting Date"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "acd86464355361791294",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_varcreatedshipped"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dde0c9f019073e1700c7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "SKU & DESC"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9992b8c848520ce11669",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_101QTY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "10570052ce101e4973a0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_641QTY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4b44ad30d158e5d3792b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_varcreatedshippedTL"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "AdamsLogisticsMb51",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a"
+                        }
+                      },
+                      "Property": "_varcreatedshippedTL"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dd640b620881c03b9300",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_Scanned in TL"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dd60dd0bbe29a856713e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_Shipped out TL"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e52ba22722ba888132c0",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AdamsLogisticsMb51"
+                  }
+                },
+                "Property": "Posting Date"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b888ae29d4099b73ace5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AdamsLogisticsMb51"
+              }
+            },
+            "Property": "_311QTY"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

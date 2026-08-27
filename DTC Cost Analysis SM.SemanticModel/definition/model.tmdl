@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - NA_Supply_Chain"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table 'DIM Product'
+ref table 'DIM Customer'
+ref table fact_dummy_ys10n_top_12
+ref table 'DIM DTC Ship Point Key'
+ref table 'DIM USA CA Zips'
+ref table 'FACT Component Forecast Initial'
+ref table 'DIM Date'
+ref table fact_ys10n_past_with_material_state_rankings
+ref table fact_forecast_with_material_state_rankings
+

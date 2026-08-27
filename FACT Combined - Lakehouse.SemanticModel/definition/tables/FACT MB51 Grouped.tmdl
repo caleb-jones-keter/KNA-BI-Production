@@ -1,0 +1,168 @@
+table 'FACT MB51 Grouped'
+	lineageTag: cf407432-b257-4412-bed1-530febc427c5
+	sourceLineageTag: [dbo].[FACT MB51 Grouped]
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 96edaf19-c859-432f-a903-23a085036e35
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 7ebb53ea-7491-4062-815e-14f15ebc3c01
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 86694aef-5ce4-4c91-96ae-a517f5076102
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9444efa6-b5c6-4628-8239-1d4f9e10b2e5
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: bedaa11a-a603-49db-8578-6749e4496986
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: a4c9da87-6ce6-47e4-bd4d-f0c192eee36c
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: double
+		lineageTag: 3c3e9a15-9ace-4bec-8c8c-ec54a6f92c78
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 7f21d25c-6be1-4176-bb5f-2d1f471c1904
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab946d17-5c4b-4531-bfc8-0be0dd98035b
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 008db194-0e16-4cac-a88b-cdf79b5e41a5
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 330266d5-215a-4f18-a65f-e3dcfaac03a3
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6c1544b4-2505-425f-ae83-10dbe113baae
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_ContQty
+		dataType: double
+		lineageTag: bd775101-3596-48ee-9ac1-48ab795fb6a9
+		sourceLineageTag: CombinedQty_per_ContQty
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_ContQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cont_Qty
+		dataType: double
+		lineageTag: cb0fade4-b1c8-489c-8d4f-f90d36f11a08
+		sourceLineageTag: Cont_Qty
+		summarizeBy: sum
+		sourceColumn: Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e43d09b-d1da-4007-b0a1-db27747961b3
+		sourceLineageTag: TL Qty
+		summarizeBy: sum
+		sourceColumn: TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_TLQty
+		dataType: double
+		lineageTag: d076be78-f73f-4865-b0db-a341e8547059
+		sourceLineageTag: CombinedQty_per_TLQty
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_TLQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT MB51 Grouped' = entity
+		mode: directLake
+		source
+			entityName: FACT MB51 Grouped
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

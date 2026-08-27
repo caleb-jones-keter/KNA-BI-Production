@@ -1,0 +1,20 @@
+table 'DIM SKUPayer'
+	lineageTag: f69ddd3b-0211-42d8-acc2-4957aa316b55
+	sourceLineageTag: [dbo].[DIM SKUPayer]
+
+	column SKUPayer
+		dataType: string
+		lineageTag: fdc540a2-f7a2-4682-ae96-7f8d22677bfc
+		sourceLineageTag: SKUPayer
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM SKUPayer' = entity
+		mode: directLake
+		source
+			entityName: DIM SKUPayer
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

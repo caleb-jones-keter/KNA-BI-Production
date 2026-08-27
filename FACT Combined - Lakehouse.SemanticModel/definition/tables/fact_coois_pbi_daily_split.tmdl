@@ -1,0 +1,304 @@
+table fact_coois_pbi_daily_split
+	lineageTag: 1123de9d-93cd-474f-bdbd-bdba375ddc05
+	sourceLineageTag: [dbo].[fact_coois_pbi_daily_split]
+
+	column Work_Center
+		dataType: string
+		lineageTag: 8f03cf76-12b7-4e7b-9ca2-377925a8c4ff
+		sourceLineageTag: Work_Center
+		summarizeBy: none
+		sourceColumn: Work_Center
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: b0ffa935-68bf-43ed-9354-afd8700df033
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mold
+		dataType: string
+		lineageTag: c32bfcdc-1b1e-4958-9832-9e1ebea4a092
+		sourceLineageTag: Mold
+		summarizeBy: none
+		sourceColumn: Mold
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Number
+		dataType: string
+		lineageTag: aaf89911-dbd5-4220-8a63-dd17ee46b4b7
+		sourceLineageTag: Order_Number
+		summarizeBy: none
+		sourceColumn: Order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Basic_material
+		dataType: string
+		lineageTag: a42fb8f2-38a2-40b9-9d59-6902792a6e6d
+		sourceLineageTag: Basic_material
+		summarizeBy: none
+		sourceColumn: Basic_material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material_Number
+		dataType: string
+		lineageTag: 1e2b7fbf-f0ed-4cef-a955-a45f9fccac2c
+		sourceLineageTag: Material_Number
+		summarizeBy: none
+		sourceColumn: Material_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material_description
+		dataType: string
+		lineageTag: f2d9d8a9-5bd6-4aeb-b64e-d88216411782
+		sourceLineageTag: Material_description
+		summarizeBy: none
+		sourceColumn: Material_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_quantity_GMEIN
+		dataType: int64
+		formatString: 0
+		lineageTag: 375fa6bf-93b8-46b2-b511-bc88cb41cfdd
+		sourceLineageTag: Order_quantity_GMEIN
+		summarizeBy: sum
+		sourceColumn: Order_quantity_GMEIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Confirmed_quantity_GMEIN
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b538a03-1d8d-4359-847a-ae6ad92ac0c2
+		sourceLineageTag: Confirmed_quantity_GMEIN
+		summarizeBy: sum
+		sourceColumn: Confirmed_quantity_GMEIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Storage_Location
+		dataType: string
+		lineageTag: f26f338d-d3a3-4373-a111-e71f515fc8a5
+		sourceLineageTag: Storage_Location
+		summarizeBy: none
+		sourceColumn: Storage_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column System_Status
+		dataType: string
+		lineageTag: 42b94e54-5157-4f5a-be54-ef1c52c62492
+		sourceLineageTag: System_Status
+		summarizeBy: none
+		sourceColumn: System_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qty_Per_Day_BEAZE
+		dataType: int64
+		formatString: 0
+		lineageTag: e28420fc-f81e-4e9b-b100-89e1a48890db
+		sourceLineageTag: Qty_Per_Day_BEAZE
+		summarizeBy: sum
+		sourceColumn: Qty_Per_Day_BEAZE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Labour_C_VGE03
+		dataType: double
+		lineageTag: 4d4b2057-281d-4ec2-957c-10b33a1643a9
+		sourceLineageTag: Labour_C_VGE03
+		summarizeBy: sum
+		sourceColumn: Labour_C_VGE03
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Remaining_HR_time_H
+		dataType: double
+		lineageTag: 4861897f-ac44-4a75-9e62-fc30d76b8c7c
+		sourceLineageTag: Remaining_HR_time_H
+		summarizeBy: sum
+		sourceColumn: Remaining_HR_time_H
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Remaining_weight_YRW
+		dataType: double
+		lineageTag: fac0cd61-55dd-4387-ac81-ade28031a534
+		sourceLineageTag: Remaining_weight_YRW
+		summarizeBy: sum
+		sourceColumn: Remaining_weight_YRW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column User_Status
+		dataType: string
+		lineageTag: 1d0fdfc1-972f-459a-b831-8c81428e0456
+		sourceLineageTag: User_Status
+		summarizeBy: none
+		sourceColumn: User_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collective_order
+		dataType: string
+		lineageTag: 214d2d2c-7bce-4087-87ea-c5b132c95b33
+		sourceLineageTag: Collective_order
+		summarizeBy: none
+		sourceColumn: Collective_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Leading_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 01289b26-293e-4605-aa81-a210dd1cb9a9
+		sourceLineageTag: Leading_order
+		summarizeBy: sum
+		sourceColumn: Leading_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Document
+		dataType: string
+		lineageTag: db96e756-e3a4-46a2-9751-ad6dfa917260
+		sourceLineageTag: Sales_Document
+		summarizeBy: none
+		sourceColumn: Sales_Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scheduled_Start_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc985dce-aaad-463b-a54e-acb88c754072
+		sourceLineageTag: Scheduled_Start_DateTime
+		summarizeBy: none
+		sourceColumn: Scheduled_Start_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scheduled_End_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 99a5d0a7-3d32-4693-b2ed-c1b39627c157
+		sourceLineageTag: Scheduled_End_DateTime
+		summarizeBy: none
+		sourceColumn: Scheduled_End_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductionDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5015db19-30b8-4ac1-b620-206c9c035d86
+		sourceLineageTag: ProductionDate
+		summarizeBy: none
+		sourceColumn: ProductionDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Production_DateTime_Start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e23cd390-2780-46a5-9dcd-a118af66638d
+		sourceLineageTag: Production_DateTime_Start
+		summarizeBy: none
+		sourceColumn: Production_DateTime_Start
+
+		annotation SummarizationSetBy = Automatic
+
+	column Production_DateTime_End
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2e94b8ce-af64-4794-a65b-7afe6a66350a
+		sourceLineageTag: Production_DateTime_End
+		summarizeBy: none
+		sourceColumn: Production_DateTime_End
+
+		annotation SummarizationSetBy = Automatic
+
+	column DailyProductionQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 309f04c4-c966-4a3e-8a19-aea7c7034cc4
+		sourceLineageTag: DailyProductionQty
+		summarizeBy: sum
+		sourceColumn: DailyProductionQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column TL_Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 243d27f0-376a-4977-8f49-71c87071df07
+		sourceLineageTag: TL_Qty
+		summarizeBy: sum
+		sourceColumn: TL_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Daily_TL_Qty
+		dataType: double
+		lineageTag: c3b8c286-1d40-4d58-8ae5-b58648242744
+		sourceLineageTag: Daily_TL_Qty
+		summarizeBy: sum
+		sourceColumn: Daily_TL_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DailyProductionHours
+		dataType: double
+		lineageTag: 80f3bad7-d484-492d-8902-3eeb2b479573
+		sourceLineageTag: DailyProductionHours
+		summarizeBy: sum
+		sourceColumn: DailyProductionHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Plant
+		dataType: int64
+		formatString: 0
+		lineageTag: b5c36277-54f9-4c87-8efc-c9634b846cd9
+		sourceLineageTag: Plant
+		summarizeBy: sum
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column RemainingProductionQty
+		dataType: int64
+		formatString: 0
+		lineageTag: bac51b12-c43f-4e41-ab52-85cca2e947ea
+		sourceLineageTag: RemainingProductionQty
+		summarizeBy: sum
+		sourceColumn: RemainingProductionQty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_coois_pbi_daily_split = entity
+		mode: directLake
+		source
+			entityName: fact_coois_pbi_daily_split
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

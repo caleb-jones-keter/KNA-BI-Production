@@ -1,0 +1,143 @@
+table Savana-DoorLocation
+	lineageTag: befb2b9b-fd4d-43f4-b51e-6b37eb834732
+
+	column FileSystemObjectType
+		dataType: string
+		lineageTag: 8f3c1938-c8e3-4185-91cd-c73526e1aa2c
+		summarizeBy: none
+		sourceColumn: FileSystemObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 491aeab5-4db2-4e69-85f6-6118a6eed753
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUri
+		dataType: string
+		lineageTag: 231dbc4d-ce15-4d39-822e-afd8048c3983
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUri
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUrl
+		dataType: string
+		lineageTag: cbc8b676-ca82-4d24-9130-c6511cfdd08b
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentTypeId
+		dataType: string
+		lineageTag: ff0a205c-eac8-4fb0-a061-7b2c62dc41ab
+		summarizeBy: none
+		sourceColumn: ContentTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 60e164a4-2423-4ff1-a784-aa4fcbe9dc6d
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: string
+		lineageTag: 2eeb7e45-679e-494a-9be0-8daed77c550f
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__ColorTag
+		dataType: string
+		lineageTag: 8427bc41-f6a7-478f-bce1-31d7b65b95ab
+		summarizeBy: none
+		sourceColumn: OData__ColorTag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComplianceAssetId
+		dataType: string
+		lineageTag: 1ad09ffb-fd3d-4e17-91a2-33d44e3a9d91
+		summarizeBy: none
+		sourceColumn: ComplianceAssetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: 6547f91e-6dfc-42ac-8a3c-e52003993e0f
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		lineageTag: fa4db4be-0f57-4ef8-9b2c-1aaba57b4b9c
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column AuthorId
+		dataType: string
+		lineageTag: 9e4c6d79-8bb0-4c52-8342-17f04c923f1e
+		summarizeBy: none
+		sourceColumn: AuthorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditorId
+		dataType: string
+		lineageTag: a6e1220d-9fcf-46b1-a305-49bbfeeb6f79
+		summarizeBy: none
+		sourceColumn: EditorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__UIVersionString
+		dataType: string
+		lineageTag: e9681969-c4b7-4953-96ed-09704510be28
+		summarizeBy: none
+		sourceColumn: OData__UIVersionString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: d4301257-73fc-49a7-8a9d-dab619f3fe09
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUID
+		dataType: string
+		lineageTag: 547bf42f-bc90-4081-8235-46eaa4bccbe3
+		summarizeBy: none
+		sourceColumn: GUID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Savana-DoorLocation = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer/", [ApiVersion = 15]),
+				    #"11640ebf-70eb-4d47-9add-bd7625d23027" = Source{[Id="11640ebf-70eb-4d47-9add-bd7625d23027"]}[Items],
+				    #"Renamed Columns" = Table.RenameColumns(#"11640ebf-70eb-4d47-9add-bd7625d23027",{{"ID", "ID.1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

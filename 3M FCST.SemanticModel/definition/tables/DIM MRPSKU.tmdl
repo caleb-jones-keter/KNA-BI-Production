@@ -1,0 +1,130 @@
+table 'DIM MRPSKU'
+	lineageTag: 639009e4-8ac7-46fb-8951-95e40ee4063f
+	sourceLineageTag: [dbo].[DIM MRPSKU]
+
+	measure _Keep_MRPSKU = ```
+			
+			VAR col1 = MAXX(VALUES('FACT Future'[MRPSKU Key]), ABS([_MB52 Future]))
+			VAR col2 = MAXX(VALUES('FACT Future'[MRPSKU Key]), ABS([_YM6P]))
+			VAR col3 = MAXX(VALUES('FACT Future'[MRPSKU Key]), ABS([_YS10N]))
+			VAR col4 = MAXX(VALUES('FACT Component Forecast Initial'[MRPSKU Key]), ABS([_Original Forecast]))
+			RETURN
+			IF(
+			    (NOT ISBLANK(col1) && col1 > 0) ||
+			    (NOT ISBLANK(col2) && col2 > 0) ||
+			    (NOT ISBLANK(col3) && col3 > 0) ||
+			    (NOT ISBLANK(col4) && col4 > 0),
+			    1,
+			    0
+			)
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 2cc4c057-2a3d-4710-8833-47306798b596
+
+		changedProperty = Name
+
+	column Material
+		dataType: string
+		lineageTag: d78718c9-06e2-44c1-ae74-d5e021ae018d
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 1c201a63-3124-4b20-bc5e-9e6f52b73e9c
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: f8f41deb-aa92-4705-8c59-54e76580ac1c
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Business Unit'
+		dataType: string
+		lineageTag: 5686aa48-9d30-4f58-8cfc-516570be272b
+		sourceLineageTag: PC Business Unit
+		summarizeBy: none
+		sourceColumn: PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU & Desc'
+		dataType: string
+		lineageTag: d51f2fd4-1ce1-4662-ab6c-4eeb593ba6b9
+		sourceLineageTag: SKU & Desc
+		summarizeBy: none
+		sourceColumn: SKU & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Standard price'
+		dataType: double
+		lineageTag: 27c24e5a-0405-41be-afd1-6cb1dfba9748
+		sourceLineageTag: Standard price
+		summarizeBy: sum
+		sourceColumn: Standard price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column per
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a7b2141-1c01-4972-bdf4-99612f1f13ac
+		sourceLineageTag: per
+		summarizeBy: sum
+		sourceColumn: per
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		lineageTag: 7d7c09d3-0360-4eb0-b5d4-4fc1f760a944
+		sourceLineageTag: Cost
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Plant
+		dataType: string
+		lineageTag: 1535acc8-69b7-4506-9dde-e0c571a34cd9
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Imports
+		dataType: string
+		lineageTag: 2e6d88eb-8d3a-4b51-8ef0-f0a56a9fd0fc
+		sourceLineageTag: Imports
+		summarizeBy: none
+		sourceColumn: Imports
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM MRPSKU' = entity
+		mode: directLake
+		source
+			entityName: DIM MRPSKU
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

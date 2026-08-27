@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "49d1676035a81bc041e0",
+  "position": {
+    "x": 400,
+    "y": 128,
+    "z": 0,
+    "height": 592,
+    "width": 496,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SP BOM"
+                    }
+                  },
+                  "Property": "SP Parent SKU"
+                }
+              },
+              "queryRef": "SP BOM.SP Parent SKU",
+              "nativeQueryRef": "SP Parent SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SP BOM"
+                    }
+                  },
+                  "Property": "SP Child SKU"
+                }
+              },
+              "queryRef": "SP BOM.SP Child SKU",
+              "nativeQueryRef": "SP Child SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SP BOM"
+                    }
+                  },
+                  "Property": "Replacement Item"
+                }
+              },
+              "queryRef": "SP BOM.Replacement Item",
+              "nativeQueryRef": "Replacement Item"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SP BOM"
+                  }
+                },
+                "Property": "SP Parent SKU"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dcf6487000346b9b9903",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SP BOM"
+              }
+            },
+            "Property": "SP Child SKU"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bdee064bccb168290aa8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SP BOM"
+              }
+            },
+            "Property": "Replacement Item"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "66ef6b2978bd266bc621",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SP BOM"
+              }
+            },
+            "Property": "SP Parent SKU"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+table 'Dim Currency Rate'
+	lineageTag: 404fbd88-719a-4377-bb52-852841461dba
+
+	column DateKey
+		dataType: string
+		lineageTag: d28cc4eb-8bf3-400c-9da9-fdb34e32f480
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndMonthRate
+		dataType: string
+		lineageTag: 51498183-29fe-4a5b-98ac-0ef060fb9084
+		summarizeBy: none
+		sourceColumn: EndMonthRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDateDesc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7a959001-b372-47d9-80ce-13afca5af665
+		summarizeBy: none
+		sourceColumn: FullDateDesc
+
+		variation Variation
+			isDefault
+			relationship: ba0ca1b0-6ce2-4eeb-a4f4-fa090d3a941d
+			defaultHierarchy: LocalDateTable_2c29b5bc-bfaf-4bc6-aab9-f2d50343ec4d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rate EUR'
+		dataType: double
+		lineageTag: 74bceca1-72bb-4517-8500-72e4b21117f0
+		summarizeBy: sum
+		sourceColumn: Rate EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Currency Rate (2).Rate USD'
+		dataType: double
+		lineageTag: 1f2cbae8-ce94-4427-90bc-0ed68e773ee6
+		summarizeBy: sum
+		sourceColumn: Dim Currency Rate (2).Rate USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Conversion
+		dataType: string
+		lineageTag: 48fe7fdd-f2a3-4a36-a250-44d0421d2a29
+		summarizeBy: none
+		sourceColumn: Conversion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Currency Rate' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Currency rate]", {"[Currency rate].[CurrencyID].[CurrencyID]", "[Currency rate].[DateKey].[DateKey]", "[Currency rate].[EndMonthRate].[EndMonthRate]", "[Currency rate].[FullDateDesc].[FullDateDesc]", "[Currency rate].[Rate].[Rate]"}, {"Currency rate.CurrencyID", "Currency rate.DateKey", "Currency rate.EndMonthRate", "Currency rate.FullDateDesc", "Currency rate.Rate"}}
+				        }),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Items", each [Currency rate.CurrencyID] = "24"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"Currency rate.CurrencyID", "CurrencyID"}, {"Currency rate.DateKey", "DateKey"}, {"Currency rate.EndMonthRate", "EndMonthRate"}, {"Currency rate.FullDateDesc", "FullDateDesc"}, {"Currency rate.Rate", "Rate"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"FullDateDesc", type datetime}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type",{{"Rate", "Rate EUR"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns1",{"CurrencyID"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Columns", {"DateKey"}, #"Dim Currency Rate (2)", {"DateKey"}, "Dim Currency Rate (2)", JoinKind.LeftOuter),
+				    #"Expanded Dim Currency Rate (2)" = Table.ExpandTableColumn(#"Merged Queries", "Dim Currency Rate (2)", {"Rate USD"}, {"Dim Currency Rate (2).Rate USD"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Expanded Dim Currency Rate (2)",{{"Rate EUR", type number}, {"Dim Currency Rate (2).Rate USD", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Conversion", each [Rate EUR]/[#"Dim Currency Rate (2).Rate USD"])
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

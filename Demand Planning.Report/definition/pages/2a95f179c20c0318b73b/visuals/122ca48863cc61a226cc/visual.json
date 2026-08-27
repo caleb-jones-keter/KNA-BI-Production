@@ -1,0 +1,160 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "122ca48863cc61a226cc",
+  "position": {
+    "x": 0,
+    "y": 88,
+    "z": 0,
+    "height": 608,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Adams MB51"
+                    }
+                  },
+                  "Property": "Combined Date 1"
+                }
+              },
+              "queryRef": "Adams MB51.Combined Date 1",
+              "nativeQueryRef": "Date",
+              "displayName": "Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Concat Length X Width"
+                }
+              },
+              "queryRef": "DIM Product.Concat Length X Width",
+              "nativeQueryRef": "Concat Length X Width"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Adams MB51"
+                        }
+                      },
+                      "Property": "Combined Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Adams MB51.Combined Qty)",
+              "nativeQueryRef": "Sum of Combined Qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Adams MB51"
+                    }
+                  },
+                  "Property": "Material"
+                }
+              },
+              "queryRef": "Adams MB51.Material",
+              "nativeQueryRef": "Material"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "RUNNINGSUM([Measure 3])*424",
+                  "Name": "SQFT"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "SQFT"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Adams MB51"
+                    }
+                  },
+                  "Property": "Measure 3"
+                }
+              },
+              "queryRef": "Adams MB51.Measure 3",
+              "nativeQueryRef": "Measure 3",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SS/PLT_Qty"
+                }
+              },
+              "queryRef": "Sum(DIM Product.SS/PLT_Qty)",
+              "nativeQueryRef": "SS/PLT_Qty"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.84001359375664D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Adams MB51.Material"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Adams SQ FT Estimate'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

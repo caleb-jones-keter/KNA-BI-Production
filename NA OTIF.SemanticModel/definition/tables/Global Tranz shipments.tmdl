@@ -1,0 +1,207 @@
+table 'Global Tranz shipments'
+	lineageTag: 6c6e9d6e-6322-413a-8556-c4bf8cdd6856
+
+	column BOL#
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f115673-1e0d-4f8e-b294-93c03e610ab8
+		summarizeBy: sum
+		sourceColumn: BOL#
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRO#
+		dataType: int64
+		formatString: 0
+		lineageTag: a17e5d6a-4c38-42f3-846a-3e0e8c47a04e
+		summarizeBy: sum
+		sourceColumn: PRO#
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 925bff63-9f0a-4c44-a3a3-0882bb547f75
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column PO#
+		dataType: string
+		lineageTag: e702991f-b723-4465-9cc8-73b63f6d46b9
+		summarizeBy: none
+		sourceColumn: PO#
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plts
+		dataType: int64
+		formatString: 0
+		lineageTag: 47bbe878-b5e0-41e9-b765-57263aa056ec
+		summarizeBy: sum
+		sourceColumn: Plts
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pcs
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cd564da-e633-4ead-b655-9e3342816c22
+		summarizeBy: sum
+		sourceColumn: Pcs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lbs
+		dataType: int64
+		formatString: 0
+		lineageTag: dcfd1625-2f55-47c0-8e93-b995f37d346d
+		summarizeBy: sum
+		sourceColumn: Lbs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 03ca78d2-39a3-44a2-b542-14bb7104648a
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Appointment
+		dataType: string
+		lineageTag: 85aba324-bba8-48b3-a3fc-b998ec79fb0a
+		summarizeBy: none
+		sourceColumn: Appointment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Delivery'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a3f36679-e4b1-4ceb-aa90-d22551a81d2e
+		summarizeBy: none
+		sourceColumn: Actual Delivery
+
+		variation Variation
+			isDefault
+			relationship: 6e44e8c8-9d52-414d-b52a-41e77626ab0d
+			defaultHierarchy: LocalDateTable_2158bf7a-f355-4fdd-a7ad-c5640e6f86d4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Requested Pickup'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 43fc7bad-adda-4095-b2e3-bb77532916f5
+		summarizeBy: none
+		sourceColumn: Requested Pickup
+
+		variation Variation
+			isDefault
+			relationship: 86b516d6-0d64-4629-94bf-71a0bde9e53c
+			defaultHierarchy: LocalDateTable_722b56cd-0c56-49ee-b361-d941e0f45084.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Carrier
+		dataType: string
+		lineageTag: e0f3789f-86df-4b06-9c16-4c63511560db
+		summarizeBy: none
+		sourceColumn: Carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipper
+		dataType: string
+		lineageTag: 8c802534-8759-40d9-8d29-e61b8cee557c
+		summarizeBy: none
+		sourceColumn: Shipper
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin City'
+		dataType: string
+		lineageTag: 176bb97d-1620-46f3-bcc1-2e7974ec98a3
+		summarizeBy: none
+		sourceColumn: Origin City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Consignee
+		dataType: string
+		lineageTag: e090a352-2d96-4bb3-bd25-113fa1c3e819
+		summarizeBy: none
+		sourceColumn: Consignee
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Destination City'
+		dataType: string
+		lineageTag: e22df0d6-6654-46b8-8986-85b4558d527d
+		summarizeBy: none
+		sourceColumn: Destination City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Pickup'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6f667bc8-b14a-4540-a820-aea5a7b4883c
+		summarizeBy: none
+		sourceColumn: Actual Pickup
+
+		variation Variation
+			isDefault
+			relationship: 1df29d89-d3ed-4c7d-9474-c6cc44178ac9
+			defaultHierarchy: LocalDateTable_62ae322b-3a72-4961-b860-30407b2764d2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Exceptions
+		dataType: string
+		lineageTag: dc6a1b06-1bc2-4334-93ff-50bcecaf77d4
+		summarizeBy: none
+		sourceColumn: Exceptions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transit Time '
+		dataType: double
+		lineageTag: 2af778e4-156b-4625-97da-f3a89594338f
+		summarizeBy: sum
+		sourceColumn: "Transit Time "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Global Tranz shipments' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/NAOperations/Shared%20Documents/Spreetail%20-%20KPIs/SPREETAIL%20PBI%20UPDATE%20LOCATION/GlobalTranz%20Shipment%20list.xlsx"), null, true),
+				    Report_Sheet = Source{[Item="Report",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Report_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"BOL#", Int64.Type}, {"PRO#", Int64.Type}, {"Cost", Currency.Type}, {"PO#", type text}, {"Plts", Int64.Type}, {"Pcs", Int64.Type}, {"Lbs", Int64.Type}, {"Status", type text}, {"Appointment", type text}, {"Actual Delivery", type date}, {"Requested Pickup", type date}, {"Carrier", type text}, {"Shipper", type text}, {"Origin City", type text}, {"Consignee", type text}, {"Destination City", type text}, {"Actual Pickup", type date}, {"Exceptions", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([#"PO#"] <> null and [#"PO#"] <> "")),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Transit Time ", each [Actual Delivery]-[Actual Pickup]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Transit Time ", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,65 @@
+table 'DIM Account'
+	lineageTag: 29f8bd14-de1d-4f4b-9b37-baeac98ccd3b
+	sourceLineageTag: [dbo].[DIM Account]
+
+	column Payer
+		dataType: string
+		lineageTag: 7d27f76e-5b9c-4be7-9aa8-f2550c889d10
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 04fe9b3d-3d22-4b69-8d27-8d13b2868351
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: 6d8ed672-f021-40b2-9d87-bfd22f3647aa
+		sourceLineageTag: Customer Groups
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer & Desc'
+		dataType: string
+		lineageTag: f88758ce-c3fa-43cc-8b34-dd35cea4dfdd
+		sourceLineageTag: Payer & Desc
+		summarizeBy: none
+		sourceColumn: Payer & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Detail'
+		dataType: string
+		lineageTag: 4be7221c-06b6-405b-9d0d-e63ac9949b58
+		sourceLineageTag: Payer Types.Detail
+		summarizeBy: none
+		sourceColumn: Payer Types.Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Type'
+		dataType: string
+		lineageTag: fedf498a-813a-4b2f-a6c1-80809daadaa6
+		sourceLineageTag: Payer Types.Type
+		summarizeBy: none
+		sourceColumn: Payer Types.Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Account' = entity
+		mode: directLake
+		source
+			entityName: DIM Account
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

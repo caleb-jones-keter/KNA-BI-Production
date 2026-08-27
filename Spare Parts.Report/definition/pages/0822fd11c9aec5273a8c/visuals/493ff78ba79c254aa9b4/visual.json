@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "493ff78ba79c254aa9b4",
+  "position": {
+    "x": 648,
+    "y": 0,
+    "z": 1001,
+    "height": 592,
+    "width": 455.99999999999994,
+    "tabOrder": 1001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "Data Source"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.Data Source",
+              "nativeQueryRef": "Data Source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "Data Source Order"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.Data Source Order",
+              "nativeQueryRef": "Data Source Order"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "97454dca01ea5b88dce5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Data Source"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "52643c81e225928649ab",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Data Source Order"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

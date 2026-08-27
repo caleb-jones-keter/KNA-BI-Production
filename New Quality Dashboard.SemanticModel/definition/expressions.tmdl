@@ -1,0 +1,72 @@
+expression ECOM =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("ZdCxDcRACATAXi52ABzHQmx9+HIBlvtv4/2RtTgdAQuc51B38xrb+OzHd1zbX1JEuthsEq1mBTJZUnWRhCG5KyagLL4MLNDi9Cj1Nqf6ZIgs3gc22z6Y8pJEsNz/mU2WvMVZkHyXldxh/EMte9KvHw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Payer = _t, ECOM = _t])
+		in
+		    Source
+	lineageTag: 70204aa2-c9fd-47fe-b82a-1566f911da34
+	queryGroup: 'Customer Info'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Calc SKUPayer Rejections' =
+		let
+		    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+		    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+		    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+		    Model2 = Model1{[Id="Model"]}[Data],
+		    #"Added Items" = Cube.Transform(Model2,
+		        {
+		            {Cube.AddAndExpandDimensionColumn, "[Fact Rejections]", {"[Fact Rejections].[ActivityKey].[ActivityKey]", "[Fact Rejections].[CompanyCodeKey].[CompanyCodeKey]", "[Fact Rejections].[CustomerGroupKey].[CustomerGroupKey]", "[Fact Rejections].[DateKey_daily].[DateKey_daily]", "[Fact Rejections].[Gross_SALES].[Gross_SALES]", "[Fact Rejections].[OrderReasonKey].[OrderReasonKey]", "[Fact Rejections].[PlantKey_SPC].[PlantKey_SPC]", "[Fact Rejections].[ProductKey].[ProductKey]", "[Fact Rejections].[Profit_CenterID].[Profit_CenterID]", "[Fact Rejections].[Quantity1].[Quantity1]", "[Fact Rejections].[RetailerKey].[RetailerKey]", "[Fact Rejections].[SaleTypeKey].[SaleTypeKey]", "[Fact Rejections].[SBU].[SBU]", "[Fact Rejections].[SegmentID].[SegmentID]"}, {"Fact Rejections.ActivityKey", "Fact Rejections.CompanyCodeKey", "Fact Rejections.CustomerGroupKey", "Fact Rejections.DateKey_daily", "Fact Rejections.Gross_SALES", "Fact Rejections.OrderReasonKey", "Fact Rejections.PlantKey_SPC", "Fact Rejections.ProductKey", "Fact Rejections.Profit_CenterID", "Fact Rejections.Quantity1", "Fact Rejections.RetailerKey", "Fact Rejections.SaleTypeKey", "Fact Rejections.SBU", "Fact Rejections.SegmentID"}},
+		            {Cube.AddMeasureColumn, "SALES: Gross Sales", "[Measures].[SALES: Gross Sales]"},
+		            {Cube.AddMeasureColumn, "All Rejections: Gross Sales", "[Measures].[All Rejections: Gross Sales]"},
+		            {Cube.AddMeasureColumn, "All Rejections: Quantity", "[Measures].[All Rejections: Quantity]"},
+		            {Cube.AddMeasureColumn, "SALES: Quantity", "[Measures].[SALES: Quantity]"}
+		        }),
+		    #"Filtered Rows" = Table.SelectRows(#"Added Items", each [Fact Rejections.CompanyCodeKey] = "1567" or [Fact Rejections.CompanyCodeKey] = "1560" or [Fact Rejections.CompanyCodeKey] = "1564" or [Fact Rejections.CompanyCodeKey] = "1565" or [Fact Rejections.CompanyCodeKey] = "1666" or [Fact Rejections.CompanyCodeKey] = "1669" or [Fact Rejections.CompanyCodeKey] = "1573"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"Fact Rejections.ActivityKey", "ActivityKey"}, {"Fact Rejections.CompanyCodeKey", "CompanyCodeKey"}, {"Fact Rejections.CustomerGroupKey", "CustomerGroupKey"}, {"Fact Rejections.DateKey_daily", "DateKey_daily"}, {"Fact Rejections.Gross_SALES", "Gross_SALES"}, {"Fact Rejections.OrderReasonKey", "OrderReasonKey"}, {"Fact Rejections.PlantKey_SPC", "PlantKey_SPC"}, {"Fact Rejections.ProductKey", "ProductKey"}, {"Fact Rejections.Profit_CenterID", "Profit_CenterID"}, {"Fact Rejections.Quantity1", "Quantity1"}, {"Fact Rejections.RetailerKey", "RetailerKey"}, {"Fact Rejections.SaleTypeKey", "SaleTypeKey"}, {"Fact Rejections.SBU", "SBU"}, {"Fact Rejections.SegmentID", "SegmentID"}}),
+		    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"DateKey_daily"}, #"Dim Currency Rate", {"DateKey"}, "Dim Currency Rate", JoinKind.LeftOuter),
+		    #"Expanded Dim Currency Rate" = Table.ExpandTableColumn(#"Merged Queries", "Dim Currency Rate", {"Conversion"}, {"Dim Currency Rate.Conversion"}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Dim Currency Rate",{{"Dim Currency Rate.Conversion", type number}, {"Gross_SALES", type number}, {"Quantity1", type number}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type", "Gross Sales USD", each [#"SALES: Gross Sales"]*[Dim Currency Rate.Conversion]),
+		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Sales Price per Unit", each [Gross Sales USD]/[#"SALES: Quantity"]),
+		    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Rejections USD", each [#"All Rejections: Gross Sales"]*[Dim Currency Rate.Conversion]),
+		    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "Reject Price Per Unit", each [Rejections USD]/[#"All Rejections: Quantity"]),
+		    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "SKUPayer", each [ProductKey]&"|"&[RetailerKey]),
+		    #"Removed Columns" = Table.RemoveColumns(#"Added Custom4",{"ActivityKey", "CompanyCodeKey", "CustomerGroupKey", "DateKey_daily", "Gross_SALES", "OrderReasonKey", "PlantKey_SPC", "ProductKey", "Profit_CenterID", "Quantity1", "RetailerKey", "SaleTypeKey", "SBU", "SegmentID", "SALES: Gross Sales", "All Rejections: Gross Sales", "All Rejections: Quantity", "SALES: Quantity", "Dim Currency Rate.Conversion", "Gross Sales USD", "Sales Price per Unit", "Rejections USD", "Reject Price Per Unit"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
+		in
+		    #"Removed Duplicates"
+	lineageTag: 5bf01f48-093e-4bfc-9dce-a532b976f1b3
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Pack Type' =
+		let
+		    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Pack%20Type.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Final", type any}, {"General", type text}, {"SKU", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 33c5cb71-266f-43eb-86a5-539ff433afb7
+	queryGroup: 'Product Info'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'DirectLake - NA_Supply_Chain' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/8e2b746d-3224-4a82-8467-a2800eef337e/624ea251-e87f-45d7-8358-a55b3fa46385", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 9c6a15b3-f482-48e9-b00e-db5b2a4c11f3
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Storage Location]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT Enfopak]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM SKUPayer]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Date]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT MB51 Material_Movements Initial]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT MB52]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT MB52 All]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM MRP Area]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM ZMM02 COGS]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Customer]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM BOM Combined]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Product]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT Component Forecast Initial]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM MRPSKU]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Customer Group]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT MB51 Grouped]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT YM6P]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT Future]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT YContainer]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT Forecast Adjusted]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Plant]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT YS10N Open]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT ADAMS Pallet List]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DI YM6P FACT HELP]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[DIM Counter PQ]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[FACT Combined]"}},"objectType":"Table"}]
+

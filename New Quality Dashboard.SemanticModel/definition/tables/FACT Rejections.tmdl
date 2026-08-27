@@ -1,0 +1,311 @@
+table 'FACT Rejections'
+	lineageTag: 4e5b015a-03a9-47ea-a417-af4a99c1d382
+
+	measure 'All Rejections (12M)' = CALCULATE(SUM('FACT Rejections'[Rejections USD]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-12,MONTH))*-1
+		lineageTag: 06cb8583-58ea-4136-9ef9-25349339836a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Sales (12M)' = CALCULATE(SUM('FACT Rejections'[Gross Sales USD]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-12,MONTH))
+		lineageTag: badfef87-f8bb-4776-abe4-03a89553ae90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Sales (12M) Alt 3M' = CALCULATE(SUM('FACT Rejections'[Gross Sales USD]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- CALCULATE(SUM('FACT Rejections'[Gross Sales USD]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		lineageTag: 7ff212cc-ce04-473c-857f-a2191c369570
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Allowance Check' = CALCULATE(DISTINCTCOUNT('Dim Order Reason'[Dim Order Reason Group.Rejection Group]),FILTER(ALLSELECTED('Dim Order Reason'),'Dim Order Reason'[Dim Order Reason Group.Rejection Group]="Defective Allowance"))
+		formatString: 0
+		lineageTag: 74194647-2417-42bc-8f1f-4ca4e3e89d2c
+
+	measure 'Allocation (12M) Alt 3M' =
+			
+			VAR __table = SUMMARIZE('Dim Customer Group','Dim Customer Group'[Customer Group],"__value",[Allocation (12M)])
+			RETURN
+			IF(HASONEVALUE('Dim Customer Group'[Customer Group]),[Allocation (12M)],SUMX(__table,[__value]))
+		lineageTag: 153c9a9e-8b91-46d7-a9f8-b47ea1be33ce
+
+	measure 'Allocation (12M)' = [Gross Sales (12M) Alt 3M]*IF(MIN('Dim Customer Group'[CustomerGroupKey])="315",.065,IF(MIN('Dim Customer Group'[CustomerGroupKey])="336",.08,IF(MIN('Dim Customer Group'[CustomerGroupKey])="421",.03,IF(MIN('Dim Customer Group'[CustomerGroupKey])="42",.02,IF(MIN('Dim Customer Group'[CustomerGroupKey])="399",.02,0)))))
+		formatString: 0
+		lineageTag: f5cab4ac-8278-4abe-973c-6b73648b96e6
+
+	measure '% All Rejections (12M) Alt 3M' = If([Gross Sales (12M) Alt 3M] > 50,IF([All Rejections (12M)]>0,[All Rejections (12M)]/[Gross Sales (12M) Alt 3M],0))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fb2f111e-7b0f-4daa-b890-d552bedf814c
+
+	measure 'All Rejections Qty (12M)' = CALCULATE(SUM('FACT Rejections'[Quantity1]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-12,MONTH))*-1
+		lineageTag: fd5bd348-58d7-4466-ae94-ed49da58dbf5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Sales Qty (12M) Alt 3M' = CALCULATE(SUM('FACT Rejections'[SALES: Quantity]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- CALCULATE(SUM('FACT Rejections'[SALES: Quantity]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		lineageTag: 167d1bd1-4171-4e3b-bc5a-5a366af07692
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '# Sales Months' = CALCULATE(COUNTX(VALUES('Dates Table'[Month In Year]),SUM('FACT Rejections'[Gross Sales USD])),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH),'FACT Rejections'[Gross Sales USD]>0)-CALCULATE(COUNTX(VALUES('Dates Table'[Month In Year]),SUM('FACT Rejections'[Gross Sales USD])),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-3,MONTH))
+		formatString: 0
+		lineageTag: 23b54c2f-5bc3-4663-944b-3aab4e5d4c07
+
+	measure 'Sales Filter' = CALCULATE(SUM('FACT Rejections'[Gross Sales USD]),DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-15,MONTH))- [All Rejections (12M)]
+		lineageTag: 07b08242-2503-4d02-8da7-e5251cf326af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RTV (12M)' = CALCULATE(SUM('FACT Rejections'[Rejections USD]),'Dim Order Reason'[Dim Order Reason Group.Rejection Group]="RTV/Defective",DATESINPERIOD('Dates Table'[Full Date],ENDOFMONTH('Dates Table'[Full Date]),-12,MONTH))*-1
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c383125b-89dd-4542-9ef5-9dd34da1de29
+
+	column ActivityKey
+		dataType: string
+		lineageTag: e31f45eb-7fea-41eb-b888-1b6a17da9fbc
+		summarizeBy: none
+		sourceColumn: ActivityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCodeKey
+		dataType: string
+		lineageTag: f7399b21-ce69-4a84-8c54-7fbd16593ee6
+		summarizeBy: none
+		sourceColumn: CompanyCodeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGroupKey
+		dataType: string
+		lineageTag: 35f3611c-579a-45fb-a21d-70e265f91b1c
+		summarizeBy: none
+		sourceColumn: CustomerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey_daily
+		dataType: string
+		lineageTag: ada1ce87-5218-4871-a051-4d030f08185a
+		summarizeBy: none
+		sourceColumn: DateKey_daily
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gross_SALES
+		dataType: double
+		lineageTag: 75953163-e6be-426a-bcad-b664340655a5
+		summarizeBy: sum
+		sourceColumn: Gross_SALES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderReasonKey
+		dataType: string
+		lineageTag: a4707a11-5830-40bd-81cd-fd80f3c7d524
+		summarizeBy: none
+		sourceColumn: OrderReasonKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantKey_SPC
+		dataType: string
+		lineageTag: 64f18486-e6e5-49a4-afe1-8f6262b8f1c8
+		summarizeBy: none
+		sourceColumn: PlantKey_SPC
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: string
+		lineageTag: d178b30a-92db-431c-8194-91f88bce7835
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit_CenterID
+		dataType: string
+		lineageTag: 2d79f6f0-b3f0-4d92-9f8e-3682596a4b8a
+		summarizeBy: none
+		sourceColumn: Profit_CenterID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity1
+		dataType: double
+		lineageTag: 2ab4a615-1f8a-4594-9b79-ff40f84d6d78
+		summarizeBy: sum
+		sourceColumn: Quantity1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RetailerKey
+		dataType: string
+		lineageTag: eab75182-358b-437d-8267-27bb72dca25c
+		summarizeBy: none
+		sourceColumn: RetailerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleTypeKey
+		dataType: string
+		lineageTag: 630ee669-0d25-4c97-bb0c-dd39f0f8248a
+		summarizeBy: none
+		sourceColumn: SaleTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBU
+		dataType: string
+		lineageTag: 4e8c1ab9-5248-43b3-96f8-019507126122
+		summarizeBy: none
+		sourceColumn: SBU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SegmentID
+		dataType: string
+		lineageTag: cf965c4d-2169-421c-aaec-033073a9cecb
+		summarizeBy: none
+		sourceColumn: SegmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales USD'
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: e2ee6f7d-f729-4c83-ba98-b25a9bf7e193
+		summarizeBy: sum
+		sourceColumn: Gross Sales USD
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SALES: Gross Sales'
+		dataType: double
+		lineageTag: b3a695ba-74c2-4412-a012-2a1f7fae336f
+		summarizeBy: sum
+		sourceColumn: SALES: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Rejections: Gross Sales'
+		dataType: double
+		lineageTag: 8ba9298e-d00e-4e5b-91f2-b5915d5dd502
+		summarizeBy: sum
+		sourceColumn: All Rejections: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Rejections: Quantity'
+		dataType: double
+		lineageTag: 3143e219-2069-4752-8659-f646e7a7d1c2
+		summarizeBy: sum
+		sourceColumn: All Rejections: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SALES: Quantity'
+		dataType: double
+		lineageTag: 60b10573-a3b6-45cc-96f4-2c9535736f44
+		summarizeBy: sum
+		sourceColumn: SALES: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Currency Rate.Conversion'
+		dataType: double
+		lineageTag: 45093f01-2e59-4e50-bd6c-d1ec8686697e
+		summarizeBy: sum
+		sourceColumn: Dim Currency Rate.Conversion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Price per Unit'
+		dataType: string
+		lineageTag: 4725c425-5c4d-484f-86cc-bca93950b6e4
+		summarizeBy: none
+		sourceColumn: Sales Price per Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rejections USD'
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7611adca-2bf5-48b6-aaaf-b9b2160670eb
+		summarizeBy: sum
+		sourceColumn: Rejections USD
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reject Price Per Unit'
+		dataType: string
+		lineageTag: 32639487-9de1-400f-92c0-a34659e5fc7a
+		summarizeBy: none
+		sourceColumn: Reject Price Per Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKUPayer
+		dataType: string
+		lineageTag: 95109fa3-519f-4122-b4a1-4010119fdb83
+		summarizeBy: none
+		sourceColumn: SKUPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKUPayerCompany = 'FACT Rejections'[SKUPayer]&"|"&'FACT Rejections'[CompanyCodeKey]
+		lineageTag: c05be5e1-a89a-4ed8-a212-c080c54a3fac
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT Rejections' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Fact Rejections]", {"[Fact Rejections].[ActivityKey].[ActivityKey]", "[Fact Rejections].[CompanyCodeKey].[CompanyCodeKey]", "[Fact Rejections].[CustomerGroupKey].[CustomerGroupKey]", "[Fact Rejections].[DateKey_daily].[DateKey_daily]", "[Fact Rejections].[Gross_SALES].[Gross_SALES]", "[Fact Rejections].[OrderReasonKey].[OrderReasonKey]", "[Fact Rejections].[PlantKey_SPC].[PlantKey_SPC]", "[Fact Rejections].[ProductKey].[ProductKey]", "[Fact Rejections].[Profit_CenterID].[Profit_CenterID]", "[Fact Rejections].[Quantity1].[Quantity1]", "[Fact Rejections].[RetailerKey].[RetailerKey]", "[Fact Rejections].[SaleTypeKey].[SaleTypeKey]", "[Fact Rejections].[SBU].[SBU]", "[Fact Rejections].[SegmentID].[SegmentID]"}, {"Fact Rejections.ActivityKey", "Fact Rejections.CompanyCodeKey", "Fact Rejections.CustomerGroupKey", "Fact Rejections.DateKey_daily", "Fact Rejections.Gross_SALES", "Fact Rejections.OrderReasonKey", "Fact Rejections.PlantKey_SPC", "Fact Rejections.ProductKey", "Fact Rejections.Profit_CenterID", "Fact Rejections.Quantity1", "Fact Rejections.RetailerKey", "Fact Rejections.SaleTypeKey", "Fact Rejections.SBU", "Fact Rejections.SegmentID"}},
+				            {Cube.AddMeasureColumn, "SALES: Gross Sales", "[Measures].[SALES: Gross Sales]"},
+				            {Cube.AddMeasureColumn, "All Rejections: Gross Sales", "[Measures].[All Rejections: Gross Sales]"},
+				            {Cube.AddMeasureColumn, "All Rejections: Quantity", "[Measures].[All Rejections: Quantity]"},
+				            {Cube.AddMeasureColumn, "SALES: Quantity", "[Measures].[SALES: Quantity]"}
+				        }),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Items", each [Fact Rejections.CompanyCodeKey] = "1567" or [Fact Rejections.CompanyCodeKey] = "1560" or [Fact Rejections.CompanyCodeKey] = "1564" or [Fact Rejections.CompanyCodeKey] = "1565" or [Fact Rejections.CompanyCodeKey] = "1666" or [Fact Rejections.CompanyCodeKey] = "1669" or [Fact Rejections.CompanyCodeKey] = "1573"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"Fact Rejections.ActivityKey", "ActivityKey"}, {"Fact Rejections.CompanyCodeKey", "CompanyCodeKey"}, {"Fact Rejections.CustomerGroupKey", "CustomerGroupKey"}, {"Fact Rejections.DateKey_daily", "DateKey_daily"}, {"Fact Rejections.Gross_SALES", "Gross_SALES"}, {"Fact Rejections.OrderReasonKey", "OrderReasonKey"}, {"Fact Rejections.PlantKey_SPC", "PlantKey_SPC"}, {"Fact Rejections.ProductKey", "ProductKey"}, {"Fact Rejections.Profit_CenterID", "Profit_CenterID"}, {"Fact Rejections.Quantity1", "Quantity1"}, {"Fact Rejections.RetailerKey", "RetailerKey"}, {"Fact Rejections.SaleTypeKey", "SaleTypeKey"}, {"Fact Rejections.SBU", "SBU"}, {"Fact Rejections.SegmentID", "SegmentID"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"DateKey_daily"}, #"Dim Currency Rate", {"DateKey"}, "Dim Currency Rate", JoinKind.LeftOuter),
+				    #"Expanded Dim Currency Rate" = Table.ExpandTableColumn(#"Merged Queries", "Dim Currency Rate", {"Conversion"}, {"Dim Currency Rate.Conversion"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Dim Currency Rate",{{"Dim Currency Rate.Conversion", type number}, {"Gross_SALES", type number}, {"Quantity1", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Gross Sales USD", each [#"SALES: Gross Sales"]*[Dim Currency Rate.Conversion]),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Sales Price per Unit", each [Gross Sales USD]/[#"SALES: Quantity"]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Rejections USD", each [#"All Rejections: Gross Sales"]*[Dim Currency Rate.Conversion]),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "Reject Price Per Unit", each [Rejections USD]/[#"All Rejections: Quantity"]),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "SKUPayer", each [ProductKey]&"|"&[RetailerKey])
+				in
+				    #"Added Custom4"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

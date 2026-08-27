@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "4dbda0f14a4600abd2db",
+  "position": {
+    "x": 402.68875350811146,
+    "y": 0,
+    "z": 4000,
+    "height": 125.11739338763776,
+    "width": 105.14066671230064,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Drayage"
+                        }
+                      },
+                      "Property": "Container"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Drayage.Container",
+              "nativeQueryRef": "Count of Container1"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

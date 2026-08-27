@@ -1,0 +1,66 @@
+relationship 467e3541-ec47-8458-84b4-5b268aec3857
+	relyOnReferentialIntegrity
+	fromColumn: fact_dummy_ys10n_top_12.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship b016b0a3-c1d4-9f83-f363-fe30451e91ac
+	relyOnReferentialIntegrity
+	fromColumn: fact_dummy_ys10n_top_12.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 5074f947-3aef-92bc-e480-da39ac560cef
+	fromColumn: fact_dummy_ys10n_top_12.ranked_ship_point_key
+	toColumn: 'DIM DTC Ship Point Key'.shipping_point_key
+
+relationship 305667ce-6362-0138-664b-491d58f50e56
+	fromColumn: fact_dummy_ys10n_top_12.ship_to_zip_clean
+	toColumn: 'DIM USA CA Zips'.'Postal Code Clean'
+
+relationship f5bb827d-5301-c451-6961-037f87c5b6d1
+	fromColumn: 'FACT Component Forecast Initial'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 24f8ff07-f49f-2b30-cdff-ba54412aced1
+	fromColumn: 'FACT Component Forecast Initial'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship f46ba6de-a920-dcb8-7c35-9a1c1f3195af
+	fromColumn: fact_dummy_ys10n_top_12.act_gds_mvmnt_date
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 9840f7a1-96e4-5043-4476-4f3aea772021
+	fromColumn: fact_ys10n_past_with_material_state_rankings.shipping_point_key
+	toColumn: 'DIM DTC Ship Point Key'.shipping_point_key
+
+relationship e2960a42-7bd0-171e-9e0b-999fc8035e95
+	fromColumn: fact_ys10n_past_with_material_state_rankings.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 49f51833-efa8-c30f-f6c3-900460a9ac67
+	fromColumn: fact_ys10n_past_with_material_state_rankings.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship cefe5b93-589e-4cef-64af-edc5981a0a29
+	fromColumn: fact_ys10n_past_with_material_state_rankings.act_gds_mvmnt_date
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 362e5ad9-3167-1d92-f0c2-3458c8b6d3d9
+	fromColumn: fact_ys10n_past_with_material_state_rankings.ship_to_zip_clean
+	toColumn: 'DIM USA CA Zips'.'Postal Code Clean'
+
+relationship fe879828-2d15-8d68-8db9-1ca9f6f98a13
+	fromColumn: fact_forecast_with_material_state_rankings.Material
+	toColumn: 'DIM Product'.Material
+
+relationship c6221bb9-6eb0-1d4e-11bf-41f880a9ed1d
+	fromColumn: fact_forecast_with_material_state_rankings.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 9a72d0cd-89d7-4019-a5b2-8b840a52be40
+	fromColumn: fact_forecast_with_material_state_rankings.combined_date
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 5f7a59cc-fabe-6818-a2f3-838970b6bb6b
+	fromColumn: fact_forecast_with_material_state_rankings.shipping_point_key
+	toColumn: 'DIM DTC Ship Point Key'.shipping_point_key
+

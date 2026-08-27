@@ -1,0 +1,61 @@
+table 'Measures (2)'
+	lineageTag: 31a84d81-ebe9-4399-95ec-7010fcecc634
+
+	column 'Measure Type'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c807823-d869-4945-9179-e4995fc7d2db
+		summarizeBy: none
+		sourceColumn: Measure Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On Time Ship Measure'
+		dataType: string
+		lineageTag: 0e99bea7-7d3c-410e-8332-f327bf229a33
+		summarizeBy: none
+		sourceColumn: On Time Ship Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Use '
+		dataType: string
+		lineageTag: 1a9702c3-88fc-4d9c-a4fc-f7e305994271
+		summarizeBy: none
+		sourceColumn: "Use "
+
+		annotation SummarizationSetBy = Automatic
+
+	column MIN
+		dataType: int64
+		formatString: 0
+		lineageTag: f20c75a2-9256-4bf4-915d-f3e0407e935b
+		summarizeBy: none
+		sourceColumn: MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAX
+		dataType: int64
+		formatString: 0
+		lineageTag: a9e7a929-b1a6-4fbc-90b4-53d4df643bb7
+		summarizeBy: none
+		sourceColumn: MAX
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measures (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNADemandPlanning/Shared%20Documents/OTIF/OTIF%20Calculation%20Template.xlsx"), null, true),
+				    Measures_Sheet = Source{[Item="Measures",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Measures_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Measure Type", Int64.Type}, {"On Time Ship Measure", type text}, {"Use ", type text}, {"MIN", Int64.Type}, {"MAX", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

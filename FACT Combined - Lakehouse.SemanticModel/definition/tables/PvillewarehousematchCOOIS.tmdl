@@ -1,0 +1,51 @@
+table PvillewarehousematchCOOIS
+	lineageTag: 1165cf88-91de-45b9-b95a-27a357183cec
+	sourceLineageTag: [dbo].[PvillewarehousematchCOOIS]
+
+	column 'Material Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 14092ac9-5c17-49d4-9601-11af4e0a65d3
+		sourceLineageTag: Material Number
+		summarizeBy: sum
+		sourceColumn: Material Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 25adedf9-5bb5-48a7-a69e-6e0faffac2f4
+		sourceLineageTag: Order
+		summarizeBy: sum
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order quantity _GMEIN_'
+		dataType: int64
+		formatString: 0
+		lineageTag: 29cbee58-585a-45f1-a3bc-9da7217f8af3
+		sourceLineageTag: Order quantity _GMEIN_
+		summarizeBy: sum
+		sourceColumn: Order quantity _GMEIN_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Leading order'
+		dataType: int64
+		formatString: 0
+		lineageTag: d488488d-5781-4d48-86db-b0e9a5491205
+		sourceLineageTag: Leading order
+		summarizeBy: sum
+		sourceColumn: Leading order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PvillewarehousematchCOOIS = entity
+		mode: directLake
+		source
+			entityName: PvillewarehousematchCOOIS
+			schemaName: dbo
+			expressionSource: 'DirectLake - BRZ_NA_SC_LH'
+

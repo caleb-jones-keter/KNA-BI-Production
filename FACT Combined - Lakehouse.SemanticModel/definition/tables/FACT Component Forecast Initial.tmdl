@@ -1,0 +1,790 @@
+table 'FACT Component Forecast Initial'
+	lineageTag: 7f862036-85c8-4747-9d27-b4b962a5b9c0
+	sourceLineageTag: [dbo].[FACT Component Forecast Initial]
+
+	measure '_Forecast Cont Qty' = IFERROR(SUM('FACT Component Forecast Initial'[Combined Qty])/MAX('DIM Product'[Cont_Qty]),0)*-1
+		lineageTag: cd0365d7-6296-4cb8-9a54-e223015712a9
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total Forecast Containers' = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),           -- or your SKU/Material key in DIM Product
+			    VAR Qty =
+			        CALCULATE( SUM('FACT Component Forecast Initial'[Combined Qty]) )
+			    VAR ContQty =
+			        CALCULATE( MAX('DIM Product'[Cont_Qty]) )
+			    RETURN
+			        -DIVIDE(Qty, ContQty, 0)
+			)
+			
+			```
+		lineageTag: 2621cf6b-466c-4b25-b731-95277418dfd0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Cont' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[SOW])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOC Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[CombinedQty_per_ContQty_fcst]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: ba5fecc5-7a9d-4f3a-b129-02ba47e6887d
+
+		changedProperty = Name
+
+	measure '_DOC Target COGS' =
+			
+			[_DOC Target Cont]*MAX('DIM MRPSKU'[Cost])*1.1
+		lineageTag: 4ade05c1-02aa-407e-8948-517daac771dd
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target Container' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOC Target Container])
+		lineageTag: 8a9411e3-e056-4034-801e-677d02a0ff2e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Container' =
+			
+			VAR Target = IF(MAX('DIM Product'[Cont_Qty])>0,[_DOC Target Cont]/MAX('DIM Product'[Cont_Qty]))
+			RETURN
+			IF(Target > 0, IF(Target < 1, 1, Target))
+		lineageTag: bf62d9d8-bbc2-498f-84ca-0b0e6a5678dd
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target' =
+			
+			SUMX(VALUES('DIM MRPSKU'[MRPSKU Key]),
+			[_DOC Target Cont])
+		formatString: 0
+		lineageTag: 20df3871-17ef-4e96-9cb9-7f5da6db18eb
+
+		changedProperty = Name
+
+	measure '_DOC Target Today' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Today])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOS Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: fbef37bd-4c3a-4cce-ade4-e34b208ebea0
+
+		changedProperty = Name
+
+	measure '_DOC Target Cont Today' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Today SOW])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOC Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[CombinedQty_per_ContQty_fcst]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		lineageTag: c1dbacab-843f-4213-8dcd-a8320094550b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target Container Today' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOC Target Cont Today])
+		lineageTag: 23307ad7-fa32-478f-a65b-c9bac4e4e5f2
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Today YM6P' = ```
+			
+			VAR ReferenceDate = MAX('DIM Date'[Today])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOS Parameter Value] + 56
+			RETURN
+			
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 54a19e90-0492-4468-a40e-a3fda448f57a
+
+		changedProperty = Name
+
+	measure '_In Transit Today YM6P' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Today])
+			VAR EndDate       = MAX('DIM Date'[Full Date])
+			VAR Transit =
+			CALCULATE(
+			    SUM('FACT Combined'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    ),
+			    'FACT Combined'[Data Source]="YM6P",
+			    NOT(ISBLANK('FACT Combined'[Container])),
+			    NOT(ISBLANK('FACT Combined'[LA Date]))
+			)
+			RETURN
+			IF([_Vs Target]<1,MAX(0,Transit),Transit)
+		formatString: 0
+		lineageTag: 8f5b4c45-37ae-4ea7-a131-d28d129eb191
+
+		changedProperty = Name
+
+	measure '_Total In Transit Combined Qty YM6P' = SUMX(VALUES('DIM Date'[Full Date]),[_In Transit Today YM6P])
+		lineageTag: 03d1d59e-ef42-4d95-85c7-3a6faf1ec1e7
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Original Forecast' = SUM('FACT Component Forecast Initial'[Combined Qty])
+		formatString: 0
+		lineageTag: 10c68da9-d5a1-4493-8652-7acaab4fc03c
+
+		changedProperty = Name
+
+	measure '_Total Forecast Containers L6Wk' = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),           -- or your SKU/Material key in DIM Product
+			    VAR Qty =
+			        CALCULATE( SUM('FACT Component Forecast Initial'[Combined Qty]),DATESBETWEEN('DIM Date'[Full Date],MAX('DIM Date'[Today SOW])-42,MAX('DIM Date'[Today SOW])-1) )
+			    VAR ContQty =
+			        CALCULATE( MAX('DIM Product'[Cont_Qty]) )
+			    RETURN
+			        -DIVIDE(Qty, ContQty, 0)
+			)
+			
+			```
+		lineageTag: faeb5e43-75d3-4f5e-a39c-03b6aa05573b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Container YM6P Today' =
+			
+			VAR Target = IF(MAX('DIM Product'[Cont_Qty])>0,[_Max Target Today]/MAX('DIM Product'[Cont_Qty]))
+			RETURN
+			IF(Target > 0, IF(Target < 1, 1, Target))
+		lineageTag: 7aec3320-720f-4a7c-87a6-05042a763571
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target Container YM6P Today' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOC Target Container YM6P Today])
+		lineageTag: f0be6bb7-cbe3-4a38-b82a-657b9faf090a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Today YS10N' =
+			
+			VAR ReferenceDate = MAX('DIM Date'[Today])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOS Parameter Value] + 56
+			RETURN
+			
+			CALCULATE(
+			    -SUM('FACT Combined'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    ),
+			    'FACT Combined'[Data Source]="YS10N"
+			)
+		formatString: 0
+		lineageTag: e1171dbd-de25-485a-8629-e840f88b4c65
+
+		changedProperty = Name
+
+	measure '_Max Target Today' = MAX([_DOC Target Today YM6P],[_DOC Target Today YS10N])
+		formatString: 0
+		lineageTag: 96004c61-af09-4e60-9bee-5213ef96a39c
+
+		changedProperty = Name
+
+	measure '_Total DOC Target Container Lower' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOC Target Container Lower])
+		lineageTag: 64dc4c1d-5eec-4b81-ba78-242fbaba4900
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Lower' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Full Date])
+			VAR EndDate       = ReferenceDate + ('DOC Parameter'[DOS Parameter Value]-10)
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: 5c2dfd82-4e30-4ce9-8325-df3831c1fbe2
+
+		changedProperty = Name
+
+	measure '_DOC Target Upper' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Full Date])
+			VAR EndDate       = ReferenceDate + ('DOC Parameter'[DOS Parameter Value]+10)
+			RETURN
+			IF(MAX('DIM Product'[Cont_Qty])>0,MAX(MAX('DIM Product'[Cont_Qty])+[_DOC Target Lower],CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)))
+		formatString: 0
+		lineageTag: fb7dfd8e-b9a3-49d6-be9e-3a78af86267b
+
+		changedProperty = Name
+
+	measure '_DOC Target Container Lower' =
+			
+			VAR Target = IF(MAX('DIM Product'[Cont_Qty])>0,[_DOC Target Lower]/MAX('DIM Product'[Cont_Qty]))
+			RETURN
+			Target
+		lineageTag: 5918f311-254e-4074-8276-f9d7b447df17
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Container Upper' =
+			
+			VAR Target = IF(MAX('DIM Product'[Cont_Qty])>0,[_DOC Target Upper]/MAX('DIM Product'[Cont_Qty]))
+			RETURN
+			IF(Target > 0, IF(Target < 1, 1, Target))
+		lineageTag: d6896de1-8f96-4de2-9337-8c00cf8e0895
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target Container Upper' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOC Target Container Upper])
+		lineageTag: 19b32f30-5fd2-48a1-b7c9-e9eb0dd94cd0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Excess Target Qty' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Full Date])
+			VAR EndDate       = ReferenceDate+365
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: e1b28a20-ba95-4206-a2ae-25a34f84f54d
+
+		changedProperty = Name
+
+	measure '_Excess Target Cont' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Full Date])
+			VAR EndDate       = ReferenceDate +365
+			RETURN
+			CALCULATE(
+			    [_Total Forecast Containers],
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		lineageTag: 90841847-0032-4e47-b8ce-3e767600a157
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOS Target Container' =
+			
+			VAR Target = IF(MAX('DIM Product'[Cont_Qty])>0,[_DOS Target]/MAX('DIM Product'[Cont_Qty]))
+			RETURN
+			IF(Target > 0, IF(Target < 1, 1, Target))
+		lineageTag: 3b30133a-e510-4cf2-a160-adc97336e1e6
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target Container FAST' = ```
+			
+			SUMX(
+			    SUMMARIZE(
+			        'DIM Product',
+			        'DIM Product'[Material],
+			        "ContQty", MAX('DIM Product'[Cont_Qty]),
+			        "DocTarget", [_DOC Target Cont]
+			    ),
+			    VAR Target = DIVIDE([DocTarget], [ContQty])
+			    RETURN Target
+			)
+			
+			```
+		lineageTag: 40d6bad6-865d-43d4-a79a-e89d69098bed
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOS Target Container' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOS Target Container])
+		lineageTag: c596f6a3-a656-4092-8e45-bd1113d67b35
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_ADS Numerator FCST' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Full Date])+1
+			VAR EndDate = ReferenceDate + 139
+			RETURN
+			CALCULATE(
+			    SUM('FACT Component Forecast Initial'[CombinedQty_per_ContQty_fcst]),
+			    FILTER(
+			        ALLSELECTED('FACT Component Forecast Initial'),
+			        'FACT Component Forecast Initial'[Combined Date] >= ReferenceDate &&
+			        'FACT Component Forecast Initial'[Combined Date] <= EndDate &&
+			        'FACT Component Forecast Initial'[MRPSKU Key] in VALUES('DIM MRPSKU'[MRPSKU Key])
+			    ))*-1
+		formatString: 0
+		lineageTag: b1da4dd8-f58c-42c6-85a2-573e1a40841c
+
+		changedProperty = Name
+
+	measure '_Total DOS Target Container FAST' = ```
+			
+			SUMX(
+			    SUMMARIZE(
+			        'DIM Product',
+			        'DIM Product'[Material],
+			        "ContQty", MAX('DIM Product'[Cont_Qty]),
+			        "DOSTarget", [_DOS Target]
+			    ),
+			    VAR Target = DIVIDE([DOSTarget], [ContQty])
+			    RETURN Target
+			)
+			
+			```
+		lineageTag: 2ba28890-f41a-430d-975b-a200cb46feef
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target Qty' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[SOW])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOC Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: b26c7b33-0ab4-4284-af3c-f96a7abb882f
+
+		changedProperty = Name
+
+	measure '_Forecast Qty Range' =
+			
+			VAR ReferenceDate = CALCULATE(MIN('DIM Date'[Full Date]),ALLSELECTED('DIM Date'[Full Date]))
+			VAR EndDate       = CALCULATE(MAX('DIM Date'[Full Date]),ALLSELECTED('DIM Date'[Full Date]))
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: 5b9da095-f686-41fe-b7a7-38712c5e6078
+
+		changedProperty = Name
+
+	measure '_Forecast Started Filter' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[SOW])
+			VAR EndDate       = ReferenceDate + 6
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[Combined Qty]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		formatString: 0
+		lineageTag: fbb011ae-f456-4638-80ac-9e0b8f06ac7e
+
+		changedProperty = Name
+
+	measure '_Total Forecast TLs' =
+			
+			SUMX(
+			    VALUES('DIM Product'[Material]),           -- or your SKU/Material key in DIM Product
+			    VAR Qty =
+			        CALCULATE( SUM('FACT Component Forecast Initial'[Combined Qty]) )
+			    VAR ContQty =
+			        CALCULATE( MAX('DIM Product'[TL Qty]) )
+			    RETURN
+			        -DIVIDE(Qty, ContQty, 0)
+			)
+		lineageTag: 7e7d6939-fc3a-4239-a7c0-31c93836fe7c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_?DOC Target TL' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[SOW])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOC Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[CombinedQty_per_TLQty_fcst]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		lineageTag: 77af0ceb-8706-4647-aa3e-e12fbd7d2a95
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target TL Today' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[Today SOW])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOC Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[CombinedQty_per_TLQty_fcst]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		lineageTag: 4011a9ab-90eb-4c54-9663-3274bc8deeb1
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total DOC Target TL Today' =
+			
+			SUMX(VALUES('DIM Product'[Material]),
+			[_DOC Target TL Today])
+		lineageTag: 708ee649-9b86-4738-a663-6e52bcacb5b5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_DOC Target TL' =
+			
+			VAR ReferenceDate = MIN('DIM Date'[SOW])
+			VAR EndDate       = ReferenceDate + 'DOC Parameter'[DOC Parameter Value]
+			RETURN
+			CALCULATE(
+			    -SUM('FACT Component Forecast Initial'[CombinedQty_per_TLQty_fcst]),
+			    DATESBETWEEN(
+			        'DIM Date'[Full Date],
+			        ReferenceDate,
+			        EndDate
+			    )
+			)
+		lineageTag: daea358d-1a48-45f9-9d8e-78d5279f544c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Material
+		dataType: string
+		lineageTag: efb196ea-5ee5-4325-970e-7d46f6bbe08f
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: af8f2245-d820-4473-b143-b1dc9aefef91
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 28dc330c-6d85-408f-9ac2-d29e6d4982dc
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8febf124-3c9d-4b8a-ba03-3de75505fc7e
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5c2fbbb9-7808-4f48-aa7c-149cbf217ef3
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 438d4bf8-8935-4075-8b6b-15f5338a49e1
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 955d4e10-7b62-436f-b31b-471a86701ec4
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 237cbdae-d9f1-4693-b5ab-265384ff771e
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: f19591cc-695e-48f6-ae2b-e41b67d5cafc
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: b582fc2d-ab84-4639-afc9-49ee97e0314d
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6c80b658-3b77-4983-b15a-2b7ce9dd60c5
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Component
+		dataType: string
+		lineageTag: 7b822c55-59be-479d-b4b9-b39bb6dc255a
+		sourceLineageTag: Component
+		summarizeBy: none
+		sourceColumn: Component
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f833fa5-6d17-49b3-9935-e3e4d3a35afd
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BOM Type'
+		dataType: string
+		lineageTag: 0ddd1a60-22ac-4b01-a51c-506e2b911e02
+		sourceLineageTag: BOM Type
+		summarizeBy: none
+		sourceColumn: BOM Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayerMrpSkuSow
+		dataType: string
+		lineageTag: f62d9482-4ce4-4615-b858-b9c7b1465a27
+		sourceLineageTag: PayerMrpSkuSow
+		summarizeBy: none
+		sourceColumn: PayerMrpSkuSow
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BOM Forecast'
+		dataType: int64
+		formatString: 0
+		lineageTag: 01c311f7-3678-4047-9b4c-0323aeeea1b0
+		sourceLineageTag: BOM Forecast
+		summarizeBy: sum
+		sourceColumn: BOM Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DIM Product.Cont_Qty'
+		dataType: double
+		lineageTag: 10062f8f-3e6d-4a11-b14c-9139580f417a
+		sourceLineageTag: DIM Product.Cont_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM Product.TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61f27812-2993-40f6-9b33-ba388b882b43
+		sourceLineageTag: DIM Product.TL Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_ContQty_fcst
+		dataType: double
+		lineageTag: b6f93651-94dd-43e6-909d-e799cbb49d4c
+		sourceLineageTag: CombinedQty_per_ContQty_fcst
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_ContQty_fcst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CombinedQty_per_TLQty_fcst
+		dataType: double
+		lineageTag: d9ddae83-cf62-4762-bf06-89bbbe2f81a9
+		sourceLineageTag: CombinedQty_per_TLQty_fcst
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_TLQty_fcst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT Component Forecast Initial' = entity
+		mode: directLake
+		source
+			entityName: FACT Component Forecast Initial
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

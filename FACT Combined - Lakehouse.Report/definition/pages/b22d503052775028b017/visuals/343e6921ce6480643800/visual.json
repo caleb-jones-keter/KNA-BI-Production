@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "343e6921ce6480643800",
+  "position": {
+    "x": 16,
+    "y": 112,
+    "z": 0,
+    "height": 608,
+    "width": 1104,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.ProductOrg"
+                }
+              },
+              "queryRef": "DIM Product.Dim Products.ProductOrg",
+              "nativeQueryRef": "Dim Products.ProductOrg"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Concat Length X Width"
+                }
+              },
+              "queryRef": "DIM Product.Concat Length X Width",
+              "nativeQueryRef": "Concat Length X Width"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "3eaca459f3cbbc6beb04",
+  "position": {
+    "x": 0,
+    "y": 112,
+    "z": 7000,
+    "height": 160,
+    "width": 399.99999999999994,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Shipping type"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Shipping type",
+              "nativeQueryRef": "Shipping type"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_TL_Combined_Qty"
+                }
+              },
+              "queryRef": "FACT YS10N Base._TL_Combined_Qty",
+              "nativeQueryRef": "_TL_Combined_Qty",
+              "format": "0"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "MOVINGAVERAGE([_TL_Combined_Qty], 5)",
+                  "Name": "Moving average"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Moving average"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TL QTY by Customer Group'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,101 @@
+table 'Finished Goods Notes'
+	lineageTag: 8e585bc1-3525-4190-896b-7cd93e8b876a
+	sourceLineageTag: [dbo].[Finished Goods Notes]
+
+	column 'NA Finished Good'
+		dataType: string
+		lineageTag: 64588a79-9a1b-4cef-9ae5-892524eac439
+		sourceLineageTag: NA Finished Good
+		summarizeBy: none
+		sourceColumn: NA Finished Good
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: bbbadd88-52a1-4106-b8f2-4d42c5c6f5f3
+		sourceLineageTag: Name
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Area'
+		dataType: string
+		lineageTag: 7f7606be-afac-4299-accd-dcbce316454f
+		sourceLineageTag: Business Area
+		summarizeBy: none
+		sourceColumn: Business Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Factory
+		dataType: string
+		lineageTag: 61f03741-e857-4536-99b0-1b4391ab69e8
+		sourceLineageTag: Factory
+		summarizeBy: none
+		sourceColumn: Factory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent 17 Number'
+		dataType: string
+		lineageTag: fb52b9f9-6395-4918-b75b-b48df77fe88d
+		sourceLineageTag: Parent 17 Number
+		summarizeBy: none
+		sourceColumn: Parent 17 Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Wty
+		dataType: string
+		lineageTag: 8ef9a1dd-3797-46ff-911a-14fdef4cdf0c
+		sourceLineageTag: Wty
+		summarizeBy: none
+		sourceColumn: Wty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FG Comment'
+		dataType: string
+		lineageTag: e5eb0e6e-60d8-4466-acc9-b5c9ab07fec4
+		sourceLineageTag: FG Comment
+		summarizeBy: none
+		sourceColumn: FG Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FG Wty. Sale Date'
+		dataType: string
+		lineageTag: d05d3d95-47b2-4983-8361-0af78a6f4dae
+		sourceLineageTag: FG Wty. Sale Date
+		summarizeBy: none
+		sourceColumn: FG Wty. Sale Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FG Wty. Sale Location'
+		dataType: string
+		lineageTag: 7fe7a155-47ea-4560-9816-72fbc5ad30fa
+		sourceLineageTag: FG Wty. Sale Location
+		summarizeBy: none
+		sourceColumn: FG Wty. Sale Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FG  - Spare Part Status'
+		dataType: string
+		lineageTag: 4a8b9f77-c42a-4218-aec1-de9d387c4be5
+		sourceLineageTag: FG  - Spare Part Status
+		summarizeBy: none
+		sourceColumn: FG  - Spare Part Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finished Goods Notes' = entity
+		mode: directLake
+		source
+			entityName: Finished Goods Notes
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

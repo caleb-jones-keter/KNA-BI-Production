@@ -1,0 +1,269 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "6f159f8494f31e6b874e",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 720,
+    "width": 1104,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "OnTimeDate"
+                }
+              },
+              "queryRef": "FACT YS10N Base.OnTimeDate",
+              "nativeQueryRef": "OnTimeDate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer Key"
+                }
+              },
+              "queryRef": "DIM Customer.Payer Key",
+              "nativeQueryRef": "Payer Key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer Types.Detail"
+                }
+              },
+              "queryRef": "DIM Customer.Payer Types.Detail",
+              "nativeQueryRef": "Payer Types.Detail"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Payer name"
+                }
+              },
+              "queryRef": "Sum(FACT YS10N Base.Payer name)",
+              "nativeQueryRef": "Payer name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Payer"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Payer",
+              "nativeQueryRef": "Payer"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer Types.Type"
+                }
+              },
+              "queryRef": "DIM Customer.Payer Types.Type",
+              "nativeQueryRef": "Payer Types.Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Ship To"
+                    }
+                  },
+                  "Property": "Payer & Desc"
+                }
+              },
+              "queryRef": "DIM Ship To.Payer & Desc",
+              "nativeQueryRef": "Payer & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Ship To"
+                    }
+                  },
+                  "Property": "Payer Key"
+                }
+              },
+              "queryRef": "DIM Ship To.Payer Key",
+              "nativeQueryRef": "Payer Key1"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "OnTimeDate"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b5567a3304bd3f6723a4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "OnTimeDate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6fa161cddfbc68fe66a7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer Key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d506b620c97b0a1a411f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer Types.Detail"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b9495f3590fa19af2b42",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Payer"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a34b7c612bcacb4255e7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Payer name"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "469a948e60c19e1245bd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer Types.Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5ab4666099cbcd5cfb7b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Ship To"
+              }
+            },
+            "Property": "Payer & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5e73adfb43251f811ce4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Ship To"
+              }
+            },
+            "Property": "Payer Key"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

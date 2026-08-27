@@ -1,0 +1,228 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "e2c860106b01d4c08536",
+  "position": {
+    "x": 0,
+    "y": 96,
+    "z": 0,
+    "height": 800,
+    "width": 808,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Date _2_"
+                    }
+                  },
+                  "Property": "Full Date Next Year Adjusted"
+                }
+              },
+              "queryRef": "DIM Date _2_.Full Date Next Year Adjusted",
+              "nativeQueryRef": "Full Date Next Year Adjusted",
+              "active": true,
+              "format": "D"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.CombinedQty_per_TLQty)",
+              "nativeQueryRef": "Production Trucks",
+              "displayName": "Production Trucks"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Past"
+                        }
+                      },
+                      "Property": "Trailer No"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(FACT YS10N Past.Trailer No)",
+              "nativeQueryRef": "OB Trucks",
+              "displayName": "OB Trucks"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Production Trucks]+[OB Trucks]",
+                  "Name": "Total Trucks"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Total Trucks"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[OB Trucks]*2",
+                  "Name": "Hours Needed OB"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Hours Needed OB"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Production Trucks]",
+                  "Name": "Hours Needed IB"
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "Hours Needed IB"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Hours Needed IB]+[Hours Needed OB]",
+                  "Name": "Total Labor Hours"
+                }
+              },
+              "queryRef": "select3",
+              "nativeQueryRef": "Total Labor Hours"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "roundup([Total Labor Hours]/(7.5*.85),0)",
+                  "Name": "Man Hours"
+                }
+              },
+              "queryRef": "select4",
+              "nativeQueryRef": "Man Hours",
+              "hidden": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Date _2_"
+                  }
+                },
+                "Property": "Full Date Next Year Adjusted"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compact'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4c78c201533eaae918e8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date _2_"
+              }
+            },
+            "Property": "Full Date Next Year Adjusted"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3067524ac14d370e8cd5",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Future"
+                  }
+                },
+                "Property": "CombinedQty_per_TLQty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3b882073842833082a7c",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Past"
+                  }
+                },
+                "Property": "Trailer No"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

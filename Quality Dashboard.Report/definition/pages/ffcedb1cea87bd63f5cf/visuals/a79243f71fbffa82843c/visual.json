@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "a79243f71fbffa82843c",
+  "position": {
+    "x": 336,
+    "y": 0,
+    "z": 4000,
+    "height": 160,
+    "width": 944,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Customer Groups"
+                }
+              },
+              "queryRef": "DIM Customer.Customer Groups",
+              "nativeQueryRef": "Customer Groups"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Rejections Customer Filter"
+                }
+              },
+              "queryRef": "DIM Customer.Rejections Customer Filter",
+              "nativeQueryRef": "Rejections Customer Filter"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Sales (M,-O)"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Sales (M,-O)",
+              "nativeQueryRef": "Sales (M,-O)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Defective Allowance"
+                }
+              },
+              "queryRef": "DIM Customer.Defective Allowance",
+              "nativeQueryRef": "Defective Allowance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "R² RTV vs Sales"
+                }
+              },
+              "queryRef": "FACT YS10N Base.R² RTV vs Sales",
+              "nativeQueryRef": "R² RTV vs Sales"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

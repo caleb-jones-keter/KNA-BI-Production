@@ -1,0 +1,175 @@
+table 'Site Assets'
+	lineageTag: ce1a208d-7519-476d-8168-4475a1aa2a57
+
+	column FileSystemObjectType
+		dataType: string
+		lineageTag: 9fcf8b37-43ad-4a6d-bbfe-597c95495cbf
+		summarizeBy: none
+		sourceColumn: FileSystemObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 5969dff7-cf95-45f0-b33b-afe31f6b73ee
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUri
+		dataType: string
+		lineageTag: 1bd3bef7-22fa-428a-ae0e-85d0c596b445
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUri
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUrl
+		dataType: string
+		lineageTag: 7ef0d6ee-98d1-4d74-a6be-1fe53aa04409
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentTypeId
+		dataType: string
+		lineageTag: e072d8ed-72bb-4a48-b42e-77c9b29369a5
+		summarizeBy: none
+		sourceColumn: ContentTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__ColorTag
+		dataType: string
+		lineageTag: bc9fb153-987c-4e7d-a78e-5e0af12c6e28
+		summarizeBy: none
+		sourceColumn: OData__ColorTag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComplianceAssetId
+		dataType: string
+		lineageTag: b6d25253-eb9a-4d4c-9478-4234ca157b5e
+		summarizeBy: none
+		sourceColumn: ComplianceAssetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 4b92ce66-73a7-4164-8d70-0c145a3def80
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column MediaServiceImageTags
+		dataType: string
+		lineageTag: b7882e11-2196-472d-bcb7-b2411995fc74
+		summarizeBy: none
+		sourceColumn: MediaServiceImageTags
+
+		annotation SummarizationSetBy = Automatic
+
+	column lcf76f155ced4ddcb4097134ff3c332f
+		dataType: string
+		lineageTag: e37d1c29-1bc9-4db2-8c06-1701aa758f3e
+		summarizeBy: none
+		sourceColumn: lcf76f155ced4ddcb4097134ff3c332f
+
+		annotation SummarizationSetBy = Automatic
+
+	column MediaServiceOCR
+		dataType: string
+		lineageTag: 2b47bb47-f604-404e-8591-c1219a6e5c5c
+		summarizeBy: none
+		sourceColumn: MediaServiceOCR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: c2e3d283-2adc-44f9-9a2e-a2a5f2af5fa8
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		lineageTag: cc1fd23c-d4a0-46c3-96c5-5e2f26028429
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column AuthorId
+		dataType: string
+		lineageTag: 86c63af3-e474-4e50-9e26-991a7b69d737
+		summarizeBy: none
+		sourceColumn: AuthorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: string
+		lineageTag: 72d80963-d7d7-4ff1-a3ec-2ecf2c368089
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditorId
+		dataType: string
+		lineageTag: 77680614-eb77-4210-bb7f-5f9e93786268
+		summarizeBy: none
+		sourceColumn: EditorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__CopySource
+		dataType: string
+		lineageTag: 6ec4a8be-0a18-4dc5-be4a-21383d8df341
+		summarizeBy: none
+		sourceColumn: OData__CopySource
+
+		annotation SummarizationSetBy = Automatic
+
+	column CheckoutUserId
+		dataType: string
+		lineageTag: f5e534e5-f201-45a0-af59-d62eec2280d1
+		summarizeBy: none
+		sourceColumn: CheckoutUserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__UIVersionString
+		dataType: string
+		lineageTag: c8ee4ae6-24eb-4618-bd3f-575c4f7499de
+		summarizeBy: none
+		sourceColumn: OData__UIVersionString
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUID
+		dataType: string
+		lineageTag: bbfc225f-b7db-4dba-9c09-c7fab93516a9
+		summarizeBy: none
+		sourceColumn: GUID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Site Assets' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer/", [ApiVersion = 15]),
+				    #"3d43d481-72d8-4684-8c4d-005bff7b1585" = Source{[Id="3d43d481-72d8-4684-8c4d-005bff7b1585"]}[Items],
+				    #"Renamed Columns" = Table.RenameColumns(#"3d43d481-72d8-4684-8c4d-005bff7b1585",{{"ID", "ID.1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,75 @@
+table RfR
+	lineageTag: d0f57e40-613a-4146-9ea2-900cb58390b5
+
+	column Code
+		dataType: string
+		lineageTag: faf3e2a7-381f-4c1f-a377-4510fed29382
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SAP Text'
+		dataType: string
+		lineageTag: 2b5d2ec6-57a8-477d-ae17-3be8d07b3b78
+		summarizeBy: none
+		sourceColumn: SAP Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NA CS Usage Future'
+		dataType: string
+		lineageTag: 2c43c8f3-9832-4c5f-8120-6e81c9451660
+		summarizeBy: none
+		sourceColumn: NA CS Usage Future
+
+		annotation SummarizationSetBy = Automatic
+
+	column Classification
+		dataType: string
+		lineageTag: 7e5d82e8-a1bb-4fb9-b92c-4957113ceab0
+		summarizeBy: none
+		sourceColumn: Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valid Orders'
+		dataType: string
+		lineageTag: 38d23ccf-1304-4b09-b1c7-bf18f6c3893b
+		summarizeBy: none
+		sourceColumn: Valid Orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (NumCode)' = IF(RfR[Valid Orders]="VALID",IF(RfR[Code]="02",99,IFERROR(CONVERT(RfR[Code],INTEGER),999)))
+		lineageTag: 05c54543-fb2d-4442-bbd0-25cae9528d9a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column6
+		dataType: string
+		lineageTag: 39a8f296-1b20-4d28-93d2-83471adf90e7
+		summarizeBy: none
+		sourceColumn: Column6
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RfR = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNADemandPlanning/Shared%20Documents/OTIF/OTIF%20Calculation%20Template.xlsx"), null, true),
+				    RfR_Sheet = Source{[Item="RfR",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(RfR_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Code", type text}, {"SAP Text", type text}, {"NA CS Usage Future", type text}, {"Classification", type text}, {"Valid Orders", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

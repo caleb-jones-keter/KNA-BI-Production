@@ -1,0 +1,26 @@
+table 'DOS On?'
+	lineageTag: f58ab420-8cfb-4b49-b302-ee48c3b02ba8
+
+	measure 'DOS On? Value' = SELECTEDVALUE('DOS On?'[DOS On?], 1)
+		formatString: 0
+		lineageTag: 9112b002-e459-4129-ae40-f13f8f6f95e3
+
+	column 'DOS On?'
+		formatString: 0
+		lineageTag: 4edd9cf0-8f44-4b35-a6df-6d3da935f663
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'DOS On?' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 1)
+
+	annotation PBI_Id = 6108480912fe4ada984315d75c22869f
+

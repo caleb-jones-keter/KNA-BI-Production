@@ -1,0 +1,106 @@
+table 'DIM MRPSKU'
+	lineageTag: 301a1fcf-c376-44a9-b69c-8b053302cfe9
+	sourceLineageTag: [dbo].[DIM MRPSKU]
+
+	column Material
+		dataType: string
+		lineageTag: 8f274e1b-83ed-4e86-99ec-c57a0a55f036
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 84ec790c-5bbd-44a1-babc-cce1ccc7c5b0
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: 7f7319e7-df30-43e4-a409-ff73905a5758
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Business Unit'
+		dataType: string
+		lineageTag: a05b10e9-7d17-4de1-8012-82a0ae2d411d
+		sourceLineageTag: PC Business Unit
+		summarizeBy: none
+		sourceColumn: PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU & Desc'
+		dataType: string
+		lineageTag: 6f60a04a-bd70-490a-b4be-bd5143798e12
+		sourceLineageTag: SKU & Desc
+		summarizeBy: none
+		sourceColumn: SKU & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Standard price'
+		dataType: double
+		lineageTag: 8e24a75b-a396-48bb-a946-c53107097957
+		sourceLineageTag: Standard price
+		summarizeBy: none
+		sourceColumn: Standard price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column per
+		dataType: int64
+		formatString: 0
+		lineageTag: c020c3b3-8243-43d5-b32e-58953f26d716
+		sourceLineageTag: per
+		summarizeBy: none
+		sourceColumn: per
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		lineageTag: f2fd7ea5-84d6-499a-bac2-e603813b3e86
+		sourceLineageTag: Cost
+		summarizeBy: none
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Plant
+		dataType: string
+		lineageTag: e8f78f0a-edd2-4f7a-b185-eaff35de1249
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Imports
+		dataType: string
+		lineageTag: 499893ea-3ea1-4df2-9c0f-3373659c2c5e
+		sourceLineageTag: Imports
+		summarizeBy: none
+		sourceColumn: Imports
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM MRPSKU' = entity
+		mode: directLake
+		source
+			entityName: DIM MRPSKU
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

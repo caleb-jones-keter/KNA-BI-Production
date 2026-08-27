@@ -1,0 +1,39 @@
+table SKUPayerCompany
+	lineageTag: f839c2ac-6bc0-4cdb-9194-927154708c45
+
+	column SKUPayer
+		lineageTag: e692c859-dc9d-4fcc-ba80-3ee7ab367005
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: DIM SKUPayer[SKUPayer]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Code'
+		lineageTag: 2bc8e413-f203-4401-a1ed-1594b0c46a4a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Used Companies[Company Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKUPayerCompany = SKUPayerCompany[SKUPayer]&"|"&SKUPayerCompany[Company Code]
+		lineageTag: 3f1bf7f4-d4bd-436d-8d00-f5a08fd24764
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Imports Type' =
+			IF(CALCULATE(COUNT('FACT YS10N'[Plant]),'FACT YS10N'[Plant]="67")>0,"Imports-US",
+			IF(CALCULATE(COUNT('FACT YS10N'[Plant]),'FACT YS10N'[Plant]="69")>0,"Imports-CA"))
+		lineageTag: d9b1cee5-c616-4249-ba78-be36d1996bb9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SKUPayerCompany = calculated
+		mode: import
+		source = CROSSJOIN('DIM SKUPayer','Used Companies')
+
+	annotation PBI_Id = aa0c495895d84c278aecff09cdf54420
+

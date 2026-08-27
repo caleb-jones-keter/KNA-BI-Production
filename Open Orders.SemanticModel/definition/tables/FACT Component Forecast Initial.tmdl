@@ -1,0 +1,162 @@
+table 'FACT Component Forecast Initial'
+	lineageTag: 180b8d4e-59b8-4f5f-80e4-254314f82540
+	sourceLineageTag: [dbo].[FACT Component Forecast Initial]
+
+	column Material
+		dataType: string
+		lineageTag: aa4b38ac-622c-4a0c-b390-245ec8ca9abb
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 07ccdd26-ef41-4806-97e8-294a6b08a789
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 31ccc708-85ba-40b3-860a-67fa6da94b08
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 50fb3197-05e6-4bf8-96e1-e53eb0416a73
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a0d4bd3f-98ac-446b-a9aa-0401889dbf92
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 8cf5bcc0-7dbb-4bd0-be53-e721fb0c1265
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 61890e16-a419-45e4-ae28-7b85a734a2d2
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: c0dd6676-9c11-4a8d-ac64-31ed5fcc8a3f
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: e4f192f3-001e-4c6b-b909-2bedf8ba3a62
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: 47a96514-a3a1-4a22-8d98-3199be6554f7
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1c4ba4e7-8f0b-4770-ad2a-26fe7c5a0382
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Component
+		dataType: string
+		lineageTag: 977a012d-ef51-4867-9779-8f4f1537b53a
+		sourceLineageTag: Component
+		summarizeBy: none
+		sourceColumn: Component
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 612ac24f-d9ff-4b04-9c00-b360e8591247
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BOM Type'
+		dataType: string
+		lineageTag: 15242a60-538b-41b8-975d-0ad6643b24e0
+		sourceLineageTag: BOM Type
+		summarizeBy: none
+		sourceColumn: BOM Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayerMrpSkuSow
+		dataType: string
+		lineageTag: 152e585e-a14e-484b-99ff-e0402a31bd88
+		sourceLineageTag: PayerMrpSkuSow
+		summarizeBy: none
+		sourceColumn: PayerMrpSkuSow
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BOM Forecast'
+		dataType: int64
+		formatString: 0
+		lineageTag: ec2c8b53-df28-4b0e-a286-6226421e4ff6
+		sourceLineageTag: BOM Forecast
+		summarizeBy: sum
+		sourceColumn: BOM Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT Component Forecast Initial' = entity
+		mode: directLake
+		source
+			entityName: FACT Component Forecast Initial
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

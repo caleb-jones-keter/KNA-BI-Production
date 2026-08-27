@@ -1,0 +1,55 @@
+table 'Dim Countries'
+	lineageTag: 373f1195-30fb-47f7-9dfa-4930401ce7c2
+
+	column Continent
+		dataType: string
+		lineageTag: 6d17c6b5-4add-4367-a9eb-50e65f28ac98
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 07355a65-705d-4eea-b301-2fe8970f98b9
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryKey
+		dataType: string
+		lineageTag: 3f24ac6b-5bc4-4cc1-b790-771e2d7ccf76
+		summarizeBy: none
+		sourceColumn: CountryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubContinent
+		dataType: string
+		lineageTag: 6fa37a43-02fd-482e-82e8-0b25a7d32fdb
+		summarizeBy: none
+		sourceColumn: SubContinent
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Countries' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Countries]", {"[Dim Countries].[Continent].[Continent]", "[Dim Countries].[Country].[Country]", "[Dim Countries].[CountryKey].[CountryKey]", "[Dim Countries].[SubContinent].[SubContinent]"}, {"Dim Countries.Continent", "Dim Countries.Country", "Dim Countries.CountryKey", "Dim Countries.SubContinent"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Countries.Continent", "Continent"}, {"Dim Countries.Country", "Country"}, {"Dim Countries.CountryKey", "CountryKey"}, {"Dim Countries.SubContinent", "SubContinent"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

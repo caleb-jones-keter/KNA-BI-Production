@@ -1,0 +1,382 @@
+table 'DIM Date'
+	lineageTag: ce0303b5-b777-4e46-8027-ad745a23d997
+	sourceLineageTag: [dbo].[DIM Date]
+
+	measure _ShowYearfilter = ```
+			
+			VAR CurrentYear = YEAR(TODAY())
+			VAR YearInContext =
+			    SELECTEDVALUE('DIM Date'[Year])  -- returns the year if only one is in context
+			RETURN
+			IF(
+			    YearInContext = CurrentYear ||
+			    YearInContext = CurrentYear - 1,
+			    1,
+			    0
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 1485f022-3da3-4280-9edb-14433190f6df
+
+		changedProperty = Name
+
+	measure _ShowWeekfilter = ```
+			
+			VAR CurrentWeek = WEEKNUM(TODAY(), 1)  -- Sunday start
+			VAR WeekInContext = SELECTEDVALUE('DIM Date'[Week of Year])
+			RETURN
+			IF(
+			    WeekInContext <= CurrentWeek,
+			    1,
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 6e1b4c98-7533-4f26-b8be-f78fe423d3a4
+
+		changedProperty = Name
+
+	column 'Full Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a9aea451-3bf5-40b0-9363-09af7e194d44
+		sourceLineageTag: Full Date
+		summarizeBy: none
+		sourceColumn: Full Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 70eeb512-ad2e-46a0-8f00-3c06323672a7
+		sourceLineageTag: Year
+		summarizeBy: sum
+		sourceColumn: Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ead764a-4e4e-4bb7-8e53-bd500ba7f2c0
+		sourceLineageTag: Month
+		summarizeBy: sum
+		sourceColumn: Month
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: f0e0196b-bb3a-46d0-ada1-20b2f2e82d0b
+		sourceLineageTag: Month Name
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: double
+		lineageTag: f1653c9f-ece5-4463-a494-ef2dce1c5868
+		sourceLineageTag: Quarter
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 80bfd96e-d5a8-416a-8ead-4b38159da8eb
+		sourceLineageTag: Week of Year
+		summarizeBy: sum
+		sourceColumn: Week of Year
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Month'
+		dataType: string
+		lineageTag: 7c195c70-2864-4fd9-ae51-eae5fbb1d4ce
+		sourceLineageTag: Week of Month
+		summarizeBy: none
+		sourceColumn: Week of Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: double
+		lineageTag: 66086cdd-f0ff-49ec-aaa7-2f16e77c7ad5
+		sourceLineageTag: Day
+		summarizeBy: sum
+		sourceColumn: Day
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day of Week'
+		dataType: double
+		lineageTag: d5a6bd43-9384-4747-89ed-e4f2ba882ef3
+		sourceLineageTag: Day of Week
+		summarizeBy: sum
+		sourceColumn: Day of Week
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day of Year'
+		dataType: double
+		lineageTag: 0b0c4d62-c661-4805-b4c9-b719038fd9be
+		sourceLineageTag: Day of Year
+		summarizeBy: sum
+		sourceColumn: Day of Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 29e381af-9232-41d3-aebb-3b71222304de
+		sourceLineageTag: Day Name
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 09363adb-7f60-4e28-a0b6-fd037d4dbc83
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 905a0bf1-3756-4594-8bbb-2aac5c41c38f
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtraction1
+		dataType: int64
+		formatString: 0
+		lineageTag: 2363620b-e3c3-4afd-8c39-ae1e46d660f6
+		sourceLineageTag: Subtraction1
+		summarizeBy: sum
+		sourceColumn: Subtraction1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Future?
+		dataType: string
+		lineageTag: 8180ebb9-a578-4f0d-a09a-5fe0974bb13d
+		sourceLineageTag: Future?
+		summarizeBy: none
+		sourceColumn: Future?
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9de2b451-8f01-4d67-adc1-64257ca241e6
+		sourceLineageTag: FOM
+		summarizeBy: none
+		sourceColumn: FOM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtraction
+		dataType: int64
+		formatString: 0
+		lineageTag: 36d346af-0d2a-4493-8c02-4acd8447f5bf
+		sourceLineageTag: Subtraction
+		summarizeBy: sum
+		sourceColumn: Subtraction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fef3d56a-b333-4f74-9c53-09b609d960f7
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date - SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 10e1bf1b-fca8-486d-982e-d2c9fd0e0515
+		sourceLineageTag: Full Date - SOW
+		summarizeBy: none
+		sourceColumn: Full Date - SOW
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW>_TODAY
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fef55033-da31-425d-903a-2f2af1759f09
+		sourceLineageTag: SOW>_TODAY
+		summarizeBy: none
+		sourceColumn: SOW>_TODAY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column '6 week filter'
+		dataType: string
+		lineageTag: 0f75b724-de2c-4379-be1a-908aa057b590
+		sourceLineageTag: 6 week filter
+		summarizeBy: none
+		sourceColumn: 6 week filter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date Formatted'
+		dataType: string
+		lineageTag: 400e78cb-89be-43c1-9cf8-59107e5bd59f
+		sourceLineageTag: Full Date Formatted
+		summarizeBy: none
+		sourceColumn: Full Date Formatted
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: string
+		lineageTag: fe09573d-207c-43a8-ae6a-4c67e13cc9a3
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column InRange
+		dataType: string
+		lineageTag: e3aaf831-29f3-4b77-bc49-6527e745b05d
+		sourceLineageTag: InRange
+		summarizeBy: none
+		sourceColumn: InRange
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today FOM'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f315f5e7-dc24-496c-ad91-ca2e21ee3442
+		sourceLineageTag: Today FOM
+		summarizeBy: none
+		sourceColumn: Today FOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date Next Year Adjusted'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 11ddc8f2-625f-474d-a865-92b0d6669e3c
+		sourceLineageTag: Full Date Next Year Adjusted
+		summarizeBy: none
+		sourceColumn: Full Date Next Year Adjusted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NYA SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c8ce17ff-fc11-45f2-b0c0-cfd262a4d17c
+		sourceLineageTag: NYA SOW
+		summarizeBy: none
+		sourceColumn: NYA SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NYA Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 29d0c948-67cb-4737-a5ed-f869cc2224d1
+		sourceLineageTag: NYA Year
+		summarizeBy: sum
+		sourceColumn: NYA Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NYA Week Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 684b0c61-af58-49de-8ccd-ed357f392547
+		sourceLineageTag: NYA Week Of Year
+		summarizeBy: sum
+		sourceColumn: NYA Week Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Date' = entity
+		mode: directLake
+		source
+			entityName: DIM Date
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+
+	changedProperty = IsHidden
+

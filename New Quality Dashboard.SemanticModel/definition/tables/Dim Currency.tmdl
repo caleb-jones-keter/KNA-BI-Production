@@ -1,0 +1,74 @@
+table 'Dim Currency'
+	lineageTag: c8a75818-e98e-481a-b5c9-902b3e815e40
+
+	column Currency
+		dataType: string
+		lineageTag: 8106faa9-ed79-4ac8-9d0d-5aaa718997b9
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Acronym'
+		dataType: string
+		lineageTag: be4287f0-2a23-4b59-b85a-956e2506ec8e
+		summarizeBy: none
+		sourceColumn: Currency Acronym
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Sign'
+		dataType: string
+		lineageTag: 391ec638-31f9-44a4-ae26-de55949e0ddc
+		summarizeBy: none
+		sourceColumn: Currency Sign
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyID
+		dataType: string
+		lineageTag: cf042241-b212-40c8-943d-2676f5b37e72
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selected Currency'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f0f249a-ba6d-449b-8924-eb402b97b105
+		summarizeBy: sum
+		sourceColumn: Selected Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selected Currency Text'
+		dataType: string
+		lineageTag: 0a3fa6d7-d9c6-4720-b734-978adbf3273b
+		summarizeBy: none
+		sourceColumn: Selected Currency Text
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Currency' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Currencies]", {"[Currencies].[Currency].[Currency]", "[Currencies].[Currency Acronym].[Currency Acronym]", "[Currencies].[Currency Sign].[Currency Sign]", "[Currencies].[CurrencyID].[CurrencyID]"}, {"Currencies.Currency", "Currencies.Currency Acronym", "Currencies.Currency Sign", "Currencies.CurrencyID"}},
+				            {Cube.AddMeasureColumn, "Selected Currency", "[Measures].[Selected Currency]"},
+				            {Cube.AddMeasureColumn, "Selected Currency Text", "[Measures].[Selected Currency Text]"}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Currencies.Currency", "Currency"}, {"Currencies.Currency Acronym", "Currency Acronym"}, {"Currencies.Currency Sign", "Currency Sign"}, {"Currencies.CurrencyID", "CurrencyID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

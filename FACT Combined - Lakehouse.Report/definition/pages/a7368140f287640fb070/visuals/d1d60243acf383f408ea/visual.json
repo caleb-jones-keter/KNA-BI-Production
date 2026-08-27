@@ -1,0 +1,194 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d1d60243acf383f408ea",
+  "position": {
+    "x": 0,
+    "y": 128,
+    "z": 0,
+    "height": 592,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "ProductionDate"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.ProductionDate",
+              "nativeQueryRef": "ProductionDate",
+              "active": true,
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Order_Number"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Order_Number",
+              "nativeQueryRef": "Order_Number",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "Mold"
+                }
+              },
+              "queryRef": "fact_coois_pbi_daily_split.Mold",
+              "nativeQueryRef": "Mold",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_coois_pbi_daily_split"
+                        }
+                      },
+                      "Property": "DailyProductionHours"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.DailyProductionHours)",
+              "nativeQueryRef": "Sum of DailyProductionHours"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_coois_pbi_daily_split"
+                        }
+                      },
+                      "Property": "Labour_C_VGE03"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(fact_coois_pbi_daily_split.Labour_C_VGE03)",
+              "nativeQueryRef": "Max of Labour_C_VGE03"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Sum of DailyProductionHours]* [Max of Labour_C_VGE03]",
+                  "Name": "Labor Hours Needed"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Labor Hours Needed"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Labor Hours Needed]/8",
+                  "Name": "Laborers"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Laborers"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_coois_pbi_daily_split"
+                  }
+                },
+                "Property": "ProductionDate"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "fact_coois_pbi_daily_split.ProductionDate"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_coois_pbi_daily_split"
+                    }
+                  },
+                  "Property": "ProductionDate"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "fact_coois_pbi_daily_split.Order_Number"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "fact_coois_pbi_daily_split.Mold"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

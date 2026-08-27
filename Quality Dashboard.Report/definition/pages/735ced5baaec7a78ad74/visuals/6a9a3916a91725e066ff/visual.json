@@ -1,0 +1,462 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6a9a3916a91725e066ff",
+  "position": {
+    "x": 704,
+    "y": 256,
+    "z": 13000,
+    "height": 256,
+    "width": 352,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Dim Products.SKU Group # & Desc"
+                }
+              },
+              "queryRef": "DIM Product.Dim Products.SKU Group # & Desc",
+              "nativeQueryRef": "Dim Products.SKU Group # & Desc",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "Estimated Slope SKU Group"
+                }
+              },
+              "queryRef": "FACT Rejections.Estimated Slope SKU Group",
+              "nativeQueryRef": "Estimated Slope SKU Group"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "Estimated Intercept SKU Group"
+                }
+              },
+              "queryRef": "FACT Rejections.Estimated Intercept SKU Group",
+              "nativeQueryRef": "Estimated Intercept SKU Group"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "Estimated Baseline SKU Group"
+                }
+              },
+              "queryRef": "FACT Rejections.Estimated Baseline SKU Group",
+              "nativeQueryRef": "Estimated Baseline SKU Group"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "R² RTV % vs TL % SKU Group"
+                }
+              },
+              "queryRef": "FACT YS10N Base.R² RTV % vs TL % SKU Group",
+              "nativeQueryRef": "R² RTV % vs TL % SKU Group"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "Sales (M,-O)"
+                }
+              },
+              "queryRef": "FACT YS10N Base.Sales (M,-O)",
+              "nativeQueryRef": "Sales (M,-O)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM Product"
+                        }
+                      },
+                      "Property": "Dim Products.SKU Group # & Desc"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(DIM Product.Dim Products.SKU Group # & Desc)",
+              "nativeQueryRef": "Count of Dim Products.SKU Group # & Desc"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "TL %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.TL %",
+              "nativeQueryRef": "TL %",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "RTV %"
+                }
+              },
+              "queryRef": "FACT YS10N Base.RTV %",
+              "nativeQueryRef": "RTV %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "trend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Trend line 1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "FACT YS10N Base"
+                                    }
+                                  },
+                                  "Property": "Sales (M,-O)"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "50000D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D64550'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Correlation'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "72d7f33c038080377a04",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Dim Products.SKU Group # & Desc"
+          }
+        },
+        "type": "TopN",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "48ebb7a995f5a21fa16f",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Sales (M,-O)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2864ce7ca5b6564069a3",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "Estimated Baseline SKU Group"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "083abd48b0fa1cf1d405",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "Estimated Intercept SKU Group"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aff0e0e2c9b78102e50c",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "Estimated Slope SKU Group"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f4d8a8ba950990358381",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "RelativeDate",
+        "howCreated": "User"
+      },
+      {
+        "name": "18428c9d1788c24794c3",
+        "ordinal": 6,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "R² RTV % vs TL % SKU Group"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "72f3f1c9bf3b19f01c50",
+        "ordinal": 7,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT Rejections"
+              }
+            },
+            "Property": "Rejections Filter"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "ff3e44b04c1abaa5c06f",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "RTV %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4419adb8de42daa2f628",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "TL %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

@@ -1,0 +1,50 @@
+table 'Ship Status Selector'
+	lineageTag: 16b99100-e66e-4305-b24a-1995f1ab0feb
+
+	measure '_SHIP STATUS Slicer Filter' = ```
+			
+			
+			VAR sel =
+			    SELECTEDVALUE('Ship Status Selector'[Ship Status])
+			
+			RETURN
+			IF(
+			    ISBLANK(sel),
+			    1,
+			    CALCULATE(
+			        COUNTROWS('FACT Combined'),
+			        FILTER(
+			            'FACT Combined',
+			            [_SHIP STATUS] = sel
+			        )
+			    ) > 0
+			)
+			
+			```
+		lineageTag: 7c9efb7a-cf3e-4047-b8e1-4ae3cb61c0a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Ship Status'
+		lineageTag: 23a77bf7-3a3c-427d-b54e-e708592f299e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ship Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Ship Status Selector' = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Ship Status", STRING,
+				    {
+				        { "Expedite" },
+				        { "Ship" },
+				        { "Hold" }
+				    }
+				)
+
+	annotation PBI_Id = d5df41e96e8545a082d47bd83b76dbb9
+

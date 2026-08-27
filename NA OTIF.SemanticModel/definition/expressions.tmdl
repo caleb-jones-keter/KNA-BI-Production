@@ -1,0 +1,23 @@
+expression 'Errors in 0125' =
+		let
+		Source = #"0125",
+		  #"Detected Type Mismatches" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "The type of the value does not match the type of the column.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Source, pairs),
+		  #"Added Index" = Table.AddIndexColumn(#"Detected Type Mismatches", "Row Number" ,1),
+		  #"Kept Errors" = Table.SelectRowsWithErrors(#"Added Index", {"Sales Organization", "Plant", "Shipping Point/Receiving Pt", "Storage Location", "Payer", "Payer name", "Reason for rejection", "Reason for rejection description", "Order reason", "Order reason_1", "PO Number", "Sales Order", "Delivery", "Shipment Number", "Shipping type", "Material", "Customer SKU", "Material description MM", "Order Qty", "Net value", "SO Created Date", "Delivery Creation Date", "First Date", "Confirmation Date", "Requested deliv.date", "Guarantee Date", "Original Delivery Date", "SO Billing Date", "Ship-To Party Region", "Planning end", "Planned date CheckIn", "Planned time CheckIn", "Trailer No.", "Planned shipment end", "Load Delay Reason", "Act. Gds Mvmnt Date", "Invoice Billing Date", "Profit Center"}),
+		  #"Reordered Columns" = Table.ReorderColumns(#"Kept Errors", {"Row Number", "Sales Organization", "Plant", "Shipping Point/Receiving Pt", "Storage Location", "Payer", "Payer name", "Reason for rejection", "Reason for rejection description", "Order reason", "Order reason_1", "PO Number", "Sales Order", "Delivery", "Shipment Number", "Shipping type", "Material", "Customer SKU", "Material description MM", "Order Qty", "Net value", "SO Created Date", "Delivery Creation Date", "First Date", "Confirmation Date", "Requested deliv.date", "Guarantee Date", "Original Delivery Date", "SO Billing Date", "Ship-To Party Region", "Planning end", "Planned date CheckIn", "Planned time CheckIn", "Trailer No.", "Planned shipment end", "Load Delay Reason", "Act. Gds Mvmnt Date", "Invoice Billing Date", "Profit Center"})
+		in
+		  #"Reordered Columns"
+	lineageTag: de25e9ab-3576-4aff-b8c0-2290e891dccd
+	queryGroup: 'Query Errors - 5/1/2025 8:51:23 AM'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

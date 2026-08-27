@@ -1,0 +1,423 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "6180cb5f56a57aaf9d20",
+  "position": {
+    "x": 352,
+    "y": 88,
+    "z": 6000,
+    "height": 72,
+    "width": 288,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper Country/Territory"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper Country/Territory",
+              "nativeQueryRef": "Shipper Country/Territory",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper State"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper State",
+              "nativeQueryRef": "Shipper State",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper City"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper City",
+              "nativeQueryRef": "Shipper City",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper Zip Clean"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper Zip Clean",
+              "nativeQueryRef": "Shipper Zip Clean",
+              "active": false
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Values"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FACT FedEx Invoice History.Shipper Country/Territory"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper Country/Territory"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FACT FedEx Invoice History.Shipper State"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper State"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FACT FedEx Invoice History.Shipper City"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper City"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FACT FedEx Invoice History.Shipper Zip Clean"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            },
+            "relativeRange": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Last'"
+                }
+              }
+            },
+            "relativeDuration": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "relativePeriod": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Days'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dateRange": [
+        {
+          "properties": {
+            "includeToday": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Shipper Country, State, City, Zip Code'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Recipient Country, State, City, Zip Code'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0185bab1eadb70359438",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient City"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "fdab0d2012fbea3ab2dd",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient Country/Territory"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "98a7bb4635d298bb4d3b",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient State"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "a81f4dd5bb4974db4197",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient Zip Code"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "be69291a725abca79ea1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper Country/Territory"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b95407a95786f5fc7952",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper State"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ead4b24e78c47d9fefe5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper City"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8f2af54f3148cc5f684a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper Zip Clean"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

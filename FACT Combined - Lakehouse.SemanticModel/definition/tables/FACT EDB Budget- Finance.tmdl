@@ -1,0 +1,408 @@
+table 'FACT EDB Budget- Finance'
+	lineageTag: 84e753f7-4240-41d2-8ee7-b98d3635d775
+	sourceLineageTag: [dbo].[FACT EDB Budget- Finance]
+
+	measure _$Netsalesqty = ```
+			
+			
+			VAR Payers =
+			    VALUES('FACT EDB Budget- Finance'[Code:Payer _c5_])
+			
+			VAR MRPAreas =
+			    VALUES('FACT EDB Budget- Finance'[MRP Area])
+			
+			RETURN
+			CALCULATE(
+			    SUM('FACT YS10N Past'[Net Value USD]),
+			    TREATAS(Payers, 'FACT YS10N Past'[Payer]),
+			    TREATAS(MRPAreas, 'FACT YS10N Past'[MRP Area])
+			)
+			
+			```
+		lineageTag: 0a0bad3a-c012-4077-91ec-916eeb79f150
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$Selected Budget Finance' = ```
+			
+			VAR SelectedColumn =
+			    SELECTEDVALUE('_$budgetfinanceparameter'[Parameter Fields])
+			
+			RETURN
+			    SWITCH(
+			        SelectedColumn,
+			        NAMEOF('FACT EDB Budget- Finance'[3+9 Net Sales]), 
+			            SUM('FACT EDB Budget- Finance'[3+9 Net Sales]),
+			
+			        NAMEOF('FACT EDB Budget- Finance'[6+6 Net Sales]), 
+			            SUM('FACT EDB Budget- Finance'[6+6 Net Sales]),
+			
+			        NAMEOF('FACT EDB Budget- Finance'[9+3 Net Sales]), 
+			            SUM('FACT EDB Budget- Finance'[9+3 Net Sales]),
+			
+			        NAMEOF('FACT EDB Budget- Finance'[Customer Demand Net sales _APO_]), 
+			            SUM('FACT EDB Budget- Finance'[Customer Demand Net sales _APO_]),
+			
+			        NAMEOF('FACT EDB Budget- Finance'[Net Sales - Budget]), 
+			            SUM('FACT EDB Budget- Finance'[Net Sales - Budget])
+			    )
+			```
+		lineageTag: 3d5f6158-c69e-4812-9d71-1f78d5f21624
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$VarTobudgetfinance = ```
+			
+			if( [_$Selected Budget Finance]-[_$Netsalesqty]<0,0,[_$Selected Budget Finance]-[_$Netsalesqty])
+			
+			
+			```
+		lineageTag: f94e9923-2e03-4518-b2d2-c689675c2196
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$overunderbudgetfinance = divide([_$Netsalesqty],[_$Selected Budget Finance])
+		lineageTag: bc7b5ef7-9bec-4090-b8c9-7fe94e74cbcf
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$RowHighlight finance' = ```
+			
+			
+			
+			VAR OverUnder = [_$overunderbudgetfinance]
+			
+			VAR TodayDate = today()
+			
+			VAR DaysPassed =
+			    DAY(TodayDate)
+			
+			VAR TotalDaysInMonth =
+			    DAY(EOMONTH(TodayDate, 0))
+			
+			VAR Progress =
+			    DIVIDE(DaysPassed, TotalDaysInMonth)
+			
+			VAR Tolerance = 0.05
+			
+			VAR LowerBound = MAX(0, Progress - Tolerance-.05)
+			Var Middlelowerbound=max(0,Progress-Tolerance)
+			VAR UpperBound = MIN(1, Progress + Tolerance)
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(OverUnder), "#F78272",
+			        OverUnder < LowerBound, "#F78272",
+			        OverUnder < Middlelowerbound, "#FFCC00",
+			        OverUnder > UpperBound, "#63BE7B",
+			        "#FFFFFF"
+			    )
+			
+			```
+		lineageTag: cb7c379d-f65b-46e6-bb73-e82e5802ca3c
+
+		changedProperty = Name
+
+	measure '_$Selected Budget Financedaily' = ```
+			
+			
+			CALCULATE (
+			    [_$Selected Budget Finance] ,
+			    FILTER (
+			        ALL ( 'DIM Date' ),
+			        'DIM Date'[Year] = MAX ( 'DIM Date'[Year] )
+			            && 'DIM Date'[Month] = MAX ( 'DIM Date'[Month] )
+			            && 'DIM Date'[Day] = 1
+			    )
+			)/day(EOMONTH(today(),0))
+			
+			```
+		lineageTag: 1025c67f-358b-4a40-b9d6-9968f166371e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$Selected Budget APO daily' =
+			
+			
+			CALCULATE (
+			    sum('FACT EDB Budget- Finance'[Customer Demand Net sales _APO_]),
+			    FILTER (
+			        ALL ( 'DIM Date' ),
+			        'DIM Date'[Year] = MAX ( 'DIM Date'[Year] )
+			            && 'DIM Date'[Month] = MAX ( 'DIM Date'[Month] )
+			            && 'DIM Date'[Day] = 1
+			    )
+			)/day(EOMONTH(today(),0))
+		lineageTag: 5288f4d6-e01a-4ec6-9e40-6d2a21ef0dd1
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$Selected Budget Budget Daily' =
+			
+			
+			CALCULATE (
+			    sum('FACT EDB Budget- Finance'[Net Sales - Budget]),
+			    FILTER (
+			        ALL ( 'DIM Date' ),
+			        'DIM Date'[Year] = MAX ( 'DIM Date'[Year] )
+			            && 'DIM Date'[Month] = MAX ( 'DIM Date'[Month] )
+			            && 'DIM Date'[Day] = 1
+			    )
+			)/day(EOMONTH(today(),0))
+		lineageTag: dac0ef7c-febb-4620-b0a1-f528a892bd09
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$yaxis = if(SELECTEDVALUE('DIM Product'[AVG Forecast])<=.6,2000000,0)
+		formatString: 0
+		lineageTag: c1f70b37-2ba6-4fc5-8521-7127eeab0065
+
+		changedProperty = Name
+
+	measure _$netsales+Open = calculate( [_$Netsalesqty]+[_$ Net value Open])
+		lineageTag: 3f6f7815-e4c0-4f68-8bf4-6e4cf660bb64
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$overunderbudgetfinance+open orders' = divide([_$netsales+Open],[_$Selected Budget Finance])
+		lineageTag: dc53a434-8e7c-4ded-9841-fe4c0b7a6248
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'US DOLLAR_PC Business Unit'
+		dataType: string
+		lineageTag: 4d2b92fe-8a88-4af7-97f5-a6c5472b654a
+		sourceLineageTag: US DOLLAR_PC Business Unit
+		summarizeBy: none
+		sourceColumn: US DOLLAR_PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line'
+		dataType: string
+		lineageTag: 53845cc4-e44c-42d1-994e-ea3ed260706b
+		sourceLineageTag: Product Line
+		summarizeBy: none
+		sourceColumn: Product Line
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 26dc6946-a23d-4dfe-bb59-0b13ab4121fb
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: 822cbbb6-34ec-4310-b792-7cc61becfaf7
+		sourceLineageTag: Customer Groups
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 40d75fa8-3a58-4c4e-88f4-f36ecafea359
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer _c5_'
+		dataType: int64
+		formatString: 0
+		lineageTag: 44ed886c-5d21-4eee-ad25-6104374bec51
+		sourceLineageTag: Code:Payer _c5_
+		summarizeBy: sum
+		sourceColumn: Code:Payer _c5_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: a6a1d3a3-355c-458f-b417-e12fc741a1fb
+		sourceLineageTag: SKU Level
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level _c6_'
+		dataType: string
+		lineageTag: 893cb475-30f4-4880-97cb-b8babdec05b8
+		sourceLineageTag: Code:SKU Level _c6_
+		summarizeBy: none
+		sourceColumn: Code:SKU Level _c6_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: adc7de29-35fd-463a-ab8b-897a360bcc01
+		sourceLineageTag: Months
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 257d9995-2479-4cda-a028-511e3d6ad40f
+		sourceLineageTag: Months_Date
+		summarizeBy: none
+		sourceColumn: Months_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP SKU KEY'
+		dataType: string
+		lineageTag: b8e4460e-0da8-47fb-8707-72df1417f00f
+		sourceLineageTag: MRP SKU KEY
+		summarizeBy: none
+		sourceColumn: MRP SKU KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DC WO Fixed'
+		dataType: double
+		lineageTag: 6db3c4e1-d18b-4807-92cd-9f8b84313806
+		sourceLineageTag: DC WO Fixed
+		summarizeBy: sum
+		sourceColumn: DC WO Fixed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution'
+		dataType: double
+		lineageTag: 2f244053-5a16-4c5e-9713-6d398d50ad38
+		sourceLineageTag: Direct Contribution
+		summarizeBy: sum
+		sourceColumn: Direct Contribution
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DC WO Fixed/NS _%_'
+		dataType: double
+		lineageTag: c136b243-06e7-4465-b341-f39284335a10
+		sourceLineageTag: DC WO Fixed/NS _%_
+		summarizeBy: sum
+		sourceColumn: DC WO Fixed/NS _%_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution/ Net Sales _%_'
+		dataType: double
+		lineageTag: b96905c6-a6c0-4c16-9c3c-08622d12552c
+		sourceLineageTag: Direct Contribution/ Net Sales _%_
+		summarizeBy: sum
+		sourceColumn: Direct Contribution/ Net Sales _%_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales - Budget'
+		dataType: double
+		lineageTag: 65d9a7f3-4e14-4282-a4a7-5b791490d343
+		sourceLineageTag: Net Sales - Budget
+		summarizeBy: sum
+		sourceColumn: Net Sales - Budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '3+9 Net Sales'
+		dataType: double
+		lineageTag: 736d70b6-46df-49ca-8494-cd06c2e4dd01
+		sourceLineageTag: 3+9 Net Sales
+		summarizeBy: sum
+		sourceColumn: 3+9 Net Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '6+6 Net Sales'
+		dataType: double
+		lineageTag: 2797f48e-8794-42b5-95fe-8c7c7fed3b0f
+		sourceLineageTag: 6+6 Net Sales
+		summarizeBy: sum
+		sourceColumn: 6+6 Net Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '9+3 Net Sales'
+		dataType: double
+		lineageTag: f6cffb64-b7c8-4aa5-a8b1-1cbc9b727bd7
+		sourceLineageTag: 9+3 Net Sales
+		summarizeBy: sum
+		sourceColumn: 9+3 Net Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Customer Demand Net sales _APO_'
+		dataType: double
+		lineageTag: af5ae0a5-4df0-4e44-aef4-be50a48f5aa7
+		sourceLineageTag: Customer Demand Net sales _APO_
+		summarizeBy: sum
+		sourceColumn: Customer Demand Net sales _APO_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Net Sales _APO___'
+		dataType: double
+		lineageTag: c69ccefc-b229-4fe8-842f-349dee0bdff1
+		sourceLineageTag: Committed Net Sales _APO___
+		summarizeBy: sum
+		sourceColumn: Committed Net Sales _APO___
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT EDB Budget- Finance' = entity
+		mode: directLake
+		source
+			entityName: FACT EDB Budget- Finance
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

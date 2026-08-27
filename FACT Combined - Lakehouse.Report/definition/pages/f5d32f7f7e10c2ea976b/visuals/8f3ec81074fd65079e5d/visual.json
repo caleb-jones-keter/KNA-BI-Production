@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8f3ec81074fd65079e5d",
+  "position": {
+    "x": 1136,
+    "y": 96.000000000000014,
+    "z": 9000,
+    "height": 160,
+    "width": 496,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "ABC"
+                }
+              },
+              "queryRef": "DIM Product.ABC",
+              "nativeQueryRef": "ABC",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRPSKU"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM MRPSKU.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$orderneedreview"
+                }
+              },
+              "queryRef": "FACT YM6P._$orderneedreview",
+              "nativeQueryRef": "#Need Review",
+              "displayName": "#Need Review"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$Distinct Orders by ABC"
+                }
+              },
+              "queryRef": "FACT YM6P._$Distinct Orders by ABC",
+              "nativeQueryRef": "# of Order",
+              "displayName": "# of Order"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "_$%check"
+                }
+              },
+              "queryRef": "FACT YM6P._$%check",
+              "nativeQueryRef": "% Need Review",
+              "displayName": "% Need Review",
+              "format": "0 %;-0 %;0 %"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIM Product.ABC"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "ABC"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM MRPSKU.SKU & Desc"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "61.51760029947306D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$Distinct Orders by ABC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "81.88720650082838D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$orderneedreview"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "226.88530935855547D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.ABC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82.7400067451459D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YM6P._$%check"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

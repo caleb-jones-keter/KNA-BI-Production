@@ -1,0 +1,87 @@
+table 'Dim Segment'
+	lineageTag: 7ba92907-ea41-48c2-be46-353786513692
+
+	column Segment
+		dataType: string
+		lineageTag: c439205d-3c84-42b6-809a-6b1b7d8a0b97
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Area'
+		dataType: string
+		lineageTag: 710a0f34-25b0-43d0-89b6-0d843640658b
+		summarizeBy: none
+		sourceColumn: Segment Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Posting Level'
+		dataType: string
+		lineageTag: 7dfbd990-417d-4bda-9067-a2e724afb518
+		summarizeBy: none
+		sourceColumn: Segment Posting Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Region'
+		dataType: string
+		lineageTag: ef8cedcb-14bb-4756-b780-2b29922f58eb
+		summarizeBy: none
+		sourceColumn: Segment Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Sub Area'
+		dataType: string
+		lineageTag: 6a410d7f-7918-4912-b6d2-7fdbe277029d
+		summarizeBy: none
+		sourceColumn: Segment Sub Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column SegmentID
+		dataType: string
+		lineageTag: 2ab1e516-d4c4-42a6-b8e0-6bd0dbaa110d
+		summarizeBy: none
+		sourceColumn: SegmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment-Sub Region'
+		dataType: string
+		lineageTag: e6c9ac4f-fc07-4971-b059-e2308a15ed7e
+		summarizeBy: none
+		sourceColumn: Segment-Sub Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment-Top Area'
+		dataType: string
+		lineageTag: 53b9baa9-d81a-4ca1-b7c4-c9dbaf739f2b
+		summarizeBy: none
+		sourceColumn: Segment-Top Area
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Segment' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Segment]", {"[Dim Segment].[Segment].[Segment]", "[Dim Segment].[Segment Area].[Segment Area]", "[Dim Segment].[Segment Posting Level].[Segment Posting Level]", "[Dim Segment].[Segment Region].[Segment Region]", "[Dim Segment].[Segment Sub Area].[Segment Sub Area]", "[Dim Segment].[SegmentID].[SegmentID]", "[Dim Segment].[Segment-Sub Region].[Segment-Sub Region]", "[Dim Segment].[Segment-Top Area].[Segment-Top Area]"}, {"Dim Segment.Segment", "Dim Segment.Segment Area", "Dim Segment.Segment Posting Level", "Dim Segment.Segment Region", "Dim Segment.Segment Sub Area", "Dim Segment.SegmentID", "Dim Segment.Segment-Sub Region", "Dim Segment.Segment-Top Area"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Segment.Segment", "Segment"}, {"Dim Segment.Segment Area", "Segment Area"}, {"Dim Segment.Segment Posting Level", "Segment Posting Level"}, {"Dim Segment.Segment Region", "Segment Region"}, {"Dim Segment.Segment Sub Area", "Segment Sub Area"}, {"Dim Segment.SegmentID", "SegmentID"}, {"Dim Segment.Segment-Sub Region", "Segment-Sub Region"}, {"Dim Segment.Segment-Top Area", "Segment-Top Area"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

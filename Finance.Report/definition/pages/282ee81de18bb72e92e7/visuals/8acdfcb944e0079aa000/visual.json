@@ -1,0 +1,170 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8acdfcb944e0079aa000",
+  "position": {
+    "x": 911.99999999999989,
+    "y": 16,
+    "z": 6000,
+    "height": 304,
+    "width": 736,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "lineStackedColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "FACT Finance.Month",
+              "nativeQueryRef": "Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance"
+                    }
+                  },
+                  "Property": "_2026B Pallets YTD"
+                }
+              },
+              "queryRef": "FACT Finance._2026B Pallets YTD",
+              "nativeQueryRef": "_2026B Pallets YTD",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance"
+                    }
+                  },
+                  "Property": "_2026B YTD"
+                }
+              },
+              "queryRef": "FACT Finance._2026B YTD",
+              "nativeQueryRef": "_2026B YTD",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance"
+                    }
+                  },
+                  "Property": "_2026AF YTD"
+                }
+              },
+              "queryRef": "FACT Finance._2026AF YTD",
+              "nativeQueryRef": "_2026AF YTD",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Finance"
+                    }
+                  },
+                  "Property": "_2026AF Pallets YTD"
+                }
+              },
+              "queryRef": "FACT Finance._2026AF Pallets YTD",
+              "nativeQueryRef": "_2026AF Pallets YTD",
+              "hidden": true
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[_2026B YTD]/[_2026B Pallets YTD]",
+                  "Name": "Cost per Pallet Budget"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Cost per Pallet Budget"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[_2026AF YTD]/[_2026AF Pallets YTD]",
+                  "Name": "Cost per Pallet Actual"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Cost per Pallet Actual"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Finance"
+                  }
+                },
+                "Property": "_2026B Pallets YTD"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "select1"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

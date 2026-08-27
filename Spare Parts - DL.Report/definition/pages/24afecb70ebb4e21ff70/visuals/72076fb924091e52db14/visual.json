@@ -1,0 +1,405 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "72076fb924091e52db14",
+  "position": {
+    "x": 16,
+    "y": 192,
+    "z": 0,
+    "height": 656,
+    "width": 1568,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Plant"
+                }
+              },
+              "queryRef": "Sum(FACT YM6P.Plant)",
+              "nativeQueryRef": "Plant"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "PO Number"
+                }
+              },
+              "queryRef": "FACT YM6P.PO Number",
+              "nativeQueryRef": "PO Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Container"
+                }
+              },
+              "queryRef": "FACT YM6P.Container",
+              "nativeQueryRef": "Container"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Confirm. Category"
+                }
+              },
+              "queryRef": "FACT YM6P.Confirm. Category",
+              "nativeQueryRef": "Confirm. Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Inb.delivery"
+                }
+              },
+              "queryRef": "Sum(FACT YM6P.Inb.delivery)",
+              "nativeQueryRef": "Inb.delivery"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Delivery"
+                }
+              },
+              "queryRef": "Sum(FACT YM6P.Delivery)",
+              "nativeQueryRef": "Delivery"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Material"
+                }
+              },
+              "queryRef": "FACT YM6P.Material",
+              "nativeQueryRef": "Material"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Material Description"
+                }
+              },
+              "queryRef": "FACT YM6P.Material Description",
+              "nativeQueryRef": "Material Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Entry Port"
+                }
+              },
+              "queryRef": "FACT YM6P.Entry Port",
+              "nativeQueryRef": "Entry Port"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "LA Date"
+                }
+              },
+              "queryRef": "FACT YM6P.LA Date",
+              "nativeQueryRef": "LA Date",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "ConfirmDelvDate"
+                }
+              },
+              "queryRef": "FACT YM6P.ConfirmDelvDate",
+              "nativeQueryRef": "ConfirmDelvDate",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YM6P"
+                    }
+                  },
+                  "Property": "Order Quantity"
+                }
+              },
+              "queryRef": "Sum(FACT YM6P.Order Quantity)",
+              "nativeQueryRef": "Order Quantity"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b1992167f1747c355f9b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Plant"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YM6P",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Plant"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "68L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "f922d40700dad907b4c6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "PO Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "12c2de8eeedc55021db0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Container"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "33605f91e1b9d3725214",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Confirm. Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7f21ae3533ece89b310d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Inb.delivery"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e94c913d876965c2d933",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Delivery"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1a3aa8c1106201d040e4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Material"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c65bf50bb018697a1910",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Material Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "31720167555ed5c351ed",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Entry Port"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "33ee9e1f3d58ea0547be",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "LA Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0e4ac6e2d4906b944b01",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "ConfirmDelvDate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fa23501390a760177646",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YM6P"
+              }
+            },
+            "Property": "Order Quantity"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

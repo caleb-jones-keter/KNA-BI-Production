@@ -1,0 +1,24 @@
+relationship 54e3c05c-7346-7221-3b58-498dd8dceb0d
+	fromColumn: 'FACT MB52 All'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 70556cb6-c082-2f49-5cda-5f1ddb21fabe
+	fromColumn: 'DIM MRP Area'.Plant
+	toColumn: 'DIM Plant'.'Plant Code'
+
+relationship bc0bdb82-afdd-c220-80cc-cfc0e9c8094e
+	fromColumn: 'FACT MB52 All'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 2d90a2f1-cbe2-f311-0772-0a7a7f19aa17
+	fromColumn: 'FACT MB52 All'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship cbce0180-b597-2ed9-c5d1-0a86ffcf816c
+	fromColumn: 'FACT MB52 All'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship d1f982df-8913-f1ef-63d4-6285b9658057
+	fromColumn: 'FACT MB52 All'.Material
+	toColumn: 'DIM Product'.Material
+

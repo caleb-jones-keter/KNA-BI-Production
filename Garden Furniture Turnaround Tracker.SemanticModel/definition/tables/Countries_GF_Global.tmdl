@@ -1,0 +1,36 @@
+table Countries_GF_Global
+	lineageTag: a6578807-fe0e-4e1b-855e-43debf95471f
+
+	column 'Country (ST)'
+		dataType: string
+		lineageTag: 0ac546b7-f330-4509-8399-eadaf21ca451
+		summarizeBy: none
+		sourceColumn: Country (ST)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Country (ST) (c5)'
+		dataType: int64
+		formatString: 0
+		lineageTag: e2b33bad-6468-4bb3-855d-0a52c26a5e55
+		summarizeBy: sum
+		sourceColumn: Code:Country (ST) (c5)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Countries_GF_Global = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Countries_GF_Global.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

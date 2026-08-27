@@ -1,0 +1,114 @@
+table Dates
+	lineageTag: d04d5721-2a81-41b0-969e-6e2e9aae1ccd
+
+	column Date
+		formatString: General Date
+		lineageTag: 0b8b5873-3c9f-458d-8d51-f5e5e1e28907
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 632f9dcb-72a9-4d23-beff-8100b98b7607
+			defaultHierarchy: LocalDateTable_79ea8f09-aaa0-4cce-8d71-52dcb789fae9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 1f2aa778-732d-42af-9b01-4b9d3e0b4183
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: c62cfceb-702f-491d-b402-0e9b48e9aa38
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 4b0d62f9-53cd-460e-9184-5a1feafcbcfb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 6ab113d8-4fd3-4573-8c5d-374d8205915e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year-Month
+		lineageTag: d8199bb8-297d-49e4-872f-215c6de11aa4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year-Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		lineageTag: 61f432b9-de76-447c-b299-5dcb1137be5e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday Number'
+		formatString: 0
+		lineageTag: 89fc8af7-8bda-4c4b-98fb-65d8e89820a8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Weekday Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekend'
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 600473bf-3298-46d5-8974-c726aaedca23
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Is Weekend]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year-Quarter
+		lineageTag: 53051503-eb88-45b9-bd27-1ef834c5b0ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year-Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dates = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS (
+				    CALENDAR (DATE(2018, 1, 1), DATE(2030, 12, 31)),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month Name", FORMAT([Date], "MMMM"),
+				    "Quarter", "Q" & FORMAT(QUARTER([Date]), "0"),
+				    "Year-Month", FORMAT([Date], "YYYY-MM"),
+				    "Weekday", FORMAT([Date], "dddd"),
+				    "Weekday Number", WEEKDAY([Date], 2), // Monday = 1
+				    "Is Weekend", IF(WEEKDAY([Date], 2) > 5, TRUE(), FALSE()),
+				    "Year-Quarter", FORMAT([Date], "YYYY") & "-Q" & FORMAT(QUARTER([Date]), "0")
+				)
+				
+				```
+
+	annotation PBI_Id = 410b63375f144422b84390dd9fa61523
+

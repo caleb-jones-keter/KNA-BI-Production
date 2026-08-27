@@ -1,0 +1,52 @@
+{
+  "config": "{\"version\":\"5.67\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU10\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"3.0.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU10",
+            "path": "BaseThemes/CY25SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "aad06685ebe0e904a477",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"9f67adcc364476e78c0a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":282.8235730858469,\"height\":135.32955916473318,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"YM6p.Purchase Order Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"y\",\"Entity\":\"YM6p\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"y\"}},\"Property\":\"Purchase Order Date\"},\"Name\":\"YM6p.Purchase Order Date\",\"NativeReferenceName\":\"Purchase Order Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"y\"}},\"Property\":\"Purchase Order Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Relative'\"}}},\"relativeRange\":{\"expr\":{\"Literal\":{\"Value\":\"'Last'\"}}},\"relativeDuration\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}},\"relativePeriod\":{\"expr\":{\"Literal\":{\"Value\":\"'Days'\"}}}}}],\"dateRange\":[{\"properties\":{\"includeToday\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"y\",\"Entity\":\"YM6p\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"y\"}},\"Property\":\"Purchase Order Date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":1,\"TimeUnit\":0}},\"Amount\":-3,\"TimeUnit\":0}},\"TimeUnit\":0}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":0}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 135.33,
+          "width": 282.82,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"cb5e9f743cdbf3aca7ff\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":203.08815893063536,\"z\":0,\"width\":1280.278731637046,\"height\":491.2537898457261,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"SKU LIST CROSSDOCK.SAP\"},{\"queryRef\":\"SKU LIST CROSSDOCK.Description\"},{\"queryRef\":\"Sum(YM6p.Purchasing Document)\"},{\"queryRef\":\"Sum(YM6p.Order Quantity)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"SKU LIST CROSSDOCK\",\"Type\":0},{\"Name\":\"y\",\"Entity\":\"YM6p\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"SAP\"},\"Name\":\"SKU LIST CROSSDOCK.SAP\",\"NativeReferenceName\":\"SAP\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description\"},\"Name\":\"SKU LIST CROSSDOCK.Description\",\"NativeReferenceName\":\"Description\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"y\"}},\"Property\":\"Purchasing Document\"}},\"Function\":2},\"Name\":\"Sum(YM6p.Purchasing Document)\",\"NativeReferenceName\":\"Count of Purchasing Document\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"y\"}},\"Property\":\"Order Quantity\"}},\"Function\":0},\"Name\":\"Sum(YM6p.Order Quantity)\",\"NativeReferenceName\":\"Sum of Order Quantity\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"274.208299964244D\"}}}},\"selector\":{\"metadata\":\"SKU LIST CROSSDOCK.Description\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"109.54757098025243D\"}}}},\"selector\":{\"metadata\":\"SKU LIST CROSSDOCK.SAP\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"138.14159104983298D\"}}}},\"selector\":{\"metadata\":\"Sum(YM6p.Purchasing Document)\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"151.1430894716721D\"}}}},\"selector\":{\"metadata\":\"Sum(YM6p.Order Quantity)\"}}]}}}",
+          "filters": "[{\"name\":\"ab0318d3549bb862ffed\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"SKU LIST CROSSDOCK\"}},\"Property\":\"SAP\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"SKU LIST CROSSDOCK\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"SAP\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 491.25,
+          "queryBinary": "H4sIAAAAAAAEALVU227bMAz9FUNPG6AVuWB78FtuHYqkSRo3KYYiD5rNJhpsyZClpUGQfy8pp4tzK1Zs1Yst8pA8R6K4YR2dZUIlBQsfNywC/LcyvnNg1l1hRbQUOewgLNww76CfGZhCasXCBmfXRmc+fCgyYCErGGc9TGMRyaL+NBjcRPdBZzKKou6o00fv/TpHYG3L/8SsqzE/br/lFdScI7EUYuuLdHTqMkUces+5gaKkgdy1MzFM4Gm/8Vy2W87GRudgSj6tMUPLruwpuysCkN/K35QNDKgYXuE++J85dKGIjcwtRb3JpQq8xOkw2Ya1FgsDC2F3lA4Jvo/4+pj4GB1LUUi1CLo6dhko6yHXTsVlwUZFj8s+0U1enYn6fFFORztlA/0UnK31wfpGJgET3DlRduKhtNoZaYcBl1VhAGk6zo+d/bBE4K6xVSJfZQ21PVVxc6Ss+G8PgpjMROqAUmLOgbRgROpfOpkRp1yaEnC+pcWP+LbBrgA+rONgd3Q4k8BDBnoFpo294scSmaNcnClDnlaSvMMx1Cv8UI1WRr3IwjqOIpnBVElLXVDxfGmeuI620zz/K577qgcJcM3R1pZ41GpBwLGRmShn8HejXY7msg3w0H6Bb1Xa13idN3iTRqf7abWlu6z7XDTWJ5C42O5PQszolvACmrxa4AHLel7lq2Th1xpx4vvpX8dN7xliR8luwRoZF31JYuvE/AVTKKBcXwYAAA==",
+          "width": 1280.28,
+          "x": 0.00,
+          "y": 203.09,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

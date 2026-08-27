@@ -1,0 +1,267 @@
+relationship 7f6d67dd-df75-4b73-9512-a5df2aa6a949
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'SO Created Date'
+	toColumn: LocalDateTable_c1c8b348-2b7c-4a9e-8d48-f462075390a4.Date
+
+relationship 9f01c8d6-ce76-4f77-b6c4-e72270246e39
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Delivery Creation Date'
+	toColumn: LocalDateTable_19f805e6-6411-4ca7-a747-a37560844117.Date
+
+relationship ddc00818-cf00-4b63-95bb-deddf690b08a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'First Date'
+	toColumn: LocalDateTable_ff133ef4-ee22-4fa4-9275-4b502df699e8.Date
+
+relationship da0e5fb2-6644-4d6d-86cb-823edb8fda00
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Confirmation Date'
+	toColumn: LocalDateTable_c12a0846-d1d0-40fc-be2a-acbda4094eb8.Date
+
+relationship f054d1ba-5fa8-4823-98d5-f309ba0a9396
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Requested deliv.date'
+	toColumn: LocalDateTable_02901bd0-2a15-476d-a3c1-84535d9acafb.Date
+
+relationship a60bf889-f8fe-4506-a93f-d58dcc3fc52d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Guarantee Date'
+	toColumn: LocalDateTable_b5563ef9-e8f1-4757-a2a9-05f2f100de06.Date
+
+relationship ef1c8271-23d1-459c-bb7f-b17a53227ca2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Original Delivery Date'
+	toColumn: LocalDateTable_557d7ac0-fa4f-4968-b9a5-3bd2599ff80c.Date
+
+relationship 357c605d-acfa-4dfe-aa16-65cf06e41149
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'SO Billing Date'
+	toColumn: LocalDateTable_79d08aee-2f65-4ed8-a6b5-750985e50eef.Date
+
+relationship c4bca99b-fdee-4ae5-af4b-6d44ee67501a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Planning end'
+	toColumn: LocalDateTable_bdce87a4-eb47-413c-90c5-7bab778f504a.Date
+
+relationship 1f2eabf1-7136-466f-8bb9-c2ae4835e535
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Planned date CheckIn'
+	toColumn: LocalDateTable_cde14b50-4cce-4b95-92a5-af6fb01d42cf.Date
+
+relationship 28867e0a-2e1d-4683-abf0-1a3d07a26542
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Planned time CheckIn'
+	toColumn: LocalDateTable_99c7c758-aec6-460f-868f-62e063344c93.Date
+
+relationship d1b65cd9-c63a-49e7-bde0-fcb8568ca168
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Invoice Billing Date'
+	toColumn: LocalDateTable_274e428a-22ba-4aac-976f-e4e7e03e656e.Date
+
+relationship AutoDetected_d339118a-18bc-4e02-9b1f-42850b13796c
+	fromColumn: 0125.'Profit Center'
+	toColumn: 'Profit Centers'.'Profit Center'
+
+relationship AutoDetected_932be36d-c499-4ed8-a5d9-5f99f2cbb587
+	fromColumn: 'OTIF Key'.'Measure Type'
+	toColumn: 'Measures (2)'.'Measure Type'
+
+relationship 88b46bf0-c36f-47ff-9796-37064b122d35
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!OnTimeDate
+	toColumn: LocalDateTable_25ce0ecb-e940-478c-877b-53f18e7283b3.Date
+
+relationship c59e4a1f-8e3b-4ca4-9131-1375e0bf67fb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!LateDate
+	toColumn: LocalDateTable_4e34a643-cf2a-4e5e-81d9-c1dcdde77ee2.Date
+
+relationship 08eb357a-aaf7-4c92-bcf9-9aa672924049
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!EarlyDate
+	toColumn: LocalDateTable_43abfe4a-733d-462f-8226-6abd88bd3d69.Date
+
+relationship b1e4005e-b89d-43c9-98da-692db09cea70
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!ShipDate
+	toColumn: LocalDateTable_3efdb083-e34e-4548-8bd8-48fcafb25796.Date
+
+relationship e6d6aaec-8485-506e-a941-8d4b2d5a6ac9
+	crossFilteringBehavior: bothDirections
+	fromColumn: 0125.'Reason for rejection'
+	toColumn: RfR.Code
+
+relationship 88b55617-10c3-e8e0-9b04-aa6422b1ff86
+	crossFilteringBehavior: bothDirections
+	fromColumn: 0125.'Load Delay Reason'
+	toColumn: 'Load Delay Reason (2)'.'Suppl.1'
+
+relationship d491bce6-5faa-0034-c0a4-ced4dd36d804
+	crossFilteringBehavior: bothDirections
+	fromColumn: 0125.Payer
+	toColumn: 'OTIF Key'.Payer
+
+relationship 482f9dd8-bd96-44d7-80e8-609cdd0b1a48
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!YearMonth
+	toColumn: LocalDateTable_7bc426a0-de28-4f12-abd8-a4ffc5565ab8.Date
+
+relationship b97bb1c7-7069-4cb5-9c01-2a9046ec8b86
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Planned shipment end'
+	toColumn: LocalDateTable_13379a52-b63c-49e6-8c6f-f97e2e0aace6.Date
+
+relationship 6e2d1bec-c1de-30e6-7fb9-cfd07394c443
+	fromColumn: 0125.'Load Delay Reason'
+	toColumn: 'Delay Reasons'.'Suppl.1'
+
+relationship 5d47fde8-fee8-8afb-2e60-e83503aacd69
+	fromColumn: 0125.Payer
+	toColumn: Sheet1.'Payer Number'
+
+relationship b96d5985-3caa-4860-9813-3f65f8f80bba
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!MwkShipDate
+	toColumn: LocalDateTable_3a243cba-dc59-490b-909d-8c55b52b6aa5.Date
+
+relationship 60c13d2e-ad42-45df-9a4c-458250ae5295
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!YearMonthShip
+	toColumn: LocalDateTable_7de94488-a44b-48b2-ad8c-4f3cacf05fa1.Date
+
+relationship a5bef2ec-93e9-c869-2703-10ef02e3427c
+	fromColumn: 0125.Payer
+	toColumn: 'ECOMM FILTER'.Payer
+
+relationship 0beaa627-d0b4-4846-80d2-19004feb1580
+	joinOnDateBehavior: datePartOnly
+	fromColumn: SAP.Opened
+	toColumn: LocalDateTable_de591fe1-23f8-456f-922b-09e6c4b54bb7.Date
+
+relationship 53a41d59-97f7-4c8a-87ed-beb442888247
+	joinOnDateBehavior: datePartOnly
+	fromColumn: SAP.'Disco Date'
+	toColumn: LocalDateTable_59d1c616-f7e1-4dcd-85d0-240dce4812d5.Date
+
+relationship 74189fde-b158-cb0a-9c69-f3e74800c4bc
+	fromColumn: 0125.Material
+	toColumn: SAP.SAP
+
+relationship 5a80560c-6881-cfee-abbc-39ec027cba02
+	fromColumn: 0125.Material
+	toColumn: 'Spreetail SKUs list'.SKU
+
+relationship 6e44e8c8-9d52-414d-b52a-41e77626ab0d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Global Tranz shipments'.'Actual Delivery'
+	toColumn: LocalDateTable_2158bf7a-f355-4fdd-a7ad-c5640e6f86d4.Date
+
+relationship 86b516d6-0d64-4629-94bf-71a0bde9e53c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Global Tranz shipments'.'Requested Pickup'
+	toColumn: LocalDateTable_722b56cd-0c56-49ee-b361-d941e0f45084.Date
+
+relationship 1df29d89-d3ed-4c7d-9474-c6cc44178ac9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Global Tranz shipments'.'Actual Pickup'
+	toColumn: LocalDateTable_62ae322b-3a72-4961-b860-30407b2764d2.Date
+
+relationship d13d7246-2eb2-4c59-b1e2-d1d3d20c6bb6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'_$DHL Global Tranz Actual Delivery Date'
+	toColumn: LocalDateTable_a12e3e73-c2f7-4781-8578-441fda0264fb.Date
+
+relationship 7b516512-fc51-4bfd-8e53-e7611087d44e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'_$DHL Global Tranz  actual Pickup Date'
+	toColumn: LocalDateTable_de65a6a0-bf1a-42c5-81f2-f4f883a9129e.Date
+
+relationship d944959b-186f-4bd9-b03f-628e972e0182
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'SpreeTail Order Shipments'.'Date Of Sale'
+	toColumn: LocalDateTable_9ec7df36-1de5-43a0-ad58-abbe11c50802.Date
+
+relationship 9ed26835-2722-47a1-b8a8-9e4a56841125
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'SpreeTail Order Shipments'.DateScannedinFC
+	toColumn: LocalDateTable_94839986-66a5-4f33-9d1a-46d18ef054b8.Date
+
+relationship dca4abbe-d2cd-4a16-9df3-d174b04e3cb4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'SpreeTail Order Shipments'.'Date Tendered to Carrier'
+	toColumn: LocalDateTable_290cde61-181a-4293-a3fb-7cc058794605.Date
+
+relationship 555826a0-3e69-44a2-9712-387cf988c01d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'SpreeTail Order Shipments'.'Date Delivered'
+	toColumn: LocalDateTable_0f9bc613-c64d-4a54-91dc-d5dda3581a3d.Date
+
+relationship 632f9dcb-72a9-4d23-beff-8100b98b7607
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dates.Date
+	toColumn: LocalDateTable_79ea8f09-aaa0-4cce-8d71-52dcb789fae9.Date
+
+relationship cd407766-b136-31ba-ccd1-b3fc327d1f02
+	fromColumn: 0125.'Act. Gds Mvmnt Date'
+	toColumn: Dates.Date
+
+relationship b78f7973-5827-49d1-5a90-a11ee1cc6005
+	fromColumn: 'RTV Summary'.'RTV Date'
+	toColumn: Dates.Date
+
+relationship AutoDetected_4b234602-1308-4aed-9281-4ee8a74405a7
+	fromColumn: 'SpreeTail Order Shipments'.'APIOrder ID'
+	toColumn: 'SpreeTail PO''s Distinct'.'APIOrder ID'
+
+relationship 0d82f2bd-ef67-a866-47ba-9ec44bc13a09
+	fromColumn: 0125.'PO Number'
+	toColumn: 'SpreeTail PO''s Distinct'.'APIOrder ID'
+
+relationship 5b785a65-311e-6a46-eb9a-b3afd4280be6
+	fromColumn: 'Global Tranz shipments'.PO#
+	toColumn: 'Global Tranz shipments (2)'.PO#
+
+relationship ac9d768b-2bdd-ce85-73c7-8945a83e012f
+	fromColumn: 0125.'PO Number'
+	toColumn: 'Global Tranz shipments (2)'.PO#
+
+relationship f28d5b91-93ea-4db3-8bf5-407f2b75fd13
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'Original First Date'
+	toColumn: LocalDateTable_bfd00058-80f9-4022-bed5-1733737af59e.Date
+
+relationship f910e9d7-083c-422f-967d-2d65aa364e70
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'__$ Original First OnTimeDate'
+	toColumn: LocalDateTable_6f729f6a-1fd2-4f22-9d7e-a57a8b50b961.Date
+
+relationship fb00bddd-2fc0-45fe-8701-0106dbbe7417
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'__$ Original First LateDate'
+	toColumn: LocalDateTable_2424505a-ee63-4175-a85a-0bf9164ae131.Date
+
+relationship 06dc9729-15d8-4417-b6c0-5b7a73107e3d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'__$ Original first EarlyDate'
+	toColumn: LocalDateTable_16ac6a71-abaa-472a-ad43-bb3183da852b.Date
+
+relationship 7bfefcb6-b1c7-4a32-9254-dbb0b4ef4a34
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'__$ Original First Variance'
+	toColumn: LocalDateTable_4dff0e4d-b8c8-41c4-b764-747997e1dd91.Date
+
+relationship 6d6a7c72-c244-4036-893e-afc68491171c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!BestDate
+	toColumn: LocalDateTable_9d18135f-da89-41a6-b760-8463a4155081.Date
+
+relationship 49a8174e-f0ac-4f3a-a75c-a63bb4405931
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125._!BestDate2
+	toColumn: LocalDateTable_126d0bc0-8953-49f0-a1f2-fffaf402ce2c.Date
+
+relationship ce48f6aa-3c9b-4327-92a3-516b9e596772
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0125.'_$backorder late date'
+	toColumn: LocalDateTable_ef711ba1-95ee-473c-a1a4-8feb20bcf54a.Date
+

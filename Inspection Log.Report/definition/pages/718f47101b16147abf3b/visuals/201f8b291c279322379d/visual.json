@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "201f8b291c279322379d",
+  "position": {
+    "x": 0,
+    "y": 125.98842018196856,
+    "z": 0,
+    "height": 79.404466501240691,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Item Num"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Item Num",
+              "nativeQueryRef": "Item Num",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Item Description"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Item Description",
+              "nativeQueryRef": "Item Description",
+              "active": false
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

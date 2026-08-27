@@ -1,0 +1,272 @@
+table SAP
+	lineageTag: 035650e1-d71e-4c56-baec-5893279a5f62
+
+	column SAP
+		dataType: int64
+		formatString: 0
+		lineageTag: f43544c5-e92a-4e52-88d3-0f87beb65f11
+		summarizeBy: none
+		sourceColumn: SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: int64
+		formatString: 0
+		lineageTag: fd768bfb-8700-4842-aa26-260142c48307
+		summarizeBy: sum
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: f7ee1889-1453-4626-a747-847c49350032
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: int64
+		formatString: 0
+		lineageTag: a71fe8a5-7b68-4796-b116-3d8c2ca81fe7
+		summarizeBy: sum
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dept
+		dataType: string
+		lineageTag: 0f2a0ff4-053f-4034-ab44-5d902a9ada9c
+		summarizeBy: none
+		sourceColumn: Dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_1
+		dataType: string
+		lineageTag: 577aa76f-20ce-47e2-97ed-eec2880db171
+		summarizeBy: none
+		sourceColumn: Customer_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor #'
+		dataType: string
+		lineageTag: 20adfeae-279d-4919-b267-038018d2052e
+		summarizeBy: none
+		sourceColumn: Vendor #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carton/BagQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 0683e5df-dfa9-495e-8d0f-76db14a6752a
+		summarizeBy: sum
+		sourceColumn: Carton/BagQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Layer Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: d936c5b7-ea3f-4365-87b1-3aa22a76a287
+		summarizeBy: sum
+		sourceColumn: Layer Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SS/PLTQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 65e1d6f5-9616-4c36-a203-715d6f5172ff
+		summarizeBy: sum
+		sourceColumn: SS/PLTQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a1a00d0-452b-41b5-b441-909c1a060176
+		summarizeBy: sum
+		sourceColumn: ContQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: d6e3c9e3-2965-4997-ae1a-81e79c256a7a
+		summarizeBy: sum
+		sourceColumn: TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: b8007fba-7213-41b3-ac23-2e983d5d52e5
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: c947138d-ed3f-402b-9935-7e9ab0881ea9
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Note
+		dataType: string
+		lineageTag: 3e36d0cf-f462-48ea-9f27-44007463a0af
+		summarizeBy: none
+		sourceColumn: Note
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b3a055b-2c26-4d1a-910f-022c59e2e43d
+		summarizeBy: sum
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPC/EAN
+		dataType: int64
+		formatString: 0
+		lineageTag: 97fe01ec-0e49-4f8c-bb34-5912d03da9ac
+		summarizeBy: sum
+		sourceColumn: UPC/EAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton I2of5'
+		dataType: int64
+		formatString: 0
+		lineageTag: 38037f0a-676b-4999-8383-d67f9ac67931
+		summarizeBy: sum
+		sourceColumn: Carton I2of5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pallet I2of5'
+		dataType: int64
+		formatString: 0
+		lineageTag: 749b16be-43cc-414c-87de-ceb2749a796b
+		summarizeBy: sum
+		sourceColumn: Pallet I2of5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Private Label'
+		dataType: string
+		lineageTag: 864dfd8f-ae11-4d2f-9947-c0eb0a9ab162
+		summarizeBy: none
+		sourceColumn: Private Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opened
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e82abb41-0f57-4fc3-99b0-6f0d4ead5036
+		summarizeBy: none
+		sourceColumn: Opened
+
+		variation Variation
+			isDefault
+			relationship: 0beaa627-d0b4-4846-80d2-19004feb1580
+			defaultHierarchy: LocalDateTable_de591fe1-23f8-456f-922b-09e6c4b54bb7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Plant-sp.matl status'
+		dataType: string
+		lineageTag: efc44f89-0764-4978-986e-740d6001fa86
+		summarizeBy: none
+		sourceColumn: Plant-sp.matl status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disco Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8686f521-4450-4fd9-84f5-f9e2bbe240b0
+		summarizeBy: none
+		sourceColumn: Disco Date
+
+		variation Variation
+			isDefault
+			relationship: 53a41d59-97f7-4c8a-87ed-beb442888247
+			defaultHierarchy: LocalDateTable_59d1c616-f7e1-4dcd-85d0-240dce4812d5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PC Business Unit'
+		dataType: string
+		lineageTag: 7902cafd-f9b8-4995-ac18-a9e63f0fdae4
+		summarizeBy: none
+		sourceColumn: PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HTS Code'
+		dataType: string
+		lineageTag: f9da99db-58c2-4b87-8dc4-8cfdc16698bd
+		summarizeBy: none
+		sourceColumn: HTS Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSRP
+		dataType: string
+		lineageTag: 74cb65f1-45f3-4c1b-8ea0-6b34f2cc91ea
+		summarizeBy: none
+		sourceColumn: MSRP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sell Sheet'
+		dataType: string
+		lineageTag: 439a4bf1-c777-4c93-97a1-782d27c73eab
+		summarizeBy: none
+		sourceColumn: Sell Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stacked Cont/TL'
+		dataType: string
+		lineageTag: b96d8e48-efdf-434c-ab1f-ab207b54d6de
+		summarizeBy: none
+		sourceColumn: Stacked Cont/TL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SAP = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNAItemInfo/Shared%20Documents/Item%20Info/Current%20Item%20Sheets-2026.xlsx"), null, true),
+				    SAP_Sheet = Source{[Item="SAP",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(SAP_Sheet, [PromoteAllScalars=true]),
+				    #"Renamed Columns" = Table.RenameColumns(#"Promoted Headers",{{"Pallet", "Stacked Cont/TL"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"SAP", Int64.Type}, {"Model", Int64.Type}, {"Description", type text}, {"Customer", Int64.Type}, {"Dept", type any}, {"Customer_1", type text}, {"Vendor #", type any}, {"Carton/Bag#(lf)Qty", Int64.Type}, {"Layer Qty", Int64.Type}, {"SS/PLT#(lf)Qty", Int64.Type}, {"Cont#(lf)Qty", Int64.Type}, {"TL Qty", Int64.Type}, {"Brand", type text}, {"Color", type any}, {"Note", type text}, {"Supplier", Int64.Type}, {"UPC/EAN", Int64.Type}, {"Carton I2of5", Int64.Type}, {"Pallet I2of5", Int64.Type}, {"Private Label", type any}, {"Opened", type date}, {"Plant-sp.matl status", type text}, {"Disco Date", type date}, {"PC Business Unit", type text}, {"HTS Code", type any}, {"MSRP", type any}, {"Stacked Cont/TL", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [SAP] <> null and [SAP] <> "")
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,283 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ff5e7f4e44ed6fdcf45a",
+  "position": {
+    "x": 584,
+    "y": 112.00000000000001,
+    "z": 8000,
+    "height": 479.99999999999994,
+    "width": 528,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "Region",
+              "displayName": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "City List"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.City List",
+              "nativeQueryRef": "City",
+              "displayName": "City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "POSTAL_CODE"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.POSTAL_CODE",
+              "nativeQueryRef": "Zip Code",
+              "displayName": "Zip Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ftl_material_shipments_model"
+                    }
+                  },
+                  "Property": "_Savannah per Unit Cost"
+                }
+              },
+              "queryRef": "fact_ftl_material_shipments_model._Savannah per Unit Cost",
+              "nativeQueryRef": "Savannah Unit Cost",
+              "displayName": "Savannah Unit Cost",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ftl_material_shipments_model"
+                    }
+                  },
+                  "Property": "_Savannah per TL Cost"
+                }
+              },
+              "queryRef": "fact_ftl_material_shipments_model._Savannah per TL Cost",
+              "nativeQueryRef": "Savannah TL Cost",
+              "displayName": "Savannah TL Cost",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_ftl_material_shipments_model"
+                        }
+                      },
+                      "Property": "Combined_TL_Qty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fact_ftl_material_shipments_model.Combined_TL_Qty)",
+              "nativeQueryRef": "TL Qty",
+              "displayName": "TL Qty",
+              "format": "#,0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_ftl_material_shipments_model"
+                  }
+                },
+                "Property": "_Savannah per Unit Cost"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM USA CA Zips.City List"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "77.66037735849056D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_ftl_material_shipments_model._Savannah per Unit Cost"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "73.73564116224776D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_ftl_material_shipments_model._Savannah per TL Cost"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b592d0a5a7c8877f477a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2b3542dbd507bbdddc56",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "00ea370fd50a5dcbbfb4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f289d869507d18c9b09b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_ftl_material_shipments_model"
+                  }
+                },
+                "Property": "Combined_TL_Qty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8df15400addb0da8d14d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ftl_material_shipments_model"
+              }
+            },
+            "Property": "_Savannah per Unit Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0e1d9249fd4b3126573e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ftl_material_shipments_model"
+              }
+            },
+            "Property": "_Savannah per TL Cost"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

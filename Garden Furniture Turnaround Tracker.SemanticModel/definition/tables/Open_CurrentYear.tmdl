@@ -1,0 +1,220 @@
+table Open_CurrentYear
+	lineageTag: 1ed52bf2-2229-4611-95d8-556212b8a33f
+
+	column Payer
+		dataType: string
+		lineageTag: e12857a1-f0ec-4c32-8427-5332d0960f4e
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: eb76d519-b6a2-456d-9bb7-c6c92f7b4b01
+		summarizeBy: none
+		sourceColumn: Code:Payer (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 912f9c0d-5b55-449e-ade3-0b6e57f4a6e3
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level (c2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 68d0910a-2221-4c9a-baa1-0de3a1188cc6
+		summarizeBy: none
+		sourceColumn: Code:SKU Level (c2)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: fad6dc33-aeaf-4cf1-9807-74bf7c883989
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Profit Center Detailed (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a59b880-f43e-4f27-b727-d995449fb902
+		summarizeBy: sum
+		sourceColumn: Code:Profit Center Detailed (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment-Region
+		dataType: string
+		lineageTag: d7d51ce1-7e25-4a03-99a3-063a1839fcb9
+		summarizeBy: none
+		sourceColumn: Segment-Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Segment-Region (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 379a2351-7146-49e0-8814-24efd8b56d0d
+		summarizeBy: sum
+		sourceColumn: Code:Segment-Region (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Org 2017 (SoldTo)'
+		dataType: string
+		lineageTag: fa69362b-e736-4f53-9158-e5d7a07b3b82
+		summarizeBy: none
+		sourceColumn: Market Org 2017 (SoldTo)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Market Org 2017 (SoldTo) (c5)'
+		dataType: int64
+		formatString: 0
+		lineageTag: fa78ec4a-247b-4659-811d-8618f877ca3e
+		summarizeBy: sum
+		sourceColumn: Code:Market Org 2017 (SoldTo) (c5)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shippingpoint
+		dataType: string
+		lineageTag: 72f96c00-fd41-47c8-af98-79a10ba4bb1e
+		summarizeBy: none
+		sourceColumn: Shippingpoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Shippingpoint (c6)'
+		dataType: int64
+		formatString: 0
+		lineageTag: e9e12f74-12ef-46b1-a9ca-1d88bc17deaf
+		summarizeBy: sum
+		sourceColumn: Code:Shippingpoint (c6)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Daily Date'
+		dataType: string
+		lineageTag: 6aecd92c-86f7-485a-93e3-8b89a05a9ea6
+		summarizeBy: none
+		sourceColumn: Daily Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Daily Order Crate Date'
+		dataType: string
+		lineageTag: 4d3418b4-81a8-4112-a173-fe6d646108c7
+		summarizeBy: none
+		sourceColumn: Daily Order Crate Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 48f61958-cdc0-46b2-af75-27941f28b83d
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7ce266ac-51af-4afb-ab26-81e47e86c9a2
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column OrderCreateDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7de3eed0-8b55-4f3c-8306-e1a0ba0a67fb
+		summarizeBy: none
+		sourceColumn: OrderCreateDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Orders - Quantity(2026)'
+		dataType: double
+		lineageTag: 376c0050-e387-41db-aab5-c0659f161a2c
+		summarizeBy: sum
+		sourceColumn: Orders - Quantity(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Orders(2026)'
+		dataType: double
+		lineageTag: a9f60267-9926-4036-8741-361fbaf7b428
+		summarizeBy: sum
+		sourceColumn: Gross Orders(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Orders(2026)'
+		dataType: double
+		lineageTag: e45bbe39-cac3-458c-bc6f-5cb818402f8f
+		summarizeBy: sum
+		sourceColumn: Net Orders(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution Orders(2026)'
+		dataType: double
+		lineageTag: 35080a1e-b0bf-4cec-9c1e-26ad4473ef5c
+		summarizeBy: sum
+		sourceColumn: Direct Contribution Orders(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Mth/Year Ship Month' = FORMAT(Open_CurrentYear[Date],"MM/YY")
+		lineageTag: 7a2531c9-dd79-4be8-8f47-d80d5844ebe4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship Month name' = FORMAT(Open_CurrentYear[Date],"mmmm")
+		lineageTag: 647455eb-e86b-4a89-b1ca-27fd4106ba57
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Open_CurrentYear = m
+		mode: import
+		queryGroup: OrdersAutoRefresh
+		source =
+				let
+				    Source = Table.Combine({Open_EURO, Open_USD}),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"img8", "Column20"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Date", each Date.FromText(Text.Middle([Daily Date],3,2)&"-"&Text.Start([Daily Date],2)&"-"&Text.End([Daily Date],4))),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "OrderCreateDate", each Date.FromText(Text.Middle([Daily Order Crate Date],3,2)&"-"&Text.Start([Daily Order Crate Date],2)&"-"&Text.End([Daily Order Crate Date],4))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom1",{{"Date", type date}, {"OrderCreateDate", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

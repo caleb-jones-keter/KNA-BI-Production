@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "06fd3ba6a40b4d149e3b",
+  "displayName": "Upcoming Shipment  Tables",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1650,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2d4ec77fcdb72e0c81d3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM MRPSKU"
+              }
+            },
+            "Property": "PC Business Unit"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "b659b3d815840530bed0",
+      "target": "bdcfc30b05a087729bc9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5ffc6c050ae16dc08dd",
+      "target": "bdcfc30b05a087729bc9",
+      "type": "DataFilter"
+    }
+  ]
+}

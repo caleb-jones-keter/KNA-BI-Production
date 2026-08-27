@@ -1,0 +1,163 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "677da756000014099909",
+  "position": {
+    "x": 0,
+    "y": 576,
+    "z": 4000,
+    "height": 272,
+    "width": 944.00000000000011,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "lineStackedColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "MonthStartDate"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.MonthStartDate",
+              "nativeQueryRef": "MonthStartDate",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Payer"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Payer",
+              "nativeQueryRef": "Payer",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "_$Dynamic BIAS"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST._$Dynamic BIAS",
+              "nativeQueryRef": "Dynamic BIAS",
+              "displayName": "Dynamic BIAS",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TEST EDB LAG FCST"
+                  }
+                },
+                "Property": "MonthStartDate"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TEST EDB LAG FCST"
+                  }
+                },
+                "Property": "Payer"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Product"
+                  }
+                },
+                "Property": "SKU & Desc"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dynamic Bias'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

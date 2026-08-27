@@ -1,0 +1,162 @@
+table RTP_CurrentYear
+	lineageTag: 1e3bf10e-7ae4-4ca7-aa38-40b7931e99bb
+
+	column 'Sold To Party'
+		dataType: string
+		lineageTag: 09981ce4-a849-4b12-b9e8-33911b3f0279
+		summarizeBy: none
+		sourceColumn: Sold To Party
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Sold To Party (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cc1f521-3e98-4862-9132-21fd2ed0163c
+		summarizeBy: none
+		sourceColumn: Code:Sold To Party (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 688239df-a973-4b0e-a6f9-dc843b7a5eee
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level (c2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: b9d99313-7b8b-448c-b9f7-fe320349b1d6
+		summarizeBy: none
+		sourceColumn: Code:SKU Level (c2)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: da8430b6-2ed6-4007-bcb9-8ffd492ea9ba
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Profit Center Detailed (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2385cbbc-d170-4c3c-9cef-05fdc5d8ae66
+		summarizeBy: sum
+		sourceColumn: Code:Profit Center Detailed (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Org 2017 (SoldTo)'
+		dataType: string
+		lineageTag: aad690d1-e32d-4185-80fb-1ce033c02d70
+		summarizeBy: none
+		sourceColumn: Market Org 2017 (SoldTo)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Market Org 2017 (SoldTo) (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 735a95d7-d929-4b30-a502-0f1cbd4adc3e
+		summarizeBy: sum
+		sourceColumn: Code:Market Org 2017 (SoldTo) (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: c920c7ab-e2c4-4bc3-b512-265ab351d405
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total RTP EUR(2026)'
+		dataType: double
+		lineageTag: 4584cd86-f7b9-4c25-b47f-15aa4dd81944
+		summarizeBy: sum
+		sourceColumn: Total RTP EUR(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total RTP(2026)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 36b8b672-e12b-4424-82b3-21f2b6658ce1
+		summarizeBy: sum
+		sourceColumn: Total RTP(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total RTP EUR COGS(2026)'
+		dataType: double
+		lineageTag: f571aab2-00fd-4129-98e0-fee8707a2de9
+		summarizeBy: sum
+		sourceColumn: Total RTP EUR COGS(2026)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: fff3ed00-e437-4f36-a0e9-997531bdc322
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bcfd6f5a-4242-46da-b8a3-d7036fa9dbc6
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Segment-Region
+		dataType: string
+		lineageTag: 19030d41-96aa-425d-ad59-9d5fe3f92597
+		summarizeBy: none
+		sourceColumn: Segment-Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment-Region Code'
+		dataType: string
+		lineageTag: eae62c3b-b9e0-47d6-844b-913989617d80
+		summarizeBy: none
+		sourceColumn: Segment-Region Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RTP_CurrentYear = m
+		mode: import
+		queryGroup: 'RTP Auto Refresh'
+		source =
+				let
+				    Source = Table.Combine({RTP_Euro, RTP_USD}),
+				    #"Merged Queries" = Table.NestedJoin(Source, {"Code:Market Org 2017 (SoldTo) (c4)", "Market Org 2017 (SoldTo)"}, market_org, {"Code:Market Org 2017 (SoldTo) (c5)", "Market Org 2017 (SoldTo)"}, "market_org", JoinKind.LeftOuter),
+				    #"Expanded market_org" = Table.ExpandTableColumn(#"Merged Queries", "market_org", {"Segment-Region RTP-APO", "Code Segment Region RTP-APO"}, {"market_org.Segment-Region RTP-APO", "market_org.Code Segment Region RTP-APO"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded market_org",{{"market_org.Segment-Region RTP-APO", "Segment-Region"}, {"market_org.Code Segment Region RTP-APO", "Segment-Region Code"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"Column13"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Date", each Date.FromText(Text.Start([Months],2)&"-01-"&Text.End([Months],2))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

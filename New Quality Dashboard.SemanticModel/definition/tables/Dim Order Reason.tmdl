@@ -1,0 +1,137 @@
+table 'Dim Order Reason'
+	lineageTag: 86d2e667-0635-45fd-94d9-d0c06ec6c3f7
+
+	column 'Order Reason'
+		dataType: string
+		lineageTag: 303a3e63-fb1b-4126-8a67-0fb94e499fdc
+		summarizeBy: none
+		sourceColumn: Order Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Reason Desc'
+		dataType: string
+		lineageTag: e4f1f20e-b984-4e3e-b53a-4a7c661f79cd
+		summarizeBy: none
+		sourceColumn: Order Reason Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Reason key'
+		dataType: string
+		lineageTag: 4190db9a-bfe2-4e96-8345-1831d9b4c835
+		summarizeBy: none
+		sourceColumn: Order Reason key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tvaut_key
+		dataType: string
+		lineageTag: 052bc013-8d6c-4e79-8195-da1466632c11
+		summarizeBy: none
+		sourceColumn: Tvaut_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Order Reason Group.Group key'
+		dataType: string
+		lineageTag: 7cfe4888-34b7-47a5-b32a-1351ae0c0f27
+		summarizeBy: none
+		sourceColumn: Dim Order Reason Group.Group key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Order Reason Group.Order Reason'
+		dataType: string
+		lineageTag: cd0e7107-6be5-44c3-8bb5-b8719f7c14ff
+		summarizeBy: none
+		sourceColumn: Dim Order Reason Group.Order Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Order Reason Group.Order Reason (groups)'
+		dataType: string
+		lineageTag: 94b03537-f3ba-4652-860e-7498bfb3485f
+		summarizeBy: none
+		sourceColumn: Dim Order Reason Group.Order Reason (groups)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Order Reason Group.Quality/ Trade'
+		dataType: string
+		lineageTag: b71f319f-144b-4b34-b9ba-087b67498e8e
+		summarizeBy: none
+		sourceColumn: Dim Order Reason Group.Quality/ Trade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Order Reason Group.Rejection Group'
+		dataType: string
+		lineageTag: 68cc6f46-39d9-48b3-9359-2742057cbaaf
+		summarizeBy: none
+		sourceColumn: Dim Order Reason Group.Rejection Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Order Reason Group.Rejection key'
+		dataType: string
+		lineageTag: 072fc4ce-680a-4356-8c13-516ca9f812ef
+		summarizeBy: none
+		sourceColumn: Dim Order Reason Group.Rejection key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rejection Group 2' = ```
+			
+			IF(
+			    ISBLANK('Dim Order Reason'[Dim Order Reason Group.Rejection Group]),
+			    IF(
+			        'Dim Order Reason'[Order Reason key]="042" ||
+			        'Dim Order Reason'[Order Reason key]="G01" ||
+			        'Dim Order Reason'[Order Reason key]="G02" ||
+			        'Dim Order Reason'[Order Reason key]="G03" ||
+			        'Dim Order Reason'[Order Reason key]="G04" ||
+			        'Dim Order Reason'[Order Reason key]="822", 
+			        "Samples/Marketing",
+			        IF(
+			            'Dim Order Reason'[Order Reason key]="003" ||
+			            'Dim Order Reason'[Order Reason key]="200" ||
+			            'Dim Order Reason'[Order Reason key]="813" ||
+			            'Dim Order Reason'[Order Reason key]="049" ||
+			            'Dim Order Reason'[Order Reason key]="006",
+			            "RTV/Defective",
+			            IF('Dim Order Reason'[Order Reason key]="500",
+			                "Shipping"
+			            )
+			        )
+			    ),
+			    'Dim Order Reason'[Dim Order Reason Group.Rejection Group]
+			)
+			```
+		lineageTag: 8c2ac5ae-816b-471b-ac50-f9d215b11f48
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Order Reason' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Order Reason]", {"[Dim Order Reason].[Order Reason].[Order Reason]", "[Dim Order Reason].[Order Reason Desc].[Order Reason Desc]", "[Dim Order Reason].[Order Reason key].[Order Reason key]", "[Dim Order Reason].[Tvaut_key].[Tvaut_key]"}, {"Dim Order Reason.Order Reason", "Dim Order Reason.Order Reason Desc", "Dim Order Reason.Order Reason key", "Dim Order Reason.Tvaut_key"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Order Reason.Order Reason", "Order Reason"}, {"Dim Order Reason.Order Reason Desc", "Order Reason Desc"}, {"Dim Order Reason.Order Reason key", "Order Reason key"}, {"Dim Order Reason.Tvaut_key", "Tvaut_key"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"Tvaut_key"}, #"Dim Order Reason Group", {"Rejection key"}, "Dim Order Reason Group", JoinKind.LeftOuter),
+				    #"Expanded Dim Order Reason Group" = Table.ExpandTableColumn(#"Merged Queries", "Dim Order Reason Group", {"Group key", "Order Reason", "Order Reason (groups)", "Quality/ Trade", "Rejection Group", "Rejection key"}, {"Dim Order Reason Group.Group key", "Dim Order Reason Group.Order Reason", "Dim Order Reason Group.Order Reason (groups)", "Dim Order Reason Group.Quality/ Trade", "Dim Order Reason Group.Rejection Group", "Dim Order Reason Group.Rejection key"})
+				in
+				    #"Expanded Dim Order Reason Group"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

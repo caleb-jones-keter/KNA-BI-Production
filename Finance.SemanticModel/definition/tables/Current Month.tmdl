@@ -1,0 +1,26 @@
+table 'Current Month'
+	lineageTag: 3d44d46b-1370-4740-adb7-8e0fd9729c9f
+
+	measure 'Current Month Value' = SELECTEDVALUE('Current Month'[Current Month], 12)
+		formatString: 0
+		lineageTag: 31344cc5-6738-4706-b920-f9552cb0194b
+
+	column 'Current Month'
+		formatString: 0
+		lineageTag: dd477d9c-74af-40d3-9257-ad12ff889cd5
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Current Month' = calculated
+		mode: import
+		source = GENERATESERIES(1, 12, 1)
+
+	annotation PBI_Id = b1c0b66e16db4f0ea43839858ba1d9ba
+

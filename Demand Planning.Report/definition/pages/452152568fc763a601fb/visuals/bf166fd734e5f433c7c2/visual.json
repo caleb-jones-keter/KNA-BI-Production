@@ -1,0 +1,247 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "bf166fd734e5f433c7c2",
+  "position": {
+    "x": 0,
+    "y": 192,
+    "z": 8000,
+    "height": 464,
+    "width": 648,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "ABC"
+                }
+              },
+              "queryRef": "DIM Product.ABC",
+              "nativeQueryRef": "ABC"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "AVG Forecast"
+                }
+              },
+              "queryRef": "Sum(DIM Product.AVG Forecast)",
+              "nativeQueryRef": "AVG Forecast Accuracy",
+              "displayName": "AVG Forecast Accuracy",
+              "format": "0.0 %;-0.0 %;0.0 %"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Bias %"
+                }
+              },
+              "queryRef": "Sum(DIM Product.Bias %)",
+              "nativeQueryRef": "Bias %",
+              "format": "0.0 %;-0.0 %;0.0 %"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "DOS Target"
+                }
+              },
+              "queryRef": "DIM Product.DOS Target",
+              "nativeQueryRef": "DOS Target"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT EDB Budget- Finance"
+                        }
+                      },
+                      "Property": "Customer Demand Net sales _APO_"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT EDB Budget- Finance.Customer Demand Net sales _APO_)",
+              "nativeQueryRef": "Customer Demand APO",
+              "displayName": "Customer Demand APO",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "PC Business Unit"
+                }
+              },
+              "queryRef": "DIM Product.PC Business Unit",
+              "nativeQueryRef": "PC Business Unit"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT EDB Budget- Finance"
+                    }
+                  },
+                  "Property": "MRP SKU KEY"
+                }
+              },
+              "queryRef": "FACT EDB Budget- Finance.MRP SKU KEY",
+              "nativeQueryRef": "MRP SKU KEY"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "FACT EDB Budget- Finance"
+                      }
+                    },
+                    "Property": "Customer Demand Net sales _APO_"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "193.40391817204102D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.SKU & Desc"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95.34158247339303D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT EDB Budget- Finance.Customer Demand Net sales _APO_)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "51.344557089081945D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.DOS Target"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "69.2445265657896D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(DIM Product.AVG Forecast)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124.3106297568118D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM Product.PC Business Unit"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

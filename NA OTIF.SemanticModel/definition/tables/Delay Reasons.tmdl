@@ -1,0 +1,59 @@
+table 'Delay Reasons'
+	lineageTag: 6e63d05f-0384-49b9-9c55-4f23f786473c
+
+	column 'Suppl.1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9032c90b-88ce-4d45-9bbe-89b60df87ac6
+		summarizeBy: none
+		sourceColumn: Suppl.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: b810c0f8-dca2-48ea-a291-04f77ccbbb8f
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delay Reason'
+		dataType: string
+		lineageTag: 876a4f36-71e8-4f67-a68b-d5c88e1fc2d2
+		summarizeBy: none
+		sourceColumn: Delay Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column On-time?
+		dataType: int64
+		formatString: 0
+		lineageTag: 61982a40-8c00-48df-83fb-8df49e9e63e5
+		summarizeBy: none
+		sourceColumn: On-time?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Column (NumSuppl)' = IF('Delay Reasons'[On-time?]=0,'Delay Reasons'[Suppl.1]+1000)
+		formatString: 0
+		lineageTag: 2a9848d2-013c-4c3f-bd33-b1c2008b8436
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Delay Reasons' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNADemandPlanning/Shared%20Documents/OTIF/OTIF%20Calculation%20Template.xlsx"), null, true),
+				    #"Delay Reasons_Sheet" = Source{[Item="Delay Reasons",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Delay Reasons_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Suppl.1", Int64.Type}, {"Description", type text}, {"Delay Reason", type text}, {"On-time?", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,264 @@
+table Budget_Finance_CurrentYear
+	lineageTag: 48c9dc87-fbff-47fc-9b38-184d3d591d25
+
+	column Plant
+		dataType: string
+		lineageTag: ad9fd07f-0be8-4c74-89db-e2bd0d4fcc87
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Plant (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 358c2313-81b3-4f0b-abf5-8c5de60b71e8
+		summarizeBy: none
+		sourceColumn: Code:Plant (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 5cec8b5f-f0ae-47e5-91ef-481b90ea3581
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales'
+		dataType: double
+		lineageTag: 93ff95f6-305c-4158-9d8d-90b83295386f
+		summarizeBy: sum
+		sourceColumn: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'On Invoice Discounts'
+		dataType: double
+		lineageTag: 72f69f57-b876-465c-a9e4-bb3b65ffba76
+		summarizeBy: sum
+		sourceColumn: On Invoice Discounts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Rebates'
+		dataType: double
+		lineageTag: 4aee70af-43c2-4bd7-8872-624f77e895a9
+		summarizeBy: sum
+		sourceColumn: Total Rebates
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales'
+		dataType: double
+		lineageTag: c8a1fb49-652e-4c4e-8dd4-cce2b6e12ee4
+		summarizeBy: sum
+		sourceColumn: Net Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost of Sales'
+		dataType: double
+		lineageTag: 9f05710b-1a02-48d7-869e-40beb19d638d
+		summarizeBy: sum
+		sourceColumn: Cost of Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Logistics'
+		dataType: double
+		lineageTag: ea36ae5d-2baa-4d42-afc2-4d8855182a91
+		summarizeBy: sum
+		sourceColumn: Total Logistics
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Freight'
+		dataType: double
+		lineageTag: 9cef8fb7-e297-4f35-81eb-bf4bf9b7cc93
+		summarizeBy: sum
+		sourceColumn: Total Freight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Warehousing'
+		dataType: double
+		lineageTag: 7001535a-32b1-4349-a721-c1b822c42e47
+		summarizeBy: sum
+		sourceColumn: Total Warehousing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution'
+		dataType: double
+		lineageTag: ac4e4750-dd5f-4fb2-9abe-391fdf7a3c07
+		summarizeBy: sum
+		sourceColumn: Direct Contribution
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total R&D'
+		dataType: double
+		lineageTag: d5931a54-0135-4fb4-b08a-567111effeec
+		summarizeBy: sum
+		sourceColumn: Total R&D
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total A&P'
+		dataType: double
+		lineageTag: 06f5d98c-06aa-48ef-869c-3fd3ca17479c
+		summarizeBy: sum
+		sourceColumn: Total A&P
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total C&R'
+		dataType: double
+		lineageTag: c380ce75-3983-4a7e-936b-6ceb4a022794
+		summarizeBy: sum
+		sourceColumn: Total C&R
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total SG&A'
+		dataType: double
+		lineageTag: 58dc7dc7-cab0-4415-bf09-50a023322718
+		summarizeBy: sum
+		sourceColumn: Total SG&A
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Add back IFRS 16'
+		dataType: int64
+		formatString: 0
+		lineageTag: 69912f91-3709-4714-b31a-c9775b3f551e
+		summarizeBy: sum
+		sourceColumn: Add back IFRS 16
+
+		annotation SummarizationSetBy = Automatic
+
+	column EBITDA
+		dataType: double
+		lineageTag: 29ab600a-a9d3-4939-b357-5dddcb39bdd3
+		summarizeBy: sum
+		sourceColumn: EBITDA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Weight Sold'
+		dataType: double
+		lineageTag: 5b2e28f5-7d5f-4565-b939-8832f9fd943b
+		summarizeBy: sum
+		sourceColumn: RM Weight Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Weight Production KG'
+		dataType: string
+		lineageTag: 45e92d84-1f50-492f-bd89-52676d10b960
+		summarizeBy: none
+		sourceColumn: RM Weight Production KG
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a68edda-7324-4b24-bd72-ff9683c6610a
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pallet QTY'
+		dataType: double
+		lineageTag: fbb40cda-0d60-4ddd-ad35-d6feed378697
+		summarizeBy: sum
+		sourceColumn: Pallet QTY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Container QTY'
+		dataType: double
+		lineageTag: d82d84da-4475-49d4-a11b-e988468b179b
+		summarizeBy: sum
+		sourceColumn: Container QTY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: 2c863ce9-ffb9-46a9-896b-600a2700625e
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4579299d-7e10-4c4a-9bd9-65baf44bec8f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: 373b3d3a-5fd3-4472-917c-834ad157c1f6
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Budget_Finance_CurrentYear = m
+		mode: import
+		queryGroup: Budget_Finance
+		source =
+				let
+				    Source = Table.Combine({Budget_Finance, #"2plus10_Finance_CurrentYear"})
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

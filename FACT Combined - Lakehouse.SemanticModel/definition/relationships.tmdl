@@ -1,0 +1,225 @@
+relationship 308f0117-51ef-4f98-9c97-3fda22b2545a
+	relyOnReferentialIntegrity
+	fromColumn: 'FACT Combined'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship a0008518-e694-ec7e-92ad-81f80b8cbf5f
+	fromColumn: 'FACT Combined'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 30974091-1364-76b5-8cf3-18540a4aa319
+	fromColumn: 'FACT Combined'.Plant
+	toColumn: 'DIM Plant'.Plant
+
+relationship 3099253a-7aa0-829f-a5c7-37a0949bd141
+	fromColumn: 'FACT Combined'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 27b924aa-4d8e-0600-0170-459b067bec9b
+	fromColumn: 'FACT Future'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 744fee33-6e25-c03c-2a33-9a3dc62b78c5
+	fromColumn: 'FACT Future'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship ed940634-7185-97d0-6a20-dd3926e97eff
+	fromColumn: 'FACT Future'.Plant
+	toColumn: 'DIM Plant'.Plant
+
+relationship 384ad426-5f56-757e-58e4-dedea1bda7fe
+	fromColumn: 'FACT Future'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 3554a5ac-a59d-24a8-6e59-e09ca75df6d9
+	fromColumn: 'FACT MB51 Grouped'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 84402206-650f-b1c7-db29-730981ecfbcf
+	fromColumn: 'FACT MB51 Material_Movements Initial'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 8b226459-da97-13d2-e25a-cbe66b11ae44
+	fromColumn: 'FACT MB51 Grouped'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 967b1feb-c41d-3714-6cb8-645642593303
+	fromColumn: 'FACT MB51 Grouped'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship bc1c1105-676c-f9d9-d350-8e39c8267e2c
+	fromColumn: 'FACT MB51 Material_Movements Initial'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship d7944c3d-2af8-4491-ce4d-8e46ebb3b2f0
+	fromColumn: 'FACT MB51 Material_Movements Initial'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship c84eb5c4-394e-052b-970c-bfd512170c80
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 85c97923-0d1e-9044-e1c3-7c5ea3117d62
+	isActive: false
+	fromColumn: 'FACT Combined'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 74c6c49a-c8d4-33f0-f931-2edc251a693f
+	fromColumn: 'DIM MRPSKU'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship d52b2661-0720-655c-59b3-03ea64ead2d6
+	fromColumn: 'FACT Component Forecast Initial'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship a52df9f9-5805-0cae-c5a3-251da4051bd3
+	fromColumn: 'FACT Component Forecast Initial'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship da2cdf4f-320f-c9af-b8cf-b1fef536729a
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'DIM Account'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship bfa3520b-d139-e7c2-9b18-8f8c23b4e354
+	fromColumn: 'FACT Component Forecast Initial'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 36c1459d-52c2-ca00-591d-bc16f758f7d6
+	fromColumn: 'FACT Combined'.'FACT YM6P.Storage Location'
+	toColumn: 'Dim Location Dimension 2'.Code
+
+relationship ca38c2ee-bc24-2e02-37f7-8c486b47057a
+	fromColumn: 'FACT YS10N Average Sales Price'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 0a2e9e74-35b8-b17a-d680-0cef13a3d026
+	fromColumn: 'Adams MB51'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 2b1672ea-d847-86c7-3387-5a0df4002167
+	fromColumn: 'Adams MB51'.'Combined Date 1'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 7c005ff2-009c-92ae-d4ba-34da1238f848
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'FACT YM6P'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 52effb52-ad15-31d5-46c0-b0796148794a
+	fromColumn: 'FACT EDB Budget- QTY'.'MRP SKU KEY'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 007edeb7-d74c-fa91-7b26-5cbd40674e58
+	fromColumn: 'FACT YS10N Past'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 0d0834a5-87e5-82e5-826d-89baeb61fe2e
+	fromColumn: 'FACT EDB Budget- QTY'.Months_Date
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship e4ee991e-ead7-0059-206e-7778c24c062a
+	fromColumn: 'FACT EDB Budget- Finance'.'MRP SKU KEY'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 7679db01-bc6f-f505-4fd3-80326ba76078
+	fromColumn: 'FACT EDB Budget- Finance'.Months_Date
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 487a9245-83ac-70b7-eb85-219def0a596f
+	fromColumn: 'FACT YS10N Open'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship ac97cd9b-c237-2676-cd96-a3e8388b6778
+	fromColumn: 'FACT YS10N Open'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship ac064535-c628-1e7e-f3a3-94508d8c0ded
+	fromColumn: 'FACT YS10N Past'.Payer
+	toColumn: Ecomm-Store.Payer
+
+relationship 215ce10a-5e86-e7ef-c53e-218802934775
+	fromColumn: 'FACT YS10N Past'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship f2cf444d-c8d5-980b-a228-d6302c3391ea
+	fromColumn: 'Justins YS10n Test _DELETE THIS AFTER 6-15_'.SO_BillingDateKey
+	toColumn: 'DIM Date'.DateKey
+
+relationship b25efaef-402b-516b-38bf-3f445227ea62
+	fromColumn: 'TEST EDB LAG FCST'.'Code:SKU Level _c1_'
+	toColumn: 'DIM Product'.Material
+
+relationship b1797608-df3f-4cf6-f547-f3bf31777aa3
+	fromColumn: 'FACT MB52 All'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 66a4c4e6-9129-b0af-ed6b-dc017b0bfdfb
+	fromColumn: 'FACT MB52 All'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 0012e767-09db-03e0-96a9-6cdf4f551c22
+	fromColumn: 'FACT MB52 All'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship dc0a4cc3-e8b5-1077-4e4d-204709fa8151
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'THD Filter'.'SKU Level'
+
+relationship 6138bb11-ec72-2098-5674-ba3a772b8a65
+	fromColumn: 'FACT YS10N Past'.'Ship Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 8dd26227-6d31-9b2a-0d84-6b06db020a58
+	fromColumn: 'FACT YS10N All'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 4a3a929a-0b36-af2b-377b-708bb13c0066
+	fromColumn: 'FACT YS10N All'.'Ship Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship cc884016-eb6b-755f-e66c-ea3b7f563b31
+	fromColumn: 'FACT YS10N All'.Payer
+	toColumn: Ecomm-Store.Payer
+
+relationship 270294a2-af0d-4c90-9a09-084b2b03b185
+	fromColumn: 'FACT YS10N All'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship b37fb59f-0c4d-53c7-136c-3cc9af37ad8c
+	fromColumn: 'FACT YS10N Base'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 75674b81-ab6c-a117-fe2b-aab3c0955b5a
+	fromColumn: 'FACT YS10N Base'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 12be1fc7-0892-654f-daa0-21e5795cdb78
+	fromColumn: 'FACT YS10N Base'.Payer
+	toColumn: Ecomm-Store.Payer
+
+relationship 811f1f5a-bfa9-526f-442d-079a9f1bd966
+	fromColumn: 'FACT YS10N Base'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 33c69eb5-7636-1756-e0af-637ba20da455
+	fromColumn: 'FACT Future'.'Combined Date'
+	toColumn: 'DIM Date _2_'.'Full Date Next Year Adjusted'
+
+relationship 9c4f3ba2-84fb-92ed-8ce0-74e0fd138277
+	fromColumn: 'FACT YS10N Past'.'Ship Date'
+	toColumn: 'DIM Date _2_'.'Full Date'
+
+relationship f9d67b14-2a96-d51f-80c7-94f12b0ba00e
+	fromColumn: 'FACT YS10N All'.'New Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 0018870d-2572-128f-ba19-643ab9f89176
+	isActive: false
+	fromColumn: 'FACT Future'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship cb1fa07b-2dd1-5e6f-f2e6-9c707a109f5d
+	fromColumn: fact_coois_pbi_daily_split.Material_Number
+	toColumn: 'DIM Product'.Material
+

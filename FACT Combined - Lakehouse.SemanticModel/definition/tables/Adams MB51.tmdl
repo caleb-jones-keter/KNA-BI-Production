@@ -1,0 +1,173 @@
+table 'Adams MB51'
+	lineageTag: fa013792-ad55-41be-bbba-972bd10fa2f0
+	sourceLineageTag: [dbo].[Adams MB51]
+
+	measure 'Measure 2' = if(max('DIM Product'[TL Qty])>0,sum('Adams MB51'[Combined Qty])/max('DIM Product'[TL Qty]))
+		lineageTag: af97a6bd-1001-4272-b757-0cf94ffebdd3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 3' = sumx(values('DIM Product'[Material]),[Measure 2])
+		lineageTag: f8660118-2494-421b-a809-8ad3d38e5fa6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Material
+		dataType: string
+		lineageTag: fae71c93-0f5b-488f-8d38-5c5c334d0c8a
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 92e8febe-4c91-495a-9cf0-279252abf75b
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: d8c856c9-d588-410a-988b-275498a6534b
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: double
+		lineageTag: f06747a9-c6da-4f93-90c2-ef80dbe4b5d8
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Combined Date 1'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7aa290c7-43ce-4cf9-bee4-3a7efca6090b
+		sourceLineageTag: Combined Date 1
+		summarizeBy: none
+		sourceColumn: Combined Date 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 0530de90-e547-46ca-88ee-0959eaa2b1c8
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 593d3eac-ff34-4c4d-8571-c72c52389fde
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: 04355d70-92df-483a-853d-1299fa601520
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7f505f66-775a-497c-8bc3-e3ed7d3ade56
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e119ad8-987a-4b14-9c66-06dbc3f69103
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9232e812-c185-4375-9f8c-334c6de665b7
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 47543d78-c0c9-43d7-b277-31b8f7f25a17
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Description'
+		dataType: string
+		lineageTag: ffbdb64a-8753-427c-8a17-ee02644021ad
+		sourceLineageTag: Material Description
+		summarizeBy: none
+		sourceColumn: Material Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Movement Type'
+		dataType: int64
+		formatString: 0
+		lineageTag: 29fe9849-d5b1-48aa-9b40-567d2bd5de8a
+		sourceLineageTag: Movement Type
+		summarizeBy: sum
+		sourceColumn: Movement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Header Text'
+		dataType: string
+		lineageTag: f9d9cda7-daf3-4d3f-a7ba-b7a4b19af67d
+		sourceLineageTag: Document Header Text
+		summarizeBy: none
+		sourceColumn: Document Header Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time of Entry'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fb533b09-5f6b-4034-9824-3ec26f91e3e8
+		sourceLineageTag: Time of Entry
+		summarizeBy: none
+		sourceColumn: Time of Entry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Adams MB51' = entity
+		mode: directLake
+		source
+			entityName: Adams MB51
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,26 @@
+table Months
+	lineageTag: 7aa61c3b-800d-48fd-8c2c-6aa205d7eac1
+
+	measure 'Months Value' = SELECTEDVALUE('Months'[Months], 12)
+		formatString: 0
+		lineageTag: bd554fe5-f861-44a0-85a3-e5801ce5c686
+
+	column Months
+		formatString: 0
+		lineageTag: c11ae260-63c8-4c9a-8d66-0b6765261bad
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Months = calculated
+		mode: import
+		source = GENERATESERIES(1, 12, 1)
+
+	annotation PBI_Id = 53f9a22bdfda408bb17df62f847ce5f9
+

@@ -1,0 +1,643 @@
+table 'Item Sheet 2026'
+	lineageTag: 3e1f6ce8-051a-4e9e-b8ec-07c508073546
+
+	column 'SAP #'
+		dataType: int64
+		formatString: 0
+		lineageTag: 402414b7-cab3-4b75-8be0-78baddcc5596
+		summarizeBy: none
+		sourceColumn: SAP #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: int64
+		formatString: 0
+		lineageTag: 3dc7e266-281b-4398-8e8c-4fbfe4d2ab27
+		summarizeBy: sum
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 54015c17-34e7-46c6-870c-d6a3b23c1734
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ebc2013-c191-4ad0-8382-05d7fa5c6c0e
+		summarizeBy: sum
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dept
+		dataType: string
+		lineageTag: d6ab48d1-af47-4fc3-9967-e3655e7452d5
+		summarizeBy: none
+		sourceColumn: Dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_1
+		dataType: string
+		lineageTag: c1f30e3e-9760-4abe-acdb-8ef5caeca511
+		summarizeBy: none
+		sourceColumn: Customer_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor #'
+		dataType: string
+		lineageTag: 115f2d1e-4026-432e-921c-f38a07b81c79
+		summarizeBy: none
+		sourceColumn: Vendor #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carton/BagQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 0eb1e0f8-ed1d-4735-8ee3-c5bad0527c1b
+		summarizeBy: sum
+		sourceColumn: Carton/BagQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Layer Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ebd2924-a0a8-43e9-8f75-142781688739
+		summarizeBy: sum
+		sourceColumn: Layer Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SS/PLTQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 68a521e9-574f-49d7-b436-bbb12629056c
+		summarizeBy: sum
+		sourceColumn: SS/PLTQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 952dc93d-c4c0-443e-8949-eeb738c00a28
+		summarizeBy: sum
+		sourceColumn: ContQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0dab0b18-b573-4a3e-a63f-07a8024877d0
+		summarizeBy: sum
+		sourceColumn: TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 4d612218-2ab2-427b-9a09-885243c18d9a
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 3999116d-da5f-4843-a624-83f8c712f708
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Note
+		dataType: string
+		lineageTag: f8570edb-4452-4d7a-8018-acdf06aff632
+		summarizeBy: none
+		sourceColumn: Note
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: int64
+		formatString: 0
+		lineageTag: 4802c73b-b90c-4c5c-ae45-64c091716cbd
+		summarizeBy: sum
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPC/EAN
+		dataType: int64
+		formatString: 0
+		lineageTag: a2cefcfb-7027-4364-818b-224c8f0385c2
+		summarizeBy: sum
+		sourceColumn: UPC/EAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton I2of5'
+		dataType: int64
+		formatString: 0
+		lineageTag: 965d877d-b0ee-49e1-af90-7445fd99e624
+		summarizeBy: sum
+		sourceColumn: Carton I2of5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pallet I2of5'
+		dataType: int64
+		formatString: 0
+		lineageTag: d63d1f8a-e91b-439d-832d-046d04f682f2
+		summarizeBy: sum
+		sourceColumn: Pallet I2of5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Private Label'
+		dataType: string
+		lineageTag: bd2a21fe-a6e8-4926-a1d8-2c0b00ef7d79
+		summarizeBy: none
+		sourceColumn: Private Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opened
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 03d12dc8-76d0-4f3d-b382-71e621957571
+		summarizeBy: none
+		sourceColumn: Opened
+
+		variation Variation
+			isDefault
+			relationship: 02b9e80b-14af-4c1e-94fe-96858cb5d578
+			defaultHierarchy: LocalDateTable_f1fb2910-d7d4-4e3a-9a92-204eef4a325d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Plant-sp.matl status'
+		dataType: string
+		lineageTag: 5a7038a4-11e5-432a-91a4-339a4f2d7183
+		summarizeBy: none
+		sourceColumn: Plant-sp.matl status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disco Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 174d7444-d387-4508-88de-578642bf59cf
+		summarizeBy: none
+		sourceColumn: Disco Date
+
+		variation Variation
+			isDefault
+			relationship: d57718c0-1538-4e0f-b537-8ae304ab2c46
+			defaultHierarchy: LocalDateTable_32878845-b39d-4004-8529-613c1568419a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PC Business Unit'
+		dataType: string
+		lineageTag: a22e7386-708f-4929-8a43-97676d03eef6
+		summarizeBy: none
+		sourceColumn: PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HTS Code'
+		dataType: string
+		lineageTag: 2580aa13-5735-496e-bf0f-4ddd51869298
+		summarizeBy: none
+		sourceColumn: HTS Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSRP
+		dataType: string
+		lineageTag: ffb9bc38-7ddd-4adb-bcbd-822b1b1da5fc
+		summarizeBy: none
+		sourceColumn: MSRP
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Initial Plt/Cont' =
+			
+			'Item Sheet 2026'[ContQty]/'Item Sheet 2026'[_Initial Plt Qty]
+		lineageTag: c0823862-eaa1-4bb4-97b6-334d2fb3e497
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Stacked Plts' = TRIM(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(UPPER('Item Sheet 2026'[Stacked]),"PLT","0"),"PALLET","0"),"SS","0"),"X","0"),"+","0")," ",""))
+		dataType: int64
+		formatString: 0
+		lineageTag: cc0944d1-70d9-49de-ba58-df5eedee37df
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column _Spaces =
+			
+			VAR MaxDim = MAX('Item Sheet 2026'[Current Item Sheet 2025 Specs.Pallet - Width],'Item Sheet 2026'[Current Item Sheet 2025 Specs.Pallet - Length])
+			RETURN
+			IF(MaxDim>60,
+			    IF(MaxDim>67.5,2,1),
+			    1
+			)
+		formatString: 0
+		lineageTag: 823a1b5f-2480-4447-b136-4ac786f2fe96
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Item Sheet 2025 Specs.Carton - Length'
+		dataType: double
+		lineageTag: 2fe3fb78-6791-4e45-b2da-8fe1073ea2b8
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - Length
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton - Width'
+		dataType: double
+		lineageTag: 9585fabc-3d6c-4e6f-892a-ae43e50f4ae4
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - Width
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton - Height'
+		dataType: double
+		lineageTag: 2d8aaf1e-4fbd-429c-8111-b9d53e3ef1e2
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - Height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton - Volume'
+		dataType: double
+		lineageTag: 3c979aa6-5178-4d23-b4e4-2e12965ad2d8
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton - Weight'
+		dataType: double
+		lineageTag: 9f133016-a12c-4fc6-b291-06aa65273a17
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton - cf'
+		dataType: double
+		lineageTag: da684ccb-2ad8-4615-a973-6d4a5d091aa9
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - cf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton - pcf'
+		dataType: double
+		lineageTag: c6352238-700b-40dc-b094-241d221eba79
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton - pcf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - Length'
+		dataType: double
+		lineageTag: 4d6980dd-7381-4b9e-afa8-72d537944aaf
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - Length
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - Width'
+		dataType: double
+		lineageTag: 81ce7d53-319f-4a01-bc5a-77720c282380
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - Width
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - Height'
+		dataType: double
+		lineageTag: 7bfe6938-548b-4248-9359-d27fc2715490
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - Height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - Volume'
+		dataType: double
+		lineageTag: 8e7f7d9e-3c68-4b88-89a9-bb48b232b22b
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - Weight'
+		dataType: double
+		lineageTag: cbbd255b-c88f-4519-963f-81bcdb9840ce
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - cf'
+		dataType: double
+		lineageTag: e90993d0-6fdc-4511-a637-0faa575792b0
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - cf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Pallet - pcf'
+		dataType: double
+		lineageTag: 3645d2c9-f164-41bc-a804-7c978c4aaf9e
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Pallet - pcf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.LP'
+		dataType: double
+		lineageTag: e0731b22-ec4e-4560-8501-d84e285c1095
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.LP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton Class'
+		dataType: double
+		lineageTag: 82daf9b4-1209-4d49-86c3-7e1196e6d0c8
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton Class
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.SS/PLT Class'
+		dataType: double
+		lineageTag: 224e0f87-65ef-404a-afc9-82975cf0bb95
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.SS/PLT Class
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Item Sheet 2025 Specs.Carton Dim Wt'
+		dataType: int64
+		formatString: 0
+		lineageTag: 34bc6afe-c370-488d-b876-ee0decc38787
+		summarizeBy: sum
+		sourceColumn: Current Item Sheet 2025 Specs.Carton Dim Wt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Item Sheet 2025 Specs.Oversize +130" Max 165"'
+		dataType: string
+		lineageTag: 429dd12f-75f7-422e-aa30-08f5580e5063
+		summarizeBy: none
+		sourceColumn: Current Item Sheet 2025 Specs.Oversize +130" Max 165"
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Item Sheet 2025 Specs.SAP'
+		dataType: string
+		lineageTag: 0c0769e1-ae5a-4969-98cb-47bec6b4fb6c
+		summarizeBy: none
+		sourceColumn: Current Item Sheet 2025 Specs.SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Item Sheet 2025 Specs.Override'
+		dataType: string
+		lineageTag: c8bd54b2-6a43-41db-a1bc-09160e6c7b8a
+		summarizeBy: none
+		sourceColumn: Current Item Sheet 2025 Specs.Override
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Item Sheet 2025 Specs.Linear Ft Ea'
+		dataType: string
+		lineageTag: d0cc75a0-3d21-4c8e-ad68-beac530161b0
+		summarizeBy: none
+		sourceColumn: Current Item Sheet 2025 Specs.Linear Ft Ea
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Item Sheet 2025 Specs.2025'
+		dataType: string
+		lineageTag: 241c5ef8-607d-436e-aff4-07cce01b8d33
+		summarizeBy: none
+		sourceColumn: Current Item Sheet 2025 Specs.2025
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Initial Sqft/Plt' =
+			
+			306.125/MAX(1,'Item Sheet 2026'[ContQty]/'Item Sheet 2026'[_Initial Plt Qty])
+		lineageTag: 1c53a869-7c90-44aa-b22b-bf2988f359b8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Rack Sqft' = 'Item Sheet 2026'[_Sqft/Pallet]/'Item Sheet 2026'[_Spaces]
+		lineageTag: 3f6c5c61-2eb5-4da1-8137-1c215a46ce00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _Merged = 'Item Sheet 2026'[SAP #]&" - " & 'Item Sheet 2026'[Description]
+		lineageTag: 1b9c2690-8958-4163-b44c-e08158cc9f07
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Actual Sqft' = 'Item Sheet 2026'[Current Item Sheet 2025 Specs.Pallet - Length]/12*'Item Sheet 2026'[Current Item Sheet 2025 Specs.Pallet - Width]/12
+		lineageTag: b74d55db-2d80-4138-8c0d-b15ed9164fe1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Height Ratio' = if('Item Sheet 2026'[_Stacked Plts]<=1,ROUNDDOWN(101.18/'Item Sheet 2026'[Current Item Sheet 2025 Specs.Pallet - Height],0),'Item Sheet 2026'[_Stacked Plts])
+		formatString: 0
+		lineageTag: cfc09dab-1032-46f1-b1f0-57d60876fdb9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calc Plt Qty' = 'Item Sheet 2026'[ContQty]/'Item Sheet 2026'[_Initial Plt/Cont]
+		lineageTag: 87d824f4-ea19-4229-af7d-7350ee178a66
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Pallet Qty' = 'Item Sheet 2026'[_Initial Plt Qty]/'Item Sheet 2026'[_Sqft Ratio]
+		lineageTag: 04a920ff-66fe-4775-9f9d-506bbc646b7f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Sqft Ratio' =
+			
+			IF('Item Sheet 2026'[_Actual Sqft]>0,ROUND('Item Sheet 2026'[_Initial Sqft/Plt]/'Item Sheet 2026'[_Actual Sqft],0),0)
+		formatString: 0
+		lineageTag: aa6be7e6-e085-48cc-88ae-50160c6311c4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Initial Plt Qty' =
+			
+			VAR pltQty =
+			IF('Item Sheet 2026'[Current Item Sheet 2025 Specs.Pallet - Length]>89,
+			    'Item Sheet 2026'[ContQty]/9,
+			    IF('Item Sheet 2026'[_Height Ratio]>1,
+			        IF('Item Sheet 2026'[_Stacked Plts]>0,
+			            'Item Sheet 2026'[_Stacked Plts]*'Item Sheet 2026'[SS/PLTQty],
+			            'Item Sheet 2026'[_Height Ratio]*'Item Sheet 2026'[SS/PLTQty]
+			        ),
+			        'Item Sheet 2026'[SS/PLTQty]
+			    )
+			)
+			VAR sqftplt = 306.125/MAX(1,'Item Sheet 2026'[ContQty]/pltQty)
+			RETURN
+			pltQty
+		lineageTag: 16920b53-3c36-4daa-8fbd-9443efa48142
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _Pallet/Cont = 'Item Sheet 2026'[ContQty]/'Item Sheet 2026'[_Pallet Qty]
+		lineageTag: 6cb7bae0-36ea-47c7-bebd-888c56885db2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _Sqft/Pallet =
+			
+			306.125/MAX(1,'Item Sheet 2026'[_Pallet/Cont])
+		lineageTag: 13d36944-7318-4c29-8d7a-96c24147ffa2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _CasesPerPallet = 'Item Sheet 2026'[_Pallet Qty]/'Item Sheet 2026'[Carton/BagQty]
+		lineageTag: 4ba23e4f-1209-469f-ad93-79c16f99de3d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Stacked
+		dataType: string
+		lineageTag: 984b3a5a-1ffa-4de7-bea4-d9e5ff35c3b6
+		summarizeBy: none
+		sourceColumn: Stacked
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Item Sheet 2026' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNAItemInfo/Shared%20Documents/Item%20Info/Current%20Item%20Sheets-2026.xlsx"), null, true),
+				    SAP_Sheet = Source{[Item="SAP",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(SAP_Sheet, [PromoteAllScalars=true]),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Promoted Headers",{{"Stacked#(lf)Cont/TL", "Stacked"}}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Renamed Columns1","NA",0,Replacer.ReplaceValue,{"Cont#(lf)Qty"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value2",{{"SAP", Int64.Type}, {"Model", Int64.Type}, {"Description", type text}, {"Customer", Int64.Type}, {"Dept", type any}, {"Customer_1", type text}, {"Vendor #", type any}, {"Carton/Bag#(lf)Qty", Int64.Type}, {"Layer Qty", Int64.Type}, {"SS/PLT#(lf)Qty", Int64.Type}, {"Cont#(lf)Qty", type any}, {"TL Qty", Int64.Type}, {"Stacked", type text}, {"Brand", type text}, {"Color", type any}, {"Note", type text}, {"Supplier", Int64.Type}, {"UPC/EAN", Int64.Type}, {"Carton I2of5", Int64.Type}, {"Pallet I2of5", Int64.Type}, {"Private Label", type any}, {"Opened", type date}, {"Plant-sp.matl status", type any}, {"Disco Date", type date}, {"PC Business Unit", type text}, {"HTS Code", type any}, {"MSRP", type any}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","NA",0,Replacer.ReplaceValue,{"Cont#(lf)Qty"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,0,Replacer.ReplaceValue,{"Cont#(lf)Qty"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value1",{{"Cont#(lf)Qty", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each [SAP] <> null and [SAP] <> ""),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"SAP", "SAP #"}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Renamed Columns", {{"Carton/Bag#(lf)Qty", null}}),
+				    #"Replaced Errors1" = Table.ReplaceErrorValues(#"Replaced Errors", {{"SS/PLT#(lf)Qty", null}}),
+				    #"Replaced Errors2" = Table.ReplaceErrorValues(#"Replaced Errors1", {{"UPC/EAN", null}}),
+				    #"Replaced Errors3" = Table.ReplaceErrorValues(#"Replaced Errors2", {{"Carton I2of5", null}}),
+				    #"Replaced Errors4" = Table.ReplaceErrorValues(#"Replaced Errors3", {{"Pallet I2of5", null}}),
+				    #"Replaced Errors5" = Table.ReplaceErrorValues(#"Replaced Errors4", {{"HTS Code", null}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Replaced Errors5", {"SAP #"}, #"Item Sheet Specs", {"Item"}, "Current Item Sheet 2025 Specs", JoinKind.LeftOuter),
+				    #"Expanded Current Item Sheet 2025 Specs" = Table.ExpandTableColumn(#"Merged Queries", "Current Item Sheet 2025 Specs", {"Carton - Length", "Carton - Width", "Carton - Height", "Carton - Volume", "Carton - Weight", "Carton - cf", "Carton - pcf", "Pallet - Length", "Pallet - Width", "Pallet - Height", "Pallet - Volume", "Pallet - Weight", "Pallet - cf", "Pallet - pcf", "LP", "Carton Class", "SS/PLT Class", "Carton Dim Wt", "Oversize +130"" Max 165""", "SAP", "Override", "Linear Ft Ea", "2025"}, {"Current Item Sheet 2025 Specs.Carton - Length", "Current Item Sheet 2025 Specs.Carton - Width", "Current Item Sheet 2025 Specs.Carton - Height", "Current Item Sheet 2025 Specs.Carton - Volume", "Current Item Sheet 2025 Specs.Carton - Weight", "Current Item Sheet 2025 Specs.Carton - cf", "Current Item Sheet 2025 Specs.Carton - pcf", "Current Item Sheet 2025 Specs.Pallet - Length", "Current Item Sheet 2025 Specs.Pallet - Width", "Current Item Sheet 2025 Specs.Pallet - Height", "Current Item Sheet 2025 Specs.Pallet - Volume", "Current Item Sheet 2025 Specs.Pallet - Weight", "Current Item Sheet 2025 Specs.Pallet - cf", "Current Item Sheet 2025 Specs.Pallet - pcf", "Current Item Sheet 2025 Specs.LP", "Current Item Sheet 2025 Specs.Carton Class", "Current Item Sheet 2025 Specs.SS/PLT Class", "Current Item Sheet 2025 Specs.Carton Dim Wt", "Current Item Sheet 2025 Specs.Oversize +130"" Max 165""", "Current Item Sheet 2025 Specs.SAP", "Current Item Sheet 2025 Specs.Override", "Current Item Sheet 2025 Specs.Linear Ft Ea", "Current Item Sheet 2025 Specs.2025"})
+				in
+				    #"Expanded Current Item Sheet 2025 Specs"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

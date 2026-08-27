@@ -1,0 +1,97 @@
+table 'Dim Location Dimension 2'
+	lineageTag: edcef4a2-85a6-4de7-9ab4-3dba9e652e98
+	sourceLineageTag: [dbo].[Dim Location Dimension 2]
+
+	column Name
+		dataType: string
+		lineageTag: 46b94559-df2e-4737-b5fe-b9a1cc2c7aef
+		sourceLineageTag: Name
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Code
+		dataType: string
+		lineageTag: 09ac7e17-cf4d-4963-a741-d6be7b065a3d
+		sourceLineageTag: Code
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 9be33fc3-4060-4c3e-a892-7e7ea9919cf6
+		sourceLineageTag: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 47340bfd-9eba-481d-b0c1-1babe2632411
+		sourceLineageTag: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Target DOS'
+		dataType: int64
+		formatString: 0
+		lineageTag: 38999544-3bd2-4efd-ac4e-8dc5222d3cf9
+		sourceLineageTag: Target DOS
+		summarizeBy: none
+		sourceColumn: Target DOS
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column 'General Location'
+		dataType: string
+		lineageTag: 22e508d8-6c56-4c00-a20b-0ef131b39551
+		sourceLineageTag: General Location
+		summarizeBy: none
+		sourceColumn: General Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 0984b97e-5026-44f0-91d7-92bb29189eb8
+		sourceLineageTag: Order
+		summarizeBy: none
+		sourceColumn: Order
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: f8582562-de29-43df-b713-f847ff7c3907
+		sourceLineageTag: Full Name
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Location Dimension 2' = entity
+		mode: directLake
+		source
+			entityName: Dim Location Dimension 2
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,131 @@
+table AdamsMaster
+	lineageTag: d42fe1c1-027f-4c34-b8b1-c6f85a3b411b
+	sourceLineageTag: [dbo].[AdamsMaster]
+
+	column SAP
+		dataType: string
+		lineageTag: 13960fe5-fa4b-4de2-a028-a793fccd813b
+		sourceLineageTag: SAP
+		summarizeBy: none
+		sourceColumn: SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: 4e584243-face-4c20-8650-c962732d7470
+		sourceLineageTag: Model
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 734a32cb-6c46-4c00-b326-71eef253337a
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 6e332290-1aed-4d91-b286-3a466eeffc6e
+		sourceLineageTag: Customer
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dept
+		dataType: string
+		lineageTag: 33e95e43-ebed-47d8-9dbf-9e66ef6a976c
+		sourceLineageTag: Dept
+		summarizeBy: none
+		sourceColumn: Dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_1
+		dataType: string
+		lineageTag: 5ab3528c-2ece-4bd4-9877-b76dfda4eec6
+		sourceLineageTag: Customer_1
+		summarizeBy: none
+		sourceColumn: Customer_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor #'
+		dataType: string
+		lineageTag: a7562934-d776-41b4-99c7-7ecc8bb94242
+		sourceLineageTag: Vendor #
+		summarizeBy: none
+		sourceColumn: Vendor #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carton/Bag_Qty
+		dataType: string
+		lineageTag: c2f403ca-7a67-42d3-ae35-f7743b0ab93c
+		sourceLineageTag: Carton/Bag_Qty
+		summarizeBy: none
+		sourceColumn: Carton/Bag_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Layer Qty'
+		dataType: string
+		lineageTag: 02ab9753-8da7-4691-9189-7f450eea9933
+		sourceLineageTag: Layer Qty
+		summarizeBy: none
+		sourceColumn: Layer Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SS/PLT_Qty
+		dataType: string
+		lineageTag: 08363e8a-44f5-4ad1-a8a1-e51519ce4cdb
+		sourceLineageTag: SS/PLT_Qty
+		summarizeBy: none
+		sourceColumn: SS/PLT_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cont_Qty
+		dataType: string
+		lineageTag: 2279c905-e168-4edd-b120-5b16dd130b63
+		sourceLineageTag: Cont_Qty
+		summarizeBy: none
+		sourceColumn: Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: e9e250f0-d0c0-463e-8f1d-a9cf074b2696
+		sourceLineageTag: TL Qty
+		summarizeBy: none
+		sourceColumn: TL Qty
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updated
+		dataType: string
+		lineageTag: 66fa39ab-b0f2-4dc0-9dbd-0d9525cb8adc
+		sourceLineageTag: Updated
+		summarizeBy: none
+		sourceColumn: Updated
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AdamsMaster = entity
+		mode: directLake
+		source
+			entityName: AdamsMaster
+			schemaName: dbo
+			expressionSource: 'DirectLake - Spare_Parts_Lakehouse'
+

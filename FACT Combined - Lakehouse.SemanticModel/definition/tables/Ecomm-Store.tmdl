@@ -1,0 +1,38 @@
+table Ecomm-Store
+	lineageTag: 072cd4df-331c-4b60-9d54-a1d6d55962d9
+	sourceLineageTag: [dbo].[Ecomm-Store]
+
+	column Payer
+		dataType: string
+		lineageTag: 26e4ae60-fae7-406f-a740-e34c962fb10d
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: cba10318-9dc2-4f99-8712-02ba30d48930
+		sourceLineageTag: Name
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ECOMM/ Store'
+		dataType: string
+		lineageTag: e0b04363-cc47-4976-9d68-fb470c0aa904
+		sourceLineageTag: ECOMM/ Store
+		summarizeBy: none
+		sourceColumn: ECOMM/ Store
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Ecomm-Store = entity
+		mode: directLake
+		source
+			entityName: Ecomm-Store
+			schemaName: dbo
+			expressionSource: 'DirectLake - BRZ_NA_SC_LH'
+

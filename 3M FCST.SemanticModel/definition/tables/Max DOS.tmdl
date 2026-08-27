@@ -1,0 +1,26 @@
+table 'Max DOS'
+	lineageTag: cd1c2f89-1b6b-4e0e-8d4e-a870bc5034bc
+
+	measure 'Max DOS Value' = SELECTEDVALUE('Max DOS'[Max DOS], 55)
+		formatString: 0
+		lineageTag: fdb9a104-e758-406c-8520-33e45a5532f6
+
+	column 'Max DOS'
+		formatString: 0
+		lineageTag: dc4ae39d-ce41-4b44-b41b-cd6064d1c579
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Max DOS' = calculated
+		mode: import
+		source = GENERATESERIES(0, 100, 1)
+
+	annotation PBI_Id = 31bef4d873d2427aa0dd43161dbd81eb
+

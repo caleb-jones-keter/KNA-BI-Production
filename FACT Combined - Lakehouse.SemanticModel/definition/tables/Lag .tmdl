@@ -1,0 +1,49 @@
+table 'Lag '
+	lineageTag: 47744302-72d3-49c0-92ac-e761392331e1
+
+	column 'Lag '
+		lineageTag: b7972aee-3034-4ab4-8fb4-eb8b3da9d125
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Lag  Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Lag  Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lag  Fields'
+		isHidden
+		lineageTag: b93e322b-b0f3-4b10-8e17-5f862216b58a
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Lag  Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lag  Order'
+		isHidden
+		formatString: 0
+		lineageTag: 38067d4e-935a-4700-b30c-6dd3835a3e3b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Lag ' = calculated
+		mode: import
+		source =
+				{
+				    ("_LAG 1 Forecast Accuracy %", NAMEOF('TEST EDB LAG FCST'[_LAG 1 Forecast Accuracy %]), 0),
+				    ("_LAG 2 Forecast Accuracy %", NAMEOF('TEST EDB LAG FCST'[_LAG 2 Forecast Accuracy %]), 1),
+				    ("_LAG 3 Forecast Accuracy %", NAMEOF('TEST EDB LAG FCST'[_LAG 3 Forecast Accuracy %]), 2)
+				}
+
+	annotation PBI_Id = 9fe698c294e94a9ebad3b512e0c9a416
+

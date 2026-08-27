@@ -1,0 +1,173 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "83c0e58f2cab765d4557",
+  "position": {
+    "x": 992,
+    "y": 112,
+    "z": 7000,
+    "height": 304,
+    "width": 640,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM USA CA Zips"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "DIM USA CA Zips.REGION",
+              "nativeQueryRef": "REGION"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "Shipment Number"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "FACT YS10N Base.Shipment Number",
+              "nativeQueryRef": "Number of Shipment",
+              "displayName": "Number of Shipment"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_AvgDistanceMiPerDelivery"
+                }
+              },
+              "queryRef": "FACT YS10N Base._AvgDistanceMiPerDelivery",
+              "nativeQueryRef": "AVG Delv Distance",
+              "displayName": "AVG Delv Distance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_Total Min Distance Cost No Rancho"
+                }
+              },
+              "queryRef": "FACT YS10N Base._Total Min Distance Cost No Rancho",
+              "nativeQueryRef": "_Total Min Distance Cost No Rancho",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT YS10N Base"
+                    }
+                  },
+                  "Property": "_Positive Qty"
+                }
+              },
+              "queryRef": "FACT YS10N Base._Positive Qty",
+              "nativeQueryRef": "_Positive Qty"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[_Total Min Distance Cost No Rancho]/[_Positive Qty]",
+                  "Name": "Avg Cost per Unit"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Avg Cost per Unit"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "NativeVisualCalculation": {
+                "Language": "dax",
+                "Expression": "[_Total Min Distance Cost No Rancho]/[_Positive Qty]",
+                "Name": "Avg Cost per Unit"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.5257070581959D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._AvgDistanceMiPerDelivery"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "133.40730115971945D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base._Total Min Distance Cost No Rancho"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.90939567882586D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT YS10N Base.Shipment Number"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

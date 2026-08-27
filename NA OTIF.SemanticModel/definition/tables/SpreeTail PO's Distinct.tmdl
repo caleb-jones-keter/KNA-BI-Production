@@ -1,0 +1,26 @@
+table 'SpreeTail PO''s Distinct'
+	lineageTag: 80e0ef73-a02c-4e8c-af1d-da13013ad9ba
+
+	column 'APIOrder ID'
+		dataType: string
+		lineageTag: 375dbfbd-eede-4114-bef0-733c6e7ea1f4
+		summarizeBy: none
+		sourceColumn: APIOrder ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SpreeTail PO''s Distinct' = m
+		mode: import
+		source =
+				let
+				    Source = #"SpreeTail Order Shipments",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"APIOrder ID"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each ([APIOrder ID] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

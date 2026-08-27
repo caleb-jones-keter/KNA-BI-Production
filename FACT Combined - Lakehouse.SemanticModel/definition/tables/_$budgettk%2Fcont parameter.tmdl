@@ -1,0 +1,48 @@
+table '_$budgettk/cont parameter'
+	lineageTag: 75cd7f4f-b2ba-485c-ac83-1f1b64faaec2
+
+	column Parameter
+		lineageTag: c1adbcff-bb22-4c3b-a5cc-28f3248ab9ab
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: e6a29449-ac3a-4cd3-91bf-0dece8302a12
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 06a0b22e-5a89-4c87-a618-00b0fa34b631
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '_$budgettk/cont parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("Container", NAMEOF('FACT EDB Budget- QTY'[_$vartobudgetcont]), 0),
+				    ("Truck", NAMEOF('FACT EDB Budget- QTY'[_$vartobudgettk]), 1)
+				}
+
+	annotation PBI_Id = 8e52a930a02c4b5f8a8e124a26063217
+

@@ -1,0 +1,337 @@
+table 'DIM Date _2_'
+	lineageTag: 93377252-8ab9-4e78-98be-a57d77a250fc
+	sourceLineageTag: [dbo].[DIM Date _2_]
+
+	measure _ShowWeekfilter2 = ```
+			
+			VAR CurrentWeek = WEEKNUM(TODAY(), 1)  -- Sunday start
+			VAR WeekInContext = SELECTEDVALUE('DIM Date _2_'[Week of Year])
+			RETURN
+			IF(
+			    WeekInContext <= CurrentWeek,
+			    1,
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 275be167-6b45-4a75-b1fd-8eade32f699e
+
+		changedProperty = Name
+
+	measure _ShowYearfilter2 = ```
+			
+			VAR CurrentYear = YEAR(TODAY())
+			VAR YearInContext =
+			    SELECTEDVALUE('DIM Date _2_'[Year])  -- returns the year if only one is in context
+			RETURN
+			IF(
+			    YearInContext = CurrentYear ||
+			    YearInContext = CurrentYear - 1,
+			    1,
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: b09e5734-2191-4a38-a31f-27c4babeeb45
+
+		changedProperty = Name
+
+	column 'Full Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 01af3a16-656b-48ec-9994-a51aa75b35b2
+		sourceLineageTag: Full Date
+		summarizeBy: none
+		sourceColumn: Full Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date Formatted'
+		dataType: string
+		lineageTag: 8728e05f-8ec0-4f7d-ba0c-8721bfe7b5b8
+		sourceLineageTag: Full Date Formatted
+		summarizeBy: none
+		sourceColumn: Full Date Formatted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 17173f98-7e2b-4350-8463-8ab601d181bd
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 14c1b244-9d52-4340-9ae5-431cc2380422
+		sourceLineageTag: Month
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 89b21ec7-1472-433c-843c-2bde3e15fbbf
+		sourceLineageTag: Month Name
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: double
+		lineageTag: 4a33b428-b670-4e0a-8780-a1dc8b6dd12e
+		sourceLineageTag: Quarter
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: d920efd4-e7c3-4842-a52d-a2cecdc07a47
+		sourceLineageTag: Week of Year
+		summarizeBy: none
+		sourceColumn: Week of Year
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: a254d642-5e26-4046-8cfc-72653363a5fc
+		sourceLineageTag: Week of Month
+		summarizeBy: none
+		sourceColumn: Week of Month
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: double
+		lineageTag: 488d4999-86a0-4cb9-be35-7c9b6e9636e8
+		sourceLineageTag: Day
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day of Week'
+		dataType: double
+		lineageTag: cac0d09e-0f78-4b95-b3f9-0f8088a7e187
+		sourceLineageTag: Day of Week
+		summarizeBy: none
+		sourceColumn: Day of Week
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day of Year'
+		dataType: double
+		lineageTag: 2153bd30-4825-43fe-bd67-fc52f2b0fe4c
+		sourceLineageTag: Day of Year
+		summarizeBy: none
+		sourceColumn: Day of Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: f1ed4b57-ccf8-4cb4-b5a0-4ae54af9601f
+		sourceLineageTag: Day Name
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 557a9f61-b8f1-439f-b33b-efb3b8b63ae5
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4fba2d13-8bb2-46cb-a99e-dc07eb21864c
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtraction1
+		dataType: int64
+		formatString: 0
+		lineageTag: 98ec8689-6531-4cdb-8b40-59993dec52a2
+		sourceLineageTag: Subtraction1
+		summarizeBy: none
+		sourceColumn: Subtraction1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Future?
+		dataType: string
+		lineageTag: 1271d211-b573-497f-bea9-dc5d1c12c483
+		sourceLineageTag: Future?
+		summarizeBy: none
+		sourceColumn: Future?
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4ffb1a9f-142b-4977-ae00-50c2ffc408f9
+		sourceLineageTag: FOM
+		summarizeBy: none
+		sourceColumn: FOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtraction
+		dataType: int64
+		formatString: 0
+		lineageTag: d20c5431-21bb-4460-a314-4fb9d88ba0bc
+		sourceLineageTag: Subtraction
+		summarizeBy: none
+		sourceColumn: Subtraction
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7c8bb1aa-6691-4da0-99ba-760844e6a454
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date - SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb8fe86d-0095-4ec0-bc14-d0466e8a70fd
+		sourceLineageTag: Full Date - SOW
+		summarizeBy: none
+		sourceColumn: Full Date - SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW>_TODAY
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6d4e64ba-06f4-4f6e-ab2a-16e5b169cc53
+		sourceLineageTag: SOW>_TODAY
+		summarizeBy: none
+		sourceColumn: SOW>_TODAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column '6 week filter'
+		dataType: string
+		lineageTag: 010f8cf0-b56a-47cb-994d-0a7e41c6ecf1
+		sourceLineageTag: 6 week filter
+		summarizeBy: none
+		sourceColumn: 6 week filter
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: string
+		lineageTag: c2370df1-d8c2-4b99-82fc-dd34e80ed348
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column InRange
+		dataType: string
+		lineageTag: d56845ca-7016-4ff9-af24-e829b47b9260
+		sourceLineageTag: InRange
+		summarizeBy: none
+		sourceColumn: InRange
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today FOM'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 85baceda-5fa6-4c9c-95a7-2be546bfb0b2
+		sourceLineageTag: Today FOM
+		summarizeBy: none
+		sourceColumn: Today FOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date Next Year Adjusted'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9fda45d4-aeca-4774-bddf-b9a92117716b
+		sourceLineageTag: Full Date Next Year Adjusted
+		summarizeBy: none
+		sourceColumn: Full Date Next Year Adjusted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NYA SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f512ef20-8378-4240-a6c2-7eb3550f91b5
+		sourceLineageTag: NYA SOW
+		summarizeBy: none
+		sourceColumn: NYA SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NYA Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 48be08af-4e71-4927-a339-f1594b4aef1e
+		sourceLineageTag: NYA Year
+		summarizeBy: none
+		sourceColumn: NYA Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NYA Week Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b8f68a3-e7ee-4a73-9560-d01274a1e6fb
+		sourceLineageTag: NYA Week Of Year
+		summarizeBy: none
+		sourceColumn: NYA Week Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Date _2_' = entity
+		mode: directLake
+		source
+			entityName: DIM Date _2_
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

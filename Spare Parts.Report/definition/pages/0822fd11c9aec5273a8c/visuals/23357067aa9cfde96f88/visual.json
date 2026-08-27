@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "23357067aa9cfde96f88",
+  "position": {
+    "x": 16,
+    "y": 0,
+    "z": 0,
+    "height": 592,
+    "width": 224,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finished Goods EDB"
+                    }
+                  },
+                  "Property": "Material_Country_Key"
+                }
+              },
+              "queryRef": "Finished Goods EDB.Material_Country_Key",
+              "nativeQueryRef": "Material_Country_Key"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Finished Goods EDB"
+                  }
+                },
+                "Property": "Material_Country_Key"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

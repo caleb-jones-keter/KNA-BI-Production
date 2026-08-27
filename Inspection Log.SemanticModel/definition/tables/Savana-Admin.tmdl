@@ -1,0 +1,159 @@
+table Savana-Admin
+	lineageTag: 9928a662-6b46-4921-a8b1-8a79d580233a
+
+	column FileSystemObjectType
+		dataType: string
+		lineageTag: 1e96fdd6-e4a9-4e63-b48e-312219431750
+		summarizeBy: none
+		sourceColumn: FileSystemObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 23a7116a-04f1-4907-abe5-751a2f5ba364
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUri
+		dataType: string
+		lineageTag: 600bdafd-8ad8-47cf-8f41-3a66b09720f9
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUri
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUrl
+		dataType: string
+		lineageTag: f9118b96-9a57-4b30-805d-d81523d9edac
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentTypeId
+		dataType: string
+		lineageTag: 0d1cf595-b186-471f-bd05-a892a2894ab7
+		summarizeBy: none
+		sourceColumn: ContentTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 695d8303-8dd1-455a-9f38-1d982aac4b94
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__ColorTag
+		dataType: string
+		lineageTag: b973c7a5-a94a-4c52-8ddf-8ecbbd77b750
+		summarizeBy: none
+		sourceColumn: OData__ColorTag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComplianceAssetId
+		dataType: string
+		lineageTag: ec3af8ee-48d0-49f0-9f0c-a7d55f315385
+		summarizeBy: none
+		sourceColumn: ComplianceAssetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column AdminUserId
+		dataType: string
+		lineageTag: 06bd84d6-70a3-49dc-a269-da1ce9d002c2
+		summarizeBy: none
+		sourceColumn: AdminUserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column AdminUserStringId
+		dataType: string
+		lineageTag: 2ff59352-3e95-41a4-b6ef-75d41d52b62e
+		summarizeBy: none
+		sourceColumn: AdminUserStringId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: a7af8e6e-72ca-43e8-a3e8-474d9362a8aa
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: string
+		lineageTag: 052166df-9590-4f33-b622-ad605450cb2b
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		lineageTag: 7a6d8d17-f51f-457a-959d-e761b31374c6
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column AuthorId
+		dataType: string
+		lineageTag: 0ab3dba4-043b-4f63-b191-650cef4a8303
+		summarizeBy: none
+		sourceColumn: AuthorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditorId
+		dataType: string
+		lineageTag: d327c746-7260-4b60-a00a-e9c08a1e6727
+		summarizeBy: none
+		sourceColumn: EditorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__UIVersionString
+		dataType: string
+		lineageTag: e0e15b81-a9b3-44a3-b052-73744c066864
+		summarizeBy: none
+		sourceColumn: OData__UIVersionString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: 8c13ecbb-db33-4843-9c0d-e586544678dd
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUID
+		dataType: string
+		lineageTag: 7d8fbcaa-13e4-4a5f-969c-c882b6c9906a
+		summarizeBy: none
+		sourceColumn: GUID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Savana-Admin = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer/", [ApiVersion = 15]),
+				    #"f01225da-76b1-4a8f-952c-291e9fc73fbf" = Source{[Id="f01225da-76b1-4a8f-952c-291e9fc73fbf"]}[Items],
+				    #"Renamed Columns" = Table.RenameColumns(#"f01225da-76b1-4a8f-952c-291e9fc73fbf",{{"ID", "ID.1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

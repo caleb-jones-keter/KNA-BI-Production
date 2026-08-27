@@ -1,0 +1,53 @@
+table Qtr_BridgeTotals
+	lineageTag: ee4cc5cd-0265-4c8a-88bc-0cedcf2cd8ad
+
+	column Quarter
+		dataType: string
+		lineageTag: be39e6ea-7080-4e0b-8609-3fb03e2ecfe2
+		summarizeBy: none
+		sourceColumn: Quarter
+		sortByColumn: Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qtr_Name
+		dataType: string
+		lineageTag: 3e39b2de-eb2a-4869-ab56-0c45d93277c5
+		summarizeBy: none
+		sourceColumn: Qtr_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 36799615-0ada-47bd-8f10-44f868edf34b
+		summarizeBy: sum
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Qtr_BridgeTotals = m
+		mode: import
+		queryGroup: TotalsFirstWorkaround
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCiwpUjBU0oHTRkqxOhBRI6goiDaGixpDRUG0CVzUBCoKok3BoiH5JYk5SOYaYogaYRU1xipqAhGNBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Quarter = _t, Qtr_Name = _t, Sort = _t]),
+				    #"Replaced Value" = Table.ReplaceValue(Source,"Qtr 1","Q1",Replacer.ReplaceText,{"Quarter"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Qtr 2","Q2",Replacer.ReplaceText,{"Quarter"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","Qtr 3","Q3",Replacer.ReplaceText,{"Quarter"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","Qtr 4","Q4",Replacer.ReplaceText,{"Quarter"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value3",{{"Quarter", type text}, {"Qtr_Name", type text}, {"Sort", Int64.Type}}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Changed Type","Qtr 1","Q1",Replacer.ReplaceText,{"Qtr_Name"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","Qtr 2","Q2",Replacer.ReplaceText,{"Qtr_Name"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","Qtr 3","Q3",Replacer.ReplaceText,{"Qtr_Name"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Qtr 4","Q4",Replacer.ReplaceText,{"Qtr_Name"})
+				in
+				    #"Replaced Value7"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

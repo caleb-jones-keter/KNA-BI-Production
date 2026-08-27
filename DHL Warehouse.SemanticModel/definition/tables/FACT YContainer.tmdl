@@ -1,0 +1,540 @@
+table 'FACT YContainer'
+	lineageTag: 481dae02-5fd6-40a8-bd6d-d482a8489124
+	sourceLineageTag: [dbo].[FACT YContainer]
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: b31f3e98-73d3-49f4-8e91-9a5a987d3640
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Container
+		dataType: string
+		lineageTag: 34ddff25-da84-483c-8c3a-88cd27655774
+		sourceLineageTag: Container
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 9895fc29-b3ef-4fb2-a1d6-136464b9813d
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e8bc141-c6e5-46a1-b4fe-63233f9d2a97
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days in Country'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d7fb5c5-5087-418b-8cda-e35eeebb9c03
+		sourceLineageTag: Days in Country
+		summarizeBy: sum
+		sourceColumn: Days in Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days In Place'
+		dataType: int64
+		formatString: 0
+		lineageTag: 29baf04c-1d69-49a1-8f5a-0054fd6146aa
+		sourceLineageTag: Days In Place
+		summarizeBy: sum
+		sourceColumn: Days In Place
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days Bucket'
+		dataType: string
+		lineageTag: 082a7a8a-2fe7-43a2-a181-38c7cded270a
+		sourceLineageTag: Days Bucket
+		summarizeBy: none
+		sourceColumn: Days Bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: 0241e0e0-0bdd-4a54-bd21-94698ef1c497
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location Name'
+		dataType: string
+		lineageTag: c6fd5daf-637b-48da-a259-7b7f784ae6c2
+		sourceLineageTag: Storage Location Name
+		summarizeBy: none
+		sourceColumn: Storage Location Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Price'
+		dataType: double
+		lineageTag: 47d0a324-6373-4d42-8be1-5f1b45976397
+		sourceLineageTag: Storage Price
+		summarizeBy: sum
+		sourceColumn: Storage Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reception Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d5dcff19-d0d9-4cfc-b762-63def136e933
+		sourceLineageTag: Reception Date
+		summarizeBy: none
+		sourceColumn: Reception Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inb.delivery'
+		dataType: string
+		lineageTag: 8ca0c86e-d0c5-4856-833b-be2d2fcea647
+		sourceLineageTag: Inb.delivery
+		summarizeBy: none
+		sourceColumn: Inb.delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expected PGR'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a5ee5965-de45-4bc9-8967-d58779979a8c
+		sourceLineageTag: Expected PGR
+		summarizeBy: none
+		sourceColumn: Expected PGR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e0a2030-2ce0-4253-bc5f-a5d1619525f8
+		sourceLineageTag: Customer
+		summarizeBy: sum
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 33dd23a5-2fad-4144-a51d-239e13179eb0
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ad93f2bf-b692-4672-879a-cf1a28129404
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6a84412-fbf5-45a0-b78f-2060afdf562a
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: c75d2c48-1ea4-49ee-a491-f896bd227b05
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SLO Combined'
+		dataType: string
+		lineageTag: e950d92b-b1ee-4a28-a6aa-4c2c7df38730
+		sourceLineageTag: SLO Combined
+		summarizeBy: none
+		sourceColumn: SLO Combined
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target DOS'
+		dataType: int64
+		formatString: 0
+		lineageTag: a46a52a7-09a6-4a31-ab84-214595d4f9a2
+		sourceLineageTag: Target DOS
+		summarizeBy: sum
+		sourceColumn: Target DOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_YS10N DHL 7 PQ'
+		dataType: double
+		lineageTag: 872a1ffd-b068-481c-b6bd-fa9a9ad12ce0
+		sourceLineageTag: _YS10N DHL 7 PQ
+		summarizeBy: sum
+		sourceColumn: _YS10N DHL 7 PQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_P1 Marker PQ'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7605688e-b9c0-4c55-b804-39fdff431f5b
+		sourceLineageTag: _P1 Marker PQ
+		summarizeBy: none
+		sourceColumn: _P1 Marker PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_P2 Marker PQ'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a88899ab-0c03-4819-a551-acdb051f9b4a
+		sourceLineageTag: _P2 Marker PQ
+		summarizeBy: none
+		sourceColumn: _P2 Marker PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_P3 Marker PQ'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eaee6d45-ef31-4d3b-a737-33561c240b0e
+		sourceLineageTag: _P3 Marker PQ
+		summarizeBy: none
+		sourceColumn: _P3 Marker PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_P4 Marker PQ'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3e1493a3-0005-44a6-905a-1f4e5965144b
+		sourceLineageTag: _P4 Marker PQ
+		summarizeBy: none
+		sourceColumn: _P4 Marker PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Next Move Date PQ'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8a914708-48c1-4023-b7d9-af4fff78264d
+		sourceLineageTag: _Next Move Date PQ
+		summarizeBy: none
+		sourceColumn: _Next Move Date PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Priority PQ'
+		dataType: string
+		lineageTag: 20155b78-368a-45f2-b4ab-b8f17ba94919
+		sourceLineageTag: _Priority PQ
+		summarizeBy: none
+		sourceColumn: _Priority PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DHL + YARD Qty'
+		dataType: double
+		lineageTag: 99533a23-8795-47fe-b2b9-8f40319bcedf
+		sourceLineageTag: DHL + YARD Qty
+		summarizeBy: sum
+		sourceColumn: DHL + YARD Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ADS NUMERATOR MAX'
+		dataType: double
+		lineageTag: 87f63521-a965-4b9a-a7e1-ce4145c6c1d7
+		sourceLineageTag: ADS NUMERATOR MAX
+		summarizeBy: sum
+		sourceColumn: ADS NUMERATOR MAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DHL + YARD DOS'
+		dataType: double
+		lineageTag: 87acb7c6-bdcb-44b8-ae24-7489b37b786e
+		sourceLineageTag: DHL + YARD DOS
+		summarizeBy: sum
+		sourceColumn: DHL + YARD DOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Move DOS'
+		dataType: double
+		lineageTag: e54a4bde-198c-45e4-8613-49ac1bcce473
+		sourceLineageTag: Move DOS
+		summarizeBy: sum
+		sourceColumn: Move DOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _Counter
+		dataType: double
+		formatString: 0
+		lineageTag: 916679b4-54d3-4e49-bb2c-90f210253c17
+		sourceLineageTag: _Counter
+		summarizeBy: sum
+		sourceColumn: _Counter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target DOS 15'
+		dataType: int64
+		formatString: 0
+		lineageTag: ac39df46-7bb6-4f0a-85c3-0914f4779682
+		sourceLineageTag: Target DOS 15
+		summarizeBy: sum
+		sourceColumn: Target DOS 15
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Init Sales Pull Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 13a73846-5c28-423d-8316-e0c57e1f0b8f
+		sourceLineageTag: Init Sales Pull Date
+		summarizeBy: none
+		sourceColumn: Init Sales Pull Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Pull Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eec1ed9b-0193-4cd4-a574-8a7003399670
+		sourceLineageTag: Sales Pull Date
+		summarizeBy: none
+		sourceColumn: Sales Pull Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Init DOS Pull Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b32a0f9b-ac9d-4beb-9bd7-617756126140
+		sourceLineageTag: Init DOS Pull Date
+		summarizeBy: none
+		sourceColumn: Init DOS Pull Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DOS Pull Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 829eeb50-4c87-4a7f-b875-8d21791d7d5b
+		sourceLineageTag: DOS Pull Date
+		summarizeBy: none
+		sourceColumn: DOS Pull Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Depot Age Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 58e2c0d2-9f9b-4cf6-96bf-232c7cc202d5
+		sourceLineageTag: Depot Age Date
+		summarizeBy: none
+		sourceColumn: Depot Age Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Init Next Move Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bad8a520-482b-4b5c-9f6a-11a765d3ef06
+		sourceLineageTag: Init Next Move Date
+		summarizeBy: none
+		sourceColumn: Init Next Move Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Move Type'
+		dataType: string
+		lineageTag: 900a5921-02bc-4d33-b76f-1dca9826ffaf
+		sourceLineageTag: Move Type
+		summarizeBy: none
+		sourceColumn: Move Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtraction
+		dataType: double
+		lineageTag: 337f95b5-80d7-4954-86ce-1af0efbd8343
+		sourceLineageTag: Subtraction
+		summarizeBy: sum
+		sourceColumn: Subtraction
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Priority & Move Type'
+		dataType: string
+		lineageTag: 6b4abcd0-d889-4f04-b0d1-664090c32219
+		sourceLineageTag: _Priority & Move Type
+		summarizeBy: none
+		sourceColumn: _Priority & Move Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 59f3e6bf-efb0-4f22-abfc-88977198cc4a
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 8bd9e5b1-e163-4737-bb10-10446915d224
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 6451bb39-2125-4bcd-b3b6-4f780f6282f5
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_P1 Container PQ'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 343ab2dc-fce8-4af5-9a07-e12d212c71c8
+		sourceLineageTag: _P1 Container PQ
+		summarizeBy: none
+		sourceColumn: _P1 Container PQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Open Order DOS'
+		dataType: double
+		lineageTag: 8dbf3f44-0610-4109-a437-c22119bc12db
+		sourceLineageTag: Open Order DOS
+		summarizeBy: sum
+		sourceColumn: Open Order DOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ADS NUMERATOR'
+		dataType: double
+		lineageTag: 65687210-4fd6-4ad3-8323-8135129263c1
+		sourceLineageTag: ADS NUMERATOR
+		summarizeBy: sum
+		sourceColumn: ADS NUMERATOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM Product.Cont_Qty'
+		dataType: double
+		lineageTag: e9fe61ba-2fb9-47c6-a515-95c66dadf20d
+		sourceLineageTag: DIM Product.Cont_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM Product.ECOM Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 08b64c1b-2d8c-47b9-b4b1-4b46b96a427b
+		sourceLineageTag: DIM Product.ECOM Flag
+		summarizeBy: none
+		sourceColumn: DIM Product.ECOM Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ECOM Half Qty'
+		dataType: double
+		lineageTag: adb01fe3-b79c-4085-963a-602f1a2fab00
+		sourceLineageTag: ECOM Half Qty
+		summarizeBy: sum
+		sourceColumn: ECOM Half Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ADD TO OPEN ORDERS'
+		dataType: double
+		lineageTag: 0c0f3f26-0a33-44a6-beb5-dbccbbf62fd3
+		sourceLineageTag: ADD TO OPEN ORDERS
+		summarizeBy: sum
+		sourceColumn: ADD TO OPEN ORDERS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_YS10N DHL 7 PQog'
+		dataType: double
+		lineageTag: e9774172-b2bf-435b-978e-dc50b8603d9c
+		sourceLineageTag: _YS10N DHL 7 PQog
+		summarizeBy: sum
+		sourceColumn: _YS10N DHL 7 PQog
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT YContainer' = entity
+		mode: directLake
+		source
+			entityName: FACT YContainer
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

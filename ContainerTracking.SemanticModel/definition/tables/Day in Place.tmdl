@@ -1,0 +1,49 @@
+table 'Day in Place'
+	lineageTag: 0125afce-f709-4091-8223-745607a1ccd5
+
+	column Container
+		dataType: string
+		lineageTag: c6e8a1f0-ad7f-47fb-b481-0e2105061064
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days In Place'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9127951b-6776-43f2-b8d0-8b21290e815e
+		summarizeBy: sum
+		sourceColumn: Days In Place
+
+		annotation SummarizationSetBy = Automatic
+
+	column Buckets
+		dataType: string
+		lineageTag: 0bffab6c-dfaa-4782-82a9-740da3b6b9c2
+		summarizeBy: none
+		sourceColumn: Buckets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bucket 2'
+		dataType: string
+		lineageTag: f5c266ce-d4e8-4e97-bebf-6aa8c2c328b7
+		summarizeBy: none
+		sourceColumn: Bucket 2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Day in Place' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Jons%20Folder/Buckets.xlsx"), null, true),
+				    #"Day in Place_Sheet" = Source{[Item="Day in Place",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Day in Place_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Container", type text}, {"Days In Place", Int64.Type}, {"Buckets", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

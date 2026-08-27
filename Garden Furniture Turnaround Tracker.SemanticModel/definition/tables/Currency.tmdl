@@ -1,0 +1,25 @@
+table Currency
+	lineageTag: d8b8ec1c-9716-4390-a6fa-ed9ec1498fbc
+
+	column Currency
+		dataType: string
+		lineageTag: 30d0317e-73b3-412b-b478-013d178ff329
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Currency = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wci0tyleK1YlWCg12UYqNBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Currency = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Currency", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

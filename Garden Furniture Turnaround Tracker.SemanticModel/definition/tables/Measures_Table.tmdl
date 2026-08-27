@@ -1,0 +1,491 @@
+table Measures_Table
+	lineageTag: 17807152-247a-4e8b-985f-8c8c728490c5
+
+	measure RTP_pct_Budget = DIVIDE(SUM(RTP_CurrentYear[Total RTP EUR(2026)]),SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4bd962dc-8d73-490d-b451-3171ae0039f4
+
+	measure Orders_pct_Budget = DIVIDE([NSplusNetOrders26UNADJ],SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1397e7b-a38a-431b-bf95-74d88381dac8
+
+	measure GtN = 1-DIVIDE([NSplusNetOrders26UNADJ],[GSplusGrossOrders26UNADJ])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1d202c14-2c3b-4acc-bbed-1e334d77ba0c
+
+	measure DC_pct_budget26 = DIVIDE(SUM(Budget_Sales_CurrentYear[Direct Contribution]),SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0%;-0%;0%
+		lineageTag: e9178bfe-0f00-4a99-8f1b-5e2ed548fd41
+
+	measure DC_Pct_orders = DIVIDE(SUM(Open_CurrentYear[Direct Contribution Orders(2026)]),SUM(Open_CurrentYear[Net Orders(2026)]))
+		formatString: 0%;-0%;0%
+		lineageTag: 9d8444e2-35ec-4e4c-a0b7-4947e2bf786e
+
+	measure DC_pct_2025 = DIVIDE(SUM(Invoiced_2025[Direct Contribution(2025)]),SUM(Invoiced_2025[Net  Sales(2025)]))
+		formatString: 0%;-0%;0%
+		lineageTag: 41e22740-b478-4740-b481-0c61f27e74a0
+
+	measure EBITDA_pct_2025 = DIVIDE(SUM(Invoiced_2025[EBITDA(2025)]),SUM(Invoiced_2025[Net  Sales(2025)]))
+		formatString: 0%;-0%;0%
+		lineageTag: bae819c7-f5c6-4b34-8209-8fbeab6fe7a3
+
+	measure GtN_budget = 1-DIVIDE(SUM(Budget_Sales_CurrentYear[Net Sales]),SUM(Budget_Sales_CurrentYear[Gross Sales]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: cb5460a3-888a-479c-97ca-95c40768988f
+
+	measure GtN_2025 = 1-DIVIDE(SUM(Invoiced_2025[Net  Sales(2025)]),SUM(Invoiced_2025[Gross Sales(2025)]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: df0c77a2-d62f-4e6d-9edd-9c78d41f9e00
+
+	measure NSBudgetremainder26 = IF(SUM(Budget_Sales_CurrentYear[Net Sales])-[NSplusNetOrders26UNADJ]<0,0,SUM(Budget_Sales_CurrentYear[Net Sales])-[NSplusNetOrders26UNADJ])
+		lineageTag: 802e226c-90ef-4db9-9a49-e1eed5488a0e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure OEE% = [Quality_CurrentYR]*[Performance%CurrentYR]*[Availability_CurrentYR]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7a166bfc-cf4e-4b8d-ab89-de64e9bdae72
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalMultiplication"
+				}
+
+		changedProperty = FormatString
+
+	measure PEE% = [Quality_CurrentYR] * [Performance%CurrentYR]* [AvailabilityPEE_Curr_YR]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3d00005e-2377-420c-b9aa-2afc05cdcb01
+
+	measure Prob_pct = DIVIDE(SUM('Probability'[Net Sales - Budget recaclulated]),SUM('Probability'[Net Sales BGT 2026]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ccc084e3-eb5a-483d-9c4c-f8d1c2d71bf0
+
+	measure Quality_CurrentYR = DIVIDE(SUM('Ops_CurrentYear'[Net Production(2026)]),SUM('Ops_CurrentYear'[Gross Production(2026)]))
+		formatString: 0
+		lineageTag: 72220750-c258-4645-9a3f-4e702b698acf
+
+	measure Availability_CurrentYR = DIVIDE(SUM('Ops_CurrentYear'[Work Time(2026)]),SUM('Ops_CurrentYear'[Work Time(2026)])+SUM('Ops_CurrentYear'[Lost Time(2026)]))
+		lineageTag: 6a45aba3-2b73-486f-8e70-923e4d770df3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AvailabilityPEE_Curr_YR = DIVIDE(sum('Ops_CurrentYear'[Work Time(2026)]),SUM('Ops_CurrentYear'[Work Time(2026)])+(SUM('Ops_CurrentYear'[Lost Time(2026)])-SUM('Ops_CurrentYear'[PP Stop(2026)])))
+		formatString: 0
+		lineageTag: 2216cfd4-f448-4240-8b68-eab4a33a4eb5
+
+	measure Performance%CurrentYR = DIVIDE([Time_sec_kg],DIVIDE(SUM(Ops_CurrentYear[Work Time(2026)])*3600,SUM(Ops_CurrentYear[RM Weight KG (Manufacture)(2026)])))
+		formatString: 0
+		lineageTag: a35cdc96-c663-4c17-8c47-f031aa53c533
+
+	measure Time_sec_kg = DIVIDE(SUM('Ops_CurrentYear'[Total Seconds]),SUM('Ops_CurrentYear'[RM Weight KG (Manufacture)(2026)]))
+		formatString: 0
+		lineageTag: dbb3a0eb-9b2c-45a3-9c3b-3d812d09278a
+
+	measure Scrap_CurrentYR = DIVIDE(SUM(Ops_CurrentYear[Prod Scrap Weight(2026)]),SUM('Ops_CurrentYear'[RM Weight KG (Manufacture)(2026)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1dc8ea63-7479-47fe-b084-d8c63ed1d1eb
+
+	measure OEEvsBudget = [OEE%]-[OEE_Total26B]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b3294906-b1f3-42ec-a079-bee2c810b8ba
+
+	measure PEEvsBudget = [PEE%]-[PEE_Total26B]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 82f57349-e7af-4f72-857f-4c802f8f9e9a
+
+	measure 'KGSProduced vs. Budget' = SUM('Ops_CurrentYear'[Net Production (RM KG)(2026)])-SUM(Budget26_Ops[Net Production])
+		formatString: 0
+		lineageTag: 5a2f0fa1-77de-4225-9cfc-e565f49e0880
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure DC%vsBudget = [DCInvoiced_Orders%_26_unADJ]-[DC_pct_budget26]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 57651f4e-149e-4149-8590-a4714fd57627
+
+	measure DC_Pctof_Budget26 = DIVIDE([DCInvoiced_Orders_26_ADJ],SUM(Budget_Sales_CurrentYear[Direct Contribution]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1b4cc58d-e57d-4a8d-be20-a6c625f50916
+
+	measure NSperKG25 = DIVIDE(SUM(Invoiced_2025[Net  Sales(2025)]),SUM(Invoiced_2025[RM Weight Sold (2025)]))
+		lineageTag: f1ce54d9-b748-46d8-8bfa-21fe77ee996c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EBITDA%_25_ADJ = DIVIDE(SUM(Invoiced_Sales_2025[EBITDA ADJ M(2025)]),SUM(Invoiced_Sales_2025[Net Sales ADJ M(2025)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6564dfea-08e4-40de-8bef-44bdcc0fb15b
+
+	measure OCMA_NS_Remainder = SUM(NPD_Projects[Net Sales on OCMA])-[NSorders25_26]-[Invoiced24-26]
+		lineageTag: 7a7b206f-1e17-4793-9326-9c97fc389ee7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CustCount = DISTINCTCOUNT(InvoicedOrdersCombineCY[Code:Payer (c1)])
+		formatString: 0
+		lineageTag: 5cba67ae-4b42-4cb9-8713-2e2978d40653
+
+	measure SKUCount = DISTINCTCOUNT(InvoicedOrdersCombineCY[Code:SKU Level (c2)])
+		formatString: 0
+		lineageTag: 81a51f8d-8c88-441a-b3a6-ddda1c80777a
+
+	measure AP26_vs_B = SUM(Adj_Metrics_Plant[Total A&P ADJ M(2026)])-SUM(Budget_Finance_CurrentYear[Total A&P])
+		lineageTag: c6ecd436-3585-44db-96e1-7b10cc794489
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SGA26_vs_B_% = DIVIDE([SGA26_vs_B],SUM(Budget_Finance_CurrentYear[Total SG&A]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2ee2b8b7-994e-4772-a4a9-5926831afa45
+
+	measure SGA26_vs_B = SUM(Adj_Metrics_Plant[Total SG&A ADJ M(2026)])-SUM(Budget_Finance_CurrentYear[Total SG&A])
+		lineageTag: fe221186-23e5-4d3a-aad5-752b427fe98f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RD26_vs_B = SUM(Adj_Metrics_Plant[Total R&D ADJ M(2026)])-SUM(Budget_Finance_CurrentYear[Total R&D])
+		lineageTag: 88362a66-64d9-4dd4-83aa-86802e142cf6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RD26_vs_B_% = DIVIDE([RD26_vs_B],SUM(Budget_Finance_CurrentYear[Total R&D]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a6cd6e0a-17f8-4581-ba84-160bdda55b45
+
+	measure AP26_vs_B_% = DIVIDE([AP26_vs_B],sum(Budget_Finance_CurrentYear[Total A&P]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 65195733-683c-489a-9fed-6f35a61a2608
+
+	measure CR26_vs_B = SUM(Adj_Metrics_Plant[Total C&R ADJ M(2026)])-SUM(Budget_Finance_CurrentYear[Total C&R])
+		lineageTag: d9a260ca-5116-47e8-89e0-b659fe07b303
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CR26_vs_B_% = DIVIDE([CR26_vs_B],SUM(Budget_Finance_CurrentYear[Total C&R]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 048f14d5-2627-4eaa-b1c1-053edf673f6a
+
+	measure CostperKGProduced_25 = DIVIDE([ManufactureCost25],SUM(Scorecard_2025[Total Scorecard Wgt]))
+		formatString: 0.00
+		lineageTag: b99f3249-616c-47f5-992e-e99cc1e59848
+
+	measure ManufactureCost25 = (SUM(Scorecard_2025[Variable Cost of Production FI(2025)])+sum(Scorecard_2025[Fixed Costs of Production FI(2025)]))*-1
+		lineageTag: 3abbfb99-d30e-4079-8121-74e535632bcf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DLperKGProduced_25 = (DIVIDE(SUM(Manuf_Scorecard25[Direct Labor Expenses FI]),SUM(Manuf_Scorecard25[Net Production (RM KG)])))*-1
+		lineageTag: 11fb75b8-dcea-4129-8d7b-3bfd2b81425c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure OEE_Total26B = CALCULATE(DIVIDE(SUM(Budget26_Ops[OEE subtotal]),SUM(Budget26_Ops[Net Production])),DateTable[Year]=2026)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4ce8c352-489f-4dba-a2ce-c0228ec88e93
+
+	measure PEE_Total26B = CALCULATE(DIVIDE(SUM(Budget26_Ops[PEE subtotal]),SUM(Budget26_Ops[Net Production])),DateTable[Year]=2026)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 43a33c50-eacf-477e-bfc6-433fd8011941
+
+	measure NetproductionB26 = CALCULATE(SUM(Budget26_Ops[Net Production]),YEAR(Budget26_Ops[Months])=2026)
+		lineageTag: 8c8d2dff-ef9f-4605-b943-1a8bb88e26e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Paybacktime = DIVIDE(sum('Capex 2026 F&P EU'[Total Investment Request]),SUM('Capex 2026 F&P EU'[Annual Profit/savings]))*12
+		lineageTag: c7c3c95d-441c-4c15-a641-8abb19cc3334
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CapexProfit = DIVIDE(SUM('Capex 2026 F&P EU'[Annual Profit/savings]),SUM('Capex 2026 F&P EU'[Annual Net Sales (Net)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e84c1acd-3846-4db7-b3cc-40b71d10180c
+
+	measure PnL25NS% = DIVIDE(sum(PnL_2025[2025ACT]),sum(Invoiced_2025[Net Sales ADJ M(2025)]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2b013e4b-a125-44f1-a584-5ba73d8790ad
+
+	measure PnL25KG% = DIVIDE(sum(PnL_2025[2025ACT]),sum(Invoiced_2025[RM Weight Sold (2025)]))
+		formatString: #,0.00
+		lineageTag: 33592519-80c3-4015-80f7-5984c6f8e1f3
+
+	measure PnLACtoBU = SUM(PnL_CurrentYear[2026ACT])-sum(PnL_Budget_CurrentYear[2026B])
+		lineageTag: e9aa7305-7dd6-46fa-a4bf-092318a05d10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PnLACtoBU% = DIVIDE([PnLACtoBU],sum(PnL_Budget_CurrentYear[2026B]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0022ec8b-e4ac-4475-9d3a-650a2b339046
+
+	measure PnLACtoLY = SUM(PnL_CurrentYear[2026ACT])-sum(PnL_2025[2025ACT])
+		lineageTag: 1fa81673-a0ab-437a-b8ce-f332fadf5034
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PnLACtoLY% = DIVIDE([PnLACtoLY],sum(PnL_2025[2025ACT]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f9e7ea6b-bec4-4d36-908f-b5219c35b276
+
+	measure NSorders25_26 = SUM(Open_CurrentYear[Net Orders(2026)])
+		lineageTag: 03542479-760f-4d2d-b277-d4fb49c6183d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Inv_vs_Budget = SUM(Inventory_CurrentYear[Valuation Value])-SUM(InvBudget26[Forecast])
+		lineageTag: ae517878-91d5-4f88-a457-aea6e8a40acd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NSplusNetOrders26ADJ = SUM(Open_CurrentYear[Net Orders(2026)])+SUM(Invoiced_CurrentYear[Net Sales ADJ M(2026)])
+		lineageTag: 71495d27-e63b-4717-8b07-e33f62be913d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NSADJ_pct_26B = DIVIDE([NSplusNetOrders26ADJ],SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 41a4a961-1fae-4d83-8482-1c7f28a353e0
+
+	measure NSADJ_pct_26B6month = DIVIDE(CALCULATE([NSplusNetOrders26ADJ],month(DateTable[Date])<7),SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ebd6fddb-54dd-4312-8c9b-bc31bfe14734
+
+	measure DC26vsB = [DCInvoiced_Orders_26_ADJ]-sum(Budget_Sales_CurrentYear[Direct Contribution])
+		lineageTag: 37aac27a-bbdc-466f-bad1-f0c799fac499
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DC_pct_2025_adj = DIVIDE(SUM(Invoiced_2025[Direct contribution ADJ M(2025)]),SUM(Invoiced_2025[Net Sales ADJ M(2025)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 70dfad50-921f-414d-a0e7-85c3f6f25480
+
+	measure DCInvoiced_Orders_26_ADJ = SUM(Open_CurrentYear[Direct Contribution Orders(2026)])+sum(Invoiced_CurrentYear[Direct contribution ADJ M(2026)])
+		lineageTag: 5ba069f1-3ef6-4f9e-ace8-63e8715451d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DCInvoiced_Orders%_26_ADJ = DIVIDE([DCInvoiced_Orders_26_ADJ],[NSplusNetOrders26ADJ])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b9a959f3-d848-4b6e-8cae-8e69c3bc9603
+
+	measure NSplusNetOrders26UNADJ = SUM(Open_CurrentYear[Net Orders(2026)])+SUM(Invoiced_CurrentYear[Net  Sales(2026)])
+		lineageTag: c711f407-b094-44c7-8fd5-ba6c83c4e9a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EBITDA_Pctof_Budget26 = DIVIDE(SUM(Invoiced_CurrentYear[EBITDA ADJ M(2026)]),SUM(Budget_Sales_CurrentYear[EBITDA]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b55d9c50-0176-4e24-a002-09e096dc1385
+
+	measure EBITDAvs26B = SUM(Invoiced_CurrentYear[EBITDA ADJ M(2026)])-SUM(Budget_Sales_CurrentYear[EBITDA])
+		lineageTag: 4d6d7796-be2d-4382-94ce-70140a50ac32
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EBITDA%_26_ADJ = DIVIDE(SUM(Invoiced_CurrentYear[EBITDA ADJ M(2026)]),SUM(Invoiced_CurrentYear[Net Sales ADJ M(2026)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cac46bdf-3e83-4a24-8986-da9c032a8c28
+
+	measure EBITDA%26B = DIVIDE(SUM(Budget_Sales_CurrentYear[EBITDA]),SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1078e59e-c6c6-4fe4-95ba-5328f1025430
+
+	measure NSperKG26 = DIVIDE(SUM(Invoiced_CurrentYear[Net  Sales(2026)]),SUM(Invoiced_CurrentYear[RM Weight Sold (2026)]))
+		lineageTag: 7dc1523c-b264-4ed0-8f09-388e20b7834b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NSperKG26B = DIVIDE(SUM(Budget_Sales_CurrentYear[Net Sales]),SUM(Budget_Sales_CurrentYear[RM Weight Sold]))
+		lineageTag: fc8fa0eb-ce5c-4854-856d-b1a8eac6df93
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NSperKGvsBudget26 = [NSperKG26]-[NSperKG26B]
+		formatString: #,0.00
+		lineageTag: a9fa9c80-279c-4d81-8447-21255d23e9e1
+
+	measure EBITDA%_26_unADJ = DIVIDE(SUM(Invoiced_CurrentYear[EBITDA(2026)]),SUM(Invoiced_CurrentYear[Net  Sales(2026)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 078e1cbb-351c-40d5-b1ba-eef17a0d4492
+
+	measure NS-Orders26_pct_Budget = DIVIDE([NSplusNetOrders26UNADJ],SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0%;-0%;0%
+		lineageTag: 0c669fc1-275d-413f-bfe0-cd9cf9d5546a
+
+	measure GSplusGrossOrders26UNADJ = SUM(Open_CurrentYear[Gross Orders(2026)])+SUM(Invoiced_CurrentYear[Gross Sales(2026)])
+		lineageTag: d5ea17f5-8705-4525-b53c-fad08d976bd0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DCInvoiced_Orders_26_unADJ = SUM(Open_CurrentYear[Direct Contribution Orders(2026)])+sum(Invoiced_CurrentYear[Direct Contribution(2026)])
+		lineageTag: 97942764-4b8d-4025-a009-3fb6c37ce387
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DCInvoiced_Orders%_26_unADJ = DIVIDE([DCInvoiced_Orders_26_unADJ],[NSplusNetOrders26UNADJ])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 05a20e25-a213-43e5-9a98-059f7ab474fc
+
+	measure Invoiced24-26 = SUM('Invoiced_2024'[Net  Sales(2024)])+sum(Invoiced_2025[Net  Sales(2025)])+sum('Invoiced_CurrentYear'[Net  Sales(2026)])
+		lineageTag: 67e7ffe6-e875-4e17-a784-06acb2f05f6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ManufactureCost26 = (SUM(Scorecard_CurrentYear[Variable Cost of Production FI(2026)])+sum(Scorecard_CurrentYear[Fixed Costs of Production FI(2026)]))*-1
+		lineageTag: 75369288-8226-4596-b3a5-f461303f4e33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CostperKGProduced_26 = DIVIDE([ManufactureCost26],SUM(Scorecard_CurrentYear[Total Scorecard Weight]))
+		lineageTag: 60c639ed-b5c7-4c2c-80c2-5098f0f495ac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CostperKGProduced_26B = DIVIDE(SUM(Budget_Scorecard26[Total Production Cost]),SUM(Budget_Scorecard26[Net Production Weight]))
+		lineageTag: 00e8fa52-64c7-4e5b-b450-7f5687895de8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DLperKGProduced_26 = (DIVIDE(SUM(Scorecard_CurrentYear[Direct Labor Expenses FI(2026)]),SUM(Scorecard_CurrentYear[Net Production (RM KG)(2026)])))*-1
+		lineageTag: 41798241-60e4-4504-bf3c-d7d1243b5feb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DLperKGProduced_26B = DIVIDE(SUM(Budget_Scorecard26[Direct Salary]),SUM(Budget_Scorecard26[Net Production Weight]))
+		lineageTag: 3f93fb75-6721-4d9f-996d-5c2ae089639a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DL26vsBudget = [DLperKGProduced_26]-[DLperKGProduced_26B]
+		lineageTag: 29db3e46-b51e-4488-85f4-3661f22aa62f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CostperKGProduced_history = [CostperKGProduced_25]+[CostperKGProduced_26]
+		lineageTag: 62b9f620-eef6-4ea0-8ab8-810f7358f250
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NetProductionHistory = SUM(Scorecard_CurrentYear[Net Production (RM KG)(2026)])+sum(Scorecard_2025[Net Production (RM KG)(2025)])
+		lineageTag: b6e175c4-b356-42ca-a4ed-381a92d09353
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NSBudgetremainder26ADJ = IF(SUM(Budget_Sales_CurrentYear[Net Sales])-[NSplusNetOrders26ADJ]<0,0,SUM(Budget_Sales_CurrentYear[Net Sales])-[NSplusNetOrders26ADJ])
+		lineageTag: 66206e0a-5738-4235-ac34-97176e04d637
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PnL26BNS% = DIVIDE(sum(PnL_Budget_CurrentYear[2026B]),sum(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b65b3d4a-07db-448a-8d80-4742903b3273
+
+	measure PnL26BKG% = DIVIDE(sum(PnL_Budget_CurrentYear[2026B]),sum(Budget_Sales_CurrentYear[RM Weight Sold]))
+		lineageTag: 6c76bf1d-f1f4-42b2-a7cf-dec0898e9842
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NS25ADJYTD = CALCULATE(sum(Invoiced_2025[Net Sales ADJ M(2025)]), DateTable[YTDFullMthLY]="TRUE")
+		lineageTag: 45fcd841-c8a4-4234-9bd6-ac893d6a912c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PnL26NS% = DIVIDE(SUM(PnL_CurrentYear[2026ACT]),sum(Invoiced_CurrentYear[Net Sales ADJ M(2026)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 183b2564-df83-4e0b-99a1-549dd25e6b4d
+
+	measure PnL26KG% = DIVIDE(SUM(PnL_CurrentYear[2026ACT]),sum(Invoiced_CurrentYear[RM Weight Sold (2026)]))
+		lineageTag: 90b46e9b-7bb7-4e62-8141-8cd2b2a4d70e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Orders Create Net Orders' = CALCULATE(SUM(Open_CurrentYear[Net Orders(2026)]),USERELATIONSHIP(Open_CurrentYear[OrderCreateDate],DateTable[Date]))
+		formatString: #,0.00
+		lineageTag: a8a1ca86-b47f-4f71-b8ed-973b9237acc5
+
+	measure 'Orders Create Qty' = CALCULATE(SUM(Open_CurrentYear[Orders - Quantity(2026)]),USERELATIONSHIP(Open_CurrentYear[OrderCreateDate],DateTable[Date]))
+		formatString: #,0
+		lineageTag: a10a1584-629e-4ed0-9918-321314ce4827
+
+	measure EBITDA_pct_2025ADJ = DIVIDE(SUM(Invoiced_2025[EBITDA ADJ M(2025)]),SUM(Invoiced_2025[Net Sales ADJ M(2025)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a5810751-98af-46a6-a2c2-ac20cc6be74a
+
+	measure DC%ADJvsBudget = [DCInvoiced_Orders%_26_ADJ]-[DC_pct_budget26]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e8888cf5-b754-469b-ad16-53b4266a25e0
+
+	measure EBITDA_ADJvsBudget = [EBITDA%_26_ADJ]-[EBITDA%26B]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 055df4d8-03b1-4ebd-849e-b4ddbc1d89f2
+
+	measure DCInvoiced%_26_ADJ = DIVIDE(sum(Invoiced_CurrentYear[Direct contribution ADJ M(2026)]),sum(Invoiced_CurrentYear[Net Sales ADJ M(2026)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d0119430-655a-4086-a1e1-55493e2b9132
+
+	measure DCInvoiced%_26 = DIVIDE(sum(Invoiced_CurrentYear[Direct Contribution(2026)]),sum(Invoiced_CurrentYear[Net  Sales(2026)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dfba5eb1-ef2b-48f5-9db8-91ab4e029165
+
+	measure 'Ship Create Net Sales' = CALCULATE(SUM(Invoiced_CurrentYear[Net  Sales(2026)]),USERELATIONSHIP(Invoiced_CurrentYear[OrderCreateDate],DateTable[Date]))
+		lineageTag: 7ac48148-db62-490a-b4a4-f3ceb07eb49d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure shipcreate_ordercreate_NS = [Ship Create Net Sales]+[Orders Create Net Orders]
+		formatString: #,0.00
+		lineageTag: 2862566a-3b94-49ab-a3d4-73ec5266e486
+
+	measure NSBudgetremainder26Invoiced = IF(SUM(Budget_Sales_CurrentYear[Net Sales])-sum(Invoiced_CurrentYear[Net  Sales(2026)])<0,0,SUM(Budget_Sales_CurrentYear[Net Sales])-sum(Invoiced_CurrentYear[Net  Sales(2026)]))
+		lineageTag: 70bb18ba-83fd-4718-b1c3-3b1d24a5a21a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NSBudgetremainder26ADJ_pct = DIVIDE([NSBudgetremainder26ADJ], SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bf478b27-6e2a-4534-b558-56c447ace60f
+
+	measure APO+RTP_NS_UNADJ = sum(APO_CurrentYear[Committed Net Sales (APO)(2026)])+sum(RTP_CurrentYear[Total RTP EUR(2026)])
+		lineageTag: 551efc45-86bc-4157-970b-fd2cb65f9260
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure APO/RTP_pct_Budget = DIVIDE([APO+RTP_NS_UNADJ],SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 683e7765-de59-4e03-906b-c8af076228f3
+
+	measure NSUNADJ_pct_26B = DIVIDE([NSplusNetOrders26UNADJ],SUM(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4ed82e69-3858-4f6b-b18d-850d91755f58
+
+	measure NSplusNetOrders26UNADJ_vsLY = DIVIDE(([NSplusNetOrders26UNADJ]-sum(Invoiced_2025[Net  Sales(2025)])),sum(Invoiced_2025[Net  Sales(2025)]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 574802e0-ef31-4435-8a60-a5cfd02d1b2f
+
+	measure NSplusNetOrders26UNADJ_vsBudget% = DIVIDE(([NSplusNetOrders26UNADJ]-sum(Budget_Sales_CurrentYear[Net Sales])),sum(Budget_Sales_CurrentYear[Net Sales]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e046815f-b9f9-4f49-918d-bbbb14e171ec
+
+	measure NSplusNetOrders26UNADJ_vsBudget = [NSplusNetOrders26UNADJ]-sum(Budget_Sales_CurrentYear[Net Sales])
+		lineageTag: b73225bc-d3d1-45e2-980c-c64c457a7dd6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		isHidden
+		formatString: 0
+		lineageTag: 49c82470-bc02-476c-8bae-ee1570a17528
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measures_Table = calculated
+		mode: import
+		source = {BLANK()}
+
+	annotation PBI_Id = 2f1e95fe139644cab8fcc58aa6d87a3d
+

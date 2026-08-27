@@ -1,0 +1,100 @@
+table Inv_Budgets25
+	lineageTag: 85413d33-d712-451e-81f2-4710c67d9def
+
+	measure VarianceEDB_PBI = SUM(Inv_currentyear_replaced[Valuation Value])-SUM(Inv_Budgets25[INV CY])
+		lineageTag: e06e2339-53d6-4445-8e45-65f03a50ed35
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Plant
+		dataType: string
+		lineageTag: 200d98a2-81dc-44ed-9d13-4195694bf651
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 729bc51e-69f0-45ef-9dd0-3a0b13f35d19
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Material Group'
+		dataType: string
+		lineageTag: d8ba95eb-1f63-41b2-8fc6-9321cad10166
+		summarizeBy: none
+		sourceColumn: Material Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INV LY'
+		dataType: double
+		lineageTag: 0c42490a-334d-4bc7-9045-5ed19b200785
+		summarizeBy: sum
+		sourceColumn: INV LY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'INV CY'
+		dataType: double
+		lineageTag: dc3a5e14-e8e0-42bc-9359-d52b873ca484
+		summarizeBy: sum
+		sourceColumn: INV CY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Forecast
+		dataType: double
+		lineageTag: 750d743c-0be5-47d1-924b-a6a30257910b
+		summarizeBy: sum
+		sourceColumn: Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CY vs LY'
+		dataType: double
+		lineageTag: 2bea3e58-d692-4884-a2d8-e4d51a143fd2
+		summarizeBy: sum
+		sourceColumn: CY vs LY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CY vs F'
+		dataType: double
+		lineageTag: ef98d981-3973-4cbf-8441-d6badf923f96
+		summarizeBy: sum
+		sourceColumn: CY vs F
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Inv_Budgets25 = m
+		mode: import
+		queryGroup: StaticPYs
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Inventory\Inventory25budget\combined plants budget target 25.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"Plant", type text}, {"Month", type date}, {"Material Group", type text}, {"INV LY", type number}, {"INV CY", type number}, {"Forecast", type number}, {"CY vs LY", type number}, {"CY vs F", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

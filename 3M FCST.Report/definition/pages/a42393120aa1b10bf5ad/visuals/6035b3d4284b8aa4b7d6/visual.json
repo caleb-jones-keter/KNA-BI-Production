@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "6035b3d4284b8aa4b7d6",
+  "position": {
+    "x": 0,
+    "y": 32,
+    "z": 2000,
+    "height": 304,
+    "width": 528,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Data Source"
+                }
+              },
+              "queryRef": "FACT Future.Data Source",
+              "nativeQueryRef": "Data Source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Future"
+                    }
+                  },
+                  "Property": "Today"
+                }
+              },
+              "queryRef": "FACT Future.Today",
+              "nativeQueryRef": "Today"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,51 @@
+table '_$Budget QTY Parameter'
+	lineageTag: b43f33e2-6d5c-4edb-a35a-1fbdc297196e
+
+	column Parameter
+		lineageTag: cbf15bdf-2b23-4915-8a1f-9f5de142b072
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 3cccf1fc-2dc9-407c-9932-c36bebd8dd2a
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 1de33989-2521-4d51-8619-b8a2a668b45f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '_$Budget QTY Parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("3+9 Quantity", NAMEOF('FACT EDB Budget- QTY'[3+9 Quantity]), 0),
+				    ("6+6 Quantity", NAMEOF('FACT EDB Budget- QTY'[6+6 Quantity]), 1),
+				    ("9+3 Quantity", NAMEOF('FACT EDB Budget- QTY'[9+3 Quantity]), 2),
+				    ("Quantity - Budget", NAMEOF('FACT EDB Budget- QTY'[Quantity - Budget]), 3),
+				    ("Customer Demand_APO_",Nameof('FACT EDB Budget- QTY'[Customer Demand _APO_]),4)
+				}
+
+	annotation PBI_Id = c1d11df68b05467fa9da78f2ba9bf70d
+

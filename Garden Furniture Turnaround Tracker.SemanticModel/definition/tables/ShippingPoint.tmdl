@@ -1,0 +1,36 @@
+table ShippingPoint
+	lineageTag: db5c3d57-3f19-4d12-bc3c-2f6c7ee7c861
+
+	column Shippingpoint
+		dataType: string
+		lineageTag: 5c8b655c-068e-44df-b464-e9795ba8a60d
+		summarizeBy: none
+		sourceColumn: Shippingpoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Shippingpoint (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: eb7a110a-098c-4950-b091-91821897c54a
+		summarizeBy: sum
+		sourceColumn: Code:Shippingpoint (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ShippingPoint = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\ShippingPoint.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Shippingpoint", type text}, {"Code:Shippingpoint (c3)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

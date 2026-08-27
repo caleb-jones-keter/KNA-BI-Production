@@ -1,0 +1,483 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "4d1209f9648000900580",
+  "position": {
+    "x": 0,
+    "y": 512,
+    "z": 5000,
+    "height": 208,
+    "width": 1280,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "MonthStartDate"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.MonthStartDate",
+              "nativeQueryRef": "MonthStartDate",
+              "active": true,
+              "format": "MM/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Payer"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Payer",
+              "nativeQueryRef": "Payer",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "_$weightedaccuracylag1"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST._$weightedaccuracylag1",
+              "nativeQueryRef": "Lag1 Accuracy",
+              "displayName": "Lag1 Accuracy"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TEST EDB LAG FCST"
+                        }
+                      },
+                      "Property": "Lag1 Quantity – _Apo___2025_2026_2027_"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(TEST EDB LAG FCST.Lag1 Quantity – _Apo___2025_2026_2027_)",
+              "nativeQueryRef": "Lag1 FCST (Units)",
+              "displayName": "Lag1 FCST (Units)",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Lag1 BIAS"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Lag1 BIAS",
+              "nativeQueryRef": "Lag1 BIAS",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "_$weightedaccuracylag2"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST._$weightedaccuracylag2",
+              "nativeQueryRef": "Lag2 Accuracy",
+              "displayName": "Lag2 Accuracy"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TEST EDB LAG FCST"
+                        }
+                      },
+                      "Property": "Lag2 Quantity – _Apo___2025_2026_2027_"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(TEST EDB LAG FCST.Lag2 Quantity – _Apo___2025_2026_2027_)",
+              "nativeQueryRef": "Lag2 FCST (Units)",
+              "displayName": "Lag2 FCST (Units)",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Lag2 BIAS"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Lag2 BIAS",
+              "nativeQueryRef": "Lag2 BIAS",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "_$weightedaccuracylag3"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST._$weightedaccuracylag3",
+              "nativeQueryRef": "Lag3 Accuracy",
+              "displayName": "Lag3 Accuracy"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TEST EDB LAG FCST"
+                        }
+                      },
+                      "Property": "Lag3 Quantity – _Apo___2025_2026_2027_"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(TEST EDB LAG FCST.Lag3 Quantity – _Apo___2025_2026_2027_)",
+              "nativeQueryRef": "Lag3 FCST (Units)",
+              "displayName": "Lag3 FCST (Units)",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "Lag3 BIAS"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST.Lag3 BIAS",
+              "nativeQueryRef": "Lag3 BIAS",
+              "format": "0.00 %;-0.00 %;0.00 %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "_$Forecast Accuracy (dynamic Lag) weight"
+                }
+              },
+              "queryRef": "TEST EDB LAG FCST._$Forecast Accuracy (dynamic Lag) weight",
+              "nativeQueryRef": "Lag Dynamic Accuracy",
+              "displayName": "Lag Dynamic Accuracy"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TEST EDB LAG FCST"
+                        }
+                      },
+                      "Property": "Quantity__2025_2026_2027_"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(TEST EDB LAG FCST.Quantity__2025_2026_2027_)",
+              "nativeQueryRef": "Unit Sales",
+              "displayName": "Unit Sales",
+              "format": "#,0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TEST EDB LAG FCST"
+                  }
+                },
+                "Property": "MonthStartDate"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Product"
+                  }
+                },
+                "Property": "SKU & Desc"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "TEST EDB LAG FCST.MonthStartDate"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST EDB LAG FCST"
+                    }
+                  },
+                  "Property": "MonthStartDate"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "TEST EDB LAG FCST.Payer"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Product.SKU & Desc"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "datetime'2026-04-01T00:00:00'"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "265.380297148446D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "TEST EDB LAG FCST.MonthStartDate"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.25776915885923D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(TEST EDB LAG FCST.Lag2 Quantity – _Apo___2025_2026_2027_)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.92955198668442D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "TEST EDB LAG FCST.Lag2 BIAS"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71.00000412777368D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "TEST EDB LAG FCST._$weightedaccuracylag2"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "73.80187342110038D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "TEST EDB LAG FCST.Lag1 BIAS"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.23529411764706D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "TEST EDB LAG FCST._$weightedaccuracylag1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.20863716329526D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(TEST EDB LAG FCST.Lag1 Quantity – _Apo___2025_2026_2027_)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "77.64705882352942D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(TEST EDB LAG FCST.Lag3 Quantity – _Apo___2025_2026_2027_)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92.64611377760829D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "TEST EDB LAG FCST._$Forecast Accuracy (dynamic Lag) weight"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

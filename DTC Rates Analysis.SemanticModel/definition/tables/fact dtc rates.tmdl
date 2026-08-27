@@ -1,0 +1,17 @@
+table 'fact dtc rates'
+	lineageTag: 9209a4a7-2604-443f-94ac-123f5bbf1038
+
+	measure _Order_Qty = -SUM('fact dtc rates'[combined_qty])
+		lineageTag: 4cec1718-6616-4e91-a36f-8cd1a9eacf0d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fact dtc rates' = entity
+		mode: directLake
+		source
+			entityName: fact dtc rates
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

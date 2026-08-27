@@ -1,0 +1,233 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b329023a9be0d420ceba",
+  "position": {
+    "x": 0,
+    "y": 96,
+    "z": 0,
+    "height": 560,
+    "width": 1264,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Adams WMS 373"
+                    }
+                  },
+                  "Property": "Storage Type"
+                }
+              },
+              "queryRef": "Fact Adams WMS 373.Storage Type",
+              "nativeQueryRef": "Storage Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Adams WMS 373"
+                    }
+                  },
+                  "Property": "Last movement"
+                }
+              },
+              "queryRef": "Fact Adams WMS 373.Last movement",
+              "nativeQueryRef": "Last movement",
+              "format": "d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Adams WMS 373"
+                    }
+                  },
+                  "Property": "Material"
+                }
+              },
+              "queryRef": "Sum(Fact Adams WMS 373.Material)",
+              "nativeQueryRef": "Material"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact Adams WMS 373"
+                    }
+                  },
+                  "Property": "Storage Bin"
+                }
+              },
+              "queryRef": "Fact Adams WMS 373.Storage Bin",
+              "nativeQueryRef": "Storage Bin"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact Adams WMS 373"
+                        }
+                      },
+                      "Property": "Total Stock"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact Adams WMS 373.Total Stock)",
+              "nativeQueryRef": "Sum of Total Stock"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Fact Adams WMS 373"
+                  }
+                },
+                "Property": "Last movement"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "205.51851851851853D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Fact Adams WMS 373.Total Stock)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "115.44444444444444D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact Adams WMS 373.Storage Type"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2053da10cb7c35ac9342",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Fact Adams WMS 373"
+                  }
+                },
+                "Property": "Total Stock"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7123f3e5069e787db7d7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact Adams WMS 373"
+              }
+            },
+            "Property": "Storage Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4b7434315e07cda456cc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact Adams WMS 373"
+              }
+            },
+            "Property": "Storage Bin"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8a18c674015f3b7c710f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact Adams WMS 373"
+              }
+            },
+            "Property": "Material"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c4299127e26c7528660c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact Adams WMS 373"
+              }
+            },
+            "Property": "Last movement"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

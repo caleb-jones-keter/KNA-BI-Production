@@ -1,0 +1,201 @@
+table 'Days in Country'
+	lineageTag: ab369bac-dc23-4d44-8d69-55692ef6f373
+
+	column Container
+		dataType: string
+		lineageTag: 0803c9b5-0f43-4bb1-885e-bed309d74e64
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days in Country'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fb267ab-6792-47ad-92aa-9e5915f4854c
+		summarizeBy: sum
+		sourceColumn: Days in Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bucket
+		dataType: string
+		lineageTag: 1ab9ef0d-f906-4000-96da-e7a710118620
+		summarizeBy: none
+		sourceColumn: Bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bucket 2'
+		dataType: string
+		lineageTag: a897fb19-b240-427c-8250-7a3e0948664a
+		summarizeBy: none
+		sourceColumn: Bucket 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days 31-60'
+		dataType: string
+		lineageTag: f3420a76-1984-4ea4-afa8-1c3f17dae2e9
+		summarizeBy: none
+		sourceColumn: Days 31-60
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days 61-90'
+		dataType: string
+		lineageTag: 6d54de42-acf8-4b11-aff6-296b37f2634b
+		summarizeBy: none
+		sourceColumn: Days 61-90
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day 91+'
+		dataType: string
+		lineageTag: 0df081c0-3a3e-4de4-9a23-bf9b7325527c
+		summarizeBy: none
+		sourceColumn: Day 91+
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Day 31-60'
+		dataType: string
+		lineageTag: 88f409b8-d6d8-4718-8087-6599a97a7a11
+		summarizeBy: none
+		sourceColumn: Cost Day 31-60
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Day 61-90'
+		dataType: string
+		lineageTag: f8a298d7-277a-40d9-b01a-fac344388395
+		summarizeBy: none
+		sourceColumn: Cost Day 61-90
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Day 91+'
+		dataType: string
+		lineageTag: 45aea8be-a289-4339-b09f-192d8009cb08
+		summarizeBy: none
+		sourceColumn: Cost Day 91+
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Cost'
+		dataType: string
+		lineageTag: de78d24e-3549-4fdc-8ef5-6f1075fb9393
+		summarizeBy: none
+		sourceColumn: Total Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sloc
+		dataType: string
+		lineageTag: 773d8f1b-f827-4cf0-bd2d-38b19f62d20b
+		summarizeBy: none
+		sourceColumn: Sloc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 478b09ab-ed9b-4bee-b60d-ed180d7fbcc4
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column14
+		dataType: string
+		lineageTag: 30f6ea6f-b30e-419a-b626-04cda594ab22
+		summarizeBy: none
+		sourceColumn: Column14
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column15
+		dataType: string
+		lineageTag: c0ad0a5f-973b-4c3d-8ff2-76e094003ccd
+		summarizeBy: none
+		sourceColumn: Column15
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column16
+		dataType: string
+		lineageTag: 444bb4dc-e530-47b6-b19d-d1c4455ce6fb
+		summarizeBy: none
+		sourceColumn: Column16
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column17
+		dataType: string
+		lineageTag: 7740912b-be27-4d22-9da0-e52ec92c119e
+		summarizeBy: none
+		sourceColumn: Column17
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column18
+		dataType: string
+		lineageTag: d0b18044-d166-413c-97bf-8bd604c2259f
+		summarizeBy: none
+		sourceColumn: Column18
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column19
+		dataType: string
+		lineageTag: 1ca9d87e-05fe-44a4-b000-d65367f63a5e
+		summarizeBy: none
+		sourceColumn: Column19
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column20
+		dataType: string
+		lineageTag: d1cd15aa-3bfe-4e6d-85e7-e0f85e4cbbed
+		summarizeBy: none
+		sourceColumn: Column20
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column21
+		dataType: string
+		lineageTag: 8d554b09-e958-413c-b070-e12da688d7fe
+		summarizeBy: none
+		sourceColumn: Column21
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column22
+		dataType: string
+		lineageTag: 80ce88d3-33a1-47cf-a886-052d28a9dc71
+		summarizeBy: none
+		sourceColumn: Column22
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column23
+		dataType: string
+		lineageTag: 1406b19c-ec6c-40ed-931d-0ab060b45087
+		summarizeBy: none
+		sourceColumn: Column23
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Days in Country' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Jons%20Folder/Buckets.xlsx"), null, true),
+				    #"Days in Country_Sheet" = Source{[Item="Days in Country",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Days in Country_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Container", type text}, {"Days in Country", Int64.Type}, {"Bucket", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,89 @@
+table 'Dim Location Dimension 2'
+	lineageTag: 65bbc3ae-7ae7-4d2c-822c-79a1760b3800
+	sourceLineageTag: [dbo].[Dim Location Dimension 2]
+
+	column Name
+		dataType: string
+		lineageTag: cef4fe19-634a-4412-abaf-c917e009b5f0
+		sourceLineageTag: Name
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Code
+		dataType: string
+		lineageTag: fba0726c-5659-46ec-9f26-b3ea5aa0af03
+		sourceLineageTag: Code
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 5745a888-3bc7-4771-9b5b-41b84065cfd1
+		sourceLineageTag: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 58cd209e-0607-429a-a173-d2372c969d89
+		sourceLineageTag: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Target DOS'
+		dataType: int64
+		formatString: 0
+		lineageTag: dcf98f97-b012-4078-8d44-68d43ccaa69b
+		sourceLineageTag: Target DOS
+		summarizeBy: none
+		sourceColumn: Target DOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'General Location'
+		dataType: string
+		lineageTag: 23ce7d16-c995-4722-8cbe-8b7acbad4da5
+		sourceLineageTag: General Location
+		summarizeBy: none
+		sourceColumn: General Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 234c05cb-8019-4936-8430-7af40062483c
+		sourceLineageTag: Order
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: 45b6c505-9ee7-49ec-90b5-fc12dd0bf32e
+		sourceLineageTag: Full Name
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Location Dimension 2' = entity
+		mode: directLake
+		source
+			entityName: Dim Location Dimension 2
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

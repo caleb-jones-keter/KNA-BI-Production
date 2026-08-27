@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "762732a4081327e2f583",
+  "position": {
+    "x": 752,
+    "y": 0,
+    "z": 5000,
+    "height": 160,
+    "width": 528,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "CompanyCodeKey"
+                }
+              },
+              "queryRef": "FACT Rejections.CompanyCodeKey",
+              "nativeQueryRef": "CompanyCodeKey"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Rejections"
+                    }
+                  },
+                  "Property": "Gross Sales (M,O)"
+                }
+              },
+              "queryRef": "FACT Rejections.Gross Sales (M,O)",
+              "nativeQueryRef": "Gross Sales (M,O)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Rejections"
+                  }
+                },
+                "Property": "Gross Sales (M,O)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

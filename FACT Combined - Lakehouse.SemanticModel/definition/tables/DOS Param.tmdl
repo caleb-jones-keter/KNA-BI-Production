@@ -1,0 +1,26 @@
+table 'DOS Param'
+	lineageTag: b4aaac09-89d0-4c16-a83f-ca19d29cdb42
+
+	measure 'DOS Param Value' = SELECTEDVALUE('DOS Param'[DOS Param], 45)
+		formatString: 0
+		lineageTag: 0494fa3c-5c68-4672-aebf-1dc8b5b566f4
+
+	column 'DOS Param'
+		formatString: 0
+		lineageTag: 55943ccf-1a48-4ca4-ad81-3a84c38f7732
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'DOS Param' = calculated
+		mode: import
+		source = GENERATESERIES(0, 365, 1)
+
+	annotation PBI_Id = dc5d54cdf3ec44c1b1b0c6329e6a4a51
+

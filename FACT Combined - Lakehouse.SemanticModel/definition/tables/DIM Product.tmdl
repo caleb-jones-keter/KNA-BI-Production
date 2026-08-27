@@ -1,0 +1,1113 @@
+table 'DIM Product'
+	lineageTag: 593835ef-0e95-407a-9686-2d69a9ad4ae7
+	sourceLineageTag: [dbo].[DIM Product]
+
+	column Material
+		dataType: string
+		lineageTag: 5ccadae8-d600-4313-b2a6-d68c1cf5391f
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: 4639e8c4-b572-42bf-a313-ade4fd77e25e
+		sourceLineageTag: Model
+		summarizeBy: none
+		sourceColumn: Model
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: b91bcfaa-390b-4c20-9f55-68fc2cd83288
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: int64
+		formatString: 0
+		lineageTag: 2508711e-761a-4454-b0d9-d457b78fe372
+		sourceLineageTag: Customer
+		summarizeBy: sum
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dept
+		dataType: string
+		lineageTag: 0a862561-28b0-4e2b-a20f-5a91f16b1184
+		sourceLineageTag: Dept
+		summarizeBy: none
+		sourceColumn: Dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_1
+		dataType: string
+		lineageTag: a24f0966-9941-4d24-9783-22adfb9c4135
+		sourceLineageTag: Customer_1
+		summarizeBy: none
+		sourceColumn: Customer_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor #'
+		dataType: string
+		lineageTag: d0de354a-1735-4f7f-868f-4c1b865d0ff3
+		sourceLineageTag: Vendor #
+		summarizeBy: none
+		sourceColumn: Vendor #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carton/Bag_Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: c56ab222-127a-46fc-96ee-df427d005998
+		sourceLineageTag: Carton/Bag_Qty
+		summarizeBy: sum
+		sourceColumn: Carton/Bag_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Layer Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: f6dcb291-d5b4-402e-a1f7-68f32133ce65
+		sourceLineageTag: Layer Qty
+		summarizeBy: sum
+		sourceColumn: Layer Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SS/PLT_Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: f042e3f5-644e-44ea-a03e-22f3e990275d
+		sourceLineageTag: SS/PLT_Qty
+		summarizeBy: sum
+		sourceColumn: SS/PLT_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cont_Qty
+		dataType: double
+		lineageTag: 7355183c-83e9-4e60-883e-57453cfa604b
+		sourceLineageTag: Cont_Qty
+		summarizeBy: sum
+		sourceColumn: Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f5ee641-184f-448f-9113-dab80ebd780a
+		sourceLineageTag: TL Qty
+		summarizeBy: sum
+		sourceColumn: TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stacked_Cont/TL
+		dataType: string
+		lineageTag: 31bb6bc3-67f8-4f70-b6a9-b051bd7851d2
+		sourceLineageTag: Stacked_Cont/TL
+		summarizeBy: none
+		sourceColumn: Stacked_Cont/TL
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: eb2cac7b-c256-46d7-ae2c-c71b10930aa5
+		sourceLineageTag: Brand
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 8990af34-2885-4a5a-bed1-1387d768df7c
+		sourceLineageTag: Color
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Note
+		dataType: string
+		lineageTag: 36a3b3b8-933b-4e93-ad08-459f4131a1f5
+		sourceLineageTag: Note
+		summarizeBy: none
+		sourceColumn: Note
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a8c457-449f-4200-ad5f-ee25ce7abd27
+		sourceLineageTag: Supplier
+		summarizeBy: sum
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPC/EAN
+		dataType: string
+		lineageTag: 64721209-a93f-417a-b3be-3f753243e804
+		sourceLineageTag: UPC/EAN
+		summarizeBy: none
+		sourceColumn: UPC/EAN
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carton I2of5'
+		dataType: int64
+		formatString: 0
+		lineageTag: a4976b29-ff0d-4b0e-9e1e-dc96b3827d12
+		sourceLineageTag: Carton I2of5
+		summarizeBy: sum
+		sourceColumn: Carton I2of5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pallet I2of5'
+		dataType: int64
+		formatString: 0
+		lineageTag: 11fce0a4-547e-4c3b-9f4b-651b073cb7a7
+		sourceLineageTag: Pallet I2of5
+		summarizeBy: sum
+		sourceColumn: Pallet I2of5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Private Label'
+		dataType: string
+		lineageTag: c82aa33a-8204-4965-a0db-bfb2bb20bff5
+		sourceLineageTag: Private Label
+		summarizeBy: none
+		sourceColumn: Private Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opened
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 379d6f00-4ed0-49be-826f-fb174f96f403
+		sourceLineageTag: Opened
+		summarizeBy: none
+		sourceColumn: Opened
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant-sp.matl status'
+		dataType: string
+		lineageTag: 24a1e489-49eb-4f23-b7bc-5141e56da435
+		sourceLineageTag: Plant-sp.matl status
+		summarizeBy: none
+		sourceColumn: Plant-sp.matl status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disco Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 531ffdb2-2881-4e3a-b4d4-4800f571cdd6
+		sourceLineageTag: Disco Date
+		summarizeBy: none
+		sourceColumn: Disco Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PC Business Unit'
+		dataType: string
+		lineageTag: ff6e9fb9-0ca9-45a8-ae88-8c0f931617bd
+		sourceLineageTag: PC Business Unit
+		summarizeBy: none
+		sourceColumn: PC Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HTS Code'
+		dataType: string
+		lineageTag: 951e0d0e-777d-4535-95d8-3cef4f301552
+		sourceLineageTag: HTS Code
+		summarizeBy: none
+		sourceColumn: HTS Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSRP
+		dataType: string
+		lineageTag: c4921adc-38c5-4074-934d-3d0f029f6ef2
+		sourceLineageTag: MSRP
+		summarizeBy: none
+		sourceColumn: MSRP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Year'
+		dataType: string
+		lineageTag: bd9f42ae-7275-4afb-88a8-ef6ddd227f8e
+		sourceLineageTag: Document Year
+		summarizeBy: none
+		sourceColumn: Document Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU & Desc'
+		dataType: string
+		lineageTag: bc1ffedc-28bb-4775-89c3-fba02b982c41
+		sourceLineageTag: SKU & Desc
+		summarizeBy: none
+		sourceColumn: SKU & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pack Type.Final'
+		dataType: string
+		lineageTag: 99398117-4ff7-4ad6-ac81-dd014a4db069
+		sourceLineageTag: Pack Type.Final
+		summarizeBy: none
+		sourceColumn: Pack Type.Final
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pack Type.General'
+		dataType: string
+		lineageTag: 1023d052-c902-4a5f-8963-213dcf676515
+		sourceLineageTag: Pack Type.General
+		summarizeBy: none
+		sourceColumn: Pack Type.General
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Port Free Days'
+		dataType: double
+		lineageTag: c9893898-ab22-439c-a4d2-eae008e3d45e
+		sourceLineageTag: Port Free Days
+		summarizeBy: sum
+		sourceColumn: Port Free Days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM BOM Combined.BOM Type'
+		dataType: string
+		lineageTag: 06a66384-4be9-4426-9a63-11ecb053260b
+		sourceLineageTag: DIM BOM Combined.BOM Type
+		summarizeBy: none
+		sourceColumn: DIM BOM Combined.BOM Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Specs.Carton - Length'
+		dataType: double
+		lineageTag: 36bf6129-b3f5-4798-a37f-7426653f278d
+		sourceLineageTag: Specs.Carton - Length
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - Length
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton - Width'
+		dataType: double
+		lineageTag: 2ce4e03f-08d2-476a-93df-7f417b8bbf24
+		sourceLineageTag: Specs.Carton - Width
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - Width
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton - Height'
+		dataType: double
+		lineageTag: b121f9a4-af61-4870-8c4f-3dc928773926
+		sourceLineageTag: Specs.Carton - Height
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - Height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton - Volume'
+		dataType: double
+		lineageTag: fe7b2a4a-26d1-4c32-81ac-3bb93fa625a6
+		sourceLineageTag: Specs.Carton - Volume
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton - Weight'
+		dataType: double
+		lineageTag: 36449aa4-4198-4d9d-80bf-1dffbd18fb7d
+		sourceLineageTag: Specs.Carton - Weight
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton - cf'
+		dataType: double
+		lineageTag: a83fa9da-e5fe-4b01-a2b3-42f35d295828
+		sourceLineageTag: Specs.Carton - cf
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - cf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton - pcf'
+		dataType: double
+		lineageTag: 44538a21-d828-49e7-a7d9-19bf30c0a56d
+		sourceLineageTag: Specs.Carton - pcf
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - pcf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - Length'
+		dataType: double
+		lineageTag: f80d1102-8602-4354-a421-4a0bb39fe885
+		sourceLineageTag: Specs.Pallet - Length
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - Length
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - Width'
+		dataType: double
+		lineageTag: 077cec72-79fa-4927-bf58-d1691a131e6f
+		sourceLineageTag: Specs.Pallet - Width
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - Width
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - Height'
+		dataType: double
+		lineageTag: b4b5378f-e58a-4a5b-851f-a5fe14740206
+		sourceLineageTag: Specs.Pallet - Height
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - Height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - Volume'
+		dataType: double
+		lineageTag: f7b6798e-ce7a-46a2-a9e7-21146429448c
+		sourceLineageTag: Specs.Pallet - Volume
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - Weight'
+		dataType: double
+		lineageTag: 7459d9af-d64b-4fc8-b674-832699030d93
+		sourceLineageTag: Specs.Pallet - Weight
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - cf'
+		dataType: double
+		lineageTag: 57fedd1c-4ff1-4742-b84b-c928c993c27b
+		sourceLineageTag: Specs.Pallet - cf
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - cf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Pallet - pcf'
+		dataType: double
+		lineageTag: 5769b9bd-36ff-4cf4-ae11-a9a0a2e56a3c
+		sourceLineageTag: Specs.Pallet - pcf
+		summarizeBy: sum
+		sourceColumn: Specs.Pallet - pcf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.LP'
+		dataType: double
+		lineageTag: 0f5aa6a7-9ef3-411f-80cf-d85ca7e057c9
+		sourceLineageTag: Specs.LP
+		summarizeBy: sum
+		sourceColumn: Specs.LP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton Class'
+		dataType: double
+		lineageTag: b31772e9-9b3e-4643-8515-7d4d0ae65d29
+		sourceLineageTag: Specs.Carton Class
+		summarizeBy: sum
+		sourceColumn: Specs.Carton Class
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.SS/PLT Class'
+		dataType: double
+		lineageTag: 48a6731c-f289-457f-9bcb-f5a2615f4267
+		sourceLineageTag: Specs.SS/PLT Class
+		summarizeBy: sum
+		sourceColumn: Specs.SS/PLT Class
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Carton Dim Wt'
+		dataType: double
+		lineageTag: 72bbefd5-b7a4-42c3-8053-995d7bc80f1b
+		sourceLineageTag: Specs.Carton Dim Wt
+		summarizeBy: sum
+		sourceColumn: Specs.Carton Dim Wt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Oversize +130" Max 165"'
+		dataType: double
+		lineageTag: c2becbba-f870-42a7-9d50-1c231ffed8b6
+		sourceLineageTag: Specs.Oversize +130" Max 165"
+		summarizeBy: sum
+		sourceColumn: Specs.Oversize +130" Max 165"
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.SAP'
+		dataType: string
+		lineageTag: 71e76179-b31c-44ea-b4bc-2252f3b0716b
+		sourceLineageTag: Specs.SAP
+		summarizeBy: none
+		sourceColumn: Specs.SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Specs.Override'
+		dataType: string
+		lineageTag: a575dd59-4cb1-406e-96d2-9c722d337bf4
+		sourceLineageTag: Specs.Override
+		summarizeBy: none
+		sourceColumn: Specs.Override
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Specs.Linear Ft CTN'
+		dataType: double
+		lineageTag: c9e2ad46-1978-4c78-a0e0-b9e0efe97b20
+		sourceLineageTag: Specs.Linear Ft CTN
+		summarizeBy: sum
+		sourceColumn: Specs.Linear Ft CTN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Specs.Current'
+		dataType: string
+		lineageTag: 6516ce73-cba0-4346-92cb-15d19ae02f26
+		sourceLineageTag: Specs.Current
+		summarizeBy: none
+		sourceColumn: Specs.Current
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.ACT PROD SITE'
+		dataType: string
+		lineageTag: 2766be18-ea17-4566-9bfb-feac76398d98
+		sourceLineageTag: Dim Products.ACT PROD SITE
+		summarizeBy: none
+		sourceColumn: Dim Products.ACT PROD SITE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.ACT PROD SITE Region'
+		dataType: string
+		lineageTag: e2b2d023-550d-4fe0-92eb-010b3d4b4900
+		sourceLineageTag: Dim Products.ACT PROD SITE Region
+		summarizeBy: none
+		sourceColumn: Dim Products.ACT PROD SITE Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.Brand desc'
+		dataType: string
+		lineageTag: c8782519-3ed2-4221-b9d6-4609ac31b126
+		sourceLineageTag: Dim Products.Brand desc
+		summarizeBy: none
+		sourceColumn: Dim Products.Brand desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.EAN'
+		dataType: string
+		lineageTag: e76bdb51-9620-4938-a3ad-1b2ffd018fd5
+		sourceLineageTag: Dim Products.EAN
+		summarizeBy: none
+		sourceColumn: Dim Products.EAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.Image'
+		dataType: string
+		lineageTag: 3435b16d-c847-481f-aa0c-c671b9d5d500
+		sourceLineageTag: Dim Products.Image
+		summarizeBy: none
+		sourceColumn: Dim Products.Image
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.ITEM GROUP'
+		dataType: string
+		lineageTag: 18b18861-e8fb-4f1a-a67e-6638213008f7
+		sourceLineageTag: Dim Products.ITEM GROUP
+		summarizeBy: none
+		sourceColumn: Dim Products.ITEM GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.MARKET GROUP'
+		dataType: string
+		lineageTag: f29514ef-1783-46c9-96be-83425f9da1dd
+		sourceLineageTag: Dim Products.MARKET GROUP
+		summarizeBy: none
+		sourceColumn: Dim Products.MARKET GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.OUTDOOR/INDOOR'
+		dataType: string
+		lineageTag: 19a0efb5-b725-4a95-b919-a8f333ce5560
+		sourceLineageTag: Dim Products.OUTDOOR/INDOOR
+		summarizeBy: none
+		sourceColumn: Dim Products.OUTDOOR/INDOOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.PRODUCT CATEGORY'
+		dataType: string
+		lineageTag: 0c5cc1f4-06c8-4df4-8746-3cc9732416ba
+		sourceLineageTag: Dim Products.PRODUCT CATEGORY
+		summarizeBy: none
+		sourceColumn: Dim Products.PRODUCT CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.PRODUCT LINE DESC'
+		dataType: string
+		lineageTag: b7c6f121-7ee2-41a0-b1e9-04f43839f100
+		sourceLineageTag: Dim Products.PRODUCT LINE DESC
+		summarizeBy: none
+		sourceColumn: Dim Products.PRODUCT LINE DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.PRODUCT MANAGEMENT/Category'
+		dataType: string
+		lineageTag: 65a25ff1-d320-411c-9d89-89026811e577
+		sourceLineageTag: Dim Products.PRODUCT MANAGEMENT/Category
+		summarizeBy: none
+		sourceColumn: Dim Products.PRODUCT MANAGEMENT/Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.PRODUCT TYPE'
+		dataType: string
+		lineageTag: f13b3e1e-e5fd-4259-b1d3-5e27254ddbe2
+		sourceLineageTag: Dim Products.PRODUCT TYPE
+		summarizeBy: none
+		sourceColumn: Dim Products.PRODUCT TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.ProductOrg'
+		dataType: string
+		lineageTag: 1a1dceaf-70b6-427c-aa9c-f8f8d540fd8e
+		sourceLineageTag: Dim Products.ProductOrg
+		summarizeBy: none
+		sourceColumn: Dim Products.ProductOrg
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.Region'
+		dataType: string
+		lineageTag: 8ca37613-5a1a-4f07-babc-cead8d6b8272
+		sourceLineageTag: Dim Products.Region
+		summarizeBy: none
+		sourceColumn: Dim Products.Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SAP_MATERIALTYPE'
+		dataType: string
+		lineageTag: f02ccf19-1d80-4d35-b391-b3ec318bc3bb
+		sourceLineageTag: Dim Products.SAP_MATERIALTYPE
+		summarizeBy: none
+		sourceColumn: Dim Products.SAP_MATERIALTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SKU Group'
+		dataType: string
+		lineageTag: f0904ec2-887f-491a-b5fe-26d1fd7f56d6
+		sourceLineageTag: Dim Products.SKU Group
+		summarizeBy: none
+		sourceColumn: Dim Products.SKU Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SKU Group #'
+		dataType: string
+		lineageTag: 888b7cdf-13d4-479d-bfcf-387cd9c723e2
+		sourceLineageTag: Dim Products.SKU Group #
+		summarizeBy: none
+		sourceColumn: Dim Products.SKU Group #
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SKU Group # & Desc'
+		dataType: string
+		lineageTag: 17dddc30-63cf-41a0-9885-16c2fcf3ff6d
+		sourceLineageTag: Dim Products.SKU Group # & Desc
+		summarizeBy: none
+		sourceColumn: Dim Products.SKU Group # & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SKU Level'
+		dataType: string
+		lineageTag: f2fc65ce-accd-401c-be76-04c30da51617
+		sourceLineageTag: Dim Products.SKU Level
+		summarizeBy: none
+		sourceColumn: Dim Products.SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SKU Level # & Desc'
+		dataType: string
+		lineageTag: 0fbac61d-23f1-4c1b-9e92-86c61e9e3671
+		sourceLineageTag: Dim Products.SKU Level # & Desc
+		summarizeBy: none
+		sourceColumn: Dim Products.SKU Level # & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Products.SubContinent Production'
+		dataType: string
+		lineageTag: 736e4542-69fa-4b9e-b20d-758d458828b8
+		sourceLineageTag: Dim Products.SubContinent Production
+		summarizeBy: none
+		sourceColumn: Dim Products.SubContinent Production
+
+		annotation SummarizationSetBy = Automatic
+
+	column Crossdock
+		dataType: string
+		lineageTag: c05fa716-85f5-477c-80ba-e3a5d31a2411
+		sourceLineageTag: Crossdock
+		summarizeBy: none
+		sourceColumn: Crossdock
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx US Dim Weight'
+		dataType: int64
+		formatString: 0
+		lineageTag: fbf60de1-a9a2-452a-b18b-ccce599ac848
+		sourceLineageTag: FedEx US Dim Weight
+		summarizeBy: sum
+		sourceColumn: FedEx US Dim Weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx AHS Dim Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e4c1d1b6-6f3c-4c7d-9362-21a358b19b65
+		sourceLineageTag: FedEx AHS Dim Flag
+		summarizeBy: none
+		sourceColumn: FedEx AHS Dim Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx AHS Dim US Billable Weight'
+		dataType: double
+		lineageTag: 7379fdb5-74fb-4977-b047-93c643aced2d
+		sourceLineageTag: FedEx AHS Dim US Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx AHS Dim US Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx AHS Weight Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 51dfec03-e02a-46fd-a644-817a12e9cfe5
+		sourceLineageTag: FedEx AHS Weight Flag
+		summarizeBy: none
+		sourceColumn: FedEx AHS Weight Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx Oversize Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e8441db7-c706-4927-8c4e-7b5354d37d43
+		sourceLineageTag: FedEx Oversize Flag
+		summarizeBy: none
+		sourceColumn: FedEx Oversize Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx Oversize US Billable Weight'
+		dataType: double
+		lineageTag: 1deb8f3a-4f0f-4443-8c1f-ea5c23de108a
+		sourceLineageTag: FedEx Oversize US Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx Oversize US Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx US Final Billable Weight'
+		dataType: double
+		lineageTag: f1e7e0ae-d2f8-4045-8dfa-efdf238f41d5
+		sourceLineageTag: FedEx US Final Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx US Final Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx Unauthorized Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 57a3330a-fa66-42c4-80b2-b91774cd6161
+		sourceLineageTag: FedEx Unauthorized Flag
+		summarizeBy: none
+		sourceColumn: FedEx Unauthorized Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx Unauthorized US Billable Weight'
+		dataType: double
+		lineageTag: 97278a08-f9b3-4eb8-87d4-7c64ceb7a421
+		sourceLineageTag: FedEx Unauthorized US Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx Unauthorized US Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx Applied AHS Category'
+		dataType: string
+		lineageTag: bc277491-0f2e-4b6e-bc31-d3ffd22c33d1
+		sourceLineageTag: FedEx Applied AHS Category
+		summarizeBy: none
+		sourceColumn: FedEx Applied AHS Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx Ground US Dim Divisor'
+		dataType: int64
+		formatString: 0
+		lineageTag: 26394b1f-d5fa-4ff5-afa1-534296d45650
+		sourceLineageTag: FedEx Ground US Dim Divisor
+		summarizeBy: sum
+		sourceColumn: FedEx Ground US Dim Divisor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Length & Girth'
+		dataType: double
+		lineageTag: 2b89ae36-98f6-481e-9501-adcf06deb83e
+		sourceLineageTag: Length & Girth
+		summarizeBy: sum
+		sourceColumn: Length & Girth
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Last Sale Date.1'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d24d8de4-ef66-4d43-b8e8-2e4a4247eb2a
+		sourceLineageTag: Last Sale Date.1
+		summarizeBy: none
+		sourceColumn: Last Sale Date.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Warranty _Year_'
+		dataType: int64
+		formatString: 0
+		lineageTag: a4c4b997-7177-42c4-9e93-683e9dc0f162
+		sourceLineageTag: Warranty _Year_
+		summarizeBy: sum
+		sourceColumn: Warranty _Year_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Warranty Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 61cc4904-8fef-4dc8-b706-f2643853c6a3
+		sourceLineageTag: Last Warranty Date
+		summarizeBy: none
+		sourceColumn: Last Warranty Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Concat Length X Width'
+		dataType: string
+		lineageTag: 2db71ed8-00ea-4ba3-9394-93d153db7887
+		sourceLineageTag: Concat Length X Width
+		summarizeBy: none
+		sourceColumn: Concat Length X Width
+
+		annotation SummarizationSetBy = Automatic
+
+	column LTL_Parcel
+		dataType: string
+		lineageTag: 6035d611-269e-4dc4-8ff4-a282d56146ea
+		sourceLineageTag: LTL_Parcel
+		summarizeBy: none
+		sourceColumn: LTL_Parcel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ABC
+		dataType: string
+		lineageTag: a29bd05d-09ab-4963-b46f-5278f99ea89b
+		sourceLineageTag: ABC
+		summarizeBy: none
+		sourceColumn: ABC
+
+		annotation SummarizationSetBy = Automatic
+
+	column XYZ
+		dataType: string
+		lineageTag: e811492a-290a-4535-9108-e71b45182590
+		sourceLineageTag: XYZ
+		summarizeBy: none
+		sourceColumn: XYZ
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AVG Forecast'
+		dataType: double
+		lineageTag: ef308693-5b87-434d-b576-342705691d67
+		sourceLineageTag: AVG Forecast
+		summarizeBy: sum
+		sourceColumn: AVG Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DOS Target'
+		dataType: string
+		lineageTag: ebf25390-6aef-468c-b8f6-fef97deca817
+		sourceLineageTag: DOS Target
+		summarizeBy: none
+		sourceColumn: DOS Target
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bias %'
+		dataType: double
+		lineageTag: 2c92244c-2bc4-425d-a4ba-e2a7d91bbb65
+		sourceLineageTag: Bias %
+		summarizeBy: sum
+		sourceColumn: Bias %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Not In Current Items Sheet'
+		dataType: string
+		lineageTag: 3cc6d864-c2a6-4487-81c6-1419f76db6d7
+		sourceLineageTag: Not In Current Items Sheet
+		summarizeBy: none
+		sourceColumn: Not In Current Items Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'THD Item Number'
+		dataType: string
+		lineageTag: dc80d3cf-02b6-4231-ae64-672e14b8352c
+		sourceLineageTag: THD Item Number
+		summarizeBy: none
+		sourceColumn: THD Item Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ECOM Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0a7896db-9672-41bd-b219-d0cd01b57eb4
+		sourceLineageTag: ECOM Flag
+		summarizeBy: none
+		sourceColumn: ECOM Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Specs.Carton - Volume - in.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 92e50763-2f27-4a95-bb95-2c1a8523428c
+		sourceLineageTag: Specs.Carton - Volume - in.
+		summarizeBy: sum
+		sourceColumn: Specs.Carton - Volume - in.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx Ground CAN Dim Divisor'
+		dataType: int64
+		formatString: 0
+		lineageTag: c4edcc18-e619-46cd-8cd3-a658d3723cd6
+		sourceLineageTag: FedEx Ground CAN Dim Divisor
+		summarizeBy: sum
+		sourceColumn: FedEx Ground CAN Dim Divisor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx CAN Dim Weight'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0580da0d-d1c5-411d-b945-50e8da39936f
+		sourceLineageTag: FedEx CAN Dim Weight
+		summarizeBy: sum
+		sourceColumn: FedEx CAN Dim Weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx AHS Dim CAN Billable Weight'
+		dataType: double
+		lineageTag: b3dd02fd-a0b6-4f84-a55d-ed6554c95f06
+		sourceLineageTag: FedEx AHS Dim CAN Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx AHS Dim CAN Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx Oversize CAN Billable Weight'
+		dataType: double
+		lineageTag: 187a4a31-df8f-421b-9179-a22ba61847b1
+		sourceLineageTag: FedEx Oversize CAN Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx Oversize CAN Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx Unauthorized CAN Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e4a64fbe-3ca8-4ffb-9946-2689478c30be
+		sourceLineageTag: FedEx Unauthorized CAN Flag
+		summarizeBy: none
+		sourceColumn: FedEx Unauthorized CAN Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx Unauthorized CAN Billable Weight'
+		dataType: double
+		lineageTag: e9acd3e6-406a-4909-a3de-2be53e0fe962
+		sourceLineageTag: FedEx Unauthorized CAN Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx Unauthorized CAN Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FedEx Applied AHS CAN Category'
+		dataType: string
+		lineageTag: 65537d07-070f-4d0a-860c-6b610f1d1718
+		sourceLineageTag: FedEx Applied AHS CAN Category
+		summarizeBy: none
+		sourceColumn: FedEx Applied AHS CAN Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FedEx CAN Final Billable Weight'
+		dataType: double
+		lineageTag: 30e2184c-66f6-436c-834e-87141cce7414
+		sourceLineageTag: FedEx CAN Final Billable Weight
+		summarizeBy: sum
+		sourceColumn: FedEx CAN Final Billable Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'DIM Product' = entity
+		mode: directLake
+		source
+			entityName: DIM Product
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

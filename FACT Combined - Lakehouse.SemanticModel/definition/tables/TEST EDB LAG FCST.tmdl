@@ -1,0 +1,679 @@
+table 'TEST EDB LAG FCST'
+	lineageTag: f5641734-1de0-447e-b751-e9764a689fdf
+	sourceLineageTag: [dbo].[TEST EDB LAG FCST]
+
+	measure '_LAG 3 Forecast Accuracy %' = ```
+			
+			VAR TotalError =
+			    SUMX (
+			        'TEST EDB LAG FCST',
+			        ABS (
+			            'TEST EDB LAG FCST'[Lag3 Quantity – _Apo___2025_2026_2027_]
+			            - 'TEST EDB LAG FCST'[Quantity__2025_2026_2027_]
+			        )
+			    )
+			
+			VAR TotalForecast =
+			    SUM ( 'TEST EDB LAG FCST'[Lag3 Quantity – _Apo___2025_2026_2027_] )
+			
+			RETURN
+			    IF (
+			        TotalForecast <> 0,
+			        MAX ( 0, 1 - DIVIDE ( TotalError, TotalForecast ) ),
+			        BLANK ()
+			    )
+			
+			```
+		lineageTag: 11918acf-2640-4ab1-82ef-1f45a4476e2c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_LAG 2 Forecast Accuracy %' = ```
+			
+			VAR TotalError =
+			    SUMX(
+			        'TEST EDB LAG FCST',
+			        ABS(
+			            'TEST EDB LAG FCST'[Lag2 Quantity – _Apo___2025_2026_2027_]
+			            - 'TEST EDB LAG FCST'[Quantity__2025_2026_2027_]
+			        )
+			    )
+			VAR TotalForecast =
+			    SUM('TEST EDB LAG FCST'[Lag2 Quantity – _Apo___2025_2026_2027_])
+			
+			RETURN
+			IF(
+			    TotalForecast = 0,
+			    BLANK(),
+			    MAX(0, 1 - DIVIDE(TotalError, TotalForecast))
+			)
+			
+			```
+		lineageTag: 75ec9460-858e-4862-9e10-47d4fb0ecb8d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_LAG 1 Forecast Accuracy %' = ```
+			
+			
+			VAR TotalError =
+			    SUMX (
+			        'TEST EDB LAG FCST',
+			        ABS (
+			            'TEST EDB LAG FCST'[Lag1 Quantity – _Apo___2025_2026_2027_]
+			            - 'TEST EDB LAG FCST'[Quantity__2025_2026_2027_]
+			        )
+			    )
+			
+			VAR TotalForecast =
+			    SUM ( 'TEST EDB LAG FCST'[Lag1 Quantity – _Apo___2025_2026_2027_] )
+			
+			RETURN
+			    IF (
+			        TotalForecast <> 0,
+			        MAX ( 0, 1 - DIVIDE ( TotalError, TotalForecast ) ),
+			        BLANK ()
+			    )
+			
+			```
+		lineageTag: 3aa3b8f2-d33b-4fc9-83ee-423f047e0cab
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lag2 BIAS' = (sum('TEST EDB LAG FCST'[Lag2 Quantity – _Apo___2025_2026_2027_])-sum('TEST EDB LAG FCST'[Quantity__2025_2026_2027_]))/sum('TEST EDB LAG FCST'[Quantity__2025_2026_2027_])
+		lineageTag: 8f0c1795-e4d0-46c7-a7a5-d2812539a58e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lag3 BIAS' = (sum('TEST EDB LAG FCST'[Lag3 Quantity – _Apo___2025_2026_2027_])-sum('TEST EDB LAG FCST'[Quantity__2025_2026_2027_]))/sum('TEST EDB LAG FCST'[Quantity__2025_2026_2027_])
+		lineageTag: 06b52c62-5bff-4c27-9218-f76cc8d3839b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lag1 BIAS' = (sum('TEST EDB LAG FCST'[Lag1 Quantity – _Apo___2025_2026_2027_])-sum('TEST EDB LAG FCST'[Quantity__2025_2026_2027_]))/sum('TEST EDB LAG FCST'[Quantity__2025_2026_2027_])
+		lineageTag: e8a72303-077b-4bf3-8c76-02e5df8e1f9b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$Selected Lag Forecast Accuracy' = ```
+			
+			
+			VAR SelectedColumn =
+			    SELECTEDVALUE('Lag '[Lag ])
+			
+			RETURN
+			    SWITCH(
+			        SelectedColumn,
+			
+			        NAMEOF('TEST EDB LAG FCST'[_LAG 1 Forecast Accuracy %]),
+			            [_LAG 1 Forecast Accuracy %],
+			
+			        NAMEOF('TEST EDB LAG FCST'[_LAG 2 Forecast Accuracy %]),
+			            [_LAG 2 Forecast Accuracy %],
+			
+			        NAMEOF('TEST EDB LAG FCST'[_LAG 3 Forecast Accuracy %]),
+			            [_LAG 3 Forecast Accuracy %]
+			    )
+			
+			```
+		lineageTag: beff662d-f642-4386-ab29-aa9dd3a91307
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_LAG 2 Forecast Accuracy % (No Cap)' = ```
+			
+			
+			VAR TotalError =
+			    SUMX(
+			        'TEST EDB LAG FCST',
+			        ABS(
+			            'TEST EDB LAG FCST'[Lag2 Quantity – _Apo___2025_2026_2027_]
+			            - 'TEST EDB LAG FCST'[Quantity__2025_2026_2027_]
+			        )
+			    )
+			VAR TotalForecast =
+			    SUM('TEST EDB LAG FCST'[Lag2 Quantity – _Apo___2025_2026_2027_])
+			
+			RETURN
+			    IF(
+			        TotalForecast = 0,
+			        BLANK(),
+			        MAX(0, 1 - DIVIDE(TotalError, TotalForecast))
+			    )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4858e2cd-0ffa-4efc-805c-a9451d72e11b
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _salesweight = ```
+			
+			DIVIDE(
+			    SUM('TEST EDB LAG FCST'[Quantity__2025_2026_2027_]),
+			    CALCULATE(
+			        SUM('TEST EDB LAG FCST'[Quantity__2025_2026_2027_]),
+			        REMOVEFILTERS('DIM Product'[SKU & Desc])
+			    )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: df54f825-9d4d-4bbc-b57d-5b09bb496c6c
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _weightedaccuracylag2 = ```
+			
+			
+			SUMX(
+			    SUMMARIZE(
+			        'TEST EDB LAG FCST',
+			        'TEST EDB LAG FCST'[Customer Groups],
+			        'DIM Product'[SKU & Desc],
+			        'TEST EDB LAG FCST'[MonthStartDate]
+			    ),
+			    CALCULATE(
+			        [_LAG 2 Forecast Accuracy %] * [_salesweight]
+			    )
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9430eb07-7e92-4f3b-b4c6-fbfdd4c19c3e
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure '_% of Next Level' =
+			
+			VAR CurrentLevelValue =
+			    SUM('TEST EDB LAG FCST'[Quantity__2025_2026_2027_])
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    ISINSCOPE('TEST EDB LAG FCST'[Code:SKU Level _c1_]),
+			    DIVIDE(
+			        CurrentLevelValue,
+			        CALCULATE(
+			            CurrentLevelValue,
+			            REMOVEFILTERS('TEST EDB LAG FCST'[Code:SKU Level _c1_])
+			        )
+			    ),
+			
+			    ISINSCOPE('TEST EDB LAG FCST'[Customer Groups]),
+			    DIVIDE(
+			        CurrentLevelValue,
+			        CALCULATE(
+			            CurrentLevelValue,
+			            REMOVEFILTERS('TEST EDB LAG FCST'[Customer Groups])
+			        )
+			    ),
+			
+			    ISINSCOPE('TEST EDB LAG FCST'[MonthStartDate]),
+			    DIVIDE(
+			        CurrentLevelValue,
+			        CALCULATE(
+			            CurrentLevelValue,
+			            REMOVEFILTERS('TEST EDB LAG FCST'[MonthStartDate])
+			        )
+			    )
+			)
+		lineageTag: 9ecb3f04-d0ca-4339-b472-6d6f96d24838
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$weight basis' =
+			
+			SUM('TEST EDB LAG FCST'[Quantity__2025_2026_2027_])
+		lineageTag: 2def483d-6cf7-4c17-b36c-ac72562fe569
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$weight_sku_in_customer =
+			
+			DIVIDE(
+			    [_$weight basis],
+			    CALCULATE(
+			        [_$weight basis],
+			        REMOVEFILTERS('DIM Product'[SKU & Desc])
+			    )
+			)
+		lineageTag: 4a43d229-c997-4c34-aa7f-f4e8184e9653
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$weight_customer_in_total =
+			
+			DIVIDE(
+			    [_$weight basis],
+			    CALCULATE(
+			        [_$weight basis],
+			        ALLSELECTED('TEST EDB LAG FCST'[Payer])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ce469261-3f8d-4e47-8e90-b4a693fcdbb8
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _$weightedaccuracylag2_customer = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[SKU & Desc]),
+			    CALCULATE([_LAG 2 Forecast Accuracy %]) *
+			    CALCULATE([_$weight_sku_in_customer])
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3f1e0a52-fdfd-4fb1-989a-0819fcb4d55c
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _$weightedaccuracylag2 =
+			
+			SWITCH(
+			    TRUE(),
+			
+			    -- Leaf level: SKU row should show raw accuracy
+			    ISINSCOPE('DIM Product'[SKU & Desc]),
+			        [_LAG 2 Forecast Accuracy %],
+			
+			    -- Customer subtotal: weighted average of SKU rows
+			    ISINSCOPE('TEST EDB LAG FCST'[Payer]),
+			        [_$weightedaccuracylag2_customer],
+			
+			    -- Grand total: weighted average of customer subtotals
+			    SUMX(
+			        VALUES('TEST EDB LAG FCST'[Payer]),
+			        CALCULATE([_$weightedaccuracylag2_customer]) *
+			        CALCULATE([_$weight_customer_in_total])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8f6fbe37-02dd-49bf-b5b7-35fdfc7c11bb
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _$weightedaccuracylag1_customer = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[SKU & Desc]),
+			    CALCULATE([_LAG 1 Forecast Accuracy %]) *
+			    CALCULATE([_$weight_sku_in_customer])
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2309e5b5-a6e2-47a0-b048-73c0c14ce1f2
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _$weightedaccuracylag1 =
+			
+			SWITCH(
+			    TRUE(),
+			
+			    -- Leaf level: SKU row should show raw accuracy
+			    ISINSCOPE('DIM Product'[SKU & Desc]),
+			        [_LAG 1 Forecast Accuracy %],
+			
+			    -- Customer subtotal: weighted average of SKU rows
+			    ISINSCOPE('TEST EDB LAG FCST'[Payer]),
+			        [_$weightedaccuracylag1_customer],
+			
+			    -- Grand total: weighted average of customer subtotals
+			    SUMX(
+			        VALUES('TEST EDB LAG FCST'[Payer]),
+			        CALCULATE([_$weightedaccuracylag1_customer]) *
+			        CALCULATE([_$weight_customer_in_total])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 81f92a3e-4265-4f59-b343-1c58fb405062
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure _$weightedaccuracylag3_customer = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[SKU & Desc]),
+			    CALCULATE([_LAG 3 Forecast Accuracy %]) *
+			    CALCULATE([_$weight_sku_in_customer])
+			)
+			
+			```
+		lineageTag: cb7166c2-ed95-4db9-a8e1-6c29540d33ca
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$weightedaccuracylag3 =
+			
+			SWITCH(
+			    TRUE(),
+			
+			    -- Leaf level: SKU row should show raw accuracy
+			    ISINSCOPE('DIM Product'[SKU & Desc]),
+			        [_LAG 3 Forecast Accuracy %],
+			
+			    -- Customer subtotal: weighted average of SKU rows
+			    ISINSCOPE('TEST EDB LAG FCST'[Payer]),
+			        [_$weightedaccuracylag3_customer],
+			
+			    -- Grand total: weighted average of customer subtotals
+			    SUMX(
+			        VALUES('TEST EDB LAG FCST'[Payer]),
+			        CALCULATE([_$weightedaccuracylag3_customer]) *
+			        CALCULATE([_$weight_customer_in_total])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8845c866-c369-40c6-b0c9-9ab67fdbac76
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure '_$Forecast Accuracy (Dynamic Lag)' =
+			
+			VAR BU =
+			    SELECTEDVALUE('DIM Product'[PC Business Unit])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        BU IN { "GF NA", "Home NA", "Shelving & Cabinets & Totes NA", "Home NA"},
+			            [_LAG 2 Forecast Accuracy %],
+			
+			        BU IN { "Deck Boxes","Deck Boxes & Leisure", "Lifestyle","Leisure", "Sheds & Buildings", "Tools", "Packout" },
+			            [_LAG 3 Forecast Accuracy %],
+			
+			        BLANK()
+			    )
+		lineageTag: cbdd8084-6e71-488a-99c6-2350dd505604
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$forecast Accuracy (Dynamic Lag) Customer weight' = ```
+			
+			SUMX(
+			    VALUES('DIM Product'[SKU & Desc]),
+			    CALCULATE([_$Forecast Accuracy (Dynamic Lag)]) *
+			    CALCULATE([_$weight_sku_in_customer])
+			)
+			
+			```
+		lineageTag: c7b38be6-f16a-471b-9ed3-616f9fc47d40
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$Forecast Accuracy (dynamic Lag) weight' =
+			
+			SWITCH(
+			    TRUE(),
+			
+			    -- Leaf level: SKU row should show raw accuracy
+			    ISINSCOPE('DIM Product'[SKU & Desc]),
+			        [_$Forecast Accuracy (Dynamic Lag)],
+			
+			    -- Customer subtotal: weighted average of SKU rows
+			    ISINSCOPE('TEST EDB LAG FCST'[Payer]),
+			        [_$forecast Accuracy (Dynamic Lag) Customer weight],
+			
+			    -- Grand total: weighted average of customer subtotals
+			    SUMX(
+			        VALUES('TEST EDB LAG FCST'[Payer]),
+			        CALCULATE([_$forecast Accuracy (Dynamic Lag) Customer weight]) *
+			        CALCULATE([_$weight_customer_in_total])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5b38df77-acfe-4f5c-a27d-f353d9edb131
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure '_$Dynamic BIAS' =
+			
+			DIVIDE(
+			    SUMX(
+			        VALUES('DIM Product'[PC Business Unit]),
+			        VAR BU = 'DIM Product'[PC Business Unit]
+			
+			        VAR ForecastQty =
+			            SWITCH(
+			                TRUE(),
+			
+			                BU IN { "GF NA", "Home NA", "Shelving & Cabinets & Totes NA" },
+			                    CALCULATE(SUM('TEST EDB LAG FCST'[Lag2 Quantity – _Apo___2025_2026_2027_])),
+			
+			                BU IN { "Deck Boxes","Deck Boxes & Leisure", "Lifestyle","Leisure", "Sheds & Buildings", "Tools", "Packout" },
+			                    CALCULATE(SUM('TEST EDB LAG FCST'[Lag3 Quantity – _Apo___2025_2026_2027_])),
+			
+			                BLANK()
+			            )
+			
+			        VAR ActualQty =
+			            CALCULATE(SUM('TEST EDB LAG FCST'[Quantity__2025_2026_2027_]))
+			
+			        RETURN
+			            ForecastQty - ActualQty
+			    ),
+			    SUM('TEST EDB LAG FCST'[Quantity__2025_2026_2027_])
+			)
+		lineageTag: d562df23-d429-4536-a7fc-192899d855df
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_$Dynamic Lag Column Name' =
+			
+			VAR BU =
+			    SELECTEDVALUE('DIM Product'[PC Business Unit])
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        BU IN { "GF NA", "Home NA", "Shelving & Cabinets & Totes NA" },
+			            "Lag2",
+			
+			        BU IN { "Deck Boxes","Deck Boxes & Leisure", "Lifestyle","Leisure", "Sheds & Buildings", "Tools", "Packout", "Home EU", "Cabinets & Shelving EU", "F & P EU" },
+			            "Lag3",
+			
+			        "N/A"
+			    )
+		lineageTag: fe92c13e-1ec3-4bb5-a750-62122ea7558d
+
+		changedProperty = Name
+
+	column 'US DOLLAR_SKU Level'
+		dataType: string
+		lineageTag: 46aa10ed-2df5-4d44-8ae0-113e00af72a1
+		sourceLineageTag: US DOLLAR_SKU Level
+		summarizeBy: none
+		sourceColumn: US DOLLAR_SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level _c1_'
+		dataType: string
+		lineageTag: d6504d3e-2136-47c7-b391-3a1defd8fb24
+		sourceLineageTag: Code:SKU Level _c1_
+		summarizeBy: none
+		sourceColumn: Code:SKU Level _c1_
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 7d910954-6857-4d16-805b-d36e7ffdc153
+		sourceLineageTag: Months
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: ee13bb60-56f2-47e0-a4e9-9cc0fbd6d20e
+		sourceLineageTag: Customer Groups
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: ba8e58db-f106-4fb6-9f8e-483fb1ae128f
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer _c4_'
+		dataType: int64
+		formatString: 0
+		lineageTag: bc2789c1-e718-444b-837b-c529c78974a4
+		sourceLineageTag: Code:Payer _c4_
+		summarizeBy: sum
+		sourceColumn: Code:Payer _c4_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country _ST_'
+		dataType: string
+		lineageTag: a84760cf-1db2-4612-944e-d4b05519deac
+		sourceLineageTag: Country _ST_
+		summarizeBy: none
+		sourceColumn: Country _ST_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lag3 Quantity – _Apo___2025_2026_2027_'
+		dataType: double
+		formatString: 0
+		lineageTag: cb5293b5-f4f4-4ece-949b-da1bfa2c1ba9
+		sourceLineageTag: Lag3 Quantity – _Apo___2025_2026_2027_
+		summarizeBy: sum
+		sourceColumn: Lag3 Quantity – _Apo___2025_2026_2027_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lag2 Quantity – _Apo___2025_2026_2027_'
+		dataType: double
+		formatString: 0
+		lineageTag: b2fd3e98-6dd0-469e-b9d0-833812616945
+		sourceLineageTag: Lag2 Quantity – _Apo___2025_2026_2027_
+		summarizeBy: sum
+		sourceColumn: Lag2 Quantity – _Apo___2025_2026_2027_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lag1 Quantity – _Apo___2025_2026_2027_'
+		dataType: double
+		formatString: 0
+		lineageTag: 0c041f0e-138c-4649-81f4-afb33df819ee
+		sourceLineageTag: Lag1 Quantity – _Apo___2025_2026_2027_
+		summarizeBy: sum
+		sourceColumn: Lag1 Quantity – _Apo___2025_2026_2027_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Committed Demand _APO___2025_2026_2027_'
+		dataType: double
+		formatString: 0
+		lineageTag: 44463038-0fbb-4928-9bb2-8e2bae530e76
+		sourceLineageTag: Committed Demand _APO___2025_2026_2027_
+		summarizeBy: sum
+		sourceColumn: Committed Demand _APO___2025_2026_2027_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Committed Gross Sales _APO___2025_2026_2027_'
+		dataType: double
+		lineageTag: 83d18f9f-2198-4b9c-9909-b536c9f51c56
+		sourceLineageTag: Committed Gross Sales _APO___2025_2026_2027_
+		summarizeBy: sum
+		sourceColumn: Committed Gross Sales _APO___2025_2026_2027_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity__2025_2026_2027_
+		dataType: double
+		formatString: 0
+		lineageTag: 953b51e8-8066-40f6-9f95-cb7f91fae660
+		sourceLineageTag: Quantity__2025_2026_2027_
+		summarizeBy: sum
+		sourceColumn: Quantity__2025_2026_2027_
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthStartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: af4bf541-c5c0-4034-a755-cd9d2dae43d0
+		sourceLineageTag: MonthStartDate
+		summarizeBy: none
+		sourceColumn: MonthStartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TEST EDB LAG FCST' = entity
+		mode: directLake
+		source
+			entityName: TEST EDB LAG FCST
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

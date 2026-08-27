@@ -1,0 +1,52 @@
+table market_org
+	lineageTag: a800f050-9ca6-4a25-ab66-f6b307d31edb
+
+	column 'Market Org 2017 (SoldTo)'
+		dataType: string
+		lineageTag: a5d0d071-5a96-4ce6-a23e-5f5f8e87009a
+		summarizeBy: none
+		sourceColumn: Market Org 2017 (SoldTo)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Market Org 2017 (SoldTo) (c5)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67c68621-7551-4d6b-9549-265fe74b8599
+		summarizeBy: sum
+		sourceColumn: Code:Market Org 2017 (SoldTo) (c5)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment-Region RTP-APO'
+		dataType: string
+		lineageTag: 37a66fa9-7951-4f7e-90b7-8b8e7e9a3813
+		summarizeBy: none
+		sourceColumn: Segment-Region RTP-APO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code Segment Region RTP-APO'
+		dataType: string
+		lineageTag: 7e5c5d01-427c-4892-9825-0426a5a955ce
+		summarizeBy: none
+		sourceColumn: Code Segment Region RTP-APO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition market_org = m
+		mode: import
+		queryGroup: 'Static Dimension'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Data Files\Market_org.xlsx"), null, true),
+				    market_org_Sheet = Source{[Item="market_org",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(market_org_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c5)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

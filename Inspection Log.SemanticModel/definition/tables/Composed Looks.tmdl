@@ -1,0 +1,191 @@
+table 'Composed Looks'
+	lineageTag: dfe834de-970c-47bd-91c1-1a7285d2d3af
+
+	column FileSystemObjectType
+		dataType: string
+		lineageTag: 1ccab13d-71ae-4f77-bd2b-1eb1a89497b2
+		summarizeBy: none
+		sourceColumn: FileSystemObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 57dc2d69-2397-46d7-820d-bef1d253486d
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUri
+		dataType: string
+		lineageTag: 303bf232-3999-4770-a1ec-7656d2489578
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUri
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUrl
+		dataType: string
+		lineageTag: 57a8e4c0-2ebd-48af-8cbf-d0e2d1acffa0
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: a34945e8-14ea-493f-8087-c29a78456473
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentTypeId
+		dataType: string
+		lineageTag: d463bc38-8f9b-4d6f-b207-52e57d49b002
+		summarizeBy: none
+		sourceColumn: ContentTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: e5957798-6699-43b8-99ce-45bba1d6c356
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: string
+		lineageTag: 81b46ddb-cbb4-48bc-93ca-a4fc9abf464b
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		lineageTag: e5f24887-8184-4007-83fc-27ab88298fd6
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column AuthorId
+		dataType: string
+		lineageTag: 3dc67108-24ca-4cf2-a0a5-63d4eea81c15
+		summarizeBy: none
+		sourceColumn: AuthorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditorId
+		dataType: string
+		lineageTag: fe3e2923-3188-40ea-8661-567043cf1c11
+		summarizeBy: none
+		sourceColumn: EditorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__UIVersionString
+		dataType: string
+		lineageTag: 2ff41abc-e427-4049-bcd3-b734cd3e5a1d
+		summarizeBy: none
+		sourceColumn: OData__UIVersionString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: ac6890d1-3972-459a-af75-4f87fb534145
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUID
+		dataType: string
+		lineageTag: 059f3f3d-a8f6-4340-8b29-687e477c4f09
+		summarizeBy: none
+		sourceColumn: GUID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__ColorTag
+		dataType: string
+		lineageTag: 4cebec02-9a95-467d-a9aa-de90ef924513
+		summarizeBy: none
+		sourceColumn: OData__ColorTag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComplianceAssetId
+		dataType: string
+		lineageTag: 001e66f5-fb83-4dd4-8c26-144df968bd90
+		summarizeBy: none
+		sourceColumn: ComplianceAssetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: ccf351dc-d45b-4f9a-b067-7757a03801bd
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterPageUrl
+		dataType: string
+		lineageTag: 4ff03705-e213-45b8-945c-de3c47071b29
+		summarizeBy: none
+		sourceColumn: MasterPageUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ThemeUrl
+		dataType: string
+		lineageTag: d9ee0272-8b9a-49a5-acc6-5c6e45556266
+		summarizeBy: none
+		sourceColumn: ThemeUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImageUrl
+		dataType: string
+		lineageTag: b450e6ca-a5d1-4a90-bec3-4b5e0b729ff9
+		summarizeBy: none
+		sourceColumn: ImageUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column FontSchemeUrl
+		dataType: string
+		lineageTag: 62942f25-eb6b-45c0-ab81-9166d381a291
+		summarizeBy: none
+		sourceColumn: FontSchemeUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayOrder
+		dataType: string
+		lineageTag: 968c05e7-5df1-4b09-a719-1dbb6d4b432b
+		summarizeBy: none
+		sourceColumn: DisplayOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Composed Looks' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer/", [ApiVersion = 15]),
+				    #"ed8bfad3-d672-4af6-9b56-f7cc7decbcf5" = Source{[Id="ed8bfad3-d672-4af6-9b56-f7cc7decbcf5"]}[Items],
+				    #"Renamed Columns" = Table.RenameColumns(#"ed8bfad3-d672-4af6-9b56-f7cc7decbcf5",{{"ID", "ID.1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

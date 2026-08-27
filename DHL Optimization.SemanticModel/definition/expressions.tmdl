@@ -1,0 +1,39 @@
+expression 'Item Sheet Specs' =
+		let
+		    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNAItemInfo/Shared%20Documents/Item%20Info/Current%20Item%20Sheets-2026.xlsx"), null, true),
+		    SAP_Sheet = Source{[Item="Specs",Kind="Sheet"]}[Data],
+		    #"Removed Top Rows" = Table.Skip(SAP_Sheet,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Item", type text}, {"Length", type number}, {"Width", type number}, {"Height", type number}, {"Volume", type number}, {"Weight", type number}, {"cf", type number}, {"pcf", type number}, {"Length_1", type number}, {"Width_2", type number}, {"Height_3", type number}, {"Volume_4", type number}, {"Weight_5", type number}, {"cf_6", type number}, {"pcf_7", type number}, {"LP", type number}, {"Carton Class", type number}, {"SS/PLT Class", type number}, {"Carton Dim Wt", Int64.Type}, {"Oversize +130"" Max 165""", type any}, {"SAP", type text}, {"Override", type any}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"pcf_7", "Pallet - pcf"},{"cf_6", "Pallet - cf"},{"Height_3", "Pallet - Height"},{"Width_2", "Pallet - Width"},{"Length_1", "Pallet - Length"},{"Height", "Carton - Height"},{"pcf", "Carton - pcf"},{"cf", "Carton - cf"},{"Width", "Carton - Width"},{"Length", "Carton - Length"}, {"Volume", "Carton - Volume"}, {"Volume_4", "Pallet - Volume"}, {"Weight", "Carton - Weight"}, {"Weight_5", "Pallet - Weight"}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns","Plan","0",Replacer.ReplaceText,{"Item"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",{{"Item", Int64.Type}}),
+		    #"Removed Duplicates" = Table.Distinct(#"Changed Type1", {"Item"}),
+		    #"Replaced Errors" = Table.ReplaceErrorValues(#"Removed Duplicates", {{"Oversize +130"" Max 165""", 0}}),
+		    #"Replaced Errors1" = Table.ReplaceErrorValues(#"Replaced Errors", {{"Carton - Length", 0}}),
+		    #"Replaced Errors2" = Table.ReplaceErrorValues(#"Replaced Errors1", {{"Carton - Width", 0}}),
+		    #"Replaced Errors3" = Table.ReplaceErrorValues(#"Replaced Errors2", {{"Carton - Height", 0}}),
+		    #"Replaced Errors4" = Table.ReplaceErrorValues(#"Replaced Errors3", {{"Carton - Volume", 0}}),
+		    #"Replaced Errors5" = Table.ReplaceErrorValues(#"Replaced Errors4", {{"Carton - Weight", 0}}),
+		    #"Replaced Errors6" = Table.ReplaceErrorValues(#"Replaced Errors5", {{"Carton - cf", 0}}),
+		    #"Replaced Errors7" = Table.ReplaceErrorValues(#"Replaced Errors6", {{"Carton - pcf", 0}}),
+		    #"Replaced Errors8" = Table.ReplaceErrorValues(#"Replaced Errors7", {{"Pallet - Length", 0}}),
+		    #"Replaced Errors9" = Table.ReplaceErrorValues(#"Replaced Errors8", {{"Pallet - Width", 0}}),
+		    #"Replaced Errors10" = Table.ReplaceErrorValues(#"Replaced Errors9", {{"Pallet - Height", 0}}),
+		    #"Replaced Errors11" = Table.ReplaceErrorValues(#"Replaced Errors10", {{"Pallet - Volume", 0}}),
+		    #"Replaced Errors12" = Table.ReplaceErrorValues(#"Replaced Errors11", {{"Pallet - Weight", 0}}),
+		    #"Replaced Errors13" = Table.ReplaceErrorValues(#"Replaced Errors12", {{"Pallet - cf", 0}}),
+		    #"Replaced Errors14" = Table.ReplaceErrorValues(#"Replaced Errors13", {{"Pallet - pcf", 0}}),
+		    #"Replaced Errors15" = Table.ReplaceErrorValues(#"Replaced Errors14", {{"LP", 0}}),
+		    #"Replaced Errors16" = Table.ReplaceErrorValues(#"Replaced Errors15", {{"Carton Class", 0}}),
+		    #"Replaced Errors17" = Table.ReplaceErrorValues(#"Replaced Errors16", {{"SS/PLT Class", 0}}),
+		    #"Replaced Errors18" = Table.ReplaceErrorValues(#"Replaced Errors17", {{"Carton Dim Wt", 0}}),
+		    #"Replaced Errors19" = Table.ReplaceErrorValues(#"Replaced Errors18", {{"SAP", "0"}})
+		in
+		    #"Replaced Errors19"
+	lineageTag: 4c152ead-2c57-4833-b4a1-c467e9e8174e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

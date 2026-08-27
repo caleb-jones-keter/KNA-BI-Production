@@ -1,0 +1,147 @@
+table 'DIM DTC Ship Point Key'
+	lineageTag: 2ca76b62-4bdd-4651-b3e4-40e66e493a03
+	sourceLineageTag: [dbo].[DIM DTC Ship Point Key]
+
+	column Port
+		dataType: string
+		lineageTag: 7a718b5f-ccb9-4606-9680-851f093352e4
+		sourceLineageTag: Port
+		summarizeBy: none
+		sourceColumn: Port
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point
+		dataType: string
+		lineageTag: bf1ea493-bcdd-4e87-b405-933777d4e202
+		sourceLineageTag: shipping_point
+		summarizeBy: none
+		sourceColumn: shipping_point
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point_desc
+		dataType: string
+		lineageTag: c3dec637-c17b-4fc1-b099-8d21882a4cd8
+		sourceLineageTag: shipping_point_desc
+		summarizeBy: none
+		sourceColumn: shipping_point_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point_type
+		dataType: string
+		lineageTag: c8ba79a9-130b-46c3-8198-11f4cf4b0a62
+		sourceLineageTag: shipping_point_type
+		summarizeBy: none
+		sourceColumn: shipping_point_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point_type_desc
+		dataType: string
+		lineageTag: 6b87ce71-26f6-4431-8c19-4193a5b4eea9
+		sourceLineageTag: shipping_point_type_desc
+		summarizeBy: none
+		sourceColumn: shipping_point_type_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point_zip
+		dataType: string
+		lineageTag: 1e26bd1f-36a7-4c9b-a246-c8b64ce32448
+		sourceLineageTag: shipping_point_zip
+		summarizeBy: none
+		sourceColumn: shipping_point_zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column YR50
+		dataType: double
+		lineageTag: 955cd640-4e61-472e-9f97-288e6ce08fa2
+		sourceLineageTag: YR50
+		summarizeBy: sum
+		sourceColumn: YR50
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YR73
+		dataType: double
+		lineageTag: 265941bb-8057-48e1-a288-db5b7ff04325
+		sourceLineageTag: YR73
+		summarizeBy: sum
+		sourceColumn: YR73
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YR51
+		dataType: double
+		lineageTag: 8cab2ee0-89d9-429e-9eb4-94b1824bbd55
+		sourceLineageTag: YR51
+		summarizeBy: sum
+		sourceColumn: YR51
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YR52
+		dataType: double
+		lineageTag: 0ffafcf8-d877-431f-998f-9c95f0469273
+		sourceLineageTag: YR52
+		summarizeBy: sum
+		sourceColumn: YR52
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YR53
+		dataType: double
+		lineageTag: 388be386-b4cd-4b85-9610-595b83450208
+		sourceLineageTag: YR53
+		summarizeBy: sum
+		sourceColumn: YR53
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column shipping_point_key_desc
+		dataType: string
+		lineageTag: 3c0c0bef-7b66-4e1f-8c33-b9a0b0fbbdf1
+		sourceLineageTag: shipping_point_key_desc
+		summarizeBy: none
+		sourceColumn: shipping_point_key_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_point_key
+		dataType: string
+		lineageTag: 61c08369-eb52-42d5-ab3f-674ea4660766
+		sourceLineageTag: shipping_point_key
+		summarizeBy: none
+		sourceColumn: shipping_point_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_state
+		dataType: string
+		lineageTag: 3870081e-1cc7-403d-9e36-43d255b0dad3
+		sourceLineageTag: origin_state
+		summarizeBy: none
+		sourceColumn: origin_state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM DTC Ship Point Key' = entity
+		mode: directLake
+		source
+			entityName: DIM DTC Ship Point Key
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

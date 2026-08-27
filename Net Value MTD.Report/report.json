@@ -1,0 +1,64 @@
+{
+  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"type\":2,\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY26SU02",
+            "path": "BaseThemes/CY26SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "0c2efed300878abb7259",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"4dca4df0ca22b2e2d698\",\"layouts\":[{\"id\":0,\"position\":{\"x\":500.12297372833984,\"y\":220.36892118501956,\"z\":0,\"width\":426.42817216321964,\"height\":279.75405254332026,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.Customer Groups\"},{\"queryRef\":\"Sum(FACT YS10N All.Net value)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT YS10N All\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer Groups\"},\"Name\":\"DIM Customer.Customer Groups\",\"NativeReferenceName\":\"Customer Groups\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Net value\"}},\"Function\":0},\"Name\":\"Sum(FACT YS10N All.Net value)\",\"NativeReferenceName\":\"Sum of Net value\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[{\"name\":\"3cc66272308cd1104e46\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"FACT YS10N All\"}},\"Property\":\"Ship Date\"}},\"type\":\"Categorical\",\"howCreated\":1}]",
+          "height": 279.75,
+          "width": 426.43,
+          "x": 500.12,
+          "y": 220.37,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "2ce4e9957de277656c01",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"127a06570a45ada75b14\",\"layouts\":[{\"id\":0,\"position\":{\"x\":434.29849077697037,\"y\":160.98378982671883,\"z\":0,\"width\":718.3454443823365,\"height\":260.435997764114}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DIM Customer.Customer Groups\"},{\"queryRef\":\"FACT YS10N All._NetValueShippedMTD\"},{\"queryRef\":\"FACT YS10N All._NetValueOpenCurrentMonth\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM Customer\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT YS10N All\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer Groups\"},\"Name\":\"DIM Customer.Customer Groups\",\"NativeReferenceName\":\"Customer Groups\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_NetValueShippedMTD\"},\"Name\":\"FACT YS10N All._NetValueShippedMTD\",\"NativeReferenceName\":\"_NetValueShippedMTD\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_NetValueOpenCurrentMonth\"},\"Name\":\"FACT YS10N All._NetValueOpenCurrentMonth\",\"NativeReferenceName\":\"_NetValueOpenCurrentMonth\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"_NetValueShippedMTD\"}}}]},\"columnProperties\":{\"FACT YS10N All._NetValueShippedMTD\":{\"formatString\":\"\\\\$#,0;(\\\\$#,0);\\\\$#,0\"},\"FACT YS10N All._NetValueOpenCurrentMonth\":{\"formatString\":\"\\\\$#,0;(\\\\$#,0);\\\\$#,0\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnHeaders\":[{\"properties\":{\"autoSizeColumnWidth\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"columnAdjustment\":{\"expr\":{\"Literal\":{\"Value\":\"'growToFit'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 260.44,
+          "queryBinary": "H4sIAAAAAAAEALWTX0/CMBTFvwrp82I2jC97gw2MMQMEgjHGmLpdpGZrl7tWJcu+u7cFdfwx8qBvXXvuub9259YsUkXBZVax8L5mM6C1FumNAVzHXPPZipewlbCwZu7ALhaAlVCShV2PDVEVrnzEC2Ahy5jHBmSjScniq6QTmUqrApD25+uSJH7jfamXbfWwF807d7PAH3V6ed7SP3gEl0OqXaNI5aaQlmPwXiJUGxTiVwZTmMLy+8PxNI3HJqhKQNflk6dzicqUFaPTLUyb9mxfZlVavFp/QJApbIsO7WqWAK8MwqmIy33ExxHoBc8NzFaiLCFL5nELc/eZzo6Jf4I9bvyHwOMSZGSQeupESb06Afug5Ff4wyYUkDFmgP21S0gskMLymdDdG/3Lv2maB1L1hcyEfLb1ExQF3wyLywVtb4aMnF42bPbb9wKva9NtnrTSPGdh4Jzs9E0hM9tL1G5jYXNPTOde2/6Wmqo3u4qUkTQhF77fWOavIQ0a+waQGmuWgEaRVtfCjnRguT8A3ZjRQgYEAAA=",
+          "width": 718.35,
+          "x": 434.30,
+          "y": 160.98,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

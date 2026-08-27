@@ -1,0 +1,227 @@
+table Budget_GF_2025_Sales
+	lineageTag: 5579a4e3-4fb2-491f-8ba5-e2c297b9e313
+
+	column EUROPayer
+		dataType: string
+		lineageTag: 650e3cc8-4406-44f4-8f8a-2cb3db6d4e75
+		summarizeBy: none
+		sourceColumn: EUROPayer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Payer (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 94afb71e-53e6-4575-851f-cbdd184f6743
+		summarizeBy: none
+		sourceColumn: Code:Payer (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Level'
+		dataType: string
+		lineageTag: 17506be3-cd60-4c19-901a-323b91477383
+		summarizeBy: none
+		sourceColumn: SKU Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:SKU Level (c2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f52e681c-c8bc-4637-95db-3d5398d58640
+		summarizeBy: none
+		sourceColumn: Code:SKU Level (c2)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center Detailed'
+		dataType: string
+		lineageTag: 02e83413-fd07-4a8c-9b27-f40618390914
+		summarizeBy: none
+		sourceColumn: Profit Center Detailed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Profit Center Detailed (c3)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 39e83e54-8c98-4105-9ae6-1af72981fc79
+		summarizeBy: sum
+		sourceColumn: Code:Profit Center Detailed (c3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment-Region
+		dataType: string
+		lineageTag: 86e54544-82e8-4cc4-a9ff-977e08b9afdd
+		summarizeBy: none
+		sourceColumn: Segment-Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Segment-Region (c4)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9240465a-5756-4893-ad2c-5ece5a9432e5
+		summarizeBy: sum
+		sourceColumn: Code:Segment-Region (c4)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country (ST)'
+		dataType: string
+		lineageTag: e9ee0360-9e3f-4aa1-be28-a9cf72c52af7
+		summarizeBy: none
+		sourceColumn: Country (ST)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Country (ST) (c5)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 508691e4-fb22-4b7c-92c9-b6349c868eda
+		summarizeBy: sum
+		sourceColumn: Code:Country (ST) (c5)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Org 2017 (SoldTo)'
+		dataType: string
+		lineageTag: e93571c4-f997-4671-9634-84e98b19ff82
+		summarizeBy: none
+		sourceColumn: Market Org 2017 (SoldTo)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Market Org 2017 (SoldTo) (c6)'
+		dataType: int64
+		formatString: 0
+		lineageTag: ee651ac5-d0c8-41bf-8aae-9d182f85c80c
+		summarizeBy: sum
+		sourceColumn: Code:Market Org 2017 (SoldTo) (c6)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7e24e2c9-36ea-421f-92cd-5984e2aae315
+		summarizeBy: none
+		sourceColumn: Months
+
+		variation Variation
+			isDefault
+			relationship: f74aab32-3464-42cb-a6e4-5ad75d9d03e1
+			defaultHierarchy: LocalDateTable_4b506929-3ef4-4bab-bcae-4b3a89a03c61.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Quantity - Budget(2025)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 54fd3196-15fe-41b4-80eb-72a556c0fbbd
+		summarizeBy: sum
+		sourceColumn: Quantity - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales - Budget(2025)'
+		dataType: double
+		lineageTag: 84256139-4d94-4e25-9e9a-cd2bbf1a2091
+		summarizeBy: sum
+		sourceColumn: Gross Sales - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales - Budget(2025)'
+		dataType: double
+		lineageTag: b00efe63-63fa-4a39-9e63-3cc7b28b0586
+		summarizeBy: sum
+		sourceColumn: Net Sales - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Contribution - Budget(2025)'
+		dataType: double
+		lineageTag: 315f57b3-8855-4002-8070-f5c81ce8f849
+		summarizeBy: sum
+		sourceColumn: Direct Contribution - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'EBITDA - Budget(2025)'
+		dataType: double
+		lineageTag: 502ebe90-68b2-47f5-bc3c-db971d9e3ffd
+		summarizeBy: sum
+		sourceColumn: EBITDA - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Of Sales - Budget(2025)'
+		dataType: double
+		lineageTag: 9973d827-1ca8-4930-a452-ef683b5f4f9a
+		summarizeBy: sum
+		sourceColumn: Cost Of Sales - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Weight Sold - Budget(2025)'
+		dataType: double
+		lineageTag: 7e1389b4-ddb4-4d91-8717-f1cfb82b0d27
+		summarizeBy: sum
+		sourceColumn: RM Weight Sold - Budget(2025)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 18a42e14-b013-4f30-85c3-ceb093dd1be7
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: ecc5b2e6-e775-4890-a153-82b8bfd94838
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Budget_GF_2025_Sales = m
+		mode: import
+		queryGroup: StaticPYs
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\Static Prior Years\Budget_2025_GF_Sales.xlsx"), null, true),
+				    EDBPlusExcel_Sheet = Source{[Item="EDBPlusExcel",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(EDBPlusExcel_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Report Filters/Slices:", type text}, {" Activity Group: External activity - 1 |Currency: EURO |Forecast Version: Consolidated Budget |Acquisition Status: SAP Data,AX Data,Keter Russia,Keter Mexico,BFC Data |Units: Units |Sales: Invoice |Restructuring / SFA indicator: Non Restructuring,SFA adj PG / BATH: KETER GROUP  |PC Sub Category: Garden Furniture  ", type any}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type any}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type text}}),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"EURO#(lf)Payer", type text}, {"Code:Payer (c1)", Int64.Type}, {"SKU Level", type text}, {"Code:SKU Level (c2)", Int64.Type}, {"Profit Center Detailed", type text}, {"Code:Profit Center Detailed (c3)", Int64.Type}, {"Segment-Region", type text}, {"Code:Segment-Region (c4)", Int64.Type}, {"Country (ST)", type text}, {"Code:Country (ST) (c5)", Int64.Type}, {"Market Org 2017 (SoldTo)", type text}, {"Code:Market Org 2017 (SoldTo) (c6)", Int64.Type}, {"Months", type date}, {"Quantity - Budget#(lf)(2025)", Int64.Type}, {"Gross Sales - Budget#(lf)(2025)", type number}, {"Net Sales - Budget#(lf)(2025)", type number}, {"Direct Contribution - Budget#(lf)(2025)", type number}, {"EBITDA - Budget#(lf)(2025)", type number}, {"Cost Of Sales - Budget#(lf)(2025)", type number}, {"RM Weight Sold - Budget#(lf)(2025)", type number}, {"Date", type date}, {"Forecast Version", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

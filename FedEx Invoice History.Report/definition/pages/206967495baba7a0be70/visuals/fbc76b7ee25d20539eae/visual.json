@@ -1,0 +1,1190 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "fbc76b7ee25d20539eae",
+  "position": {
+    "x": 0,
+    "y": 160,
+    "z": 0,
+    "height": 736,
+    "width": 1648.0000000000002,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Bill to Account Number"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Bill to Account Number",
+              "nativeQueryRef": "Bill to Account Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Invoice Date"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Invoice Date",
+              "nativeQueryRef": "Invoice Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Invoice Number"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Invoice Number",
+              "nativeQueryRef": "Invoice Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Original Ref#2"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Original Ref#2",
+              "nativeQueryRef": "Original Ref#2"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Description"
+                }
+              },
+              "queryRef": "DIM Product.Description",
+              "nativeQueryRef": "Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Express or Ground Tracking ID"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Express or Ground Tracking ID",
+              "nativeQueryRef": "Express or Ground Tracking ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper Country/Territory"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper Country/Territory",
+              "nativeQueryRef": "Shipper Country/Territory"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper State"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper State",
+              "nativeQueryRef": "Shipper State"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper City"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper City",
+              "nativeQueryRef": "Shipper City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipper Zip Clean"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipper Zip Clean",
+              "nativeQueryRef": "Shipper Zip",
+              "displayName": "Shipper Zip"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Recipient Country/Territory"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Recipient Country/Territory",
+              "nativeQueryRef": "Recipient Country/Territory"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Recipient State"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Recipient State",
+              "nativeQueryRef": "Recipient State"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Recipient City"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Recipient City",
+              "nativeQueryRef": "Recipient City"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Recipient Zip Clean"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Recipient Zip Clean",
+              "nativeQueryRef": "Recipient Zip",
+              "displayName": "Recipient Zip"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT FedEx Invoice History"
+                        }
+                      },
+                      "Property": "Transportation Charge Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Transportation Charge Amount)",
+              "nativeQueryRef": "Transportation Charge Amount",
+              "displayName": "Transportation Charge Amount",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "FedEx Unauthorized Flag"
+                }
+              },
+              "queryRef": "DIM Product.FedEx Unauthorized Flag",
+              "nativeQueryRef": "Item Sheet Unauthorized",
+              "displayName": "Item Sheet Unauthorized"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Top Tracking ID Charge"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Top Tracking ID Charge",
+              "nativeQueryRef": "Top Tracking ID Charge"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT FedEx Invoice History"
+                        }
+                      },
+                      "Property": "Top Tracking ID Charge Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Top Tracking ID Charge Amount)",
+              "nativeQueryRef": "Top Tracking ID Charge Amount",
+              "displayName": "Top Tracking ID Charge Amount",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT FedEx Invoice History"
+                        }
+                      },
+                      "Property": "Net Surcharge & Discount Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Net Surcharge & Discount Amount)",
+              "nativeQueryRef": "Net Surcharge & Discount Amount",
+              "displayName": "Net Surcharge & Discount Amount",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT FedEx Invoice History"
+                        }
+                      },
+                      "Property": "Net Charge Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Net Charge Amount)",
+              "nativeQueryRef": "Net Charge Amount",
+              "displayName": "Net Charge Amount",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Service Type"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Service Type",
+              "nativeQueryRef": "Service Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Shipment Date"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.Shipment Date",
+              "nativeQueryRef": "Shipment Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "POD Delivery Date"
+                }
+              },
+              "queryRef": "FACT FedEx Invoice History.POD Delivery Date",
+              "nativeQueryRef": "POD Delivery Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Actual Weight Amount"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Actual Weight Amount)",
+              "nativeQueryRef": "Actual Weight (lbs)",
+              "displayName": "Actual Weight (lbs)",
+              "format": "#,0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Estimated Weight"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Estimated Weight)",
+              "nativeQueryRef": "Estimated Weight (lbs)",
+              "displayName": "Estimated Weight (lbs)",
+              "format": "0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Dim Weight"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Dim Weight)",
+              "nativeQueryRef": "Dim Weight (lbs)",
+              "displayName": "Dim Weight (lbs)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT FedEx Invoice History"
+                        }
+                      },
+                      "Property": "Rated Weight Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Rated Weight Amount)",
+              "nativeQueryRef": "Billed Weight (lbs)",
+              "displayName": "Billed Weight (lbs)",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Dim Length"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Dim Length)",
+              "nativeQueryRef": "Dim Length",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Dim Width"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Dim Width)",
+              "nativeQueryRef": "Dim Width",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Dim Height"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Dim Height)",
+              "nativeQueryRef": "Dim Height",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Length & Girth"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Length & Girth)",
+              "nativeQueryRef": "Length & Girth",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT FedEx Invoice History"
+                    }
+                  },
+                  "Property": "Dim Divisor"
+                }
+              },
+              "queryRef": "Sum(FACT FedEx Invoice History.Dim Divisor)",
+              "nativeQueryRef": "Dim Divisor",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Specs.Carton - Length"
+                }
+              },
+              "queryRef": "DIM Product.Specs.Carton - Length",
+              "nativeQueryRef": "Specs.Carton - Length",
+              "format": "#,0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Specs.Carton - Width"
+                }
+              },
+              "queryRef": "DIM Product.Specs.Carton - Width",
+              "nativeQueryRef": "Specs.Carton - Width",
+              "format": "#,0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Specs.Carton - Height"
+                }
+              },
+              "queryRef": "DIM Product.Specs.Carton - Height",
+              "nativeQueryRef": "Specs.Carton - Height",
+              "format": "#,0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Specs.Carton - Weight"
+                }
+              },
+              "queryRef": "DIM Product.Specs.Carton - Weight",
+              "nativeQueryRef": "Specs.Carton - Weight",
+              "format": "#,0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Length & Girth"
+                }
+              },
+              "queryRef": "DIM Product.Length & Girth",
+              "nativeQueryRef": "Specs.Carton - Length & Girth",
+              "displayName": "Specs.Carton - Length & Girth",
+              "format": "#,0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT FedEx Invoice History"
+                  }
+                },
+                "Property": "Invoice Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "FACT FedEx Invoice History.Service Type"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9532dc4d52565f287fed",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Bill to Account Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "18f72cd3d91a5ec04519",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Invoice Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a6316ef55d5e55810674",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Invoice Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1f851bce841c967bd63d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Express or Ground Tracking ID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d89e6170b646265aa907",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient Country/Territory"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0c3132156c52f4643574",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient State"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f77dc827e27ece49be08",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT FedEx Invoice History"
+                  }
+                },
+                "Property": "Transportation Charge Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "959e8796bb015984d431",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT FedEx Invoice History"
+                  }
+                },
+                "Property": "Net Charge Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a9ba14ef6d830f864d4a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Service Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8350a048f70931784709",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipment Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3ddac437ce30a6819558",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "POD Delivery Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "13e2b4f3c165a4d1cc92",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Actual Weight Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5b0866dd1657feb1c231",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Estimated Weight"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3edc4c3e7bb871ba3a27",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Dim Weight"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f879d8983329759cdb57",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT FedEx Invoice History"
+                  }
+                },
+                "Property": "Rated Weight Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aac19e0e4abde11391b9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Dim Length"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "35e715235d492470ffb4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Dim Width"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "155c82f9ec3a61f080c5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Dim Height"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9ed5f22cb0d1b1ee862a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Dim Divisor"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2b748c0cd168d47d608a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Original Ref#2"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "338e52240872b9c53500",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper State"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6901060f0c50bf2aa5f1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper City"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "20691c4f54c5192915a5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper Country/Territory"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ea0dffcffa4f7c40bf59",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient City"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "298205d6942fe9ef2fdb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Shipper Zip Clean"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f28ced7e6eb3c36bf024",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Recipient Zip Clean"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "aca2f52b54d8ef5d9623",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT FedEx Invoice History"
+                  }
+                },
+                "Property": "Net Surcharge & Discount Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "016bd8d40d36e063be90",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Top Tracking ID Charge"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9c13fb3bd8c13297cc90",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT FedEx Invoice History"
+                  }
+                },
+                "Property": "Top Tracking ID Charge Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3cbf4c052444ac4769fd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Specs.Carton - Length"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "95a258711bc30faf5997",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Specs.Carton - Width"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5eb2df62ba79c7dee738",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Specs.Carton - Weight"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "92c4c4eda34d698774d8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Specs.Carton - Height"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1c866aedf7e555496609",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Length & Girth"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fb5820f77d35e4d55455",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT FedEx Invoice History"
+              }
+            },
+            "Property": "Length & Girth"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2cc3a1952b2bf3c78552",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a77b3218c164f30698f1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "FedEx Unauthorized Flag"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,522 @@
+table 'FACT Finance'
+	lineageTag: b81e6aa4-ff26-4eb2-b5f6-c29759015f32
+	sourceLineageTag: [dbo].[FACT Finance]
+
+	measure Measure = IF()
+		lineageTag: 3ece2630-80a5-4e62-ad8a-efcd4db122f9
+
+	measure '_Budgeted Drayage Savings' = CALCULATE(SUM('FACT Finance'[2025A]),'FACT Finance'[New Category]="Drayage")-CALCULATE(SUM('FACT Finance'[2026B]),'FACT Finance'[New Category]="Drayage")
+		lineageTag: 461dd040-fa82-4b09-862f-63f9cf51f43c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Unbudgeted Drayage Savings' = CALCULATE(SUM('FACT Finance'[2026B]),'FACT Finance'[New Category]="Drayage")-CALCULATE(SUM('FACT Finance'[2026A]),'FACT Finance'[New Category]="Drayage")
+		lineageTag: 0668fa49-7fbb-4961-926e-e07600f8197c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Budgeted West Coast Whse Savings' = (CALCULATE(SUM('FACT Finance'[2025A]),'FACT Finance'[Code: Account Detail]="451080",'FACT Finance'[Fixed Category]<>"Overflow")-CALCULATE(SUM('FACT Finance'[2026B]),'FACT Finance'[Code: Account Detail]="451080",'FACT Finance'[Fixed Category]<>"Overflow"))+(CALCULATE(SUM('FACT Finance'[2025A]),'FACT Finance'[Code: Account Detail]="472465",'FACT Finance'[Fixed Category]<>"Overflow")-CALCULATE(SUM('FACT Finance'[2026B]),'FACT Finance'[Code: Account Detail]="472465",'FACT Finance'[Fixed Category]<>"Overflow"))
+		lineageTag: dcfbb73f-1080-4dcc-a9d9-1369acbb8125
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 2' = (CALCULATE(SUM('FACT Finance'[2025A]),'FACT Finance'[Code: Account Detail]="472465"&&'FACT Finance'[Fixed Category]<>"Overflow")-CALCULATE(SUM('FACT Finance'[2026B]),'FACT Finance'[Code: Account Detail]="472465"&&'FACT Finance'[Fixed Category]<>"Overflow"))
+		lineageTag: ab9a6cd2-2acb-4aa9-9e72-0e79c4d47957
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Sum Month Max A/F' =
+			
+			SUMX(
+			    VALUES('FACT Finance'[Month]),
+			    VAR ActualVal =
+			        CALCULATE( SUM('FACT Finance'[2026A]) )
+			    VAR ForecastVal =
+			        CALCULATE( SUM('FACT Finance'[2026F]) )
+			    RETURN
+			        IF( NOT ISBLANK(ActualVal), ActualVal, ForecastVal )
+			)
+		lineageTag: ab308059-85ad-4308-9209-e95f274c71ed
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Budget Variance' = SUM('FACT Finance'[2026B])-[_Sum Month Max A/F]
+		lineageTag: 32d3fee4-bace-4073-bf42-f496342ff93b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Budget Variance %' = (SUM('FACT Finance'[2026B])-[_Sum Month Max A/F])/[_Sum Month Max A/F]
+		lineageTag: 853ac32a-7283-4b04-b07d-8aa66897b93c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Max of Month' = CALCULATE(MAX('FACT Finance'[Month]),FILTER(ALL('FACT Finance'),[2026A]>0))
+		formatString: 0
+		lineageTag: a16d958e-be7a-4270-8268-01125cf93783
+
+		changedProperty = Name
+
+	measure '_2026F YTG' = CALCULATE(SUM('FACT Finance'[2026F]),FILTER(ALL('FACT Finance'[Month]),'FACT Finance'[Month]>[_Max of Month]))
+		lineageTag: 3dd0657c-65c2-4a89-afdf-09319d16a68b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _2026F = ```
+			
+			VAR MaxMonth = [_Max of Month]
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026F]),
+			    FILTER(
+			        'FACT Finance',
+			        'FACT Finance'[Month] > MaxMonth
+			    )
+			)
+			
+			```
+		lineageTag: ff54e01c-9a5b-428b-9908-cfc6756c77ae
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026B YTG' = CALCULATE(SUM('FACT Finance'[2026B]),FILTER(ALL('FACT Finance'[Month]),'FACT Finance'[Month]>[_Max of Month]))
+		lineageTag: af7c8129-9da8-456e-8db8-34b4b3411de5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026B Pallets YTD' = ```
+			
+			VAR MaxMonth =
+			    MAX('FACT Finance'[Month])
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026B]),
+			    FILTER(
+			        ALL('FACT Finance'),
+			        'FACT Finance'[Month] <= MaxMonth &&
+			        'FACT Finance'[Account Detail.1] = "Pallets Sold" && 
+			        'FACT Finance'[BA-Level4-Posting Level] IN VALUES('FACT Finance'[BA-Level4-Posting Level])
+			    )
+			)
+			```
+		lineageTag: 5e618b98-c6bd-4e13-bb0e-cebf806b3ebc
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026B YTD' =
+			
+			VAR MaxMonth =
+			    MAX('FACT Finance'[Month])
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026B]),
+			    'FACT Finance'[Month] <= MaxMonth,
+			    ISBLANK('FACT Finance'[Exclusion])
+			)
+		lineageTag: 6154a612-9e6d-480b-8d73-7a1a35f9302d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026A YTD' =
+			
+			VAR MaxMonth =
+			    MAX('FACT Finance'[Month])
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026A]),
+			    'FACT Finance'[Month] <= MaxMonth,
+			    ISBLANK('FACT Finance'[Exclusion])
+			)
+		lineageTag: 9a586861-11dc-40f3-bff2-2b7845e32954
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026F YTD' = ```
+			
+			VAR MaxMonth =
+			    MAX('FACT Finance'[Month])
+			VAR OtherMax = 
+			    CALCULATE(MAX('FACT Finance'[Month]),FILTER(ALL('FACT Finance'),[2026A]>0))
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026F]),
+			    'FACT Finance'[Month] <= MaxMonth,
+			    ISBLANK('FACT Finance'[Exclusion]),
+			    'FACT Finance'[Month] > OtherMax
+			)
+			```
+		lineageTag: ce8110f7-ea8f-4cb0-b543-fe12620eaaf8
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026AF YTD' = [_2026A YTD]+[_2026F YTD]
+		lineageTag: c647d7a1-7bc9-4b5d-9429-6e70cf0f4491
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026F Pallets YTD' = ```
+			
+			VAR MaxMonth =
+			    MAX('FACT Finance'[Month])
+			Var OtherMonth =
+			    CALCULATE(MAX('FACT Finance'[Month]),FILTER(ALL('FACT Finance'),[2026A]>0))
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026F]),
+			    FILTER(
+			        ALL('FACT Finance'),
+			        'FACT Finance'[Month] <= MaxMonth &&
+			        'FACT Finance'[Account Detail.1] = "Pallets Sold" &&
+			        'FACT Finance'[Month] > OtherMonth && 
+			        'FACT Finance'[BA-Level4-Posting Level] IN VALUES('FACT Finance'[BA-Level4-Posting Level]
+			    )
+			))
+			```
+		lineageTag: f14cdf17-1197-43b7-a63b-48870736d407
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026A Pallets YTD' = ```
+			
+			VAR MaxMonth =
+			    MAX('FACT Finance'[Month])
+			RETURN
+			CALCULATE(
+			    SUM('FACT Finance'[2026A]),
+			    FILTER(
+			        ALL('FACT Finance'),
+			        'FACT Finance'[Month] <= MaxMonth &&
+			        'FACT Finance'[Account Detail.1] = "Pallets Sold" && 
+			        'FACT Finance'[BA-Level4-Posting Level] IN VALUES('FACT Finance'[BA-Level4-Posting Level])
+			    )
+			)
+			```
+		lineageTag: 3e948e2b-60d3-4c49-be77-0958509dfb9c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_2026AF Pallets YTD' = [_2026A Pallets YTD]+[_2026F Pallets YTD]
+		lineageTag: df18c84a-fc81-4c3b-94e3-e585627c0945
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Roll Up 1'
+		dataType: string
+		lineageTag: ce74fa22-e07e-4191-b69a-2ebfc9d160aa
+		sourceLineageTag: Roll Up 1
+		summarizeBy: none
+		sourceColumn: Roll Up 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Roll Up 2'
+		dataType: string
+		lineageTag: f7443aee-c283-4da8-a2c9-be8e206fa8f6
+		sourceLineageTag: Roll Up 2
+		summarizeBy: none
+		sourceColumn: Roll Up 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BA-Level4-Posting Level'
+		dataType: string
+		lineageTag: bb5da2bf-915e-48f6-8fa9-6c9ea3968e6d
+		sourceLineageTag: BA-Level4-Posting Level
+		summarizeBy: none
+		sourceColumn: BA-Level4-Posting Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Center Detail'
+		dataType: string
+		lineageTag: 47c0f775-7c21-492c-b475-b98423288696
+		sourceLineageTag: Cost Center Detail
+		summarizeBy: none
+		sourceColumn: Cost Center Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Detail'
+		dataType: string
+		lineageTag: 96ce8b18-2119-4f84-b5e8-5f50bee5c668
+		sourceLineageTag: Account Detail
+		summarizeBy: none
+		sourceColumn: Account Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code: Cost Center Detail'
+		dataType: string
+		lineageTag: 476695d7-af55-48e7-b855-8af704b2ad8f
+		sourceLineageTag: Code: Cost Center Detail
+		summarizeBy: none
+		sourceColumn: Code: Cost Center Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code: Account Detail'
+		dataType: string
+		lineageTag: 29db4f81-9f65-4964-bba8-e04d9623bdfd
+		sourceLineageTag: Code: Account Detail
+		summarizeBy: none
+		sourceColumn: Code: Account Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fd752bd-63e2-42ad-9f90-66090f0670c8
+		sourceLineageTag: Month
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Key'
+		dataType: string
+		lineageTag: 329a31b5-15df-48b4-909d-c0b0b3d7798f
+		sourceLineageTag: Finance Key
+		summarizeBy: none
+		sourceColumn: Finance Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2026A
+		dataType: double
+		lineageTag: f22a0be2-4121-4879-8999-aba65134808f
+		sourceLineageTag: 2026A
+		summarizeBy: sum
+		sourceColumn: 2026A
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2026B
+		dataType: double
+		lineageTag: d920c2fe-60c3-4504-a817-372aadc52e3b
+		sourceLineageTag: 2026B
+		summarizeBy: sum
+		sourceColumn: 2026B
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2025A
+		dataType: double
+		lineageTag: 900acc35-fb5d-40a9-bb04-18ab840d0056
+		sourceLineageTag: 2025A
+		summarizeBy: sum
+		sourceColumn: 2025A
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Account Detail.1'
+		dataType: string
+		lineageTag: 057f847b-3e72-4db7-af0d-4bbcdabc555c
+		sourceLineageTag: Account Detail.1
+		summarizeBy: none
+		sourceColumn: Account Detail.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Group Code'
+		dataType: string
+		lineageTag: 9d658b2a-0f36-4fb6-be1e-4f97cd0b7003
+		sourceLineageTag: Group Code
+		summarizeBy: none
+		sourceColumn: Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Group Description'
+		dataType: string
+		lineageTag: f1ad611f-a265-4772-9cff-6248f6b49d7f
+		sourceLineageTag: Group Description
+		summarizeBy: none
+		sourceColumn: Group Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Code'
+		dataType: string
+		lineageTag: de380d1a-e9b5-4380-8b2f-58bb4c1c3ed2
+		sourceLineageTag: Category Code
+		summarizeBy: none
+		sourceColumn: Category Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Description'
+		dataType: string
+		lineageTag: 84b5c285-7e87-4d71-a641-a3942006f477
+		sourceLineageTag: Category Description
+		summarizeBy: none
+		sourceColumn: Category Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Before & After'
+		dataType: string
+		lineageTag: 72fdbfdb-a505-463e-b931-9e1bd8ec3426
+		sourceLineageTag: Before & After
+		summarizeBy: none
+		sourceColumn: Before & After
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Detail'
+		dataType: string
+		lineageTag: 20202fac-3c71-414a-b7d9-d913481a3e6a
+		sourceLineageTag: New Detail
+		summarizeBy: none
+		sourceColumn: New Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Category'
+		dataType: string
+		lineageTag: 1536f497-65a2-4bc9-8e81-294a555017e4
+		sourceLineageTag: New Category
+		summarizeBy: none
+		sourceColumn: New Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column F/V
+		dataType: string
+		lineageTag: 4d28a5ca-a3d5-4aed-a795-4276ffcd8389
+		sourceLineageTag: F/V
+		summarizeBy: none
+		sourceColumn: F/V
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exclusion
+		dataType: string
+		lineageTag: 32ef84fc-f48c-4ba6-bc59-02cf0ddc7247
+		sourceLineageTag: Exclusion
+		summarizeBy: none
+		sourceColumn: Exclusion
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Depot Charges'
+		dataType: double
+		lineageTag: a95b60a9-4b9a-4586-9047-a13e894afd89
+		sourceLineageTag: Depot Charges
+		summarizeBy: sum
+		sourceColumn: Depot Charges
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rent
+		dataType: double
+		lineageTag: 56192ff0-eadf-4da3-b288-36b04f800f9e
+		sourceLineageTag: Rent
+		summarizeBy: sum
+		sourceColumn: Rent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fixed Category'
+		dataType: string
+		lineageTag: 8abe92e5-52a4-4370-ae72-f0668709ddd0
+		sourceLineageTag: Fixed Category
+		summarizeBy: none
+		sourceColumn: Fixed Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2026A Old'
+		dataType: double
+		lineageTag: 8ac4df93-53e2-4014-9bf9-35f5f20704d8
+		sourceLineageTag: 2026A Old
+		summarizeBy: sum
+		sourceColumn: 2026A Old
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'True 2026'
+		dataType: double
+		lineageTag: e26fa03b-1082-41a5-8b96-843cc0bceab3
+		sourceLineageTag: True 2026
+		summarizeBy: sum
+		sourceColumn: True 2026
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'True 2025'
+		dataType: double
+		lineageTag: ddc6767c-9c09-4966-9301-da7928c8cd9a
+		sourceLineageTag: True 2025
+		summarizeBy: sum
+		sourceColumn: True 2025
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2026F
+		dataType: double
+		lineageTag: a04b2f24-a8dc-45c2-be94-c4dd596507ea
+		sourceLineageTag: 2026F
+		summarizeBy: sum
+		sourceColumn: 2026F
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT Finance' = entity
+		mode: directLake
+		source
+			entityName: FACT Finance
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,28 @@
+relationship f177db70-69f8-9d92-3a90-826547a55104
+	fromColumn: 'DIM MRPSKU'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship d072b84e-a59a-b462-1634-bacfec660d64
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 9d3817cb-55cb-7061-72f0-114bdf648d1d
+	fromColumn: 'DI YM6P FACT HELP'.'Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship f08d6075-b73e-7817-db60-23077babd184
+	fromColumn: 'DI YM6P FACT HELP'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 35efbc35-b1a8-e93f-e731-6f9e1b6775a5
+	fromColumn: 'DI YM6P FACT HELP'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship b72a7e7a-8efe-836b-76d0-8a71b7f73a28
+	fromColumn: 'DI YM6P FACT HELP'.Plant
+	toColumn: 'DIM Plant'.Plant
+
+relationship 86ceebd0-2705-cda8-aa59-9b30c9aec74b
+	fromColumn: 'DI YM6P FACT HELP'.'Ship-To Party.1'
+	toColumn: 'DIM Customer'.'Payer Key'
+

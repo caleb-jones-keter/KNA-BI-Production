@@ -1,0 +1,151 @@
+table 'Savannah - Items'
+	lineageTag: 6d29fd04-5b5e-42db-8b30-ad638f0f08c2
+
+	column FileSystemObjectType
+		dataType: string
+		lineageTag: 57c71389-8b8d-4685-b769-68c1f6996d1f
+		summarizeBy: none
+		sourceColumn: FileSystemObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 24d7279b-6122-43c3-9811-59c4bddc516c
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUri
+		dataType: string
+		lineageTag: b10a33ca-47c2-47a8-b6e7-1cc6e520dad6
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUri
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServerRedirectedEmbedUrl
+		dataType: string
+		lineageTag: 0fd8a74d-f782-4685-8324-a785b5d68cd7
+		summarizeBy: none
+		sourceColumn: ServerRedirectedEmbedUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentTypeId
+		dataType: string
+		lineageTag: 19b08b09-a780-4637-9a3b-b0edf4aba429
+		summarizeBy: none
+		sourceColumn: ContentTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 93f4404e-783f-46df-86f8-03ebfe32490d
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__ColorTag
+		dataType: string
+		lineageTag: 3a7a7a7f-489d-4ed6-a159-b77c9945326e
+		summarizeBy: none
+		sourceColumn: OData__ColorTag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComplianceAssetId
+		dataType: string
+		lineageTag: 25bb5370-9c51-4c6e-8cf4-a840b7430e8a
+		summarizeBy: none
+		sourceColumn: ComplianceAssetId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemDesc
+		dataType: string
+		lineageTag: 556f5918-b681-414b-aa8f-9df07e923047
+		summarizeBy: none
+		sourceColumn: ItemDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: babd324a-6e0c-4192-8b51-baa814144099
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: string
+		lineageTag: 0313b082-dea3-4f50-ba01-ebe233292a19
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		lineageTag: 3eca62c5-7f03-4085-b808-2007f0cd620d
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column AuthorId
+		dataType: string
+		lineageTag: ef1f50a9-6638-459a-818c-a9741c4343aa
+		summarizeBy: none
+		sourceColumn: AuthorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditorId
+		dataType: string
+		lineageTag: be1ca2ae-209e-486c-91e5-a8b9a652ab62
+		summarizeBy: none
+		sourceColumn: EditorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OData__UIVersionString
+		dataType: string
+		lineageTag: 0911057e-bb51-40ad-842e-b43ec5cc62a3
+		summarizeBy: none
+		sourceColumn: OData__UIVersionString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: f4fbf6ad-5eb2-4590-a758-8636f83875da
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUID
+		dataType: string
+		lineageTag: 687b2e39-1fb7-44f5-bb30-99b3a61aa28e
+		summarizeBy: none
+		sourceColumn: GUID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Savannah - Items' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://keteronline.sharepoint.com/sites/QAContainer/", [ApiVersion = 15]),
+				    #"3318b4b4-94dc-4bdb-9813-a3b379c36bb5" = Source{[Id="3318b4b4-94dc-4bdb-9813-a3b379c36bb5"]}[Items],
+				    #"Renamed Columns" = Table.RenameColumns(#"3318b4b4-94dc-4bdb-9813-a3b379c36bb5",{{"ID", "ID.1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

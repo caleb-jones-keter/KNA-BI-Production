@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "dab113bea8b4b1440009",
+  "position": {
+    "x": 848,
+    "y": 207.99999999999997,
+    "z": 7000,
+    "height": 160,
+    "width": 384,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DOC Parameter"
+                    }
+                  },
+                  "Property": "DOS Parameter Value"
+                }
+              },
+              "queryRef": "DOC Parameter.DOS Parameter Value",
+              "nativeQueryRef": "DOS Parameter Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DOC Parameter"
+                    }
+                  },
+                  "Property": "DOC Parameter Value"
+                }
+              },
+              "queryRef": "DOC Parameter.DOC Parameter Value",
+              "nativeQueryRef": "DOC Parameter Value"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DOC Parameter"
+                    }
+                  },
+                  "Property": "DOC Parameter"
+                }
+              },
+              "queryRef": "DOC Parameter.DOC Parameter",
+              "nativeQueryRef": "DOC Parameter"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DOC Parameter"
+                  }
+                },
+                "Property": "DOS Parameter Value"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

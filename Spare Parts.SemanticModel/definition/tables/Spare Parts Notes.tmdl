@@ -1,0 +1,83 @@
+table 'Spare Parts Notes'
+	lineageTag: dd304d8c-e691-4f42-b0e5-1222af4ef432
+	sourceLineageTag: [dbo].[Spare Parts Notes]
+
+	column 'SP Item #'
+		dataType: string
+		lineageTag: 14dbc6a9-8346-43f6-9c14-ff90e9e73626
+		sourceLineageTag: SP Item #
+		summarizeBy: none
+		sourceColumn: SP Item #
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SP Description'
+		dataType: string
+		lineageTag: b8b32778-358f-4571-8ae6-bce4ac81a1db
+		sourceLineageTag: SP Description
+		summarizeBy: none
+		sourceColumn: SP Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sign
+		dataType: string
+		lineageTag: 1f24bfdf-3711-415a-9f92-f7633c400c5a
+		sourceLineageTag: Sign
+		summarizeBy: none
+		sourceColumn: Sign
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Color Code'
+		dataType: string
+		lineageTag: 217c8c96-e34c-4e87-ad17-f67b7df64eaf
+		sourceLineageTag: Color Code
+		summarizeBy: none
+		sourceColumn: Color Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Factory
+		dataType: string
+		lineageTag: 1113f709-971e-4607-8b35-b9aba49e77f9
+		sourceLineageTag: Factory
+		summarizeBy: none
+		sourceColumn: Factory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Replacement Item _old or new_'
+		dataType: string
+		lineageTag: d9164abb-55f7-41de-b7f4-f2cf4355d5af
+		sourceLineageTag: Replacement Item _old or new_
+		summarizeBy: none
+		sourceColumn: Replacement Item _old or new_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: a7d241e9-a365-46b2-ba51-a72312d797a1
+		sourceLineageTag: Comment
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: b1c2cbef-753f-427b-8401-40aa84d21137
+		sourceLineageTag: Status
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Spare Parts Notes' = entity
+		mode: directLake
+		source
+			entityName: Spare Parts Notes
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

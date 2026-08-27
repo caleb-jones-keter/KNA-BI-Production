@@ -1,0 +1,524 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"type\":2,\"version\":{\"visual\":\"1.8.87\",\"report\":\"2.0.87\",\"page\":\"1.3.87\"}},\"customTheme\":{\"name\":\"Accessible_Tidal20603620266663192.json\",\"type\":1,\"version\":{\"visual\":\"1.8.87\",\"report\":\"2.0.87\",\"page\":\"1.3.87\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"isPersistentUserStateDisabled\":false,\"hideVisualContainerHeader\":false,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":0,\"useNewFilterPaneExperience\":true,\"optOutNewFilterPaneExperience\":false,\"defaultFilterActionIsDataFilter\":false,\"useCrossReportDrillthrough\":false,\"allowChangeFilterTypes\":true,\"allowInlineExploration\":false,\"disableFilterPaneSearch\":false,\"enableDeveloperMode\":false,\"useEnhancedTooltips\":false,\"useScaledTooltips\":false,\"useDefaultAggregateDisplayName\":true,\"queryLimitOption\":6,\"customMemoryLimit\":\"1048576\",\"customTimeoutLimit\":\"225\",\"filterPaneHiddenInEditMode\":false},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 1,
+  "pods": [
+    {
+      "boundSection": "ReportSection",
+      "config": "{\"acceptsFilterContext\":1}",
+      "name": "Pod"
+    },
+    {
+      "boundSection": "ReportSection5a5dd85f02912c902cee",
+      "config": "{}",
+      "name": "Pod1"
+    },
+    {
+      "boundSection": "a84d54f09aab130bb760",
+      "config": "{\"acceptsFilterContext\":1}",
+      "name": "eda6510900ae1185d92c"
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU02",
+            "path": "BaseThemes/CY24SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "Accessible_Tidal20603620266663192.json",
+            "path": "Accessible_Tidal20603620266663192.json",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"201L\"}}}}}]}}",
+      "displayName": "Dwell",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"20cf94f17babe303752d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":485.02463054187194,\"z\":2000,\"width\":350.2463054187192,\"height\":234.97536945812809,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Customer_1\"},{\"queryRef\":\"Sum(Dwell.Count)\"},{\"queryRef\":\"Sum(Dwell.Quantity)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer_1\"},\"Name\":\"Dwell.Customer_1\",\"NativeReferenceName\":\"Customer\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Count)\",\"NativeReferenceName\":\"Count\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Quantity)\",\"NativeReferenceName\":\"Quantity\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0}}}]},\"columnProperties\":{\"Dwell.Customer_1\":{\"displayName\":\"Customer\"},\"Sum(Dwell.Count)\":{\"displayName\":\"Count\"},\"Sum(Dwell.Quantity)\":{\"displayName\":\"Quantity\"}},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 234.98,
+          "queryBinary": "H4sIAAAAAAAEAL2TTUvEMBCG/0tOCkHaFS+9uV8eRN0PWQ+ySEzHGmmakiauy9L/7kzSpSu4IIjekpk37zzJZHZsZLQWVd6w7HHHloBrp+Tcg92OhRPLV1FDJ2HZjoUELVZgG2Uqlg04m1qjw/FboYFlLGecTdDGoZKNN1CWGLjf1phL2jXHKiVIF06MTOl1RYaTj9pCEz0RxHgrYQEv/SYYty1nM2tqsMF85BtnNNinlGGiKx8qnh2kKOPUO9mBhUpCJ9xL8OyOXRaFhQJ15huc32IaX7kQnPpKxhJJD7z0+qSDJuHpceDo88e0cy9i834AvNceZ+7dsPN3Ngc73IbWj5WFzhr/0FfS/29G264xMlRVrqqCDGZWaRH/+pU1vsZwnBG0eovgtE94ygf0p/2zM06ULEuDEw3PAnIv93egwIrIEeqcH9o/YFGziTcjtOwiIR7ez1ja0gOB9GR2A84q2VwrmsiUuD8BhC8AUsUDAAA=",
+          "width": 350.25,
+          "x": 0.00,
+          "y": 485.02,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"22a076603b0e683d353b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":987.7832512315271,\"y\":0,\"z\":4000,\"width\":280.1970443349754,\"height\":104.63054187192118,\"tabOrder\":4000}},{\"id\":1,\"position\":{\"x\":146,\"y\":0,\"z\":2,\"width\":175,\"height\":92}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Days In Place\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"},\"Name\":\"Dwell.Days In Place\",\"NativeReferenceName\":\"Days In Place\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 104.63,
+          "queryBinary": "H4sIAAAAAAAEAMVST0vDMBT/KuOdFIq46ak33ToZMqlOvEgPIX3WSJOU10RXSr+7L+lkTuZN8Pbyfn8Dr4e51VqYsoX0uYcN8uyUvPdI3UI4sXkVDe4okPYQgTA8IbXKGkhnCSzJ6ii/ExohhRISyNjGMRMWH1jXvHjsGsbOhyLhlBqli4q5rb02wTDbNoTt6MlFrCeJD/iyf0TjYUggJ9sgjeaiaycrM8lrwQTGdg1i6NkhGkCn3oMpEhqJX9wfHj1cVRVhxWR7pNnfNmZw6Y0coy72H1grc3LkE6f/2u/yWz+x/aVfwaRrZUplqpCUk9JiPJkbsr7h9XhqnPmG0Ti8p8msiNKVkbUvMdON66KAUUcek/3FTZmWbVH6IF6jIyXbWxXuczqwxyfqizY80wIAAA==",
+          "width": 280.20,
+          "x": 987.78,
+          "y": 0.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"4b7a47af69a40d6073a5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":349.4831460674157,\"y\":105.16853932584269,\"z\":5000,\"width\":930.3370786516854,\"height\":601.8876404494382,\"tabOrder\":5000}},{\"id\":1,\"position\":{\"x\":0,\"y\":277,\"z\":3,\"width\":324,\"height\":384}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Container\"},{\"queryRef\":\"Dwell.Storage Loc.\"},{\"queryRef\":\"Sum(Dwell.Material)\"},{\"queryRef\":\"Dwell.Mat. Descr.\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"},{\"queryRef\":\"Sum(Dwell.Days In Place)\"},{\"queryRef\":\"Sum(Dwell.Quantity)\"},{\"queryRef\":\"Dwell.Customer_1\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"},\"Name\":\"Dwell.Container\",\"NativeReferenceName\":\"Container\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"},\"Name\":\"Dwell.Storage Loc.\",\"NativeReferenceName\":\"Storage Loc.\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Material\"},\"Name\":\"Sum(Dwell.Material)\",\"NativeReferenceName\":\"Material1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Mat. Descr.\"},\"Name\":\"Dwell.Mat. Descr.\",\"NativeReferenceName\":\"Mat. Descr.\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Days in Country\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Quantity)\",\"NativeReferenceName\":\"Quantity\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer_1\"},\"Name\":\"Dwell.Customer_1\",\"NativeReferenceName\":\"Customer\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"DiPlace\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}}}]},\"columnProperties\":{\"Sum(Dwell.Days in Country)\":{\"displayName\":\"DiCountry\"},\"Sum(Dwell.Material)\":{\"displayName\":\"Material\"},\"Sum(Dwell.Quantity)\":{\"displayName\":\"Quantity\"},\"Dwell.Customer_1\":{\"displayName\":\"Customer\"},\"Sum(Dwell.Days In Place)\":{\"displayName\":\"DiPlace\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"332.775288985854D\"}}}},\"selector\":{\"metadata\":\"Dwell.Mat. Descr.\"}}]}}}",
+          "filters": "[]",
+          "height": 601.89,
+          "queryBinary": "H4sIAAAAAAAEAK2VTW/UMBCG/0rkE0jWKmkpSLnRpEUICtsuKoeqQsYZglFiRxObslrlv3ecDzZtNr1kb4nn9TuPx/Z4xxJTlkJnNYvvdmwD9G2VvHaA21RYsfktKuglLN6xNuA/bgFrZTSLTzi7RFO207+IEljMMsbZBdlYUrL0AYqCBr5tK4qFzT2nLAVI285ITOFK7Q0v/lUIdedJIMahhBv4tf9pjZuGszWaCrA1T4y2QmlARuN99jbhah/xAav+ejNA0BJ63XjuYpCNNShyCD4buZqwPAnO4TxzWEx0JSygEsWIZuPKVx3REHw9izMooiOxrIIUaonT4oxjL8CM5i/GScW2DpQOEuO0peN8qELPNPOFmprt2Ps8R8hJbg5ALoS/dqK7Wn780mnZZQkPLWLQztPv3ZaXNXG1NSXgj2h6G/eh2evYS462wR91sC4ECWa3d1C8sLmqt6Cu9RUzwPNt27ZShdAXnvrfUfd3cp6a5p4U50pnSud+7hpVKbou/AGNq2i4697k8qfD8v8hj/gJP+Vv+Bl/y9/5vut+WmOpJcRR6+kb/A1kTg4H1Q/cenwiO+XjRN8pvXnolkdcLD4Lw8aT/38HosYXAqTzZldgUcn6k/KvRuRX8AgTL1E4aQYAAA==",
+          "width": 930.34,
+          "x": 349.48,
+          "y": 105.17,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"5d3dc6780648604d6a75\",\"layouts\":[{\"id\":0,\"position\":{\"x\":707.4626865671642,\"y\":0,\"z\":9000,\"width\":280.2985074626866,\"height\":104.77611940298507,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Days in Country\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"},\"Name\":\"Dwell.Days in Country\",\"NativeReferenceName\":\"Days in Country\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 104.78,
+          "queryBinary": "H4sIAAAAAAAEAMVSzUrEMBB+lWVOCkXc1VNvutsVkZXVFS/SQ0jHGmmSMk20pfTdnaQrFV1vgrfJfL+B6WFptRamaCB96mGHPDsl7zxStxJO7F5EjXsKpD1EIAyPSI2yBtJFAmuyOspvhUZIoYAEMrZxzITVO1YVLx66mrHTIU84pULpomJpK69NMMzamrAZPbmI9STxHp+nRzQehgS2ZGuk0Vx0zUyZ2dJ647gYo/sOMfbkOx5gp96CMRIaiZ/sHz49XJQlYcl0e6DfX/dmeO2NHMPOpm9slDk6+JXjf+54/qWjaH/tmDPtUplCmTKkbUlpMR7QFVlf83o8PM59xWgd3vNkkUfptZGVLzDTteuigFFHHpPp/uZMy1qUPog36EjJ5kaFa50P7PEBkp+ozeECAAA=",
+          "width": 280.30,
+          "x": 707.46,
+          "y": 0.00,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"73840109ab47eaa90ebd\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":250.935960591133,\"height\":269.5566502463054,\"tabOrder\":0}},{\"id\":1,\"position\":{\"x\":0,\"y\":0,\"z\":1,\"width\":146,\"height\":111}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Customer_1\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer_1\"},\"Name\":\"Dwell.Customer_1\",\"NativeReferenceName\":\"Customer\"}]},\"columnProperties\":{\"Dwell.Customer_1\":{\"displayName\":\"Customer\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 269.56,
+          "queryBinary": "H4sIAAAAAAAEAE1RS0/DMAz+Lz5XaIVbj3QFIQQaGxoHVKEqNRDUPOQmbFWV/46dDm03x9/LdmaonTGd7Ueo3mfYIddBq5eINK270O2+O48nClQzZECKPdKonYXquoA7cibLnzuDUEEPBTRsE5gJ6wMOAzdeJ8/YKrUFpwyoQlbUbojGimFz9ITj4smDuEgKt/h5fmTjlArYkPNI2byOY3AG6aMEBk7xOfHqAhIk6F+xQ0Kr8ET8p0BqWX2rba/tlwRuSJtu2fOeXPTcXu7D0T88Og8p71WbhXKnLfYx90Ujjb0sxiE3xaXbG2e4A1dJFnmwaog9NsaHKeewaaCIxfm6JdOaI6oo3k8YSKvxUctflInD/wA+dZO7vwEAAA==",
+          "width": 250.94,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"a694ee78033ff4af8a48\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":100,\"height\":40,\"z\":6000,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'Back'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 40.00,
+          "width": 100.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"c9f1eadb5538df348fd2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":260.0760456273764,\"y\":145.09505703422053,\"z\":7000,\"width\":88.51711026615969,\"height\":215.361216730038,\"tabOrder\":6000}},{\"id\":1,\"position\":{\"x\":0,\"y\":103,\"z\":4,\"width\":83,\"height\":174}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Material\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Material\"},\"Name\":\"Dwell.Material\",\"NativeReferenceName\":\"Material\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 215.36,
+          "queryBinary": "H4sIAAAAAAAEAE2RwU7DMAyG38XnCrUgLj3SFQ5o09jQOKAdQupBpiap3IRtqvru2Gm1cYt/299vOwNU3lrlmh7KzwG2yO9g9FtEuixUUNsf1eFcAuUAKSGPHVJvvIPyPoNn8ja1r5RFKKGBDGrGBK6ExQnbloX3S8e5fNxn7NKiDqmj8m20ToD1uSPsJyYP4iNp3ODhFiTwOGawJt8hJfhSBSSjWmB5Nk9+d9eE6MH8CgoJnca57Na5594n4xrjvsVsTcaqaccX8rFjeboN2x55bB5Q4lz2iF/BB2aURaLIwTbYxFQkABF2siE7PmT/0R9s6E/yqnx0fIvHPB9luetdCw7qM+oosCUGMrp/NfILxchuf0qjGuW5AQAA",
+          "width": 88.52,
+          "x": 260.08,
+          "y": 145.10,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"e07c2b7e9316b52aa520\",\"layouts\":[{\"id\":0,\"position\":{\"x\":305.41033434650456,\"y\":0,\"z\":3000,\"width\":205.22796352583586,\"height\":105.04559270516718,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Dwell.Days in Country)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Average of Days in Country\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 105.05,
+          "queryBinary": "H4sIAAAAAAAEAG1RyU7DMBD9lWhOIEWohVtuJW05IFBpql5QDpYzDUaxHU3s0irKvzN2wqLCyZ7lLX7uIbdaC1N1kL32UCDfnZIvHum8FE4Ub6LFaQWyHuIgXPZInbIGstsU1mR1hD8LjZBBBSmsmMbxJiw/sGm4sTu3PJsNZcoqDUoXEYu6JqyFi1Q9rE4tYddNVW4br//pF9aTxC0efoqoOgwpbMi2SKOyOHeJMkluvXHsOozX3shRbM7V5Lfw+iravLmAXEPYceoYxJDQSJwgiyOSqDGxh+SPTMnM98pUytTB4IaUFmNoD2R9y+0xbLb6jtFNqGdlBIbQt1h5+RVJaOxDECx7l/5m29mWjyE86/s3wqtWJ5Q+wJ/QkZLdowp/Nx+Y/xNEaUTt7wEAAA==",
+          "width": 205.23,
+          "x": 305.41,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"ee6e5c2e30ebe51762f0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":511.02661596958177,\"y\":0,\"z\":8000,\"width\":205.38403041825094,\"height\":105.1254752851711,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Dwell.Days In Place)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"Average of Days In Place\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 105.13,
+          "queryBinary": "H4sIAAAAAAAEAG1RyU7DMBD9lWhOIEWohVtupQtCCBSaqhfUg+VMg1FsRxO7NIry74ydsIqTPctb/NzD0motTNlC9tJDgXx3Sj57pG4lnCheRYPTCmQ9xEG47JFaZQ1k1ylsyOoIfxIaIYMSUlgzjeNNWL1jXXNj1zU8mw2HlFVqlC4iFlVFWAkXqXpYnxvCtp2qpa29/qdfWE8St3j8LqLqMKSQk22QRmXRtcm9SfJa8EIYbryRo9Scq8lt4fVFNHn1C3AJYcOpUxBCQiNxAixOSKLCxB6TPxIHZr1VplSmCtZyUlqMcd2R9Q23x5jZ5BtGJ6GeHSIwxL3F0svPMEJjHyJg0Zv0J9vONnwM4Ulf/xBetD6j9AH+iI6UbB9U+LX5wPwfs3g0/ukBAAA=",
+          "width": 205.38,
+          "x": 511.03,
+          "y": 0.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"f288954b7662432d00d6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":291.10266159695817,\"z\":1000,\"width\":260.0760456273764,\"height\":194.37262357414446,\"tabOrder\":1000}},{\"id\":1,\"position\":{\"x\":83,\"y\":103,\"z\":6,\"width\":241,\"height\":174}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Storage Loc.\"},{\"queryRef\":\"Dwell.Container\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"},{\"queryRef\":\"Sum(Dwell.Days In Place)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"},\"Name\":\"Dwell.Storage Loc.\",\"NativeReferenceName\":\"SLoc\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Avg DiC\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"Avg DiP\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2},\"Name\":\"Dwell.Container\",\"NativeReferenceName\":\"# of Container\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"}}}]},\"columnProperties\":{\"Sum(Dwell.Days In Place)\":{\"displayName\":\"Avg DiP\"},\"Sum(Dwell.Days in Country)\":{\"displayName\":\"Avg DiC\"},\"Dwell.Storage Loc.\":{\"displayName\":\"SLoc\"},\"Dwell.Container\":{\"displayName\":\"# of Container\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"72.18630955783524D\"}}}},\"selector\":{\"metadata\":\"Dwell.Container\"}}]}}}",
+          "filters": "[]",
+          "height": 194.37,
+          "queryBinary": "H4sIAAAAAAAEAL2UTU/DMAyG/0oVLiBFaBvi0hu0AyG+BkVwQBxCakpQm1RuAkxT/zt2uzGYQCDxcUti+/XjxM5MJK6qlM0bEV/PRAa09kafBcBpqrzK7lUNcxcRz0Rn4MUlYGOcFfFIij10VRd+oioQsciFFGOS8eQp0icoSzq4mNZkG7Q3krKUoH0XkbgyVJYFx881QtNrEogLqOEc7pabTrhtpZigqwE78cw7VAVER05vCjLNAbqcm++MbPPmkSUBwWqYu2ZkpciZ2CkKhIJ83Ac4P8RM1bSJjI0SF6yn+2PzXrC6TzZcgmehWu/hV0I2Pi1g57GIUpP8Tw0HNpqUihy+W8Ei4Cv+yZ/zJ856ZSzgCvtotW2Wjp8hr0XuLnqjRy19ijng7rTr6dQgLC5G/m4R7/u9bW/IvGtsbmzBgRM0lerncx9dqOm4n2uSeOiZeD+QQzmSWzyJ4dY7r0p+QtbikT+HPOjFE/DBJTMTzpZ8m+CK0rqnviZqURFvDwYt477+DNwV42fQgcWOwaPRzaHhf2TI5C8SyRkWewQAAA==",
+          "width": 260.08,
+          "x": 0.00,
+          "y": 291.10,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Open containers for DHL",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection00fa8cbd8c08f53a72d8",
+      "ordinal": 5,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"27e903677beb6c09aeac\",\"layouts\":[{\"id\":0,\"position\":{\"x\":816.048632218845,\"y\":0,\"z\":2000,\"width\":263.58662613981767,\"height\":719.7568389057751,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"On the water.Container\"},{\"queryRef\":\"Sum(On the water.Cont. Int. Num.)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Container\"},\"Name\":\"On the water.Container\",\"NativeReferenceName\":\"Container\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Cont. Int. Num.\"},\"Name\":\"Sum(On the water.Cont. Int. Num.)\",\"NativeReferenceName\":\"Cont. Int. Num.\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 719.76,
+          "queryBinary": "H4sIAAAAAAAEAK2SQUvEMBCF/0qZk0IpreKlR2sVEdd1K+tB9hDb0Y00SUkTd5fS/+5MdnErgicvIZm8fO8lkwEKo5TQTQ/5ywAV0tzJ+tGj3V0JJ6q16PAggXyAsMGTJdpeGg35WQzX1qhwfCYUQg4GYigJ40gJDzpya4w2wqGl+tOuI0k6rmIya7F24WBhWq80c8ttZ7HfoymP8bbGBb4dF4E/jjHMrenQBo/CaCekJgOqH0JMfZOjgPed/GQmWtQ1HuRTxL/kSaJbHmZeJZNUlVcnv5JNpKd/BvzBXBH1UupG6ndOM7dSiX1vbqzxHZX3PaVcH/TOdANep3HGT+9fnXGihTwLHG71AhsfZIzgwpIfgazP4yn8mSzNhmeF8Zrad5GmI9//+0dktCi3WHuG3aOzsu7vJP+fbCS3L9q0F/FzAgAA",
+          "width": 263.59,
+          "x": 816.05,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"281d5edc78d855a70f92\",\"layouts\":[{\"id\":0,\"position\":{\"x\":597.2036474164134,\"y\":0,\"z\":3000,\"width\":201.33738601823708,\"height\":135.19756838905775,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(On the water.Container)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Container\"}},\"Function\":2},\"Name\":\"Min(On the water.Container)\",\"NativeReferenceName\":\"Containers on Water\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Container\"}},\"Function\":2}}}]},\"columnProperties\":{\"Min(On the water.Container)\":{\"displayName\":\"Containers on Water\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{}}}",
+          "filters": "[]",
+          "height": 135.20,
+          "queryBinary": "H4sIAAAAAAAEAG1RPU/DMBD9K9FNIEWoLVs2CCkDKpSmKgPKYDlHatTY1sWGVlH+O2cnlA5M9jvf+7hzD7lpW6HrDrL3Hkrku1Py1SOdHoQT5V5YnFog6yE+hMsOqVNGQ7ZIYUmmjfRn0SJkYCCFgmUcd8KLTtwek2/hkLi+PVlumQ1VymYHlC4S75qGsBEuKvZQHC1h100oNwff/lMvjSeJG/z4A9F8GFJYk7FIMUButBNKs3t4WHotR5sFoynwSumry5w3Z841hCanvoIPEmqJE+fc0iVGJ29xvKFizXula6WbEGpNqhXjvh7JeMvlcc8c7xNjjoBnVSSGfW+w9vJ3DaGwC8Oz3216qbY1lo8hDHT+iDmD4ojSB/oKHSnZPanwbfOB9X8AEZrC7+oBAAA=",
+          "width": 201.34,
+          "x": 597.20,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"cc49987fed54e086b4cd\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":189.66565349544075,\"height\":116.71732522796353,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(Dwell.Container)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2},\"Name\":\"Min(Dwell.Container)\",\"NativeReferenceName\":\"Containers in Savannah\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2}}}]},\"columnProperties\":{\"Sum(Dwell.Count)\":{\"displayName\":\"Count\"},\"Dwell.Storage Loc.\":{\"displayName\":\"SLoc\"},\"Min(Dwell.Container)\":{\"displayName\":\"Containers in Savannah\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 116.72,
+          "queryBinary": "H4sIAAAAAAAEAG1RsU7DMBD9leomkCLUli0bpCkDKipN1QV1sJwjNUrs6GyXVlH+nbMTAkMn+929e+/53EFmmkbo0kL60UGBfHdKvnuk60o4UZxEiyMF0g5iI1wOSFYZDekygTWZJo6/iQYhhRISyFnGMRNW31jXXNhfW+7N+2PCLjVKFyeeqoqwEi5KdZBfWkJrR5SZ2jc36oXxJHGHn38guvZ9AlsyLVJ0zox2Qmmk2Fh7LQebJaMx6UbpuxjwYSLfQ+g6dQ4GSKgljuSJYmdKzwpxFlqLE/RH1ntWulS6CoG2pBoxLOmFjG+5PCyXo31hzBDw/BgHw5J3WHr5u4JQOISHs+Vj8l9tb1o++vCYafsLBvkFpQ/jG3SkpH1V4a8WPev/AKhUNejfAQAA",
+          "width": 189.67,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"f6a2fb2c8e2c15f0e637\",\"layouts\":[{\"id\":0,\"position\":{\"x\":189.7536945812808,\"y\":0,\"z\":0,\"width\":221.67487684729065,\"height\":720,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Container\"},{\"queryRef\":\"Sum(Dwell.Cont. Int. Num.)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"},\"Name\":\"Dwell.Container\",\"NativeReferenceName\":\"Container\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cont. Int. Num.\"},\"Name\":\"Sum(Dwell.Cont. Int. Num.)\",\"NativeReferenceName\":\"Cont. Int. Num.\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 720.00,
+          "queryBinary": "H4sIAAAAAAAEAK2STU+EMBCG/4qZkyaEgMYLR1k0xrhZF7MezB4qjFpDW1JadzeE/+5Mlwhe9uSFTOfjed926CE3Sgldd5C99lAixU5WTx7tYSGcKD9Fi2MLZD2EAgcbtJ00GrLLCG6tUWF8KRRCBjVEUBDGUScsdtg0lHg+tFRLhm1EKg1WLkzkpvFKM7DYtxa7I5OMGG8rXOP7dAjgYYhgZU2LNsBzo52QGi1QflQPgvFU4YKT3wxDi7rCsW8++y9G4rN7/iy9imd2Sq/OJ0uznouTzv7AtoS7kbqW+oNtrKxU4riGO2t8S+nj+sjQF70sWedzEqX82P7NGScayNLA4a2usfahjRGc2PDtSfoqmsNfSNLsOMqN17Sw6yQZ+OK/y0/pUOyx8gx7RGdl1T1I/lXSgdR+AD/xCrFeAgAA",
+          "width": 221.67,
+          "x": 189.75,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Count of Containers DiC",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection2e3cffe3c08f19982afa",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"43c9d7e9b759181cdbde\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"z\":0,\"width\":1270,\"height\":720,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"CountNonNull(Dwell.Container)\"}],\"Category\":[{\"queryRef\":\"Storage Loc..Description \",\"active\":true}],\"Series\":[{\"queryRef\":\"Days in Country.Bucket\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Storage Loc.\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"Days in Country\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":5},\"Name\":\"CountNonNull(Dwell.Container)\",\"NativeReferenceName\":\"Count of Container\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description \"},\"Name\":\"Storage Loc..Description \",\"NativeReferenceName\":\"Description \"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Bucket\"},\"Name\":\"Days in Country.Bucket\",\"NativeReferenceName\":\"Bucket\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableValueDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableTitleDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"totals\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 720.00,
+          "queryBinary": "H4sIAAAAAAAEAMWUTU/DMAyG/0qVE0jVtCLgsBvbGAdgfBTBAe0QpV4JtEnlJMA09b/jpN3WVSDBiVvsvLYfOx9rNtFlyVVm2Oh5zVKgtZXizgGuptzy9IVX0ErYaM3Chl88AhqpFRsdxWyGugzhc14CG7GMxeyc0lhSsukHFAU5HlYV7Q3reCszXVlqNfIcoistBt+qs2QvK1+ZSKpoop2yRLSLWMTURQHCBqKzPEfIuQ2oa3b+WSEY01oTXbjyG3+qHQq4h+XOCF3VdcxuUVeAgWGileVSAYaNmVOiKXNCVgsd8OZazV1RHIRJDLZRh8zLrHz3lQBBCehGRXoZdSrEf8U1fdwpGIGy8owR2yF2Bz/Y0/yE10v05zkmfbKxE29gO0y90x20gp+ANvF09DeYAY5X4eynEqE9Erqk+2j/cy/qekGesVSZVLlPcouy5M2DukDtKnI3D5HSvTbw3h7GySKEpiC0yn4RcdTo/RO+h8yJTaPe8ejbI/LjuFv/iaj0R9M+TZ1mNhzW/ZIPuuooTklAiu1XkNR+zCCcr3YNFqUwl9J/HInv/AtAn526bAQAAA==",
+          "width": 1270.00,
+          "x": 10.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"a4586c03e0948237741a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":542.2222222222222,\"y\":16.666666666666668,\"z\":1000,\"width\":391.1111111111111,\"height\":55.55555555555556,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Days In Country\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"24pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
+          "filters": "[]",
+          "height": 55.56,
+          "width": 391.11,
+          "x": 542.22,
+          "y": 16.67,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Count of Containers DiP",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection4e0e42eddb844b799c1c",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"2ddcd7b3755a7f03d3f9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.359605911329936,\"y\":0,\"z\":0,\"width\":1270.64039408867,\"height\":720,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"CountNonNull(Dwell.Container)\"}],\"Category\":[{\"queryRef\":\"Storage Loc..Description \",\"active\":true}],\"Series\":[{\"queryRef\":\"Day in Place.Buckets\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Storage Loc.\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"Day in Place\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":5},\"Name\":\"CountNonNull(Dwell.Container)\",\"NativeReferenceName\":\"Count of Container\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description \"},\"Name\":\"Storage Loc..Description \",\"NativeReferenceName\":\"Description \"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Buckets\"},\"Name\":\"Day in Place.Buckets\",\"NativeReferenceName\":\"Buckets\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableValueDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableTitleDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"totals\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 720.00,
+          "queryBinary": "H4sIAAAAAAAEAMWUTU/DMAyG/0qVE0jVtCLgsBv74gCMQREc0A5RakqgTSonAaap/x0n3UY2gQQnbon92n7sfKzYSNc1V4Vhg8cVy4HWVoobB7gcc8vzZ97AWsIGKxYcfnEPaKRWbHCUsinqOoTPeA1swAqWsgmlsaRk43eoKjLcLRvy9dt0KzOxLLcaeQnJpRa9b9VFtpOVLxOpknnFBUTyRUotVCBswDkrS4SS28C5YpOPBsGY9W6kK1d/Y8+1QwG38PS1CS21bcrmqBvAADDSynKpAINj6pToypzQbk080k7ZmVYzV1UHYQy9bdQh8zIr33wlQFAC4qhEPyVRhfSvuGYfdwxGoGw8Y8K+EOOp93Y0P+HtJfrzHLN9sqETr2BNBBWfbW/j/olnG05Hf40F4HAZzn4sEdZHQjd0F+1/7kXbLsgylKqQqvRJ5ihr3r2mc9SuIXP3CindSwfv9/00W4TQHIRWxS8ijjq9f7+3UDixadQb7n17RH6cxvUfiEq/d+3T9aOZ9fvtfsk73USKUxKQYvsPZK0fMwjnq12BRSnMhfS/RuY7/wQJQaYjaQQAAA==",
+          "width": 1270.64,
+          "x": 9.36,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"d45e6563475f42877d56\",\"layouts\":[{\"id\":0,\"position\":{\"x\":582,\"y\":19,\"z\":1000,\"width\":420,\"height\":57,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Days In Location\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"24pt\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 57.00,
+          "width": 420.00,
+          "x": 582.00,
+          "y": 19.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Graph",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection5a5dd85f02912c902cee",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"6e263bb07d5062a72009\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":215.92705167173253,\"height\":194.52887537993922,\"tabOrder\":0}},{\"id\":1,\"position\":{\"x\":0,\"y\":0,\"z\":1,\"width\":232,\"height\":160}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Storage Loc.\"},{\"queryRef\":\"Sum(Dwell.Count)\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"},{\"queryRef\":\"Sum(Dwell.Days In Place)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"},\"Name\":\"Dwell.Storage Loc.\",\"NativeReferenceName\":\"SLoc\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Count)\",\"NativeReferenceName\":\"Count\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Avg DiC\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"Avg DiP\"}]},\"columnProperties\":{\"Sum(Dwell.Days In Place)\":{\"displayName\":\"Avg DiP\"},\"Sum(Dwell.Days in Country)\":{\"displayName\":\"Avg DiC\"},\"Sum(Dwell.Count)\":{\"displayName\":\"Count\"},\"Dwell.Storage Loc.\":{\"displayName\":\"SLoc\"}},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 194.53,
+          "queryBinary": "H4sIAAAAAAAEAL2Ty07DMBBFfyXyCqSoSluxya6kBSEeKg0qC9SFcYdglNiRY/ehKv/OjJNSilqBhGBnz+PeM05mwxJdFFzNKxY/bVgKeLZS3Dsw6yG3PH3lJbQlLN4wn6DDFEwltWJxL2QXRhe+/Y4XwGI2ZyEboYzFSjZcQp5j4GFdYi6qZyG65CCs70h07gpFgqNVaaBqNBFEOyNgAi+7ixeu65CNjS7BePHUasMzCG606DBMtQDes7OXpJyVC5IEA0pAW5piFjs3bJBlBjKs0QdwfomZaKesD144JRqLaIebuuKkQfaFp0dhW50/ph3ydRVIFXg3/Nr73N1D3F9ajk8wWGTBUCb/M8OVCsY5x4KfTrBt+I5/zOoZipxLNZcqI5KxkQVvNuPSaFdiuNkoZHoDb0z3KOyGvbBPO+CerbY8JxzSomWbwNyJ7XNQYEqPgLb98LPBI9rqZfNI9D/EZ1FU04gfO0kTjlYgHIndgjVSVNeSNrhbo9s7pT1xPvUDAAA=",
+          "width": 215.93,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"daf6e0d64d16ef69a5a1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":194.1871921182266,\"z\":2000,\"width\":264.23645320197045,\"height\":201.2807881773399,\"tabOrder\":2000}},{\"id\":1,\"position\":{\"x\":0,\"y\":160,\"z\":2,\"width\":264,\"height\":158}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Storage Loc..Description \"},{\"queryRef\":\"Sum(Dwell.Count)\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"},{\"queryRef\":\"Sum(Dwell.Days In Place)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Storage Loc.\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Count)\",\"NativeReferenceName\":\"Count\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Avg DiC\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"Avg DiP\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description \"},\"Name\":\"Storage Loc..Description \",\"NativeReferenceName\":\"SLoc\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(Dwell.Days In Place)\":{\"displayName\":\"Avg DiP\"},\"Sum(Dwell.Days in Country)\":{\"displayName\":\"Avg DiC\"},\"Sum(Dwell.Count)\":{\"displayName\":\"Count\"},\"Storage Loc..Description \":{\"displayName\":\"SLoc\"}},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 201.28,
+          "queryBinary": "H4sIAAAAAAAEAL2UTU/cMBCG/0o0J5Cs1S6ol9xgs6CqXwtB9IA4uM40dZXY0dgGVqv8dzxOtmQpqO2h3Ozx63eekcezhaVtW2kqB/nNFkqMa6/VRUDaFNLL8ofscJRAvoV0wItrJKetgfxIwBnZNl3/LFuEHCoQsIo2PiqhuMemiYGrTRfP5r34JXNTWektyRqzj1bNJupbEZkaVD75n9Q1YS19SryF1UNH6Ny4W9omtC/ESxtI4SV+f9okxr4XsCbbISWApQ3Gp+BZMGpIEWl3sGVoD1IpsyQ8BD7x+o6NkdAoHIWjj/i/tIXcuEybLGWLL7LPvXiJ+9mV1ys4uauzQi/fpob3Jls3Mgr+toLdhT/xrxP/vyG63xDRKdIdM2UwQZo062xP8xpTGaXA3fyFKqTTTWrnQhOO9cZftA/49q3e97cxcqpNpU3NBmvSrRx++znZ0MXwMCWi1c8BnPdzsRBH4ph/avjmrZcNPx978QC5xCqoXRUcuGb2iHUspgm+xrT2fqiN4fJ3cyYST3OGO2L1gCqw2Sf0pJX7oHkqLZj8EbHuaC3JBAAA",
+          "width": 264.24,
+          "x": 0.00,
+          "y": 194.19,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"eda9ff310b4ee8578e40\",\"layouts\":[{\"id\":0,\"position\":{\"x\":264.23645320197045,\"y\":0,\"z\":1000,\"width\":1016.1576354679803,\"height\":625,\"tabOrder\":1000}},{\"id\":1,\"position\":{\"x\":0,\"y\":311,\"z\":3,\"width\":324,\"height\":420}}],\"singleVisual\":{\"visualType\":\"lineClusteredColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Storage Loc..Description \",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Dwell.Count)\"}],\"Y2\":[{\"queryRef\":\"Avg(Dwell.Days In Place)\"},{\"queryRef\":\"Avg(Dwell.Days in Country)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Storage Loc.\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Count)\",\"NativeReferenceName\":\"Sum of Count\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Avg(Dwell.Days In Place)\",\"NativeReferenceName\":\"Avg DiP\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Avg(Dwell.Days in Country)\",\"NativeReferenceName\":\"Avg DiC\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description \"},\"Name\":\"Storage Loc..Description \",\"NativeReferenceName\":\"Storage Loc.\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(Dwell.Days In Place)\":{\"displayName\":\"Avg DiP\"},\"Sum(Dwell.Days in Country)\":{\"displayName\":\"Avg DiC\"},\"Sum(Dwell.Count)\":{\"displayName\":\"Count\"},\"Storage Loc..Description \":{\"displayName\":\"Storage Loc.\"},\"Avg(Dwell.Days In Place)\":{\"displayName\":\"Avg DiP\"},\"Avg(Dwell.Days in Country)\":{\"displayName\":\"Avg DiC\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"secShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"secShowAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"lineStyles\":[{\"properties\":{\"showMarker\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'Above'\"}}},\"labelOrientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"optimizeLabelDisplay\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"labelContainerMaxWidth\":{\"expr\":{\"Literal\":{\"Value\":\"50D\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableBackground\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"backgroundColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"seriesLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Container Dwell Snapshot'\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualTooltip\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"lockAspect\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 625.00,
+          "queryBinary": "H4sIAAAAAAAEAL2Uy07DMBBFfyXyCiSraoFVdtC0CPEqBMECdWE502CU2NHY7kNV/h3bCSQVVMACdvb4zvWZ6MZbMlZlyWSmSfy8JSm4tRH8zgJuEmZY+sIqaCUk3pJw4BePgFooSeIjSqaoytB+w0ogMckIJRNnY5ySJCsoCld42FTubFjTD5nuy1KjkOUQXSk+6Knn1DEVwE3wP81zhJyZcPGWTNYVgtbtbqwKW35RT5VFDvew6DaBsa4pmaGqAAPAWFlpQnFqJW+ucLTvsKktD8IogyA8JP7EiKU3BgTJoRNGahG1dvRvoRO20dGFjGYFc4Jd+FEHf7rMW/idhv1DuIYoEbP/4Rey+VouWD+doGv5boZxmOF3mPoTJmiOovJUEellopfZwY5mbzj6KffhvsUM8GwT0p0IhHZy91Ptgv5/8ut67ipnQmZC5t5ghqJkzc9/jspWrtw8Gs7qtQH3+yEd0SN6PA/t/gm5h8zyd3BfePS4juSE9j2f3E1q1YzjeeLRcOgpaPfU+DxM1sCtd7sGg4LrS+EfppGnfQPK8+RmzAQAAA==",
+          "width": 1016.16,
+          "x": 264.24,
+          "y": 0.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": ">75 DIC",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection7310d89d3688b011dfc3",
+      "ordinal": 6,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3ae1695560503a62e30e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1092.5373134328358,\"y\":0,\"z\":2000,\"width\":187.1641791044776,\"height\":171.94029850746267,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Storage Loc..Description \",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Storage Loc.\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description \"},\"Name\":\"Storage Loc..Description \",\"NativeReferenceName\":\"Description \"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 171.94,
+          "queryBinary": "H4sIAAAAAAAEAJ2SP2/CMBDFv0rkhaERAjo1I5BWqLSiUMFQMVjOFdwmdnS2WyKU7967JC1/xi6Rc3733u9sH8XEFoU0mRPJ21GsgNZeq5cAWE2ll6u9LKGTiOQomg1erAGdtkYko1jcoy2a9mdZgEiEE7FIycaTUqy8RbmDaG5Vn+qvVUmSQR3/qbNz9VRWLtImmthgPCWdGrYx0eWgfJM0sXkoDIOkhxLBtSw0gA2oYAnvp58GqK5jsUBbArYx4BTq0lNXJGirQzln7V9oWOL1FzsDglHQdVwaEeNmT/sdosm077hmV6zuH1Nk11OMg/oEH42oTslrmQdgXzKeaw8o8+aiuEzi3t3wpsfKbU0fMhpr4jM71ixQF7K91we0oaRyC0hhH3TkHfBg2zTyu1hCFtTvcFxY8yiUcxufu20ow37Tqmb0mVF5yCAtSl81OWTqMUB8ek1DkqUHUIG9n8CjVu5R89sbMvUPSE/K7K8CAAA=",
+          "width": 187.16,
+          "x": 1092.54,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"821f3bacfd10d629f16b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1092.5373134328358,\"y\":171.94029850746267,\"z\":3000,\"width\":187.1641791044776,\"height\":171.94029850746267,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Days in Country.Bucket 2\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Days in Country\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Bucket 2\"},\"Name\":\"Days in Country.Bucket 2\",\"NativeReferenceName\":\"Bucket 2\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Days in Country\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Bucket 2\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'91+'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 171.94,
+          "queryBinary": "H4sIAAAAAAAEAF2RQU/DMAyF/0rlc4S2cetxXUEIgcaGxgH1EKUeBJqkShNYVfW/Y6cVRdwc973v2e4AhTNG2rqD/HWAI1IdtHqK6PudDPL4LlucJZAPkD5wcULfaWch3wi48c4k+6M0CDnUIKAkTCAl7GTfZdpmhYs2kFfAc9+SajVWgvIaVCF5C9dEYxldXlqP3USnkVz0Cg94Xh4pYhwF7L1r0aeYbVSfGLINUHse41/y1a+EFUF/MRQ9WoWzYWFURNlqW2v7xrF7r42c9r71LrbUnu5FA3zQAjQqv1dVMvLdDljH1GcPN068HoVci7+0F8pw31SNvM6dVU2ssTRt6FMOQYOPKJZrr0lWXlBFZj9g8Fp195r/zXqk8B+e0mmmzwEAAA==",
+          "width": 187.16,
+          "x": 1092.54,
+          "y": 171.94,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"f273b4f6dbf755cb1d50\",\"layouts\":[{\"id\":0,\"position\":{\"x\":514.8509662626924,\"y\":0,\"z\":1000,\"width\":576.9014084507043,\"height\":719.4497215853258,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Container\"},{\"queryRef\":\"Dwell.Storage Loc.\"},{\"queryRef\":\"Sum(Dwell.Material)\"},{\"queryRef\":\"Dwell.Mat. Descr.\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"},\"Name\":\"Dwell.Container\",\"NativeReferenceName\":\"Container\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Material\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Material)\",\"NativeReferenceName\":\"SKU\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Mat. Descr.\"},\"Name\":\"Dwell.Mat. Descr.\",\"NativeReferenceName\":\"Mat. Descr.\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Days in Country\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"},\"Name\":\"Dwell.Storage Loc.\",\"NativeReferenceName\":\"SLOC\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}}}]},\"columnProperties\":{\"Sum(Dwell.Days in Country)\":{\"displayName\":\"DIC\"},\"Sum(Dwell.Material)\":{\"displayName\":\"SKU\"},\"Dwell.Storage Loc.\":{\"displayName\":\"SLOC\"}},\"drillFilterOtherVisuals\":true,\"objects\":{}}}",
+          "filters": "[]",
+          "height": 719.45,
+          "queryBinary": "H4sIAAAAAAAEAK2UTXPTMBCG/4pHl8KgydgpHPCNOC3DNKWlhvTA9CDkxRXYkkeWKJmM/zu7soPz0VwIN3n33d3Hq9WuWWbqWuiiZenXNcsBz07JTx7sai6cyB9FA4OEpWsWHHRYgm2V0SydcnZpTR3CP4oaWMoKxtkFpnGoZPMnqCo0fF416Is7PsqSHZ1YtZHSUWa8dlhjjHjgyFWBdKFGZipfa0K4+N1YaHsKRDfeSriD7+NHQOk6zm6tacCGMpnRTigNlqF9AAmIk9FDDqd+UTKwoCUMuu3YNXtXlhZKFJpnaE6kvBYOrBJVsF96Lfsq8cic+/pFz73RvjzKnV99CcSnQ02iObTSTg6at+07hrEbfzLO/sA815s9zfEWHSY7mS93xooSooWRh/3acR69t8VNxmj87x/RPky/LtRm5D7swbX/8kCSfe6Zlz/BRVO0Y+mlqDxQYsy8UDhpOJT0/MmM4rO3yaszUj50QX5jC7CzVQCZKwvD4OKS+K/v4+C6sDgqZgq7o0uKvbWqFv2qem+Nb9Dctwez/Oix6DvmCZ/yc/6aloz/5oyj/0tCNtp/d1B4uek3GZYEjkznfLvEPRY2T/2PIRFL38RxR8x/12TSUQtAekp2Dc4q2V4pWqoJsf8B28Z3LIgFAAA=",
+          "width": 576.90,
+          "x": 514.85,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"f70fe03c77af33dde19c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":515.820895522388,\"height\":720,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"CountNonNull(Dwell.Container)\"}],\"Category\":[{\"queryRef\":\"Storage Loc..Description \",\"active\":true}],\"Series\":[{\"queryRef\":\"Days in Country.Bucket 2\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Storage Loc.\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"Days in Country\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":5},\"Name\":\"CountNonNull(Dwell.Container)\",\"NativeReferenceName\":\"Count of Container\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description \"},\"Name\":\"Storage Loc..Description \",\"NativeReferenceName\":\"Description \"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Bucket 2\"},\"Name\":\"Days in Country.Bucket 2\",\"NativeReferenceName\":\"Bucket 2\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableValueDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableDetailDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"enableTitleDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"totals\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'DIC <75'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 720.00,
+          "queryBinary": "H4sIAAAAAAAEAMWUTU/jMBCG/0rkCyCiqqlgpe2NtoBWC12WoHJAPVjOEAyJHY3tZasq/52xE9o0AgkkJG72zDszz4w/1myqy5KrzLDx3ZqlQGsrxV8HuJpxy9MHXkErYeM1Cw6/WAAaqRUbj2J2hroM4XNeAhuzjMXslNJYUrLZMxQFGW5WFfmGdbyRma4stRp5DtGFFoM31Vmyk5WvTCRVNNVOWSLaRixj6qIAYQPRSZ4j5NwG1DU7/V8hGNPuprpw5Rv2VDsUcA33203oqq5jdoW6AgwMU60slwowOM6cEk2ZY9q10AFvrtXcFcV+mMRgE3XAvMzKf74SICgB3ahI30edCvFncU0fdwZGoKw8Y8S2iN3BD3Y07+H1En16jkmfbOLEE9ho1KHqne9gI3kPapuDLsDtA/nC+dMEM/l6+r96jKaVfBW9L73ghQOfmDJfSAvIi/BcvJnEez+Twz2vXNZB/gczwMkqgMwkQnuF6FHtwnzPPSZEskwkzVDlPskVypI3H8A5aleRuRkipXts4P1+GCfLEJqCoAP4QMSo0fsv5xoyJ14b9YaFb4/Ij+Ju/Vui0s9N+3RHaGbDYd0veaOrjuIHCUix+bqS2o8ZhPPVLsGiFOa39B9d4jt/Adf2qBMcBQAA",
+          "width": 515.82,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Containers on water",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectionea8d999e20240c90a2d6",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1b5ebfb46a29513807ce\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.719058466211086,\"y\":318.78511769172366,\"z\":1000,\"width\":298.37509491268037,\"height\":80.66818526955201,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(On the water.Storage Loc.)\"},{\"queryRef\":\"Sum(On the water.Count)\"},{\"queryRef\":\"Sum(On the water.Material)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Storage Loc.\"},\"Name\":\"Sum(On the water.Storage Loc.)\",\"NativeReferenceName\":\"Storage Loc.\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Count\"}},\"Function\":0},\"Name\":\"Sum(On the water.Count)\",\"NativeReferenceName\":\"Sum of Count\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Material\"}},\"Function\":0},\"Name\":\"Sum(On the water.Material)\",\"NativeReferenceName\":\"Sum of Material\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 80.67,
+          "queryBinary": "H4sIAAAAAAAEAMVU0W7aMBT9lcgvbFJAJlVbKW+MUR4KHYOqfZj64DmX4AnbkWO3RYh/770OGbSqmKZqWsRDbJ9z7jnO5W7Z0GotTFGz/MeWLQDfvZLfA7jNV+HFYiUq2ENYvmXxgF7uwNXKGpZnKbtyVkf6jdDAcmZZykYo4xHJvpnEryB5Eh4c7t9uKoTw3UOKxdYgfSQO7TpoQ7qj58pB3UijHxuchDksD4uov9ulbOZsBS7WWHjrRAnJxMoew6O9j0XQn47L945xnxnhvHokeXBgJLS012pbNihLByVi7TsWP2h9aIPxcfMqGNmU4CciRPwJ70EndpnsVf+x9yk5UmL9F/Zbyh8THLSxU+5XCNk3iilUG2bQ9OQElr5JoyvhVN1ma1fXinDYpwfgh2IjCfsWimQ2nsezuSpXUXii0DR6pv+HWAdiF5jDKw2djGfnXX7RzS5vOc/jr4PsV/zTCc7+f4KLLs+6GX+TAJ8HFPmCLpUpiTtzSotmUIydDRVuNwMGTfyC2Ce05mk/zWgShJ/eeirbj0o0eeZQBNl+adq4o8wQr+FI/h6L2qfmTqjn83PO46X+HlB9XIyeQQYSm4J3StbNhfbJ9wvohhEOAgUAAA==",
+          "width": 298.38,
+          "x": 9.72,
+          "y": 318.79,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"1ec106009655871db0c7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":90.38724373576311,\"y\":400.42520880789675,\"z\":3000,\"width\":257.5550493545938,\"height\":310.03796507213366,\"tabOrder\":3000}},{\"id\":1,\"position\":{\"x\":180,\"y\":189,\"z\":2,\"width\":144,\"height\":173}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"On the water.Customer_1\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Customer_1\"},\"Name\":\"On the water.Customer_1\",\"NativeReferenceName\":\"Customer_1\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Customer'\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 310.04,
+          "queryBinary": "H4sIAAAAAAAEAMVT0U7CMBT9FdIXXzYzZsRkb4qTGFFxEHgwxDTdhdWs7dK1AiH8u7fdzKYPvvjgQrK295xzz7krRzJWQlCZ1yR5PZI54Npw9mJBH26pofOCVtBCSHIkvuAWS9A1V5IkcUDutBKe/kQFkIQoEpAUZQwiybMcmAIGO2pA4/niUCEkOq0DbFYCM544VqUV0umm+0pD3UijH2U1gww23cbrn04BmWlVgfY9xrY2SoB+GxIstC76jc97CAcw/MOpggbJoMX3RdDdqsBqa07m3LSOrps5TGFj3BtHU1HN66bY7R64w+FsOuCfEiIJZwX5YDbJfC3j28ILTznmo6X/JrS0jp1jZMMFnMVRfBlGozC+WkRR4n9nyP7G/z3Bxf8nGIVRHMbRjwT4rFHkBl1yuXXcmeaCNpdzopWt8Li51GjiHVujXbeP1p7oLncGuWVfH9YdLF1E8Kl7aivsoXa48oO7l6y0OaSiMgffB0WNthB0f4khwtI9MOu0H8FozupmnEPn+hOAXw6pdAMAAA==",
+          "width": 257.56,
+          "x": 90.39,
+          "y": 400.43,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"6ea85cd27d0780ab4e66\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.850746268656716,\"y\":409.25373134328356,\"z\":2000,\"width\":78.80597014925372,\"height\":310.7462686567164,\"tabOrder\":2000}},{\"id\":1,\"position\":{\"x\":235,\"y\":0,\"z\":5,\"width\":89,\"height\":189}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(On the water.Material)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Material\"},\"Name\":\"Sum(On the water.Material)\",\"NativeReferenceName\":\"Material\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Material\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 310.75,
+          "queryBinary": "H4sIAAAAAAAEAMVTTU/CQBD9K2QvalLMtgZMepMPOQiCQOBgPKztAGtot9nuioT0vzuzLRY5eNHEpkm7M/PevJnZObCuShKRxjkLnw9sBvhvZPRkQe97wojZRmRQhbDwwJyDfhagc6lSFgYeu9cqcfBHkQALmWIe6yONwUg2ThtmA42dMKDRPt9nGMKLFw+TbSEyDthVW5ukxNv/yDTkJTXqUVZHMIVVfXD8ReGxiVYZaJdjRORSbBmaKw0zm1yepr4+xlwxijHynWhBQxpBBalZUNxyg75KWxpLUwm6K9swhJWhL3YmE1rmpbM+PUiKw9bUgb8qEEHYKogbk8HU+aZyvXHEQ4miUTONRGwtoWOsw8gELgIetJq83Qxu55yH7r1A9Df8zxXc/H8F7SYPmgE/qwAfHNJYx6A7ezemntSYwInyvTONf3a9MCu6Otgbma4JNNEyEeVGDLSyGZrLTUL4W6mHzpyuu301ylChvmOh9ZpCbKPj3SLDgpSCa/wJ9RITql1ZiU2xay3O3Ri/ttAvqGaILJGNwGgZ5eUIfdL8CRTYypHnAwAA",
+          "width": 78.81,
+          "x": 9.85,
+          "y": 409.25,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"7adad0407db70679a90a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":348.4729064039409,\"y\":564.8275862068965,\"z\":5000,\"width\":931.9211822660099,\"height\":155.17241379310346,\"tabOrder\":5000}},{\"id\":1,\"position\":{\"x\":1,\"y\":0,\"z\":3,\"width\":234,\"height\":86}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"On the water.Expected PGR\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Expected PGR\"},\"Name\":\"On the water.Expected PGR\",\"NativeReferenceName\":\"Expected PGR\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Expected PGR\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2025-06-27T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2026-02-19T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Expected PGR\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2025-06-27T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Expected PGR\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2026-02-20T00:00:00'\"}}}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 155.17,
+          "queryBinary": "H4sIAAAAAAAEAMWSQUsDMRCF/0qZk8IibvW0N63bIlJdW/EiPYTsuI1skmU20ZZl/7uTbKGtqCfBW5J573svMB1MrNbClC1kLx0skc9OyUePtL0RTizXosGdBLIO4iAcnpFaZQ1k4wSmZHW03wuNkIGFBHLGOFbCgxm5NY4+hEPi96dtw5LzfpVwWI3SRePE1l6bwM03DWE7oLmP9SRxga/7S+T3fQIF2QYpZrCJSViOitkCeLTrcRh9dqQJEqfeAxkJjcSd4wuog6uqIqxYa79p96eteTb1Rg5JF/tPzJU5+fEjp/9Z8vKgpNj8WnLF0mtlSmWqEFeQ0mLYoxlZ3/DzsH8c/IYRH+5pMl5F662RtS8x143bRgNPHXlM9muYsizfoPTBPEdHSrZ3Kixt2jPjE7Defr/oAgAA",
+          "width": 931.92,
+          "x": 348.47,
+          "y": 564.83,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"86c65fb9aa164e20cb39\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.719058466211086,\"y\":0,\"z\":0,\"width\":279.9088838268793,\"height\":306.1503416856492,\"tabOrder\":0}},{\"id\":1,\"position\":{\"x\":1,\"y\":86,\"z\":1,\"width\":180,\"height\":276}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"On the water.Vessel\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Vessel\"},\"Name\":\"On the water.Vessel\",\"NativeReferenceName\":\"Vessel\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 306.15,
+          "queryBinary": "H4sIAAAAAAAEAMVTQU/CMBT+K6QXL5spM2Kym+IkRlQEAgfDoekerGZtl64VCOG/+9qNDD148eCyZO177/ve9712BzLUUjKV1yR9P5AZ4NoK/ubA7O+ZZbOCVdCWkPRAQsIvFmBqoRVJk4g8GC0D/IVJICnRJCIZ0lisJK+qZwvobZkFg/H5vsISelxF2KwEbgNwqEsnlefNdpWBuqFGPdoZDlNYd5vAfzxGZGJ0BSb0WCACSoLBVsF508s265NWfHo2MKA4tLUnMCpaFphpBalc2FbFbeN9DGvrvziOihlRN8lu9yR8Hc6jK/yTKwThfCDvTUbTkJuKTRGIxwJ9sTKcAyudR+do1QoJFwlNrmM6iJObOaVpeC8Q/Q3/u4Or/3cwiGkSJ/SHA3xWSHKHKoXaeOzECMmaCzky2lUYbi4yivjA1ijX7+kqAP2FnkLu+OlgfWDhLUJwfca2xB56i6swuEfFS5dDJiu7D32Q1BoHUfcb9LEs2wF3nvsZrBG8bsbZ96q/AKQE50JoAwAA",
+          "width": 279.91,
+          "x": 9.72,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"dfa8c091200609c89722\",\"layouts\":[{\"id\":0,\"position\":{\"x\":347.58620689655174,\"y\":27.48768472906404,\"z\":4000,\"width\":931.9211822660099,\"height\":519.6059113300493,\"tabOrder\":4000}},{\"id\":1,\"position\":{\"x\":1,\"y\":362,\"z\":4,\"width\":323,\"height\":565}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"On the water.Container\"},{\"queryRef\":\"Sum(On the water.Material)\"},{\"queryRef\":\"On the water.Mat. Descr.\"},{\"queryRef\":\"Sum(On the water.Storage Loc.)\"},{\"queryRef\":\"Sum(On the water.Quantity)\"},{\"queryRef\":\"On the water.Vessel\"},{\"queryRef\":\"On the water.Expected PGR\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"On the water\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Container\"},\"Name\":\"On the water.Container\",\"NativeReferenceName\":\"Container\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Material\"}},\"Function\":0},\"Name\":\"Sum(On the water.Material)\",\"NativeReferenceName\":\"Material\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Mat. Descr.\"},\"Name\":\"On the water.Mat. Descr.\",\"NativeReferenceName\":\"Mat. Descr.\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Storage Loc.\"}},\"Function\":0},\"Name\":\"Sum(On the water.Storage Loc.)\",\"NativeReferenceName\":\"Storage Loc.\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(On the water.Quantity)\",\"NativeReferenceName\":\"Quantity\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Vessel\"},\"Name\":\"On the water.Vessel\",\"NativeReferenceName\":\"Vessel\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Expected PGR\"},\"Name\":\"On the water.Expected PGR\",\"NativeReferenceName\":\"Expected PGR\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Expected PGR\"}}}]},\"columnProperties\":{\"Sum(On the water.Quantity)\":{\"displayName\":\"Quantity\"},\"Sum(On the water.Storage Loc.)\":{\"displayName\":\"Storage Loc.\"},\"Sum(On the water.Material)\":{\"displayName\":\"Material\"}},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 519.61,
+          "queryBinary": "H4sIAAAAAAAEAMVVUW/aMBD+K8gv7SSDTDqYxFsLbR9GVwoVfZj64CXX4InYkWOvQyj/fWcnaZJqqTpBNcRD7Lvvu+/u7POeTFWScBllZPJ9T1aA30aEdxb0bsYNX214CqULmeyJN7iPNehMKEkmASVXWiUe/o0nQCZEEUoukcagJ7mVPbOB3jM3oHH/fpeiC8sfKQbbQmg8cKq2NpGO9/J3qiErqFGPsjqEJTzVC8+f55QstEpB+xhTJQ0XEgPgfimiGXdQOzi7Eb8cJ2iQIZTuTYo9OY9jDTE6qr+IOlDsjVMk+NbvX1kZFlFYLX1lk9OW/AryqVN+TUqPIXDQm0EW6kFXPZsub0hq0HxsTVdGaR5Db67CwT/UtQnrrm2b/IMzubO8uDnvz6KCdGdQkx5+OtaIgG3XwSitXUJewAfLQBAOD4h6i+tll5iWT5ekNhGOpYcN2supJCNRdfm8GIBzeDJFm5OUa5FVTa9WX4Xzw6FYOx4xT7QtRbzxxHOBOeKNd8OYb61DR5i2EQmcBCwY9dm4H3y5Z2zi/yeIbuHfzuDs/2cw7rOgH7BXGeAPm3SrI9AXO9+mmdBQXhOs+1Fv4yvt+SOaL7A+QsYOuNAi4cV7eK2VTXG7eEeR4mehya0ZHdKAntHPdETH7uGzP4wyLvGhZ3QP7RIiG1ZnzW2snXLwjWiEecDg6rnIzEqs4ogx39aX93iYuxpAaB3ZDRgtwqxo6dDp/wP+LaJD8QcAAA==",
+          "width": 931.92,
+          "x": 347.59,
+          "y": 27.49,
+          "z": 4000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"201L\"}}}}}]}}",
+      "displayName": "Customer Dwell",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "a84d54f09aab130bb760",
+      "ordinal": 7,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0125b88f4e9bc515701b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":40.15209125475285,\"y\":194.37262357414446,\"z\":2000,\"width\":556.6539923954372,\"height\":418.85931558935357,\"tabOrder\":2000}},{\"id\":1,\"position\":{\"x\":0,\"y\":277,\"z\":3,\"width\":324,\"height\":384}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Dwell.Customer_1\",\"active\":true},{\"queryRef\":\"Dwell.Material\",\"active\":true},{\"queryRef\":\"Dwell.Mat. Descr.\"}],\"Values\":[{\"queryRef\":\"Min(Dwell.Container)\"},{\"queryRef\":\"Sum(Dwell.Quantity)\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Material\"},\"Name\":\"Dwell.Material\",\"NativeReferenceName\":\"Material1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Mat. Descr.\"},\"Name\":\"Dwell.Mat. Descr.\",\"NativeReferenceName\":\"Mat. Descr.\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Quantity)\",\"NativeReferenceName\":\"Quantity\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Customer_1\"},\"Name\":\"Dwell.Customer_1\",\"NativeReferenceName\":\"Customer\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2},\"Name\":\"Min(Dwell.Container)\",\"NativeReferenceName\":\"Count of Container\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"AVG DAYS AGED CONT\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2}}}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Dwell.Customer_1\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Dwell\"}},\"Property\":\"Customer_1\"}}],\"isPinned\":true},{\"queryRefs\":[\"Dwell.Material\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Dwell\"}},\"Property\":\"Material\"}}],\"isPinned\":true},{\"queryRefs\":[\"Dwell.Mat. Descr.\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'Amazon Vendor Central - Direct'\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"'KEG.com'\"}}],\"isToggled\":true}]}}],\"columnProperties\":{\"Sum(Dwell.Days in Country)\":{\"displayName\":\"AVG DAYS AGED CONT\"},\"Sum(Dwell.Material)\":{\"displayName\":\"Material\"},\"Sum(Dwell.Quantity)\":{\"displayName\":\"Quantity\"},\"Dwell.Customer_1\":{\"displayName\":\"Customer\"},\"Sum(Dwell.Days In Place)\":{\"displayName\":\"DiPlace\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"332.775288985854D\"}}}},\"selector\":{\"metadata\":\"Dwell.Mat. Descr.\"}}]}}}",
+          "filters": "[]",
+          "height": 418.86,
+          "queryBinary": "H4sIAAAAAAAEAMVVXW/aMBT9K5ZfukkZArpuEm9pQtFU6AdUVNOEJi+5gKfEjhy7LUX8913bCVAGm6YWLU/x9fG55374ekkjmedMpCXtfFvSEeC/5smtAbWImWajOSuggtDOkroN+zMGVXIpaKcd0Aslc3f8iuVAOzSlAe0ijUYkjR8hy9Bwtyhwr7maBOglg0S7E5HMTC4sYfepUFB6ThQijUpgCNPNwhGvVgG9UbIA5cgHTIPiLKNorpw7f431hrVr/mCpQIFIoILVgBYefQsZDRJDmajGPiXrvT+I2Tq/pOFspmCGULlH0yu13hrmS2PtF0Yk3ktzo3tk8ndee419f1D5hu31WYxMqWUO6nvrtyRubR1SUkOOnsBICs24sJ5eZLC9ET3gosrgGnw4hZE0QhM5JVvERw4hZouScEGca7XbCq19rbBz5HA44bhH4vDriIS9bkyi66s7au/8/RxR1ZUXKdfrQPKCKV7uri65nTc4W/ow1UeKeMhnc8fd5zgLcFbYscYyYwk+f4oRgx9Kv1YpqPOFEx9zBXW9gx0p/6fpUCJazjFfXMwsyY3iOfNDuqekKdDshzvS/fTi7frUDmLzQ0ttI2/ZlnsJaAbt4GNwtgObuKiZqPX/6+zvwwNkXs8mEeVbvAXb48N6imHKTKYrv19EqRl2aemKMedZik3r3LqSewV7GuEkzNmzFGQMIpWKRIDtwzLygfhOOKEu/39luez2GonMPXyystLt8zqE1CR1w1jD2OYAT5wG23W8x+rKR99G2L+0c9ZsOo71K2zvbPcJEmPJBqAVT0p/h1rW4y9CTFA/5wcAAA==",
+          "width": 556.65,
+          "x": 40.15,
+          "y": 194.37,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"5c559ba43e3c5334da04\",\"layouts\":[{\"id\":0,\"position\":{\"x\":40.15209125475285,\"y\":0,\"z\":0,\"width\":216.2737642585551,\"height\":194.37262357414446,\"tabOrder\":0}},{\"id\":1,\"position\":{\"x\":83,\"y\":103,\"z\":6,\"width\":241,\"height\":174}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Storage Loc.\"},{\"queryRef\":\"Sum(Dwell.Count)\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"},{\"queryRef\":\"Sum(Dwell.Days In Place)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"},\"Name\":\"Dwell.Storage Loc.\",\"NativeReferenceName\":\"SLoc\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Count\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Count)\",\"NativeReferenceName\":\"Count\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Avg DiC\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"Avg DiP\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Storage Loc.\"}}}]},\"columnProperties\":{\"Sum(Dwell.Days In Place)\":{\"displayName\":\"Avg DiP\"},\"Sum(Dwell.Days in Country)\":{\"displayName\":\"Avg DiC\"},\"Sum(Dwell.Count)\":{\"displayName\":\"Count\"},\"Dwell.Storage Loc.\":{\"displayName\":\"SLoc\"}},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 194.37,
+          "queryBinary": "H4sIAAAAAAAEAL2UUU/bMBDHv0rkp02yUAqCSXmDpqBpBboGwQPiwXOO1FNiRxcbqKp+9905KVAEGtIGeYp9d//7ne27lRi7plG27ER2vRIF0L83+mcAXObKq2KhWhhcRLYS0cA/l4CdcVZku1Ico2ti+JlqQGSiFFJMSMaTp8jvoa5p42LZki1d30jKUoP2MWLs6tBYFpw8tAhdr0kgLqCGOdw+LaLwei3FDF0LGMUL71BVkEyd3hFkGgBizp0tI9u8uWNJQLAaBteCrBS5EodVhVCRj3sF5x8xxy5YHzePg9V9ivQJtwjNlx45On59E3bQ+WDaXC27xNgkZqPb3uYevcb9IuTtCg7vqiQ348+p4btNZrUih/dWsAn4G/9M8DO+WpBpeMW2NP6RvGkVmu7l6ofhFqJ2mcKt/6BrmptqEbWnxgOqOnaqqgMLfDvIyYc+Qj/HEvBoGeFzg7A5Gfl/b2G7PSkzmY/oGIytOHCGplH9ODlBF1ra7scQSfzumXidypHclXs8OMIv7zyXNYpaPKHmUAa9OXveuGRmwtmTzxNcUVp339fETZTtp+macR8HGT+LyQPowGKn4NHorr+zEZP/AeY36BwqBQAA",
+          "width": 216.27,
+          "x": 40.15,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6c5de298dc0385866410\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"width\":100,\"height\":40,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'Back'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 40.00,
+          "width": 100.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"8c8b1518d09b03c7de6a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":305.41033434650456,\"y\":0,\"z\":1000,\"width\":205.22796352583586,\"height\":105.04559270516718,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Dwell.Days in Country)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"Average of Days in Country\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 105.05,
+          "queryBinary": "H4sIAAAAAAAEALVSy07DMBD8lWhPIEWoBQmk3EqacqCg0lTlgHqwnG1qFNuRY5dWUf6dtRMKKlzJJd7H7Mw+Wki1lEwVDSRvLeRIbyv4i0NznDLL8h2rcUiBpIUQ8I81mkZoBcl1DDOjZYA/M4mQQAExZFTGUiZMP7CqyLE61hQbdZuYWCrkNiAmZWmwZDaUaiE71AabZrBSXTn5hz/XznBc4vbbCKxdF8PC6BpNz8yOTSRUlGqnLKn24ZlTvCcbkzXozZ28CDKvziCX4HOs2HsyNKg4DpDJHg0rMdLb6BcNdfi6o+zQYKpVIeypIVkzI5pz61H46dIk57i1/9T5UpS7UHsuLGmvwhJZ5XyBu9sp5dC3ocR7EiNU6eMLIyTr9/1gtKvJ3d8Jcb1jGKS3R5sA9PeyxMLxr3a9Y+07IY6b+Ge1la7p13ldp0PyC8kOyJ2HP6E1gjf9YMZe2CcUYRynqgIAAA==",
+          "width": 205.23,
+          "x": 305.41,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"d29044080c0d010caaec\",\"layouts\":[{\"id\":0,\"position\":{\"x\":707.4626865671642,\"y\":0,\"z\":5000,\"width\":280.2985074626866,\"height\":104.77611940298507,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Dwell.Days in Country\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"},\"Name\":\"Dwell.Days in Country\",\"NativeReferenceName\":\"Days in Country\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"numericStart\":{\"expr\":{\"Literal\":{\"Value\":\"76D\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Right\":{\"Literal\":{\"Value\":\"76D\"}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 104.78,
+          "queryBinary": "H4sIAAAAAAAEAMVSzUrEMBB+lWVOCkXc1VNvutsVkZXVFS/SQ0jHGmmSMk20pfTdnaQrFV1vgrfJfL+B6WFptRamaCB96mGHPDsl7zxStxJO7F5EjXsKpD1EIAyPSI2yBtJFAmuyOspvhUZIoYAEMrZxzITVO1YVLx66mrHTIU84pULpomJpK69NMMzamrAZPbmI9STxHp+nRzQehgS2ZGuk0Vx0zUyZ2dJ647gYo/sOMfbkOx5gp96CMRIaiZ/sHz49XJQlYcl0e6DfX/dmeO2NHMPOpm9slDk6+JXjf+54/qWjaH/tmDPtUplCmTKkbUlpMR7QFVlf83o8PM59xWgd3vNkkUfptZGVLzDTteuigFFHHpPp/uZMy1qUPog36EjJ5kaFa50P7PEBkp+ozeECAAA=",
+          "width": 280.30,
+          "x": 707.46,
+          "y": 0.00,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"eeffb46ecbb2362e1c87\",\"layouts\":[{\"id\":0,\"position\":{\"x\":571.2317880794702,\"y\":194.54304635761588,\"z\":6000,\"width\":693.2980132450331,\"height\":418.64900662251654,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Dwell.Mat. Descr.\",\"active\":true},{\"queryRef\":\"Dwell.Material\"}],\"Values\":[{\"queryRef\":\"Min(Dwell.Container)\"},{\"queryRef\":\"Sum(Dwell.Quantity)\"},{\"queryRef\":\"Sum(Dwell.Days in Country)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Material\"},\"Name\":\"Dwell.Material\",\"NativeReferenceName\":\"Material1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Mat. Descr.\"},\"Name\":\"Dwell.Mat. Descr.\",\"NativeReferenceName\":\"Mat. Descr.\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(Dwell.Quantity)\",\"NativeReferenceName\":\"Quantity\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2},\"Name\":\"Min(Dwell.Container)\",\"NativeReferenceName\":\"Count of Container\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days in Country\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days in Country)\",\"NativeReferenceName\":\"AVG DAYS AGED CONT\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Container\"}},\"Function\":2}}}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Dwell.Mat. Descr.\"],\"isCollapsed\":true,\"isPinned\":true},{\"queryRefs\":[\"Dwell.Material\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Dwell\"}},\"Property\":\"Material\"}}],\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"columnProperties\":{\"Sum(Dwell.Days in Country)\":{\"displayName\":\"AVG DAYS AGED CONT\"},\"Sum(Dwell.Material)\":{\"displayName\":\"Material\"},\"Sum(Dwell.Quantity)\":{\"displayName\":\"Quantity\"},\"Sum(Dwell.Days In Place)\":{\"displayName\":\"DiPlace\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"332.775288985854D\"}}}},\"selector\":{\"metadata\":\"Dwell.Mat. Descr.\"}}]}}}",
+          "filters": "[]",
+          "height": 418.65,
+          "queryBinary": "H4sIAAAAAAAEAMWUTY+bQAyG/wqaUyuhKGT7IXHLQjaHbvYjWWVVVXuYgkOmghlkZrobRfnvtYGQCCW9bKNyYjz268cYeysiUxRSp5UIf2zFAujdquTRAW5iaeViLUtoXUS4FfUFvywBK2W0CEe+uEFT1OF3sgARilT4YkIyljxF/Ap5ToanTUl3w92LT1lySGwdEZncFZoFJ28lQtVoEohxmMAcVodDLbzb+eIBTQlYi8+kBVQyF2Ruk9f5Bt0F2636zVKAoBNo3fYOAYX+C4yBF0OV4OAUSXf3F5ij+K0YZxlCRq7mBNM7WR+dbFrD9hunkybL8MC9cMWHhn3v+/Es+UHtwtiR0VYqDdjjHh24Z0q33J3zefDIOG09s/KOhC9cQiw3lae0V6fGfgOCUw3ohZwvZ7ycevH4+8IbTyexF93fPQmetOc1ebWDplNlu0KKUqKq+qdviqecJvoWVvZCFc9Vtq61bxVNIE0oLxOZOxb4+iUmH3oI/R5TwOtNDR8rhH2//R7K//npCJEs1/S9lM5Y5AFVIZvVOEXjSjI3K5XkfjXwfA78kX/lf+Il6H5aY7n+oNbibTuH1CX7StiwZH5Cu/KPEzxTWvPa1EcfVoSfh8MdE3ZLmX+myRskjsVmYFElVdPcgMn/AJnGA/r2BQAA",
+          "width": 693.30,
+          "x": 571.23,
+          "y": 194.54,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"f658edef06dd9807003c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":511.02661596958177,\"y\":0,\"z\":4000,\"width\":205.38403041825094,\"height\":105.1254752851711,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Dwell.Days In Place)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Dwell\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1},\"Name\":\"Sum(Dwell.Days In Place)\",\"NativeReferenceName\":\"Average of Days In Place\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Days In Place\"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 105.13,
+          "queryBinary": "H4sIAAAAAAAEAK1STU/DMAz9K1VOIFVoAwmk3ka3IcRAY522A9ohSr0uqEmqNBmbqv537LQMmDjSS2P7PT9/NSw1SnGd1yx5a1gG+HZSvHqwxzF3PNvxCnoISxoWAvRYga2l0Sy5jtnUGhXoL1wBS1jOYjbBNA6RbPwBZYmO5bHC2KDdxKhSgnCBMSoKCwV3IVXDJofKQl33VmpKr/7wZ8ZbAQvYfhtBtW1jNremAtsp82MdPepoXnIEUHDqteikhmj11WZeXYQir34RLhkhnNyTEFjQAnrCaA+WFxCZbXQmgb2td4gNraVG59KdWlEVt7I+t54kzRVnOIOt+6+epY5S47XDTVF4IYtdyD2TDisvw/p46SnB3e0YMfhtEHiPxUhdUHxupeLdph+s8RW6uwtBrXcIQyR7sAlEupQF5F58tUuOFXWCGjfxz2xLU+GvpbpOJ0TLmBxAeKI/g7NS1N1ghlTYJ8QqKsekAgAA",
+          "width": 205.38,
+          "x": 511.03,
+          "y": 0.00,
+          "z": 4000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "Accessible_Tidal20603620266663192.json"
+}

@@ -1,0 +1,32 @@
+table 'Storage Loc.'
+	lineageTag: ca969937-e351-499c-b225-02bc7b3e9036
+
+	column 'Storage Loc.'
+		dataType: string
+		lineageTag: f92fd656-821a-4b4e-ba73-973f8c97d660
+		summarizeBy: none
+		sourceColumn: Storage Loc.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Description '
+		dataType: string
+		lineageTag: 7ec9a2fc-94d2-49f5-9f7e-f3e5ffe4d220
+		summarizeBy: none
+		sourceColumn: "Description "
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Storage Loc.' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Jons%20Folder/SLOC.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Storage Loc.", type any}, {"Description ", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

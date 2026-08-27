@@ -1,0 +1,557 @@
+table 'FACT YS10N Open'
+	lineageTag: 2d5027f4-dd53-41cf-a9fc-b0507bb7ecc0
+	sourceLineageTag: [dbo].[FACT YS10N Open]
+
+	column Material
+		dataType: string
+		lineageTag: 1663a750-c1f3-4ec6-8b4d-eb5369fcecdc
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: c1528a62-fe35-4660-8eb6-b5e6cc1a8e0d
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: e6c199ac-a5cd-429b-8b22-71292137baf3
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fda02c31-c4b2-4bfa-b8ff-9e53e28d2e09
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2ca6ce57-b16c-4e7c-8e7c-ce50de382c07
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 73154f95-a83d-4bf2-9fef-dfaf4e02ee3b
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: df966511-0260-4c77-923f-e750f73830d2
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: 55a07bb8-ac6c-4f29-ba7b-1541f76d2011
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: double
+		lineageTag: 52f71c6a-73dc-4f3a-bb63-d625e5c9f327
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: d3775ff6-6d27-41d6-994b-725a7ee5c195
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Organization'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fb811b8-2052-4cf1-8b17-0460a0bb2fa9
+		sourceLineageTag: Sales Organization
+		summarizeBy: sum
+		sourceColumn: Sales Organization
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Location'
+		dataType: string
+		lineageTag: f2d2e0ee-3d2e-4f8a-a8e0-abda03cb0c60
+		sourceLineageTag: Storage Location
+		summarizeBy: none
+		sourceColumn: Storage Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 85bd661c-9b2e-4fdd-9241-572c34049c1c
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Point/Receiving Pt'
+		dataType: string
+		lineageTag: cc9d3367-bf1c-4497-bc02-825856361e35
+		sourceLineageTag: Shipping Point/Receiving Pt
+		summarizeBy: none
+		sourceColumn: Shipping Point/Receiving Pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer name'
+		dataType: string
+		lineageTag: c52c83d1-43de-4296-b1f9-a7eb70d5e3cf
+		sourceLineageTag: Payer name
+		summarizeBy: none
+		sourceColumn: Payer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection'
+		dataType: int64
+		formatString: 0
+		lineageTag: e89fbe3a-d9da-4827-ba7e-d61beaa010eb
+		sourceLineageTag: Reason for rejection
+		summarizeBy: sum
+		sourceColumn: Reason for rejection
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for rejection description'
+		dataType: string
+		lineageTag: bbeaffa1-01f0-4e43-a8a9-8196bdfffcac
+		sourceLineageTag: Reason for rejection description
+		summarizeBy: none
+		sourceColumn: Reason for rejection description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason'
+		dataType: string
+		lineageTag: c40eabef-4fda-4faf-a0d2-8bb01879d72b
+		sourceLineageTag: Order reason
+		summarizeBy: none
+		sourceColumn: Order reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order reason_1'
+		dataType: string
+		lineageTag: 4b40b84b-2f6a-41cb-9f2f-940f52a3dc43
+		sourceLineageTag: Order reason_1
+		summarizeBy: none
+		sourceColumn: Order reason_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number'
+		dataType: string
+		lineageTag: 2a844603-dfca-45e9-b8fc-d409e9cedc4a
+		sourceLineageTag: PO Number
+		summarizeBy: none
+		sourceColumn: PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery
+		dataType: string
+		lineageTag: 57fdfd82-e7cd-41a7-b614-dd7168ede004
+		sourceLineageTag: Delivery
+		summarizeBy: none
+		sourceColumn: Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Number'
+		dataType: string
+		lineageTag: b632227a-c69d-4849-b103-38442d85bb79
+		sourceLineageTag: Shipment Number
+		summarizeBy: none
+		sourceColumn: Shipment Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping type'
+		dataType: string
+		lineageTag: a515312f-8919-4e15-9c8d-e8706849958d
+		sourceLineageTag: Shipping type
+		summarizeBy: none
+		sourceColumn: Shipping type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer SKU'
+		dataType: string
+		lineageTag: 38f2c00d-362e-44bc-8318-b894539024f2
+		sourceLineageTag: Customer SKU
+		summarizeBy: none
+		sourceColumn: Customer SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net value'
+		dataType: double
+		lineageTag: 4567d554-aa8f-48c6-94e6-79c95d261656
+		sourceLineageTag: Net value
+		summarizeBy: sum
+		sourceColumn: Net value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SO Created Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6423dd4f-af19-48d4-93e8-09b1473a401b
+		sourceLineageTag: SO Created Date
+		summarizeBy: none
+		sourceColumn: SO Created Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Creation Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 417a4a35-8b58-4dc4-b570-ab73e1ca26cd
+		sourceLineageTag: Delivery Creation Date
+		summarizeBy: none
+		sourceColumn: Delivery Creation Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Confirmation Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eeced84d-94cc-4eb4-a13f-73988f113beb
+		sourceLineageTag: Confirmation Date
+		summarizeBy: none
+		sourceColumn: Confirmation Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested deliv.date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5250652f-3447-41e7-bd7a-1e4587c4d369
+		sourceLineageTag: Requested deliv.date
+		summarizeBy: none
+		sourceColumn: Requested deliv.date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Guarantee Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8169f0a-c74d-4ffa-9650-ff55e4b722ea
+		sourceLineageTag: Guarantee Date
+		summarizeBy: none
+		sourceColumn: Guarantee Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Delivery Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0fccd662-e40a-4a8b-acff-a055a93a9b6c
+		sourceLineageTag: Original Delivery Date
+		summarizeBy: none
+		sourceColumn: Original Delivery Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Party Region'
+		dataType: string
+		lineageTag: 08361779-92ec-4fa1-91a1-0510cd2ce041
+		sourceLineageTag: Ship-To Party Region
+		summarizeBy: none
+		sourceColumn: Ship-To Party Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning end'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3537205-82fc-4105-ae97-52deeac4a3fd
+		sourceLineageTag: Planning end
+		summarizeBy: none
+		sourceColumn: Planning end
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned date CheckIn'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 053c0cb4-8dba-4d1b-b189-a98a7a5b6856
+		sourceLineageTag: Planned date CheckIn
+		summarizeBy: none
+		sourceColumn: Planned date CheckIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned time CheckIn'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bfdf727c-f340-40bb-9a8b-d04c931ddb68
+		sourceLineageTag: Planned time CheckIn
+		summarizeBy: none
+		sourceColumn: Planned time CheckIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trailer No_'
+		dataType: string
+		lineageTag: 189343a2-d308-413d-bc02-b0cbd51d5b9d
+		sourceLineageTag: Trailer No_
+		summarizeBy: none
+		sourceColumn: Trailer No_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned shipment end'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 19771920-12ad-4f96-9d26-a6ade1ea1a6a
+		sourceLineageTag: Planned shipment end
+		summarizeBy: none
+		sourceColumn: Planned shipment end
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Delay Reason'
+		dataType: string
+		lineageTag: b1ab53cd-6a16-4e4a-a954-80e0fd1b6c3e
+		sourceLineageTag: Load Delay Reason
+		summarizeBy: none
+		sourceColumn: Load Delay Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Act. Gds Mvmnt Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e53f6b5e-6a79-4180-aadb-4bbc2e492aac
+		sourceLineageTag: Act. Gds Mvmnt Date
+		summarizeBy: none
+		sourceColumn: Act. Gds Mvmnt Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Billing Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f2a5a04e-61a0-4d63-940f-6ad2c47b102a
+		sourceLineageTag: Invoice Billing Date
+		summarizeBy: none
+		sourceColumn: Invoice Billing Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Center'
+		dataType: int64
+		formatString: 0
+		lineageTag: fa91ccfd-1806-4506-9e79-7613459202d3
+		sourceLineageTag: Profit Center
+		summarizeBy: sum
+		sourceColumn: Profit Center
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier SCAC code'
+		dataType: string
+		lineageTag: 4ecdf693-14f9-4869-99cd-55384c2f97dc
+		sourceLineageTag: Carrier SCAC code
+		summarizeBy: none
+		sourceColumn: Carrier SCAC code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Name'
+		dataType: string
+		lineageTag: aaee8e74-e99b-41b0-9031-893daeda01f1
+		sourceLineageTag: Carrier Name
+		summarizeBy: none
+		sourceColumn: Carrier Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Code'
+		dataType: string
+		lineageTag: 0c11f1b6-879c-4c78-b926-ab7dd73e9354
+		sourceLineageTag: Carrier Code
+		summarizeBy: none
+		sourceColumn: Carrier Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Carrier Service'
+		dataType: string
+		lineageTag: 1717e399-3583-451c-8e39-9e50a926547c
+		sourceLineageTag: Carrier Service
+		summarizeBy: none
+		sourceColumn: Carrier Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load No_'
+		dataType: string
+		lineageTag: e2cc15f2-0427-4172-afc7-f535bc0743ad
+		sourceLineageTag: Load No_
+		summarizeBy: none
+		sourceColumn: Load No_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Zip'
+		dataType: string
+		lineageTag: 49df8245-2cf5-454b-ade1-7d78d1250c31
+		sourceLineageTag: Ship-To Zip
+		summarizeBy: none
+		sourceColumn: Ship-To Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spare Part Indicator'
+		dataType: string
+		lineageTag: 4edf7205-954a-4ac1-9e3f-0b1118eba763
+		sourceLineageTag: Spare Part Indicator
+		summarizeBy: none
+		sourceColumn: Spare Part Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship-To Party'
+		dataType: string
+		lineageTag: 971b54dc-1656-43a0-ac05-f6d8e3190159
+		sourceLineageTag: Ship-To Party
+		summarizeBy: none
+		sourceColumn: Ship-To Party
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Document Item'
+		dataType: string
+		lineageTag: c2165529-ddae-46c7-beb2-442cbfe87df1
+		sourceLineageTag: Sales Document Item
+		summarizeBy: none
+		sourceColumn: Sales Document Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayerMRPSKUSOW
+		dataType: string
+		lineageTag: ab3974d0-2f12-4296-8a4c-5b29c2956455
+		sourceLineageTag: PayerMRPSKUSOW
+		summarizeBy: none
+		sourceColumn: PayerMRPSKUSOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Order'
+		dataType: string
+		lineageTag: f4a196ce-1394-4288-b794-41952a4c6d39
+		sourceLineageTag: Sales Order
+		summarizeBy: none
+		sourceColumn: Sales Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderItem
+		dataType: string
+		lineageTag: 6bf67c0d-a529-4073-9fb7-8a4a9940eeeb
+		sourceLineageTag: SalesOrderItem
+		summarizeBy: none
+		sourceColumn: SalesOrderItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 428ea40d-58d8-47a8-996d-4ec2b5ce02da
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 76a5ea6e-006c-4bd5-8bc1-3b3f30aef0bf
+		sourceLineageTag: First Date
+		summarizeBy: none
+		sourceColumn: First Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Detail'
+		dataType: string
+		lineageTag: 78af2d0b-0094-4c0f-acb4-fbd823c2c5e8
+		sourceLineageTag: Payer Types.Detail
+		summarizeBy: none
+		sourceColumn: Payer Types.Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Type'
+		dataType: string
+		lineageTag: ec1cf2f9-e078-4b0a-822d-1d229ee6f000
+		sourceLineageTag: Payer Types.Type
+		summarizeBy: none
+		sourceColumn: Payer Types.Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.TypeKey'
+		dataType: string
+		lineageTag: 974619f6-452e-4dc2-a7bc-7ee51bdada31
+		sourceLineageTag: Payer Types.TypeKey
+		summarizeBy: none
+		sourceColumn: Payer Types.TypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FACT YS10N Open' = entity
+		mode: directLake
+		source
+			entityName: FACT YS10N Open
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,24 @@
+table OrderType
+	lineageTag: 3c643d79-0d9d-4e9a-8854-ea2d055c4417
+
+	column Invoiced_orders
+		dataType: string
+		lineageTag: 288bff67-2f62-46be-aa1c-a010ac65902d
+		summarizeBy: none
+		sourceColumn: Invoiced_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OrderType = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8swry89MTk1RitWJVvIvSM3zL0pJLSoGc4NCAsC0U2lKemoJmGlkYGSqFBsLAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Invoiced_orders = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Invoiced_orders", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,71 @@
+table 'Dim Order Reason Group'
+	lineageTag: 220e9103-eae4-4906-b773-dfcab98b7b53
+
+	column 'Group key'
+		dataType: string
+		lineageTag: 27ddc56d-6f16-43f2-b38c-300f5a295bb2
+		summarizeBy: none
+		sourceColumn: Group key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Reason'
+		dataType: string
+		lineageTag: f2cdb5a3-6b2e-4478-9b09-30e9abc41dd1
+		summarizeBy: none
+		sourceColumn: Order Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Reason (groups)'
+		dataType: string
+		lineageTag: 3b6ebe87-edfc-4388-9f52-357355ff2236
+		summarizeBy: none
+		sourceColumn: Order Reason (groups)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quality/ Trade'
+		dataType: string
+		lineageTag: 60c9efb9-a510-4153-8760-8a07b78eddd8
+		summarizeBy: none
+		sourceColumn: Quality/ Trade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rejection Group'
+		dataType: string
+		lineageTag: c72db91c-f00c-488a-844c-5dd8e2d5dcda
+		summarizeBy: none
+		sourceColumn: Rejection Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rejection key'
+		dataType: string
+		lineageTag: 27b47f44-2371-4c0b-915f-e01190377313
+		summarizeBy: none
+		sourceColumn: Rejection key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Order Reason Group' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Order Reason Group]", {"[Order Reason Group].[Group key].[Group key]", "[Order Reason Group].[Order Reason].[Order Reason]", "[Order Reason Group].[Order Reason (groups)].[Order Reason (groups)]", "[Order Reason Group].[Quality/ Trade].[Quality/ Trade]", "[Order Reason Group].[Rejection Group].[Rejection Group]", "[Order Reason Group].[Rejection key].[Rejection key]"}, {"Order Reason Group.Group key", "Order Reason Group.Order Reason", "Order Reason Group.Order Reason (groups)", "Order Reason Group.Quality/ Trade", "Order Reason Group.Rejection Group", "Order Reason Group.Rejection key"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Order Reason Group.Group key", "Group key"}, {"Order Reason Group.Order Reason", "Order Reason"}, {"Order Reason Group.Order Reason (groups)", "Order Reason (groups)"}, {"Order Reason Group.Quality/ Trade", "Quality/ Trade"}, {"Order Reason Group.Rejection Group", "Rejection Group"}, {"Order Reason Group.Rejection key", "Rejection key"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

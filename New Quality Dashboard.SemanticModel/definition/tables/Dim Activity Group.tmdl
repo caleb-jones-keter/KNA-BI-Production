@@ -1,0 +1,49 @@
+table 'Dim Activity Group'
+	lineageTag: d3c990fa-74d5-42fa-b9ae-b4f2ce194617
+
+	column 'Activity Group'
+		dataType: string
+		lineageTag: bf9903e1-006c-425a-9696-32897d0fa8d5
+		summarizeBy: none
+		sourceColumn: Activity Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActivityKey
+		dataType: string
+		lineageTag: e7439d52-e96f-43be-b5cd-86f11f8003fc
+		summarizeBy: none
+		sourceColumn: ActivityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selected Activity Group'
+		dataType: string
+		lineageTag: de082cbe-6211-4f06-848d-ba2f81a763b6
+		summarizeBy: none
+		sourceColumn: Selected Activity Group
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Activity Group' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Activity Group]", {"[Dim Activity Group].[Activity Group].[Activity Group]", "[Dim Activity Group].[ActivityKey].[ActivityKey]"}, {"Dim Activity Group.Activity Group", "Dim Activity Group.ActivityKey"}},
+				            {Cube.AddMeasureColumn, "Selected Activity Group", "[Measures].[Selected Activity Group]"}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Activity Group.Activity Group", "Activity Group"}, {"Dim Activity Group.ActivityKey", "ActivityKey"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each [ActivityKey] <> null and [ActivityKey] <> "")
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navigation
+

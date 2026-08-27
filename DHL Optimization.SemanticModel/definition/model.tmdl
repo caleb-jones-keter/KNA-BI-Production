@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Inventory snapshot -detail -exc","Item Sheet 2026","Item Sheet Specs"]
+
+ref table 'Inventory snapshot -detail -exc'
+ref table 'Item Sheet 2026'
+ref table DateTableTemplate_fea15593-17c2-4735-b67b-1f5e513321b1
+ref table LocalDateTable_f1fb2910-d7d4-4e3a-9a92-204eef4a325d
+ref table LocalDateTable_32878845-b39d-4004-8529-613c1568419a
+
+ref cultureInfo en-US
+

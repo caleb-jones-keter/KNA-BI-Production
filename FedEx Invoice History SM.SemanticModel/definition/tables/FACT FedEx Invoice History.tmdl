@@ -1,0 +1,2099 @@
+table 'FACT FedEx Invoice History'
+	lineageTag: df77532e-1ccb-4a45-a087-ea9638bfaa78
+	sourceLineageTag: [dbo].[FACT FedEx Invoice History]
+
+	column 'Consolidated Account Number'
+		dataType: string
+		lineageTag: 4b3de0c6-9c4f-4e81-87a9-b66c144efafc
+		sourceLineageTag: Consolidated Account Number
+		summarizeBy: none
+		sourceColumn: Consolidated Account Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to Account Number'
+		dataType: string
+		lineageTag: 9b9c2d10-26fc-4cf2-8010-5500eb6955b0
+		sourceLineageTag: Bill to Account Number
+		summarizeBy: none
+		sourceColumn: Bill to Account Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 31721f80-8fe3-4a7e-922c-519ab7f5bd7e
+		sourceLineageTag: Invoice Date
+		summarizeBy: none
+		sourceColumn: Invoice Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Number'
+		dataType: string
+		lineageTag: fcf7c6b4-16db-4e62-884e-94c39f8ae064
+		sourceLineageTag: Invoice Number
+		summarizeBy: none
+		sourceColumn: Invoice Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store ID'
+		dataType: string
+		lineageTag: acc649cf-1897-4185-9fc7-4795388d3613
+		sourceLineageTag: Store ID
+		summarizeBy: none
+		sourceColumn: Store ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Amount Due'
+		dataType: double
+		lineageTag: f97cbfa7-4bbe-40fa-97d0-a55ea1a32b54
+		sourceLineageTag: Original Amount Due
+		summarizeBy: sum
+		sourceColumn: Original Amount Due
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Balance'
+		dataType: double
+		lineageTag: cd47b511-30b9-44fb-8b86-a85c4c908a35
+		sourceLineageTag: Current Balance
+		summarizeBy: sum
+		sourceColumn: Current Balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Payor
+		dataType: string
+		lineageTag: 7f7d1859-a7a6-4e22-bea7-0e21a58d3aef
+		sourceLineageTag: Payor
+		summarizeBy: none
+		sourceColumn: Payor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ground Tracking ID Prefix'
+		dataType: string
+		lineageTag: c7df4514-9b9e-4d9e-aa3f-fe8f99a2ff59
+		sourceLineageTag: Ground Tracking ID Prefix
+		summarizeBy: none
+		sourceColumn: Ground Tracking ID Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Express or Ground Tracking ID'
+		dataType: string
+		lineageTag: e888b36a-9819-4ffd-a1bb-574b8a4bd0ae
+		sourceLineageTag: Express or Ground Tracking ID
+		summarizeBy: none
+		sourceColumn: Express or Ground Tracking ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transportation Charge Amount'
+		dataType: double
+		lineageTag: b8ceb3d6-48f0-4e8d-8d60-a78ee106bfc9
+		sourceLineageTag: Transportation Charge Amount
+		summarizeBy: sum
+		sourceColumn: Transportation Charge Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Charge Amount'
+		dataType: double
+		lineageTag: 802903f7-0788-4446-a574-97a8d3233c6c
+		sourceLineageTag: Net Charge Amount
+		summarizeBy: sum
+		sourceColumn: Net Charge Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Service Type'
+		dataType: string
+		lineageTag: 0bf549df-d8e8-4916-aa3f-14ab727b2cfc
+		sourceLineageTag: Service Type
+		summarizeBy: none
+		sourceColumn: Service Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ground Service'
+		dataType: string
+		lineageTag: 4369d385-eab2-452e-b783-c74fd26e6231
+		sourceLineageTag: Ground Service
+		summarizeBy: none
+		sourceColumn: Ground Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2405ff03-cf3d-4dd0-af8d-1a4599aa1049
+		sourceLineageTag: Shipment Date
+		summarizeBy: none
+		sourceColumn: Shipment Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'POD Delivery Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 58e8c823-4f9f-406c-bac3-66e67c7a9a9f
+		sourceLineageTag: POD Delivery Date
+		summarizeBy: none
+		sourceColumn: POD Delivery Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'POD Service Area Code'
+		dataType: string
+		lineageTag: 44d55354-bcdc-404a-8403-8bda8175dec4
+		sourceLineageTag: POD Service Area Code
+		summarizeBy: none
+		sourceColumn: POD Service Area Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'POD Signature Description'
+		dataType: string
+		lineageTag: abf0dc20-66f1-4ccb-a184-f9b715de7725
+		sourceLineageTag: POD Signature Description
+		summarizeBy: none
+		sourceColumn: POD Signature Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Weight Amount'
+		dataType: double
+		lineageTag: 0fc1053b-af85-42e8-8ba3-706cc5991c82
+		sourceLineageTag: Actual Weight Amount
+		summarizeBy: sum
+		sourceColumn: Actual Weight Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Actual Weight Units'
+		dataType: string
+		lineageTag: 66f788ef-d467-44e1-b8fd-8480e733296c
+		sourceLineageTag: Actual Weight Units
+		summarizeBy: none
+		sourceColumn: Actual Weight Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rated Weight Amount'
+		dataType: double
+		lineageTag: f5061ccf-ee7f-4a25-9ab5-848c20cba027
+		sourceLineageTag: Rated Weight Amount
+		summarizeBy: sum
+		sourceColumn: Rated Weight Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rated Weight Units'
+		dataType: string
+		lineageTag: ca5df73c-a8cd-4d6c-a2c3-857111cdd234
+		sourceLineageTag: Rated Weight Units
+		summarizeBy: none
+		sourceColumn: Rated Weight Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of Pieces'
+		dataType: double
+		lineageTag: e9af8507-d69b-4ef2-bece-deeed846a6a8
+		sourceLineageTag: Number of Pieces
+		summarizeBy: sum
+		sourceColumn: Number of Pieces
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Bundle Number'
+		dataType: string
+		lineageTag: 2f97fcfe-0edf-48fd-ae2c-c6cdb046134f
+		sourceLineageTag: Bundle Number
+		summarizeBy: none
+		sourceColumn: Bundle Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Meter Number'
+		dataType: string
+		lineageTag: d9a01cac-2017-407f-8192-909f32834ac1
+		sourceLineageTag: Meter Number
+		summarizeBy: none
+		sourceColumn: Meter Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column TDMasterTrackingID
+		dataType: string
+		lineageTag: fac31bfc-a97e-4351-8047-3fe2c82a0eaf
+		sourceLineageTag: TDMasterTrackingID
+		summarizeBy: none
+		sourceColumn: TDMasterTrackingID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Packaging'
+		dataType: string
+		lineageTag: 01f0c39b-1976-4a1b-ab45-0996bd912db0
+		sourceLineageTag: Service Packaging
+		summarizeBy: none
+		sourceColumn: Service Packaging
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dim Length'
+		dataType: double
+		lineageTag: d16ef7ed-9ba3-46b8-a814-5fa478fba9b3
+		sourceLineageTag: Dim Length
+		summarizeBy: sum
+		sourceColumn: Dim Length
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Width'
+		dataType: double
+		lineageTag: 40dd7ca5-2263-4de1-b205-96ba2796f82d
+		sourceLineageTag: Dim Width
+		summarizeBy: sum
+		sourceColumn: Dim Width
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Height'
+		dataType: double
+		lineageTag: 5f86eed8-1aa8-4867-9f5b-71db2e8b02be
+		sourceLineageTag: Dim Height
+		summarizeBy: sum
+		sourceColumn: Dim Height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Divisor'
+		dataType: double
+		lineageTag: be26823e-1a51-4de5-9d64-e1ba34db2920
+		sourceLineageTag: Dim Divisor
+		summarizeBy: sum
+		sourceColumn: Dim Divisor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Unit'
+		dataType: string
+		lineageTag: 20e94425-b557-42c9-9336-559b0fa7f116
+		sourceLineageTag: Dim Unit
+		summarizeBy: none
+		sourceColumn: Dim Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Name'
+		dataType: string
+		lineageTag: ab6a0f50-2228-45fd-814c-b843ea6a6a1b
+		sourceLineageTag: Recipient Name
+		summarizeBy: none
+		sourceColumn: Recipient Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Company'
+		dataType: string
+		lineageTag: af3f0c39-f8f5-4e6c-a71c-c93808fe551e
+		sourceLineageTag: Recipient Company
+		summarizeBy: none
+		sourceColumn: Recipient Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Address Line 1'
+		dataType: string
+		lineageTag: 59755190-d57c-43b2-b730-a65ea49f1d0c
+		sourceLineageTag: Recipient Address Line 1
+		summarizeBy: none
+		sourceColumn: Recipient Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Address Line 2'
+		dataType: string
+		lineageTag: ab5662b8-280f-455a-9356-f0f0d8f21efe
+		sourceLineageTag: Recipient Address Line 2
+		summarizeBy: none
+		sourceColumn: Recipient Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient City'
+		dataType: string
+		lineageTag: 37a082b1-33b0-449e-8632-b22d11dd35a0
+		sourceLineageTag: Recipient City
+		summarizeBy: none
+		sourceColumn: Recipient City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient State'
+		dataType: string
+		lineageTag: 4c9e9560-0cd8-4393-84cf-19871481afaf
+		sourceLineageTag: Recipient State
+		summarizeBy: none
+		sourceColumn: Recipient State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Zip Code'
+		dataType: string
+		lineageTag: facf0794-af41-4861-bb63-c47c1a9adbac
+		sourceLineageTag: Recipient Zip Code
+		summarizeBy: none
+		sourceColumn: Recipient Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Country/Territory'
+		dataType: string
+		lineageTag: 7621a27f-2407-4788-8f31-6a4fe005538f
+		sourceLineageTag: Recipient Country/Territory
+		summarizeBy: none
+		sourceColumn: Recipient Country/Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Company'
+		dataType: string
+		lineageTag: 359a9b1a-7243-426c-9fc6-807f32669bb6
+		sourceLineageTag: Shipper Company
+		summarizeBy: none
+		sourceColumn: Shipper Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Name'
+		dataType: string
+		lineageTag: 68b2323f-471b-4b7c-9267-76c79d679050
+		sourceLineageTag: Shipper Name
+		summarizeBy: none
+		sourceColumn: Shipper Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Address Line 1'
+		dataType: string
+		lineageTag: 2a5f7df6-1059-45ef-8867-f24a36a780b2
+		sourceLineageTag: Shipper Address Line 1
+		summarizeBy: none
+		sourceColumn: Shipper Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Address Line 2'
+		dataType: string
+		lineageTag: c9e36f95-a7c6-44a1-9978-c71e8a74b13b
+		sourceLineageTag: Shipper Address Line 2
+		summarizeBy: none
+		sourceColumn: Shipper Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper City'
+		dataType: string
+		lineageTag: d8c229c6-a10e-4a28-acd3-4821125cf88c
+		sourceLineageTag: Shipper City
+		summarizeBy: none
+		sourceColumn: Shipper City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper State'
+		dataType: string
+		lineageTag: e82c08bd-392d-4bd0-a70c-58af6a5b2f3d
+		sourceLineageTag: Shipper State
+		summarizeBy: none
+		sourceColumn: Shipper State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Zip Code'
+		dataType: string
+		lineageTag: ff6f51e2-f4f4-40eb-bdb8-ab547076dc91
+		sourceLineageTag: Shipper Zip Code
+		summarizeBy: none
+		sourceColumn: Shipper Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Country/Territory'
+		dataType: string
+		lineageTag: cb3133a0-712b-4b74-ae6c-72a6003b94fe
+		sourceLineageTag: Shipper Country/Territory
+		summarizeBy: none
+		sourceColumn: Shipper Country/Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Customer Reference'
+		dataType: string
+		lineageTag: 499885ec-0bf4-4aa0-81dd-7f7727f9c972
+		sourceLineageTag: Original Customer Reference
+		summarizeBy: none
+		sourceColumn: Original Customer Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Ref#2'
+		dataType: string
+		lineageTag: d67c8d62-0882-4e8d-ac44-3158ac25baee
+		sourceLineageTag: Original Ref#2
+		summarizeBy: none
+		sourceColumn: Original Ref#2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Ref#3/PO Number'
+		dataType: string
+		lineageTag: b4aa993c-9e27-4e14-8319-69ed7c56b241
+		sourceLineageTag: Original Ref#3/PO Number
+		summarizeBy: none
+		sourceColumn: Original Ref#3/PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Department Reference Description'
+		dataType: string
+		lineageTag: e120dcef-c9db-4b67-a47a-1be1ff3d244c
+		sourceLineageTag: Original Department Reference Description
+		summarizeBy: none
+		sourceColumn: Original Department Reference Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Updated Customer Reference'
+		dataType: string
+		lineageTag: 06e4b8ac-7085-4a47-acbf-d8e4352984f9
+		sourceLineageTag: Updated Customer Reference
+		summarizeBy: none
+		sourceColumn: Updated Customer Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Updated Ref#2'
+		dataType: string
+		lineageTag: fca1c4b5-7a70-475f-90bb-0ef25590542f
+		sourceLineageTag: Updated Ref#2
+		summarizeBy: none
+		sourceColumn: Updated Ref#2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Updated Ref#3/PO Number'
+		dataType: string
+		lineageTag: 5681385b-35aa-4770-a4eb-409060aeb30e
+		sourceLineageTag: Updated Ref#3/PO Number
+		summarizeBy: none
+		sourceColumn: Updated Ref#3/PO Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Updated Department Reference Description'
+		dataType: string
+		lineageTag: 276a5a74-8a81-406f-a259-dffabfdb2c8e
+		sourceLineageTag: Updated Department Reference Description
+		summarizeBy: none
+		sourceColumn: Updated Department Reference Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column RMA#
+		dataType: string
+		lineageTag: 5f26af1e-a0f2-40c5-b1fc-569ea28599e1
+		sourceLineageTag: RMA#
+		summarizeBy: none
+		sourceColumn: RMA#
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Recipient Address Line 1'
+		dataType: string
+		lineageTag: 387d4430-8e55-4d58-ad2b-9b2c9bceb2b2
+		sourceLineageTag: Original Recipient Address Line 1
+		summarizeBy: none
+		sourceColumn: Original Recipient Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Recipient Address Line 2'
+		dataType: string
+		lineageTag: d0971f42-9b02-431a-84fe-75f58097453c
+		sourceLineageTag: Original Recipient Address Line 2
+		summarizeBy: none
+		sourceColumn: Original Recipient Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Recipient City'
+		dataType: string
+		lineageTag: c6d594ed-e5c5-4830-8b3a-99f1ff946d3d
+		sourceLineageTag: Original Recipient City
+		summarizeBy: none
+		sourceColumn: Original Recipient City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Recipient State'
+		dataType: string
+		lineageTag: 55ef3b1b-9cc6-499a-b32a-c7365ae6aaf7
+		sourceLineageTag: Original Recipient State
+		summarizeBy: none
+		sourceColumn: Original Recipient State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Recipient Zip Code'
+		dataType: string
+		lineageTag: 68aeabbf-c2dc-4cea-b84b-9dc4f52f4607
+		sourceLineageTag: Original Recipient Zip Code
+		summarizeBy: none
+		sourceColumn: Original Recipient Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Recipient Country/Territory'
+		dataType: string
+		lineageTag: 0de73cfd-9d6f-49d8-bbbb-f872aec6ac77
+		sourceLineageTag: Original Recipient Country/Territory
+		summarizeBy: none
+		sourceColumn: Original Recipient Country/Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zone Code'
+		dataType: string
+		lineageTag: b0f4bedf-6f78-4d2b-a87b-71a4f46a077e
+		sourceLineageTag: Zone Code
+		summarizeBy: none
+		sourceColumn: Zone Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Allocation'
+		dataType: string
+		lineageTag: b16b5da4-4f57-43b7-9ede-71f60677df9e
+		sourceLineageTag: Cost Allocation
+		summarizeBy: none
+		sourceColumn: Cost Allocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alternate Address Line 1'
+		dataType: string
+		lineageTag: 0b4f0af3-6074-4471-aa0c-4fa0e123af5b
+		sourceLineageTag: Alternate Address Line 1
+		summarizeBy: none
+		sourceColumn: Alternate Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alternate Address Line 2'
+		dataType: string
+		lineageTag: 3bd1b12a-08c9-4d7b-8350-ddcd7017abf7
+		sourceLineageTag: Alternate Address Line 2
+		summarizeBy: none
+		sourceColumn: Alternate Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alternate City'
+		dataType: string
+		lineageTag: 07100395-d5d5-45b4-a30b-346e99aeee75
+		sourceLineageTag: Alternate City
+		summarizeBy: none
+		sourceColumn: Alternate City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alternate State Province'
+		dataType: string
+		lineageTag: 9ac78f22-ab51-4c16-82f4-a08751813cf8
+		sourceLineageTag: Alternate State Province
+		summarizeBy: none
+		sourceColumn: Alternate State Province
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alternate Zip Code'
+		dataType: string
+		lineageTag: 2fd96c5b-d37b-4291-80aa-1a04161e0d1d
+		sourceLineageTag: Alternate Zip Code
+		summarizeBy: none
+		sourceColumn: Alternate Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alternate Country/Territory Code'
+		dataType: string
+		lineageTag: e6b6fbe9-644e-4d65-8e62-5f25a43ed499
+		sourceLineageTag: Alternate Country/Territory Code
+		summarizeBy: none
+		sourceColumn: Alternate Country/Territory Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CrossRefTrackingID Prefix'
+		dataType: string
+		lineageTag: f8fe191e-8ad4-49bd-92a6-835df08a436c
+		sourceLineageTag: CrossRefTrackingID Prefix
+		summarizeBy: none
+		sourceColumn: CrossRefTrackingID Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column CrossRefTrackingID
+		dataType: string
+		lineageTag: 21cd0a28-2e12-4a5b-9d92-89f323b246a6
+		sourceLineageTag: CrossRefTrackingID
+		summarizeBy: none
+		sourceColumn: CrossRefTrackingID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 36b97492-94f0-4940-8027-7ee1821b23b3
+		sourceLineageTag: Entry Date
+		summarizeBy: none
+		sourceColumn: Entry Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Number'
+		dataType: string
+		lineageTag: 862e35c5-8771-4257-94a0-7f8b5a40a5f2
+		sourceLineageTag: Entry Number
+		summarizeBy: none
+		sourceColumn: Entry Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customs Value'
+		dataType: string
+		lineageTag: d17d2344-a8d7-45c9-bd65-87c3e02e05ce
+		sourceLineageTag: Customs Value
+		summarizeBy: none
+		sourceColumn: Customs Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customs Value Currency Code'
+		dataType: string
+		lineageTag: 808374ad-22ec-483f-8e4c-4293cbab9738
+		sourceLineageTag: Customs Value Currency Code
+		summarizeBy: none
+		sourceColumn: Customs Value Currency Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Declared Value'
+		dataType: string
+		lineageTag: e98dcbb8-39c3-4b04-aac3-158494503d12
+		sourceLineageTag: Declared Value
+		summarizeBy: none
+		sourceColumn: Declared Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Declared Value Currency Code'
+		dataType: string
+		lineageTag: 96df651a-861d-456b-9856-9bfe87029b2f
+		sourceLineageTag: Declared Value Currency Code
+		summarizeBy: none
+		sourceColumn: Declared Value Currency Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Description'
+		dataType: string
+		lineageTag: 20835a6c-a603-4573-981d-84016329d7fe
+		sourceLineageTag: Commodity Description
+		summarizeBy: none
+		sourceColumn: Commodity Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Country/Territory Code'
+		dataType: string
+		lineageTag: 44d72b95-98a2-4a72-bf72-849935f519b5
+		sourceLineageTag: Commodity Country/Territory Code
+		summarizeBy: none
+		sourceColumn: Commodity Country/Territory Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Description_1'
+		dataType: string
+		lineageTag: 66c15ac8-7641-4df4-b557-37abe336a82a
+		sourceLineageTag: Commodity Description_1
+		summarizeBy: none
+		sourceColumn: Commodity Description_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Country/Territory Code_2'
+		dataType: string
+		lineageTag: c7f6dfc5-c677-4a55-8cc0-5eb20dfd419e
+		sourceLineageTag: Commodity Country/Territory Code_2
+		summarizeBy: none
+		sourceColumn: Commodity Country/Territory Code_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Description_3'
+		dataType: string
+		lineageTag: f0b277b5-d3de-4d34-b673-7f62eb798e07
+		sourceLineageTag: Commodity Description_3
+		summarizeBy: none
+		sourceColumn: Commodity Description_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Country/Territory Code_4'
+		dataType: string
+		lineageTag: a85daac8-2bf5-430e-9763-7731063b72c2
+		sourceLineageTag: Commodity Country/Territory Code_4
+		summarizeBy: none
+		sourceColumn: Commodity Country/Territory Code_4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Description_5'
+		dataType: string
+		lineageTag: b70860d4-8b22-497e-b702-1fdfb700a0b1
+		sourceLineageTag: Commodity Description_5
+		summarizeBy: none
+		sourceColumn: Commodity Description_5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Country/Territory Code_6'
+		dataType: string
+		lineageTag: ff84cec3-51e8-43c1-8bb0-ef4b681180fd
+		sourceLineageTag: Commodity Country/Territory Code_6
+		summarizeBy: none
+		sourceColumn: Commodity Country/Territory Code_6
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Conversion Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 69ad3104-b17f-45a4-87e9-7a3d6057bf98
+		sourceLineageTag: Currency Conversion Date
+		summarizeBy: none
+		sourceColumn: Currency Conversion Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Currency Conversion Rate'
+		dataType: double
+		lineageTag: 59f89a5c-15b5-42f6-ba72-2aadedd23a3c
+		sourceLineageTag: Currency Conversion Rate
+		summarizeBy: sum
+		sourceColumn: Currency Conversion Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiweight Number'
+		dataType: string
+		lineageTag: 63c678a1-a4e5-4752-bfeb-22c8544f6a02
+		sourceLineageTag: Multiweight Number
+		summarizeBy: none
+		sourceColumn: Multiweight Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Multiweight Total Multiweight Units'
+		dataType: double
+		lineageTag: c19f16c0-015d-4f06-9024-51ad0090490e
+		sourceLineageTag: Multiweight Total Multiweight Units
+		summarizeBy: sum
+		sourceColumn: Multiweight Total Multiweight Units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiweight Total Multiweight Weight'
+		dataType: double
+		lineageTag: a59d1ece-a747-4f7b-95e9-b236ad8d8ce7
+		sourceLineageTag: Multiweight Total Multiweight Weight
+		summarizeBy: sum
+		sourceColumn: Multiweight Total Multiweight Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiweight Total Shipment Charge Amount'
+		dataType: double
+		lineageTag: 2fc7e7a2-1869-443f-a42b-0dee366607eb
+		sourceLineageTag: Multiweight Total Shipment Charge Amount
+		summarizeBy: sum
+		sourceColumn: Multiweight Total Shipment Charge Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Multiweight Total Shipment Weight'
+		dataType: double
+		lineageTag: 596a7d1b-1d5c-4fde-809f-0de89b212a8a
+		sourceLineageTag: Multiweight Total Shipment Weight
+		summarizeBy: sum
+		sourceColumn: Multiweight Total Shipment Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Ground Tracking ID Address Correction Discount Charge Amount'
+		dataType: string
+		lineageTag: 2c10b404-a339-4312-9da1-e14fc2842224
+		sourceLineageTag: Ground Tracking ID Address Correction Discount Charge Amount
+		summarizeBy: none
+		sourceColumn: Ground Tracking ID Address Correction Discount Charge Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ground Tracking ID Address Correction Gross Charge Amount'
+		dataType: string
+		lineageTag: 2aff15d7-10aa-4b21-8793-7ddd6e1fbd81
+		sourceLineageTag: Ground Tracking ID Address Correction Gross Charge Amount
+		summarizeBy: none
+		sourceColumn: Ground Tracking ID Address Correction Gross Charge Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rated Method'
+		dataType: string
+		lineageTag: 9e059a20-8263-4dcc-aca7-d4b5b98f1f2f
+		sourceLineageTag: Rated Method
+		summarizeBy: none
+		sourceColumn: Rated Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort Hub'
+		dataType: string
+		lineageTag: 9c699b1b-6040-4b0d-97eb-c9ea65a1ffde
+		sourceLineageTag: Sort Hub
+		summarizeBy: none
+		sourceColumn: Sort Hub
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimated Weight'
+		dataType: double
+		lineageTag: ea09c378-1659-4712-9d77-4f40b0cb4248
+		sourceLineageTag: Estimated Weight
+		summarizeBy: sum
+		sourceColumn: Estimated Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Estimated Weight Unit'
+		dataType: string
+		lineageTag: 3eb57d8c-34ce-4a33-9d43-96b7ccdcaa57
+		sourceLineageTag: Estimated Weight Unit
+		summarizeBy: none
+		sourceColumn: Estimated Weight Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Class'
+		dataType: string
+		lineageTag: 864e28de-b39a-4aa7-b81b-3900565f1425
+		sourceLineageTag: Postal Class
+		summarizeBy: none
+		sourceColumn: Postal Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Process Category'
+		dataType: string
+		lineageTag: 5af9339a-e789-42b0-b73f-29c89144300c
+		sourceLineageTag: Process Category
+		summarizeBy: none
+		sourceColumn: Process Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Package Size'
+		dataType: string
+		lineageTag: ba2bb0ea-a1ae-4e13-9b60-cdfbae322db0
+		sourceLineageTag: Package Size
+		summarizeBy: none
+		sourceColumn: Package Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Confirmation'
+		dataType: string
+		lineageTag: 8e059325-d127-4ffc-a6b3-3125335330bc
+		sourceLineageTag: Delivery Confirmation
+		summarizeBy: none
+		sourceColumn: Delivery Confirmation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tendered Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 89ed9bd7-2f30-4034-b2b4-6172f58cd4e4
+		sourceLineageTag: Tendered Date
+		summarizeBy: none
+		sourceColumn: Tendered Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MPS Package ID'
+		dataType: string
+		lineageTag: 5b1fba64-5b22-4815-8cb9-cc9ee276545d
+		sourceLineageTag: MPS Package ID
+		summarizeBy: none
+		sourceColumn: MPS Package ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Notes'
+		dataType: string
+		lineageTag: 176de2ce-4579-4e86-a582-6885c6bbcd89
+		sourceLineageTag: Shipment Notes
+		summarizeBy: none
+		sourceColumn: Shipment Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Updated'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c99573f4-59d9-42d7-befa-498921692299
+		sourceLineageTag: Last Updated
+		summarizeBy: none
+		sourceColumn: Last Updated
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS HI Residential Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ab764dcc-8369-4f5b-ab68-7c5cc2259baa
+		sourceLineageTag: DAS HI Residential Flag
+		summarizeBy: none
+		sourceColumn: DAS HI Residential Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS HI Residential Value'
+		dataType: double
+		lineageTag: a9d0a79b-12ab-4e02-aa91-2b0d1f33242b
+		sourceLineageTag: DAS HI Residential Value
+		summarizeBy: sum
+		sourceColumn: DAS HI Residential Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Discount Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a9fce4bc-28e2-4b1d-b400-a3189861e519
+		sourceLineageTag: Discount Flag
+		summarizeBy: none
+		sourceColumn: Discount Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount Value'
+		dataType: double
+		lineageTag: 01453ae5-3d38-4bad-b71a-6712e1653c2c
+		sourceLineageTag: Discount Value
+		summarizeBy: sum
+		sourceColumn: Discount Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fuel Surcharge Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bba0450d-cdf5-4262-b4c1-6dc52fd66295
+		sourceLineageTag: Fuel Surcharge Flag
+		summarizeBy: none
+		sourceColumn: Fuel Surcharge Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fuel Surcharge Value'
+		dataType: double
+		lineageTag: 7fe2eb64-8a2a-485a-9f1e-f2ad2c6b6cbd
+		sourceLineageTag: Fuel Surcharge Value
+		summarizeBy: sum
+		sourceColumn: Fuel Surcharge Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Customs Duty Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e159477c-2d5b-4e4c-b83d-0369afe0f3f0
+		sourceLineageTag: Customs Duty Flag
+		summarizeBy: none
+		sourceColumn: Customs Duty Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customs Duty Value'
+		dataType: double
+		lineageTag: 53d8fc98-4041-49b6-b65c-f66aeb3d0d7a
+		sourceLineageTag: Customs Duty Value
+		summarizeBy: sum
+		sourceColumn: Customs Duty Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Disbursement Fee Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 947e557e-dbec-4b13-bfb8-dc8efb8e30c6
+		sourceLineageTag: Disbursement Fee Flag
+		summarizeBy: none
+		sourceColumn: Disbursement Fee Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disbursement Fee Value'
+		dataType: double
+		lineageTag: 39313e1d-f966-4e43-9474-51ade3465888
+		sourceLineageTag: Disbursement Fee Value
+		summarizeBy: sum
+		sourceColumn: Disbursement Fee Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Add''l Handling-Packaging Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4e99083a-48a0-442a-b749-2b8ffbca75d3
+		sourceLineageTag: Add'l Handling-Packaging Flag
+		summarizeBy: none
+		sourceColumn: Add'l Handling-Packaging Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Add''l Handling-Packaging Value'
+		dataType: double
+		lineageTag: 48755a38-1835-4304-a5a3-6b600c62cfe8
+		sourceLineageTag: Add'l Handling-Packaging Value
+		summarizeBy: sum
+		sourceColumn: Add'l Handling-Packaging Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Demand Surcharge Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cb570623-672d-424c-98c3-f57c78ea3d25
+		sourceLineageTag: Demand Surcharge Flag
+		summarizeBy: none
+		sourceColumn: Demand Surcharge Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demand Surcharge Value'
+		dataType: double
+		lineageTag: c9ecf4eb-4834-4efb-bdfe-53675663dc29
+		sourceLineageTag: Demand Surcharge Value
+		summarizeBy: sum
+		sourceColumn: Demand Surcharge Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Regularly Scheduled Pickup Mon-Fri Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5b4a8a41-e7e2-4f1c-8e65-7a9d3f9e9fdc
+		sourceLineageTag: Regularly Scheduled Pickup Mon-Fri Flag
+		summarizeBy: none
+		sourceColumn: Regularly Scheduled Pickup Mon-Fri Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Regularly Scheduled Pickup Mon-Fri Value'
+		dataType: double
+		lineageTag: 6a516f84-a470-4868-b5d0-ed72ec5db936
+		sourceLineageTag: Regularly Scheduled Pickup Mon-Fri Value
+		summarizeBy: sum
+		sourceColumn: Regularly Scheduled Pickup Mon-Fri Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Earned Discount Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 57f77ecd-6770-4c04-980d-195345412ca0
+		sourceLineageTag: Earned Discount Flag
+		summarizeBy: none
+		sourceColumn: Earned Discount Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Earned Discount Value'
+		dataType: double
+		lineageTag: cc9e644b-c0ea-436b-b8c2-c8a48b158b17
+		sourceLineageTag: Earned Discount Value
+		summarizeBy: sum
+		sourceColumn: Earned Discount Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Weekday Delivery Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5da9f56e-33a5-4a83-b7d0-3641896fe3f8
+		sourceLineageTag: Weekday Delivery Flag
+		summarizeBy: none
+		sourceColumn: Weekday Delivery Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday Delivery Value'
+		dataType: double
+		lineageTag: 810dc163-d71d-40b1-bfce-c79736a30139
+		sourceLineageTag: Weekday Delivery Value
+		summarizeBy: sum
+		sourceColumn: Weekday Delivery Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Extended Commercial Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6a33d8a0-c7d8-4cea-858d-dde9d55d799b
+		sourceLineageTag: DAS Extended Commercial Flag
+		summarizeBy: none
+		sourceColumn: DAS Extended Commercial Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Extended Commercial Value'
+		dataType: double
+		lineageTag: ffdef2c4-a7a1-4589-b966-fd1b149fb9b8
+		sourceLineageTag: DAS Extended Commercial Value
+		summarizeBy: sum
+		sourceColumn: DAS Extended Commercial Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Oversize Charge Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4cb4adcf-1a30-422b-8d9f-df71191e153f
+		sourceLineageTag: Oversize Charge Flag
+		summarizeBy: none
+		sourceColumn: Oversize Charge Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Oversize Charge Value'
+		dataType: double
+		lineageTag: a78d005b-e85b-4095-a633-48522a89dbad
+		sourceLineageTag: Oversize Charge Value
+		summarizeBy: sum
+		sourceColumn: Oversize Charge Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Performance Pricing Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4c9ae602-7984-4547-a72f-cd1812998bd7
+		sourceLineageTag: Performance Pricing Flag
+		summarizeBy: none
+		sourceColumn: Performance Pricing Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Performance Pricing Value'
+		dataType: double
+		lineageTag: b1d63cd8-f884-41c0-b6e5-f704880a4ed3
+		sourceLineageTag: Performance Pricing Value
+		summarizeBy: sum
+		sourceColumn: Performance Pricing Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'AHS - Dimensions Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 20e5254f-90d5-47f2-be18-ff6ba38c57fa
+		sourceLineageTag: AHS - Dimensions Flag
+		summarizeBy: none
+		sourceColumn: AHS - Dimensions Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AHS - Dimensions Value'
+		dataType: double
+		lineageTag: 97832212-e84f-4508-ab72-c54508bc6da9
+		sourceLineageTag: AHS - Dimensions Value
+		summarizeBy: sum
+		sourceColumn: AHS - Dimensions Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Comm Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 007ff6cb-732b-4ad1-a06a-8ca3b6a81d9b
+		sourceLineageTag: DAS Comm Flag
+		summarizeBy: none
+		sourceColumn: DAS Comm Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Comm Value'
+		dataType: double
+		lineageTag: e687fa12-b468-4ceb-a857-0e96250f9b99
+		sourceLineageTag: DAS Comm Value
+		summarizeBy: sum
+		sourceColumn: DAS Comm Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Late Fee Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b0319432-bcf5-4935-82ae-7a413ab7d1a4
+		sourceLineageTag: Late Fee Flag
+		summarizeBy: none
+		sourceColumn: Late Fee Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Fee Value'
+		dataType: double
+		lineageTag: 18c8bf19-0d37-4f16-8ec3-aa1e8e8760ac
+		sourceLineageTag: Late Fee Value
+		summarizeBy: sum
+		sourceColumn: Late Fee Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Commercial Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7d2eccfb-4604-46bd-9cda-fb3e34a8bdd7
+		sourceLineageTag: DAS Commercial Flag
+		summarizeBy: none
+		sourceColumn: DAS Commercial Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Commercial Value'
+		dataType: double
+		lineageTag: e4ddf4ff-a4fe-4bed-a28e-15ffc6094168
+		sourceLineageTag: DAS Commercial Value
+		summarizeBy: sum
+		sourceColumn: DAS Commercial Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Residential Delivery Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e328b80f-9054-4e4a-ac3e-35e241439050
+		sourceLineageTag: Residential Delivery Flag
+		summarizeBy: none
+		sourceColumn: Residential Delivery Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Residential Delivery Value'
+		dataType: double
+		lineageTag: b62a37b8-4327-4257-8a7f-dc3521f1c5f9
+		sourceLineageTag: Residential Delivery Value
+		summarizeBy: sum
+		sourceColumn: Residential Delivery Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Extended Residential Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 97971ee2-921d-49dc-86ce-7ab3db17f833
+		sourceLineageTag: DAS Extended Residential Flag
+		summarizeBy: none
+		sourceColumn: DAS Extended Residential Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Extended Residential Value'
+		dataType: double
+		lineageTag: 2f571c68-07f7-46fb-a538-bad7c07618f1
+		sourceLineageTag: DAS Extended Residential Value
+		summarizeBy: sum
+		sourceColumn: DAS Extended Residential Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Residential Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c7b5c3c2-0bb2-4b3f-b36b-8e4e45d8e9fd
+		sourceLineageTag: DAS Residential Flag
+		summarizeBy: none
+		sourceColumn: DAS Residential Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Residential Value'
+		dataType: double
+		lineageTag: ed906507-f3c5-473c-86f8-fa935f58609a
+		sourceLineageTag: DAS Residential Value
+		summarizeBy: sum
+		sourceColumn: DAS Residential Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Canada GST Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2b525a15-80f5-41a9-b802-2d53f993a040
+		sourceLineageTag: Canada GST Flag
+		summarizeBy: none
+		sourceColumn: Canada GST Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada GST Value'
+		dataType: double
+		lineageTag: 22700c94-ec27-45f8-8745-e95234a88b06
+		sourceLineageTag: Canada GST Value
+		summarizeBy: sum
+		sourceColumn: Canada GST Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Clearance Entry Fee Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7a1c016b-e2c5-4b7c-a423-3703f01fbcef
+		sourceLineageTag: Clearance Entry Fee Flag
+		summarizeBy: none
+		sourceColumn: Clearance Entry Fee Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clearance Entry Fee Value'
+		dataType: double
+		lineageTag: 27677029-9099-4b2b-9bf0-7cb9267d115b
+		sourceLineageTag: Clearance Entry Fee Value
+		summarizeBy: sum
+		sourceColumn: Clearance Entry Fee Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'HST on Disb/Ancillary Service Fees Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4a6848aa-4f08-4891-a939-e0646d2e2871
+		sourceLineageTag: HST on Disb/Ancillary Service Fees Flag
+		summarizeBy: none
+		sourceColumn: HST on Disb/Ancillary Service Fees Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HST on Disb/Ancillary Service Fees Value'
+		dataType: double
+		lineageTag: f4a195fb-fc12-4f1b-b5ae-0bd59bfb02cf
+		sourceLineageTag: HST on Disb/Ancillary Service Fees Value
+		summarizeBy: sum
+		sourceColumn: HST on Disb/Ancillary Service Fees Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Residential Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c111ba21-964f-4584-ae9f-515966223d8a
+		sourceLineageTag: Residential Flag
+		summarizeBy: none
+		sourceColumn: Residential Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Residential Value'
+		dataType: double
+		lineageTag: bd1c59fb-d8ca-4d82-9a23-a742ac3a79e7
+		sourceLineageTag: Residential Value
+		summarizeBy: sum
+		sourceColumn: Residential Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Canada HST Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0752c337-7235-4889-a3e4-d155d680dd53
+		sourceLineageTag: Canada HST Flag
+		summarizeBy: none
+		sourceColumn: Canada HST Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada HST Value'
+		dataType: double
+		lineageTag: 93b24500-8576-4e47-ad75-4b525297a6e2
+		sourceLineageTag: Canada HST Value
+		summarizeBy: sum
+		sourceColumn: Canada HST Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Out of Delivery Area Tier A Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 869e152e-f38c-4f14-8f4b-c7f56d74efa2
+		sourceLineageTag: Out of Delivery Area Tier A Flag
+		summarizeBy: none
+		sourceColumn: Out of Delivery Area Tier A Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Out of Delivery Area Tier A Value'
+		dataType: double
+		lineageTag: d2ecc3af-ec9e-4a6e-863c-2945e2010905
+		sourceLineageTag: Out of Delivery Area Tier A Value
+		summarizeBy: sum
+		sourceColumn: Out of Delivery Area Tier A Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Additional Handling Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1e2b18b8-e914-431e-a947-258fd50571bb
+		sourceLineageTag: Additional Handling Flag
+		summarizeBy: none
+		sourceColumn: Additional Handling Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Additional Handling Value'
+		dataType: double
+		lineageTag: cb3b44e5-a202-4d5f-9f2a-59b1576bfe8f
+		sourceLineageTag: Additional Handling Value
+		summarizeBy: sum
+		sourceColumn: Additional Handling Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'AHS - Weight Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c2e1db32-3194-4fe9-87e7-b93e410a2c67
+		sourceLineageTag: AHS - Weight Flag
+		summarizeBy: none
+		sourceColumn: AHS - Weight Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AHS - Weight Value'
+		dataType: double
+		lineageTag: dabceb4b-319e-4d51-bc01-b2da1d62275c
+		sourceLineageTag: AHS - Weight Value
+		summarizeBy: sum
+		sourceColumn: AHS - Weight Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unauthorized Package Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3aa4e710-2c12-4963-8d79-3e8ef48341d1
+		sourceLineageTag: Unauthorized Package Flag
+		summarizeBy: none
+		sourceColumn: Unauthorized Package Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unauthorized Package Value'
+		dataType: double
+		lineageTag: d3a5c376-69f0-4963-9edb-8db2d47c4211
+		sourceLineageTag: Unauthorized Package Value
+		summarizeBy: sum
+		sourceColumn: Unauthorized Package Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Remote Comm Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8256670b-35a1-425b-9440-460d91732a1c
+		sourceLineageTag: DAS Remote Comm Flag
+		summarizeBy: none
+		sourceColumn: DAS Remote Comm Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Remote Comm Value'
+		dataType: double
+		lineageTag: b940b994-2edc-4cc6-88e5-1020f720d28d
+		sourceLineageTag: DAS Remote Comm Value
+		summarizeBy: sum
+		sourceColumn: DAS Remote Comm Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Address Correction Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 18eb1783-2ed8-45bc-8422-6e89244866a9
+		sourceLineageTag: Address Correction Flag
+		summarizeBy: none
+		sourceColumn: Address Correction Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Correction Value'
+		dataType: double
+		lineageTag: edce6053-fcb5-4d56-b66d-6930a51c44d0
+		sourceLineageTag: Address Correction Value
+		summarizeBy: sum
+		sourceColumn: Address Correction Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Regularly Scheduled Pickup Sun Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 30341d3e-dbb7-4ca4-8672-654d8d484a00
+		sourceLineageTag: Regularly Scheduled Pickup Sun Flag
+		summarizeBy: none
+		sourceColumn: Regularly Scheduled Pickup Sun Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Regularly Scheduled Pickup Sun Value'
+		dataType: double
+		lineageTag: d8bdc1de-3176-4810-8574-ae00fdee042d
+		sourceLineageTag: Regularly Scheduled Pickup Sun Value
+		summarizeBy: sum
+		sourceColumn: Regularly Scheduled Pickup Sun Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Regularly Scheduled Pickup Sat Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 30eca7d4-9ec1-47bc-bf84-40a6d6e8b7f9
+		sourceLineageTag: Regularly Scheduled Pickup Sat Flag
+		summarizeBy: none
+		sourceColumn: Regularly Scheduled Pickup Sat Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Regularly Scheduled Pickup Sat Value'
+		dataType: double
+		lineageTag: 461e4457-8e27-47a0-a6d8-cb5d16b62ffa
+		sourceLineageTag: Regularly Scheduled Pickup Sat Value
+		summarizeBy: sum
+		sourceColumn: Regularly Scheduled Pickup Sat Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAS Remote Residential Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 032564f7-d7df-4a35-83bf-b6242629f736
+		sourceLineageTag: DAS Remote Residential Flag
+		summarizeBy: none
+		sourceColumn: DAS Remote Residential Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DAS Remote Residential Value'
+		dataType: double
+		lineageTag: 251024db-bcf7-4763-afef-2a9ef8f77e1c
+		sourceLineageTag: DAS Remote Residential Value
+		summarizeBy: sum
+		sourceColumn: DAS Remote Residential Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Add''l Handling-Dimension Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1e726ed3-21f5-48c9-a334-bf577948652b
+		sourceLineageTag: Add'l Handling-Dimension Flag
+		summarizeBy: none
+		sourceColumn: Add'l Handling-Dimension Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Add''l Handling-Dimension Value'
+		dataType: double
+		lineageTag: b20409a6-20d8-4848-ab3d-980f88e49b90
+		sourceLineageTag: Add'l Handling-Dimension Value
+		summarizeBy: sum
+		sourceColumn: Add'l Handling-Dimension Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Add''l Handling-Weight Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f711a55b-9ed3-4c74-a07c-8cd11dd6a54c
+		sourceLineageTag: Add'l Handling-Weight Flag
+		summarizeBy: none
+		sourceColumn: Add'l Handling-Weight Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Add''l Handling-Weight Value'
+		dataType: double
+		lineageTag: 16892c61-ccd3-478e-9100-b0e2b2441c56
+		sourceLineageTag: Add'l Handling-Weight Value
+		summarizeBy: sum
+		sourceColumn: Add'l Handling-Weight Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Third Party Billing Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2cbe7622-8894-4544-96f8-b5fcfe04eda1
+		sourceLineageTag: Third Party Billing Flag
+		summarizeBy: none
+		sourceColumn: Third Party Billing Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Third Party Billing Value'
+		dataType: double
+		lineageTag: 364cc386-2e17-49cb-9cba-851d2c0d509a
+		sourceLineageTag: Third Party Billing Value
+		summarizeBy: sum
+		sourceColumn: Third Party Billing Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Overweight Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d1eefb86-b79b-467c-83fb-4e65d8265416
+		sourceLineageTag: Overweight Flag
+		summarizeBy: none
+		sourceColumn: Overweight Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Overweight Value'
+		dataType: double
+		lineageTag: 1d92433f-890f-4459-9c6f-6800ce1ec6bc
+		sourceLineageTag: Overweight Value
+		summarizeBy: sum
+		sourceColumn: Overweight Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Length & Girth'
+		dataType: double
+		lineageTag: 28af4f49-7a71-408b-ac25-7a15f3db30fa
+		sourceLineageTag: Length & Girth
+		summarizeBy: sum
+		sourceColumn: Length & Girth
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dim Weight'
+		dataType: int64
+		formatString: 0
+		lineageTag: badae5b7-3c5f-42a9-9cba-7e17b10573d3
+		sourceLineageTag: Dim Weight
+		summarizeBy: sum
+		sourceColumn: Dim Weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recipient Zip Clean'
+		dataType: string
+		lineageTag: cce32ac4-91f3-497f-819a-1302bac38704
+		sourceLineageTag: Recipient Zip Clean
+		summarizeBy: none
+		sourceColumn: Recipient Zip Clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipper Zip Clean'
+		dataType: string
+		lineageTag: d4957beb-ae66-400a-bd85-69ed2248e069
+		sourceLineageTag: Shipper Zip Clean
+		summarizeBy: none
+		sourceColumn: Shipper Zip Clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Top Tracking ID Charge'
+		dataType: string
+		lineageTag: 9b596286-f1b2-40e4-9be6-e601e5442647
+		sourceLineageTag: Top Tracking ID Charge
+		summarizeBy: none
+		sourceColumn: Top Tracking ID Charge
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Top Tracking ID Charge Amount'
+		dataType: double
+		lineageTag: 1046e006-df2e-4cec-b54a-75cc4766d71f
+		sourceLineageTag: Top Tracking ID Charge Amount
+		summarizeBy: sum
+		sourceColumn: Top Tracking ID Charge Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Surcharge & Discount Amount'
+		dataType: double
+		lineageTag: fdb6e3a8-f8a8-4851-8edc-dd0646fd1be0
+		sourceLineageTag: Net Surcharge & Discount Amount
+		summarizeBy: sum
+		sourceColumn: Net Surcharge & Discount Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Residential On-Call Pickup Surcharge Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f4e620af-440f-4c01-991d-9a2db8cddbea
+		sourceLineageTag: Residential On-Call Pickup Surcharge Flag
+		summarizeBy: none
+		sourceColumn: Residential On-Call Pickup Surcharge Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Residential On-Call Pickup Surcharge Value'
+		dataType: double
+		lineageTag: fdd6b20b-c663-47b6-a0cd-802e0e29faea
+		sourceLineageTag: Residential On-Call Pickup Surcharge Value
+		summarizeBy: sum
+		sourceColumn: Residential On-Call Pickup Surcharge Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fut. Day OC Pickup Mon-Fri _Online_ Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3e87d772-8db2-4013-9d1d-d91f4acae6e2
+		sourceLineageTag: Fut. Day OC Pickup Mon-Fri _Online_ Flag
+		summarizeBy: none
+		sourceColumn: Fut. Day OC Pickup Mon-Fri _Online_ Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fut. Day OC Pickup Mon-Fri _Online_ Value'
+		dataType: double
+		lineageTag: 28c75236-e735-42fb-a0d9-05da1e60d649
+		sourceLineageTag: Fut. Day OC Pickup Mon-Fri _Online_ Value
+		summarizeBy: sum
+		sourceColumn: Fut. Day OC Pickup Mon-Fri _Online_ Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Same Day OC Pickup Mon-Fri _Online_ Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fa26567e-2a87-4272-9a8b-010798ea96de
+		sourceLineageTag: Same Day OC Pickup Mon-Fri _Online_ Flag
+		summarizeBy: none
+		sourceColumn: Same Day OC Pickup Mon-Fri _Online_ Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Same Day OC Pickup Mon-Fri _Online_ Value'
+		dataType: double
+		lineageTag: 57f7dfde-07b3-447c-915d-9d878a8ac8ff
+		sourceLineageTag: Same Day OC Pickup Mon-Fri _Online_ Value
+		summarizeBy: sum
+		sourceColumn: Same Day OC Pickup Mon-Fri _Online_ Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inbound Processing Fee Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 82ea916c-586f-4023-bc66-90934b3c829b
+		sourceLineageTag: Inbound Processing Fee Flag
+		summarizeBy: none
+		sourceColumn: Inbound Processing Fee Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inbound Processing Fee Value'
+		dataType: double
+		lineageTag: d450009d-65ab-4331-8a81-3f593815717c
+		sourceLineageTag: Inbound Processing Fee Value
+		summarizeBy: sum
+		sourceColumn: Inbound Processing Fee Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'GST on Disb/Ancillary Service Fees Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a71e4c84-d347-41f3-9e02-799289c12f4a
+		sourceLineageTag: GST on Disb/Ancillary Service Fees Flag
+		summarizeBy: none
+		sourceColumn: GST on Disb/Ancillary Service Fees Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GST on Disb/Ancillary Service Fees Value'
+		dataType: double
+		lineageTag: 082f95b8-7063-44cf-b626-eb22807a2191
+		sourceLineageTag: GST on Disb/Ancillary Service Fees Value
+		summarizeBy: sum
+		sourceColumn: GST on Disb/Ancillary Service Fees Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'British Columbia PST Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3fc687bf-80ef-4703-86b4-7b2c2b29e1cb
+		sourceLineageTag: British Columbia PST Flag
+		summarizeBy: none
+		sourceColumn: British Columbia PST Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'British Columbia PST Value'
+		dataType: double
+		lineageTag: 8e223264-e8ad-4366-9e14-a946d9b0ed93
+		sourceLineageTag: British Columbia PST Value
+		summarizeBy: sum
+		sourceColumn: British Columbia PST Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Quebec PST Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 84389e2d-d14d-4cf6-b64d-745e1bd08f72
+		sourceLineageTag: Quebec PST Flag
+		summarizeBy: none
+		sourceColumn: Quebec PST Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quebec PST Value'
+		dataType: double
+		lineageTag: 201b4687-b090-4139-a682-bd7ab56a0472
+		sourceLineageTag: Quebec PST Value
+		summarizeBy: sum
+		sourceColumn: Quebec PST Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rebill Duty Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 59eed32c-31a9-4e9b-b04e-d5f028a81e37
+		sourceLineageTag: Rebill Duty Flag
+		summarizeBy: none
+		sourceColumn: Rebill Duty Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rebill Duty Value'
+		dataType: double
+		lineageTag: cb7bd3f4-e22b-4a06-a14c-a43f0e803fbd
+		sourceLineageTag: Rebill Duty Value
+		summarizeBy: sum
+		sourceColumn: Rebill Duty Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Storage Fee Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0495bb27-e3b1-4d7e-869c-30ea555e6b14
+		sourceLineageTag: Storage Fee Flag
+		summarizeBy: none
+		sourceColumn: Storage Fee Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Fee Value'
+		dataType: double
+		lineageTag: f751c3f5-d184-4ca7-a605-271d03c6608d
+		sourceLineageTag: Storage Fee Value
+		summarizeBy: sum
+		sourceColumn: Storage Fee Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT FedEx Invoice History' = entity
+		mode: directLake
+		source
+			entityName: FACT FedEx Invoice History
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

@@ -1,0 +1,39 @@
+table 'Dim Sale Type'
+	lineageTag: 938b66dd-88ed-4d70-8baa-a5e5a2d56522
+
+	column 'Sale Type'
+		dataType: string
+		lineageTag: 499a8495-8b39-4840-92de-b5fe58906c9d
+		summarizeBy: none
+		sourceColumn: Sale Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleTypeKey
+		dataType: string
+		lineageTag: 69c6f8b6-7806-4ee2-a1b0-25632890a821
+		summarizeBy: none
+		sourceColumn: SaleTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Sale Type' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Sale Type]", {"[Sale Type].[Sale Type].[Sale Type]", "[Sale Type].[SaleTypeKey].[SaleTypeKey]"}, {"Sale Type.Sale Type", "Sale Type.SaleTypeKey"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Sale Type.Sale Type", "Sale Type"}, {"Sale Type.SaleTypeKey", "SaleTypeKey"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

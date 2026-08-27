@@ -1,0 +1,56 @@
+table 'Dim Penalty Type'
+	lineageTag: 7c118b8c-1b1d-474f-af4f-f12047ffcd03
+
+	column 'Order Reason'
+		dataType: string
+		lineageTag: 8f5bb071-79b7-435a-95d6-96111ff31603
+		summarizeBy: none
+		sourceColumn: Order Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Reason Desc'
+		dataType: string
+		lineageTag: 244484a2-0f2e-47d0-b9c8-7a86386447b1
+		summarizeBy: none
+		sourceColumn: Order Reason Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Reason key'
+		dataType: string
+		lineageTag: 99394e92-0d86-4816-8970-d698812b7b8e
+		summarizeBy: none
+		sourceColumn: Order Reason key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Penalty Type'
+		dataType: string
+		lineageTag: 3ccf16cd-b949-4a33-bfb5-68dee1717a72
+		summarizeBy: none
+		sourceColumn: Penalty Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Penalty Type' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Penalty Type]", {"[Penalty Type].[Order Reason].[Order Reason]", "[Penalty Type].[Order Reason Desc].[Order Reason Desc]", "[Penalty Type].[Order Reason key].[Order Reason key]", "[Penalty Type].[Penalty Type].[Penalty Type]"}, {"Penalty Type.Order Reason", "Penalty Type.Order Reason Desc", "Penalty Type.Order Reason key", "Penalty Type.Penalty Type"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Penalty Type.Order Reason", "Order Reason"}, {"Penalty Type.Order Reason Desc", "Order Reason Desc"}, {"Penalty Type.Order Reason key", "Order Reason key"}, {"Penalty Type.Penalty Type", "Penalty Type"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each [Order Reason key] <> null and [Order Reason key] <> "")
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

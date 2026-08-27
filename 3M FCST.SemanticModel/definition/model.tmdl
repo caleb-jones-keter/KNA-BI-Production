@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - NA_Supply_Chain","THD Filter"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit","DaxQueryView_Desktop"]
+
+ref table 'DIM Date'
+ref table 'DIM Storage Location'
+ref table 'DIM Customer'
+ref table 'DIM Product'
+ref table 'FACT Component Forecast Initial'
+ref table 'DIM MRPSKU'
+ref table 'DIM Plant'
+ref table 'DIM MRP Area'
+ref table 'FACT Future'
+ref table 'Max DOS'
+ref table 'FACT YM6P'
+ref table 'Dim Location Dimension 2'
+ref table 'DIM Account'
+ref table 'DIM ZMM02 COGS'
+ref table 'FACT YS10N Average Sales Price'
+ref table 'DOC Parameter'
+ref table 'THD Filter'
+

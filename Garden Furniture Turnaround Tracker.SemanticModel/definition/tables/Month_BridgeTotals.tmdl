@@ -1,0 +1,45 @@
+table Month_BridgeTotals
+	lineageTag: 798a281d-97b8-46f1-a6f8-04994e41170d
+
+	column Month
+		dataType: string
+		lineageTag: 4c080076-3e37-4a5b-8f99-982ec3162f8c
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_abbrev
+		dataType: string
+		lineageTag: b887719b-b4eb-4eb3-ab8c-1b2585619e8a
+		summarizeBy: none
+		sourceColumn: Month_abbrev
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: ac3394af-3088-47ab-ae45-616d1ad498fd
+		summarizeBy: sum
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Month_BridgeTotals = m
+		mode: import
+		queryGroup: TotalsFirstWorkaround
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("ZY8/C8IwEEe/S+YOnv8dBXEoqINuIUMswSXYIq3Qb+/lfodw7fK4PI4jz3tXx7erlEsXKu/O6ckzuBJziR+ewbWYY1dmcKM7o+wUbsXUg1wW7tRkMYV73Ble5Y7wIOaeOp5BWoi6NT0/QCJR1/bLD5Dw7VNq+AES/v1o+5j/dWQc+qxDoXVonO6NM4fOqcvze9JqndYap7nGaa9xGuxC+AE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Month = _t, Month_abbrev = _t, Sort = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Month", type text}, {"Month_abbrev", type text}, {"Sort", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

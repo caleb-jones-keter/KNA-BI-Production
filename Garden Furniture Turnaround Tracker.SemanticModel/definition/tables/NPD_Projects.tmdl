@@ -1,0 +1,96 @@
+table NPD_Projects
+	lineageTag: 7f5b5829-acc5-4498-b450-77dce32bbd2c
+
+	column 'NPD Project #'
+		dataType: int64
+		formatString: 0
+		lineageTag: 90ec448a-0afd-4fd0-b2a9-5b946145f65d
+		summarizeBy: none
+		sourceColumn: NPD Project #
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NPD Project Name'
+		dataType: string
+		lineageTag: 98137bbc-2d18-4238-bd3f-ba389a87f9ad
+		summarizeBy: none
+		sourceColumn: NPD Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Qty on OCMA'
+		dataType: double
+		lineageTag: 147d6a9f-a11a-4f95-a0e2-cac7ce7fded8
+		summarizeBy: sum
+		sourceColumn: Qty on OCMA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Sales on OCMA'
+		dataType: double
+		lineageTag: 9f438724-ee14-4e1b-a58c-669b8c71d914
+		summarizeBy: sum
+		sourceColumn: Gross Sales on OCMA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales on OCMA'
+		dataType: double
+		lineageTag: 4717ba6f-07db-4033-b74b-881cede33aab
+		summarizeBy: sum
+		sourceColumn: Net Sales on OCMA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'RM Wgt sold'
+		dataType: double
+		lineageTag: e4485138-0204-4a4e-b14b-9a18d21526da
+		summarizeBy: sum
+		sourceColumn: RM Wgt sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: c778f826-9dfc-42b7-b188-765b2081b112
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line name'
+		dataType: string
+		lineageTag: 24dcf9ec-dd52-4055-aa04-412ceeab446c
+		summarizeBy: none
+		sourceColumn: Product Line name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition NPD_Projects = m
+		mode: import
+		queryGroup: NPD
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\jenniferd\OneDrive - Keter Group\Dashboard Reports\Turnaround Tracker\NPD\NPD_Projects.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"NPD Project #", Int64.Type}, {"NPD Project Name", type text}, {"Qty on OCMA", Int64.Type}, {"Gross Sales on OCMA", Int64.Type}, {"Net Sales on OCMA", Int64.Type}, {"RM Wgt sold", Int64.Type}, {"Year", Int64.Type}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type",null,0,Replacer.ReplaceValue,{"Qty on OCMA"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,0,Replacer.ReplaceValue,{"Gross Sales on OCMA"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",null,0,Replacer.ReplaceValue,{"Net Sales on OCMA"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2",null,0,Replacer.ReplaceValue,{"RM Wgt sold"})
+				in
+				    #"Replaced Value3"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

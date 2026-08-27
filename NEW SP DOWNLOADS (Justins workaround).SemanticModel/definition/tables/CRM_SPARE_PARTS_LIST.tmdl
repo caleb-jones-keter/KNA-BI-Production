@@ -1,0 +1,77 @@
+table CRM_SPARE_PARTS_LIST
+	lineageTag: 9c971876-4f54-4fd1-ae75-655aafa8e193
+	sourceLineageTag: [dbo].[CRM_SPARE_PARTS_LIST]
+
+	column Spare_Part_SKU
+		dataType: string
+		lineageTag: d30bbabc-c4be-4764-bf89-3b21684a8523
+		sourceLineageTag: Spare_Part_SKU
+		summarizeBy: none
+		sourceColumn: Spare_Part_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spare_Part_SKU_Desc
+		dataType: string
+		lineageTag: 1a91922c-f545-4cd3-8c58-fcfaf9c92dce
+		sourceLineageTag: Spare_Part_SKU_Desc
+		summarizeBy: none
+		sourceColumn: Spare_Part_SKU_Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUANTITY
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ba465bed-cd6a-4eef-acfc-91437d14a29c
+		sourceLineageTag: QUANTITY
+		summarizeBy: sum
+		sourceColumn: QUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Spare_part_index
+		dataType: string
+		lineageTag: 72080efc-2af3-4384-8cd9-bfd6560b0b8f
+		sourceLineageTag: Spare_part_index
+		summarizeBy: none
+		sourceColumn: Spare_part_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column KUNNR
+		dataType: string
+		lineageTag: f4a9452a-f91e-4910-920f-b77cdea0189f
+		sourceLineageTag: KUNNR
+		summarizeBy: none
+		sourceColumn: KUNNR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryKey_SKU
+		dataType: string
+		lineageTag: e7e29567-baff-4a47-863f-75ca7179bf1b
+		sourceLineageTag: CountryKey_SKU
+		summarizeBy: none
+		sourceColumn: CountryKey_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryName_SKU
+		dataType: string
+		lineageTag: 984f7b3e-91b7-4396-951d-939bdc429cb0
+		sourceLineageTag: CountryName_SKU
+		summarizeBy: none
+		sourceColumn: CountryName_SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CRM_SPARE_PARTS_LIST = entity
+		mode: directLake
+		source
+			entityName: CRM_SPARE_PARTS_LIST
+			schemaName: dbo
+			expressionSource: 'DirectLake - Spare_Parts_Lakehouse'
+

@@ -1,0 +1,96 @@
+table 'IL Date Key'
+	lineageTag: fd4a7dee-a5b2-4138-91a0-c5ca60c04ef2
+	sourceLineageTag: [dbo].[IL Date Key]
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 35353d44-9bca-4fb0-9293-4095e8116c6b
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f9b2595-402b-4585-a2f8-9ec430ceefa3
+		sourceLineageTag: MonthDateKey
+		summarizeBy: none
+		sourceColumn: MonthDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 345234eb-8765-44ef-9b25-b0c23fef4e42
+		sourceLineageTag: CYear
+		summarizeBy: none
+		sourceColumn: CYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ec14356a-137b-4c74-b335-b9ba0447b42a
+		sourceLineageTag: Full Date
+		summarizeBy: none
+		sourceColumn: Full Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column CQuarterInYear
+		dataType: string
+		lineageTag: 5f3e7515-e34b-4b8e-ac20-cdcbbf83b899
+		sourceLineageTag: CQuarterInYear
+		summarizeBy: none
+		sourceColumn: CQuarterInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CQuarter
+		dataType: string
+		lineageTag: f292cba0-a40c-4243-b537-a4fd23e4c786
+		sourceLineageTag: CQuarter
+		summarizeBy: none
+		sourceColumn: CQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column CMonthInYear
+		dataType: string
+		lineageTag: c30113f1-1005-4322-9f40-1a48c183df34
+		sourceLineageTag: CMonthInYear
+		summarizeBy: none
+		sourceColumn: CMonthInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CweekInYear
+		dataType: string
+		lineageTag: e3007c39-cd70-4b5d-b25f-fe6d9c603858
+		sourceLineageTag: CweekInYear
+		summarizeBy: none
+		sourceColumn: CweekInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Combinations'
+		dataType: string
+		lineageTag: c1d756fb-0db0-4a53-afe4-5e20e49443e0
+		sourceLineageTag: Period Combinations
+		summarizeBy: none
+		sourceColumn: Period Combinations
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'IL Date Key' = entity
+		mode: directLake
+		source
+			entityName: IL Date Key
+			schemaName: dbo
+			expressionSource: 'DirectLake - BRZ_NA_SC_LH'
+

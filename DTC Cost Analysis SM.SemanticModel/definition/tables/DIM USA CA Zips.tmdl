@@ -1,0 +1,301 @@
+table 'DIM USA CA Zips'
+	lineageTag: 9a194e5e-ee61-4947-afb4-d0f49c2e15f5
+	sourceLineageTag: [dbo].[DIM USA CA Zips]
+
+	column POSTAL_CODE
+		dataType: string
+		lineageTag: 44fcb8c1-cc13-4ee2-9a59-14a0a904e8bf
+		sourceLineageTag: POSTAL_CODE
+		summarizeBy: none
+		sourceColumn: POSTAL_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code Clean'
+		dataType: string
+		lineageTag: fdbeb209-9d6e-412d-9bf1-377eacb330b8
+		sourceLineageTag: Postal Code Clean
+		summarizeBy: none
+		sourceColumn: Postal Code Clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column REGION
+		dataType: string
+		lineageTag: 70eb25b4-c2ce-4a69-be97-02d75031c382
+		sourceLineageTag: REGION
+		summarizeBy: none
+		sourceColumn: REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column LATITUDE
+		dataType: double
+		lineageTag: 9f5064ef-0a37-42d3-aeb5-34c68ab88ad6
+		sourceLineageTag: LATITUDE
+		summarizeBy: sum
+		sourceColumn: LATITUDE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LONGITUDE
+		dataType: double
+		lineageTag: e86289c5-9dfb-4b40-b848-358e8da04fef
+		sourceLineageTag: LONGITUDE
+		summarizeBy: sum
+		sourceColumn: LONGITUDE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'City List'
+		dataType: string
+		lineageTag: 4c05a9e0-82ec-4864-a91d-b0ef0504f28f
+		sourceLineageTag: City List
+		summarizeBy: none
+		sourceColumn: City List
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from DHL'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e062300-f96b-4843-8d71-1036cb4ae440
+		sourceLineageTag: Distance from DHL
+		summarizeBy: sum
+		sourceColumn: Distance from DHL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from SpreeTail Vegas'
+		dataType: int64
+		formatString: 0
+		lineageTag: 740cc5dc-ae30-44f9-a083-348b7033a073
+		sourceLineageTag: Distance from SpreeTail Vegas
+		summarizeBy: sum
+		sourceColumn: Distance from SpreeTail Vegas
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from SpreeTail Nanticoke'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5def5bda-a181-4d5a-a8d1-a640dd0a40d7
+		sourceLineageTag: Distance from SpreeTail Nanticoke
+		summarizeBy: sum
+		sourceColumn: Distance from SpreeTail Nanticoke
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from Rancho'
+		dataType: int64
+		formatString: 0
+		lineageTag: ad22c5ba-f9d3-417a-b5ce-025e7c6e242f
+		sourceLineageTag: Distance from Rancho
+		summarizeBy: sum
+		sourceColumn: Distance from Rancho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Min. Distance'
+		dataType: double
+		lineageTag: fb9d1a9b-5a7b-4c4f-b6f3-9fc025038aff
+		sourceLineageTag: Min. Distance
+		summarizeBy: sum
+		sourceColumn: Min. Distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Min Distance Source'
+		dataType: string
+		lineageTag: d08c72da-b159-47c2-84c4-17802f8f4774
+		sourceLineageTag: Min Distance Source
+		summarizeBy: none
+		sourceColumn: Min Distance Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code Country'
+		dataType: string
+		lineageTag: 15d09e89-6098-41dc-8805-e66e1c001c8f
+		sourceLineageTag: Postal Code Country
+		summarizeBy: none
+		sourceColumn: Postal Code Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DHL DAT Rate'
+		dataType: double
+		lineageTag: b2bf8071-1ace-42f5-abc5-aaf40f1b5cf1
+		sourceLineageTag: DHL DAT Rate
+		summarizeBy: sum
+		sourceColumn: DHL DAT Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rancho DAT Rate'
+		dataType: double
+		lineageTag: 0581bebd-72a2-4d05-a1e0-1aee8c9a5583
+		sourceLineageTag: Rancho DAT Rate
+		summarizeBy: sum
+		sourceColumn: Rancho DAT Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DHL TL Cost'
+		dataType: double
+		lineageTag: 734eebd2-44bc-4675-a9c4-088b015faedf
+		sourceLineageTag: DHL TL Cost
+		summarizeBy: sum
+		sourceColumn: DHL TL Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rancho TL Cost'
+		dataType: double
+		lineageTag: 101c66aa-60eb-4218-b6eb-092340870801
+		sourceLineageTag: Rancho TL Cost
+		summarizeBy: sum
+		sourceColumn: Rancho TL Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DAT US Region'
+		dataType: string
+		lineageTag: fd5f7df6-505c-4f8a-b69a-a9bd367446a0
+		sourceLineageTag: DAT US Region
+		summarizeBy: none
+		sourceColumn: DAT US Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from SpreeTail Tacoma'
+		dataType: int64
+		formatString: 0
+		lineageTag: ec992fec-6aab-462b-8cdb-f25dac8ec500
+		sourceLineageTag: Distance from SpreeTail Tacoma
+		summarizeBy: sum
+		sourceColumn: Distance from SpreeTail Tacoma
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from SpreeTail Greenwood'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ad74b4c-fdee-41be-ae4b-cd756de1e9d3
+		sourceLineageTag: Distance from SpreeTail Greenwood
+		summarizeBy: sum
+		sourceColumn: Distance from SpreeTail Greenwood
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from SpreeTail Ellabell'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f07468a-84bf-4e68-9f51-7cc602a8a92c
+		sourceLineageTag: Distance from SpreeTail Ellabell
+		summarizeBy: sum
+		sourceColumn: Distance from SpreeTail Ellabell
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zip Code Prefix'
+		dataType: string
+		lineageTag: bbb53098-b3e0-4dc8-915a-5096db54b7dd
+		sourceLineageTag: Zip Code Prefix
+		summarizeBy: none
+		sourceColumn: Zip Code Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alt Region'
+		dataType: string
+		lineageTag: 026451c3-8a66-4c22-a262-2bd0daeceaeb
+		sourceLineageTag: Alt Region
+		summarizeBy: none
+		sourceColumn: Alt Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'General Region'
+		dataType: string
+		lineageTag: 2fc0bf62-a7ae-4616-84c2-2faadfea5234
+		sourceLineageTag: General Region
+		summarizeBy: none
+		sourceColumn: General Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance from Anderson'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e6f3a5e-e914-4f55-b38f-f3a17684683d
+		sourceLineageTag: Distance from Anderson
+		summarizeBy: sum
+		sourceColumn: Distance from Anderson
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Anderson DAT Rate'
+		dataType: double
+		lineageTag: be7d576e-39b4-44a5-862d-743fa75b4943
+		sourceLineageTag: Anderson DAT Rate
+		summarizeBy: sum
+		sourceColumn: Anderson DAT Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Anderson TL Cost'
+		dataType: double
+		lineageTag: d9c05287-4804-45e0-abd5-1302a13ee5ea
+		sourceLineageTag: Anderson TL Cost
+		summarizeBy: sum
+		sourceColumn: Anderson TL Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	hierarchy 'Region Hierarchy'
+		lineageTag: 17a0daa7-632b-495a-a460-0fe1f7f067e0
+
+		level 'US Region'
+			lineageTag: 314c1eb6-02b8-4297-bbdf-bd2d6d8962cc
+			column: 'DAT US Region'
+
+		level State
+			lineageTag: 2ea1553b-dddf-4c06-98a2-556487caebc8
+			column: REGION
+
+		level City
+			lineageTag: 32579d5e-bfc5-48a0-a829-6e6c412eb09b
+			column: 'City List'
+
+		level 'Zip Code'
+			lineageTag: ce8f715a-bc97-414a-8e0e-58f61a4aa143
+			column: 'Postal Code Clean'
+
+		changedProperty = Name
+
+	partition 'DIM USA CA Zips' = entity
+		mode: directLake
+		source
+			entityName: DIM USA CA Zips
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

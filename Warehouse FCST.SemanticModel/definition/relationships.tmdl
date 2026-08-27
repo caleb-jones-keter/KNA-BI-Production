@@ -1,0 +1,28 @@
+relationship 2f345baa-607d-2a57-ba17-9e0a2ea88676
+	fromColumn: 'FACT Forecast Adjusted'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship 13d2cc4d-8a85-7e0d-8ba6-f033a4cc414b
+	fromColumn: 'FACT Forecast Adjusted'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 4db7ebf8-4d36-592f-ebd9-a809b5df45d7
+	fromColumn: 'FACT Forecast Adjusted'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 0f8f46b8-f269-c266-d124-4971da788d5b
+	fromColumn: 'DIM MRP Area'.Plant
+	toColumn: 'DIM Plant'.Plant
+
+relationship 7d7ccb93-7331-efb0-b7fd-c02330d8b35f
+	fromColumn: 'FACT Forecast Adjusted'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 6d8707f8-c2f3-eb89-6d89-d33a03df2fb6
+	fromColumn: 'FACT Forecast Adjusted'.'Combined Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 983045e1-cd4e-fcce-c289-0aa8ef5608fe
+	fromColumn: 'DIM Customer'.'Customer Groups'
+	toColumn: 'DIM Customer Group'.CustomerGroupKey
+

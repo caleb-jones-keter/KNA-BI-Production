@@ -1,0 +1,87 @@
+table PnL_Budget_CurrentYear
+	lineageTag: 1bf450a6-0ce4-452e-9253-0f84c543049d
+
+	column Plant
+		dataType: string
+		lineageTag: ed961771-973e-4753-a7d5-a6accf6b79fe
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code:Plant (c1)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 595e7280-9f9c-48f4-a702-3787756fc2a5
+		summarizeBy: none
+		sourceColumn: Code:Plant (c1)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Months
+		dataType: string
+		lineageTag: 84c0bf50-418d-4135-aaf2-07aae145ce48
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 2c89a105-70f4-44fc-a6f9-f288333f3889
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a8ef384d-20f5-46c0-8e2c-85742977b075
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PnL Metrics'
+		dataType: string
+		lineageTag: 802cd48f-cd1c-4c6f-bfc0-24abea3ba768
+		summarizeBy: none
+		sourceColumn: PnL Metrics
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2026B
+		dataType: double
+		lineageTag: 238662a1-b64d-459b-be7e-caf975337d87
+		summarizeBy: sum
+		sourceColumn: 2026B
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Version'
+		dataType: string
+		lineageTag: 285f7fa2-d53b-464c-a87f-88135b9f65f2
+		summarizeBy: none
+		sourceColumn: Forecast Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PnL_Budget_CurrentYear = m
+		mode: import
+		queryGroup: PnL
+		source =
+				let
+				    Source = Table.Combine({PnL_Budget, PnL_2plus10_CurrentYear}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"2026B", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,32 @@
+table 'Dim Activity'
+	lineageTag: e685c982-3b6a-4376-9d83-bb03f18a1676
+
+	column ActivityKey
+		dataType: string
+		lineageTag: bfa7f799-9392-4a87-8be1-b6047aff41cd
+		summarizeBy: none
+		sourceColumn: ActivityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Activity' = m
+		mode: import
+		source =
+				let
+				    Source = AnalysisServices.Databases("powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics", [TypedMeasureColumns=true, Implementation="2.0"]),
+				    #"Invoice to Net" = Source{[Name="Invoice to Net"]}[Data],
+				    Model1 = #"Invoice to Net"{[Id="Model"]}[Data],
+				    Model2 = Model1{[Id="Model"]}[Data],
+				    #"Added Items" = Cube.Transform(Model2,
+				        {
+				            {Cube.AddAndExpandDimensionColumn, "[Dim Activity Key]", {"[Dim Activity Key].[ActivityKey].[ActivityKey]"}, {"Dim Activity Key.ActivityKey"}}
+				        }),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Items",{{"Dim Activity Key.ActivityKey", "ActivityKey"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each [ActivityKey] <> null and [ActivityKey] <> "")
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

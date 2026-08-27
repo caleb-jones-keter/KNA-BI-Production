@@ -1,0 +1,251 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "26645162c70466560764",
+  "position": {
+    "x": 824,
+    "y": 588,
+    "z": 6000,
+    "height": 312,
+    "width": 824,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Date _2_"
+                    }
+                  },
+                  "Property": "Full Date Next Year Adjusted"
+                }
+              },
+              "queryRef": "DIM Date _2_.Full Date Next Year Adjusted",
+              "nativeQueryRef": "Full Date Next Year Adjusted",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT Future"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT Future.CombinedQty_per_TLQty)",
+              "nativeQueryRef": "Production Trucks",
+              "hidden": true,
+              "displayName": "Production Trucks"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Production Trucks]+[Count of Trailer No]",
+                  "Name": "Total Trucks"
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Total Trucks",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Count of Trailer No]*2",
+                  "Name": "Hours Needed OB"
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Hours Needed OB",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Production Trucks]",
+                  "Name": "Hours Needed IB"
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "Hours Needed IB",
+              "hidden": true
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "[Hours Needed IB]+[Hours Needed OB]",
+                  "Name": "Total Labor Hours"
+                }
+              },
+              "queryRef": "select3",
+              "nativeQueryRef": "Total Labor Hours",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Past"
+                        }
+                      },
+                      "Property": "Trailer No"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "CountNonNull(FACT YS10N Past.Trailer No)",
+              "nativeQueryRef": "Count of Trailer No",
+              "hidden": true,
+              "displayName": "OB Trucks"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "roundup([Total Labor Hours]/(8),0)",
+                  "Name": "Head Count"
+                }
+              },
+              "queryRef": "select4",
+              "nativeQueryRef": "Head Count"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "MOVINGAVERAGE([Head Count], 30)",
+                  "Name": "Moving average"
+                }
+              },
+              "queryRef": "select5",
+              "nativeQueryRef": "Moving average"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM Date _2_"
+                  }
+                },
+                "Property": "Full Date Next Year Adjusted"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'WHSE Head Count and Moving average by Full Date'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "48fb6466404e99df44f6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date _2_"
+              }
+            },
+            "Property": "Full Date Next Year Adjusted"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "362833f3a94a9d1f0b00",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT Future"
+                  }
+                },
+                "Property": "CombinedQty_per_TLQty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7e1ae997687a26dba290",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Past"
+                  }
+                },
+                "Property": "Trailer No"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

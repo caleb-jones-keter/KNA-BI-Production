@@ -1,0 +1,78 @@
+table 'OTIF Key'
+	lineageTag: 9d6c82cc-ce33-442f-b3c4-12bf9b26b6cd
+
+	column Payer
+		dataType: int64
+		formatString: 0
+		lineageTag: fcf8c322-b110-4881-8057-ff343910cbd0
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 5ef0a29c-bb2a-4db4-a514-72844e21bebd
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Measure Type'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3923f90c-a62a-4483-99a0-738b8b0681ae
+		summarizeBy: none
+		sourceColumn: Measure Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On Time Ship Measure'
+		dataType: string
+		lineageTag: fa2f3651-a00d-446b-a606-210a39111cf8
+		summarizeBy: none
+		sourceColumn: On Time Ship Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Use
+		dataType: string
+		lineageTag: 378c7855-41a7-4a1c-88ca-76c05f1bad2c
+		summarizeBy: none
+		sourceColumn: Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column MIN
+		dataType: string
+		lineageTag: 30247410-c036-4462-bdf7-24a95bed4dc7
+		summarizeBy: none
+		sourceColumn: MIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAX
+		dataType: string
+		lineageTag: 852f90e4-809e-4fb3-9838-fb800cd91721
+		summarizeBy: none
+		sourceColumn: MAX
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'OTIF Key' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/KNADemandPlanning/Shared%20Documents/OTIF/OTIF%20Calculation%20Template.xlsx"), null, true),
+				    #"OTIF Key_Sheet" = Source{[Item="OTIF Key",Kind="Sheet"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(#"OTIF Key_Sheet",{"Column8", "Column9", "Column10", "Column11", "Column12", "Column13", "Column14", "Column15", "Column16", "Column17", "Column18", "Column19", "Column20", "Column21"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Payer", Int64.Type}, {"Name", type text}, {"Measure Type", Int64.Type}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,371 @@
+table 'FACT Forecast Adjusted'
+	lineageTag: 4310aad3-822c-4df4-9a3e-05cef959f872
+	sourceLineageTag: [dbo].[FACT Forecast Adjusted]
+
+	measure '_BOM FCST TL' = ```
+			
+			SUMX(
+			    'FACT Forecast Adjusted',
+			    DIVIDE(
+			        'FACT Forecast Adjusted'[BOM Forecast],
+			        RELATED('DIM Product'[TL Qty]),
+			        0
+			    )
+			) * -1
+			
+			```
+		lineageTag: 107475c5-debc-43c6-9eaa-7579875360c7
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_BOM FCST Cont' = ```
+			
+			SUMX(
+			    'FACT Forecast Adjusted',
+			    DIVIDE(
+			        'FACT Forecast Adjusted'[BOM Forecast],
+			        RELATED('DIM Product'[Cont_Qty]),
+			        0
+			    )
+			) * -1
+			
+			```
+		lineageTag: 6b9bb47b-99c5-4426-9f78-98bae441fe74
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_BOM FCST Pallet' = ```
+			
+			SUMX(
+			    'FACT Forecast Adjusted',
+			    DIVIDE(
+			        'FACT Forecast Adjusted'[BOM Forecast],
+			        RELATED('DIM Product'[SS/PLT_Qty]),
+			        0
+			    )
+			) * -1
+			
+			```
+		lineageTag: 5deacdfc-b415-4512-9f87-1ec9ccbdf8e0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_BOM FCST Carton' =
+			
+			IF(SUM('DIM Product'[Carton/Bag_Qty])=BLANK(),
+			SUM('FACT Forecast Adjusted'[Combined Qty]),
+			SUMX(
+			    'FACT Forecast Adjusted',
+			    DIVIDE(
+			        'FACT Forecast Adjusted'[BOM Forecast],
+			        RELATED('DIM Product'[Carton/Bag_Qty]),
+			        0
+			    )
+			)) * -1
+		lineageTag: 0749c2ae-d048-493e-b654-21f24735e77f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Positive Combined QTY' = -sum('FACT Forecast Adjusted'[Combined Qty])
+		formatString: 0
+		lineageTag: d0fca05d-d7fc-419e-96c0-7cc0605d8b8d
+
+		changedProperty = Name
+
+	column Material
+		dataType: string
+		lineageTag: 7a55c5f2-0d22-4589-a94a-385cd2a081ba
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 954d807c-0833-4136-b713-9bc4cfd1ff10
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Area'
+		dataType: string
+		lineageTag: 952396d7-57da-4d13-8ebf-f678b56cf404
+		sourceLineageTag: MRP Area
+		summarizeBy: none
+		sourceColumn: MRP Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 56d73de6-998d-40df-bf31-74ffd8b51859
+		sourceLineageTag: Today
+		summarizeBy: none
+		sourceColumn: Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 289340c2-f28d-4ae4-9b30-e695ae5128df
+		sourceLineageTag: Combined Date
+		summarizeBy: none
+		sourceColumn: Combined Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combined Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 985746c5-87a1-463a-8000-24a1282ceeb1
+		sourceLineageTag: Combined Qty
+		summarizeBy: sum
+		sourceColumn: Combined Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOW
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b2f3834f-41cf-44bd-aff9-c390d81ed03a
+		sourceLineageTag: SOW
+		summarizeBy: none
+		sourceColumn: SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Component
+		dataType: string
+		lineageTag: 2b8cff10-2403-4d21-8e34-80176af4c1e1
+		sourceLineageTag: Component
+		summarizeBy: none
+		sourceColumn: Component
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b352d9f-6d96-453f-9145-97e2f4855d10
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Max Sales Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f603b28b-a236-4e14-acd4-16e25eeaa25a
+		sourceLineageTag: Max Sales Date
+		summarizeBy: none
+		sourceColumn: Max Sales Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Check Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3c754807-f7d9-41bd-a978-18ef6466fde4
+		sourceLineageTag: Check Date
+		summarizeBy: none
+		sourceColumn: Check Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Qty'
+		dataType: double
+		lineageTag: dc45845f-2b31-4612-8777-52d77633b2bd
+		sourceLineageTag: Sales Qty
+		summarizeBy: sum
+		sourceColumn: Sales Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Today SOW'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 43dcc88c-6bd6-4a20-944d-98001c6f982a
+		sourceLineageTag: Today SOW
+		summarizeBy: none
+		sourceColumn: Today SOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remaining?
+		dataType: string
+		lineageTag: 54c82f0a-00d3-45ed-8eaa-35a7e0c77064
+		sourceLineageTag: Remaining?
+		summarizeBy: none
+		sourceColumn: Remaining?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source'
+		dataType: string
+		lineageTag: e521fea5-7ac3-4206-9bfd-ccde25696365
+		sourceLineageTag: Data Source
+		summarizeBy: none
+		sourceColumn: Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRPSKU Key'
+		dataType: string
+		lineageTag: cf62e6ee-e232-4611-b22e-b5464181b943
+		sourceLineageTag: MRPSKU Key
+		summarizeBy: none
+		sourceColumn: MRPSKU Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BOM Type'
+		dataType: string
+		lineageTag: 976c7ae9-a677-4452-837d-a18b894e6c7e
+		sourceLineageTag: BOM Type
+		summarizeBy: none
+		sourceColumn: BOM Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BOM Forecast'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ae169ae-dc80-4a06-a95b-b3d602c50c9e
+		sourceLineageTag: BOM Forecast
+		summarizeBy: sum
+		sourceColumn: BOM Forecast
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayerMrpSkuSow
+		dataType: string
+		lineageTag: ea52e696-0854-4826-a5d9-1d130d163ef6
+		sourceLineageTag: PayerMrpSkuSow
+		summarizeBy: none
+		sourceColumn: PayerMrpSkuSow
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: string
+		lineageTag: 60f24633-97b5-4392-9f5a-97feb91af04d
+		sourceLineageTag: Custom
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Detail'
+		dataType: string
+		lineageTag: 877af51b-5a5b-4dd2-86e9-c879892ee9f4
+		sourceLineageTag: Payer Types.Detail
+		summarizeBy: none
+		sourceColumn: Payer Types.Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Type'
+		dataType: string
+		lineageTag: 4869bba7-3593-49c9-8526-dda269ec7b72
+		sourceLineageTag: Payer Types.Type
+		summarizeBy: none
+		sourceColumn: Payer Types.Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.TypeKey'
+		dataType: string
+		lineageTag: 67cba8ca-8e5d-443b-a095-3ac739d46ec1
+		sourceLineageTag: Payer Types.TypeKey
+		summarizeBy: none
+		sourceColumn: Payer Types.TypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Adj %'
+		dataType: double
+		lineageTag: eac7209b-c36f-4491-b18f-0035e2341073
+		sourceLineageTag: Adj %
+		summarizeBy: sum
+		sourceColumn: Adj %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Custom _2_'
+		dataType: int64
+		formatString: 0
+		lineageTag: 399cb3fd-7737-4606-b122-94c25d88a9ab
+		sourceLineageTag: Custom _2_
+		summarizeBy: sum
+		sourceColumn: Custom _2_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week %'
+		dataType: double
+		lineageTag: 98deb4de-f6f9-475a-9902-b146c7c9f6ea
+		sourceLineageTag: Week %
+		summarizeBy: sum
+		sourceColumn: Week %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM Product.Cont_Qty'
+		dataType: double
+		lineageTag: 6b33aa80-d3d4-4782-8023-8b9d49d13ee9
+		sourceLineageTag: DIM Product.Cont_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM Product.TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 30251d97-a896-45dd-ac28-6b8e824caec2
+		sourceLineageTag: DIM Product.TL Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_ContQty_fcst
+		dataType: double
+		lineageTag: e82c1533-f776-4e89-82b2-1a2edaec09a3
+		sourceLineageTag: CombinedQty_per_ContQty_fcst
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_ContQty_fcst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FACT Forecast Adjusted' = entity
+		mode: directLake
+		source
+			entityName: FACT Forecast Adjusted
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

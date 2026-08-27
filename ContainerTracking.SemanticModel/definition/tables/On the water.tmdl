@@ -1,0 +1,236 @@
+table 'On the water'
+	lineageTag: 5e56e0db-d601-4cd0-8e75-13c57dd8c898
+
+	column Container
+		dataType: string
+		lineageTag: 65d55cc9-bc74-4307-9c36-b1f5a81c6ac6
+		summarizeBy: none
+		sourceColumn: Container
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cont. Int. Num.'
+		dataType: int64
+		formatString: 0
+		lineageTag: c46dc544-7dc5-4828-bf9a-3ba290ec8c36
+		summarizeBy: sum
+		sourceColumn: Cont. Int. Num.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Storage Loc.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 21f125ec-fc26-4421-8b12-f3998f845bdf
+		summarizeBy: sum
+		sourceColumn: Storage Loc.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transfer Pending TO'
+		dataType: string
+		lineageTag: 989c3f5a-e5d2-4155-b18e-32d09036bd26
+		summarizeBy: none
+		sourceColumn: Transfer Pending TO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Of Request'
+		dataType: string
+		lineageTag: bf53e881-c86c-4e67-ba83-ecb063dceab8
+		summarizeBy: none
+		sourceColumn: Date Of Request
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: int64
+		formatString: 0
+		lineageTag: 284c3572-7fae-42f0-a526-1869c8b0e93d
+		summarizeBy: sum
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: aeb89218-17b9-431f-97e9-36b52cbce832
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expect. Arrival Date'
+		dataType: string
+		lineageTag: 52ef3e9b-ad0d-4122-89f7-8981c31b2862
+		summarizeBy: none
+		sourceColumn: Expect. Arrival Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Container With Sever'
+		dataType: string
+		lineageTag: 35ea5741-49d9-4712-9015-541aecc48a0f
+		summarizeBy: none
+		sourceColumn: Container With Sever
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO
+		dataType: int64
+		formatString: 0
+		lineageTag: c49236eb-42a6-4c7c-801c-cb5ce2b7fd43
+		summarizeBy: sum
+		sourceColumn: PO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vessel
+		dataType: string
+		lineageTag: c8de0bf0-284c-44cb-9650-b348af683939
+		summarizeBy: none
+		sourceColumn: Vessel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manifest
+		dataType: int64
+		formatString: 0
+		lineageTag: 187ecac8-7624-45d2-b04b-caf37c731c5d
+		summarizeBy: sum
+		sourceColumn: Manifest
+
+		annotation SummarizationSetBy = Automatic
+
+	column Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d2cd8db-45f4-4f6a-afe2-d374a531672c
+		summarizeBy: sum
+		sourceColumn: Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days in Country'
+		dataType: int64
+		formatString: 0
+		lineageTag: 91cf85e7-8468-4a85-b6f2-3c97de320ab4
+		summarizeBy: sum
+		sourceColumn: Days in Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days In Place'
+		dataType: int64
+		formatString: 0
+		lineageTag: 30af5eff-e69e-4a8f-88db-76ad37029d14
+		summarizeBy: sum
+		sourceColumn: Days In Place
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reception Date'
+		dataType: string
+		lineageTag: b38fdd41-55ad-416f-995e-12d3027dc0a6
+		summarizeBy: none
+		sourceColumn: Reception Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inb. Del.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d979654-6fe5-4442-b52d-06710c2397a9
+		summarizeBy: sum
+		sourceColumn: Inb. Del.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expected PGR'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ae35ed40-e0a6-4e43-a84d-8e5715dbc0ef
+		summarizeBy: none
+		sourceColumn: Expected PGR
+
+		variation Variation
+			isDefault
+			relationship: 69644bc2-9a56-4747-84e5-d375eb32acf2
+			defaultHierarchy: LocalDateTable_0c9f7128-961a-4037-8fb4-0a7c6e9ebfce.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column User
+		dataType: string
+		lineageTag: 549971cd-15e2-4e2a-b1e9-c9c08f48d1e1
+		summarizeBy: none
+		sourceColumn: User
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mat. Descr.'
+		dataType: string
+		lineageTag: dbca2794-13e1-4e09-82f6-1a2a03ced686
+		summarizeBy: none
+		sourceColumn: Mat. Descr.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Outb.Deliv.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 062769f2-8445-438d-a958-6debf048ac31
+		summarizeBy: sum
+		sourceColumn: Outb.Deliv.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d74b439-3a71-4f68-9ace-686b8b0e60c5
+		summarizeBy: sum
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_1
+		dataType: string
+		lineageTag: c94a7d4b-0ff5-488f-a983-8048aa6fd881
+		summarizeBy: none
+		sourceColumn: Customer_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock In QA Inspect.'
+		dataType: string
+		lineageTag: cc3bed6b-41f2-45bc-8360-bed4aa425848
+		summarizeBy: none
+		sourceColumn: Stock In QA Inspect.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Container Full Name'
+		dataType: string
+		lineageTag: 36177741-48c8-4e2d-a50c-005959f30359
+		summarizeBy: none
+		sourceColumn: Container Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'On the water' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Jons%20Folder/Ycontainer.xlsx"), null, true),
+				    #"On the water_Sheet" = Source{[Item="On the water",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"On the water_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Container", type text}, {"Cont. Int. Num.", Int64.Type}, {"Storage Loc.", Int64.Type}, {"Transfer Pending TO", type text}, {"Date Of Request", type any}, {"Material", Int64.Type}, {"Quantity", Int64.Type}, {"Expect. Arrival Date", type any}, {"Container With Sever", type text}, {"PO", Int64.Type}, {"Vessel", type text}, {"Manifest", Int64.Type}, {"Count", Int64.Type}, {"Days in Country", Int64.Type}, {"Days In Place", Int64.Type}, {"Reception Date", type any}, {"Inb. Del.", Int64.Type}, {"Expected PGR", type date}, {"User", type text}, {"Mat. Descr.", type text}, {"Outb.Deliv.", Int64.Type}, {"Customer", Int64.Type}, {"Customer_1", type text}, {"Stock In QA Inspect.", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,80 @@
+relationship cb1db7b5-0f11-4ddb-e8d5-24be8c888e28
+	fromColumn: 'Manual Fact CSYS upload'.'Act. Gds Mvmnt Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship 957a63eb-bb0c-837c-a692-e34701735f35
+	fromColumn: 'DIM MRP Area'.Plant
+	toColumn: 'DIM Plant'.'Plant Code'
+
+relationship 1dfc9de7-284a-a604-0abb-28b4e552371b
+	fromColumn: 'DIM MRPSKU'.'MRP Area'
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship a82c4ca9-929f-c6c8-44a0-ed118ec53214
+	fromColumn: 'DIM MRPSKU'.Material
+	toColumn: 'DIM Product'.Material
+
+relationship 738b5ada-0167-e20d-4468-990c1c5ba662
+	fromColumn: 'Manual Fact CSYS upload'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship d5459e99-d3d1-6c38-28e3-fc9372dd1476
+	fromColumn: 'Manual Fact CSYS upload'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 4ac5b53a-6c27-5728-1443-2cce6c954462
+	fromColumn: 'FACT YS10N Base'.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship 986c0bad-b5a6-1801-82c3-2663fc4f576f
+	fromColumn: 'FACT YS10N Base'.ship_to
+	toColumn: 'DIM Ship To'.'Payer Key'
+
+relationship d54832ed-68ff-e52e-bef9-3e61f98f7643
+	fromColumn: 'FACT YS10N Base'.'MRPSKU Key'
+	toColumn: 'DIM MRPSKU'.'MRPSKU Key'
+
+relationship 17a859ba-1a3f-858d-20c2-f855057fdab4
+	fromColumn: 'FACT YS10N Base'.OnTimeDate
+	toColumn: 'DIM Date _2_'.'Full Date Formatted'
+
+relationship 8155691b-9dbb-860d-9861-d16ed00ec744
+	fromColumn: 'FACT YS10N Base'.ShipToZip_Clean
+	toColumn: 'DIM USA CA Zips'.'Postal Code Clean'
+
+relationship bb2f6e7b-a45b-e4e0-429c-cdc020893735
+	fromColumn: 'FACT YS10N Base'.'New Storage Location'
+	toColumn: 'DIM Storage Location'.Code
+
+relationship 88aa02e5-2b79-949c-57fe-9ea3e3b68a3c
+	fromColumn: 'FACT YS10N Base'.'Ship Date'
+	toColumn: 'DIM Date'.'Full Date'
+
+relationship bf4b6663-8fa0-b5e3-1526-138b7935ac9e
+	fromColumn: fact_ftl_material_shipments_model.Payer
+	toColumn: 'DIM Customer'.'Payer Key'
+
+relationship b06afc11-ea52-c945-b559-2f596991d806
+	fromColumn: fact_ftl_material_shipments_model.MRP_Area
+	toColumn: 'DIM MRP Area'.'MRP Area'
+
+relationship 6e697eb8-bc03-ade1-fc8d-a734aaf3623a
+	fromColumn: fact_ftl_material_shipments_model.Material
+	toColumn: 'DIM Product'.Material
+
+relationship e8f0722e-51da-c963-716c-5440fbe5cba8
+	fromColumn: fact_ftl_material_shipments_model.ship_to
+	toColumn: 'DIM Ship To'.'Payer Key'
+
+relationship 30456421-d60e-436b-3c46-c12a32256aa6
+	fromColumn: fact_ftl_material_shipments_model.ShipToZip_Clean
+	toColumn: 'DIM USA CA Zips'.'Postal Code Clean'
+
+relationship 95cebbbe-8f55-8541-4990-9a95429fba3d
+	fromColumn: fact_ftl_material_shipments_model.New_Storage_Location
+	toColumn: 'DIM Storage Location'.Code
+
+relationship c578ebe6-e90a-a4fd-b4df-4a1f90d48e6a
+	fromColumn: fact_ftl_material_shipments_model.ShipDateKey
+	toColumn: 'DIM Date'.DateKey
+

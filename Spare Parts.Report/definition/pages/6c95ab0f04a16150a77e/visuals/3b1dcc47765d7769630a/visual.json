@@ -1,0 +1,967 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "3b1dcc47765d7769630a",
+  "position": {
+    "x": 48,
+    "y": 160,
+    "z": 0,
+    "height": 688,
+    "width": 1744.0000000000002,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "Spare Part SKU"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.Spare Part SKU",
+              "nativeQueryRef": "Spare Part SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "Spare Part Name"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.Spare Part Name",
+              "nativeQueryRef": "Spare Part Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.Country",
+              "nativeQueryRef": "Country"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "SP ZMM02.Material Type"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.SP ZMM02.Material Type",
+              "nativeQueryRef": "SP Material Type",
+              "displayName": "SP Material Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "SP ZMM02.Reorder Point"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.SP ZMM02.Reorder Point",
+              "nativeQueryRef": "SP Reorder Point",
+              "displayName": "SP Reorder Point"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "SP ZMM02.MS"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL.SP ZMM02.MS",
+              "nativeQueryRef": "SP Material Status",
+              "displayName": "SP Material Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "_SPCurrent Inventory"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL._SPCurrent Inventory",
+              "nativeQueryRef": "SP Inventory",
+              "displayName": "SP Inventory",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "_SP Total YTD"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL._SP Total YTD",
+              "nativeQueryRef": "SP YTD Sold",
+              "displayName": "SP YTD Sold"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "_SP Total Previous Year"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL._SP Total Previous Year",
+              "nativeQueryRef": "SP LY Sold",
+              "displayName": "SP LY Sold"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT RPA Report MPL"
+                        }
+                      },
+                      "Property": "Quantity Last Year"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT RPA Report MPL.Quantity Last Year)",
+              "nativeQueryRef": "FG Quantity Last Year",
+              "displayName": "FG Quantity Last Year",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT RPA Report MPL"
+                        }
+                      },
+                      "Property": "Quantity YTD"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT RPA Report MPL.Quantity YTD)",
+              "nativeQueryRef": "FG Quantity YTD",
+              "displayName": "FG Quantity YTD",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT RPA Report MPL"
+                        }
+                      },
+                      "Property": "LY Demand"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT RPA Report MPL.LY Demand)",
+              "nativeQueryRef": "FG LY Demand",
+              "displayName": "FG LY Demand",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT RPA Report MPL"
+                        }
+                      },
+                      "Property": "CY Demand"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FACT RPA Report MPL.CY Demand)",
+              "nativeQueryRef": "FG CY Demand",
+              "displayName": "FG CY Demand",
+              "format": "0"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "_fg_increase_multiplier"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL._fg_increase_multiplier",
+              "nativeQueryRef": "YOY Multiplier CY/LY APO",
+              "displayName": "YOY Multiplier CY/LY APO"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT RPA Report MPL"
+                    }
+                  },
+                  "Property": "_SP LY X YOY multipler"
+                }
+              },
+              "queryRef": "FACT RPA Report MPL._SP LY X YOY multipler",
+              "nativeQueryRef": "CY SP FCST",
+              "displayName": "CY SP FCST",
+              "format": "0"
+            }
+          ],
+          "showAll": true
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT RPA Report MPL"
+                  }
+                },
+                "Property": "_SP Total Previous Year"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "63.529072423634524D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL.Country"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "222.07710931670402D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL.Spare Part Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.07693151852135D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL.SP ZMM02.Reorder Point"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "81.46874902078082D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL.SP ZMM02.MS"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.33333333333334D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT RPA Report MPL.Quantity Last Year)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.44178339274494D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FACT RPA Report MPL.Quantity YTD)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "68.33333142970258D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL._SP Total YTD"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.42854876640038D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL._fg_increase_multiplier"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.15254237288136D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT RPA Report MPL._SP LY X YOY multipler"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "685beb3d47548d37eb17",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Business Unit"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "4656bb9a70e5188501d2",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_MaterialStatus_Lookup"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "63134e35f2d26e7da531",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Color Code"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "9a38fdd2e06903b4cbba",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Country"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "984b2ec8ff5ef62a40d3",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Factory"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "224c50efa46e794b0c45",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_MaterialStatus_Lookup"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "af91b73aa9457f41b6e4",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Product Name"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "8270bcf528ab44b3ad14",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Product SKU"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "056c8ce52f6ae288177e",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Qty Spare Parts per ptoduct"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "de5008a84b23176055c2",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "set/apart"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "3d31c19c78887dbb600a",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Sign"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "2b86efad304499b2ce59",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Spare Part Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a09a554a2cabdd9a3212",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "Spare Part SKU"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9cf9b4508895b8591922",
+        "ordinal": 13,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_FG this year FCST"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "c8347e3e9d9729bdd10e",
+        "ordinal": 14,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_FG Total YTD"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f98947b654c3611acb34",
+        "ordinal": 15,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_FG Total Previous Year"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "bb26a07962fb9138c8bc",
+        "ordinal": 16,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_FG-CY Demand Balance"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f75d2d22bae8a3d62b94",
+        "ordinal": 17,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SP ZMM02"
+              }
+            },
+            "Property": "MS"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "b5e23038f9d23ea3a596",
+        "ordinal": 18,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Last Sale Date.1"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "70048328bebeee806db2",
+        "ordinal": 19,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "Warranty _Year_"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "b1762b60759548b83e7e",
+        "ordinal": 20,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_FG Date (RPA Driven)"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "6a58136369c941f6abbc",
+        "ordinal": 21,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_Current Inventory"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "c901757e3ae207c87a4b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "SP ZMM02.Material Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "75ddac6dcdbadb04c030",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_SPCurrent Inventory"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ab56cc19b123a07d097a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "SP ZMM02.Reorder Point"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d002a437b69d06878703",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "SP ZMM02.MS"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "79b9cc05c0005a91812d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT RPA Report MPL"
+                  }
+                },
+                "Property": "Quantity Last Year"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d5952280c40ad03104c7",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT RPA Report MPL"
+                  }
+                },
+                "Property": "Quantity YTD"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0172a9308be3033ba224",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_SP Total YTD"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c4de4c79a3de53c54dda",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_SP Total Previous Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "315c9bf0eb9b22704080",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT RPA Report MPL"
+                  }
+                },
+                "Property": "LY Demand"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c42e3b4b59bc50913306",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT RPA Report MPL"
+                  }
+                },
+                "Property": "CY Demand"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2e1fecce0625420b73c9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_fg_increase_multiplier"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "10ae752bad2d5416e8e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT RPA Report MPL"
+              }
+            },
+            "Property": "_SP LY X YOY multipler"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

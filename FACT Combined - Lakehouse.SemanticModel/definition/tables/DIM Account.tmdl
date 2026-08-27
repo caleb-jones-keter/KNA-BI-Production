@@ -1,0 +1,72 @@
+table 'DIM Account'
+	lineageTag: 47e0ab9b-82f9-4eed-a066-9fda39c25ceb
+	sourceLineageTag: [dbo].[DIM Account]
+
+	measure 'Len + 2x Girth' = ROUNDUP(MAX('DIM Product'[Specs.Carton - Length]),0) +2*(ROUNDUP(MAX('DIM Product'[Specs.Carton - Width]),0)+ROUNDUP(MAX('DIM Product'[Specs.Carton - Height]),0))
+		lineageTag: bccc5ff3-3b25-4629-91c4-0a361c663f52
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Payer
+		dataType: string
+		lineageTag: 2b785524-9df4-4ae8-8990-715983a75e0b
+		sourceLineageTag: Payer
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Material
+		dataType: string
+		lineageTag: 9fb31fcd-5b89-4374-9dab-37b9eab6dfc1
+		sourceLineageTag: Material
+		summarizeBy: none
+		sourceColumn: Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Groups'
+		dataType: string
+		lineageTag: a33187e8-93f7-4187-9c18-0e6134786941
+		sourceLineageTag: Customer Groups
+		summarizeBy: none
+		sourceColumn: Customer Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer & Desc'
+		dataType: string
+		lineageTag: b21b18c7-2693-4970-b7c5-55245546ea02
+		sourceLineageTag: Payer & Desc
+		summarizeBy: none
+		sourceColumn: Payer & Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Detail'
+		dataType: string
+		lineageTag: f26cc0d7-78d1-4018-83a7-d69cc535c145
+		sourceLineageTag: Payer Types.Detail
+		summarizeBy: none
+		sourceColumn: Payer Types.Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Types.Type'
+		dataType: string
+		lineageTag: f10fb317-e136-44ef-b98a-507286e50027
+		sourceLineageTag: Payer Types.Type
+		summarizeBy: none
+		sourceColumn: Payer Types.Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM Account' = entity
+		mode: directLake
+		source
+			entityName: DIM Account
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

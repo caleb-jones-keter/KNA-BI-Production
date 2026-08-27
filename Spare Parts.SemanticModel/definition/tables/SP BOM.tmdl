@@ -1,0 +1,62 @@
+table 'SP BOM'
+	lineageTag: 6e0f11e7-6f45-4223-a4b9-31641737de87
+	sourceLineageTag: [dbo].[SP BOM]
+
+	column 'SP Parent SKU'
+		dataType: string
+		lineageTag: 9fbd9e53-b5b0-4851-88d4-aae7ef068140
+		sourceLineageTag: SP Parent SKU
+		summarizeBy: none
+		sourceColumn: SP Parent SKU
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SP Description'
+		dataType: string
+		lineageTag: 86f91f80-aa05-4814-93e8-0de43e2f75ac
+		sourceLineageTag: SP Description
+		summarizeBy: none
+		sourceColumn: SP Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Replacement Item'
+		dataType: string
+		lineageTag: f669df12-d11e-4834-854b-3aa0d0189465
+		sourceLineageTag: Replacement Item
+		summarizeBy: none
+		sourceColumn: Replacement Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SP Child SKU'
+		dataType: string
+		lineageTag: cc0d76e0-b0cd-45ad-9eb5-d42836a423a9
+		sourceLineageTag: SP Child SKU
+		summarizeBy: none
+		sourceColumn: SP Child SKU
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Conversion
+		dataType: string
+		lineageTag: 55d5f30b-7af0-402a-94af-9ba29a282fe5
+		sourceLineageTag: Conversion
+		summarizeBy: none
+		sourceColumn: Conversion
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SP BOM' = entity
+		mode: directLake
+		source
+			entityName: SP BOM
+			schemaName: dbo
+			expressionSource: 'DirectLake - BRZ_NA_SC_LH'
+

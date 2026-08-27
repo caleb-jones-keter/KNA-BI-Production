@@ -1,0 +1,64 @@
+table 'SP _FG Product Link_'
+	lineageTag: 828efbc0-8e34-464e-ae97-51563d3c3299
+	sourceLineageTag: [dbo].[SP _FG Product Link_]
+
+	column Material_Country_Key
+		dataType: string
+		lineageTag: 697f6014-9972-4b71-9206-b5d92fadf645
+		sourceLineageTag: Material_Country_Key
+		summarizeBy: none
+		sourceColumn: Material_Country_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity_LastYear
+		dataType: double
+		lineageTag: c3dbf92c-5e62-4155-8052-b5b0b20dae32
+		sourceLineageTag: Quantity_LastYear
+		summarizeBy: sum
+		sourceColumn: Quantity_LastYear
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'YTD Quantity'
+		dataType: double
+		lineageTag: a2b02c2f-fd82-49c8-8a3c-b744bc51c0be
+		sourceLineageTag: YTD Quantity
+		summarizeBy: sum
+		sourceColumn: YTD Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Customer Demand This Year'
+		dataType: double
+		lineageTag: dc1008a6-8cb4-450b-9b62-44648e558e7e
+		sourceLineageTag: Customer Demand This Year
+		summarizeBy: sum
+		sourceColumn: Customer Demand This Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Customer Demand Last Year'
+		dataType: double
+		lineageTag: a812a24a-ab51-4523-b7dc-44449b1dc935
+		sourceLineageTag: Customer Demand Last Year
+		summarizeBy: sum
+		sourceColumn: Customer Demand Last Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'SP _FG Product Link_' = entity
+		mode: directLake
+		source
+			entityName: SP _FG Product Link_
+			schemaName: dbo
+			expressionSource: 'DirectLake - NA_Supply_Chain'
+

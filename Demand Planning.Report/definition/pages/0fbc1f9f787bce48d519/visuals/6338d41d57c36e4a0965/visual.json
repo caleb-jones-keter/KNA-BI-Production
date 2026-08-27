@@ -1,0 +1,248 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "6338d41d57c36e4a0965",
+  "position": {
+    "x": 16.299392097264437,
+    "y": 501.51975683890578,
+    "z": 6000,
+    "height": 319.71884498480244,
+    "width": 1616.1474164133738,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM MRP Area"
+                    }
+                  },
+                  "Property": "MRP Area"
+                }
+              },
+              "queryRef": "DIM MRP Area.MRP Area",
+              "nativeQueryRef": "MRP Area"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_MB52 Future"
+                }
+              },
+              "queryRef": "FACT Combined._MB52 Future",
+              "nativeQueryRef": "Inv Qty",
+              "displayName": "Inv Qty"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Component Forecast Initial"
+                    }
+                  },
+                  "Property": "_DOC Target"
+                }
+              },
+              "queryRef": "FACT Component Forecast Initial._DOC Target",
+              "nativeQueryRef": "Target Qty",
+              "displayName": "Target Qty"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_Actual Days of Coverage"
+                }
+              },
+              "queryRef": "FACT Combined._Actual Days of Coverage",
+              "nativeQueryRef": "True DOC",
+              "displayName": "True DOC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_Actual Days of Coverage 49 day Offset"
+                }
+              },
+              "queryRef": "FACT Combined._Actual Days of Coverage 49 day Offset",
+              "nativeQueryRef": "Offset DOC",
+              "displayName": "Offset DOC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_Lost Sales"
+                }
+              },
+              "queryRef": "FACT Combined._Lost Sales",
+              "nativeQueryRef": "Total Lost Sales",
+              "displayName": "Total Lost Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT Combined"
+                    }
+                  },
+                  "Property": "_Lost Sales DOC"
+                }
+              },
+              "queryRef": "FACT Combined._Lost Sales DOC",
+              "nativeQueryRef": "Avoidable Lost Sales",
+              "displayName": "Avoidable Lost Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Schema": "extension",
+                      "Entity": "FACT YS10N Average Sales Price"
+                    }
+                  },
+                  "Property": "_Avg Sales Price"
+                }
+              },
+              "queryRef": "FACT YS10N Average Sales Price._Avg Sales Price",
+              "nativeQueryRef": "_Avg Sales Price",
+              "hidden": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "Plant-sp.matl status"
+                }
+              },
+              "queryRef": "DIM Product.Plant-sp.matl status",
+              "nativeQueryRef": "Plant-sp.matl status"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "65ff1f3567040b510274",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DIM Product",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "SKU & Desc"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
