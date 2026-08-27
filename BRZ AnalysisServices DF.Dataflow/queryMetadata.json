@@ -1,0 +1,39 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "BRZ_AnalysisServices_DF",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Invoice to Net Products": {
+      "queryId": "98969c53-d6d1-462c-8700-2324b2f447bd",
+      "queryName": "Invoice to Net Products",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "d62f1705-de83-4192-9385-1315ae1d0668",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "EnfoPak (MrrContainers)": {
+      "queryId": "0e112215-9147-41c9-95e1-ff32ccef90e9",
+      "queryName": "EnfoPak (MrrContainers)",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"c0664e83-cf85-43a5-9d78-3790dbe7a212\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b1701542-3041-4935-8b10-235eed8e24c3\"}"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DIM Customer",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "DIM Customer": {
+      "queryId": "801a0415-7a5e-4669-aab7-3dd11f5a6a18",
+      "queryName": "DIM Customer",
+      "loadEnabled": false
+    },
+    "ECOM": {
+      "queryId": "efb84499-eaf6-4c61-b3f8-079c77dd74cb",
+      "queryName": "ECOM",
+      "loadEnabled": false
+    },
+    "Defective Allowance": {
+      "queryId": "f6c7e9bd-0844-44ee-9c6a-085c588b2cea",
+      "queryName": "Defective Allowance",
+      "loadEnabled": false
+    },
+    "DIM Customer Group": {
+      "queryId": "55196a51-d920-409d-8b5c-48140c05e19a",
+      "queryName": "DIM Customer Group",
+      "loadEnabled": false
+    },
+    "DIM Customer Group_DataDestination": {
+      "queryId": "d4b8a34d-f6a2-43f0-8fb7-aac6869a64a6",
+      "queryName": "DIM Customer Group_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DIM Customer_DataDestination": {
+      "queryId": "f8f54cac-098d-4e3e-87c0-53f6818007cf",
+      "queryName": "DIM Customer_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DIM Ship To": {
+      "queryId": "28a01fdc-ead2-4615-9872-1b97c79f21be",
+      "queryName": "DIM Ship To",
+      "loadEnabled": false
+    },
+    "DIM Ship To_DataDestination": {
+      "queryId": "58cc62d0-6b9e-45f0-8a3c-a9f76de01bd9",
+      "queryName": "DIM Ship To_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "RTV Payer Info": {
+      "queryId": "882441f0-c858-4f8c-bd6b-79030919a38e",
+      "queryName": "RTV Payer Info"
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"f0a13e6a-4d60-44f2-b9a3-94caf639fe9d\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"c039e882-2d5c-4f3d-a4a9-b13f2b9bc477\"}"
+    },
+    {
+      "path": "https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/All%20Sold%20To%20and%20Ship%20To%20USA.XLSX",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"f80f7518-eea0-4c29-a92f-aa10e41b267b\"}"
+    },
+    {
+      "path": "https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/Payer%20Types.xlsx",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"d1b7c234-dc6b-48fd-893f-eb6f58441af6\"}"
+    }
+  ],
+  "fastCombine": true
+}

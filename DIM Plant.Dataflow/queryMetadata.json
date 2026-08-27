@@ -1,0 +1,37 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Plant",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "DIM Plant": {
+      "queryId": "b18a7b31-cae7-4fed-abd4-6af3b9ff5b82",
+      "queryName": "DIM Plant",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "bbf09cc2-7fd1-46a5-b89f-d6e6c807f76f",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"c039e882-2d5c-4f3d-a4a9-b13f2b9bc477\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"f0a13e6a-4d60-44f2-b9a3-94caf639fe9d\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics;OTIF",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"c56db578-c90c-4891-aa22-553e44ef88f8\"}"
+    }
+  ]
+}
