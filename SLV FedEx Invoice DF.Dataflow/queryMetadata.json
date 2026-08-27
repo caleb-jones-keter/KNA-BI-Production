@@ -1,0 +1,34 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "FedEx DF",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "FACT FedEx Invoice History": {
+      "queryId": "16f4afd7-a2fa-48b3-b540-f6791b85b154",
+      "queryName": "FACT FedEx Invoice History",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "0615ee95-4aa3-4a74-8cd7-94aee318400b",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://keteronline.sharepoint.com/",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b4abeda7-4190-4bd6-a9b1-b341f053e49b\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b1701542-3041-4935-8b10-235eed8e24c3\"}"
+    }
+  ]
+}

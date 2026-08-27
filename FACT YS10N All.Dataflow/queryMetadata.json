@@ -1,0 +1,89 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Fact Service Level",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "ECOM": {
+      "queryId": "80aa98a6-4ffb-49e3-bc73-b0d6b63994dc",
+      "queryName": "ECOM",
+      "loadEnabled": false
+    },
+    "Defective Allowance": {
+      "queryId": "3aae8ce9-99f7-4a3c-9952-8c400f31bd97",
+      "queryName": "Defective Allowance",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "97a24f43-3489-4725-86e0-ede7b1d6aeb9",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "FACT YS10N All": {
+      "queryId": "3eaa8901-5dd3-4ddd-ac6f-abe5379ee246",
+      "queryName": "FACT YS10N All",
+      "loadEnabled": false
+    },
+    "FACT YS10N Past": {
+      "queryId": "3c599d8e-ddd5-47b7-bf54-fa5eb55bde44",
+      "queryName": "FACT YS10N Past",
+      "loadEnabled": false
+    },
+    "Dim Currency Rate": {
+      "queryId": "a128c45e-9217-4781-9ad7-2fc0edc3aa09",
+      "queryName": "Dim Currency Rate",
+      "loadEnabled": false
+    },
+    "Dim Currency Rate (2)": {
+      "queryId": "a946a513-c86a-4069-9110-ef31a65a1c0c",
+      "queryName": "Dim Currency Rate (2)",
+      "loadEnabled": false
+    },
+    "FACT YS10N Base": {
+      "queryId": "cfe34f0c-bd48-4565-8416-88a6c5c5bb69",
+      "queryName": "FACT YS10N Base",
+      "loadEnabled": false
+    },
+    "FACT YS10N Rejected": {
+      "queryId": "11781858-969d-4e09-a495-c7b749f710c4",
+      "queryName": "FACT YS10N Rejected",
+      "loadEnabled": false
+    },
+    "DTC YRSHP": {
+      "queryId": "7a62d684-79b1-451c-a5d0-c3febc8dfe37",
+      "queryName": "DTC YRSHP",
+      "loadEnabled": false
+    },
+    "Justins YS10n Test (DELETE THIS AFTER 6-15)": {
+      "queryId": "3ea4ced6-6cd0-4a5e-b4cd-226a23e8feb8",
+      "queryName": "Justins YS10n Test (DELETE THIS AFTER 6-15)",
+      "loadEnabled": false
+    },
+    "Justins YS10n Test (DELETE THIS AFTER 6-15)_DataDestination": {
+      "queryId": "5c95c979-ecd1-4a78-8340-b511599082eb",
+      "queryName": "Justins YS10n Test (DELETE THIS AFTER 6-15)_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "PowerPlatformDataflows",
+      "kind": "PowerPlatformDataflows",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"86409dfe-169d-424b-bc87-d83c1a5fe231\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"c0664e83-cf85-43a5-9d78-3790dbe7a212\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b1701542-3041-4935-8b10-235eed8e24c3\"}"
+    }
+  ],
+  "fastCombine": true
+}

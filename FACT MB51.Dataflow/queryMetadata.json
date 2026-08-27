@@ -1,0 +1,58 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "MB51",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "FACT MB51 Material_Movements Initial": {
+      "queryId": "b08d3f87-0a74-414f-8435-e2bc4cec546b",
+      "queryName": "FACT MB51 Material_Movements Initial",
+      "loadEnabled": false
+    },
+    "FACT MB51 Grouped": {
+      "queryId": "7bf0acfb-0846-47a1-8afe-607151d7ff5d",
+      "queryName": "FACT MB51 Grouped",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "a2550428-2902-4372-95a8-c1c98f2a59c2",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "FACT MB52": {
+      "queryId": "dea99c51-877e-4db8-be66-5ffdba536932",
+      "queryName": "FACT MB52",
+      "loadEnabled": false
+    },
+    "DIM Product": {
+      "queryId": "789e7b17-7317-4a3e-bbb0-44437d84fc5e",
+      "queryName": "DIM Product",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"c0664e83-cf85-43a5-9d78-3790dbe7a212\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics;US Import",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"7184f641-a05f-4c8d-9352-b86dec85f066\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b1701542-3041-4935-8b10-235eed8e24c3\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"9131e481-bf76-4f51-942e-3329d5122dce\"}"
+    }
+  ],
+  "fastCombine": true
+}

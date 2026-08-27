@@ -1,0 +1,73 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Fact Service Level",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "FACT YS10N": {
+      "queryId": "5a2e1429-00c8-4b4f-a594-74cb98efed26",
+      "queryName": "FACT YS10N",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "883571a4-7f44-47db-b223-9582b7af5b53",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Calc SKUPayer YS10N": {
+      "queryId": "cf253cf5-31ac-4bc2-9523-8902c9e3d14d",
+      "queryName": "Calc SKUPayer YS10N",
+      "loadEnabled": false
+    },
+    "FACT Rejections": {
+      "queryId": "dcd927f1-094c-4046-98bc-70f093b85896",
+      "queryName": "FACT Rejections",
+      "loadEnabled": false
+    },
+    "Calc SKUPayer Rejections": {
+      "queryId": "0d5fd867-95bd-460b-875f-f7e6a7c47c40",
+      "queryName": "Calc SKUPayer Rejections",
+      "loadEnabled": false
+    },
+    "DIM SKUPayer": {
+      "queryId": "204901da-09f3-4e2d-ac13-46fc37c8cf9e",
+      "queryName": "DIM SKUPayer",
+      "loadEnabled": false
+    },
+    "Dim Currency Rate": {
+      "queryId": "9742ae42-1e79-416d-9718-2222cd23fc44",
+      "queryName": "Dim Currency Rate",
+      "loadEnabled": false
+    },
+    "Dim Currency Rate (2)": {
+      "queryId": "1ff59aaa-7cb9-4004-8a99-872d8494c0bf",
+      "queryName": "Dim Currency Rate (2)",
+      "loadEnabled": false
+    },
+    "ECOM": {
+      "queryId": "80aa98a6-4ffb-49e3-bc73-b0d6b63994dc",
+      "queryName": "ECOM",
+      "loadEnabled": false
+    },
+    "Defective Allowance": {
+      "queryId": "3aae8ce9-99f7-4a3c-9952-8c400f31bd97",
+      "queryName": "Defective Allowance",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"f0a13e6a-4d60-44f2-b9a3-94caf639fe9d\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"5d7b3a7a-2bc6-4b70-ba2d-e87d89cf77c4\"}"
+    }
+  ],
+  "fastCombine": true
+}

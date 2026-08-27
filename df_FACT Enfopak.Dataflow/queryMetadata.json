@@ -1,0 +1,42 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "FACT Enfopak",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "FACT Enfopak": {
+      "queryId": "fa312694-5896-45f7-ae34-c7793560c50d",
+      "queryName": "FACT Enfopak",
+      "loadEnabled": false
+    },
+    "FACT Enfopak_DataDestination": {
+      "queryId": "e24e2448-f2d4-4a2e-a588-09696de71203",
+      "queryName": "FACT Enfopak_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"f0a13e6a-4d60-44f2-b9a3-94caf639fe9d\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/Keter%20Analytics;US Import",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"490bc975-7bba-46f2-b1f8-42e02b518911\"}"
+    },
+    {
+      "path": "powerbi://api.powerbi.com/v1.0/myorg/keter%20analytics;US Import",
+      "kind": "AnalysisServices",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"e2de5201-2d68-44b8-8926-a4fbfef6da31\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"65f186b9-aedc-4032-b458-67feeda17fef\"}"
+    }
+  ]
+}

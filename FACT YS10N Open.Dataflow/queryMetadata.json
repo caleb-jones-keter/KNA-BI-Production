@@ -1,0 +1,48 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "FACT YS10N",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "FACT YS10N Open": {
+      "queryId": "622028ec-75ea-4edf-a25f-0afec5c9fcce",
+      "queryName": "FACT YS10N Open",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "92eb4c6b-5063-4eb7-a22b-0b87adde280b",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Payer Types": {
+      "queryId": "5548ec29-cfd7-433d-b553-c0c0ef1acbfc",
+      "queryName": "Payer Types",
+      "loadEnabled": false
+    },
+    "YS10N Open Orders Daily Pull": {
+      "queryId": "3abb895b-bc01-4a6a-9973-a6cbca8d47c4",
+      "queryName": "YS10N Open Orders Daily Pull",
+      "loadEnabled": false
+    },
+    "DIM IBP Customer": {
+      "queryId": "24eb4362-73d3-4b8f-9dee-e2e019d163d7",
+      "queryName": "DIM IBP Customer",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://keteronline.sharepoint.com/teams/SavannahRDC/Shared%20Documents/PowerBI%20Projects/DL/YS10N%20Open%20Orders%20Daily%20Pull.xlsx",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"3657ca80-2ef4-49a9-96fe-a13ce7da50d8\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"7077549b-72ae-4042-a0a4-c5463642313b\",\"DatasourceId\":\"b1701542-3041-4935-8b10-235eed8e24c3\"}"
+    }
+  ],
+  "fastCombine": true
+}
