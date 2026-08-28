@@ -1,0 +1,923 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1606,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "DIM Counter",
+        "sourceLineageTag": "[dbo].[DIM Counter]",
+        "columns": [
+          {
+            "name": "Material",
+            "dataType": "string",
+            "sourceColumn": "Material",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Material",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Inb. Del_",
+            "dataType": "string",
+            "sourceColumn": "Inb. Del_",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Inb. Del_",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "dataType": "string",
+            "sourceColumn": "Container",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Container",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Material_InbDel_Index",
+            "dataType": "int64",
+            "sourceColumn": "Material_InbDel_Index",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "Material_InbDel_Index",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "MAT-INB Merge",
+            "dataType": "string",
+            "sourceColumn": "MAT-INB Merge",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "MAT-INB Merge",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "DIM Counter",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "FACT Enfopak",
+        "sourceLineageTag": "[dbo].[FACT Enfopak]",
+        "columns": [
+          {
+            "name": "awb_code",
+            "dataType": "string",
+            "sourceColumn": "awb_code",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "awb_code",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "awb_value",
+            "dataType": "string",
+            "sourceColumn": "awb_value",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "awb_value",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "awb_value_usd",
+            "dataType": "string",
+            "sourceColumn": "awb_value_usd",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "awb_value_usd",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "bill_to",
+            "dataType": "string",
+            "sourceColumn": "bill_to",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "bill_to",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "bl_number",
+            "dataType": "string",
+            "sourceColumn": "bl_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "bl_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "booked",
+            "dataType": "string",
+            "sourceColumn": "booked",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "booked",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "booking_number",
+            "dataType": "string",
+            "sourceColumn": "booking_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "booking_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "broker_ab",
+            "dataType": "string",
+            "sourceColumn": "broker_ab",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "broker_ab",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "carrier_name",
+            "dataType": "string",
+            "sourceColumn": "carrier_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "carrier_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "cons_awb_code",
+            "dataType": "string",
+            "sourceColumn": "cons_awb_code",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "cons_awb_code",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "consignee_name",
+            "dataType": "string",
+            "sourceColumn": "consignee_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "consignee_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "container_gross_weight",
+            "dataType": "string",
+            "sourceColumn": "container_gross_weight",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "container_gross_weight",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "container_net_weight",
+            "dataType": "string",
+            "sourceColumn": "container_net_weight",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "container_net_weight",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "container_number",
+            "dataType": "string",
+            "sourceColumn": "container_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "container_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "container_type",
+            "dataType": "string",
+            "sourceColumn": "container_type",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "container_type",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "container_volume",
+            "dataType": "string",
+            "sourceColumn": "container_volume",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "container_volume",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "currency",
+            "dataType": "string",
+            "sourceColumn": "currency",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "currency",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_name",
+            "dataType": "string",
+            "sourceColumn": "customer_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "customer_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_po_numbers",
+            "dataType": "string",
+            "sourceColumn": "customer_po_numbers",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "customer_po_numbers",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Day",
+            "dataType": "string",
+            "sourceColumn": "Day",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Day",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "delivery_country",
+            "dataType": "string",
+            "sourceColumn": "delivery_country",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "delivery_country",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "dest_port_name",
+            "dataType": "string",
+            "sourceColumn": "dest_port_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "dest_port_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "due_date",
+            "dataType": "string",
+            "sourceColumn": "due_date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "due_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "end_customer",
+            "dataType": "string",
+            "sourceColumn": "end_customer",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "end_customer",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "eta_date",
+            "dataType": "string",
+            "sourceColumn": "eta_date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "eta_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ets_date",
+            "dataType": "string",
+            "sourceColumn": "ets_date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ets_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Expr1",
+            "dataType": "string",
+            "sourceColumn": "Expr1",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Expr1",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "goods_issue_date",
+            "dataType": "string",
+            "sourceColumn": "goods_issue_date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "goods_issue_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "goods_issue_ref",
+            "dataType": "string",
+            "sourceColumn": "goods_issue_ref",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "goods_issue_ref",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "inc_location",
+            "dataType": "string",
+            "sourceColumn": "inc_location",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "inc_location",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "incoterms",
+            "dataType": "string",
+            "sourceColumn": "incoterms",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "incoterms",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Month Name",
+            "dataType": "string",
+            "sourceColumn": "Month Name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Month Name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "number",
+            "dataType": "string",
+            "sourceColumn": "number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "origin_port_name",
+            "dataType": "string",
+            "sourceColumn": "origin_port_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "origin_port_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "part_description",
+            "dataType": "string",
+            "sourceColumn": "part_description",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "part_description",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "part_number",
+            "dataType": "string",
+            "sourceColumn": "part_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "part_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "pl_numbers",
+            "dataType": "string",
+            "sourceColumn": "pl_numbers",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "pl_numbers",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "po_numbers",
+            "dataType": "string",
+            "sourceColumn": "po_numbers",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "po_numbers",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "sales_group",
+            "dataType": "string",
+            "sourceColumn": "sales_group",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "sales_group",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "service_name",
+            "dataType": "string",
+            "sourceColumn": "service_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "service_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ship_to",
+            "dataType": "string",
+            "sourceColumn": "ship_to",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ship_to",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "shipper_text_code",
+            "dataType": "string",
+            "sourceColumn": "shipper_text_code",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "shipper_text_code",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "so_lines",
+            "dataType": "string",
+            "sourceColumn": "so_lines",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "so_lines",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "so_type",
+            "dataType": "string",
+            "sourceColumn": "so_type",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "so_type",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "sold_to",
+            "dataType": "string",
+            "sourceColumn": "sold_to",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "sold_to",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "dataType": "string",
+            "sourceColumn": "status",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "status",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "status_date",
+            "dataType": "string",
+            "sourceColumn": "status_date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "status_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "status_time",
+            "dataType": "string",
+            "sourceColumn": "status_time",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "status_time",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "vessel_name",
+            "dataType": "string",
+            "sourceColumn": "vessel_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "vessel_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "voyage_count",
+            "dataType": "string",
+            "sourceColumn": "voyage_count",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "voyage_count",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "voyage_number",
+            "dataType": "string",
+            "sourceColumn": "voyage_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "voyage_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Year",
+            "dataType": "string",
+            "sourceColumn": "Year",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Year",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Year.1",
+            "dataType": "string",
+            "sourceColumn": "Year.1",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Year.1",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Month Name.1",
+            "dataType": "string",
+            "sourceColumn": "Month Name.1",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Month Name.1",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Day.1",
+            "dataType": "string",
+            "sourceColumn": "Day.1",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Day.1",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "FACT Enfopak",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}
