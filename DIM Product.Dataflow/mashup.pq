@@ -11,8 +11,27 @@ shared #"DIM Product" = let
   #"Merged DCMSource" = Table.NestedJoin(#"Expanded Pack Type", {"Material"}, DCMSource, {"Code:SKU Level _c1_"}, "DCMSource", JoinKind.LeftOuter),
 
   #"Expanded DCM (SKU Level)" = Table.ExpandTableColumn(#"Merged DCMSource", "DCMSource", {"DCM Budget (%)"}, {"DCM (SKU Level).DCM Budget (%)"}),
-  #"Replaced Value" = Table.ReplaceValue(#"Expanded DCM (SKU Level)","NA",null,Replacer.ReplaceValue,{"Cont_Qty"}),
-  #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",{{"Cont_Qty", type number}, {"Material", type text}}),
+
+  // CJ 8/28/2026: Protect against non-numeric values
+  // #"Replaced Value" = Table.ReplaceValue(#"Expanded DCM (SKU Level)","NA",null,Replacer.ReplaceValue,{"Cont_Qty"}),
+  // #"Changed Type1" = Table.TransformColumnTypes(#"Invalid Cont_Qty",{{"Cont_Qty", type number}, {"Material", type text}}),
+  #"Clean Cont_Qty" =
+    Table.TransformColumns(
+      #"Expanded DCM (SKU Level)",
+      {
+        {
+          "Cont_Qty",
+          each try Number.From(_) otherwise null,
+          type nullable number
+        }
+      }
+    ),
+  #"Changed Type1" =
+    Table.TransformColumnTypes(
+      #"Clean Cont_Qty",
+      {{"Material", type text}}
+    ),
+
   #"Inserted Addition" = Table.AddColumn(#"Changed Type1", "Port Free Days", each [#"Cont_Qty"] + 400, type number),
   DIMBOMCombined = #"DIM BOM Combined",
   #"Removed Duplicates" = Table.Distinct(DIMBOMCombined, {"Component"}),
