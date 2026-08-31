@@ -1,0 +1,682 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ed4e77f7e6e63be29f93",
+  "position": {
+    "x": 608,
+    "y": 248,
+    "z": 5,
+    "height": 464,
+    "width": 672,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Title"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Title",
+              "nativeQueryRef": "Title"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "ID"
+                }
+              },
+              "queryRef": "CountNonNull(Savannah - QA-Container.ID)",
+              "nativeQueryRef": "ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Date"
+                    }
+                  },
+                  "Property": "Full Date"
+                }
+              },
+              "queryRef": "DIM Date.Full Date",
+              "nativeQueryRef": "Full Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Start Inspection"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Start Inspection",
+              "nativeQueryRef": "Start Inspection",
+              "format": "M/d/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "End Inspection"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.End Inspection",
+              "nativeQueryRef": "End Inspection",
+              "format": "M/d/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Item Num"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Item Num",
+              "nativeQueryRef": "Item Num"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Item Description"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Item Description",
+              "nativeQueryRef": "Item Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Inspection Type"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Inspection Type",
+              "nativeQueryRef": "Inspection Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Initial Damage Type"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Initial Damage Type",
+              "nativeQueryRef": "Initial Damage Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Inspection Reference"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Inspection Reference",
+              "nativeQueryRef": "Inspection Reference"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Door_Location"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.Door_Location",
+              "nativeQueryRef": "Door_Location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "LPNs"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.LPNs",
+              "nativeQueryRef": "LPNs"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "General Comments"
+                }
+              },
+              "queryRef": "Savannah - QA-Container.General Comments",
+              "nativeQueryRef": "General Comments"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - QA-Container"
+                    }
+                  },
+                  "Property": "Inspection Quantity"
+                }
+              },
+              "queryRef": "Sum(Savannah - QA-Container.Inspection Quantity)",
+              "nativeQueryRef": "Inspection Quantity"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Savannah - Container-Defects"
+                        }
+                      },
+                      "Property": "DefectQuantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Savannah - Container-Defects.DefectQuantity",
+              "nativeQueryRef": "Sum of DefectQuantity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - Container-Defects"
+                    }
+                  },
+                  "Property": "DefectType"
+                }
+              },
+              "queryRef": "Savannah - Container-Defects.DefectType",
+              "nativeQueryRef": "DefectType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - Container-Defects"
+                    }
+                  },
+                  "Property": "DefectDescription"
+                }
+              },
+              "queryRef": "Savannah - Container-Defects.DefectDescription",
+              "nativeQueryRef": "DefectDescription"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - Container-Defects"
+                    }
+                  },
+                  "Property": "DefectDisposition"
+                }
+              },
+              "queryRef": "Savannah - Container-Defects.DefectDisposition",
+              "nativeQueryRef": "DefectDisposition"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Savannah - Container-Defects"
+                    }
+                  },
+                  "Property": "Image URL"
+                }
+              },
+              "queryRef": "Savannah - Container-Defects.Image URL",
+              "nativeQueryRef": "Image URL"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Savannah - QA-Container"
+                  }
+                },
+                "Property": "ID"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "imageHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "200D"
+                }
+              }
+            },
+            "imageWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "200D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.29061376378276D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CountNonNull(Savannah - QA-Container.ID)"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6d1032bce4e2cc5e8ddf",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - Container-Defects"
+              }
+            },
+            "Property": "DefectDescription"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f3dce712a51757765c92",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "RelativeDate"
+      },
+      {
+        "name": "d01381e604c69aca6f23",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - Container-Defects"
+              }
+            },
+            "Property": "DefectDisposition"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2040feec4a56f6101546",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - Container-Defects"
+              }
+            },
+            "Property": "DefectQuantity"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "be814f2e931291089553",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - Container-Defects"
+              }
+            },
+            "Property": "DefectType"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "23ddaa3d0954c25f4f16",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Door_Location"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f5717672ca4f090586a5",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - Container-Defects"
+              }
+            },
+            "Property": "Image URL"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "801d67bbcb37756ce161",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "LPNs"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6af5dbaf5a1d0faf7092",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Title"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "62c4d7637dbabb7a61a0",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "ID"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5a3511b607b851868f0d",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Start Inspection"
+          }
+        },
+        "type": "RelativeDate"
+      },
+      {
+        "name": "1dee00ed72a37d7161a4",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "End Inspection"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9d33702ef6456376fa17",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Item Num"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7396f66f40d6b31b8167",
+        "ordinal": 13,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Item Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4ee9935d99cee203d010",
+        "ordinal": 14,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Inspection Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "12fa741b249237a4cae6",
+        "ordinal": 15,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Initial Damage Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fbf59d3345a74222f27e",
+        "ordinal": 16,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Inspection Reference"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e5ef5bf88ef86ae5d908",
+        "ordinal": 17,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "General Comments"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "132429ef5565ad0b1f73",
+        "ordinal": 18,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Savannah - QA-Container"
+              }
+            },
+            "Property": "Inspection Quantity"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4f459bc3e9304a5f1360",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Savannah - Container-Defects"
+                  }
+                },
+                "Property": "DefectQuantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}
