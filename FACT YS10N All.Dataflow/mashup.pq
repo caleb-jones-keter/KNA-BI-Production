@@ -150,7 +150,7 @@ shared #"FACT YS10N Base" = let
     #"SHIP DATE KEY" = Table.TransformColumnTypes(Table.AddColumn(#"SHIP DATE", "ShipDateKey", each if [ActGdsMvmntDateKey] <> null and [ActGdsMvmntDateKey] <> "" then [ActGdsMvmntDateKey]
         else if [#"InvoiceBillingDateKey"] <> null and [#"InvoiceBillingDateKey"] <> "" then [#"InvoiceBillingDateKey"]
         else null), {{"ShipDateKey", type text}}),
-  #"Added MRP Area" = Table.AddColumn(#"SHIP DATE KEY", "MRP Area", each let
+    #"Added MRP Area" = Table.AddColumn(#"SHIP DATE KEY", "MRP Area", each let
     CurrStLoc = [Storage Location],
     Plant = [Plant]
         in
@@ -182,7 +182,7 @@ shared #"FACT YS10N Base" = let
     #"Calculated Start of Week Today" = Table.TransformColumns(#"Calculated Start of Week",{{"Today SOW", Date.StartOfWeek, type date}}),
     #"Changed column type 1" = Table.TransformColumnTypes(#"Calculated Start of Week Today", {{"Today", type date}, {"Today SOW", type date}}),
     #"Renamed columns 1" = Table.RenameColumns(#"Changed column type 1", {{"Order Qty", "Combined Qty"}}),
-  #"Combined Date added here" = Table.TransformColumnTypes(Table.AddColumn(#"Renamed columns 1", "Combined Date", each let
+    #"Combined Date added here" = Table.TransformColumnTypes(Table.AddColumn(#"Renamed columns 1", "Combined Date", each let
             soBillingDate = [SO Billing Date],
             shipDate = [Ship Date],
             result = 
@@ -204,26 +204,44 @@ shared #"FACT YS10N Base" = let
             result = if hyphenPos > -1 then Text.Start(noSpaces, hyphenPos) else noSpaces
         in
             result), {{"ShipToZip_Clean", type text}}),
-  #"Changed column type 2" = Table.TransformColumnTypes(ShipToZip_Clean, {{"MRPSKU Key", type text}, {"Data Source", type text}, {"MRP Area", type text}, {"SO_BillingDateKey", type text}}),
-  #"Changed column type 4" = Table.TransformColumnTypes(#"Changed column type 2", {{"Combined Date", type datetime}}),
+    #"Changed column type 2" = Table.TransformColumnTypes(ShipToZip_Clean, {{"MRPSKU Key", type text}, {"Data Source", type text}, {"MRP Area", type text}, {"SO_BillingDateKey", type text}}),
+    #"Changed column type 4" = Table.TransformColumnTypes(#"Changed column type 2", {{"Combined Date", type datetime}}),
     #"Merged Queries Currency Rate" = Table.NestedJoin(#"Changed column type 4", {"Combined Date"}, #"Dim Currency Rate", {"FullDateDesc"}, "Dim Currency Rate", JoinKind.LeftOuter),
     #"Expanded Dim Currency Rate" = Table.ExpandTableColumn(#"Merged Queries Currency Rate", "Dim Currency Rate", {"Conversion"}, {"Dim Currency Rate.Conversion"}),
     #"Changed Type Currency Rate" = Table.TransformColumnTypes(#"Expanded Dim Currency Rate",{{"Dim Currency Rate.Conversion", type number}}),
     #"Added Custom Currency Rate" = Table.TransformColumnTypes(Table.AddColumn(#"Changed Type Currency Rate", "Net Value USD", each [#"Net value"]*[Dim Currency Rate.Conversion]),{{"Net Value USD", type number}}),
-  #"Added custom 6" = Table.TransformColumnTypes(Table.AddColumn(#"Added Custom Currency Rate", "Gross Sales USD", each [Dim Currency Rate.Conversion] * [Gross Sale]), {{"Gross Sales USD", Currency.Type}}),
-  #"Added custom 2" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 6", "New Net Value", each if [Defective Allowance.1] = null or [Defective Allowance.1] = "" then [Net Value USD] else null), {{"New Net Value", type number}}),
-  #"Added custom 3" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 2", "Parcel $", each if [#"Shipping type"] = "07" then [Net Value USD] else null), {{"Parcel $", type number}}),
-  #"Added custom 4" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 3", "TL $", each if [#"Shipping type"] = "01" then [Net Value USD] else null), {{"TL $", type number}}),
-  #"Added custom 5" = Table.TransformColumnTypes(Table.AddColumn( #"Added custom 4", "LTL $", each if [#"Shipping type"] = "06" then [Net Value USD] else null), {{"LTL $", type number}}),
-  #"Changed column type 3" = Table.TransformColumnTypes(#"Added custom 5", {{"Shipment Number", Int64.Type}, {"Combined Date", type date}}),
-  #"Merged queries 2" = Table.NestedJoin(#"Changed column type 3", {"Shipment Number"}, #"DTC YRSHP", {"Shipment Number"}, "DTC YRSHP", JoinKind.LeftOuter),
-  #"Expanded DTC YRSHP" = Table.ExpandTableColumn(#"Merged queries 2", "DTC YRSHP", {"Storage Location"}, {"DTC YRSHP.Storage Location"}),
-  #"Added custom 7" = Table.TransformColumnTypes(Table.AddColumn(#"Expanded DTC YRSHP", "New Storage Location", each if [#"DTC YRSHP.Storage Location"] <> null and [#"DTC YRSHP.Storage Location"] <> "" and ([Payer] = "172315" and List.Contains({"367B", "367D"}, [#"Storage Location"]))
+    #"Added custom 6" = Table.TransformColumnTypes(Table.AddColumn(#"Added Custom Currency Rate", "Gross Sales USD", each [Dim Currency Rate.Conversion] * [Gross Sale]), {{"Gross Sales USD", Currency.Type}}),
+    #"Added custom 2" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 6", "New Net Value", each if [Defective Allowance.1] = null or [Defective Allowance.1] = "" then [Net Value USD] else null), {{"New Net Value", type number}}),
+    #"Added custom 3" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 2", "Parcel $", each if [#"Shipping type"] = "07" then [Net Value USD] else null), {{"Parcel $", type number}}),
+    #"Added custom 4" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 3", "TL $", each if [#"Shipping type"] = "01" then [Net Value USD] else null), {{"TL $", type number}}),
+    #"Added custom 5" = Table.TransformColumnTypes(Table.AddColumn( #"Added custom 4", "LTL $", each if [#"Shipping type"] = "06" then [Net Value USD] else null), {{"LTL $", type number}}),
+    #"Changed column type 3" = Table.TransformColumnTypes(#"Added custom 5", {{"Shipment Number", Int64.Type}, {"Combined Date", type date}}),
+    #"Merged queries 2" = Table.NestedJoin(#"Changed column type 3", {"Shipment Number"}, #"DTC YRSHP", {"Shipment Number"}, "DTC YRSHP", JoinKind.LeftOuter),
+    #"Expanded DTC YRSHP" = Table.ExpandTableColumn(#"Merged queries 2", "DTC YRSHP", {"Storage Location"}, {"DTC YRSHP.Storage Location"}),
+    #"Added custom 7" = Table.TransformColumnTypes(Table.AddColumn(#"Expanded DTC YRSHP", "New Storage Location", each if [#"DTC YRSHP.Storage Location"] <> null and [#"DTC YRSHP.Storage Location"] <> "" and ([Payer] = "172315" and List.Contains({"367B", "367D"}, [#"Storage Location"]))
         then [#"DTC YRSHP.Storage Location"]
         else [#"Storage Location"]), {{"New Storage Location", type text}}),
-  #"Added custom 8" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 7", "Material ZIP Key", each Text.From([Material]) & "|" & Text.From([ship_to])), {{"Material ZIP Key", type text}} )
+    #"Added custom 8" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 7", "Material ZIP Key", each Text.From([Material]) & "|" & Text.From([ship_to])), {{"Material ZIP Key", type text}} ),
+    #"Merged queries 3" = Table.NestedJoin(#"Added custom 8", {"Material"}, #"DIM Product", {"Material"}, "DIM Product", JoinKind.LeftOuter),
+    #"Expanded DIM Product" = Table.ExpandTableColumn(#"Merged queries 3", "DIM Product", {"Carton/Bag_Qty", "SS/PLT_Qty"}, {"DIM Product.Carton/Bag_Qty", "DIM Product.SS/PLT_Qty"}),
+    #"Picks" = Table.AddColumn(
+        #"Expanded DIM Product",
+        "Picks",
+        each
+            let
+                LineQty = -[Combined Qty],
+                LinePlt = [#"DIM Product.SS/PLT_Qty"],
+                LineCase = [#"DIM Product.Carton/Bag_Qty"],
+                MovementType = [Movement Type]
+            in
+                if LineQty = null then null
+                else if LinePlt <> null and LinePlt <> 0 and LineQty > LinePlt then Number.RoundUp(LineQty / LinePlt)
+                else if LineCase <> null and LineCase <> 0 and LineQty > LineCase then Number.RoundUp(LineQty / LineCase)
+                else 1,
+        Int64.Type
+    )
 in
-    #"Added custom 8";
+    #"Picks";
 [BindToDefaultDestination = true]
 shared #"FACT YS10N Rejected" = let
   Source = #"FACT YS10N Base",
@@ -379,3 +397,10 @@ shared #"Justins YS10n Test (DELETE THIS AFTER 6-15)_DataDestination" = let
   TableNavigation = Navigation_3{[Id = "Justins YS10n Test _DELETE THIS AFTER 6-15_", ItemKind = "Table"]}?[Data]?
 in
   TableNavigation;
+shared #"DIM Product" = let
+  Source = Lakehouse.Contents(null),
+  Navigation = Source{[workspaceId = "8e2b746d-3224-4a82-8467-a2800eef337e"]}[Data],
+  #"Navigation 1" = Navigation{[lakehouseId = "624ea251-e87f-45d7-8358-a55b3fa46385"]}[Data],
+  #"Navigation 2" = #"Navigation 1"{[Id = "DIM Product", ItemKind = "Table"]}[Data]
+in
+  #"Navigation 2";
