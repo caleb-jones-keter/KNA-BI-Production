@@ -223,7 +223,7 @@ shared #"FACT YS10N Base" = let
         else [#"Storage Location"]), {{"New Storage Location", type text}}),
     #"Added custom 8" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 7", "Material ZIP Key", each Text.From([Material]) & "|" & Text.From([ship_to])), {{"Material ZIP Key", type text}} ),
     #"Merged queries 3" = Table.NestedJoin(#"Added custom 8", {"Material"}, #"DIM Product", {"Material"}, "DIM Product", JoinKind.LeftOuter),
-    #"Expanded DIM Product" = Table.ExpandTableColumn(#"Merged queries 3", "DIM Product", {"Carton/Bag_Qty", "SS/PLT_Qty"}, {"DIM Product.Carton/Bag_Qty", "DIM Product.SS/PLT_Qty"}),
+    #"Expanded DIM Product" = Table.ExpandTableColumn(#"Merged queries 3", "DIM Product", {"Carton/Bag_Qty", "SS/PLT_Qty", "Cont_Qty", "TL Qty"}, {"DIM Product.Carton/Bag_Qty", "DIM Product.SS/PLT_Qty", "DIM Product.Cont_Qty", "DIM Product.TL Qty"}),
     #"Picks" = Table.AddColumn(
         #"Expanded DIM Product",
         "Picks",
@@ -239,9 +239,20 @@ shared #"FACT YS10N Base" = let
                 else if LineCase <> null and LineCase <> 0 and LineQty > LineCase then Number.RoundUp(LineQty / LineCase)
                 else 1,
         Int64.Type
-    )
+    ),
+
+    #"CombinedQty_per_ContQty" = Table.TransformColumnTypes(
+        Table.AddColumn(
+        #"Picks",
+        "CombinedQty_per_ContQty",
+        each Value.Divide(-[Combined Qty], [DIM Product.Cont_Qty])
+        ),
+        {{"CombinedQty_per_ContQty", type number}}
+  ),
+
+  #"Calculate TLs" = Table.TransformColumnTypes(Table.AddColumn(#"CombinedQty_per_ContQty", "CombinedQty_per_TLQty", each Value.Divide(-[Combined Qty], [DIM Product.TL Qty])), {{"CombinedQty_per_TLQty", type number}})
 in
-    #"Picks";
+    #"Calculate TLs";
 [BindToDefaultDestination = true]
 shared #"FACT YS10N Rejected" = let
   Source = #"FACT YS10N Base",
