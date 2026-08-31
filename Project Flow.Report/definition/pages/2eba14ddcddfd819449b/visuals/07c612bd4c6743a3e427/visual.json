@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "07c612bd4c6743a3e427",
   "position": {
     "x": 584,
@@ -74,14 +74,14 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "52D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Calendar Years'"
+                  "Value": "'Calendar Weeks'"
                 }
               }
             }
@@ -122,11 +122,11 @@
                                 "Expression": {
                                   "Now": {}
                                 },
-                                "Amount": -1,
-                                "TimeUnit": 3
+                                "Amount": -52,
+                                "TimeUnit": 1
                               }
                             },
-                            "TimeUnit": 3
+                            "TimeUnit": 1
                           }
                         },
                         "UpperBound": {
@@ -137,10 +137,10 @@
                                   "Now": {}
                                 },
                                 "Amount": -1,
-                                "TimeUnit": 3
+                                "TimeUnit": 1
                               }
                             },
-                            "TimeUnit": 3
+                            "TimeUnit": 1
                           }
                         }
                       }
@@ -167,5 +167,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "05b69f2ec7404f2df206",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
