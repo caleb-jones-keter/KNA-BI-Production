@@ -25,6 +25,66 @@
 
 -- CELL ********************
 
+select distinct `Customer Groups`, Payer, `Payer & Desc`
+from `DIM Account`
+WHERE `Customer Groups` <> 'OTHER CUSTOMERS HARDWARE'
+    and Material = '218158'
+order by `Customer Groups`, Payer
+
+-- METADATA ********************
+
+-- META {
+-- META   "language": "sparksql",
+-- META   "language_group": "synapse_pyspark"
+-- META }
+
+-- CELL ********************
+
+with
+base as (
+    select
+        Material,
+        count(distinct `Customer Groups`) as customer_count
+    from `DIM Account`
+    group by Material
+)
+
+select a.*
+from `DIM Account` a
+inner join base b using (Material)
+where customer_count = 1
+    and `Customer Groups` = 'SAMS CLUB'
+order by Material, Payer
+
+-- METADATA ********************
+
+-- META {
+-- META   "language": "sparksql",
+-- META   "language_group": "synapse_pyspark"
+-- META }
+
+-- CELL ********************
+
+with base as (
+    select *
+        ,count(Customer Groups) over (partition by Material) as Customer_Count
+    from `DIM Account`
+    order by `Customer Groups`, Material, Payer
+)
+
+select *
+from base
+where `Customer Groups` = 'SAMS CLUB'
+
+-- METADATA ********************
+
+-- META {
+-- META   "language": "sparksql",
+-- META   "language_group": "synapse_pyspark"
+-- META }
+
+-- CELL ********************
+
 CREATE OR REPLACE TABLE fact_ftl_material_shipments_model AS
 
 WITH
