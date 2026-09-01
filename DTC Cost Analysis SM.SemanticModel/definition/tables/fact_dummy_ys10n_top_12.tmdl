@@ -231,6 +231,18 @@ table fact_dummy_ys10n_top_12
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure '_Net Fulfillment Cost Actual' =
+			SUMX(
+			    fact_dummy_ys10n_top_12,
+			    -fact_dummy_ys10n_top_12[combined_qty]
+			        * fact_dummy_ys10n_top_12[actual_net_fulfillment_cost]
+			)
+		lineageTag: 1a52dbc1-47eb-46b9-940f-8dd6a0343b17
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Material
 		dataType: string
 		lineageTag: 71d5ea5b-44da-4ee6-98dd-f2ac6a6d9d14
