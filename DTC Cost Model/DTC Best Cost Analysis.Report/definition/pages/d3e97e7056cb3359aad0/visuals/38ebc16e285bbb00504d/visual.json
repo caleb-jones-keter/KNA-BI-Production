@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "38ebc16e285bbb00504d",
   "position": {
-    "x": 840,
-    "y": 392,
+    "x": 848.00000000000011,
+    "y": 416,
     "z": 5000,
-    "height": 256,
-    "width": 808,
+    "height": 224,
+    "width": 800.00000000000011,
     "tabOrder": 5000
   },
   "visual": {
@@ -460,5 +460,174 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "838f71fe83492cc9b3fc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_dummy_ys10n_top_12"
+              }
+            },
+            "Property": "actual_shipping_point_key_desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e1db5ddfdc379f2f69a4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "Postal Code Clean"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "486347d81ee76dde2d89",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d7662ddcbe2b491b8aa7",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_dummy_ys10n_top_12"
+                  }
+                },
+                "Property": "actual_distance"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2d107adddf4e08ce5beb",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_dummy_ys10n_top_12"
+                  }
+                },
+                "Property": "actual_est_delv_time"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6f93931426e518f756f2",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_dummy_ys10n_top_12"
+                  }
+                },
+                "Property": "actual_avg_unit_storage_cost"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d0e4664f9a103fc68fc8",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_dummy_ys10n_top_12"
+                  }
+                },
+                "Property": "actual_net_fulfillment_cost"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bb0dad64bf8ad809613a",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_dummy_ys10n_top_12"
+                  }
+                },
+                "Property": "actual_total_cost"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7086702ef86adcc8950a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_dummy_ys10n_top_12"
+              }
+            },
+            "Property": "Qty"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d3d412015ce045fb9814",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_dummy_ys10n_top_12"
+              }
+            },
+            "Property": "_Loaded Cost Actual"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

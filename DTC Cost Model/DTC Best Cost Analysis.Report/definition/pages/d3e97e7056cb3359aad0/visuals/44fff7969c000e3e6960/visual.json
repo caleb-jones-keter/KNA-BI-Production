@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "44fff7969c000e3e6960",
   "position": {
-    "x": 440,
+    "x": 448,
     "y": 0,
     "z": 2000,
-    "height": 88,
+    "height": 96,
     "width": 288,
     "tabOrder": 2000
   },
@@ -263,5 +263,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "35e4829cda78cb9beb33",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "DAT US Region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d49abbb37da79459b6f4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a553af997d165c20d05f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e528832a8382e5ded188",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

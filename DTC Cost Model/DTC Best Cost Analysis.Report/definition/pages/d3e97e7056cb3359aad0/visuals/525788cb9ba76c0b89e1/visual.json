@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "525788cb9ba76c0b89e1",
   "position": {
-    "x": 152,
+    "x": 160,
     "y": 0,
     "z": 6000,
-    "height": 88,
+    "height": 96,
     "width": 288,
     "tabOrder": 6000
   },
@@ -233,5 +233,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "38fb7c15b8204d8bbc6b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_dummy_ys10n_top_12"
+              }
+            },
+            "Property": "act_gds_mvmnt_date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
