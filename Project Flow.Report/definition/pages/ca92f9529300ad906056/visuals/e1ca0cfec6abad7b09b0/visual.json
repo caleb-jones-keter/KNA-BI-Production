@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "e1ca0cfec6abad7b09b0",
   "position": {
     "x": 0,
@@ -281,56 +281,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "7f07fa76001c32770120",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
-              }
-            },
-            "Property": "Ship Date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "212594df75a49b484046",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM Storage Location"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "bc66e50e4b553214ac91",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FACT YS10N Base"
-                  }
-                },
-                "Property": "Trailer No_"
-              }
-            },
-            "Function": 2
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

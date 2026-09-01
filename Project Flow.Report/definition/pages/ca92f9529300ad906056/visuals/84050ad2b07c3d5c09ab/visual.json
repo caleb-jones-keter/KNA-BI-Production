@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "84050ad2b07c3d5c09ab",
   "position": {
     "x": 696,
     "y": 176,
-    "z": 6002,
+    "z": 8000,
     "height": 720,
     "width": 952,
-    "tabOrder": 6002
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "tableEx",
@@ -332,103 +332,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "cef89128cc276288c121",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
-              }
-            },
-            "Property": "Ship Date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4ba5d6719b40a070cd14",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM Storage Location"
-              }
-            },
-            "Property": "Full Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "434f941cd07330986300",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FACT YS10N Base"
-                  }
-                },
-                "Property": "Trailer No_"
-              }
-            },
-            "Function": 2
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5aa30010686d7b01ad50",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
-              }
-            },
-            "Property": "PO Number"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8928357d0b90e0ecd9e0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
-              }
-            },
-            "Property": "Delivery"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b35d3a3c6b14821b310b",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FACT YS10N Base"
-                  }
-                },
-                "Property": "Combined Qty"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
