@@ -258,56 +258,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "019731bad7132ab488a7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM Date"
-              }
-            },
-            "Property": "Full Date - SOW"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "5f574d517e7e3440ca50",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
-              }
-            },
-            "Property": "Shipping type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "056ef23dc7072e07ff10",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FACT YS10N Base"
-                  }
-                },
-                "Property": "CombinedQty_per_TLQty"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

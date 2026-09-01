@@ -44,6 +44,22 @@
               "queryRef": "DIM Customer.Payer & Desc",
               "nativeQueryRef": "Payer & Desc",
               "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Ship To"
+                    }
+                  },
+                  "Property": "Sheet1.Name 1"
+                }
+              },
+              "queryRef": "DIM Ship To.Sheet1.Name 1",
+              "nativeQueryRef": "Ship To",
+              "active": false,
+              "displayName": "Ship To"
             }
           ]
         },
@@ -153,10 +169,53 @@
               "DIM Customer.Payer & Desc"
             ],
             "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Customer"
+                    }
+                  },
+                  "Property": "Payer & Desc"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Ship To.Sheet1.Name 1"
+            ],
+            "isCollapsed": true,
             "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'WAYFAIR'"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'169545-Castlegate'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
       }
     ],
     "objects": {

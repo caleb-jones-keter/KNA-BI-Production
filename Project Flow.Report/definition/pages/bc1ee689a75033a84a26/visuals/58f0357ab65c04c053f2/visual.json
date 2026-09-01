@@ -35,6 +35,21 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
+                      "Entity": "DIM MRP Area"
+                    }
+                  },
+                  "Property": "MRP Area"
+                }
+              },
+              "queryRef": "DIM MRP Area.MRP Area",
+              "nativeQueryRef": "MRP Area",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
                       "Entity": "DIM Customer"
                     }
                   },
@@ -43,21 +58,6 @@
               },
               "queryRef": "DIM Customer.Payer & Desc",
               "nativeQueryRef": "Payer & Desc",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DIM Product"
-                    }
-                  },
-                  "Property": "SKU & Desc"
-                }
-              },
-              "queryRef": "DIM Product.SKU & Desc",
-              "nativeQueryRef": "SKU & Desc",
               "active": false
             },
             {
@@ -107,6 +107,37 @@
               "nativeQueryRef": "Zip Code",
               "active": false,
               "displayName": "Zip Code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Ship To"
+                    }
+                  },
+                  "Property": "Sheet1.Name 1"
+                }
+              },
+              "queryRef": "DIM Ship To.Sheet1.Name 1",
+              "nativeQueryRef": "Ship to Name",
+              "active": false,
+              "displayName": "Ship to Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Product"
+                    }
+                  },
+                  "Property": "SKU & Desc"
+                }
+              },
+              "queryRef": "DIM Product.SKU & Desc",
+              "nativeQueryRef": "SKU & Desc",
+              "active": false
             }
           ]
         },
@@ -185,6 +216,13 @@
           },
           {
             "queryRefs": [
+              "DIM MRP Area.MRP Area"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
               "DIM Customer.Payer & Desc"
             ],
             "isCollapsed": true,
@@ -204,13 +242,6 @@
           },
           {
             "queryRefs": [
-              "DIM Product.SKU & Desc"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
               "DIM USA CA Zips.REGION"
             ],
             "isCollapsed": true,
@@ -226,6 +257,20 @@
           {
             "queryRefs": [
               "DIM USA CA Zips.POSTAL_CODE"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Ship To.Sheet1.Name 1"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM Product.SKU & Desc"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -323,6 +368,118 @@
             }
           ]
         }
+      },
+      {
+        "name": "fc8510ed80c462b4f92b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8a50da814ad29112667d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM MRP Area"
+              }
+            },
+            "Property": "MRP Area"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "77a2ef5f0f05819397f3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6f8ede8d356cd51bf1e9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1c747d23dbcfac63232d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7323c87da96139b60292",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "da6817924336276b65e4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b1a5fcb6e1bb952bd8d7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Ship To"
+              }
+            },
+            "Property": "Sheet1.Name 1"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

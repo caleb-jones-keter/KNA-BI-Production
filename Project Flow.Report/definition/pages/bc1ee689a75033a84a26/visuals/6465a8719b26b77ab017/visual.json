@@ -20,6 +20,20 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
+                      "Entity": "DIM MRP Area"
+                    }
+                  },
+                  "Property": "MRP Area"
+                }
+              },
+              "queryRef": "DIM MRP Area.MRP Area",
+              "nativeQueryRef": "MRP Area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
                       "Entity": "DIM Customer"
                     }
                   },
@@ -87,6 +101,21 @@
               "queryRef": "DIM USA CA Zips.POSTAL_CODE",
               "nativeQueryRef": "Zip Code",
               "displayName": "Zip Code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM Ship To"
+                    }
+                  },
+                  "Property": "Sheet1.Name 1"
+                }
+              },
+              "queryRef": "DIM Ship To.Sheet1.Name 1",
+              "nativeQueryRef": "Ship To Name",
+              "displayName": "Ship To Name"
             },
             {
               "field": {
@@ -210,6 +239,104 @@
             }
           ]
         }
+      },
+      {
+        "name": "9f4353c41cae493ab887",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM MRP Area"
+              }
+            },
+            "Property": "MRP Area"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cd2517918071a6f906bd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "efb79c49b34798085f3d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Product"
+              }
+            },
+            "Property": "SKU & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1547a1d7b036ec16fd8f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3d14b0e657a4a6a79bb2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f020bf6718757adee3d4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c2350eabfbe6a96f3949",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Ship To"
+              }
+            },
+            "Property": "Sheet1.Name 1"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "bc1ee689a75033a84a26",
-  "displayName": "DI High Volume Customers",
+  "displayName": "High Volume Import Customers",
   "displayOption": "FitToPage",
   "height": 900,
   "width": 1650,
@@ -197,6 +197,36 @@
             }
           ]
         },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "fc600a10412100e86aa8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical",
         "howCreated": "User",
         "objects": {
           "general": [
