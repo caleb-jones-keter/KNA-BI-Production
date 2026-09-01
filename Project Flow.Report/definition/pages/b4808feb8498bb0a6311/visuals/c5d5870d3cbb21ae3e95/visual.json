@@ -54,18 +54,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
                     }
                   },
-                  "Property": "_TL_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._TL_Combined_Qty",
-              "nativeQueryRef": "_TL_Combined_Qty",
-              "format": "0"
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_TLQty)",
+              "nativeQueryRef": "TL Qty",
+              "displayName": "TL Qty"
             }
           ]
         },
@@ -75,7 +80,7 @@
               "field": {
                 "NativeVisualCalculation": {
                   "Language": "dax",
-                  "Expression": "MOVINGAVERAGE([_TL_Combined_Qty], 5)",
+                  "Expression": "MOVINGAVERAGE([TL Qty], 5)",
                   "Name": "Moving average"
                 }
               },
@@ -454,7 +459,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a94cccd3890ef22d538b",
+        "name": "2aadeee631c6312d3cbd",
         "field": {
           "Column": {
             "Expression": {
@@ -468,7 +473,7 @@
         "type": "Categorical"
       },
       {
-        "name": "11dc7cd911e8dddde1c2",
+        "name": "c2a193855cb9af164fb5",
         "field": {
           "Column": {
             "Expression": {
@@ -482,15 +487,20 @@
         "type": "Categorical"
       },
       {
-        "name": "57758a4cacda4ed75da0",
+        "name": "c8ca52a59f4aeaebb235",
         "field": {
-          "Measure": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "CombinedQty_per_TLQty"
               }
             },
-            "Property": "_TL_Combined_Qty"
+            "Function": 0
           }
         },
         "type": "Advanced"

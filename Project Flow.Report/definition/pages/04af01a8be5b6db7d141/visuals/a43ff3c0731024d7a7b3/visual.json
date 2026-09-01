@@ -3,9 +3,9 @@
   "name": "a43ff3c0731024d7a7b3",
   "position": {
     "x": 0,
-    "y": 176,
+    "y": 192,
     "z": 5000,
-    "height": 720,
+    "height": 704,
     "width": 1648,
     "tabOrder": 5000
   },
@@ -79,14 +79,14 @@
                           "Entity": "FACT YS10N Base"
                         }
                       },
-                      "Property": "Trailer No_"
+                      "Property": "Trailer No"
                     }
                   },
                   "Function": 2
                 }
               },
-              "queryRef": "CountNonNull(FACT YS10N Base.Trailer No_)",
-              "nativeQueryRef": "Count of Trailer No_1"
+              "queryRef": "CountNonNull(FACT YS10N Base.Trailer No)",
+              "nativeQueryRef": "Count of Trailer No1"
             }
           ]
         }
@@ -473,7 +473,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "367342d5ad6e54e533ff",
+        "name": "48eb369932d00e070162",
         "field": {
           "Column": {
             "Expression": {
@@ -487,7 +487,7 @@
         "type": "Categorical"
       },
       {
-        "name": "a0a41631c08ab40879ab",
+        "name": "6c9ad22ca673c02510d2",
         "field": {
           "Column": {
             "Expression": {
@@ -501,7 +501,7 @@
         "type": "Categorical"
       },
       {
-        "name": "10be6e721355a9bf86cb",
+        "name": "702c49424807e0747ad0",
         "field": {
           "Column": {
             "Expression": {
@@ -513,6 +513,25 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "aea4c6146820cec1c51d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "Trailer No"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "95a5399e33cbe0f19c3a",
   "position": {
-    "x": 0,
-    "y": 112,
+    "x": 16,
+    "y": 120,
     "z": 7000,
-    "height": 160,
-    "width": 399.99999999999994,
+    "height": 144,
+    "width": 304,
     "tabOrder": 7000
   },
   "visual": {
@@ -31,28 +31,33 @@
             },
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
                     }
                   },
-                  "Property": "_TL_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._TL_Combined_Qty",
-              "nativeQueryRef": "_TL_Combined_Qty",
-              "format": "0"
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_TLQty)",
+              "nativeQueryRef": "TL Qty",
+              "displayName": "TL Qty"
             },
             {
               "field": {
                 "NativeVisualCalculation": {
                   "Language": "dax",
-                  "Expression": "MOVINGAVERAGE([_TL_Combined_Qty], 5)",
+                  "Expression": "MOVINGAVERAGE([TL Qty], 5)",
                   "Name": "Moving average"
                 }
               },
-              "queryRef": "select",
+              "queryRef": "select1",
               "nativeQueryRef": "Moving average"
             }
           ]

@@ -37,19 +37,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
                     }
                   },
-                  "Property": "_TL_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._TL_Combined_Qty",
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_TLQty)",
               "nativeQueryRef": "TL Qty",
-              "displayName": "TL Qty",
-              "format": "#,0.0"
+              "displayName": "TL Qty"
             }
           ]
         },
@@ -161,7 +165,7 @@
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "41.43193653078666D"
+                  "Value": "41.431936530786686D"
                 }
               }
             },
@@ -275,6 +279,23 @@
                   }
                 }
               }
+            },
+            "markerRotation": {
+              "expr": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              }
             }
           },
           "selector": {
@@ -329,57 +350,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c944b151991a6d016f7e",
-        "ordinal": 0,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
-              }
-            },
-            "Property": "_TL_Combined_Qty"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FACT YS10N Base",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 1,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
-                        }
-                      },
-                      "Property": "_TL_Combined_Qty"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "5L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
         "name": "c4130d28303b6709eed5",
-        "ordinal": 1,
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -394,7 +366,7 @@
       },
       {
         "name": "70187019ee148db15001",
-        "ordinal": 2,
+        "ordinal": 1,
         "field": {
           "Aggregation": {
             "Expression": {
@@ -414,7 +386,7 @@
       },
       {
         "name": "00746b1f3085bf72be07",
-        "ordinal": 3,
+        "ordinal": 2,
         "field": {
           "Aggregation": {
             "Expression": {
@@ -434,7 +406,7 @@
       },
       {
         "name": "28517467839a888b73c4",
-        "ordinal": 4,
+        "ordinal": 3,
         "field": {
           "Aggregation": {
             "Expression": {
@@ -451,6 +423,85 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "b1a683d03ebb116b5f85",
+        "ordinal": 4,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM USA CA Zips"
+                  }
+                },
+                "Property": "City List"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b320b72c518052daef7c",
+        "ordinal": 5,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "CombinedQty_per_TLQty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YS10N Base",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "CombinedQty_per_TLQty"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "5L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ],
     "filterSortOrder": "Custom"

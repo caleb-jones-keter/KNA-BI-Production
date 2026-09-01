@@ -62,19 +62,23 @@
             },
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_ContQty"
                     }
                   },
-                  "Property": "_Container_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._Container_Combined_Qty",
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_ContQty)",
               "nativeQueryRef": "Container Qty",
-              "displayName": "Container Qty",
-              "format": "#,0.0"
+              "displayName": "Container Qty"
             }
           ]
         }
@@ -83,13 +87,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "FACT YS10N Base"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "FACT YS10N Base"
+                      }
+                    },
+                    "Property": "CombinedQty_per_ContQty"
                   }
                 },
-                "Property": "_Container_Combined_Qty"
+                "Function": 0
               }
             },
             "direction": "Descending"
@@ -117,15 +126,62 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "2c5532c8fc5560c7b8a8",
+        "name": "300f6290b3ccd4fa0e07",
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "FACT YS10N Base"
+                "Entity": "DIM USA CA Zips"
               }
             },
-            "Property": "_Container_Combined_Qty"
+            "Property": "POSTAL_CODE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ea2f9cc30a5e3f507a65",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d1fb1a77e7822184e6bb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "City List"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "78bff5e2022ec5ab7e1b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "CombinedQty_per_ContQty"
+              }
+            },
+            "Function": 0
           }
         },
         "type": "Advanced",
@@ -144,13 +200,18 @@
                 "Comparison": {
                   "ComparisonKind": 1,
                   "Left": {
-                    "Measure": {
+                    "Aggregation": {
                       "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "CombinedQty_per_ContQty"
                         }
                       },
-                      "Property": "_Container_Combined_Qty"
+                      "Function": 0
                     }
                   },
                   "Right": {

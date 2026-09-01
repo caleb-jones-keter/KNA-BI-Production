@@ -37,18 +37,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_ContQty"
                     }
                   },
-                  "Property": "_Container_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._Container_Combined_Qty",
-              "nativeQueryRef": "_Container_Combined_Qty",
-              "format": "#,0.0"
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_ContQty)",
+              "nativeQueryRef": "Cont Qty",
+              "displayName": "Cont Qty"
             }
           ]
         },
@@ -403,16 +408,41 @@
         "type": "Advanced"
       },
       {
-        "name": "de46a837667045ce6d0e",
+        "name": "41d8228cb38e4d68eb38",
         "ordinal": 4,
         "field": {
-          "Measure": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "FACT YS10N Base"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM USA CA Zips"
+                  }
+                },
+                "Property": "City List"
               }
             },
-            "Property": "_Container_Combined_Qty"
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4312c21cacd33c2d09f1",
+        "ordinal": 5,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "CombinedQty_per_ContQty"
+              }
+            },
+            "Function": 0
           }
         },
         "type": "Advanced",
@@ -431,13 +461,18 @@
                 "Comparison": {
                   "ComparisonKind": 1,
                   "Left": {
-                    "Measure": {
+                    "Aggregation": {
                       "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "CombinedQty_per_ContQty"
                         }
                       },
-                      "Property": "_Container_Combined_Qty"
+                      "Function": 0
                     }
                   },
                   "Right": {
@@ -450,26 +485,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "41d8228cb38e4d68eb38",
-        "ordinal": 5,
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "DIM USA CA Zips"
-                  }
-                },
-                "Property": "City List"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

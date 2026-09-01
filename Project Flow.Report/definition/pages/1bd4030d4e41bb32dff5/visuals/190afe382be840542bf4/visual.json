@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "190afe382be840542bf4",
   "position": {
-    "x": 0,
-    "y": 336,
+    "x": 16,
+    "y": 280,
     "z": 5000,
-    "height": 560,
-    "width": 1648,
+    "height": 616,
+    "width": 1632,
     "tabOrder": 5000
   },
   "visual": {
@@ -54,18 +54,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_TLQty"
                     }
                   },
-                  "Property": "_TL_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._TL_Combined_Qty",
-              "nativeQueryRef": "_TL_Combined_Qty",
-              "format": "0"
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_TLQty)",
+              "nativeQueryRef": "TL Qty",
+              "displayName": "TL Qty"
             }
           ]
         },
@@ -75,7 +80,7 @@
               "field": {
                 "NativeVisualCalculation": {
                   "Language": "dax",
-                  "Expression": "MOVINGAVERAGE([_TL_Combined_Qty], 5)",
+                  "Expression": "MOVINGAVERAGE([TL Qty], 5)",
                   "Name": "Moving average"
                 }
               },
@@ -427,6 +432,19 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
                 }
               }
             }

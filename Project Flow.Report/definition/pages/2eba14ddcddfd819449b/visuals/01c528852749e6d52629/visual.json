@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "01c528852749e6d52629",
   "position": {
     "x": 1280,
@@ -51,19 +51,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_ContQty"
                     }
                   },
-                  "Property": "_Container_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._Container_Combined_Qty",
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_ContQty)",
               "nativeQueryRef": "Container Qty",
-              "displayName": "Container Qty",
-              "format": "#,0.0"
+              "displayName": "Container Qty"
             }
           ]
         }
@@ -72,13 +76,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "FACT YS10N Base"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "FACT YS10N Base"
+                      }
+                    },
+                    "Property": "CombinedQty_per_ContQty"
                   }
                 },
-                "Property": "_Container_Combined_Qty"
+                "Function": 0
               }
             },
             "direction": "Descending"
@@ -155,15 +164,48 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "84b1ae1453c2282a071c",
+        "name": "21085afa6586eb895d78",
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "FACT YS10N Base"
+                "Entity": "DIM Customer"
               }
             },
-            "Property": "_TL_Combined_Qty"
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7c07067f025947aa64d8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Payer & Desc"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "65fe4b486bcb0563f0bf",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "CombinedQty_per_ContQty"
+              }
+            },
+            "Function": 0
           }
         },
         "type": "Advanced",
@@ -171,7 +213,7 @@
           "Version": 2,
           "From": [
             {
-              "Name": "f1",
+              "Name": "f",
               "Entity": "FACT YS10N Base",
               "Type": 0
             }
@@ -182,13 +224,18 @@
                 "Comparison": {
                   "ComparisonKind": 1,
                   "Left": {
-                    "Measure": {
+                    "Aggregation": {
                       "Expression": {
-                        "SourceRef": {
-                          "Source": "f1"
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "CombinedQty_per_ContQty"
                         }
                       },
-                      "Property": "_TL_Combined_Qty"
+                      "Function": 0
                     }
                   },
                   "Right": {
@@ -200,8 +247,7 @@
               }
             }
           ]
-        },
-        "howCreated": "User"
+        }
       }
     ]
   }

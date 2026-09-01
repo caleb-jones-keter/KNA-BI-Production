@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "312cb90c494d6f5c746f",
   "position": {
-    "x": 16,
-    "y": 16,
+    "x": 896,
+    "y": 104,
     "z": 4000,
     "height": 80,
-    "width": 272,
+    "width": 376,
     "tabOrder": 4000
   },
   "visual": {
@@ -325,5 +325,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "375365a88854f0c68f05",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM MRP Area"
+              }
+            },
+            "Property": "Imports"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a01bab522cc82d00c9fe",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM MRP Area"
+              }
+            },
+            "Property": "MRP Area"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

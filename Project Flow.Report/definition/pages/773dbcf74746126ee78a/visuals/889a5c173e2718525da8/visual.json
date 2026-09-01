@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "889a5c173e2718525da8",
   "position": {
     "x": 16,
@@ -145,17 +145,23 @@
             },
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FACT YS10N Base"
+                        }
+                      },
+                      "Property": "CombinedQty_per_ContQty"
                     }
                   },
-                  "Property": "_Container_Combined_Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "FACT YS10N Base._Container_Combined_Qty",
-              "nativeQueryRef": "_Container_Combined_Qty"
+              "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_ContQty)",
+              "nativeQueryRef": "Container Qty",
+              "displayName": "Container Qty"
             },
             {
               "field": {
@@ -289,20 +295,6 @@
           },
           "selector": {
             "metadata": "FACT YS10N Base.Shipment Number"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "129.13677229044293D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "FACT YS10N Base._Container_Combined_Qty"
           }
         }
       ],
@@ -639,7 +631,8 @@
             "Property": "_Container_Combined_Qty"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "49699755bb3c26e75ede",
@@ -686,6 +679,39 @@
         },
         "type": "Categorical",
         "howCreated": "User"
+      },
+      {
+        "name": "432c8cb397be1d416bb9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Date"
+              }
+            },
+            "Property": "Full Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b37432c54dde6b7bbcd6",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT YS10N Base"
+                  }
+                },
+                "Property": "CombinedQty_per_ContQty"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"
