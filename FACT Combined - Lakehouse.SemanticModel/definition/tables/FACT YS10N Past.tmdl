@@ -1537,6 +1537,36 @@ table 'FACT YS10N Past'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'DIM Product.Carton/Bag_Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: f22a2f87-d56c-4259-b169-10be7a2e6d3d
+		sourceLineageTag: DIM Product.Carton/Bag_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.Carton/Bag_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DIM Product.SS/PLT_Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: e43341d6-4d85-4f26-94d2-4f6a27a14517
+		sourceLineageTag: DIM Product.SS/PLT_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.SS/PLT_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Picks
+		dataType: int64
+		formatString: 0
+		lineageTag: aa15950c-27fe-496c-aa28-15e6805f3541
+		sourceLineageTag: Picks
+		summarizeBy: sum
+		sourceColumn: Picks
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'FACT YS10N Past' = entity
 		mode: directLake
 		source

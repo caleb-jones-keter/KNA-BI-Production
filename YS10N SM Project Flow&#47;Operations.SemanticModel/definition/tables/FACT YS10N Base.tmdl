@@ -334,6 +334,23 @@ table 'FACT YS10N Base'
 
 		changedProperty = Name
 
+	measure '_CombinedQty_per_TLQty Group' =
+			
+			CALCULATE(
+			    SUM('FACT YS10N Base'[CombinedQty_per_TLQty]),
+			    ALLEXCEPT(
+			        'FACT YS10N Base',
+			        'FACT YS10N Base'[MRPSKU Key],
+			        'FACT YS10N Base'[Payer],
+			        'FACT YS10N Base'[ShipToZip_Clean]
+			    )
+			)
+		lineageTag: 503216c4-24ae-473d-9677-c6dd8f2e4a65
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column SourceTable
 		dataType: string
 		lineageTag: 916e66d3-1874-4a09-bdea-1a173a8e192a
@@ -1685,6 +1702,79 @@ table 'FACT YS10N Base'
 		sourceColumn: Trailer No
 
 		annotation SummarizationSetBy = Automatic
+
+	column 'DIM Product.Carton/Bag_Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 51d97091-1f95-4bfd-8483-1c4ead33fc86
+		sourceLineageTag: DIM Product.Carton/Bag_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.Carton/Bag_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DIM Product.SS/PLT_Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: d0b3f013-864c-48df-8c3c-b5a3fd83cfa2
+		sourceLineageTag: DIM Product.SS/PLT_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.SS/PLT_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Picks
+		dataType: int64
+		formatString: 0
+		lineageTag: 38b05c73-0911-45fc-b8d9-d10616789ae3
+		sourceLineageTag: Picks
+		summarizeBy: sum
+		sourceColumn: Picks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DIM Product.Cont_Qty'
+		dataType: double
+		lineageTag: 126c0b64-aece-4bf5-87cb-592a930cab50
+		sourceLineageTag: DIM Product.Cont_Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.Cont_Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DIM Product.TL Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 489877ed-d64b-4d39-ba16-7ca52c4db967
+		sourceLineageTag: DIM Product.TL Qty
+		summarizeBy: sum
+		sourceColumn: DIM Product.TL Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column CombinedQty_per_ContQty
+		dataType: double
+		lineageTag: 4a99ed0e-0184-451a-9bfd-671bbb0d7f21
+		sourceLineageTag: CombinedQty_per_ContQty
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_ContQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CombinedQty_per_TLQty
+		dataType: double
+		lineageTag: d21a5383-d5eb-4552-a6e9-18c49ddbf24d
+		sourceLineageTag: CombinedQty_per_TLQty
+		summarizeBy: sum
+		sourceColumn: CombinedQty_per_TLQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition 'FACT YS10N Base' = entity
 		mode: directLake
