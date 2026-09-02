@@ -224,33 +224,107 @@ shared #"FACT YS10N Base" = let
     #"Added custom 8" = Table.TransformColumnTypes(Table.AddColumn(#"Added custom 7", "Material ZIP Key", each Text.From([Material]) & "|" & Text.From([ship_to])), {{"Material ZIP Key", type text}} ),
     #"Merged queries 3" = Table.NestedJoin(#"Added custom 8", {"Material"}, #"DIM Product", {"Material"}, "DIM Product", JoinKind.LeftOuter),
     #"Expanded DIM Product" = Table.ExpandTableColumn(#"Merged queries 3", "DIM Product", {"Carton/Bag_Qty", "SS/PLT_Qty", "Cont_Qty", "TL Qty"}, {"DIM Product.Carton/Bag_Qty", "DIM Product.SS/PLT_Qty", "DIM Product.Cont_Qty", "DIM Product.TL Qty"}),
-    #"Picks" = Table.AddColumn(
-        #"Expanded DIM Product",
-        "Picks",
-        each
-            let
-                LineQty = -[Combined Qty],
-                LinePlt = [#"DIM Product.SS/PLT_Qty"],
-                LineCase = [#"DIM Product.Carton/Bag_Qty"],
-                MovementType = [Movement Type]
-            in
-                if LineQty = null then null
-                else if LinePlt <> null and LinePlt <> 0 and LineQty > LinePlt then Number.RoundUp(LineQty / LinePlt)
-                else if LineCase <> null and LineCase <> 0 and LineQty > LineCase then Number.RoundUp(LineQty / LineCase)
-                else 1,
-        Int64.Type
-    ),
+    // Picks = Table.AddColumn(
+    //     #"Expanded DIM Product",
+    //     "Picks",
+    //     each
+    //         let
+    //             LineQty = -[Combined Qty],
+    //             LinePlt = [#"DIM Product.SS/PLT_Qty"],
+    //             LineCase = [#"DIM Product.Carton/Bag_Qty"],
+    //             ShipType = [#"Shipping type"]
+    //         in
+    //             if LineQty is null then null
+    //             else if ShipType = "07" and LineCase <> 0 and LineQty > LineCase then Number.RoundUp(LineQty / LineCase)
+    //             else if LinePlt <> null and LinePlt <> 0 and LineQty > LinePlt then Number.RoundUp(LineQty / LinePlt)
+    //             else if LineCase <> null and LineCase <> 0 and LineQty > LineCase then Number.RoundUp(LineQty / LineCase)
+    //             else 1,
+    //     Int64.Type
+    // ),
+
+    // CJ 9/2/2026: null-safe Picks calculation
+    Picks =
+        Table.AddColumn(
+            #"Expanded DIM Product",
+            "Picks",
+            each
+                let
+                    QtyRaw = try Number.From([Combined Qty]) otherwise null,
+                    PltRaw = try Number.From([#"DIM Product.SS/PLT_Qty"]) otherwise null,
+                    CaseRaw =  try Number.From([#"DIM Product.Carton/Bag_Qty"]) otherwise null,
+                    LineQty = if QtyRaw = null then null else -QtyRaw,
+                    LinePlt = if PltRaw = null then 0 else PltRaw,
+                    LineCase = if CaseRaw = null then 0 else CaseRaw,
+                    ShipType =
+                        try Text.PadStart(
+                            Text.Trim(Text.From([#"Shipping type"])),
+                            2,
+                            "0"
+                        )
+                        otherwise ""
+                in
+                    if LineQty = null then null
+                    else if ShipType = "07"
+                        and LineCase > 0
+                        and LineQty > LineCase
+                    then Number.RoundUp(LineQty / LineCase)
+                    else if LinePlt > 0 and LineQty > LinePlt then Number.RoundUp(LineQty / LinePlt)
+                    else if LineCase > 0 and LineQty > LineCase then Number.RoundUp(LineQty / LineCase)
+                    else 1,
+            Int64.Type
+        ),
+
+    // CJ 9/2/2026: null-safe Case Picks calculation
+    CasePicks =
+        Table.AddColumn(
+            Picks,
+            "CasePicks",
+            each
+                let
+                    QtyRaw = try Number.From([Combined Qty]) otherwise null,
+                    PltRaw = try Number.From([#"DIM Product.SS/PLT_Qty"]) otherwise null,
+                    CaseRaw = try Number.From([#"DIM Product.Carton/Bag_Qty"]) otherwise null,
+                    LineQty = if QtyRaw = null then null else -QtyRaw,
+                    LinePlt = if PltRaw = null then 0 else PltRaw,
+                    LineCase = if CaseRaw = null then 0 else CaseRaw,
+                    ShipType =
+                        try Text.PadStart(
+                            Text.Trim(Text.From([#"Shipping type"])),
+                            2,
+                            "0"
+                        )
+                        otherwise ""
+                in
+                    if LineQty = null then null
+                    // Parcel
+                    else if ShipType = "07"
+                        and LineCase > 0
+                        and LineQty > LineCase
+                    then Number.RoundUp(LineQty / LineCase)
+
+                    // LTL
+                    else if ShipType = "06"
+                        and LinePlt > 0
+                        and LineQty > LinePlt
+                    then Number.RoundUp(LineQty / LinePlt)
+
+                    // FTL
+                    else if ShipType = "01" and LinePlt > 0 then
+                        if Number.Mod(LineQty, LinePlt) <> 0 then 1 else 0
+                    else 1,
+            Int64.Type
+        ),
 
     #"CombinedQty_per_ContQty" = Table.TransformColumnTypes(
-        Table.AddColumn(
-        #"Picks",
-        "CombinedQty_per_ContQty",
-        each Value.Divide(-[Combined Qty], [DIM Product.Cont_Qty])
+            Table.AddColumn(
+            CasePicks,
+            "CombinedQty_per_ContQty",
+            each Value.Divide(-[Combined Qty], [DIM Product.Cont_Qty])
+            ),
+            {{"CombinedQty_per_ContQty", type number}}
         ),
-        {{"CombinedQty_per_ContQty", type number}}
-  ),
 
-  #"Calculate TLs" = Table.TransformColumnTypes(Table.AddColumn(#"CombinedQty_per_ContQty", "CombinedQty_per_TLQty", each Value.Divide(-[Combined Qty], [DIM Product.TL Qty])), {{"CombinedQty_per_TLQty", type number}})
+    #"Calculate TLs" = Table.TransformColumnTypes(Table.AddColumn(#"CombinedQty_per_ContQty", "CombinedQty_per_TLQty", each Value.Divide(-[Combined Qty], [DIM Product.TL Qty])), {{"CombinedQty_per_TLQty", type number}})
 in
     #"Calculate TLs";
 [BindToDefaultDestination = true]
