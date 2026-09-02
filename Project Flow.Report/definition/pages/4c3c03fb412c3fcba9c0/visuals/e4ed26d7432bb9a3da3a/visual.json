@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "fda408ce1840d1c9ed63",
+  "name": "e4ed26d7432bb9a3da3a",
   "position": {
-    "x": 592,
+    "x": 632,
     "y": 16,
     "z": 0,
     "height": 80,
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                      "Entity": "DIM Date"
                     }
                   },
-                  "Property": "Act. Gds Mvmnt Date Converted"
+                  "Property": "Full Date"
                 }
               },
-              "queryRef": "FACT YS10N Base.Act. Gds Mvmnt Date Converted",
+              "queryRef": "DIM Date.Full Date",
               "nativeQueryRef": "Ship Date",
               "active": true,
               "displayName": "Ship Date"
@@ -41,10 +41,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FACT YS10N Base"
+                    "Entity": "DIM Date"
                   }
                 },
-                "Property": "Act. Gds Mvmnt Date Converted"
+                "Property": "Full Date"
               }
             },
             "direction": "Ascending"
@@ -74,14 +74,14 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "52D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Calendar Years'"
+                  "Value": "'Calendar Weeks'"
                 }
               }
             }
@@ -96,8 +96,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "f",
-                    "Entity": "FACT YS10N Base",
+                    "Name": "d",
+                    "Entity": "DIM Date",
                     "Type": 0
                   }
                 ],
@@ -109,10 +109,10 @@
                           "Column": {
                             "Expression": {
                               "SourceRef": {
-                                "Source": "f"
+                                "Source": "d"
                               }
                             },
-                            "Property": "Act. Gds Mvmnt Date Converted"
+                            "Property": "Full Date"
                           }
                         },
                         "LowerBound": {
@@ -122,11 +122,11 @@
                                 "Expression": {
                                   "Now": {}
                                 },
-                                "Amount": -1,
-                                "TimeUnit": 3
+                                "Amount": -52,
+                                "TimeUnit": 1
                               }
                             },
-                            "TimeUnit": 3
+                            "TimeUnit": 1
                           }
                         },
                         "UpperBound": {
@@ -137,10 +137,10 @@
                                   "Now": {}
                                 },
                                 "Amount": -1,
-                                "TimeUnit": 3
+                                "TimeUnit": 1
                               }
                             },
-                            "TimeUnit": 3
+                            "TimeUnit": 1
                           }
                         }
                       }
@@ -159,19 +159,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "header": [
-        {
-          "properties": {
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
                 }
               }
             }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "e3ec60cd1d59892983ac",
+  "name": "f5d377599cf4edaba590",
   "position": {
-    "x": 56.000000000000007,
+    "x": 1280,
     "y": 16,
-    "z": 5000,
+    "z": 4000,
     "height": 80,
-    "width": 272,
-    "tabOrder": 5000
+    "width": 352,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DIM MRP Area"
+                      "Entity": "DIM Customer"
                     }
                   },
-                  "Property": "Imports"
+                  "Property": "Customer Groups"
                 }
               },
-              "queryRef": "DIM MRP Area.Imports",
-              "nativeQueryRef": "Imports",
+              "queryRef": "DIM Customer.Customer Groups",
+              "nativeQueryRef": "Customer Groups",
               "active": true
             },
             {
@@ -35,15 +35,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DIM MRP Area"
+                      "Entity": "DIM Customer"
                     }
                   },
-                  "Property": "MRP Area"
+                  "Property": "Payer & Desc"
                 }
               },
-              "queryRef": "DIM MRP Area.MRP Area",
-              "nativeQueryRef": "MRP Area",
-              "active": false
+              "queryRef": "DIM Customer.Payer & Desc",
+              "nativeQueryRef": "Payer & Desc",
+              "active": true
             }
           ]
         }
@@ -60,7 +60,7 @@
         "levels": [
           {
             "queryRefs": [
-              "DIM MRP Area.Imports"
+              "DIM Customer.Customer Groups"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -68,10 +68,10 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DIM MRP Area"
+                      "Entity": "DIM Customer"
                     }
                   },
-                  "Property": "Imports"
+                  "Property": "Customer Groups"
                 }
               }
             ],
@@ -79,13 +79,36 @@
           },
           {
             "queryRefs": [
-              "DIM MRP Area.MRP Area"
+              "DIM Customer.Payer & Desc"
             ],
             "isCollapsed": true,
             "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'ECOMMERCE'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'KETER WEBSITE'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -125,7 +148,22 @@
       ],
       "general": [
         {
-          "properties": {}
+          "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
         }
       ],
       "dateRange": [

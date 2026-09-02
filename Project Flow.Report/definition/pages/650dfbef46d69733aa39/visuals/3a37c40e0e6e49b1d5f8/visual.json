@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "fda408ce1840d1c9ed63",
+  "name": "3a37c40e0e6e49b1d5f8",
   "position": {
-    "x": 592,
-    "y": 16,
-    "z": 0,
+    "x": 1336,
+    "y": 8,
+    "z": 1000,
     "height": 80,
-    "width": 288,
-    "tabOrder": 0
+    "width": 304,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,16 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FACT YS10N Base"
+                      "Entity": "DIM Date"
                     }
                   },
-                  "Property": "Act. Gds Mvmnt Date Converted"
+                  "Property": "Full Date"
                 }
               },
-              "queryRef": "FACT YS10N Base.Act. Gds Mvmnt Date Converted",
-              "nativeQueryRef": "Ship Date",
-              "active": true,
-              "displayName": "Ship Date"
+              "queryRef": "DIM Date.Full Date",
+              "nativeQueryRef": "Full Date",
+              "active": true
             }
           ]
         }
@@ -41,10 +40,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FACT YS10N Base"
+                    "Entity": "DIM Date"
                   }
                 },
-                "Property": "Act. Gds Mvmnt Date Converted"
+                "Property": "Full Date"
               }
             },
             "direction": "Ascending"
@@ -74,79 +73,15 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "52D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Calendar Years'"
+                  "Value": "'Calendar Weeks'"
                 }
-              }
-            }
-          }
-        }
-      ],
-      "general": [
-        {
-          "properties": {
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "f",
-                    "Entity": "FACT YS10N Base",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Between": {
-                        "Expression": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "f"
-                              }
-                            },
-                            "Property": "Act. Gds Mvmnt Date Converted"
-                          }
-                        },
-                        "LowerBound": {
-                          "DateSpan": {
-                            "Expression": {
-                              "DateAdd": {
-                                "Expression": {
-                                  "Now": {}
-                                },
-                                "Amount": -1,
-                                "TimeUnit": 3
-                              }
-                            },
-                            "TimeUnit": 3
-                          }
-                        },
-                        "UpperBound": {
-                          "DateSpan": {
-                            "Expression": {
-                              "DateAdd": {
-                                "Expression": {
-                                  "Now": {}
-                                },
-                                "Amount": -1,
-                                "TimeUnit": 3
-                              }
-                            },
-                            "TimeUnit": 3
-                          }
-                        }
-                      }
-                    }
-                  }
-                ]
               }
             }
           }
@@ -165,14 +100,65 @@
           }
         }
       ],
-      "header": [
+      "general": [
         {
           "properties": {
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "DIM Date",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Between": {
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Full Date"
+                          }
+                        },
+                        "LowerBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "DateAdd": {
+                                "Expression": {
+                                  "Now": {}
+                                },
+                                "Amount": -52,
+                                "TimeUnit": 1
+                              }
+                            },
+                            "TimeUnit": 1
+                          }
+                        },
+                        "UpperBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "DateAdd": {
+                                "Expression": {
+                                  "Now": {}
+                                },
+                                "Amount": -1,
+                                "TimeUnit": 1
+                              }
+                            },
+                            "TimeUnit": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }

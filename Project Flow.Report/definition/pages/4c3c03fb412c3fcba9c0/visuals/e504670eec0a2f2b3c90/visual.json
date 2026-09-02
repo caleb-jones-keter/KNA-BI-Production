@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "dadb99396d9fe1fba861",
+  "name": "e504670eec0a2f2b3c90",
   "position": {
     "x": 16,
     "y": 112,
     "z": 6000,
     "height": 480,
-    "width": 888,
+    "width": 800,
     "tabOrder": 6000
   },
   "visual": {
@@ -27,13 +27,12 @@
                 }
               },
               "queryRef": "DIM USA CA Zips.POSTAL_CODE",
-              "nativeQueryRef": "Zip Code",
-              "active": true,
-              "displayName": "Zip Code"
+              "nativeQueryRef": "POSTAL_CODE",
+              "active": true
             }
           ]
         },
-        "Size": {
+        "Tooltips": {
           "projections": [
             {
               "field": {
@@ -54,50 +53,6 @@
               "queryRef": "Sum(FACT YS10N Base.CombinedQty_per_TLQty)",
               "nativeQueryRef": "TL Qty",
               "displayName": "TL Qty"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DIM USA CA Zips"
-                        }
-                      },
-                      "Property": "REGION"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(DIM USA CA Zips.REGION)",
-              "nativeQueryRef": "Region",
-              "displayName": "Region"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DIM USA CA Zips"
-                        }
-                      },
-                      "Property": "City List"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(DIM USA CA Zips.City List)",
-              "nativeQueryRef": "City",
-              "displayName": "City"
             }
           ]
         },
@@ -158,28 +113,28 @@
             "zoom": {
               "expr": {
                 "Literal": {
-                  "Value": "3.08D"
+                  "Value": "2.82D"
                 }
               }
             },
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "41.431936530786686D"
+                  "Value": "36.353502729170614D"
                 }
               }
             },
             "centerLongitude": {
               "expr": {
                 "Literal": {
-                  "Value": "-93.262337D"
+                  "Value": "-94.62492950000001D"
                 }
               }
             },
             "defaultStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "'road'"
+                  "Value": "'grayscale_light'"
                 }
               }
             },
@@ -200,27 +155,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "minBubbleRadius": {
-              "expr": {
-                "Literal": {
-                  "Value": "1L"
-                }
-              }
-            },
-            "autoStrokeColor": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -253,7 +187,7 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#e6e6e6'"
+                                "Value": "'#E6E6E6'"
                               }
                             }
                           },
@@ -284,23 +218,6 @@
                   }
                 }
               }
-            },
-            "markerRotation": {
-              "expr": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FACT YS10N Base"
-                        }
-                      },
-                      "Property": "CombinedQty_per_TLQty"
-                    }
-                  },
-                  "Function": 0
-                }
-              }
             }
           },
           "selector": {
@@ -318,6 +235,19 @@
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "barChart": [
+        {
+          "properties": {
+            "showModern": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -427,7 +357,8 @@
             "Function": 3
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "b1a683d03ebb116b5f85",
@@ -447,7 +378,8 @@
             "Function": 3
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "b320b72c518052daef7c",
@@ -507,6 +439,185 @@
             }
           ]
         }
+      },
+      {
+        "name": "e6e4e4ac4fe11e55b9b8",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM Customer"
+              }
+            },
+            "Property": "Customer Groups"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DIM Customer",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "f",
+                        "Entity": "FACT YS10N Base",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "Customer Groups"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Aggregation": {
+                            "Expression": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "CombinedQty_per_TLQty"
+                              }
+                            },
+                            "Function": 0
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "d",
+              "Entity": "DIM Customer",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "Customer Groups"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "0e977cae773eec39586f",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM USA CA Zips"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "9a0ca54b90c836709aea",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Shipping type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YS10N Base",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Shipping type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'01'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"

@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "bc1ee689a75033a84a26",
-  "displayName": "High Volume Import Customers",
+  "name": "4c3c03fb412c3fcba9c0",
+  "displayName": "Top B2B Customer Flow",
   "displayOption": "FitToPage",
   "height": 900,
   "width": 1650,
@@ -81,7 +81,68 @@
         }
       },
       {
-        "name": "3aeaaba1143cfd1979c0",
+        "name": "621c421452a3eba96332",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT YS10N Base"
+              }
+            },
+            "Property": "Shipping type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FACT YS10N Base",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Shipping type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'01'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'06'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "4dd2e6190df39768472c",
         "field": {
           "Column": {
             "Expression": {
@@ -152,43 +213,8 @@
             }
           ]
         }
-      },
-      {
-        "name": "fc600a10412100e86aa8",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIM Customer"
-              }
-            },
-            "Property": "Customer Groups"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
       }
     ]
-  },
-  "pageBinding": {
-    "name": "b1705d9de0c8eb4e7c34",
-    "type": "Default",
-    "parameters": []
   },
   "visibility": "HiddenInViewMode"
 }
